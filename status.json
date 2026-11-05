@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T22:13:21+07:00",
+  "asOf": "2026-11-06T00:07:21+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
-  "evidenceNote": "Updated scope: owner addendum for Company/Org dynamic import/API is recorded in Master #88 and #86, not implemented. R2 PROD and flags according to release evidence; remaining statuses evidence-based.",
+  "evidenceNote": "R2 PROD verified from RELEASE_LOG. New GitHub DEV evidence: BE #119/#120/#122 merged, #121 open; FE #76/#77 merged. No verified R3/PROD changes. P0-16 OSS remains REQUESTED. Claude process status UNKNOWN without heartbeat.",
   "releases": [
     {
       "id": "R1",
@@ -32,9 +32,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA-R1 PASS",
-      "prs": "BE #98/#108 · FE #70",
+      "prs": "BE #98/#108/#119 · FE #70/#76 merged DEV",
       "summary": "Platform có tab Quyền dùng AI; nội bộ, cần Owner UAT",
-      "next": "Owner nghiệm thu cấp/thu hồi quyền",
+      "next": "Owner UAT quyền AI trên PROD; QA xác minh các bổ sung FE #76/BE #119 trước release tiếp.",
       "work": {
         "problem": "Quản trị quyền AI cần kiểm chứng thao tác cấp/thu hồi quyền thực tế.",
         "approach": "Kiểm tra UI, API cấp quyền và quyền hiệu lực sau thay đổi.",
@@ -120,9 +120,9 @@
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "1 lượt AI thật PASS cơ bản",
-      "prs": "BE #99/#101 · FE #58",
-      "summary": "Một job SUCCEEDED; chưa xác nhận resume/reload/error path",
-      "next": "E2E reload và reconnect",
+      "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV",
+      "summary": "J1 durable jobs PROD ON cơ bản; Q1 server prompt queue đã merge DEV (V79, flag OFF), chưa FE–BE E2E/PROD.",
+      "next": "QA reload/reconnect J1 và FE–BE queue: thêm/sửa thứ tự/hủy, chống trùng, lỗi quyền; không bật queue trước gates.",
       "work": {
         "problem": "Job AI hoàn tất cơ bản nhưng chưa xác nhận resume/reconnect/reload.",
         "approach": "Dùng cùng job ID và lịch sử tiến độ qua reload, không gọi AI trùng.",
@@ -144,10 +144,22 @@
             "text": "E2E reload, mất mạng, cancel và chống tính phí trùng",
             "state": "TODO",
             "textEn": "Test reload, network loss and duplicate billing"
+          },
+          {
+            "team": "BE",
+            "text": "Xác minh queue Q1 V79 sau merge DEV, flag OFF; chưa có PROD",
+            "textEn": "Verify merged DEV Q1 queue V79, flag OFF; not yet PROD",
+            "state": "VERIFY"
+          },
+          {
+            "team": "QA",
+            "text": "E2E FE–BE queue, reload/restart, chống duplicate paid turn",
+            "textEn": "E2E FE–BE queue, reload/restart and duplicate paid-turn protection",
+            "state": "TODO"
           }
         ],
         "lastEvidence": "1 lượt AI thật PASS cơ bản",
-        "source": "BE #99/#101 · FE #58",
+        "source": "BE #99/#101/#120 · FE #58",
         "problemEn": "One AI job succeeded; resume and reconnect remain unverified.",
         "approachEn": "Recover one durable job without duplicate AI requests or charges."
       }
@@ -261,9 +273,9 @@
       "risk": "LOW",
       "integrated": true,
       "qa": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
-      "prs": "FE #59 · BE #118 (build arg fix; chưa xác minh PROD)",
+      "prs": "FE #59 · BE #118/#119 merged DEV; PROD chưa xác minh",
       "summary": "XApp UX có FE R1 trên PROD, nhưng build arg XApp bị thiếu nên điều hướng chưa hoạt động; BE PR #118 đã merge bản sửa compose, chưa có bằng chứng rebuild/redeploy PROD.",
-      "next": "Xác minh build arg ở ảnh PROD sau release mới, smoke điều hướng XApp và session-expired trên 5 portal; Owner UAT.",
+      "next": "REL3 BE #119 đã merge DEV; build arg BE #118 vẫn chờ rebuild và smoke PROD, Owner UAT.",
       "work": {
         "problem": "XApp UX được deploy trong R1 nhưng thiếu NEXT_PUBLIC_PORTAL_URL_XAPP ở build args; sửa đã merge, chưa chứng minh trên PROD.",
         "approach": "Xác minh ảnh portal được rebuild với build arg đúng, kiểm tra các hành vi điều hướng và session expiry trước Owner UAT.",
@@ -384,9 +396,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC R2 PASS; API PROD trả 200",
-      "prs": "BE #112 · FE #73",
+      "prs": "BE #112/#119 · FE #73/#76 merged DEV",
       "summary": "API và màn quản trị ngân sách đã deploy R2; auto-renew và release khoản treo vẫn OFF",
-      "next": "Owner UAT ngân sách; duy trì các cờ tự gia hạn và release ở OFF",
+      "next": "QA REL3 và Owner UAT; giữ các cờ tự gia hạn/spend release OFF.",
       "work": {
         "problem": "API ngân sách PROD hoạt động; tự gia hạn và giải phóng khoản treo vẫn OFF.",
         "approach": "UAT quyền quản trị và giữ cờ tài chính theo quyết định Owner.",
@@ -424,18 +436,18 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "Chưa đủ BE",
-      "prs": "FE #67",
-      "summary": "UI đã có; BE B3 chưa hoàn thiện",
-      "next": "Hoàn thiện BE và tích hợp",
+      "qa": "BE #122: 71 test mới, 24/24 mutation; package 369 test còn 1 lỗi được báo là có trước. Chưa E2E FE–BE/PROD.",
+      "prs": "BE #122 merged DEV · FE #67 merged DEV",
+      "summary": "BE xin/duyệt ngân sách V78 đã merge DEV, FE form đã có; flag OFF, chưa tích hợp browser E2E hay PROD.",
+      "next": "Tích hợp FE–BE, QA độc lập và sửa/xác minh test package đỏ; không tự bật cờ.",
       "work": {
-        "problem": "Giao diện yêu cầu ngân sách có mã; API BE B3 chưa hoàn chỉnh.",
+        "problem": "BE B3 đã merge DEV, còn test package đỏ và chưa có E2E FE–BE/PROD.",
         "approach": "Hoàn thiện API xin/duyệt ngân sách, tích hợp vào Studio.",
         "tasks": [
           {
             "team": "BE",
             "text": "API request/approve/reject và audit",
-            "state": "TODO",
+            "state": "VERIFY",
             "textEn": "Build audited request/approve/reject endpoints"
           },
           {
@@ -451,9 +463,9 @@
             "textEn": "Test roles, workflow and caps"
           }
         ],
-        "lastEvidence": "Chưa đủ BE",
-        "source": "FE #67",
-        "problemEn": "Studio request UI exists, backend B3 is incomplete.",
+        "lastEvidence": "BE #122: 71 test mới, 24/24 mutation; package 369 test còn 1 lỗi được báo là có trước. Chưa E2E FE–BE/PROD.",
+        "source": "BE #122 · FE #67",
+        "problemEn": "B3 backend merged to DEV; one package test failure and FE–BE/PROD E2E remain unverified.",
         "approachEn": "Complete budget request/approval API and wire Studio UI."
       }
     },
@@ -512,10 +524,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "Chưa xác minh",
-      "prs": "Master #88 · Data/IAM #86 — Owner addendum",
-      "summary": "Dynamic Company: cây công ty mẹ→con→cháu→chắt độ sâu tùy ý, Org riêng; import Excel/CSV hoặc đồng bộ API (Owner #88)",
-      "next": "BA/SA chốt schema Company–OrgUnit và parentCompanyId không giới hạn cấp; BE/FE import/API; QA cycle, cross-tenant, 6+ cấp",
+      "qa": "PR #121 báo 117 test targeted PASS; full regression/mutation sau sync chưa chạy",
+      "prs": "BE #121 OPEN (X2/X5) · Master #88/#86",
+      "summary": "BE X2 catalog + X5 AI Context đã có PR #121 đang mở; 117 test post-merge sync PASS theo PR, chưa merge DEV/PROD.",
+      "next": "Review #121, QA toàn diện và SEC tenant/IAM; bổ sung FE danh mục và import Company/Org; chưa có PROD.",
       "work": {
         "problem": "Danh mục Company–Org chưa hỗ trợ đầy đủ cây mẹ/con/cháu và nhập API/file.",
         "approach": "Thiết kế Company tree không giới hạn cấp và OrgUnit tree riêng, đồng bộ file/API.",
@@ -529,7 +541,7 @@
           {
             "team": "BE",
             "text": "Schema cây, API sync, chống vòng lặp/cross-tenant",
-            "state": "TODO",
+            "state": "VERIFY",
             "textEn": "Implement tree, sync and tenant isolation"
           },
           {
@@ -545,8 +557,8 @@
             "textEn": "Test 6+ levels, missing parents and cycles"
           }
         ],
-        "lastEvidence": "Chưa xác minh",
-        "source": "Master #88 · Data/IAM #86 — Owner addendum",
+        "lastEvidence": "PR #121 báo 117 test targeted PASS; full regression/mutation sau sync chưa chạy",
+        "source": "BE PR #121 · Master #88/#86",
         "problemEn": "Unlimited company hierarchy and Org import/API are not complete.",
         "approachEn": "Separate Company and OrgUnit trees with safe multi-level import and API sync."
       }
@@ -641,10 +653,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "Chưa xác minh",
-      "prs": "Chưa xác minh",
-      "summary": "AI hiểu nguồn dữ liệu, schema, operation",
-      "next": "Tích hợp context",
+      "qa": "PR #121 báo targeted context tests PASS; chưa E2E AI thực",
+      "prs": "BE #121 OPEN · Master #88",
+      "summary": "AI system context trong BE PR #121, chưa merge DEV; chưa chứng minh AI Studio thực đọc schema và operation.",
+      "next": "Review/merge có gate; E2E Studio Preview/Publish, IAM, FE và QA độc lập.",
       "work": {
         "problem": "AI chưa được chứng minh hiểu catalog/schema/operation của nguồn nội bộ.",
         "approach": "Đưa schema và quyền được duyệt vào AI context, chỉ gọi operation hợp lệ.",
@@ -652,7 +664,7 @@
           {
             "team": "BE",
             "text": "Kết nối schema/operation vào Context Builder",
-            "state": "TODO",
+            "state": "VERIFY",
             "textEn": "Supply schema/operations to Context Builder"
           },
           {
@@ -668,8 +680,8 @@
             "textEn": "Test app generation and Preview/Publish scope"
           }
         ],
-        "lastEvidence": "Chưa xác minh",
-        "source": "Chưa xác minh",
+        "lastEvidence": "PR #121 báo targeted context tests PASS; chưa E2E AI thực",
+        "source": "BE PR #121",
         "problemEn": "AI understanding of internal data has insufficient proof.",
         "approachEn": "Pass only approved schemas, operations and effective rights to AI."
       }
