@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T21:09:49+07:00",
+  "asOf": "2026-11-05T22:13:21+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "Updated scope: owner addendum for Company/Org dynamic import/API is recorded in Master #88 and #86, not implemented. R2 PROD and flags according to release evidence; remaining statuses evidence-based.",
   "releases": [
@@ -75,7 +75,7 @@
       "qa": "QA-R1 PASS",
       "prs": "BE #97 · FE #71",
       "summary": "ZIP dry run HTTP 200; chưa chứng minh import-build-publish end-to-end",
-      "next": "Owner UAT import và build",
+      "next": "UAT import-build-publish; phối hợp P0-16 để AI đọc source lớn bằng tool loop (Owner REQUESTED, chưa tích hợp).",
       "work": {
         "problem": "Đã kiểm tra ZIP dry-run; chưa chứng minh toàn bộ import → build → publish.",
         "approach": "Hoàn thiện luồng nhập và kiểm tra thành phẩm end-to-end.",
@@ -97,10 +97,16 @@
             "text": "Chạy import-build-publish thực tế",
             "state": "TODO",
             "textEn": "Run actual import/build/publish E2E"
+          },
+          {
+            "team": "BE",
+            "text": "Kết nối snapshot import với đọc/search theo revision; HTML minified dùng byte range, không coi index là đọc hết",
+            "textEn": "Connect imported snapshots to revision-scoped search/read; handle minified HTML with byte ranges, not index-only reads",
+            "state": "TODO"
           }
         ],
         "lastEvidence": "QA-R1 PASS",
-        "source": "BE #97 · FE #71",
+        "source": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6660994350",
         "problemEn": "ZIP dry-run passed; full import-to-publish is unverified.",
         "approachEn": "Complete and validate the import, build and publish path."
       }
@@ -155,12 +161,12 @@
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "1 lượt AI thật PASS cơ bản",
-      "prs": "BE #102 · FE #67",
-      "summary": "Bộ chọn ngữ cảnh dự án chạy thử cơ bản",
-      "next": "Kiểm tra qua nhiều lượt",
+      "prs": "BE #102 · FE #67 · Owner #88/6660994350 (REQUESTED)",
+      "summary": "Context Selector đã có thử nghiệm cơ bản; Owner mới yêu cầu tích hợp OSS đọc source/HTML lớn vào AI thực trong Studio (REQUESTED, chưa có PR triển khai).",
+      "next": "BE audit builder/provider call path, tích hợp Repomix pin + bounded tool loop, revision/IAM/J1; QA chứng minh đọc vùng ngoài cutoff và A/B tổng chi phí.",
       "work": {
-        "problem": "Ngữ cảnh AI chạy lượt cơ bản, chưa xác minh qua nhiều prompt.",
-        "approach": "Audit Context Builder và manifest theo project, IAM, Preview.",
+        "problem": "AI chưa có bằng chứng đọc đầy đủ source/HTML lớn, đặc biệt minified một dòng và vùng ngoài context cutoff. Chỉ đạo OSS mới ở mức REQUESTED.",
+        "approach": "Giữ Open Lovable; pin/audit Repomix core/MCP + Explorer và frontend-design/webapp-testing; thêm server adapter và vòng read/search có giới hạn, revision/IAM/J1, manifest ghi vùng đã đọc; QA preview thật và A/B chi phí.",
         "tasks": [
           {
             "team": "BE",
@@ -179,12 +185,30 @@
             "text": "Test nhiều prompt, nhiều file và IAM",
             "state": "TODO",
             "textEn": "Test multiple prompts, file changes and IAM"
+          },
+          {
+            "team": "BE",
+            "text": "Audit đường gọi AI Studio; tích hợp Repomix pin + tool loop chỉ đọc, giới hạn byte/round/USD, cache theo revision và IAM",
+            "textEn": "Audit Studio model call path; integrate pinned Repomix with bounded read-only tool loop, revision-scoped IAM cache and cost limits",
+            "state": "TODO"
+          },
+          {
+            "team": "SEC",
+            "text": "Kiểm tra license/NOTICE, sandbox không credential/network, tenant/outputId isolation, prompt injection",
+            "textEn": "Audit licenses/notices, sandbox isolation, tenant/outputId access and untrusted-source handling",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "Test HTML lớn/minified, React ≥12 trang, đọc ngoài cutoff, build/preview, resume và A/B tổng token/USD",
+            "textEn": "Test large/minified HTML, 12+ page React, beyond-cutoff reads, build/preview, resume and total-token/USD A/B",
+            "state": "TODO"
           }
         ],
         "lastEvidence": "1 lượt AI thật PASS cơ bản",
-        "source": "BE #102 · FE #67",
-        "problemEn": "Basic context test passed; multi-turn behavior is unverified.",
-        "approachEn": "Audit the Context Builder, project files, IAM and Preview context."
+        "source": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6660994350",
+        "problemEn": "No proof that Studio AI reads large HTML/code beyond the context cutoff or minified one-line sources. OSS integration is REQUESTED only.",
+        "approachEn": "Keep Open Lovable; pin and audit Repomix and selected skills; add bounded server read/search loop, revision/IAM/J1 controls, actual-range manifest, preview QA and total-cost A/B."
       }
     },
     {
