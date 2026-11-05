@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T00:07:21+07:00",
+  "asOf": "2026-11-06T01:07:45+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R2 PROD verified from RELEASE_LOG. New GitHub DEV evidence: BE #119/#120/#122 merged, #121 open; FE #76/#77 merged. No verified R3/PROD changes. P0-16 OSS remains REQUESTED. Claude process status UNKNOWN without heartbeat.",
   "releases": [
@@ -120,9 +120,9 @@
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "1 lượt AI thật PASS cơ bản",
-      "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV",
+      "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV",
       "summary": "J1 durable jobs PROD ON cơ bản; Q1 server prompt queue đã merge DEV (V79, flag OFF), chưa FE–BE E2E/PROD.",
-      "next": "QA reload/reconnect J1 và FE–BE queue: thêm/sửa thứ tự/hủy, chống trùng, lỗi quyền; không bật queue trước gates.",
+      "next": "QA reload/reconnect J1 và FE–BE queue; FE #77 chỉ bổ sung 9 nhãn audit/hướng dẫn, chưa phải E2E.",
       "work": {
         "problem": "Job AI hoàn tất cơ bản nhưng chưa xác nhận resume/reconnect/reload.",
         "approach": "Dùng cùng job ID và lịch sử tiến độ qua reload, không gọi AI trùng.",
@@ -437,9 +437,9 @@
       "risk": "HIGH",
       "integrated": false,
       "qa": "BE #122: 71 test mới, 24/24 mutation; package 369 test còn 1 lỗi được báo là có trước. Chưa E2E FE–BE/PROD.",
-      "prs": "BE #122 merged DEV · FE #67 merged DEV",
-      "summary": "BE xin/duyệt ngân sách V78 đã merge DEV, FE form đã có; flag OFF, chưa tích hợp browser E2E hay PROD.",
-      "next": "Tích hợp FE–BE, QA độc lập và sửa/xác minh test package đỏ; không tự bật cờ.",
+      "prs": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only)",
+      "summary": "BE B3 V78 và FE Studio đã merge DEV; FE #77 bổ sung 6 nhãn audit và hướng dẫn sử dụng. Chưa E2E FE–BE/PROD, flag OFF.",
+      "next": "Tích hợp/QA FE–BE, xử lý hoặc xác minh test package đỏ; kiểm thử Studio thực tế, không bật cờ trước gates.",
       "work": {
         "problem": "BE B3 đã merge DEV, còn test package đỏ và chưa có E2E FE–BE/PROD.",
         "approach": "Hoàn thiện API xin/duyệt ngân sách, tích hợp vào Studio.",
