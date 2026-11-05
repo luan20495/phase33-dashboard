@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T19:42:00+07:00",
+  "asOf": "2026-11-05T20:05:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "Updated scope: owner addendum for Company/Org dynamic import/API is recorded in Master #88 and #86, not implemented. R2 PROD and flags according to release evidence; remaining statuses evidence-based.",
   "releases": [
@@ -176,8 +176,8 @@
       "integrated": false,
       "qa": "Chưa xác minh",
       "prs": "Master #88 · Data/IAM #86 — Owner addendum",
-      "summary": "Danh mục Công ty động và Org nhiều cấp; import Excel/CSV hoặc đồng bộ API",
-      "next": "BE/FE thiết kế schema Company–OrgUnit, wizard nhập file/API và bảo vệ IAM"
+      "summary": "Dynamic Company: cây công ty mẹ→con→cháu→chắt độ sâu tùy ý, Org riêng; import Excel/CSV hoặc đồng bộ API (Owner #88)",
+      "next": "BA/SA chốt schema Company–OrgUnit và parentCompanyId không giới hạn cấp; BE/FE import/API; QA cycle, cross-tenant, 6+ cấp"
     },
     {
       "id": "X3",
