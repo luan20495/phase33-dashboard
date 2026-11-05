@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T19:08:00+07:00",
+  "asOf": "2026-11-05T19:25:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
-  "evidenceNote": "R2 QA PASS và dev→main promote 19:01 ICT, build VM bắt đầu 19:07 ICT: theo báo cáo Claude Operator do Owner cung cấp; R2 PROD chưa xác nhận. Repo công khai: chỉ tổng hợp, không chứa bí mật.",
+  "evidenceNote": "R2 PROD verified in xweb01 docs/RELEASE_LOG.md (dev) and Claude Operator report: deploy 19:20–19:22 ICT, QA/SEC PASS. B1/B2 and X1 enabled 19:25 ICT; X1 STRICT=false. Auto-renew and spend release OFF. R2 paid AI Haiku ledger SETTLED basic check PASS, negative/concurrency E2E not fully tested. Public-safe summary.",
   "releases": [
     {
       "id": "R1",
@@ -15,9 +15,11 @@
     {
       "id": "R2",
       "label": "Đợt 2",
-      "state": "MAIN_PROMOTED_BUILDING",
-      "actualAt": null,
-      "notes": "QA-R2 PASS, SEC-R2 không có P0/P1/P2. Promote main lúc 19:01, build VM từ 19:07 giờ VN. PROD vẫn chạy R1 cho đến khi deploy/smoke xong; chưa bật B1/X1."
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-05T19:22:00+07:00",
+      "notes": "Deploy thành công 19:20–19:22 giờ VN; 17 container healthy; 5 portal smoke PASS. B1/B2 và X1 ON từ 19:25. X1 STRICT=false; auto-renew, spend release OFF.",
+      "backendSha": "4ea702de",
+      "frontendSha": "b48616ac"
     }
   ],
   "features": [
@@ -103,40 +105,40 @@
       "id": "X1+F6",
       "name": "Chính sách trường dữ liệu",
       "batch": "R2",
-      "stage": "MAIN_PROMOTED",
-      "flag": "OFF",
+      "stage": "PROD_ENABLED",
+      "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA-R2 PASS · SEC-R2 không có P0/P1/P2",
+      "qa": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
       "prs": "BE #100/#113 · FE #71",
-      "summary": "Chính sách truy cập trường dữ liệu; chờ nghiệm thu",
-      "next": "Deploy/smoke, bật STRICT=true nội bộ theo gate"
+      "summary": "Chính sách trường dữ liệu ON từ 19:25 giờ VN, STRICT=false; STRICT=true chưa bật",
+      "next": "Đánh giá tác động app cũ, Owner quyết riêng khi nào bật STRICT=true"
     },
     {
       "id": "B1/B1-1",
       "name": "Ledger ngân sách AI",
       "batch": "R2",
-      "stage": "MAIN_PROMOTED",
-      "flag": "OFF",
+      "stage": "PROD_ENABLED",
+      "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA-R2 PASS · SEC-R2 không có P0/P1/P2",
+      "qa": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
       "prs": "BE #109/#115",
-      "summary": "Cơ chế quản lý hạn mức chi tiêu AI",
-      "next": "Build, deploy/smoke; xác minh từ chối chi tiêu thật trước khi bật rộng"
+      "summary": "Sổ ngân sách bật 19:25 giờ VN; đã tính tiền một lượt Haiku đúng trong ledger",
+      "next": "Hoàn tất các trường hợp từ chối, giới hạn và chạy song song thực tế"
     },
     {
       "id": "B2+F2",
       "name": "Quản trị ngân sách Platform",
       "batch": "R2",
-      "stage": "MAIN_PROMOTED",
-      "flag": "OFF",
+      "stage": "PROD_ENABLED",
+      "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA-R2 PASS · SEC-R2 không có P0/P1/P2",
+      "qa": "QA/SEC R2 PASS; API PROD trả 200",
       "prs": "BE #112 · FE #73",
-      "summary": "API và UI ngân sách đã promote main; route giải phóng khoản treo vẫn OFF, cần Owner duyệt riêng",
-      "next": "QA E2E API/UI rồi triển khai có kiểm soát"
+      "summary": "API và màn quản trị ngân sách đã deploy R2; auto-renew và release khoản treo vẫn OFF",
+      "next": "Owner UAT ngân sách; duy trì các cờ tự gia hạn và release ở OFF"
     },
     {
       "id": "B3+F3",
