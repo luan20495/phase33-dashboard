@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T19:35:00+07:00",
+  "asOf": "2026-11-05T19:42:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "Updated scope: owner addendum for Company/Org dynamic import/API is recorded in Master #88 and #86, not implemented. R2 PROD and flags according to release evidence; remaining statuses evidence-based.",
   "releases": [
@@ -163,8 +163,8 @@
       "integrated": false,
       "qa": "Chưa hoàn tất",
       "prs": "FE #60 · Master #88",
-      "summary": "Bổ sung wizard nhập Excel/CSV, mapping cột, preview/dry-run và kết nối API cho Công ty/Org",
-      "next": "Hoàn thiện FE UX13 và luồng import/sync có duyệt"
+      "summary": "Wizard import Excel/CSV, mapping cột, preview/dry-run; có trường SĐT cho Công ty/Org",
+      "next": "FE hỗ trợ mapping SĐT từ file/API và hiển thị lỗi theo dòng"
     },
     {
       "id": "X2",
@@ -176,8 +176,8 @@
       "integrated": false,
       "qa": "Chưa xác minh",
       "prs": "Master #88 · Data/IAM #86 — Owner addendum",
-      "summary": "Danh mục Công ty động, công ty mẹ/con nhiều cấp, cơ cấu tổ chức; import Excel/CSV hoặc đồng bộ API",
-      "next": "BA/SA chốt schema Company–OrgUnit; BE/FE thiết kế import wizard và API sync; QA/SEC"
+      "summary": "Danh mục Công ty động và Org nhiều cấp; import Excel/CSV hoặc đồng bộ API; có SĐT liên hệ (giữ 0 đầu/+84)",
+      "next": "BE/FE thiết kế schema, wizard nhập liệu, API mapping số điện thoại và bảo vệ IAM"
     },
     {
       "id": "X3",
