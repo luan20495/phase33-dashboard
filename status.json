@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T03:06:33+07:00",
+  "asOf": "2026-11-06T04:05:38+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
-  "evidenceNote": "R2 PROD verified from RELEASE_LOG. New GitHub DEV evidence: BE #119/#120/#122 merged, #121 open; FE #76/#77 merged. No verified R3/PROD changes. P0-16 OSS remains REQUESTED. Claude process status UNKNOWN without heartbeat.",
+  "evidenceNote": "R3 PROD recorded in BE dev RELEASE_LOG at 03:41–03:44 VN 06/11 (BE ade1e1be, FE bae5a0c3), flags B3/Q1 OFF, X2/X5 excluded; QA-R3 gaps remain. Main RELEASE_LOG still R1/R2. Claude process UNKNOWN.",
   "releases": [
     {
       "id": "R1",
@@ -20,6 +20,15 @@
       "notes": "Deploy thành công 19:20–19:22 giờ VN; 17 container healthy; 5 portal smoke PASS. B1/B2 và X1 ON từ 19:25. X1 STRICT=false; auto-renew, spend release OFF.",
       "backendSha": "4ea702de",
       "frontendSha": "b48616ac"
+    },
+    {
+      "id": "R3",
+      "label": "Đợt 3",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-06T03:44:00+07:00",
+      "backendSha": "ade1e1bee824c7ac522fa9f9cb6c730ce102886a",
+      "frontendSha": "bae5a0c31896f66f97740f571245ab6a52246fed",
+      "notes": "RELEASE_LOG dev: PROD 03:41–03:44 VN; 17 container healthy, Flyway V78/V79/V84, 5 portal smoke. B3/Q1 flags OFF; X2/X5 chưa phát hành. QA-R3 no blockers, nhiều E2E NOT_RUN; SEC-R3 no P0/P1/P2. Main release log chưa đồng bộ."
     }
   ],
   "features": [
@@ -34,7 +43,7 @@
       "qa": "QA-R1 PASS",
       "prs": "BE #98/#108/#119 · FE #70/#76 merged DEV",
       "summary": "Platform có tab Quyền dùng AI; nội bộ, cần Owner UAT",
-      "next": "Owner UAT quyền AI trên PROD; QA xác minh các bổ sung FE #76/BE #119 trước release tiếp.",
+      "next": "QA xác minh UI quản trị F1/F2 mới trong R3 trên PROD, Owner UAT; không suy diễn đã được chấp nhận.",
       "work": {
         "problem": "Quản trị quyền AI cần kiểm chứng thao tác cấp/thu hồi quyền thực tế.",
         "approach": "Kiểm tra UI, API cấp quyền và quyền hiệu lực sau thay đổi.",
@@ -121,8 +130,8 @@
       "integrated": true,
       "qa": "1 lượt AI thật PASS cơ bản",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-      "summary": "J1 durable jobs PROD ON cơ bản; Q1 server prompt queue đã merge DEV (V79, flag OFF), chưa FE–BE E2E/PROD. BE #123 đã đồng bộ FE core vào BE DEV, combined-check GREEN; chưa xác minh E2E runtime.",
-      "next": "QA reload/reconnect J1 và FE–BE queue; FE #77 chỉ bổ sung 9 nhãn audit/hướng dẫn, chưa phải E2E. Theo dõi QA tích hợp runtime sau BE #123.",
+      "summary": "J1 cơ bản từ R1; Q1 server queue đã deploy R3 nhưng flag OFF; FE–BE Studio UI, resume và paid turn E2E NOT_RUN.",
+      "next": "QA Studio queue/reload/reconnect và chống paid turn trùng; Q1 vẫn OFF chờ Owner GO.",
       "work": {
         "problem": "Job AI hoàn tất cơ bản nhưng chưa xác nhận resume/reconnect/reload.",
         "approach": "Dùng cùng job ID và lịch sử tiến độ qua reload, không gọi AI trùng.",
@@ -164,7 +173,7 @@
             "state": "VERIFY"
           }
         ],
-        "lastEvidence": "1 lượt AI thật PASS cơ bản; BE #123: DEV vendored FE core sync, combined-check GREEN (không phải E2E).",
+        "lastEvidence": "RELEASE_LOG dev R3: Q1 PROD code, flag OFF, Studio UI NOT_RUN",
         "source": "BE #99/#101/#120 · FE #58 · BE #123",
         "problemEn": "One AI job succeeded; resume and reconnect remain unverified.",
         "approachEn": "Recover one durable job without duplicate AI requests or charges."
@@ -280,8 +289,8 @@
       "integrated": true,
       "qa": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
       "prs": "FE #59 · BE #118/#119 merged DEV; PROD chưa xác minh",
-      "summary": "XApp UX có FE R1 trên PROD, nhưng build arg XApp bị thiếu nên điều hướng chưa hoạt động; BE PR #118 đã merge bản sửa compose, chưa có bằng chứng rebuild/redeploy PROD.",
-      "next": "REL3 BE #119 đã merge DEV; build arg BE #118 vẫn chờ rebuild và smoke PROD, Owner UAT.",
+      "summary": "R3 PROD đã đóng gói build arg XApp; gói Studio chứa địa chỉ XApp. Render XApp qua đăng nhập thật vẫn NOT_RUN.",
+      "next": "QA xác minh render/điều hướng XApp sau login, Owner UAT.",
       "work": {
         "problem": "XApp UX được deploy trong R1 nhưng thiếu NEXT_PUBLIC_PORTAL_URL_XAPP ở build args; sửa đã merge, chưa chứng minh trên PROD.",
         "approach": "Xác minh ảnh portal được rebuild với build arg đúng, kiểm tra các hành vi điều hướng và session expiry trước Owner UAT.",
@@ -305,7 +314,7 @@
             "textEn": "Owner acceptance for login and logout"
           }
         ],
-        "lastEvidence": "Chưa có Owner UAT",
+        "lastEvidence": "RELEASE_LOG dev R3 PROD: build arg packaged; authenticated XApp render NOT_RUN",
         "source": "FE #59",
         "problemEn": "R1 XApp UX was shipped without its XApp build argument; the fix was merged but not verified in production.",
         "approachEn": "Verify a rebuilt portal image includes the XApp origin and smoke-test navigation and session expiry before Owner acceptance."
@@ -437,15 +446,15 @@
     {
       "id": "B3+F3",
       "name": "Xin ngân sách trong Studio",
-      "batch": "Unassigned",
-      "stage": "INCOMPLETE",
+      "batch": "R3",
+      "stage": "PROD_DEPLOYED",
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "BE #122: 71 test mới, 24/24 mutation; package 369 test còn 1 lỗi được báo là có trước. Chưa E2E FE–BE/PROD.",
+      "qa": "QA-R3 no blocker; 101 B3 checks; paid AI allocation flow NOT_RUN",
       "prs": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync",
-      "summary": "BE B3 V78 và FE Studio đã merge DEV; FE #77 bổ sung 6 nhãn audit và hướng dẫn sử dụng. Chưa E2E FE–BE/PROD, flag OFF. BE #123 đã đồng bộ FE core vào BE DEV, combined-check GREEN; chưa xác minh E2E runtime.",
-      "next": "Tích hợp/QA FE–BE, xử lý hoặc xác minh test package đỏ; kiểm thử Studio thực tế, không bật cờ trước gates. Theo dõi QA tích hợp runtime sau BE #123.",
+      "summary": "B3 backend xin/duyệt ngân sách đã deploy R3, flag OFF; chưa bật hoặc UAT; UI Studio/paid turn NOT_RUN.",
+      "next": "Chờ Owner GO bật B3 sau safety gates; kiểm thử Studio UI, lượt AI thật và hết hạn.",
       "work": {
         "problem": "BE B3 đã merge DEV, còn test package đỏ và chưa có E2E FE–BE/PROD.",
         "approach": "Hoàn thiện API xin/duyệt ngân sách, tích hợp vào Studio.",
@@ -475,7 +484,7 @@
             "state": "VERIFY"
           }
         ],
-        "lastEvidence": "BE #122: 71 test mới, 24/24 mutation; package 369 test còn 1 lỗi được báo là có trước. Chưa E2E FE–BE/PROD.; BE #123: DEV vendored FE core sync, combined-check GREEN (không phải E2E).",
+        "lastEvidence": "RELEASE_LOG dev R3 PROD 03:41–03:44, B3 OFF",
         "source": "BE #122 · FE #67 · BE #123",
         "problemEn": "B3 backend merged to DEV; one package test failure and FE–BE/PROD E2E remain unverified.",
         "approachEn": "Complete budget request/approval API and wire Studio UI."
