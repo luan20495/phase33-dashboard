@@ -42,21 +42,26 @@
           {
             "team": "BE",
             "text": "Xác minh API quyền và audit",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Verify entitlement APIs and audit"
           },
           {
             "team": "FE",
             "text": "Kiểm tra tab quản trị quyền AI",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Review AI entitlement admin tab"
           },
           {
             "team": "QA",
             "text": "UAT cấp/thu hồi trên tài khoản được phép",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Run grant/revoke user acceptance"
           }
         ],
         "lastEvidence": "QA-R1 PASS",
-        "source": "BE #98/#108 · FE #70"
+        "source": "BE #98/#108 · FE #70",
+        "problemEn": "AI entitlement grant and revocation need real user acceptance.",
+        "approachEn": "Validate rights APIs, admin controls and immediate effective permissions."
       }
     },
     {
@@ -78,21 +83,26 @@
           {
             "team": "BE",
             "text": "Đối chiếu validate/import an toàn",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Verify validation and safe import"
           },
           {
             "team": "FE",
             "text": "Kiểm tra trải nghiệm upload và thông báo",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Review upload UX and feedback"
           },
           {
             "team": "QA",
             "text": "Chạy import-build-publish thực tế",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Run actual import/build/publish E2E"
           }
         ],
         "lastEvidence": "QA-R1 PASS",
-        "source": "BE #97 · FE #71"
+        "source": "BE #97 · FE #71",
+        "problemEn": "ZIP dry-run passed; full import-to-publish is unverified.",
+        "approachEn": "Complete and validate the import, build and publish path."
       }
     },
     {
@@ -114,21 +124,26 @@
           {
             "team": "BE",
             "text": "Đối chiếu job storage và reconnect",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Verify persisted jobs and reconnect"
           },
           {
             "team": "FE",
             "text": "Hiển thị khôi phục job sau reload",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Show restored job after reload"
           },
           {
             "team": "QA",
             "text": "E2E reload, mất mạng, cancel và chống tính phí trùng",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test reload, network loss and duplicate billing"
           }
         ],
         "lastEvidence": "1 lượt AI thật PASS cơ bản",
-        "source": "BE #99/#101 · FE #58"
+        "source": "BE #99/#101 · FE #58",
+        "problemEn": "One AI job succeeded; resume and reconnect remain unverified.",
+        "approachEn": "Recover one durable job without duplicate AI requests or charges."
       }
     },
     {
@@ -150,21 +165,26 @@
           {
             "team": "BE",
             "text": "Đối chiếu Context Builder/selector",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Review Context Builder and manifest"
           },
           {
             "team": "FE",
             "text": "Hiển thị ngữ cảnh và tình trạng lượt AI",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Display AI context and job state"
           },
           {
             "team": "QA",
             "text": "Test nhiều prompt, nhiều file và IAM",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test multiple prompts, file changes and IAM"
           }
         ],
         "lastEvidence": "1 lượt AI thật PASS cơ bản",
-        "source": "BE #102 · FE #67"
+        "source": "BE #102 · FE #67",
+        "problemEn": "Basic context test passed; multi-turn behavior is unverified.",
+        "approachEn": "Audit the Context Builder, project files, IAM and Preview context."
       }
     },
     {
@@ -186,21 +206,26 @@
           {
             "team": "FE",
             "text": "Rà soát composer và autosave",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Review composer and draft autosave"
           },
           {
             "team": "BE",
             "text": "Kiểm tra điểm lưu nháp nếu backend cần",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Check server draft storage if required"
           },
           {
             "team": "QA",
             "text": "UAT reload với prompt và file",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "UAT reload with prompts and files"
           }
         ],
         "lastEvidence": "Chưa có Owner UAT",
-        "source": "FE #56"
+        "source": "FE #56",
+        "problemEn": "Composer code is present but lacks owner acceptance.",
+        "approachEn": "Validate Enter/Shift+Enter, drafts and attachments after reload."
       }
     },
     {
@@ -222,21 +247,26 @@
           {
             "team": "FE",
             "text": "Kiểm tra logo, đường dẫn XApp và trang hết quyền",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Test logos, navigation and access denied"
           },
           {
             "team": "INFRA",
             "text": "Xác minh biến build và routing 5 cổng",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Verify portal build args and routes"
           },
           {
             "team": "QA",
             "text": "Owner UAT và kiểm tra login/logout",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Owner acceptance for login and logout"
           }
         ],
         "lastEvidence": "Chưa có Owner UAT",
-        "source": "FE #59"
+        "source": "FE #59",
+        "problemEn": "XApp links and session expiry need cross-portal checks.",
+        "approachEn": "Verify build-time URLs and login/session redirect behavior."
       }
     },
     {
@@ -258,21 +288,26 @@
           {
             "team": "BE",
             "text": "Kiểm tra policy evaluation và phân quyền trường",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Review server-side field policy"
           },
           {
             "team": "FE",
             "text": "Admin duyệt field allow-list",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Review field allow-list UI"
           },
           {
             "team": "QA",
             "text": "Test cross-tenant và app cũ ở STRICT=false",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test tenant boundaries and legacy apps"
           }
         ],
         "lastEvidence": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
-        "source": "BE #100/#113 · FE #71"
+        "source": "BE #100/#113 · FE #71",
+        "problemEn": "Field policy is ON with STRICT=false.",
+        "approachEn": "Assess legacy apps before any separately authorized strict rollout."
       }
     },
     {
@@ -294,21 +329,26 @@
           {
             "team": "BE",
             "text": "Bổ sung idempotency, giới hạn và reject cases",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Test caps, denial and idempotency"
           },
           {
             "team": "FE",
             "text": "Hiển thị trạng thái ngân sách rõ",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Show budget states and errors"
           },
           {
             "team": "QA",
             "text": "Test race/concurrency và reject paid API",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Run parallel requests and rejected paid calls"
           }
         ],
         "lastEvidence": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
-        "source": "BE #109/#115"
+        "source": "BE #109/#115",
+        "problemEn": "A paid AI ledger settlement passed; live rejection and concurrency need tests.",
+        "approachEn": "Finish negative and race-condition coverage, reconcile charging."
       }
     },
     {
@@ -330,21 +370,26 @@
           {
             "team": "BE",
             "text": "Đối chiếu ledger/automation và audit",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Audit budget APIs and automation controls"
           },
           {
             "team": "FE",
             "text": "Kiểm tra Platform budget UX",
-            "state": "DONE"
+            "state": "VERIFY",
+            "textEn": "Review Platform budget screens"
           },
           {
             "team": "QA",
             "text": "UAT báo cáo, cảnh báo và quyền admin",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "UAT alerts, approvals and admin access"
           }
         ],
         "lastEvidence": "QA/SEC R2 PASS; API PROD trả 200",
-        "source": "BE #112 · FE #73"
+        "source": "BE #112 · FE #73",
+        "problemEn": "Budget API is live; auto-renew and held-fund release stay OFF.",
+        "approachEn": "Verify budget administration while keeping financial flags unchanged."
       }
     },
     {
@@ -366,21 +411,26 @@
           {
             "team": "BE",
             "text": "API request/approve/reject và audit",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Build audited request/approve/reject endpoints"
           },
           {
             "team": "FE",
             "text": "Kết nối form Studio với API",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Connect Studio form to API"
           },
           {
             "team": "QA",
             "text": "Kiểm thử đủ quyền, workflow và giới hạn",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test roles, workflow and caps"
           }
         ],
         "lastEvidence": "Chưa đủ BE",
-        "source": "FE #67"
+        "source": "FE #67",
+        "problemEn": "Studio request UI exists, backend B3 is incomplete.",
+        "approachEn": "Complete budget request/approval API and wire Studio UI."
       }
     },
     {
@@ -402,26 +452,32 @@
           {
             "team": "BA",
             "text": "Chốt luồng người dùng không kỹ thuật",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Define nontechnical user journey"
           },
           {
             "team": "FE",
             "text": "Wizard mapping và preview lỗi theo dòng",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Implement mapping/preview UI"
           },
           {
             "team": "BE",
             "text": "API validate/import và kết nối nguồn",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Create import validation and sync APIs"
           },
           {
             "team": "QA",
             "text": "Test file sai, rollback và mobile",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test invalid files, rollback and mobile"
           }
         ],
         "lastEvidence": "Chưa hoàn tất",
-        "source": "FE #60 · Master #88"
+        "source": "FE #60 · Master #88",
+        "problemEn": "Company/Org import wizard and source onboarding are unfinished.",
+        "approachEn": "Provide upload, mapping, preview, validation, approval and API sync."
       }
     },
     {
@@ -443,26 +499,32 @@
           {
             "team": "BA",
             "text": "Chốt model Company/OrgUnit và mẫu import",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Define Company/OrgUnit model and templates"
           },
           {
             "team": "BE",
             "text": "Schema cây, API sync, chống vòng lặp/cross-tenant",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Implement tree, sync and tenant isolation"
           },
           {
             "team": "FE",
             "text": "Danh mục và cây nhiều cấp; import wizard",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Implement hierarchy and import UI"
           },
           {
             "team": "QA",
             "text": "Test ≥6 cấp, parent missing, import/export",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test 6+ levels, missing parents and cycles"
           }
         ],
         "lastEvidence": "Chưa xác minh",
-        "source": "Master #88 · Data/IAM #86 — Owner addendum"
+        "source": "Master #88 · Data/IAM #86 — Owner addendum",
+        "problemEn": "Unlimited company hierarchy and Org import/API are not complete.",
+        "approachEn": "Separate Company and OrgUnit trees with safe multi-level import and API sync."
       }
     },
     {
@@ -484,21 +546,26 @@
           {
             "team": "BE",
             "text": "Kiểm tra scope SELF/TEAM và lọc ở server",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Validate server-side SELF/TEAM filtering"
           },
           {
             "team": "FE",
             "text": "Hiển thị quyền hiệu lực rõ ràng",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Display effective access clearly"
           },
           {
             "team": "SEC",
             "text": "Negative tests vượt tenant và cấp quyền ngầm",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test tenant escapes and indirect grants"
           }
         ],
         "lastEvidence": "Chưa xác minh",
-        "source": "Master #88 · Data/IAM #86"
+        "source": "Master #88 · Data/IAM #86",
+        "problemEn": "Viewer access needs company/org scope without implicit privilege gain.",
+        "approachEn": "Enforce effective row/field permissions by tenant and membership."
       }
     },
     {
@@ -520,21 +587,26 @@
           {
             "team": "BE",
             "text": "Runtime CRUD có policy, audit và rollback",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Build guarded CRUD and audit trail"
           },
           {
             "team": "FE",
             "text": "Form tạo/sửa/xóa có xác nhận",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Build authorized edit/delete forms"
           },
           {
             "team": "SEC",
             "text": "Test unauthorized write, replay, CSRF",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test unauthorized writes, replay and CSRF"
           }
         ],
         "lastEvidence": "Chưa xác minh",
-        "source": "Chưa xác minh"
+        "source": "Chưa xác minh",
+        "problemEn": "Approved REST writes lack complete safety evidence.",
+        "approachEn": "Enforce CRUD policy, approval, audit, idempotency and deletion consent."
       }
     },
     {
@@ -556,21 +628,26 @@
           {
             "team": "BE",
             "text": "Kết nối schema/operation vào Context Builder",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Supply schema/operations to Context Builder"
           },
           {
             "team": "FE",
             "text": "Chọn nguồn và xem quyền trong Studio",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Allow source selection and permission preview"
           },
           {
             "team": "QA",
             "text": "Test prompt tạo app và dữ liệu Preview/Publish",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test app generation and Preview/Publish scope"
           }
         ],
         "lastEvidence": "Chưa xác minh",
-        "source": "Chưa xác minh"
+        "source": "Chưa xác minh",
+        "problemEn": "AI understanding of internal data has insufficient proof.",
+        "approachEn": "Pass only approved schemas, operations and effective rights to AI."
       }
     },
     {
@@ -592,21 +669,26 @@
           {
             "team": "BE",
             "text": "Project map và memory gắn commit/job",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Build project map and versioned memory"
           },
           {
             "team": "FE",
             "text": "UI xem lịch sử và ngữ cảnh",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Show context and history UI"
           },
           {
             "team": "QA",
             "text": "Test prompt nhiều lượt và tránh memory leak",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test multi-turn context and data isolation"
           }
         ],
         "lastEvidence": "Chưa hoàn thiện",
-        "source": "Chưa xác minh"
+        "source": "Chưa xác minh",
+        "problemEn": "Project map and long-term memory are not verified complete.",
+        "approachEn": "Version source context and memory by project, job and permissions."
       }
     },
     {
@@ -628,21 +710,26 @@
           {
             "team": "BE",
             "text": "Adapter nguồn và hợp đồng API được duyệt",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Implement approved adapter contracts"
           },
           {
             "team": "FE",
             "text": "Theme/i18n và hướng dẫn kết nối",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Implement theme/i18n and onboarding UI"
           },
           {
             "team": "QA",
             "text": "E2E 5 portal và khả năng truy cập",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test five portals and accessibility"
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
-        "source": "Master #88"
+        "source": "Master #88",
+        "problemEn": "AI source integration and multi-theme/i18n need cross-portal validation.",
+        "approachEn": "Use approved connectors and accessible light/dark Vietnamese/English UI."
       }
     },
     {
@@ -664,21 +751,26 @@
           {
             "team": "FE",
             "text": "Chụp ảnh, khoanh/vẽ mũi tên, xem trước",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Capture and annotate screenshots"
           },
           {
             "team": "BE",
             "text": "Nhận file và lưu phản hồi có quyền",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Store protected feedback and files"
           },
           {
             "team": "SEC",
             "text": "Kiểm tra che dữ liệu nhạy cảm và kích thước",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Test redaction, size limits and privacy"
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
-        "source": "Master #88"
+        "source": "Master #88",
+        "problemEn": "Bug reporting needs screenshot capture and annotation.",
+        "approachEn": "Provide crop/draw/arrow attachments with protected report storage."
       }
     },
     {
@@ -700,21 +792,26 @@
           {
             "team": "UX",
             "text": "Luồng thao tác theo chuẩn dễ dùng",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Specify accessible user journey"
           },
           {
             "team": "FE",
             "text": "Triển khai layout và responsive",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "Implement adaptive Studio layout"
           },
           {
             "team": "QA",
             "text": "UAT keyboard, mobile, reload và focus",
-            "state": "TODO"
+            "state": "TODO",
+            "textEn": "UAT mobile, keyboard, reload and focus"
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
-        "source": "Master #88"
+        "source": "Master #88",
+        "problemEn": "Edit Studio needs a cleaner responsive prompt-first workspace.",
+        "approachEn": "Improve prompt, Preview, inspectors, keyboard and mobile layout."
       }
     }
   ]
