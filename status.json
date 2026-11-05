@@ -34,7 +34,30 @@
       "qa": "QA-R1 PASS",
       "prs": "BE #98/#108 · FE #70",
       "summary": "Platform có tab Quyền dùng AI; nội bộ, cần Owner UAT",
-      "next": "Owner nghiệm thu cấp/thu hồi quyền"
+      "next": "Owner nghiệm thu cấp/thu hồi quyền",
+      "work": {
+        "problem": "Quản trị quyền AI cần kiểm chứng thao tác cấp/thu hồi quyền thực tế.",
+        "approach": "Kiểm tra UI, API cấp quyền và quyền hiệu lực sau thay đổi.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Xác minh API quyền và audit",
+            "state": "DONE"
+          },
+          {
+            "team": "FE",
+            "text": "Kiểm tra tab quản trị quyền AI",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "UAT cấp/thu hồi trên tài khoản được phép",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "QA-R1 PASS",
+        "source": "BE #98/#108 · FE #70"
+      }
     },
     {
       "id": "I1+F5",
@@ -47,7 +70,30 @@
       "qa": "QA-R1 PASS",
       "prs": "BE #97 · FE #71",
       "summary": "ZIP dry run HTTP 200; chưa chứng minh import-build-publish end-to-end",
-      "next": "Owner UAT import và build"
+      "next": "Owner UAT import và build",
+      "work": {
+        "problem": "Đã kiểm tra ZIP dry-run; chưa chứng minh toàn bộ import → build → publish.",
+        "approach": "Hoàn thiện luồng nhập và kiểm tra thành phẩm end-to-end.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Đối chiếu validate/import an toàn",
+            "state": "DONE"
+          },
+          {
+            "team": "FE",
+            "text": "Kiểm tra trải nghiệm upload và thông báo",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "Chạy import-build-publish thực tế",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "QA-R1 PASS",
+        "source": "BE #97 · FE #71"
+      }
     },
     {
       "id": "J1",
@@ -60,7 +106,30 @@
       "qa": "1 lượt AI thật PASS cơ bản",
       "prs": "BE #99/#101 · FE #58",
       "summary": "Một job SUCCEEDED; chưa xác nhận resume/reload/error path",
-      "next": "E2E reload và reconnect"
+      "next": "E2E reload và reconnect",
+      "work": {
+        "problem": "Job AI hoàn tất cơ bản nhưng chưa xác nhận resume/reconnect/reload.",
+        "approach": "Dùng cùng job ID và lịch sử tiến độ qua reload, không gọi AI trùng.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Đối chiếu job storage và reconnect",
+            "state": "DONE"
+          },
+          {
+            "team": "FE",
+            "text": "Hiển thị khôi phục job sau reload",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "E2E reload, mất mạng, cancel và chống tính phí trùng",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "1 lượt AI thật PASS cơ bản",
+        "source": "BE #99/#101 · FE #58"
+      }
     },
     {
       "id": "P0-16 A/C/G",
@@ -73,7 +142,30 @@
       "qa": "1 lượt AI thật PASS cơ bản",
       "prs": "BE #102 · FE #67",
       "summary": "Bộ chọn ngữ cảnh dự án chạy thử cơ bản",
-      "next": "Kiểm tra qua nhiều lượt"
+      "next": "Kiểm tra qua nhiều lượt",
+      "work": {
+        "problem": "Ngữ cảnh AI chạy lượt cơ bản, chưa xác minh qua nhiều prompt.",
+        "approach": "Audit Context Builder và manifest theo project, IAM, Preview.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Đối chiếu Context Builder/selector",
+            "state": "DONE"
+          },
+          {
+            "team": "FE",
+            "text": "Hiển thị ngữ cảnh và tình trạng lượt AI",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "Test nhiều prompt, nhiều file và IAM",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "1 lượt AI thật PASS cơ bản",
+        "source": "BE #102 · FE #67"
+      }
     },
     {
       "id": "P0-05/06",
@@ -86,7 +178,30 @@
       "qa": "Chưa có Owner UAT",
       "prs": "FE #56",
       "summary": "Enter, Shift+Enter, giữ/lưu nháp",
-      "next": "Owner UAT trên Studio"
+      "next": "Owner UAT trên Studio",
+      "work": {
+        "problem": "Composer đã có mã nhưng chưa Owner UAT về lưu nháp/reload.",
+        "approach": "Kiểm tra Enter/Shift+Enter, giữ nháp và file đính kèm.",
+        "tasks": [
+          {
+            "team": "FE",
+            "text": "Rà soát composer và autosave",
+            "state": "DONE"
+          },
+          {
+            "team": "BE",
+            "text": "Kiểm tra điểm lưu nháp nếu backend cần",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "UAT reload với prompt và file",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa có Owner UAT",
+        "source": "FE #56"
+      }
     },
     {
       "id": "P0-14",
@@ -99,7 +214,30 @@
       "qa": "Chưa có Owner UAT",
       "prs": "FE #59",
       "summary": "Logo navigation và session expiry",
-      "next": "Owner UAT các cổng"
+      "next": "Owner UAT các cổng",
+      "work": {
+        "problem": "Điều hướng XApp và session expiry cần kiểm tra hành vi trên tất cả portal.",
+        "approach": "Xác minh build arg XApp và chuyển hướng sau hết phiên.",
+        "tasks": [
+          {
+            "team": "FE",
+            "text": "Kiểm tra logo, đường dẫn XApp và trang hết quyền",
+            "state": "DONE"
+          },
+          {
+            "team": "INFRA",
+            "text": "Xác minh biến build và routing 5 cổng",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "Owner UAT và kiểm tra login/logout",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa có Owner UAT",
+        "source": "FE #59"
+      }
     },
     {
       "id": "X1+F6",
@@ -112,7 +250,30 @@
       "qa": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
       "prs": "BE #100/#113 · FE #71",
       "summary": "Chính sách trường dữ liệu ON từ 19:25 giờ VN, STRICT=false; STRICT=true chưa bật",
-      "next": "Đánh giá tác động app cũ, Owner quyết riêng khi nào bật STRICT=true"
+      "next": "Đánh giá tác động app cũ, Owner quyết riêng khi nào bật STRICT=true",
+      "work": {
+        "problem": "Chính sách trường dữ liệu đang ON nhưng STRICT=false.",
+        "approach": "Đánh giá tác động trước khi bật strict; không bật tự động.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Kiểm tra policy evaluation và phân quyền trường",
+            "state": "DONE"
+          },
+          {
+            "team": "FE",
+            "text": "Admin duyệt field allow-list",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "Test cross-tenant và app cũ ở STRICT=false",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
+        "source": "BE #100/#113 · FE #71"
+      }
     },
     {
       "id": "B1/B1-1",
@@ -125,7 +286,30 @@
       "qa": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
       "prs": "BE #109/#115",
       "summary": "Sổ ngân sách bật 19:25 giờ VN; đã tính tiền một lượt Haiku đúng trong ledger",
-      "next": "Hoàn tất các trường hợp từ chối, giới hạn và chạy song song thực tế"
+      "next": "Hoàn tất các trường hợp từ chối, giới hạn và chạy song song thực tế",
+      "work": {
+        "problem": "Ledger đã ghi một lượt AI; trường hợp từ chối thật và đua đồng thời chưa đủ.",
+        "approach": "Hoàn thiện negative/concurrency E2E và đối soát sổ chi tiêu.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Bổ sung idempotency, giới hạn và reject cases",
+            "state": "DONE"
+          },
+          {
+            "team": "FE",
+            "text": "Hiển thị trạng thái ngân sách rõ",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "Test race/concurrency và reject paid API",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
+        "source": "BE #109/#115"
+      }
     },
     {
       "id": "B2+F2",
@@ -138,7 +322,30 @@
       "qa": "QA/SEC R2 PASS; API PROD trả 200",
       "prs": "BE #112 · FE #73",
       "summary": "API và màn quản trị ngân sách đã deploy R2; auto-renew và release khoản treo vẫn OFF",
-      "next": "Owner UAT ngân sách; duy trì các cờ tự gia hạn và release ở OFF"
+      "next": "Owner UAT ngân sách; duy trì các cờ tự gia hạn và release ở OFF",
+      "work": {
+        "problem": "API ngân sách PROD hoạt động; tự gia hạn và giải phóng khoản treo vẫn OFF.",
+        "approach": "UAT quyền quản trị và giữ cờ tài chính theo quyết định Owner.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Đối chiếu ledger/automation và audit",
+            "state": "DONE"
+          },
+          {
+            "team": "FE",
+            "text": "Kiểm tra Platform budget UX",
+            "state": "DONE"
+          },
+          {
+            "team": "QA",
+            "text": "UAT báo cáo, cảnh báo và quyền admin",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "QA/SEC R2 PASS; API PROD trả 200",
+        "source": "BE #112 · FE #73"
+      }
     },
     {
       "id": "B3+F3",
@@ -151,7 +358,30 @@
       "qa": "Chưa đủ BE",
       "prs": "FE #67",
       "summary": "UI đã có; BE B3 chưa hoàn thiện",
-      "next": "Hoàn thiện BE và tích hợp"
+      "next": "Hoàn thiện BE và tích hợp",
+      "work": {
+        "problem": "Giao diện yêu cầu ngân sách có mã; API BE B3 chưa hoàn chỉnh.",
+        "approach": "Hoàn thiện API xin/duyệt ngân sách, tích hợp vào Studio.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "API request/approve/reject và audit",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Kết nối form Studio với API",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "Kiểm thử đủ quyền, workflow và giới hạn",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa đủ BE",
+        "source": "FE #67"
+      }
     },
     {
       "id": "UX13",
@@ -164,7 +394,35 @@
       "qa": "Chưa hoàn tất",
       "prs": "FE #60 · Master #88",
       "summary": "Wizard import Excel/CSV, mapping cột, preview/dry-run và kết nối API cho Công ty/Org",
-      "next": "Hoàn thiện FE UX13 và luồng import/sync có duyệt"
+      "next": "Hoàn thiện FE UX13 và luồng import/sync có duyệt",
+      "work": {
+        "problem": "Wizard nhập Org/Company và hướng dẫn nguồn dữ liệu chưa hoàn thiện.",
+        "approach": "Thiết kế import Excel/CSV, mapping cột, dry-run, xác nhận và API.",
+        "tasks": [
+          {
+            "team": "BA",
+            "text": "Chốt luồng người dùng không kỹ thuật",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Wizard mapping và preview lỗi theo dòng",
+            "state": "TODO"
+          },
+          {
+            "team": "BE",
+            "text": "API validate/import và kết nối nguồn",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "Test file sai, rollback và mobile",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa hoàn tất",
+        "source": "FE #60 · Master #88"
+      }
     },
     {
       "id": "X2",
@@ -177,7 +435,35 @@
       "qa": "Chưa xác minh",
       "prs": "Master #88 · Data/IAM #86 — Owner addendum",
       "summary": "Dynamic Company: cây công ty mẹ→con→cháu→chắt độ sâu tùy ý, Org riêng; import Excel/CSV hoặc đồng bộ API (Owner #88)",
-      "next": "BA/SA chốt schema Company–OrgUnit và parentCompanyId không giới hạn cấp; BE/FE import/API; QA cycle, cross-tenant, 6+ cấp"
+      "next": "BA/SA chốt schema Company–OrgUnit và parentCompanyId không giới hạn cấp; BE/FE import/API; QA cycle, cross-tenant, 6+ cấp",
+      "work": {
+        "problem": "Danh mục Company–Org chưa hỗ trợ đầy đủ cây mẹ/con/cháu và nhập API/file.",
+        "approach": "Thiết kế Company tree không giới hạn cấp và OrgUnit tree riêng, đồng bộ file/API.",
+        "tasks": [
+          {
+            "team": "BA",
+            "text": "Chốt model Company/OrgUnit và mẫu import",
+            "state": "TODO"
+          },
+          {
+            "team": "BE",
+            "text": "Schema cây, API sync, chống vòng lặp/cross-tenant",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Danh mục và cây nhiều cấp; import wizard",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "Test ≥6 cấp, parent missing, import/export",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa xác minh",
+        "source": "Master #88 · Data/IAM #86 — Owner addendum"
+      }
     },
     {
       "id": "X3",
@@ -190,7 +476,30 @@
       "qa": "Chưa xác minh",
       "prs": "Master #88 · Data/IAM #86",
       "summary": "IAM theo người và công ty/đơn vị; thay đổi sơ đồ tổ chức không tự cấp quyền",
-      "next": "Kiểm thử tenant isolation, role/membership và sync dữ liệu"
+      "next": "Kiểm thử tenant isolation, role/membership và sync dữ liệu",
+      "work": {
+        "problem": "Phân quyền người xem cần gắn công ty/đơn vị và không tự mở rộng khi đổi cây.",
+        "approach": "Ràng buộc effective IAM theo tenant, company, org, record và field.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Kiểm tra scope SELF/TEAM và lọc ở server",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Hiển thị quyền hiệu lực rõ ràng",
+            "state": "TODO"
+          },
+          {
+            "team": "SEC",
+            "text": "Negative tests vượt tenant và cấp quyền ngầm",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa xác minh",
+        "source": "Master #88 · Data/IAM #86"
+      }
     },
     {
       "id": "X4",
@@ -203,7 +512,30 @@
       "qa": "Chưa xác minh",
       "prs": "Chưa xác minh",
       "summary": "Write-back REST cần gate dữ liệu",
-      "next": "Hoàn thiện và kiểm toán"
+      "next": "Hoàn thiện và kiểm toán",
+      "work": {
+        "problem": "Ghi dữ liệu qua REST chưa được chứng minh đủ gate an toàn.",
+        "approach": "Approved operation CRUD, kiểm tra quyền, idempotency và xác nhận xóa.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Runtime CRUD có policy, audit và rollback",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Form tạo/sửa/xóa có xác nhận",
+            "state": "TODO"
+          },
+          {
+            "team": "SEC",
+            "text": "Test unauthorized write, replay, CSRF",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa xác minh",
+        "source": "Chưa xác minh"
+      }
     },
     {
       "id": "X5",
@@ -216,7 +548,30 @@
       "qa": "Chưa xác minh",
       "prs": "Chưa xác minh",
       "summary": "AI hiểu nguồn dữ liệu, schema, operation",
-      "next": "Tích hợp context"
+      "next": "Tích hợp context",
+      "work": {
+        "problem": "AI chưa được chứng minh hiểu catalog/schema/operation của nguồn nội bộ.",
+        "approach": "Đưa schema và quyền được duyệt vào AI context, chỉ gọi operation hợp lệ.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Kết nối schema/operation vào Context Builder",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Chọn nguồn và xem quyền trong Studio",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "Test prompt tạo app và dữ liệu Preview/Publish",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa xác minh",
+        "source": "Chưa xác minh"
+      }
     },
     {
       "id": "P0-16 B/E",
@@ -229,7 +584,30 @@
       "qa": "Chưa hoàn thiện",
       "prs": "Chưa xác minh",
       "summary": "Bản đồ và bộ nhớ dài hạn dự án",
-      "next": "Hoàn thiện backlog"
+      "next": "Hoàn thiện backlog",
+      "work": {
+        "problem": "Project Map và Memory dài hạn chưa xác nhận hoàn thiện.",
+        "approach": "Thiết kế bản đồ mã nguồn và trí nhớ thay đổi có version/IAM.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Project map và memory gắn commit/job",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "UI xem lịch sử và ngữ cảnh",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "Test prompt nhiều lượt và tránh memory leak",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa hoàn thiện",
+        "source": "Chưa xác minh"
+      }
     },
     {
       "id": "P0-17",
@@ -242,7 +620,30 @@
       "qa": "Chưa có bằng chứng hoàn tất",
       "prs": "Master #88",
       "summary": "Hướng dẫn tích hợp dữ liệu bằng AI; kiểm tra đồng bộ giao diện tối/sáng và Việt/Anh trên 5 web",
-      "next": "Hoàn thiện tích hợp và nghiệm thu từng phần"
+      "next": "Hoàn thiện tích hợp và nghiệm thu từng phần",
+      "work": {
+        "problem": "Tích hợp dữ liệu bằng AI và theme/i18n trên các cổng còn thiếu bằng chứng.",
+        "approach": "Dùng approved connector, kiểm tra UX sáng/tối và tiếng Việt/Anh.",
+        "tasks": [
+          {
+            "team": "BE",
+            "text": "Adapter nguồn và hợp đồng API được duyệt",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Theme/i18n và hướng dẫn kết nối",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "E2E 5 portal và khả năng truy cập",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa có bằng chứng hoàn tất",
+        "source": "Master #88"
+      }
     },
     {
       "id": "P0-18",
@@ -255,7 +656,30 @@
       "qa": "Chưa có bằng chứng hoàn tất",
       "prs": "Master #88",
       "summary": "Chụp màn hình ngay trong biểu mẫu hỗ trợ, khoanh tròn, vẽ mũi tên và gửi kèm mô tả",
-      "next": "Tích hợp widget hiện có và kiểm thử quyền riêng tư"
+      "next": "Tích hợp widget hiện có và kiểm thử quyền riêng tư",
+      "work": {
+        "problem": "Widget báo lỗi cần chụp màn hình và đánh dấu trực tiếp.",
+        "approach": "Thêm công cụ ảnh, chú thích, gửi bản ghi có audit và giới hạn dữ liệu.",
+        "tasks": [
+          {
+            "team": "FE",
+            "text": "Chụp ảnh, khoanh/vẽ mũi tên, xem trước",
+            "state": "TODO"
+          },
+          {
+            "team": "BE",
+            "text": "Nhận file và lưu phản hồi có quyền",
+            "state": "TODO"
+          },
+          {
+            "team": "SEC",
+            "text": "Kiểm tra che dữ liệu nhạy cảm và kích thước",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa có bằng chứng hoàn tất",
+        "source": "Master #88"
+      }
     },
     {
       "id": "P0-19",
@@ -268,7 +692,30 @@
       "qa": "Chưa có bằng chứng hoàn tất",
       "prs": "Master #88",
       "summary": "Bố cục Edit tập trung prompt và preview, giao diện dễ nhìn, linh hoạt theo màn hình",
-      "next": "Hoàn thiện UX và kiểm thử desktop/mobile"
+      "next": "Hoàn thiện UX và kiểm thử desktop/mobile",
+      "work": {
+        "problem": "Workspace Edit Studio còn cần tối ưu prompt-first trên desktop/mobile.",
+        "approach": "Thiết kế layout tối giản, context panel và Preview phản hồi.",
+        "tasks": [
+          {
+            "team": "UX",
+            "text": "Luồng thao tác theo chuẩn dễ dùng",
+            "state": "TODO"
+          },
+          {
+            "team": "FE",
+            "text": "Triển khai layout và responsive",
+            "state": "TODO"
+          },
+          {
+            "team": "QA",
+            "text": "UAT keyboard, mobile, reload và focus",
+            "state": "TODO"
+          }
+        ],
+        "lastEvidence": "Chưa có bằng chứng hoàn tất",
+        "source": "Master #88"
+      }
     }
   ]
 }
