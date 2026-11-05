@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T18:44:00+07:00",
+  "asOf": "2026-11-05T19:08:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
-  "evidenceNote": "Ảnh chụp tiến độ tổng hợp từ log và GitHub; không phản ánh trạng thái PROD theo thời gian thực. Bản công khai lược bỏ chi tiết kiểm soát chi tiêu và an ninh.",
+  "evidenceNote": "R2 QA PASS và dev→main promote 19:01 ICT, build VM bắt đầu 19:07 ICT: theo báo cáo Claude Operator do Owner cung cấp; R2 PROD chưa xác nhận. Repo công khai: chỉ tổng hợp, không chứa bí mật.",
   "releases": [
     {
       "id": "R1",
@@ -15,9 +15,9 @@
     {
       "id": "R2",
       "label": "Đợt 2",
-      "state": "QA_PENDING",
+      "state": "MAIN_PROMOTED_BUILDING",
       "actualAt": null,
-      "notes": "Đang chờ kết luận QA, chưa xác nhận PROD"
+      "notes": "QA-R2 PASS, SEC-R2 không có P0/P1/P2. Promote main lúc 19:01, build VM từ 19:07 giờ VN. PROD vẫn chạy R1 cho đến khi deploy/smoke xong; chưa bật B1/X1."
     }
   ],
   "features": [
@@ -103,53 +103,40 @@
       "id": "X1+F6",
       "name": "Chính sách trường dữ liệu",
       "batch": "R2",
-      "stage": "DEV_INTEGRATED",
+      "stage": "MAIN_PROMOTED",
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "SEC đã rà soát; chờ QA",
+      "qa": "QA-R2 PASS · SEC-R2 không có P0/P1/P2",
       "prs": "BE #100/#113 · FE #71",
       "summary": "Chính sách truy cập trường dữ liệu; chờ nghiệm thu",
-      "next": "QA D-01 PASS, deploy và xác minh scope"
+      "next": "Deploy/smoke, bật STRICT=true nội bộ theo gate"
     },
     {
       "id": "B1/B1-1",
       "name": "Ledger ngân sách AI",
       "batch": "R2",
-      "stage": "DEV_INTEGRATED",
+      "stage": "MAIN_PROMOTED",
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "SEC đã rà soát; chờ QA",
+      "qa": "QA-R2 PASS · SEC-R2 không có P0/P1/P2",
       "prs": "BE #109/#115",
       "summary": "Cơ chế quản lý hạn mức chi tiêu AI",
-      "next": "Chờ kiểm thử ranh giới ngân sách"
+      "next": "Build, deploy/smoke; xác minh từ chối chi tiêu thật trước khi bật rộng"
     },
     {
       "id": "B2+F2",
       "name": "Quản trị ngân sách Platform",
       "batch": "R2",
-      "stage": "DEV_INTEGRATED",
+      "stage": "MAIN_PROMOTED",
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "SEC đã rà soát; chờ QA",
+      "qa": "QA-R2 PASS · SEC-R2 không có P0/P1/P2",
       "prs": "BE #112 · FE #73",
-      "summary": "API và UI cấp, sửa, thu hồi ngân sách; tự gia hạn không tăng USD",
+      "summary": "API và UI ngân sách đã promote main; route giải phóng khoản treo vẫn OFF, cần Owner duyệt riêng",
       "next": "QA E2E API/UI rồi triển khai có kiểm soát"
-    },
-    {
-      "id": "AI_SPEND_RELEASE",
-      "name": "Giải phóng khoản treo",
-      "batch": "R2",
-      "stage": "DEV_INTEGRATED",
-      "flag": "OFF",
-      "risk": "HIGH",
-      "integrated": true,
-      "qa": "Chưa đủ điều kiện bật",
-      "prs": "BE #112 · FE #73",
-      "summary": "Tính năng thao tác tài chính có kiểm soát; hiện không bật",
-      "next": "Chờ phê duyệt riêng sau khi hoàn thành kiểm tra"
     },
     {
       "id": "B3+F3",
@@ -241,6 +228,45 @@
       "prs": "Chưa xác minh",
       "summary": "Bản đồ và bộ nhớ dài hạn dự án",
       "next": "Hoàn thiện backlog"
+    },
+    {
+      "id": "P0-17",
+      "name": "AI hỗ trợ kết nối dữ liệu + giao diện đa chủ đề/ngôn ngữ",
+      "batch": "Unassigned",
+      "stage": "INCOMPLETE",
+      "flag": "OFF",
+      "risk": "MEDIUM",
+      "integrated": false,
+      "qa": "Chưa có bằng chứng hoàn tất",
+      "prs": "Master #88",
+      "summary": "Hướng dẫn tích hợp dữ liệu bằng AI; kiểm tra đồng bộ giao diện tối/sáng và Việt/Anh trên 5 web",
+      "next": "Hoàn thiện tích hợp và nghiệm thu từng phần"
+    },
+    {
+      "id": "P0-18",
+      "name": "Chụp và đánh dấu ảnh khi báo lỗi",
+      "batch": "Unassigned",
+      "stage": "INCOMPLETE",
+      "flag": "OFF",
+      "risk": "MEDIUM",
+      "integrated": false,
+      "qa": "Chưa có bằng chứng hoàn tất",
+      "prs": "Master #88",
+      "summary": "Chụp màn hình ngay trong biểu mẫu hỗ trợ, khoanh tròn, vẽ mũi tên và gửi kèm mô tả",
+      "next": "Tích hợp widget hiện có và kiểm thử quyền riêng tư"
+    },
+    {
+      "id": "P0-19",
+      "name": "Thiết kế lại workspace Edit Studio",
+      "batch": "Unassigned",
+      "stage": "INCOMPLETE",
+      "flag": "OFF",
+      "risk": "LOW",
+      "integrated": false,
+      "qa": "Chưa có bằng chứng hoàn tất",
+      "prs": "Master #88",
+      "summary": "Bố cục Edit tập trung prompt và preview, giao diện dễ nhìn, linh hoạt theo màn hình",
+      "next": "Hoàn thiện UX và kiểm thử desktop/mobile"
     }
   ]
 }
