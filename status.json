@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T20:05:00+07:00",
+  "asOf": "2026-11-05T21:09:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "Updated scope: owner addendum for Company/Org dynamic import/API is recorded in Master #88 and #86, not implemented. R2 PROD and flags according to release evidence; remaining statuses evidence-based.",
   "releases": [
@@ -236,13 +236,13 @@
       "flag": "N/A",
       "risk": "LOW",
       "integrated": true,
-      "qa": "Chưa có Owner UAT",
-      "prs": "FE #59",
-      "summary": "Logo navigation và session expiry",
-      "next": "Owner UAT các cổng",
+      "qa": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
+      "prs": "FE #59 · BE #118 (build arg fix; chưa xác minh PROD)",
+      "summary": "XApp UX có FE R1 trên PROD, nhưng build arg XApp bị thiếu nên điều hướng chưa hoạt động; BE PR #118 đã merge bản sửa compose, chưa có bằng chứng rebuild/redeploy PROD.",
+      "next": "Xác minh build arg ở ảnh PROD sau release mới, smoke điều hướng XApp và session-expired trên 5 portal; Owner UAT.",
       "work": {
-        "problem": "Điều hướng XApp và session expiry cần kiểm tra hành vi trên tất cả portal.",
-        "approach": "Xác minh build arg XApp và chuyển hướng sau hết phiên.",
+        "problem": "XApp UX được deploy trong R1 nhưng thiếu NEXT_PUBLIC_PORTAL_URL_XAPP ở build args; sửa đã merge, chưa chứng minh trên PROD.",
+        "approach": "Xác minh ảnh portal được rebuild với build arg đúng, kiểm tra các hành vi điều hướng và session expiry trước Owner UAT.",
         "tasks": [
           {
             "team": "FE",
@@ -265,8 +265,8 @@
         ],
         "lastEvidence": "Chưa có Owner UAT",
         "source": "FE #59",
-        "problemEn": "XApp links and session expiry need cross-portal checks.",
-        "approachEn": "Verify build-time URLs and login/session redirect behavior."
+        "problemEn": "R1 XApp UX was shipped without its XApp build argument; the fix was merged but not verified in production.",
+        "approachEn": "Verify a rebuilt portal image includes the XApp origin and smoke-test navigation and session expiry before Owner acceptance."
       }
     },
     {
