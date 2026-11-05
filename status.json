@@ -163,8 +163,8 @@
       "integrated": false,
       "qa": "Chưa hoàn tất",
       "prs": "FE #60 · Master #88",
-      "summary": "Wizard import Excel/CSV, mapping cột, preview/dry-run; có trường SĐT cho Công ty/Org",
-      "next": "FE hỗ trợ mapping SĐT từ file/API và hiển thị lỗi theo dòng"
+      "summary": "Wizard import Excel/CSV, mapping cột, preview/dry-run và kết nối API cho Công ty/Org",
+      "next": "Hoàn thiện FE UX13 và luồng import/sync có duyệt"
     },
     {
       "id": "X2",
@@ -176,8 +176,8 @@
       "integrated": false,
       "qa": "Chưa xác minh",
       "prs": "Master #88 · Data/IAM #86 — Owner addendum",
-      "summary": "Danh mục Công ty động và Org nhiều cấp; import Excel/CSV hoặc đồng bộ API; có SĐT liên hệ (giữ 0 đầu/+84)",
-      "next": "BE/FE thiết kế schema, wizard nhập liệu, API mapping số điện thoại và bảo vệ IAM"
+      "summary": "Danh mục Công ty động và Org nhiều cấp; import Excel/CSV hoặc đồng bộ API",
+      "next": "BE/FE thiết kế schema Company–OrgUnit, wizard nhập file/API và bảo vệ IAM"
     },
     {
       "id": "X3",
