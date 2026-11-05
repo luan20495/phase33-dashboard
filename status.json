@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-05T19:25:00+07:00",
+  "asOf": "2026-11-05T19:35:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
-  "evidenceNote": "R2 PROD verified in xweb01 docs/RELEASE_LOG.md (dev) and Claude Operator report: deploy 19:20–19:22 ICT, QA/SEC PASS. B1/B2 and X1 enabled 19:25 ICT; X1 STRICT=false. Auto-renew and spend release OFF. R2 paid AI Haiku ledger SETTLED basic check PASS, negative/concurrency E2E not fully tested. Public-safe summary.",
+  "evidenceNote": "Updated scope: owner addendum for Company/Org dynamic import/API is recorded in Master #88 and #86, not implemented. R2 PROD and flags according to release evidence; remaining statuses evidence-based.",
   "releases": [
     {
       "id": "R1",
@@ -162,9 +162,9 @@
       "risk": "LOW",
       "integrated": false,
       "qa": "Chưa hoàn tất",
-      "prs": "FE #60 open",
-      "summary": "UX nguồn dữ liệu dễ dùng cho non-tech",
-      "next": "Merge PR, kiểm tra UX"
+      "prs": "FE #60 · Master #88",
+      "summary": "Bổ sung wizard nhập Excel/CSV, mapping cột, preview/dry-run và kết nối API cho Công ty/Org",
+      "next": "Hoàn thiện FE UX13 và luồng import/sync có duyệt"
     },
     {
       "id": "X2",
@@ -175,9 +175,9 @@
       "risk": "MEDIUM",
       "integrated": false,
       "qa": "Chưa xác minh",
-      "prs": "Chưa xác minh",
-      "summary": "Dữ liệu chia sẻ toàn hệ thống",
-      "next": "Thiết kế + tích hợp"
+      "prs": "Master #88 · Data/IAM #86 — Owner addendum",
+      "summary": "Danh mục Công ty động, công ty mẹ/con nhiều cấp, cơ cấu tổ chức; import Excel/CSV hoặc đồng bộ API",
+      "next": "BA/SA chốt schema Company–OrgUnit; BE/FE thiết kế import wizard và API sync; QA/SEC"
     },
     {
       "id": "X3",
@@ -188,9 +188,9 @@
       "risk": "HIGH",
       "integrated": false,
       "qa": "Chưa xác minh",
-      "prs": "Chưa xác minh",
-      "summary": "Scope theo người dùng/role",
-      "next": "Kiểm thử tenant và phân quyền"
+      "prs": "Master #88 · Data/IAM #86",
+      "summary": "IAM theo người và công ty/đơn vị; thay đổi sơ đồ tổ chức không tự cấp quyền",
+      "next": "Kiểm thử tenant isolation, role/membership và sync dữ liệu"
     },
     {
       "id": "X4",
