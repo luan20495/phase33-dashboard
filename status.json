@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T13:15:00+07:00",
+  "asOf": "2026-11-06T13:33:12+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1398,10 +1398,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "96/96 + 8/8 REPORTED; integration 2 FAIL; chưa QA độc lập",
-      "prs": "Chưa xác minh",
+      "qa": "BE PR #130 (agent báo): 52 test mới đạt, 131 test rộng (1 lỗi có sẵn), hồi quy 96 đạt, 13/13 mutant; QA/SEC độc lập, FE màn hình, AI thật NOT_RUN",
+      "prs": "BE #130 DRAFT head fc38c0f2 (V80 Map, V81 Memory; 2 cờ mặc định TẮT) · Master #88",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "Project map cập nhật khi sửa/đổi tên file/route.",
+      "next": "QA/SEC độc lập cho PR #130; FE màn Memory/Map (chưa có); nối đề xuất ghi nhớ từ mô hình (chưa nối); bật cờ trên PROD cần Owner duyệt riêng vì đổi prompt.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1463,10 +1463,10 @@
         ]
       },
       "progress": {
-        "percent": 25,
+        "percent": 60,
         "basis": "estimate",
-        "note": "Project Map nhánh efabb608 đã push, 96/96 unit và 8/8 mutant REPORTED; 2 integration test lỗi, chưa PR/QA độc lập.",
-        "reportedAt": "2026-11-06T13:10:00+07:00"
+        "note": "BE PR #130 mã xong: quét tĩnh Kotlin (không dùng Repomix), Map V80 + Memory V81, cờ TẮT. Đo mô hình giả: prompt không nhỏ đi, giảm ~60% lượt đọc repo; chưa đo trên dự án thật. Chưa QA/SEC độc lập, FE chưa có.",
+        "reportedAt": "2026-11-06T13:33:12+07:00"
       }
     },
     {
@@ -1561,10 +1561,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "Browser specs NOT_RUN; chưa PR và QA độc lập",
-      "prs": "Master #88",
+      "qa": "FE PR #81 (agent báo): tsc sạch, unit 97/97, 16/16 mutant, spec trình duyệt 75/75 (harness, API giả); QA/SEC độc lập, backend thật, combined-check NOT_RUN",
+      "prs": "FE #81 DRAFT head 2b806550 · Master #88",
       "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
-      "next": "Chụp ảnh, khoanh, vẽ mũi tên, undo và gửi thành công.",
+      "next": "QA/SEC độc lập cho PR #81; combined-check; quyết định lưu giữ ảnh báo lỗi (Owner); sau merge chạy sync-frontend-core ở repo backend.",
       "work": {
         "problem": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
         "approach": "Tái sử dụng widget feedback; chụp/annotate cục bộ trước khi gửi, preview/redact, upload theo quyền và lưu liên kết ticket.",
@@ -1631,10 +1631,10 @@
         ]
       },
       "progress": {
-        "percent": 70,
+        "percent": 85,
         "basis": "estimate",
-        "note": "FE-ANNOT ~70% theo Claude 13:10: html-to-image 1.11.13 (MIT), che/làm mờ; đã có nhánh commit 35191cc, chưa PR/browser QA.",
-        "reportedAt": "2026-11-06T13:10:00+07:00"
+        "note": "FE PR #81 mã xong, CLEAN, DRAFT. Che/làm mờ đốt vào điểm ảnh, không cần sửa backend. Số test do agent báo (REPORTED); chưa QA/SEC độc lập, chưa chạy trên backend thật.",
+        "reportedAt": "2026-11-06T13:33:12+07:00"
       }
     },
     {
