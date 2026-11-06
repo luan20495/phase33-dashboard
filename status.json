@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T15:43:09+07:00",
+  "asOf": "2026-11-06T16:30:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -418,10 +418,10 @@
       "flag": "ON",
       "risk": "LOW",
       "integrated": true,
-      "qa": "PROD QA PASS (draft reload, Haiku submit, live-job resume); attachment / multi-user / logout tests NOT_RUN",
-      "prs": "FE #56 · FE #85 (bỏ giới hạn prompt 4.000, DRAFT head f656b14d) · BE-PROMPT nhánh fix/p34-prompt-limit-be-20261106 (chưa PR)",
+      "qa": "PROD (C0 VERIFIED): nháp, Haiku, resume, đính kèm csv/png PASS, .exe từ chối. Bỏ giới hạn 4.000: QA/SEC độc lập BE #133 PASS-WITH-COND, FE #85 sửa P1 (lịch sử >20.000 ký tự), em chạy lại test liên quan 30/30; E2E 17.444/50.000 ký tự với backend+AI thật NOT_RUN",
+      "prs": "FE #56 · FE #85 merged dev 2f8f6a3c (bỏ giới hạn 4.000) · BE #133 merged dev 4a82122a (V86) · sync BE #135 · chưa deploy PROD",
       "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
-      "next": "Bỏ giới hạn 4.000 ký tự (FE #85 + BE-PROMPT, đang chạy); sau đó E2E 17.444/50.000 ký tự, đính kèm, riêng tư.",
+      "next": "Deploy BE (V86) rồi FE khi Owner GO; giới hạn hiệu lực PROD ~60.000 byte (cấu hình trần thân yêu cầu trả phí 120.000) nên 50.000 ký tự tiếng Việt chưa vừa; pha B (AI đọc nhiều lượt) chưa giao.",
       "work": {
         "problem": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
         "approach": "UAT đúng composer Studio cùng model/effort/attachment. Không khôi phục file upload chưa hoàn thành như file thật.",
@@ -492,7 +492,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
-        "reportedAt": "2026-11-06T15:43:09+07:00"
+        "reportedAt": "2026-11-06T16:30:00+07:00"
       }
     },
     {
@@ -877,7 +877,7 @@
       "qa": "QA/SEC độc lập FE #80: GATE-PASS-WITH-CONDITIONS (không P0–P2, 7 P3); smoke PROD cờ OFF đạt; luồng B3 trên PROD thật NOT_RUN (cờ OFF)",
       "prs": "BE #122 merged · FE #67, #80 merged và đã deploy PROD (R4a)",
       "summary": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
-      "next": "Bật AI_BUDGET_REQUESTS nội bộ cần Owner xác nhận (hiện 0 phân bổ nên chưa chặn ai); sau đó smoke B3 đầy đủ trên PROD bằng tài khoản QA, không dùng AI trả phí; còn thiếu UI thu hồi, hộp thư workspace, chuông.",
+      "next": "Lệnh bật cờ AI_BUDGET_REQUESTS trên PROD bị hệ thống quyền chặn; cần Owner nói rõ để bật; sau đó smoke B3 (không AI trả phí).",
       "work": {
         "problem": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
         "approach": "Chờ QA/SEC độc lập PR #80 đạt, merge dev, deploy FE theo gate, smoke PROD rồi mới cân nhắc bật AI_BUDGET_REQUESTS nội bộ trong test workspace cô lập để không chặn 22 dự án QA.",
@@ -955,7 +955,7 @@
         "percent": 90,
         "basis": "estimate",
         "note": "FE #80 đã deploy PROD (R4a) với cờ OFF; QA/SEC độc lập đạt có điều kiện. 90% là ước lượng: còn bật cờ + smoke B3 trên PROD thật và các phần chưa xây.",
-        "reportedAt": "2026-11-06T14:25:46+07:00",
+        "reportedAt": "2026-11-06T16:30:00+07:00",
         "codeStatus": "CODE_COMPLETE_QA_PENDING"
       }
     },
@@ -967,7 +967,7 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Agent: 4887 unit PASS, spec liên quan 173 PASS; QA FE độc lập + backend DEV E2E NOT_RUN · PR #60 lại DIRTY sau khi dev đi tiếp (R4a), đang gộp lại dev (REPORTED 14:45)",
+      "qa": "Agent: 4887 unit PASS, spec liên quan 173 PASS; QA FE độc lập + backend DEV E2E NOT_RUN · PR #60 lại DIRTY sau khi dev đi tiếp (R4a), đang gộp lại dev (REPORTED 14:45) · QA FE độc lập #60 đang chạy (16:35)",
       "prs": "FE #60 · Master #88",
       "summary": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
       "next": "Người dùng không kỹ thuật hoàn tất import Excel/CSV không cần sửa code.",
@@ -1035,7 +1035,7 @@
         "percent": 65,
         "basis": "estimate",
         "note": "FE PR #60 head 9fa38dbe: DIRTY vì dev đã merge #80 và deploy R4a; FE-UX13 đang gộp lại dev. Số test cũ là REPORTED của agent; chưa QA FE độc lập/backend E2E.",
-        "reportedAt": "2026-11-06T14:42:07+07:00"
+        "reportedAt": "2026-11-06T16:30:00+07:00"
       }
     },
     {
@@ -1046,7 +1046,7 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA/SEC độc lập #121+#131: GATE-PASS-WITH-CONDITIONS, không P0/P1; 2 P2 (P2-1 quyền danh mục tenant khi duyệt chính sách, P2-2 SYS_SCOPE_TOO_BROAD) đang được sửa; 249 test đạt 0 lỗi (QA/SEC chạy)",
+      "qa": "QA/SEC độc lập #121+#131: GATE-PASS-WITH-CONDITIONS, không P0/P1; 2 P2 (P2-1 quyền danh mục tenant khi duyệt chính sách, P2-2 SYS_SCOPE_TOO_BROAD) đang được sửa; 249 test đạt 0 lỗi (QA/SEC chạy) · QA/SEC vòng 2 sau sửa P2 đang chạy (16:35)",
       "prs": "BE #121 OPEN (X2/X5) · Master #88/#86",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
       "next": "BE-X sửa P2-1/P2-2 + test thiếu; QA/SEC lại; Owner bấm Ready #121; merge #121 rồi #131 vào dev (cờ TẮT) → R4c; bật cờ chỉ sau khi P2 đóng.",
@@ -1121,7 +1121,7 @@
         "percent": 88,
         "basis": "estimate",
         "note": "PR #121 mã xong; QA/SEC độc lập GATE-PASS-WITH-CONDITIONS (2 P2 đang sửa). Chưa merge, chưa deploy.",
-        "reportedAt": "2026-11-06T14:42:07+07:00"
+        "reportedAt": "2026-11-06T16:30:00+07:00"
       }
     },
     {
@@ -1132,7 +1132,7 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "PR #131 (X3): QA/SEC độc lập GATE-PASS-WITH-CONDITIONS, 265 test đạt 0 lỗi (QA/SEC chạy), mutant 11/15; P2-2 liên quan SYS_SCOPE_TOO_BROAD đang sửa",
+      "qa": "PR #131 (X3): QA/SEC độc lập GATE-PASS-WITH-CONDITIONS, 265 test đạt 0 lỗi (QA/SEC chạy), mutant 11/15; P2-2 liên quan SYS_SCOPE_TOO_BROAD đang sửa · QA/SEC vòng 2 sau sửa P2 đang chạy (16:35)",
       "prs": "BE #131 DRAFT head d305e1af (xếp chồng #121) · Master #88",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
       "next": "User A không truy vấn được dữ liệu company B bằng URL/API trực tiếp.",
@@ -1210,7 +1210,7 @@
         "percent": 75,
         "basis": "estimate",
         "note": "PR #131 mã xong, cờ TẮT, V83 không dùng. QA/SEC độc lập đạt có điều kiện; chờ sửa P2 và merge sau #121.",
-        "reportedAt": "2026-11-06T14:42:07+07:00"
+        "reportedAt": "2026-11-06T16:30:00+07:00"
       }
     },
     {
@@ -1326,7 +1326,7 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA/SEC độc lập #121: GATE-PASS-WITH-CONDITIONS; builder chỉ biết tên/loại/lớp (PASS); thiếu test dấu phân tách system_context; 1 lượt Haiku DEV khuyến nghị trước khi bật",
+      "qa": "QA/SEC độc lập #121: GATE-PASS-WITH-CONDITIONS; builder chỉ biết tên/loại/lớp (PASS); thiếu test dấu phân tách system_context; 1 lượt Haiku DEV khuyến nghị trước khi bật · QA/SEC vòng 2 sau sửa P2 đang chạy (16:35)",
       "prs": "BE #121 OPEN · Master #88",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
       "next": "AI sinh app dùng approved source/alias, không yêu cầu secret.",
@@ -1396,7 +1396,7 @@
         "percent": 75,
         "basis": "estimate",
         "note": "Trong BE PR #121; chưa có E2E AI thật, chưa QA/SEC.",
-        "reportedAt": "2026-11-06T14:42:07+07:00"
+        "reportedAt": "2026-11-06T16:30:00+07:00"
       }
     },
     {
@@ -1410,7 +1410,7 @@
       "qa": "BE PR #130 (agent báo): 52 test mới đạt, 131 test rộng (1 lỗi có sẵn), hồi quy 96 đạt, 13/13 mutant; QA/SEC độc lập, FE màn hình, AI thật NOT_RUN · Phát hiện: số migration V80/V81 trong #130 thấp hơn V84 đã chạy trên PROD (outOfOrder=false) → phải đánh số lại (đề xuất V87/V88)",
       "prs": "BE #130 DRAFT head fc38c0f2 (V80 Map, V81 Memory; 2 cờ mặc định TẮT) · Master #88",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "Đánh số lại migration (V87/V88); QA/SEC độc lập #130; FE màn Map/Memory; Smart IQC.",
+      "next": "AI-MAP đang đánh số lại migration (Map V88, Memory V89), đẩy PR #130, rồi QA/SEC độc lập.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1475,7 +1475,7 @@
         "percent": 60,
         "basis": "estimate",
         "note": "BE PR #130 mã xong: quét tĩnh Kotlin (không dùng Repomix), Map V80 + Memory V81, cờ TẮT. Đo mô hình giả: prompt không nhỏ đi, giảm ~60% lượt đọc repo; chưa đo trên dự án thật. Chưa QA/SEC độc lập, FE chưa có.",
-        "reportedAt": "2026-11-06T15:43:09+07:00"
+        "reportedAt": "2026-11-06T16:30:00+07:00"
       }
     },
     {
@@ -1570,7 +1570,7 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "FE PR #81 (agent báo): tsc sạch, unit 97/97, 16/16 mutant, spec trình duyệt 75/75 (harness, API giả); QA/SEC độc lập, backend thật, combined-check NOT_RUN",
+      "qa": "FE PR #81 (agent báo): tsc sạch, unit 97/97, 16/16 mutant, spec trình duyệt 75/75 (harness, API giả); QA/SEC độc lập, backend thật, combined-check NOT_RUN · QA độc lập #81 đang chạy (16:35)",
       "prs": "FE #81 DRAFT head 2b806550 · Master #88",
       "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
       "next": "QA/SEC độc lập cho PR #81; combined-check; quyết định lưu giữ ảnh báo lỗi (Owner); sau merge chạy sync-frontend-core ở repo backend.",
@@ -1643,7 +1643,7 @@
         "percent": 85,
         "basis": "estimate",
         "note": "FE PR #81 mã xong, CLEAN, DRAFT. Che/làm mờ đốt vào điểm ảnh, không cần sửa backend. Số test do agent báo (REPORTED); chưa QA/SEC độc lập, chưa chạy trên backend thật.",
-        "reportedAt": "2026-11-06T13:33:12+07:00"
+        "reportedAt": "2026-11-06T16:30:00+07:00"
       }
     },
     {
