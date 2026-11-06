@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T19:29:49+07:00",
+  "asOf": "2026-11-06T20:29:44+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1055,10 +1055,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN · QA/SEC #94: PASS-WITH-COND; F-1 (P1 để bật cờ): duyệt nguồn cần expectedVersion nhưng khối duyệt dùng chung không gửi → FE-F7 đang sửa",
-      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 · FE #94 DRAFT (F7 màn hình) · BE #141 (sửa P3-N1)",
+      "qa": "QA/SEC #121+#131 r2 PASS-WITH-COND (VERIFIED); QA/SEC #94: PASS-WITH-COND, F-1 (P1 để bật cờ) đã sửa ở r2 (agent báo: spec 91/91, mutant 12/12; chưa QA lại); BE #141 đóng P3-N1 (agent báo: 15 test mới, 288 hồi quy, mutant 18/18); QA/SEC độc lập #141 đang chạy",
+      "prs": "BE #121 DEPLOYED (4e) · BE #141 CLEAN (P3-N1, chờ review độc lập) · FE #94 DRAFT head 7874d879 (F-1 đã sửa, phụ thuộc #60) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "FE-F7 sửa F-1 (gộp #60); BE #141 (P3-N1) QA; ≥2 quản trị tenant; Owner duyệt bật SYSTEM_SOURCES.",
+      "next": "QA #141 → merge; #60 merge → #94 merge; smoke thật 2 quản trị tenant (10 bước); Owner duyệt bật SYSTEM_SOURCES.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1127,10 +1127,10 @@
         ]
       },
       "progress": {
-        "percent": 94,
+        "percent": 96,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T19:29:49+07:00"
+        "reportedAt": "2026-11-06T20:29:44+07:00"
       }
     },
     {
