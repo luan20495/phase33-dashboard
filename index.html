@@ -94,6 +94,7 @@ html[data-theme="light"] .detail-drawer{background:#fff;color:#1d1d1f}
 .progress-state{flex-shrink:0;font-size:10px;line-height:1.5;font-weight:750;color:var(--accent)}
 .progress-state.on{color:#159568}
 .progress-note{font-size:11px;color:var(--muted);line-height:1.55;min-width:0;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.progress-reopened{border-color:#ba8837}.progress-reopen{flex-shrink:0;font-size:10px;line-height:1.5;color:#ba8837;font-weight:800}.progress-reopened .progress-track{outline:1px solid rgba(186,136,55,.28)}
 .progress-legend{font-size:11px;line-height:1.6;color:var(--muted);margin:14px 1px 0}
 html[data-theme="dark"] .progress-val.on,html[data-theme="dark"] .progress-state.on{color:#76e2a8}
 @media(max-width:800px){.progress-items{grid-template-columns:1fr}.progress-panel{padding:17px;border-radius:18px}.progress-head h2{font-size:18px}.progress-tabs{width:100%}.progress-tab{flex:1;padding:8px 5px}}
@@ -137,8 +138,8 @@ function renderProgress(){
   const row=el('div','progress-bottom');
   row.append(el('span','progress-state'+(on?' on':''),on?'ON':x.stage==='PROD_DEPLOYED'?(tr?'CODE PROD · OFF':'PROD CODE · OFF'):(tr?'ĐANG PHÁT TRIỂN':'IN DEVELOPMENT')));
   const hint=on?(tr?'Đã chạy PROD; xem chi tiết để biết bài QA chưa kiểm.':'Enabled in PROD; see untested QA cases in details.'):(pr.note||x.summary);
-  row.append(el('span','progress-note',hint));
-  card.append(top,track,row);host.append(card)
+  row.append(el('span','progress-note',x.extension?.status==='REOPEN_IN_PROGRESS'?(tr?'REOPEN · Nâng cấp cấu hình AI qua web chưa hoàn thành; 100% chỉ là phần cũ đã ON.':'REOPEN · Web AI configuration extension unfinished; 100% refers to existing PROD feature only.'):hint));
+  if(x.extension?.status==='REOPEN_IN_PROGRESS'){card.classList.add('progress-reopened');row.insertBefore(el('span','progress-reopen',tr?'REOPEN':'REOPEN'),row.firstChild)}card.append(top,track,row);host.append(card)
  });
 }
 document.querySelectorAll('[data-progress-filter]').forEach(b=>b.addEventListener('click',()=>{progressFilter=b.dataset.progressFilter;renderProgress()}));
@@ -154,7 +155,8 @@ const dl=k=>detailLabels[lang][k];
 function addSection(host,title,child){const s=el('section','detail-section');s.append(el('h3','',title));if(typeof child==='string')s.append(el('p','',child));else s.append(child);host.append(s);return s}
 function openFeature(id){if(!payload)return;const f=payload.features.find(x=>x.id===id);if(!f)return;lastFeatureFocus=document.activeElement;activeFeatureId=id;const shell=document.getElementById('detailShell');shell.hidden=false;document.body.classList.add('detail-open');renderFeatureDetail(f);document.getElementById('detailClose').focus()}
 function closeFeature(){const shell=document.getElementById('detailShell');shell.hidden=true;document.body.classList.remove('detail-open');activeFeatureId=null;if(lastFeatureFocus?.isConnected)lastFeatureFocus.focus()}
-function renderFeatureDetail(f){const work=f.work||{};document.getElementById('detailEyebrow').textContent=dl('heading')+' · '+f.id;document.getElementById('detailTitle').textContent=translateRecord(f);document.getElementById('detailClose').setAttribute('aria-label',dl('close'));const host=document.getElementById('detailBody');host.replaceChildren();host.className='detail-body';const tags=el('div','detail-badges');tags.style.marginBottom='14px';tags.append(el('span','detail-badge',txt('stage')[f.stage]||f.stage),el('span','detail-badge',f.batch==='Unassigned'?dl('planned'):f.batch),el('span','detail-badge','Flag: '+f.flag));host.append(tags);
+function renderFeatureDetail(f){const work=f.work||{};document.getElementById('detailEyebrow').textContent=dl('heading')+' · '+f.id;document.getElementById('detailTitle').textContent=translateRecord(f);document.getElementById('detailClose').setAttribute('aria-label',dl('close'));const host=document.getElementById('detailBody');host.replaceChildren();host.className='detail-body';const tags=el('div','detail-badges');tags.style.marginBottom='14px';tags.append(el('span','detail-badge',txt('stage')[f.stage]||f.stage),el('span','detail-badge',f.batch==='Unassigned'?dl('planned'):f.batch),el('span','detail-badge','Flag: '+f.flag));if(f.extension?.status==='REOPEN_IN_PROGRESS')tags.append(el('span','detail-badge','REOPEN · EXTENSION IN PROGRESS'));host.append(tags);
+if(f.extension?.tasks?.length){const wrap=el('div','detail-tasks');f.extension.tasks.forEach(t=>wrap.append(el('div','detail-alert','• '+t)));addSection(host,lang==='vi'?'8 gói nâng cấp AI qua web':'8 web AI configuration work packages',wrap)}
 addSection(host,dl('problem'),lang==='en'&&work.problemEn?work.problemEn:work.problem||f.summary||'—');
 addSection(host,dl('fix'),lang==='en'&&work.approachEn?work.approachEn:work.approach||f.next||'—');
 const blockerList=el('div','detail-tasks');((lang==='en'&&work.blockersEn?work.blockersEn:work.blockers)||[]).forEach(item=>blockerList.append(el('div','detail-alert','• '+item)));if(blockerList.children.length)addSection(host,lang==='en'?'Current blockers':'Điểm nghẽn hiện tại',blockerList);
