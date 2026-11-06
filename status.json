@@ -188,7 +188,7 @@
       "name": "Job AI bền vững",
       "batch": "R1",
       "stage": "PROD_ENABLED",
-      "flag": "ON (J1 + Q1)",
+      "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "PROD QA PASS: live resume, queued/offline jobs, idempotent enqueue, queue pause/resume and cancel pending; 3 R37 P3 defects remain",
@@ -232,7 +232,8 @@
           "J1 chạy một lượt AI thật thành công trên PROD.",
           "08:04 06/11: Q1 APP_BUILDER_PROMPT_QUEUE_ENABLED ON trên PROD, không thay BE/FE SHA; API GET 200, enqueue 201, 17 container healthy.",
           "08:15 06/11: tạo dự án QA sạch trên PROD để kiểm giao diện; không phát sinh AI hoặc chi tiêu (C0 báo cáo).",
-          "09:55 06/11 — QA PROD PASS: job live Resume, queue tuần tự/offline, idempotency, hủy pending và hủy job trực tiếp."
+          "09:55 06/11 — QA PROD PASS: job live Resume, queue tuần tự/offline, idempotency, hủy pending và hủy job trực tiếp.",
+          "Dashboard hiển thị ON thống nhất; J1 và Q1 đều đang bật trên PROD."
         ],
         "blockers": [
           "R37-Q1-1: queue gọi AI trước khi kiểm build concurrency, có lượt bị từ chối vẫn phát sinh phí.",
@@ -269,7 +270,8 @@
           "One real AI job completed successfully.",
           "At 08:04 ICT on Nov 6, Q1 was enabled on PROD without a code release; GET 200, enqueue 201, 17 containers healthy.",
           "At 08:15 ICT Nov 6, C0 reported a clean QA project created on PROD for UI testing without an AI call or cost.",
-          "Nov 6 09:55 ICT: PROD QA passed live job resume, ordered and offline queue execution, idempotency, pending cancellation and direct job cancellation."
+          "Nov 6 09:55 ICT: PROD QA passed live job resume, ordered and offline queue execution, idempotency, pending cancellation and direct job cancellation.",
+          "Dashboard flag shown as ON consistently; J1 and Q1 are both enabled on PROD."
         ]
       }
     },
