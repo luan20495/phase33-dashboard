@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T11:52:00+07:00",
+  "asOf": "2026-11-06T12:10:44+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -73,22 +73,25 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Verify entitlements API and admin UX; confirm server enforcement and audit."
           }
         ],
-        "lastEvidence": "C0 QA PROD 06/11/2026 10:50–10:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
+        "lastEvidence": "06/11/2026 12:10 ICT — https://github.com/luan20495/xweb01/pull/127",
         "source": "BE #98/#108/#119 · FE #70/#76 merged DEV",
         "problemEn": "Production AI entitlements are ON, but 10:50 ICT QA found a P2 discrepancy: PROJECT-scoped grants were accepted and shown as effective yet rejected by the actual AI authorization path. Temporary revocation passed; owner acceptance remains pending.",
         "approachEn": "Verify entitlements API and admin UX; confirm server enforcement and audit.",
         "done": [
           "R1 quyền AI đã ON trên PROD; R3 bổ sung UI Platform F1/F2 qua BE #119 và FE #76.",
           "QA-R1 cho phạm vi quyền AI PASS; chưa thay cho Owner UAT R3.",
-          "10:50 06/11 — QA PROD: cấp 2 quyền AI tạm theo PROJECT trả 201, màn effective nhận quyền; thu hồi cả hai quyền PASS, không gọi AI trả phí."
+          "10:50 06/11 — QA PROD: cấp 2 quyền AI tạm theo PROJECT trả 201, màn effective nhận quyền; thu hồi cả hai quyền PASS, không gọi AI trả phí.",
+          "BE #127 OPEN: đã đề xuất sửa PROJECT entitlement, đồng nhất effective-access và AI admission; test cục bộ được tác giả báo cáo, chưa merge/PROD."
         ],
         "blockers": [
           "Chưa có biên bản Owner UAT các thao tác mới trên PROD.",
-          "R37-ENT-1 (P2): quyền PROJECT được nhận trên màn effective nhưng Studio/API vẫn từ chối AI; cần sửa đường kiểm quyền thật trước khi nghiệm thu."
+          "R37-ENT-1 (P2): quyền PROJECT được nhận trên màn effective nhưng Studio/API vẫn từ chối AI; cần sửa đường kiểm quyền thật trước khi nghiệm thu.",
+          "R37-ENT-1 chưa có kiểm thử PROD sau sửa; PR #127 chưa merge."
         ],
         "blockersEn": [
           "Owner UAT and authorization negative tests pending.",
-          "R37-ENT-1 (P2): PROJECT-scoped grants appear effective but actual Studio/API AI authorization rejects them; enforcement and effective-access reporting must agree."
+          "R37-ENT-1 (P2): PROJECT-scoped grants appear effective but actual Studio/API AI authorization rejects them; enforcement and effective-access reporting must agree.",
+          "R37-ENT-1 lacks post-fix PROD QA; PR #127 remains unmerged."
         ],
         "acceptance": [
           "Admin được cấp/thu hồi đúng người, người không có quyền bị 403.",
@@ -99,7 +102,8 @@
           "https://github.com/luan20495/xweb01/pull/119",
           "https://github.com/luan20495/Xweb01fe/pull/76",
           "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
-          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676285134"
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676285134",
+          "https://github.com/luan20495/xweb01/pull/127"
         ],
         "acceptanceEn": [
           "Admin can grant and revoke precisely scoped AI access; unauthorized requests return 403.",
@@ -109,7 +113,8 @@
         "doneEn": [
           "AI entitlements were enabled in R1; R3 added Platform F1/F2 UI updates.",
           "R1 QA passed its stated scope; R3 owner acceptance is not yet confirmed.",
-          "Nov 6 10:50 ICT PROD QA: two temporary PROJECT-scoped grants returned 201 and appeared in the effective-access view; both were successfully revoked, with no paid AI calls."
+          "Nov 6 10:50 ICT PROD QA: two temporary PROJECT-scoped grants returned 201 and appeared in the effective-access view; both were successfully revoked, with no paid AI calls.",
+          "BE PR #127 OPEN proposes aligning PROJECT entitlements with actual AI admission and effective-access; author-reported local tests, not merged or deployed."
         ]
       },
       "progress": {
@@ -242,7 +247,7 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
           }
         ],
-        "lastEvidence": "C0 PROD QA 06/11/2026 10:50–10:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
+        "lastEvidence": "06/11/2026 12:10 ICT — https://github.com/luan20495/xweb01/pull/127",
         "source": "C0 PROD QA #88 (09:55 ICT); BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
         "problemEn": "J1 and Prompt Queue are ON PROD. Real-browser QA PASSED live resume while RUNNING, ordered/offline queued execution, idempotent enqueue, pause/resume, cancel pending, and direct job cancel. Three R37 P3 issues remain in quota ordering, cancel-all running jobs, and cancellation reservation accounting. A 10:50 ICT second-user test was blocked by a PROJECT-grant authorization discrepancy, leaving cross-user queue tests unexecuted.",
         "approachEn": "Validate persistent job identity and budget checks across resume, offline queues and retries.",
@@ -251,21 +256,24 @@
           "08:04 06/11: Q1 APP_BUILDER_PROMPT_QUEUE_ENABLED ON trên PROD, không thay BE/FE SHA; API GET 200, enqueue 201, 17 container healthy.",
           "08:15 06/11: tạo dự án QA sạch trên PROD để kiểm giao diện; không phát sinh AI hoặc chi tiêu (C0 báo cáo).",
           "09:55 06/11 — QA PROD PASS: job live Resume, queue tuần tự/offline, idempotency, hủy pending và hủy job trực tiếp.",
-          "Dashboard hiển thị ON thống nhất; J1 và Q1 đều đang bật trên PROD."
+          "Dashboard hiển thị ON thống nhất; J1 và Q1 đều đang bật trên PROD.",
+          "BE #127 OPEN đề xuất sửa quota-before-spend, cancel-all và settlement khi hủy; test stub, không có E2E provider thực."
         ],
         "blockers": [
           "R37-Q1-1: queue gọi AI trước khi kiểm build concurrency, có lượt bị từ chối vẫn phát sinh phí.",
           "R37-Q1-2: cancel-all includeRunning:true không hủy job composer đang chạy (2/2).",
           "R37-J1-1: cancel giữa lượt có thể tính nguyên khoản giữ chỗ; cần đối soát và sửa.",
           "NOT_RUN: file đính kèm, hai người dùng song song và một số kiểm quyền/SEC nâng cao.",
-          "R37-ENT-1 (P2) chặn QA queue hai người dùng: grant PROJECT hiển thị effective nhưng AI bị 403; các ca Q1 đa người vẫn NOT_RUN."
+          "R37-ENT-1 (P2) chặn QA queue hai người dùng: grant PROJECT hiển thị effective nhưng AI bị 403; các ca Q1 đa người vẫn NOT_RUN.",
+          "Cần SEC/QA độc lập và thử hủy thật sau merge/deploy; không coi PR #127 là sửa xong trên PROD."
         ],
         "blockersEn": [
           "R37-Q1-1: a queued call reaches AI before build-concurrency rejection and incurs costs.",
           "R37-Q1-2: cancel-all(includeRunning:true) does not cancel a direct running composer job (2/2).",
           "R37-J1-1: cancellation may charge the full reserved amount instead of the actual provider charge.",
           "NOT_RUN: attachments, concurrent second user and additional authorization/SEC scenarios.",
-          "R37-ENT-1 (P2) blocks two-user queue QA: PROJECT grants appear effective but real AI calls return 403; cross-user cases remain NOT_RUN."
+          "R37-ENT-1 (P2) blocks two-user queue QA: PROJECT grants appear effective but real AI calls return 403; cross-user cases remain NOT_RUN.",
+          "Independent SEC/QA and real cancellation tests remain required after merge/deploy; PR #127 is not a PROD fix."
         ],
         "acceptance": [
           "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
@@ -281,7 +289,8 @@
           "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629",
           "https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408",
           "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
-          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676285134"
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676285134",
+          "https://github.com/luan20495/xweb01/pull/127"
         ],
         "acceptanceEn": [
           "After reload, the same job ID and log resume without a new paid request.",
@@ -293,7 +302,8 @@
           "At 08:04 ICT on Nov 6, Q1 was enabled on PROD without a code release; GET 200, enqueue 201, 17 containers healthy.",
           "At 08:15 ICT Nov 6, C0 reported a clean QA project created on PROD for UI testing without an AI call or cost.",
           "Nov 6 09:55 ICT: PROD QA passed live job resume, ordered and offline queue execution, idempotency, pending cancellation and direct job cancellation.",
-          "Dashboard flag shown as ON consistently; J1 and Q1 are both enabled on PROD."
+          "Dashboard flag shown as ON consistently; J1 and Q1 are both enabled on PROD.",
+          "BE PR #127 OPEN proposes quota-before-spend, cancel-all and cancellation settlement fixes; stub tests only, no real-provider E2E."
         ]
       },
       "progress": {
@@ -770,23 +780,26 @@
             "state": "TODO"
           }
         ],
-        "lastEvidence": "QA/SEC R2 PASS; API PROD trả 200",
+        "lastEvidence": "06/11/2026 12:10 ICT — https://github.com/luan20495/xweb01/pull/128",
         "source": "BE #112/#119 · FE #73/#76 merged DEV",
         "problemEn": "Existing Platform budget API remains ON in PROD. REOPEN: 100% web-based AI configuration extension is not built or QA-approved yet.",
         "approachEn": "B2-WEB-01 inventory and contract in progress, followed by 02–08 in separately gated releases.",
         "done": [
           "R2 API budget PROD 200; R3 Platform F1/F2 UI nâng cấp.",
           "Không tự tăng cap hay tự giải phóng hold.",
-          "B2/F2 cơ bản đang ON PROD; phần mở rộng REOPEN không làm thay đổi trạng thái hiện tại."
+          "B2/F2 cơ bản đang ON PROD; phần mở rộng REOPEN không làm thay đổi trạng thái hiện tại.",
+          "BE #128 OPEN chỉ tài liệu kiểm kê và hợp đồng cấu hình AI qua web; chưa có code, migration hay runtime."
         ],
         "blockers": [
           "Owner UAT UI/permissions R3 chưa có bằng chứng.",
           "Khoản treo cần đối chiếu nhà cung cấp; không tự release.",
           "B2-WEB-01 chưa có PR/ma trận kiểm kê được duyệt; B2-WEB-02..08 chưa triển khai.",
-          "Không tự bật auto-renew, nâng trần USD hoặc thay quyền PROD khi phát triển."
+          "Không tự bật auto-renew, nâng trần USD hoặc thay quyền PROD khi phát triển.",
+          "B2-WEB-01 mới là tài liệu đề xuất; B2-WEB-02..08 chưa triển khai."
         ],
         "blockersEn": [
-          "Owner UAT and reconciliation of held funds pending."
+          "Owner UAT and reconciliation of held funds pending.",
+          "B2-WEB-01 is a proposed document; B2-WEB-02..08 remain unimplemented."
         ],
         "acceptance": [
           "Chỉ đúng admin được tạo/sửa/revoke phân bổ; audit đầy đủ.",
@@ -800,7 +813,8 @@
           "https://github.com/luan20495/xweb01/pull/112",
           "https://github.com/luan20495/Xweb01fe/pull/76",
           "https://github.com/luan20495/xweb01/issues/88",
-          "https://github.com/luan20495/xweb01/pull/127"
+          "https://github.com/luan20495/xweb01/pull/127",
+          "https://github.com/luan20495/xweb01/pull/128"
         ],
         "acceptanceEn": [
           "Only authorized admins can create/revoke budget allocations.",
@@ -809,7 +823,8 @@
         ],
         "doneEn": [
           "Budget API returned 200 in PROD.",
-          "R3 includes upgraded Platform allocation and history UI."
+          "R3 includes upgraded Platform allocation and history UI.",
+          "BE PR #128 OPEN is a docs-only inventory and proposed dynamic AI configuration contract; no code, migration or runtime."
         ]
       },
       "progress": {
@@ -825,13 +840,13 @@
         "title": "100% cấu hình AI qua web",
         "progressPercent": 3,
         "qa": "NOT_RUN",
-        "notes": "Claude ước lượng 3%: B2-WEB-01 đang kiểm kê và soạn hợp đồng, 7 gói còn lại chưa giao; chưa có PR hoàn tất.",
+        "notes": "BE PR #128 OPEN: docs-only inventory/contract; no runtime implementation. Các gói B2-WEB-02..08 chưa có bằng chứng hoàn thành.",
         "related": [
           "E1/E2+F1",
           "B3+F3"
         ],
         "tasks": [
-          "B2-WEB-01: Kiểm kê và hợp đồng cấu hình — agent đang chạy, tài liệu",
+          "B2-WEB-01: PR #128 tài liệu OPEN, chờ review; không có bằng chứng agent đang chạy",
           "B2-WEB-02: TTL/request/quota/concurrency trên web",
           "B2-WEB-03: Auto-renew trong ngân sách, xử lý AI_SPEND_EXPIRED",
           "B2-WEB-04: IAM động DB, migration allowlist 15 người",
@@ -883,20 +898,23 @@
             "textEn": "Review impact and approve explicitly before enabling — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           }
         ],
-        "lastEvidence": "QA-R3 no blocker; 101 B3 checks; paid AI allocation flow NOT_RUN",
+        "lastEvidence": "06/11/2026 12:10 ICT — https://github.com/luan20495/Xweb01fe/pull/80",
         "source": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync",
         "problemEn": "B3 code is deployed but flag OFF; enabling may block existing projects without allocations.",
         "approachEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization.",
         "done": [
           "BE #122 đã có trong R3; route B3 trả 404 khi OFF là đúng dự kiến.",
-          "FE #67 có giao diện xin ngân sách code-only trước đó."
+          "FE #67 có giao diện xin ngân sách code-only trước đó.",
+          "FE #80 OPEN: đã nối lại giao diện request/approve B3 theo hợp đồng backend và màn escalation Platform; typecheck PASS theo PR, unit/browser sau sửa NOT_RUN."
         ],
         "blockers": [
           "Chưa Owner GO và chưa chuẩn bị allocation cho từng project.",
-          "QA paid turn theo B3, Studio UI, expiration E2E NOT_RUN."
+          "QA paid turn theo B3, Studio UI, expiration E2E NOT_RUN.",
+          "FE #80 chưa merge; browser E2E, full unit, combined-check và B3 thật NOT_RUN; flag PROD OFF."
         ],
         "blockersEn": [
-          "Owner GO and real paid budget-request E2E are pending."
+          "Owner GO and real paid budget-request E2E are pending.",
+          "FE #80 unmerged; browser E2E, full unit, combined-check and real B3 NOT_RUN; PROD flag OFF."
         ],
         "acceptance": [
           "Dự án thiếu allocation hiển thị thông báo và yêu cầu ngân sách rõ.",
@@ -906,7 +924,8 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/122",
           "https://github.com/luan20495/Xweb01fe/pull/67",
-          "https://github.com/luan20495/xweb01/issues/87"
+          "https://github.com/luan20495/xweb01/issues/87",
+          "https://github.com/luan20495/Xweb01fe/pull/80"
         ],
         "acceptanceEn": [
           "Projects without allocation receive actionable warnings.",
@@ -915,7 +934,8 @@
         ],
         "doneEn": [
           "BE B3 API and V78 were deployed in R3; flag OFF works as expected.",
-          "Studio budget request UI exists in FE #67."
+          "Studio budget request UI exists in FE #67.",
+          "FE PR #80 OPEN reconciles B3 request/approval UI with the backend contract and adds a Platform escalation screen; author reports typecheck PASS, post-fix unit/browser tests NOT_RUN."
         ]
       },
       "progress": {
@@ -1115,7 +1135,7 @@
           {
             "team": "BE",
             "text": "Server-side scope policy cho list/detail/export và quyền field",
-            "state": "TODO",
+            "state": "VERIFY",
             "textEn": "Implement/verify server API, security, persistence and error handling — Enforce per-request tenant/company/org/row/field authorization at the server."
           },
           {
@@ -1137,18 +1157,21 @@
             "textEn": "Run independent real end-to-end positive/negative tests — Enforce per-request tenant/company/org/row/field authorization at the server."
           }
         ],
-        "lastEvidence": "Chưa xác minh",
+        "lastEvidence": "06/11/2026 12:10 ICT — https://github.com/luan20495/xweb01/pull/129",
         "source": "Master #88 · Data/IAM #86",
         "problemEn": "Viewer data may cross company/org boundaries without fully validated effective scoping.",
         "approachEn": "Enforce per-request tenant/company/org/row/field authorization at the server.",
         "done": [
-          "Đã có yêu cầu IAM chi tiết ở #86/#88; chưa tìm thấy PR hoàn tất X3 riêng."
+          "Đã có yêu cầu IAM chi tiết ở #86/#88; chưa tìm thấy PR hoàn tất X3 riêng.",
+          "BE #129 DRAFT: slice đầu ORG-scoped access V85, flag OFF, chỉ API quản trị; chưa nối authorization runtime; Kotlin tests NOT_RUN."
         ],
         "blockers": [
-          "Thiếu BE+FE integration và SEC negative tests."
+          "Thiếu BE+FE integration và SEC negative tests.",
+          "PR #129 DRAFT chưa đủ cho X3: chưa enforce record/field scope, chưa QA/SEC."
         ],
         "blockersEn": [
-          "No complete BE/FE + security E2E verified."
+          "No complete BE/FE + security E2E verified.",
+          "PR #129 DRAFT does not establish X3: record/field enforcement and QA/SEC remain missing."
         ],
         "acceptance": [
           "User A không truy vấn được dữ liệu company B bằng URL/API trực tiếp.",
@@ -1156,7 +1179,8 @@
           "Danh sách/chi tiết/export đều cùng scope và không leak metadata."
         ],
         "refs": [
-          "https://github.com/luan20495/xweb01/issues/86"
+          "https://github.com/luan20495/xweb01/issues/86",
+          "https://github.com/luan20495/xweb01/pull/129"
         ],
         "acceptanceEn": [
           "Company B data cannot be read from Company A via direct API calls.",
@@ -1164,7 +1188,8 @@
           "List, detail and exports use the same effective access rules."
         ],
         "doneEn": [
-          "The requirements are recorded in issues #86/#88, but no complete X3 PR is verified."
+          "The requirements are recorded in issues #86/#88, but no complete X3 PR is verified.",
+          "BE PR #129 DRAFT contains an initial org-scoped V85 storage/admin API slice, flag OFF; no runtime authorization wiring; Kotlin tests NOT_RUN."
         ]
       },
       "progress": {
