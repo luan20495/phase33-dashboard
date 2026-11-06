@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T17:29:56+07:00",
+  "asOf": "2026-11-06T18:19:35+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -38,6 +38,15 @@
       "backendSha": "7c30bae62e495bf8c978a89b2f3f04b042d21bb9",
       "frontendSha": "5e13dd1f02adb360256c971333b6290984ed8187",
       "notes": "Sửa R37-ENT-1 (quyền AI theo dự án), hủy hàng đợi, hạn mức build trước khi giữ chỗ tiền, hủy lượt tính theo chi phí nhà cung cấp, P3 SEC-R3 (BE #127) + FE B3/F3 (FE #80, tab Platform Yêu cầu ngân sách). Deploy 14:18–14:20 VN; QA/SEC độc lập #127 và #80 GATE-PASS-WITH-CONDITIONS, không P0–P2; 17 container, 0 lỗi API, Flyway V84 (không migration), smoke 5 cổng OK. Không bật cờ mới; AI_BUDGET_REQUESTS vẫn OFF (ai-budget 404). Rollback: env sao lưu + bản cũ chạy được trên DB hiện tại. Hành vi quyền PROJECT và luồng B3 thật trên PROD: NOT_RUN."
+    },
+    {
+      "id": "R4e",
+      "label": "Đợt 4e",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-06T18:14:00+07:00",
+      "backendSha": "c0b6680b77fb16fc0d2e76ad36e37fd16cc81f89",
+      "frontendSha": "b0952327eb5550f672a8df36f60139b6f9b84ff9",
+      "notes": "Bỏ giới hạn 4.000 ký tự prompt (BE #133 V86, FE #85), hàng đợi 3 chế độ (FE #84), X2/X3/X5 mã có cờ TẮT. Deploy 18:12–18:15 VN; QA/SEC độc lập từng PR GATE-PASS-WITH-CONDITIONS; 17 container, Flyway V86, 0 lỗi API, smoke 5 cổng OK. Giới hạn prompt hiệu lực 60.000 byte; 17.441 ký tự → lượt Haiku UPDATED đủ phần đuôi (0,0055 USD); 70.000 → 413 không tốn AI. Không bật cờ mới. Rollback: env sao lưu + R4a chạy được trên DB hiện tại."
     }
   ],
   "features": [
@@ -223,8 +232,8 @@
       "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "PROD QA PASS: live resume, queued/offline jobs, idempotent enqueue, queue pause/resume and cancel pending; 3 R37 P3 defects remain",
-      "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) MERGED dev d703657e, chưa deploy",
+      "qa": "PROD QA PASS: live resume, queued/offline jobs, idempotent enqueue, queue pause/resume and cancel pending; 3 R37 P3 defects remain · UI hàng đợi trên PROD: GET queue 200; thao tác thật với người dùng NOT_RUN",
+      "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) DEPLOYED PROD 18:14 (R4e)",
       "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
       "next": "Deploy UI hàng đợi (#84) cùng đợt tối nay; thiếu thời gian từng job (backend cần createdAt/finishedAt); multi-user/negative NOT_RUN.",
       "work": {
@@ -319,7 +328,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
-        "reportedAt": "2026-11-06T17:11:43+07:00"
+        "reportedAt": "2026-11-06T18:19:35+07:00"
       }
     },
     {
@@ -418,10 +427,10 @@
       "flag": "ON",
       "risk": "LOW",
       "integrated": true,
-      "qa": "PROD (C0 VERIFIED): nháp, Haiku, resume, đính kèm csv/png PASS, .exe từ chối. Bỏ giới hạn 4.000: QA/SEC độc lập BE #133 PASS-WITH-COND, FE #85 sửa P1 (lịch sử >20.000 ký tự), em chạy lại test liên quan 30/30; E2E 17.444/50.000 ký tự với backend+AI thật NOT_RUN",
-      "prs": "FE #56 · FE #85 merged dev 2f8f6a3c (bỏ giới hạn 4.000) · BE #133 merged dev 4a82122a (V86) · sync BE #135 · chưa deploy PROD",
+      "qa": "PROD (C0 VERIFIED): nháp, Haiku, resume, đính kèm csv/png PASS, .exe từ chối. Bỏ giới hạn 4.000: QA/SEC độc lập BE #133 PASS-WITH-COND, FE #85 sửa P1 (lịch sử >20.000 ký tự), em chạy lại test liên quan 30/30; E2E 17.444/50.000 ký tự với backend+AI thật NOT_RUN · PROD R4e (VERIFIED): promptMaxBytes=60000; 70.000 ký tự → 413 không tốn AI; 17.441 ký tự → lượt Haiku UPDATED đủ phần đuôi; 50.000 ký tự/HTML một dòng/React 12 trang/Smart IQC NOT_RUN",
+      "prs": "FE #56 · FE #85 + BE #133 DEPLOYED PROD 18:14 (R4e, V86) · Master #88",
       "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
-      "next": "Deploy BE (V86) rồi FE khi Owner GO; giới hạn hiệu lực PROD ~60.000 byte (cấu hình trần thân yêu cầu trả phí 120.000) nên 50.000 ký tự tiếng Việt chưa vừa; pha B (AI đọc nhiều lượt) chưa giao.",
+      "next": "Quyết định Owner: nâng trần thân yêu cầu trả phí (giới hạn hiệu lực 60.000 byte); pha B (AI đọc nhiều lượt bằng công cụ) chưa giao.",
       "work": {
         "problem": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
         "approach": "UAT đúng composer Studio cùng model/effort/attachment. Không khôi phục file upload chưa hoàn thành như file thật.",
@@ -492,7 +501,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
-        "reportedAt": "2026-11-06T16:30:00+07:00"
+        "reportedAt": "2026-11-06T18:19:35+07:00"
       }
     },
     {
@@ -1041,15 +1050,15 @@
     {
       "id": "X2",
       "name": "Danh mục nguồn dữ liệu hệ thống",
-      "batch": "Unassigned",
-      "stage": "INCOMPLETE",
+      "batch": "R4e",
+      "stage": "PROD_DEPLOYED",
       "flag": "OFF",
       "risk": "MEDIUM",
-      "integrated": false,
+      "integrated": true,
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
-      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · Master #88",
+      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "Deploy mã với cờ TẮT cùng đợt tối nay (Owner GO + khóa SSH); bật cờ cần duyệt riêng + điều kiện QA/SEC (ít nhất hai quản trị tenant, kiểm DEV hai tài khoản, 1 lượt Haiku cho X5).",
+      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1120,22 +1129,22 @@
       "progress": {
         "percent": 92,
         "basis": "estimate",
-        "note": "PR #121 đã merge dev (Owner Ready), cờ TẮT; chưa deploy PROD; chưa bật cờ.",
-        "reportedAt": "2026-11-06T17:11:43+07:00"
+        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
+        "reportedAt": "2026-11-06T18:19:35+07:00"
       }
     },
     {
       "id": "X3",
       "name": "Giới hạn dữ liệu người xem",
-      "batch": "Unassigned",
-      "stage": "INCOMPLETE",
+      "batch": "R4e",
+      "stage": "PROD_DEPLOYED",
       "flag": "OFF",
       "risk": "HIGH",
-      "integrated": false,
+      "integrated": true,
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (P2-2 đã sửa, QA tự chứng minh); 6 P3 mới (không chặn)",
-      "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · Master #88",
+      "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "Deploy mã với cờ TẮT (Owner GO + khóa SSH); bật SYSTEM_SCOPE chỉ sau kiểm DEV 4 vai + xuất bản lại ứng dụng.",
+      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1209,8 +1218,8 @@
       "progress": {
         "percent": 88,
         "basis": "estimate",
-        "note": "PR #131 đã merge dev (Owner Ready), cờ TẮT; chưa deploy PROD; chưa bật cờ.",
-        "reportedAt": "2026-11-06T17:29:56+07:00"
+        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
+        "reportedAt": "2026-11-06T18:19:35+07:00"
       }
     },
     {
@@ -1222,9 +1231,9 @@
       "risk": "HIGH",
       "integrated": false,
       "qa": "Chưa xác minh",
-      "prs": "Chưa xác minh",
+      "prs": "BE #138 (hợp đồng, docs, DRAFT) · BE-X4 pha 2 đang chạy (V91, cờ TẮT, chỉ DEV)",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Admin chỉ định nguồn và từng operation POST/PUT/PATCH/DELETE được phép; mặc định DENY.",
+      "next": "Cài đặt S1 (REST ngoài, tạo/sửa/gửi bản ghi đơn, rủi ro thấp/vừa), PROD đóng cứng bằng mã; kiểm DEV; QA/SEC.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1312,24 +1321,24 @@
         ]
       },
       "progress": {
-        "percent": 0,
+        "percent": 12,
         "basis": "estimate",
-        "note": "Chưa có agent/mã hoàn tất theo báo cáo 11:52; phụ thuộc X3 và IAM.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "Hợp đồng và mô hình đe dọa xong (PR #138); mã chưa có.",
+        "reportedAt": "2026-11-06T18:19:35+07:00"
       }
     },
     {
       "id": "X5",
       "name": "AI hiểu nguồn dữ liệu hệ thống",
-      "batch": "Unassigned",
-      "stage": "INCOMPLETE",
+      "batch": "R4e",
+      "stage": "PROD_DEPLOYED",
       "flag": "OFF",
       "risk": "MEDIUM",
-      "integrated": false,
+      "integrated": true,
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
-      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · Master #88",
+      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
-      "next": "Deploy mã với cờ TẮT cùng đợt tối nay (Owner GO + khóa SSH); bật cờ cần duyệt riêng + điều kiện QA/SEC (ít nhất hai quản trị tenant, kiểm DEV hai tài khoản, 1 lượt Haiku cho X5).",
+      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD.",
       "work": {
         "problem": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
         "approach": "Chỉ inject nguồn/mẫu schema sanitized theo effective IAM vào Context Builder, có trace provenance và test không tiết lộ PII.",
@@ -1395,8 +1404,8 @@
       "progress": {
         "percent": 80,
         "basis": "estimate",
-        "note": "PR #121 đã merge dev (Owner Ready), cờ TẮT; chưa deploy PROD; chưa bật cờ.",
-        "reportedAt": "2026-11-06T17:11:43+07:00"
+        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
+        "reportedAt": "2026-11-06T18:19:35+07:00"
       }
     },
     {
@@ -1655,7 +1664,7 @@
       "risk": "LOW",
       "integrated": false,
       "qa": "#84: QA độc lập PASS-WITH-COND, 3 P2 đã sửa; em chạy lại 53 test hàng đợi 53/53 và combined-check GREEN (VERIFIED); backend thật NOT_RUN; P1–P4 chưa có mã",
-      "prs": "FE #83 (thiết kế) · FE #84 MERGED dev d703657e (hàng đợi 3 chế độ) · Master #88",
+      "prs": "FE #83 (thiết kế) · FE #84 DEPLOYED PROD 18:14 (hàng đợi 3 chế độ) · FE #90 (P1 Shared Composer, DRAFT cd1d4fb)",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
       "next": "QA độc lập #84; P1 chờ FE #85 (bỏ giới hạn prompt) merge; P2–P4 ~7,5 ngày công; cần B1 (Idempotency-Key cho tạo dự án, backend).",
       "work": {
@@ -1718,10 +1727,10 @@
         ]
       },
       "progress": {
-        "percent": 40,
+        "percent": 45,
         "basis": "estimate",
-        "note": "UI hàng đợi đã merge dev (chưa deploy); Shared Composer/Home chưa có mã (#85 đã mở khóa P1).",
-        "reportedAt": "2026-11-06T17:11:43+07:00"
+        "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
+        "reportedAt": "2026-11-06T18:19:35+07:00"
       }
     }
   ],
