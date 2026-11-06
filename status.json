@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T05:29:57+07:00",
+  "asOf": "2026-11-07T06:29:56+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1230,10 +1230,10 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "#138 và #143: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT). FE #102: REPORTED unit 5000 test 0 lỗi, spec 132/132, mutant 22/23, bundle PROD không có dấu vết khi cờ TẮT; QA/SEC độc lập đang chạy. Chưa chạy: E2E backend thật",
-      "prs": "BE #138 DRAFT head d7bacac4 (S1, V91) · BE #143 DRAFT head 00f95554 (S2, V93) · FE #102 DRAFT head 07d25d6d (hộp duyệt yêu cầu ghi, soạn chính sách, Hoàn tác; cờ TẮT) · Master #88",
+      "qa": "#138 và #143: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT). FE #102: QA/SEC độc lập (VERIFIED) không P0/P1, đạt có điều kiện; lỗi P2 (bundle PROD còn dấu vết khi cờ TẮT) đã sửa (REPORTED, build thật 0 dấu vết). Chưa chạy: E2E backend thật",
+      "prs": "BE #138 DRAFT head d7bacac4 (S1, V91) · BE #143 DRAFT head 00f95554 (S2, V93) · FE #102 DRAFT head fbb1a2b8 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Owner bấm Ready #138 → merge dev rồi #143; QA FE #102; bổ sung backend (dataSourceId, danh mục ứng viên); PROD chỉ khi Owner duyệt riêng.",
+      "next": "Owner bấm Ready #138 → merge dev rồi #143 và FE #102; bổ sung backend (dataSourceId, danh mục ứng viên); PROD chỉ khi Owner duyệt riêng.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1323,8 +1323,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "Backend S1/S2 QA đạt cho dev; FE #102 đã có mã, QA độc lập đang chạy.",
-        "reportedAt": "2026-11-07T05:29:57+07:00"
+        "note": "Backend S1/S2 và FE #102 đều có QA độc lập đạt có điều kiện cho dev (DRAFT, chờ Ready).",
+        "reportedAt": "2026-11-07T06:29:56+07:00"
       }
     },
     {
@@ -1495,8 +1495,8 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA/SEC độc lập #96/#97 (VERIFIED): đạt có điều kiện cho dev và PROD cờ TẮT, không P0/P1; bật DEV cần sửa F1. F1–F6 đã sửa (REPORTED), chưa QA lại. Chưa chạy: backend thật, N1/N2 (BE chưa có)",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 (head 0977352c) và #97 (head 0eeef1a1) DRAFT, chồng trên #60, cờ TẮT",
+      "qa": "QA/SEC độc lập #96/#97 (VERIFIED): đạt có điều kiện cho dev và PROD cờ TẮT, không P0/P1. F1–F6 và lỗi bundle PROD đã sửa (REPORTED, build thật 0 dấu vết), chưa QA lại. Chưa chạy: backend thật, N1/N2 (BE chưa có)",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 (head 37882592) và #97 (head 7311c53a) DRAFT, chồng trên #60, cờ TẮT",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
       "next": "Owner quyết bật NEXT_PUBLIC_XWEB_PREFERENCES trên PROD (cờ build) và OD-33 (Studio sáng); PR2/PR3 trợ lý dữ liệu chờ #60 merge; backend N1/N2.",
       "work": {
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-07T01:30:19+07:00"
+        "reportedAt": "2026-11-07T06:29:56+07:00"
       }
     },
     {
