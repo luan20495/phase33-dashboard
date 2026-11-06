@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T21:29:48+07:00",
+  "asOf": "2026-11-06T23:30:27+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -750,8 +750,8 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS phần đã ON; phần mở rộng B2-WEB-01..08 CHƯA QA/SEC · 02a (#142) REPORTED: 170 test 0 lỗi, mutant 12/12 (12 chưa chạy); QA/SEC độc lập đang chạy",
-      "prs": "BE #112/#119 · docs #128 · BE #142 DRAFT head b0dd5bbf (02a: dịch vụ cấu hình động, V92, cờ AI_CONFIG_SERVICE TẮT)",
+      "qa": "QA/SEC R2 PASS phần đã ON; phần mở rộng B2-WEB-01..08 CHƯA QA/SEC · 02a (#142) REPORTED sau QA vòng 1: các lỗi (P1 bỏ qua cấu hình, sàn giá trị, V92 expand-only, TRUNCATE, kiểu dữ liệu, nhập lại sau OFF) đã sửa; 67 lớp 750 test 0 lỗi, mutant 7/7. Chưa chạy: JVM thứ hai, trình duyệt, DEV/PROD, bộ đầy đủ. QA/SEC độc lập VÒNG 2 đang chạy",
+      "prs": "BE #112/#119 · docs #128 · BE #142 DRAFT head 25130602 (02a: dịch vụ cấu hình động, V92, cờ AI_CONFIG_SERVICE TẮT)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
       "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
       "work": {
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC.",
-        "reportedAt": "2026-11-06T21:29:48+07:00",
+        "reportedAt": "2026-11-06T23:30:27+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -1230,10 +1230,10 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "REPORTED (agent): 4 lớp mới (CodeSourceWritesLiveTests 21...), hồi quy 136 lớp 1159 test 0 lỗi, mutant 19/20 (+1 tương đương); 3 test rộng đỏ chưa chứng minh có sẵn trên dev; QA/SEC độc lập đang chạy. NOT_RUN: FE, backend thật, S2 (DELETE, HIGH, duyệt từng yêu cầu, hoàn tác)",
-      "prs": "BE #138 DRAFT head b9c24b4a (hợp đồng + S1, V91, cờ TẮT, chỉ DEV; PROD đóng cứng bằng mã) · Master #88",
+      "qa": "REPORTED (agent, sau QA vòng 1 GATE-PASS-WITH-CONDITIONS): sửa F1 (lỗi TLS sau khi gửi không còn ghi hai lần), F2 (cờ true lạc bị prod-up từ chối), F3, F4, F7, F10, F11; khôi phục kiểm kê QA 930 dòng; 42 lớp 341 test 0 lỗi, mutant 9/9. Chưa chạy: test rộng, FE, E2E trình duyệt thật. QA/SEC độc lập VÒNG 2 đang chạy. 3 test đỏ sẵn trên dev không do PR này",
+      "prs": "BE #138 DRAFT head 7b941341 (hợp đồng + S1, V91, cờ TẮT, chỉ DEV; PROD đóng cứng bằng mã) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "QA/SEC #138; sau đó S2 (V93), FE F7, mẫu srcAction cho ứng dụng sinh bởi AI; PROD chỉ khi Owner duyệt riêng.",
+      "next": "QA/SEC #138 vòng 2; sau đó merge dev (cờ TẮT); S2 (V93), FE F7, mẫu srcAction cho ứng dụng sinh bởi AI; PROD chỉ khi Owner duyệt riêng.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1323,8 +1323,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "S1 có mã (PR #138 DRAFT), chỉ DEV; chưa QA độc lập.",
-        "reportedAt": "2026-11-06T21:29:48+07:00"
+        "note": "S1 có mã (PR #138 DRAFT), chỉ DEV; đã sửa theo QA vòng 1 (REPORTED); QA độc lập vòng 2 đang chạy.",
+        "reportedAt": "2026-11-06T23:30:27+07:00"
       }
     },
     {
