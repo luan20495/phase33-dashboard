@@ -52,25 +52,25 @@
             "team": "BE",
             "text": "Đối chiếu API cấp/thu hồi, audit, hiệu lực token và cache",
             "state": "VERIFY",
-            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Verify entitlements API and admin UX; confirm server enforcement and audit."
           },
           {
             "team": "FE",
             "text": "Kiểm tra màn Platform cấp quyền, hàng loạt, trạng thái lỗi",
             "state": "VERIFY",
-            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Verify entitlements API and admin UX; confirm server enforcement and audit."
           },
           {
             "team": "QA",
             "text": "Thử 2 role có/không có quyền, cấp rồi thu hồi và xác minh AI deny",
             "state": "TODO",
-            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
+            "textEn": "Run independent real end-to-end positive/negative tests — Verify entitlements API and admin UX; confirm server enforcement and audit."
           },
           {
             "team": "SEC",
             "text": "Kiểm thử IDOR, cross-tenant, escalation qua bulk grant",
             "state": "TODO",
-            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Verify entitlements API and admin UX; confirm server enforcement and audit."
           }
         ],
         "lastEvidence": "QA-R1 PASS",
@@ -95,6 +95,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/119",
           "https://github.com/luan20495/Xweb01fe/pull/76"
+        ],
+        "acceptanceEn": [
+          "Admin can grant and revoke precisely scoped AI access; unauthorized requests return 403.",
+          "Revocation is enforced immediately by API/Studio with a complete audit trail.",
+          "Bulk grants offer preview/dry-run without implicit privilege expansion."
+        ],
+        "doneEn": [
+          "AI entitlements were enabled in R1; R3 added Platform F1/F2 UI updates.",
+          "R1 QA passed its stated scope; R3 owner acceptance is not yet confirmed."
         ]
       }
     },
@@ -118,25 +127,25 @@
             "team": "BE",
             "text": "Kiểm tra bộ lọc file, import snapshot/asset và giới hạn 10MB/300 file",
             "state": "VERIFY",
-            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Test large HTML/React imports through publishing and report skipped source files."
           },
           {
             "team": "FE",
             "text": "Import wizard + thông báo file được nhận/bỏ qua/lỗi",
             "state": "VERIFY",
-            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Test large HTML/React imports through publishing and report skipped source files."
           },
           {
             "team": "BE",
             "text": "Liên kết snapshot import với tool read/search theo revision",
             "state": "TODO",
-            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Test large HTML/React imports through publishing and report skipped source files."
           },
           {
             "team": "QA",
             "text": "Chạy E2E HTML và React nhiều trang, build/publish và rà asset",
             "state": "TODO",
-            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
+            "textEn": "Run independent real end-to-end positive/negative tests — Test large HTML/React imports through publishing and report skipped source files."
           }
         ],
         "lastEvidence": "QA-R1 PASS",
@@ -162,6 +171,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/97",
           "https://github.com/luan20495/Xweb01fe/pull/71"
+        ],
+        "acceptanceEn": [
+          "Import near the 10 MB/300-file limit, safely rejecting malicious ZIPs and secrets.",
+          "Import, edit with AI, build and publish without losing assets.",
+          "Show which source files were actually read or skipped and their revision."
+        ],
+        "doneEn": [
+          "BE #97 and FE #71 are integrated; import is enabled.",
+          "ZIP dry-run returned 200, but end-to-end publishing is unverified."
         ]
       }
     },
@@ -185,25 +203,25 @@
             "team": "BE",
             "text": "Kiểm tra durable job persistence, resume và idempotency ở backend",
             "state": "VERIFY",
-            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Validate persistent job identity and budget checks across resume, offline queues and retries."
           },
           {
             "team": "FE",
             "text": "Kiểm tra resume/queue UI và dữ liệu giữ khi reload",
             "state": "VERIFY",
-            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Validate persistent job identity and budget checks across resume, offline queues and retries."
           },
           {
             "team": "QA",
             "text": "E2E mất mạng, reload, tab song song, cancel/retry",
             "state": "TODO",
-            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
+            "textEn": "Run independent real end-to-end positive/negative tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
           },
           {
             "team": "SEC",
             "text": "Test quyền hết hạn và ngân sách khi queue vẫn còn",
             "state": "TODO",
-            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
           }
         ],
         "lastEvidence": "1 lượt AI thật PASS cơ bản",
@@ -230,6 +248,15 @@
           "https://github.com/luan20495/xweb01/pull/120",
           "https://github.com/luan20495/Xweb01fe/pull/58",
           "https://github.com/luan20495/xweb01/issues/93"
+        ],
+        "acceptanceEn": [
+          "After reload, the same job ID and log resume without a new paid request.",
+          "Queue edits/cancellations are consistent.",
+          "Permissions and approved budget are rechecked before each queued turn."
+        ],
+        "doneEn": [
+          "One real AI job completed successfully.",
+          "Q1 queue code is deployed in R3; flag remains OFF."
         ]
       }
     },
@@ -253,31 +280,31 @@
             "team": "BE",
             "text": "Audit provider/tool call, pin/audit Repomix, bounded read/search loop",
             "state": "TODO",
-            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           },
           {
             "team": "BE",
             "text": "Revision-aware manifest: file read/skipped/truncated/changed",
             "state": "TODO",
-            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           },
           {
             "team": "FE",
             "text": "Hiển thị ngữ cảnh đã đọc và độ tin cậy theo từng turn",
             "state": "VERIFY",
-            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           },
           {
             "team": "SEC",
             "text": "Test sandbox, prompt injection, cross-tenant file reads",
             "state": "TODO",
-            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           },
           {
             "team": "QA",
             "text": "E2E HTML một dòng, React 12+ trang, source ngoài cutoff và A/B chi phí",
             "state": "TODO",
-            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
+            "textEn": "Run independent real end-to-end positive/negative tests — Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           }
         ],
         "lastEvidence": "1 lượt AI thật PASS cơ bản",
@@ -303,6 +330,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/102",
           "https://github.com/luan20495/xweb01/issues/88#issuecomment-6660994350"
+        ],
+        "acceptanceEn": [
+          "AI uses real search/read operations to access content beyond initial context cutoff.",
+          "Display read/skipped files, byte ranges, revisions and actual tests.",
+          "A/B evaluation verifies cost and IAM protection."
+        ],
+        "doneEn": [
+          "Context Manifest and Selector are enabled; one basic AI turn passed.",
+          "BE #102 includes ranked file selection and context-exclusion notices."
         ]
       }
     },
@@ -326,19 +362,19 @@
             "team": "FE",
             "text": "Xác minh lưu nháp và tình trạng upload ở Studio hiện hành",
             "state": "VERIFY",
-            "textEn": "Test model, draft text, uploads and failure recovery across reload/logout."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Test model, draft text, uploads and failure recovery across reload/logout."
           },
           {
             "team": "QA",
             "text": "UAT Enter/IME, reload, mất mạng, logout/login với file/ảnh",
             "state": "TODO",
-            "textEn": "Test model, draft text, uploads and failure recovery across reload/logout."
+            "textEn": "Run independent real end-to-end positive/negative tests — Test model, draft text, uploads and failure recovery across reload/logout."
           },
           {
             "team": "SEC",
             "text": "Kiểm tra draft không lưu secret hay lộ giữa tài khoản",
             "state": "TODO",
-            "textEn": "Test model, draft text, uploads and failure recovery across reload/logout."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Test model, draft text, uploads and failure recovery across reload/logout."
           }
         ],
         "lastEvidence": "Chưa có Owner UAT",
@@ -364,6 +400,15 @@
         "refs": [
           "https://github.com/luan20495/Xweb01fe/pull/56",
           "https://github.com/luan20495/xweb01/issues/93"
+        ],
+        "acceptanceEn": [
+          "Draft prompt, selected model and valid attachments survive reload.",
+          "Reload during an AI request never resends automatically.",
+          "Logout/user switch prevents access to previous users' drafts."
+        ],
+        "doneEn": [
+          "FE #56 implements draft persistence and composer shortcuts.",
+          "Owner acceptance in live Studio is not verified."
         ]
       }
     },
@@ -387,19 +432,19 @@
             "team": "INFRA",
             "text": "Xác minh build arg XApp trong image R3",
             "state": "VERIFY",
-            "textEn": "Test real login, portal links and expiry/no-access fallbacks."
+            "textEn": "Verify deployment/build/runtime configuration — Test real login, portal links and expiry/no-access fallbacks."
           },
           {
             "team": "FE",
             "text": "Kiểm tra điều hướng và thông báo khi hết phiên",
             "state": "VERIFY",
-            "textEn": "Test real login, portal links and expiry/no-access fallbacks."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Test real login, portal links and expiry/no-access fallbacks."
           },
           {
             "team": "QA",
             "text": "Đăng nhập XApp thực, kiểm tra điều hướng đủ 5 portal",
             "state": "TODO",
-            "textEn": "Test real login, portal links and expiry/no-access fallbacks."
+            "textEn": "Run independent real end-to-end positive/negative tests — Test real login, portal links and expiry/no-access fallbacks."
           }
         ],
         "lastEvidence": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
@@ -425,6 +470,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/118",
           "https://github.com/luan20495/Xweb01fe/pull/59"
+        ],
+        "acceptanceEn": [
+          "Portal navigation to XApp works after real SSO login.",
+          "Session expiry and denied-access flows have safe return links.",
+          "Real-browser results and screenshots establish acceptance."
+        ],
+        "doneEn": [
+          "R3 Studio build contains the XApp origin after BE #118.",
+          "Five portal login surfaces passed R3 smoke testing."
         ]
       }
     },
@@ -448,25 +502,25 @@
             "team": "BE",
             "text": "Đối chiếu policy theo operation, field, role và tenant",
             "state": "VERIFY",
-            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Audit per-field/operation authorization and plan strict rollout with rollback."
           },
           {
             "team": "FE",
             "text": "Kiểm tra UI cấu hình danh sách field được phép",
             "state": "VERIFY",
-            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Audit per-field/operation authorization and plan strict rollout with rollback."
           },
           {
             "team": "SEC",
             "text": "Negative test trường ẩn, request sửa quyền, cross-tenant",
             "state": "TODO",
-            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Audit per-field/operation authorization and plan strict rollout with rollback."
           },
           {
             "team": "QA",
             "text": "Chạy compatibility matrix legacy trước khi đề xuất STRICT",
             "state": "TODO",
-            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
+            "textEn": "Run independent real end-to-end positive/negative tests — Audit per-field/operation authorization and plan strict rollout with rollback."
           }
         ],
         "lastEvidence": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
@@ -491,6 +545,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/113",
           "https://github.com/luan20495/Xweb01fe/pull/71"
+        ],
+        "acceptanceEn": [
+          "Server rejects unauthorized field reads/writes, even through direct API calls.",
+          "STRICT=true rollout has compatibility evidence and a rollback plan.",
+          "Policy changes are audited and tenant-isolated."
+        ],
+        "doneEn": [
+          "Field policy enabled in R2 with STRICT=false.",
+          "QA-R2 D-01 remediation passed its scope."
         ]
       }
     },
@@ -514,19 +577,19 @@
             "team": "BE",
             "text": "Kiểm tra reservation, atomicity và phân bổ theo user/workspace/project",
             "state": "VERIFY",
-            "textEn": "Validate atomic reservations, idempotency, retry and reconciliation."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Validate atomic reservations, idempotency, retry and reconciliation."
           },
           {
             "team": "QA",
             "text": "Test chạy song song paid AI, negative cap, timeout và retry",
             "state": "TODO",
-            "textEn": "Validate atomic reservations, idempotency, retry and reconciliation."
+            "textEn": "Run independent real end-to-end positive/negative tests — Validate atomic reservations, idempotency, retry and reconciliation."
           },
           {
             "team": "SEC",
             "text": "Rà soát bypass allocation/tenant và idempotency key",
             "state": "TODO",
-            "textEn": "Validate atomic reservations, idempotency, retry and reconciliation."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Validate atomic reservations, idempotency, retry and reconciliation."
           }
         ],
         "lastEvidence": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
@@ -551,6 +614,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/109",
           "https://github.com/luan20495/xweb01/pull/115"
+        ],
+        "acceptanceEn": [
+          "Concurrent paid requests cannot exceed approved allocations.",
+          "Denied requests and timeouts cannot double-settle or incorrectly release funds.",
+          "Reconciliation and audit explain held amounts."
+        ],
+        "doneEn": [
+          "A real AI ledger charge reached SETTLED on R2.",
+          "Real concurrency and rejection cases are still unverified."
         ]
       }
     },
@@ -574,25 +646,25 @@
             "team": "BE",
             "text": "Kiểm tra budget routes, audit, nhất quán ledger",
             "state": "VERIFY",
-            "textEn": "Test allocations, history and audit without changing disabled finance flags."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Test allocations, history and audit without changing disabled finance flags."
           },
           {
             "team": "FE",
             "text": "UAT Platform tạo phân bổ, history, bulk grant và thông báo",
             "state": "VERIFY",
-            "textEn": "Test allocations, history and audit without changing disabled finance flags."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Test allocations, history and audit without changing disabled finance flags."
           },
           {
             "team": "QA",
             "text": "Kiểm thử đúng role, cảnh báo gần hạn và số dư",
             "state": "TODO",
-            "textEn": "Test allocations, history and audit without changing disabled finance flags."
+            "textEn": "Run independent real end-to-end positive/negative tests — Test allocations, history and audit without changing disabled finance flags."
           },
           {
             "team": "SEC",
             "text": "Kiểm thử quyền admin và ngăn tự tăng khoản cấp",
             "state": "TODO",
-            "textEn": "Test allocations, history and audit without changing disabled finance flags."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Test allocations, history and audit without changing disabled finance flags."
           }
         ],
         "lastEvidence": "QA/SEC R2 PASS; API PROD trả 200",
@@ -618,6 +690,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/112",
           "https://github.com/luan20495/Xweb01fe/pull/76"
+        ],
+        "acceptanceEn": [
+          "Only authorized admins can create/revoke budget allocations.",
+          "UI history and available balances reconcile with backend.",
+          "Renewal/held-fund flags remain OFF without owner approval."
+        ],
+        "doneEn": [
+          "Budget API returned 200 in PROD.",
+          "R3 includes upgraded Platform allocation and history UI."
         ]
       }
     },
@@ -641,25 +722,25 @@
             "team": "BE",
             "text": "Audit B3 API V78, approval và quyền trên project",
             "state": "VERIFY",
-            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
             "team": "FE",
             "text": "Nối Studio với B3 route + hiển thị cảnh báo khóa AI",
             "state": "VERIFY",
-            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
             "team": "QA",
             "text": "E2E cấp ngân sách riêng, request/approve/reject/expire, real paid turn",
             "state": "TODO",
-            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
+            "textEn": "Run independent real end-to-end positive/negative tests — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
             "team": "OWNER",
             "text": "Duyệt danh sách khoản cấp và quyết định bật B3",
             "state": "TODO",
-            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
+            "textEn": "Review impact and approve explicitly before enabling — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           }
         ],
         "lastEvidence": "QA-R3 no blocker; 101 B3 checks; paid AI allocation flow NOT_RUN",
@@ -686,6 +767,15 @@
           "https://github.com/luan20495/xweb01/pull/122",
           "https://github.com/luan20495/Xweb01fe/pull/67",
           "https://github.com/luan20495/xweb01/issues/87"
+        ],
+        "acceptanceEn": [
+          "Projects without allocation receive actionable warnings.",
+          "Authorized approval grants access; denial/expiry blocks requests.",
+          "Flag can be rolled back and needs explicit owner authorization."
+        ],
+        "doneEn": [
+          "BE B3 API and V78 were deployed in R3; flag OFF works as expected.",
+          "Studio budget request UI exists in FE #67."
         ]
       }
     },
@@ -709,25 +799,25 @@
             "team": "BA",
             "text": "Chốt luồng nguồn dữ liệu, lỗi thường gặp và mẫu import",
             "state": "TODO",
-            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
+            "textEn": "Define requirements, acceptance and safe data workflow — Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           },
           {
             "team": "FE",
             "text": "Hoàn thiện FE PR #60, wizard preview/mapping/approve",
             "state": "VERIFY",
-            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           },
           {
             "team": "BE",
             "text": "Nối validate/import/API sync với effective IAM",
             "state": "TODO",
-            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           },
           {
             "team": "QA",
             "text": "Test Excel/CSV sai, API lỗi, mobile và song ngữ",
             "state": "TODO",
-            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
+            "textEn": "Run independent real end-to-end positive/negative tests — Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           }
         ],
         "lastEvidence": "Chưa hoàn tất",
@@ -751,6 +841,14 @@
         "refs": [
           "https://github.com/luan20495/Xweb01fe/pull/60",
           "https://github.com/luan20495/xweb01/issues/86"
+        ],
+        "acceptanceEn": [
+          "Nontechnical users import Excel/CSV without editing code.",
+          "Mapping shows row-level errors and a dry-run diff before commit.",
+          "Accessible VI/EN light/dark wizard works on mobile."
+        ],
+        "doneEn": [
+          "FE #60 exists as an unmerged draft PR."
         ]
       }
     },
@@ -774,31 +872,31 @@
             "team": "BA",
             "text": "Chốt schema, template file và quyền mỗi cấp",
             "state": "TODO",
-            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
+            "textEn": "Define requirements, acceptance and safe data workflow — Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           },
           {
             "team": "BE",
             "text": "Hoàn thiện BE #121, Company/OrgUnit CRUD, validated import/API",
             "state": "VERIFY",
-            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           },
           {
             "team": "FE",
             "text": "Làm giao diện cây, tìm kiếm và import wizard",
             "state": "TODO",
-            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           },
           {
             "team": "SEC",
             "text": "Kiểm thử chuyển cha, cross-tenant, phân quyền con cháu",
             "state": "TODO",
-            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           },
           {
             "team": "QA",
             "text": "E2E Company/Org 6+ cấp, diff và rollback",
             "state": "TODO",
-            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
+            "textEn": "Run independent real end-to-end positive/negative tests — Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           }
         ],
         "lastEvidence": "PR #121 báo 117 test targeted PASS; full regression/mutation sau sync chưa chạy",
@@ -823,6 +921,14 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/121",
           "https://github.com/luan20495/xweb01/issues/86"
+        ],
+        "acceptanceEn": [
+          "Company hierarchy supports unlimited parent/child depth.",
+          "File import detects missing parents, cycles and cross-tenant references.",
+          "API sync has safe preview, audit and no unapproved bulk deletion."
+        ],
+        "doneEn": [
+          "BE #121 contains draft X2/X5 code; no merged PROD release."
         ]
       }
     },
@@ -846,31 +952,31 @@
             "team": "BA",
             "text": "Định nghĩa ma trận self/team/company/subtree/role và tình huống multi-company",
             "state": "TODO",
-            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
+            "textEn": "Define requirements, acceptance and safe data workflow — Enforce per-request tenant/company/org/row/field authorization at the server."
           },
           {
             "team": "BE",
             "text": "Server-side scope policy cho list/detail/export và quyền field",
             "state": "TODO",
-            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Enforce per-request tenant/company/org/row/field authorization at the server."
           },
           {
             "team": "FE",
             "text": "Hiển thị thông báo thiếu quyền và scope dữ liệu phù hợp",
             "state": "TODO",
-            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Enforce per-request tenant/company/org/row/field authorization at the server."
           },
           {
             "team": "SEC",
             "text": "Negative tests IDOR, cross-tenant và cache/revocation",
             "state": "TODO",
-            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Enforce per-request tenant/company/org/row/field authorization at the server."
           },
           {
             "team": "QA",
             "text": "E2E chuyển đơn vị/multiple roles và publish app",
             "state": "TODO",
-            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
+            "textEn": "Run independent real end-to-end positive/negative tests — Enforce per-request tenant/company/org/row/field authorization at the server."
           }
         ],
         "lastEvidence": "Chưa xác minh",
@@ -893,6 +999,14 @@
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/issues/86"
+        ],
+        "acceptanceEn": [
+          "Company B data cannot be read from Company A via direct API calls.",
+          "Role/membership revocation takes effect immediately, including caches.",
+          "List, detail and exports use the same effective access rules."
+        ],
+        "doneEn": [
+          "The requirements are recorded in issues #86/#88, but no complete X3 PR is verified."
         ]
       }
     },
@@ -916,43 +1030,43 @@
             "team": "BA",
             "text": "Định nghĩa CRUD use cases, schema, ownership, rule xác nhận/duyệt và fallback",
             "state": "TODO",
-            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+            "textEn": "Define requirements, acceptance and safe data workflow — Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "BE",
             "text": "ActionRuntime REST có operation allow-list, outbound SSRF guard và quản lý credential",
             "state": "TODO",
-            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "BE",
             "text": "Ràng buộc IAM tenant/user/row/field, validate payload và idempotency/rollback",
             "state": "TODO",
-            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "FE",
             "text": "Giao diện Admin duyệt operation và Studio binding các action ghi",
             "state": "TODO",
-            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "FE",
             "text": "Form create/edit/delete có quyền, thông báo lỗi và xác nhận xóa",
             "state": "TODO",
-            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "SEC",
             "text": "Test IDOR, SSRF, field tampering, replay, CSRF, credential leakage",
             "state": "TODO",
-            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "QA",
             "text": "E2E create/update/delete và case deny, concurrent retry, publish app",
             "state": "TODO",
-            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+            "textEn": "Run independent real end-to-end positive/negative tests — Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           }
         ],
         "lastEvidence": "Chưa xác minh",
@@ -981,6 +1095,17 @@
         "refs": [
           "https://github.com/luan20495/xweb01/issues/86",
           "https://github.com/luan20495/xweb01/issues/88"
+        ],
+        "acceptanceEn": [
+          "Only individually approved REST write operations are available; default deny.",
+          "POST/PATCH update only authorized records and fields.",
+          "DELETE requires consent/approval; retries use idempotency keys.",
+          "All writes have tenant-scoped audit trails, safe errors and recovery.",
+          "Real AI Studio→Preview→Published app CRUD E2E and negative tests pass."
+        ],
+        "doneEn": [
+          "Phase 3.2 approved connector supports read-only REST GET / GraphQL query.",
+          "Issue #86 defines controlled CRUD; complete X4 implementation is not verified."
         ]
       }
     },
@@ -1004,25 +1129,25 @@
             "team": "BE",
             "text": "Rà PR #121, context schema/operation theo approved scope",
             "state": "VERIFY",
-            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Inject only approved sanitized schema/operations; test actual generated apps."
           },
           {
             "team": "FE",
             "text": "Cho người dùng chọn nguồn, quyền và trạng thái tại Studio",
             "state": "TODO",
-            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Inject only approved sanitized schema/operations; test actual generated apps."
           },
           {
             "team": "SEC",
             "text": "Test prompt injection/cross-tenant schema leakage",
             "state": "TODO",
-            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Inject only approved sanitized schema/operations; test actual generated apps."
           },
           {
             "team": "QA",
             "text": "E2E AI dựng app bằng nguồn nội bộ và publish",
             "state": "TODO",
-            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
+            "textEn": "Run independent real end-to-end positive/negative tests — Inject only approved sanitized schema/operations; test actual generated apps."
           }
         ],
         "lastEvidence": "PR #121 báo targeted context tests PASS; chưa E2E AI thực",
@@ -1047,6 +1172,15 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/121",
           "https://github.com/luan20495/xweb01/issues/86"
+        ],
+        "acceptanceEn": [
+          "AI generates source bindings only for approved operations and schemas.",
+          "Restricted tenants or columns are not exposed in context.",
+          "Published app uses real authorized sources and leaves an audit trail."
+        ],
+        "doneEn": [
+          "BE #121 includes draft system-source context work.",
+          "No verified Studio E2E or PROD release for X5."
         ]
       }
     },
@@ -1070,25 +1204,25 @@
             "team": "BE",
             "text": "Build project map route/component/API/permission graph incremental",
             "state": "TODO",
-            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
           },
           {
             "team": "BE",
             "text": "Tạo persistent project decisions/memory với version và IAM",
             "state": "TODO",
-            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
           },
           {
             "team": "FE",
             "text": "Hiển thị lịch sử/context và nguồn AI dùng cho từng lượt",
             "state": "TODO",
-            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
           },
           {
             "team": "QA",
             "text": "E2E 12+ trang, 10 edits liên tục, reload và rào dữ liệu",
             "state": "TODO",
-            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
+            "textEn": "Run independent real end-to-end positive/negative tests — Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
           }
         ],
         "lastEvidence": "Chưa hoàn thiện",
@@ -1112,6 +1246,14 @@
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/issues/88"
+        ],
+        "acceptanceEn": [
+          "Route/component/API map tracks source revision changes.",
+          "AI preserves approved workflow decisions over ten edit turns and reload.",
+          "Project memory is versioned and strictly tenant-scoped."
+        ],
+        "doneEn": [
+          "Basic Context Selector is ON; it does not establish Project Map/Memory completion."
         ]
       }
     },
@@ -1135,31 +1277,31 @@
             "team": "BE",
             "text": "Data Specialist/connector tool schema discovery dưới IAM và quota",
             "state": "TODO",
-            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           },
           {
             "team": "FE",
             "text": "Theme tokens và ngôn ngữ đồng nhất tất cả portal",
             "state": "TODO",
-            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           },
           {
             "team": "FE",
             "text": "Wizard kết nối API có preview mapping, lỗi rõ",
             "state": "TODO",
-            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           },
           {
             "team": "SEC",
             "text": "Test credential/SSRF/tenant, không đưa secret vào AI",
             "state": "TODO",
-            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           },
           {
             "team": "QA",
             "text": "5 portal × 3 theme × 2 locale, mobile/desktop và connector E2E",
             "state": "TODO",
-            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
+            "textEn": "Run independent real end-to-end positive/negative tests — Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
@@ -1182,6 +1324,14 @@
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/issues/88"
+        ],
+        "acceptanceEn": [
+          "Users can configure approved REST/GraphQL sources through guided UI.",
+          "VI/EN translations cover dialogs, forms, toasts and error states.",
+          "Theme follows the OS, persists, and remains readable on phones."
+        ],
+        "doneEn": [
+          "Owner authorized DEV work, but complete five-portal QA is not verified."
         ]
       }
     },
@@ -1205,31 +1355,31 @@
             "team": "UX",
             "text": "Chốt overlay, thao tác bút/chạm, che vùng nhạy cảm",
             "state": "TODO",
-            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
+            "textEn": "Design and validate accessible responsive interactions — Build capture/annotate/redact/upload workflow with privacy checks."
           },
           {
             "team": "FE",
             "text": "Canvas annotation + ảnh preview và nút undo/redact",
             "state": "TODO",
-            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Build capture/annotate/redact/upload workflow with privacy checks."
           },
           {
             "team": "BE",
             "text": "API upload bảo vệ file, size, retention, ticket link",
             "state": "TODO",
-            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
+            "textEn": "Implement/verify server API, security, persistence and error handling — Build capture/annotate/redact/upload workflow with privacy checks."
           },
           {
             "team": "SEC",
             "text": "Test XSS/file validation/privacy giữa tenant",
             "state": "TODO",
-            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
+            "textEn": "Perform authorization, tenant-isolation and threat tests — Build capture/annotate/redact/upload workflow with privacy checks."
           },
           {
             "team": "QA",
             "text": "E2E desktop/mobile, touch và gửi feedback có ảnh",
             "state": "TODO",
-            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
+            "textEn": "Run independent real end-to-end positive/negative tests — Build capture/annotate/redact/upload workflow with privacy checks."
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
@@ -1252,6 +1402,14 @@
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/issues/88"
+        ],
+        "acceptanceEn": [
+          "Users can annotate screenshots, undo/redact and submit feedback.",
+          "Uploads enforce tenant permissions, type/size and retention.",
+          "Failed uploads retain drafts and do not create duplicate tickets."
+        ],
+        "doneEn": [
+          "A feedback widget exists from earlier phases; annotation is unverified."
         ]
       }
     },
@@ -1275,25 +1433,25 @@
             "team": "UX",
             "text": "Thiết kế responsive layout, trạng thái và mẫu lỗi",
             "state": "TODO",
-            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
+            "textEn": "Design and validate accessible responsive interactions — Implement resizable panes, persistent layout and keyboard/mobile support."
           },
           {
             "team": "FE",
             "text": "Splitter resizable, lưu theo user/project, reset layout",
             "state": "TODO",
-            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Implement resizable panes, persistent layout and keyboard/mobile support."
           },
           {
             "team": "FE",
             "text": "Overflow menu Data/Code/History/Logs/Settings, preview ưu tiên",
             "state": "TODO",
-            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
+            "textEn": "Implement/verify UI integration, accessibility and user feedback — Implement resizable panes, persistent layout and keyboard/mobile support."
           },
           {
             "team": "QA",
             "text": "Real-browser keyboard/touch/mobile, reload và preview snapshot",
             "state": "TODO",
-            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
+            "textEn": "Run independent real end-to-end positive/negative tests — Implement resizable panes, persistent layout and keyboard/mobile support."
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
@@ -1316,6 +1474,14 @@
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/issues/88"
+        ],
+        "acceptanceEn": [
+          "Prompt/preview panes resize and persist, with large preview as default.",
+          "Mobile supports usable preview and no loss of draft or AI job on reload.",
+          "Keyboard, touch and focus handling pass real-device QA."
+        ],
+        "doneEn": [
+          "The owner approved the DEV UX scope; implementation acceptance remains unverified."
         ]
       }
     }
