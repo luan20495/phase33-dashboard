@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T13:10:00+07:00",
+  "asOf": "2026-11-06T13:15:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -865,13 +865,13 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "66/71 lần đầu; 5 lỗi đã sửa, rerun NOT_RUN",
-      "prs": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync · FE PR #80 (R4 DRAFT)",
-      "summary": "B3 API/migration V78 đã deploy R3 nhưng cờ OFF. Bật ngay có thể khiến project chưa có allocation không chạy AI dù workspace đã được cấp.",
-      "next": "Dự án thiếu allocation hiển thị thông báo và yêu cầu ngân sách rõ.",
+      "qa": "FE-B3 agent: 4878 unit PASS, 8 SKIP; 311 related specs PASS; QA/SEC độc lập #80 RUNNING, CHƯA PASS",
+      "prs": "BE #122 merged, FE #67 merged · FE R4 PR #80 head 8167e129 (code complete/CLEAN; QA pending)",
+      "summary": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
+      "next": "Chờ QA/SEC độc lập PR #80 đạt, merge dev, deploy FE theo gate, smoke PROD rồi mới cân nhắc bật AI_BUDGET_REQUESTS nội bộ trong test workspace cô lập để không chặn 22 dự án QA.",
       "work": {
-        "problem": "B3 API/migration V78 đã deploy R3 nhưng cờ OFF. Bật ngay có thể khiến project chưa có allocation không chạy AI dù workspace đã được cấp.",
-        "approach": "Lập danh sách project cần phân bổ và hiệu ứng bật cờ; UAT luồng đề nghị/duyệt/hết hạn rồi mới xin GO, không tự bật.",
+        "problem": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
+        "approach": "Chờ QA/SEC độc lập PR #80 đạt, merge dev, deploy FE theo gate, smoke PROD rồi mới cân nhắc bật AI_BUDGET_REQUESTS nội bộ trong test workspace cô lập để không chặn 22 dự án QA.",
         "tasks": [
           {
             "team": "BE",
@@ -881,14 +881,14 @@
           },
           {
             "team": "FE",
-            "text": "Nối Studio với B3 route + hiển thị cảnh báo khóa AI",
-            "state": "VERIFY",
+            "text": "FE R4 PR #80: đối chiếu 12 lệch FE/BE, tab duyệt yêu cầu trên Platform và màn Studio — CODE xong, cần QA độc lập",
+            "state": "DONE_CODE",
             "textEn": "Implement/verify UI integration, accessibility and user feedback — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
             "team": "QA",
-            "text": "E2E cấp ngân sách riêng, request/approve/reject/expire, real paid turn",
-            "state": "TODO",
+            "text": "QA/SEC độc lập PR #80 đang chạy; cần kiểm backend thật, XSS, self-approval, RAISE, a11y và smoke",
+            "state": "IN_PROGRESS",
             "textEn": "Run independent real end-to-end positive/negative tests — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
@@ -898,19 +898,23 @@
             "textEn": "Review impact and approve explicitly before enabling — Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           }
         ],
-        "lastEvidence": "06/11/2026 12:10 ICT — https://github.com/luan20495/Xweb01fe/pull/80",
-        "source": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync",
+        "lastEvidence": "FE #80 head 8167e129; code ready; agent-reported 4878 PASS, 8 SKIP, 311 specs; QA/SEC-80 running NOT_RUN result",
+        "source": "BE #122 merged, FE #67 merged · FE R4 PR #80 head 8167e129 (code complete/CLEAN; QA pending)",
         "problemEn": "B3 code is deployed but flag OFF; enabling may block existing projects without allocations.",
         "approachEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization.",
         "done": [
           "BE #122 đã có trong R3; route B3 trả 404 khi OFF là đúng dự kiến.",
           "FE #67 có giao diện xin ngân sách code-only trước đó.",
-          "FE #80 OPEN: đã nối lại giao diện request/approve B3 theo hợp đồng backend và màn escalation Platform; typecheck PASS theo PR, unit/browser sau sửa NOT_RUN."
+          "FE #80 OPEN: đã nối lại giao diện request/approve B3 theo hợp đồng backend và màn escalation Platform; typecheck PASS theo PR, unit/browser sau sửa NOT_RUN.",
+          "FE #80 code complete theo log Claude; 12 điểm lệch hợp đồng đã sửa; agent báo 4878 unit + 311 related specs PASS."
         ],
         "blockers": [
           "Chưa Owner GO và chưa chuẩn bị allocation cho từng project.",
           "QA paid turn theo B3, Studio UI, expiration E2E NOT_RUN.",
-          "FE #80 chưa merge; browser E2E, full unit, combined-check và B3 thật NOT_RUN; flag PROD OFF."
+          "FE #80 chưa merge; browser E2E, full unit, combined-check và B3 thật NOT_RUN; flag PROD OFF.",
+          "Chưa có QA/SEC độc lập GATE-PASS cho FE #80.",
+          "Chưa có tính năng thu hồi khoản cấp và chuông thông báo; không báo B3/F3 hoàn thiện toàn bộ.",
+          "Bật phân bổ Workspace có thể chặn AI các dự án khác chưa có allocation; chỉ rollout cô lập sau kiểm."
         ],
         "blockersEn": [
           "Owner GO and real paid budget-request E2E are pending.",
@@ -941,8 +945,9 @@
       "progress": {
         "percent": 78,
         "basis": "estimate",
-        "note": "FE PR #80 đã mở; đối chiếu 12 điểm FE/BE, 66/71 unit ban đầu, 5 lỗi đã sửa nhưng chưa chạy lại; chưa QA độc lập.",
-        "reportedAt": "2026-11-06T13:10:00+07:00"
+        "note": "FE PR #80 hoàn tất CODE, CLEAN, không DRAFT; QA/SEC độc lập đang chạy. 78% vẫn là ước lượng 11:52 chưa đo lại; flag OFF.",
+        "reportedAt": "2026-11-06T13:15:00+07:00",
+        "codeStatus": "CODE_COMPLETE_QA_PENDING"
       }
     },
     {
