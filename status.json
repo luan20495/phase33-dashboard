@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T03:30:22+07:00",
+  "asOf": "2026-11-07T04:30:17+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -750,8 +750,8 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS phần đã ON; mở rộng: #142 QA vòng 2 (VERIFIED) đạt cho dev; #98 QA (VERIFIED) đạt có điều kiện, P2-1 đã sửa (REPORTED); #145 QA vòng 2 (VERIFIED) đạt cho dev và bật DEV, PROD cờ TẮT đạt có điều kiện, 19/19 mutant; #148 (flake ngân sách do lệch đồng hồ JVM/DB, REPORTED sửa xong) đang QA độc lập",
-      "prs": "BE #112/#119 · docs #128 · BE #142 DRAFT head 6ff459bc (V92) · FE #98 DRAFT head 35345da3 + BE docs #144 · BE #145 DRAFT head 1b60d322 (IAM động V94, cờ AI_DYNAMIC_ENTITLEMENTS TẮT) · BE #148 DRAFT head 3c9d2473 (sửa đồng hồ valid_from)",
+      "qa": "QA/SEC R2 PASS phần đã ON; mở rộng: #142 QA vòng 2 (VERIFIED) đạt cho dev; #98 QA (VERIFIED) đạt có điều kiện, P2-1 đã sửa (REPORTED); #145 QA vòng 2 (VERIFIED) đạt cho dev và bật DEV; #148 QA/SEC độc lập (VERIFIED) đạt cho dev, không P0–P2, chỉ siết không nới",
+      "prs": "BE #112/#119 · docs #128 · BE #142 DRAFT head 6ff459bc (V92) · FE #98 DRAFT head 35345da3 + BE docs #144 · BE #145 DRAFT head 1b60d322 (IAM động V94, cờ TẮT) · BE #148 DRAFT head 432bc1cb (sửa đồng hồ valid_from)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
       "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
       "work": {
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC.",
-        "reportedAt": "2026-11-07T03:30:22+07:00",
+        "reportedAt": "2026-11-07T04:30:17+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -1663,8 +1663,8 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "QA/SEC độc lập (VERIFIED): không FAIL, không P0/P1; #90 GATE-PASS, #99–#101 đạt có điều kiện; 2 lỗi P2 (tên dự án có thể chứa chuỗi giống thông tin xác thực; Home kẹt khi tạo lỗi) đang sửa (REPORTED). BE #147 QA (VERIFIED) đạt có điều kiện, không P0/P1. Chưa chạy: backend thật, AI thật",
-      "prs": "FE #83 docs · FE #90 (48a8bfdb), #99 (24674372), #100 (4c6c1fc8), #101 (8e1b2983) DRAFT, cờ TẮT · BE #147 DRAFT (B1 tạo dự án idempotent, V95, cờ TẮT)",
+      "qa": "Home vòng 1 QA/SEC độc lập (VERIFIED): không FAIL, không P0/P1; 2 lỗi P2 đã sửa (REPORTED), QA vòng 2 đang chạy. BE #147 QA vòng 2 (VERIFIED): không P0–P2, đạt có điều kiện (quy trình). Chưa chạy: backend thật, AI thật",
+      "prs": "FE #83 docs · FE #90 (48a8bfdb), #99 (bfd5acb3), #100 (5eb6789c), #101 (3bcb46ad) DRAFT, cờ TẮT · BE #147 DRAFT head 91c89d9b (B1 tạo dự án idempotent, V95, cờ TẮT)",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
       "next": "QA độc lập #84; P1 chờ FE #85 (bỏ giới hạn prompt) merge; P2–P4 ~7,5 ngày công; cần B1 (Idempotency-Key cho tạo dự án, backend).",
       "work": {
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T03:30:22+07:00"
+        "reportedAt": "2026-11-07T04:30:17+07:00"
       }
     }
   ],
