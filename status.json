@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T18:26:35+07:00",
+  "asOf": "2026-11-06T18:29:37+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1058,7 +1058,7 @@
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
       "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: chưa có màn hình FE bật/duyệt danh mục (F7 chưa làm); cần quyết P3-N1; ≥2 quản trị tenant; xác nhận TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false; kiểm DEV hai tài khoản; Owner duyệt.",
+      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: chưa có màn hình FE bật/duyệt danh mục (F7 chưa làm); cần quyết P3-N1; ≥2 quản trị tenant; xác nhận TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false; kiểm DEV hai tài khoản; Owner duyệt. | FE-F7 (màn hình bật/duyệt danh mục) đang làm (18:28)",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1130,7 +1130,7 @@
         "percent": 92,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T18:26:35+07:00"
+        "reportedAt": "2026-11-06T18:29:37+07:00"
       }
     },
     {
@@ -1579,10 +1579,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA độc lập #81: GATE-PASS-WITH-CONDITIONS (redaction đốt vào byte ảnh, hợp đồng khớp, html-to-image 1.11.13 sạch); P2: giá trị ô nhập (token/JWT/chuỗi kết nối) bị vẽ vào ảnh; DoS chụp trang 5.000 phần tử đơ tab ~9 giây. FE-ANNOT đang sửa · QA độc lập vòng 2 đang chạy (18:24)",
-      "prs": "FE #81 DRAFT head 2b806550 · Master #88",
+      "qa": "QA/SEC độc lập vòng 2: GATE-PASS-WITH-CONDITIONS (QA chạy: bí mật gõ vào ô nhập 5.075/4.830/1.874 px → 0 trong khung và byte gửi đi; vùng che 12.000/12.000 điểm đen; chặn phần tử hoạt động). Điều kiện: đếm cả shadow DOM mở, hạ trần ~2.500 phần tử, test shadow/dọn dẹp; P4 giá trị >4.000 ký tự chỉ kiểm phần đầu",
+      "prs": "FE #81 DRAFT head 6a75549 (đã gộp dev b0952327) · Master #88",
       "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
-      "next": "Sửa P2 + chặn theo số phần tử + thêm test; QA kiểm lại; Owner Ready; sau merge đồng bộ lõi vendored và kiểm kê QA.",
+      "next": "FE-ANNOT sửa 3 điều kiện; QA kiểm nhanh; Owner Ready; C0 merge dev + đồng bộ fbk.ts; deploy đợt 2.",
       "work": {
         "problem": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
         "approach": "Tái sử dụng widget feedback; chụp/annotate cục bộ trước khi gửi, preview/redact, upload theo quyền và lưu liên kết ticket.",
@@ -1649,10 +1649,10 @@
         ]
       },
       "progress": {
-        "percent": 85,
+        "percent": 90,
         "basis": "estimate",
-        "note": "FE PR #81 mã xong, CLEAN, DRAFT. Che/làm mờ đốt vào điểm ảnh, không cần sửa backend. Số test do agent báo (REPORTED); chưa QA/SEC độc lập, chưa chạy trên backend thật.",
-        "reportedAt": "2026-11-06T18:25:15+07:00"
+        "note": "QA r2 đạt có điều kiện; đang sửa; chưa merge, chưa deploy.",
+        "reportedAt": "2026-11-06T18:29:37+07:00"
       }
     },
     {
