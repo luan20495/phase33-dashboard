@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T09:09:09+07:00",
+  "asOf": "2026-11-06T09:13:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -191,12 +191,12 @@
       "flag": "ON (J1 + Q1)",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "Q1 API GET 200 / enqueue 201; dequeue BLOCKED AI_SPEND_EXPIRED; UI/E2E NOT_RUN",
+      "qa": "Q1 API GET 200 / enqueue 201 / BLOCKED AI_SPEND_EXPIRED; clean-project Studio UI E2E BLOCKED by expired AI window",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-      "summary": "J1 durable job ON; Q1 Prompt Queue đã được bật PROD lúc 08:04 ngày 06/11 (không đổi mã). API GET 200, thêm lệnh 201 nhưng lệnh BLOCKED AI_SPEND_EXPIRED; chưa chứng minh queue chạy hoàn tất, UI hoặc resume sau reload.",
-      "next": "Xác minh AI_SPEND_EXPIRED qua chính sách hiện hành (không tự gia hạn); QA UI, dequeue thành công, reload/resume và kiểm tra quyền/budget.",
+      "summary": "J1 và Q1 đã bật PROD; API queue GET 200, enqueue 201, dequeue BLOCKED AI_SPEND_EXPIRED, không tốn AI. Dự án QA sạch đã tạo trên PROD lúc 08:15 để thử Studio nhưng composer bị vô hiệu do cửa sổ AI hết hạn; UI queue và reload/resume E2E chưa kiểm được.",
+      "next": "Chỉ sau khi cửa sổ chi tiêu AI được gia hạn theo quyết định hợp lệ: kiểm panel queue/composer trên dự án QA sạch, reload/resume và queue chạy thành công. Không tự gia hạn hoặc tăng ngân sách.",
       "work": {
-        "problem": "J1 durable job ON; Q1 Prompt Queue đã được bật PROD lúc 08:04 ngày 06/11 (không đổi mã). API GET 200, thêm lệnh 201 nhưng lệnh BLOCKED AI_SPEND_EXPIRED; chưa chứng minh queue chạy hoàn tất, UI hoặc resume sau reload.",
+        "problem": "J1 và Q1 đã bật PROD; API queue GET 200, enqueue 201, dequeue BLOCKED AI_SPEND_EXPIRED, không tốn AI. Dự án QA sạch đã tạo trên PROD lúc 08:15 để thử Studio nhưng composer bị vô hiệu do cửa sổ AI hết hạn; UI queue và reload/resume E2E chưa kiểm được.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
         "tasks": [
           {
@@ -224,20 +224,23 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
           }
         ],
-        "lastEvidence": "RELEASE_LOG dev BE/FE 2026-11-06 01:03Z: Q1 enabled, GET 200, enqueue 201, BLOCKED AI_SPEND_EXPIRED; no code change.",
+        "lastEvidence": "C0 report 06/11 08:15 ICT: clean QA project created without AI spend; Studio composer disabled with AI_SPEND_EXPIRED. Queue API evidence remains GET 200 / enqueue 201 / BLOCKED.",
         "source": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-        "problemEn": "Durable jobs are ON. Q1 Prompt Queue was enabled on PROD at 08:04 ICT on Nov 6 without a code release. GET 200 and enqueue 201 passed, but execution was blocked by AI_SPEND_EXPIRED; UI, completion, and reload-resume E2E remain unverified.",
+        "problemEn": "J1 and Q1 are enabled on PROD. Queue GET 200 and enqueue 201 passed, but dequeue was BLOCKED by AI_SPEND_EXPIRED with no AI spend. A clean QA project was created at 08:15 ICT; the Studio composer is disabled because the AI spend window expired, preventing queue UI and reload/resume E2E.",
         "approachEn": "Validate persistent job identity and budget checks across resume, offline queues and retries.",
         "done": [
           "J1 chạy một lượt AI thật thành công trên PROD.",
-          "08:04 06/11: Q1 APP_BUILDER_PROMPT_QUEUE_ENABLED ON trên PROD, không thay BE/FE SHA; API GET 200, enqueue 201, 17 container healthy."
+          "08:04 06/11: Q1 APP_BUILDER_PROMPT_QUEUE_ENABLED ON trên PROD, không thay BE/FE SHA; API GET 200, enqueue 201, 17 container healthy.",
+          "08:15 06/11: tạo dự án QA sạch trên PROD để kiểm giao diện; không phát sinh AI hoặc chi tiêu (C0 báo cáo)."
         ],
         "blockers": [
           "QA queue thật, reconnect, duplicate paid call NOT_RUN.",
-          "Lệnh queue BLOCKED AI_SPEND_EXPIRED; không có lượt chạy hoàn tất. UI queue và resume E2E NOT_RUN."
+          "Lệnh queue BLOCKED AI_SPEND_EXPIRED; không có lượt chạy hoàn tất. UI queue và resume E2E NOT_RUN.",
+          "Trên cả dự án QA mới, Composer bị vô hiệu khi AI_SPEND_EXPIRED; không thể kiểm UI queue/reload-resume đến khi có cửa sổ AI hợp lệ."
         ],
         "blockersEn": [
-          "Queue execution was blocked by AI_SPEND_EXPIRED; UI, completion and reload-resume E2E remain unverified."
+          "Queue execution was blocked by AI_SPEND_EXPIRED; UI, completion and reload-resume E2E remain unverified.",
+          "The newly created QA project still has its Studio composer disabled by AI_SPEND_EXPIRED; queue UI and reload-resume E2E cannot proceed until an authorized spend window is available."
         ],
         "acceptance": [
           "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
@@ -249,7 +252,8 @@
           "https://github.com/luan20495/Xweb01fe/pull/58",
           "https://github.com/luan20495/xweb01/issues/93",
           "https://github.com/luan20495/xweb01/pull/125",
-          "https://github.com/luan20495/Xweb01fe/pull/79"
+          "https://github.com/luan20495/Xweb01fe/pull/79",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629"
         ],
         "acceptanceEn": [
           "After reload, the same job ID and log resume without a new paid request.",
@@ -258,7 +262,8 @@
         ],
         "doneEn": [
           "One real AI job completed successfully.",
-          "At 08:04 ICT on Nov 6, Q1 was enabled on PROD without a code release; GET 200, enqueue 201, 17 containers healthy."
+          "At 08:04 ICT on Nov 6, Q1 was enabled on PROD without a code release; GET 200, enqueue 201, 17 containers healthy.",
+          "At 08:15 ICT Nov 6, C0 reported a clean QA project created on PROD for UI testing without an AI call or cost."
         ]
       }
     },
@@ -352,12 +357,12 @@
       "flag": "N/A",
       "risk": "LOW",
       "integrated": true,
-      "qa": "Chưa có Owner UAT",
+      "qa": "Owner UAT / Composer reload: BLOCKED by AI_SPEND_EXPIRED on new QA project (06/11 08:15)",
       "prs": "FE #56",
-      "summary": "Composer đã deploy nhưng Owner chưa xác nhận chính xác hành vi Enter/Shift+Enter, giữ file/ảnh và nháp sau reload; có ngoại lệ với nội dung nhạy cảm và upload dang dở.",
-      "next": "Prompt 5k ký tự + 3 ảnh + 2 file reload được nội dung/refs hợp lệ.",
+      "summary": "Composer đã deploy nhưng chưa nghiệm thu Enter/Shift+Enter, file/ảnh, nháp sau reload. Dự án QA mới được tạo để thử nhưng ô soạn lệnh vẫn bị vô hiệu do cửa sổ chi tiêu AI hết hạn; chưa thể kết luận UI PASS hay FAIL.",
+      "next": "Sau khi cửa sổ AI được gia hạn có phê duyệt: chạy UAT Composer với prompt, ảnh/file và reload trên dự án QA sạch; không tự kích hoạt AI hay đổi trần USD.",
       "work": {
-        "problem": "Composer đã deploy nhưng Owner chưa xác nhận chính xác hành vi Enter/Shift+Enter, giữ file/ảnh và nháp sau reload; có ngoại lệ với nội dung nhạy cảm và upload dang dở.",
+        "problem": "Composer đã deploy nhưng chưa nghiệm thu Enter/Shift+Enter, file/ảnh, nháp sau reload. Dự án QA mới được tạo để thử nhưng ô soạn lệnh vẫn bị vô hiệu do cửa sổ chi tiêu AI hết hạn; chưa thể kết luận UI PASS hay FAIL.",
         "approach": "UAT đúng composer Studio cùng model/effort/attachment. Không khôi phục file upload chưa hoàn thành như file thật.",
         "tasks": [
           {
@@ -379,20 +384,23 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Test model, draft text, uploads and failure recovery across reload/logout."
           }
         ],
-        "lastEvidence": "Chưa có Owner UAT",
+        "lastEvidence": "C0 report 06/11 08:15 ICT: clean QA project created; Studio composer disabled by AI_SPEND_EXPIRED.",
         "source": "FE #56",
-        "problemEn": "Draft composer code is deployed, but real prompt/file restore after reload is not owner accepted.",
+        "problemEn": "Composer is deployed, but real reload/attachment and shortcut acceptance is incomplete. A new QA project was created, yet Studio input is disabled by AI_SPEND_EXPIRED; UI acceptance remains blocked, not failed.",
         "approachEn": "Test model, draft text, uploads and failure recovery across reload/logout.",
         "done": [
           "FE #56 có Enter gửi, Shift+Enter xuống dòng, IndexedDB cho file và local draft.",
-          "Mã composer đã nằm trong ứng dụng phát hành; UAT thực chưa có."
+          "Mã composer đã nằm trong ứng dụng phát hành; UAT thực chưa có.",
+          "08:15 06/11: có dự án QA mới để thử Composer; chưa gọi AI, chi tiêu không đổi."
         ],
         "blockers": [
           "Chưa có ảnh/bằng chứng UAT reload với nhiều tệp và job đang chạy.",
-          "Chưa có đồng bộ draft an toàn đa thiết bị."
+          "Chưa có đồng bộ draft an toàn đa thiết bị.",
+          "Dự án QA mới không thể nhập prompt khi AI_SPEND_EXPIRED; chờ cửa sổ hợp lệ để UAT UI."
         ],
         "blockersEn": [
-          "Real multi-file reload acceptance not verified."
+          "Real multi-file reload acceptance not verified.",
+          "The new QA project cannot enter a prompt while AI_SPEND_EXPIRED; UI acceptance awaits an authorized active window."
         ],
         "acceptance": [
           "Prompt 5k ký tự + 3 ảnh + 2 file reload được nội dung/refs hợp lệ.",
@@ -401,7 +409,8 @@
         ],
         "refs": [
           "https://github.com/luan20495/Xweb01fe/pull/56",
-          "https://github.com/luan20495/xweb01/issues/93"
+          "https://github.com/luan20495/xweb01/issues/93",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629"
         ],
         "acceptanceEn": [
           "Draft prompt, selected model and valid attachments survive reload.",
@@ -410,7 +419,8 @@
         ],
         "doneEn": [
           "FE #56 implements draft persistence and composer shortcuts.",
-          "Owner acceptance in live Studio is not verified."
+          "Owner acceptance in live Studio is not verified.",
+          "A new QA project was created at 08:15 ICT Nov 6 for Composer testing; no AI call or spend occurred."
         ]
       }
     },
