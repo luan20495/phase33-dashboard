@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T18:19:35+07:00",
+  "asOf": "2026-11-06T18:25:15+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -976,10 +976,10 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "QA độc lập #60: GATE-FAIL cho tới khi gộp lại dev; contract/bảo mật/test OK (unit 4924/4932, 8/8 mutant, QA chạy); P2: thanh trạng thái AI phá bố cục hàng đợi #84 (studio-queue-modes 10/144, studio-prompt-limit 1/57 hỏng khi gộp tự nhiên). FE-UX13 đang sửa",
-      "prs": "FE #60 · Master #88",
+      "qa": "QA độc lập vòng 2: GATE-PASS-WITH-CONDITIONS (QA chạy: unit 4966/4974, queue-modes 144/144, prompt-limit 57/57, 80 cảnh đo Send không bị che, combined-check GREEN, mutant 3/5). Điều kiện: C1 hàng đợi tạm dừng không hiện dòng nào (sửa nhỏ), C2 test thanh blocked/budget; C3/C4 đồng bộ vendored + mirror PROD_DEPLOY sau merge (C0)",
+      "prs": "FE #60 DRAFT head 42071f4 (đã gộp dev b0952327) · Master #88",
       "summary": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
-      "next": "FE-UX13 gộp lại dev và đặt thanh trạng thái vào bố cục #84; QA kiểm nhanh lại; Owner bấm Ready.",
+      "next": "FE-UX13 sửa C1/C2; Owner bấm Ready; C0 merge dev, đồng bộ vendored + kiểm kê QA, deploy đợt 2.",
       "work": {
         "problem": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
         "approach": "Hoàn thiện wizard 4 bước chọn nguồn → mapping → dry-run → duyệt/đồng bộ, hỗ trợ file và API với bảo vệ quyền.",
@@ -1041,10 +1041,10 @@
         ]
       },
       "progress": {
-        "percent": 65,
+        "percent": 85,
         "basis": "estimate",
-        "note": "FE PR #60 head 9fa38dbe: DIRTY vì dev đã merge #80 và deploy R4a; FE-UX13 đang gộp lại dev. Số test cũ là REPORTED của agent; chưa QA FE độc lập/backend E2E.",
-        "reportedAt": "2026-11-06T17:29:56+07:00"
+        "note": "QA vòng 2 đạt có điều kiện; đang sửa C1/C2; chưa merge, chưa deploy.",
+        "reportedAt": "2026-11-06T18:25:15+07:00"
       }
     },
     {
@@ -1416,10 +1416,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "REPORTED: 273 test (272 đạt, 1 lỗi có sẵn), 52/52 của riêng, mutant 13/13; QA/SEC độc lập đang chạy; combined-check, AI thật, Smart IQC NOT_RUN",
+      "qa": "QA/SEC độc lập #130: GATE-PASS-WITH-CONDITIONS cho merge dev (cờ TẮT): migration V88/V89 PASS trên Postgres thật; P1 ReDoS (SourceScan: 50.000 khoảng trắng → 20 giây, `<h1>` >40 giây), P2-1 khử ký tự đóng thẻ yếu, P2-2 ký tự Unicode ẩn, P2-3 bản đồ+ghi nhớ có thể đẩy yêu cầu gần ngưỡng thành 413. KHÔNG bật cờ trước khi sửa P1/P2. AI-MAP đang sửa",
       "prs": "BE #130 DRAFT head 2bf19118 (V88 Map, V89 Memory; DIRTY, cần gộp lại dev) · Master #88",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "Gộp lại dev; QA/SEC độc lập; FE màn Map/Memory (chưa có); bật cờ cần Owner duyệt riêng (đổi prompt).",
+      "next": "AI-MAP sửa P1/P2, gộp dev; QA kiểm lại; merge dev; deploy cờ TẮT; bật cờ cần Owner duyệt riêng; V87 (Org) phải giải quyết trước V88/V89.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1481,10 +1481,10 @@
         ]
       },
       "progress": {
-        "percent": 65,
+        "percent": 70,
         "basis": "estimate",
-        "note": "BE PR #130 mã xong: quét tĩnh Kotlin (không dùng Repomix), Map V80 + Memory V81, cờ TẮT. Đo mô hình giả: prompt không nhỏ đi, giảm ~60% lượt đọc repo; chưa đo trên dự án thật. Chưa QA/SEC độc lập, FE chưa có.",
-        "reportedAt": "2026-11-06T17:11:43+07:00"
+        "note": "QA/SEC độc lập xong (đạt có điều kiện); đang sửa lỗi; chưa merge, chưa deploy.",
+        "reportedAt": "2026-11-06T18:25:15+07:00"
       }
     },
     {
@@ -1495,10 +1495,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "Chưa có bằng chứng hoàn tất",
-      "prs": "Master #88",
+      "qa": "REPORTED (agent): #92 spec trình duyệt thật 159/159 (trước 127/159; tương phản tối), mutant 9/9, unit 4930/4938; QA độc lập chưa chạy; backend thật NOT_RUN",
+      "prs": "FE #89 (thiết kế, docs, DRAFT 307f6fe) · FE #92 (theme/ngôn ngữ PR1, DRAFT dfda879) · Master #88",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "Kết nối thử REST/GraphQL bằng wizard, có báo lỗi và quyền rõ.",
+      "next": "Owner quyết bật NEXT_PUBLIC_XWEB_PREFERENCES trên PROD (cờ build) và OD-33 (Studio sáng); PR2/PR3 trợ lý dữ liệu chờ #60 merge; backend N1/N2.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1565,10 +1565,10 @@
         ]
       },
       "progress": {
-        "percent": 8,
+        "percent": 22,
         "basis": "estimate",
-        "note": "FE vi/en trong PR #60; AI kết nối dữ liệu phụ thuộc X5/X3.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
+        "reportedAt": "2026-11-06T18:25:15+07:00"
       }
     },
     {
@@ -1579,7 +1579,7 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA độc lập #81: GATE-PASS-WITH-CONDITIONS (redaction đốt vào byte ảnh, hợp đồng khớp, html-to-image 1.11.13 sạch); P2: giá trị ô nhập (token/JWT/chuỗi kết nối) bị vẽ vào ảnh; DoS chụp trang 5.000 phần tử đơ tab ~9 giây. FE-ANNOT đang sửa",
+      "qa": "QA độc lập #81: GATE-PASS-WITH-CONDITIONS (redaction đốt vào byte ảnh, hợp đồng khớp, html-to-image 1.11.13 sạch); P2: giá trị ô nhập (token/JWT/chuỗi kết nối) bị vẽ vào ảnh; DoS chụp trang 5.000 phần tử đơ tab ~9 giây. FE-ANNOT đang sửa · QA độc lập vòng 2 đang chạy (18:24)",
       "prs": "FE #81 DRAFT head 2b806550 · Master #88",
       "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
       "next": "Sửa P2 + chặn theo số phần tử + thêm test; QA kiểm lại; Owner Ready; sau merge đồng bộ lõi vendored và kiểm kê QA.",
@@ -1652,7 +1652,7 @@
         "percent": 85,
         "basis": "estimate",
         "note": "FE PR #81 mã xong, CLEAN, DRAFT. Che/làm mờ đốt vào điểm ảnh, không cần sửa backend. Số test do agent báo (REPORTED); chưa QA/SEC độc lập, chưa chạy trên backend thật.",
-        "reportedAt": "2026-11-06T17:29:56+07:00"
+        "reportedAt": "2026-11-06T18:25:15+07:00"
       }
     },
     {
