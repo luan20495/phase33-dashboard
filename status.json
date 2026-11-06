@@ -111,6 +111,12 @@
           "R1 QA passed its stated scope; R3 owner acceptance is not yet confirmed.",
           "Nov 6 10:50 ICT PROD QA: two temporary PROJECT-scoped grants returned 201 and appeared in the effective-access view; both were successfully revoked, with no paid AI calls."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -187,6 +193,12 @@
           "BE #97 and FE #71 are integrated; import is enabled.",
           "ZIP dry-run returned 200, but end-to-end publishing is unverified."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -283,6 +295,12 @@
           "Nov 6 09:55 ICT: PROD QA passed live job resume, ordered and offline queue execution, idempotency, pending cancellation and direct job cancellation.",
           "Dashboard flag shown as ON consistently; J1 and Q1 are both enabled on PROD."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -365,6 +383,12 @@
           "Context Manifest and Selector are enabled; one basic AI turn passed.",
           "BE #102 includes ranked file selection and context-exclusion notices."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -444,6 +468,12 @@
           "Nov 6 09:55 ICT: PROD QA passed draft reload, Haiku edit, and live running-job reconnection after reload.",
           "Dashboard displays ON because the feature is active on PROD without a separate feature flag."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -520,6 +550,12 @@
           "Nov 6 09:55 ICT: PROD authenticated browser QA PASSED launcher navigation, denied-access fallback, and site/path deep-link restoration.",
           "Dashboard displays ON because the feature is active on PROD without a separate feature flag."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -595,6 +631,12 @@
           "Field policy enabled in R2 with STRICT=false.",
           "QA-R2 D-01 remediation passed its scope."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -664,6 +706,12 @@
           "A real AI ledger charge reached SETTLED on R2.",
           "Real concurrency and rejection cases are still unverified."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -740,6 +788,12 @@
           "Budget API returned 200 in PROD.",
           "R3 includes upgraded Platform allocation and history UI."
         ]
+      },
+      "progress": {
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -817,6 +871,12 @@
           "BE B3 API and V78 were deployed in R3; flag OFF works as expected.",
           "Studio budget request UI exists in FE #67."
         ]
+      },
+      "progress": {
+        "percent": 75,
+        "basis": "estimate",
+        "note": "B3/F3 đã deploy nhưng OFF; FE-B3 đang đối chiếu API và hoàn thiện màn duyệt.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -890,6 +950,12 @@
         "doneEn": [
           "FE #60 exists as an unmerged draft PR."
         ]
+      },
+      "progress": {
+        "percent": 60,
+        "basis": "estimate",
+        "note": "FE PR #60 DRAFT; chưa đủ gate.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -970,6 +1036,12 @@
         "doneEn": [
           "BE #121 contains draft X2/X5 code; no merged PROD release."
         ]
+      },
+      "progress": {
+        "percent": 85,
+        "basis": "estimate",
+        "note": "BE PR #121 đã có mã giai đoạn 1; QA/SEC độc lập và E2E vẫn thiếu.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -1048,6 +1120,12 @@
         "doneEn": [
           "The requirements are recorded in issues #86/#88, but no complete X3 PR is verified."
         ]
+      },
+      "progress": {
+        "percent": 0,
+        "basis": "estimate",
+        "note": "Đã có mã nháp tại DEV nhưng chưa có PR/test đạt; 0% là mốc bảo thủ của bảng tiến độ, không phải không có mã.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -1147,6 +1225,12 @@
           "Phase 3.2 approved connector supports read-only REST GET / GraphQL query.",
           "Issue #86 defines controlled CRUD; complete X4 implementation is not verified."
         ]
+      },
+      "progress": {
+        "percent": 0,
+        "basis": "estimate",
+        "note": "Chưa có PR; cần X3/IAM.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -1222,6 +1306,12 @@
           "BE #121 includes draft system-source context work.",
           "No verified Studio E2E or PROD release for X5."
         ]
+      },
+      "progress": {
+        "percent": 70,
+        "basis": "estimate",
+        "note": "PR #121 đã có context BE; cần QA/SEC và E2E AI thật.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -1295,6 +1385,12 @@
         "doneEn": [
           "Basic Context Selector is ON; it does not establish Project Map/Memory completion."
         ]
+      },
+      "progress": {
+        "percent": 10,
+        "basis": "estimate",
+        "note": "Có công việc trong worktree, chưa có PR hoàn chỉnh.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -1373,6 +1469,12 @@
         "doneEn": [
           "Owner authorized DEV work, but complete five-portal QA is not verified."
         ]
+      },
+      "progress": {
+        "percent": 5,
+        "basis": "estimate",
+        "note": "Phụ thuộc X5/X3; mới một phần giao diện.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -1451,6 +1553,12 @@
         "doneEn": [
           "A feedback widget exists from earlier phases; annotation is unverified."
         ]
+      },
+      "progress": {
+        "percent": 0,
+        "basis": "estimate",
+        "note": "Có worktree khởi đầu, chưa có PR.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     },
     {
@@ -1523,6 +1631,12 @@
         "doneEn": [
           "The owner approved the DEV UX scope; implementation acceptance remains unverified."
         ]
+      },
+      "progress": {
+        "percent": 25,
+        "basis": "estimate",
+        "note": "Composer đã chạy PROD; phần thiết kế Editor/Preview còn thiếu.",
+        "reportedAt": "2026-11-06T11:35:00+07:00"
       }
     }
   ],
