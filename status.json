@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T09:55:00+07:00",
+  "asOf": "2026-11-06T10:16:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -360,7 +360,7 @@
       "name": "Prompt Composer / lưu nháp",
       "batch": "R1",
       "stage": "PROD_VERIFIED",
-      "flag": "N/A (deployed; no feature flag)",
+      "flag": "ON",
       "risk": "LOW",
       "integrated": true,
       "qa": "PROD QA PASS (draft reload, Haiku submit, live-job resume); attachment / multi-user / logout tests NOT_RUN",
@@ -398,7 +398,8 @@
           "FE #56 có Enter gửi, Shift+Enter xuống dòng, IndexedDB cho file và local draft.",
           "Mã composer đã nằm trong ứng dụng phát hành; UAT thực chưa có.",
           "08:15 06/11: có dự án QA mới để thử Composer; chưa gọi AI, chi tiêu không đổi.",
-          "09:55 06/11 — QA PROD PASS: nháp được khôi phục sau reload, gửi Haiku sửa mã và nối lại job đang RUNNING sau reload (rel37-resume-live.png)."
+          "09:55 06/11 — QA PROD PASS: nháp được khôi phục sau reload, gửi Haiku sửa mã và nối lại job đang RUNNING sau reload (rel37-resume-live.png).",
+          "Dashboard hiển thị ON vì tính năng đã hoạt động trên PROD, không có feature flag riêng."
         ],
         "blockers": [
           "NOT_RUN: kiểm file/ảnh đính kèm, hai người dùng đồng thời và kiểm ranh giới draft giữa người dùng.",
@@ -428,7 +429,8 @@
           "FE #56 implements draft persistence and composer shortcuts.",
           "Owner acceptance in live Studio is not verified.",
           "A new QA project was created at 08:15 ICT Nov 6 for Composer testing; no AI call or spend occurred.",
-          "Nov 6 09:55 ICT: PROD QA passed draft reload, Haiku edit, and live running-job reconnection after reload."
+          "Nov 6 09:55 ICT: PROD QA passed draft reload, Haiku edit, and live running-job reconnection after reload.",
+          "Dashboard displays ON because the feature is active on PROD without a separate feature flag."
         ]
       }
     },
@@ -437,7 +439,7 @@
       "name": "XApp UX",
       "batch": "R1",
       "stage": "PROD_VERIFIED",
-      "flag": "N/A (deployed; no feature flag)",
+      "flag": "ON",
       "risk": "LOW",
       "integrated": true,
       "qa": "PROD real-browser SSO PASS: portal links, XApp launcher, denied Admin return, deep-link restoration; remaining negative cases NOT_RUN",
@@ -474,7 +476,8 @@
         "done": [
           "BE #118 đã merge; R3 PROD bundle Studio chứa https://xapp.happinno.net.",
           "R3 smoke năm cổng PASS ở mức đăng nhập trang.",
-          "09:55 06/11 — QA PROD PASS đăng nhập thật XApp/SSO, launcher, no-access return, deep-link site/path (rel37-xapp-*.png)."
+          "09:55 06/11 — QA PROD PASS đăng nhập thật XApp/SSO, launcher, no-access return, deep-link site/path (rel37-xapp-*.png).",
+          "Dashboard hiển thị ON vì tính năng đã hoạt động trên PROD, không có feature flag riêng."
         ],
         "blockers": [
           "NOT_RUN: hết phiên thật theo thời gian, Apps-only, khách PRIVATE thiếu APP_VIEW.",
@@ -502,7 +505,8 @@
         "doneEn": [
           "R3 Studio build contains the XApp origin after BE #118.",
           "Five portal login surfaces passed R3 smoke testing.",
-          "Nov 6 09:55 ICT: PROD authenticated browser QA PASSED launcher navigation, denied-access fallback, and site/path deep-link restoration."
+          "Nov 6 09:55 ICT: PROD authenticated browser QA PASSED launcher navigation, denied-access fallback, and site/path deep-link restoration.",
+          "Dashboard displays ON because the feature is active on PROD without a separate feature flag."
         ]
       }
     },
