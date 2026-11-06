@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T18:25:15+07:00",
+  "asOf": "2026-11-06T18:26:35+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -886,7 +886,7 @@
       "qa": "QA/SEC độc lập FE #80: GATE-PASS-WITH-CONDITIONS (không P0–P2, 7 P3); smoke PROD cờ OFF đạt; luồng B3 trên PROD thật NOT_RUN (cờ OFF)",
       "prs": "BE #122 merged · FE #67, #80 merged và đã deploy PROD (R4a)",
       "summary": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
-      "next": "Lệnh bật cờ AI_BUDGET_REQUESTS trên PROD bị hệ thống quyền chặn; cần Owner nói rõ để bật; sau đó smoke B3 (không AI trả phí).",
+      "next": "Lệnh bật cờ AI_BUDGET_REQUESTS trên PROD bị hệ thống quyền chặn; cần Owner nói rõ để bật; sau đó smoke B3 (không AI trả phí). | Chưa bật vì: lệnh ghi cờ trên PROD bị hệ thống quyền chặn (2 lần), cần Owner cho phép hoặc tự chạy; E2E đầy đủ cần phân bổ ở workspace chỉ chứa dự án QA (workspace QA có 22 dự án); hiện 0 phân bổ nên bật là trơ.",
       "work": {
         "problem": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
         "approach": "Chờ QA/SEC độc lập PR #80 đạt, merge dev, deploy FE theo gate, smoke PROD rồi mới cân nhắc bật AI_BUDGET_REQUESTS nội bộ trong test workspace cô lập để không chặn 22 dự án QA.",
@@ -964,7 +964,7 @@
         "percent": 90,
         "basis": "estimate",
         "note": "FE #80 đã deploy PROD (R4a) với cờ OFF; QA/SEC độc lập đạt có điều kiện. 90% là ước lượng: còn bật cờ + smoke B3 trên PROD thật và các phần chưa xây.",
-        "reportedAt": "2026-11-06T16:30:00+07:00",
+        "reportedAt": "2026-11-06T18:26:35+07:00",
         "codeStatus": "CODE_COMPLETE_QA_PENDING"
       }
     },
@@ -1058,7 +1058,7 @@
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
       "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD.",
+      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: chưa có màn hình FE bật/duyệt danh mục (F7 chưa làm); cần quyết P3-N1; ≥2 quản trị tenant; xác nhận TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false; kiểm DEV hai tài khoản; Owner duyệt.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1130,7 +1130,7 @@
         "percent": 92,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T18:19:35+07:00"
+        "reportedAt": "2026-11-06T18:26:35+07:00"
       }
     },
     {
@@ -1144,7 +1144,7 @@
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (P2-2 đã sửa, QA tự chứng minh); 6 P3 mới (không chặn)",
       "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD.",
+      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: cần X2 + cầu nối LIVE; chưa có màn gán vai trò theo ô; chưa kiểm trình duyệt thật 4 vai + thu hồi; ứng dụng đã xuất bản phải xuất bản lại; Owner duyệt.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1219,7 +1219,7 @@
         "percent": 88,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T18:19:35+07:00"
+        "reportedAt": "2026-11-06T18:26:35+07:00"
       }
     },
     {
@@ -1338,7 +1338,7 @@
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
       "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
-      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD.",
+      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: phụ thuộc X2 (chưa có ô nguồn nào bật để AI mô tả); cần 1 lượt Haiku thử khối system_context; Owner duyệt.",
       "work": {
         "problem": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
         "approach": "Chỉ inject nguồn/mẫu schema sanitized theo effective IAM vào Context Builder, có trace provenance và test không tiết lộ PII.",
@@ -1405,7 +1405,7 @@
         "percent": 80,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T18:19:35+07:00"
+        "reportedAt": "2026-11-06T18:26:35+07:00"
       }
     },
     {
