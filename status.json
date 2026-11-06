@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T04:30:17+07:00",
+  "asOf": "2026-11-07T05:29:57+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1230,10 +1230,10 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "#138: QA/SEC độc lập vòng 2 (VERIFIED) đạt để merge dev cờ TẮT. #143: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho merge dev (cờ TẮT), đạt có điều kiện cho PROD cờ TẮT và bật DEV; không P0–P2; lỗ hổng R3-F9 không còn đường vượt (QA thử 8 loại actor); mutant 12/12. Các P3 đã sửa (REPORTED). Chưa chạy: E2E trình duyệt thật, upstream thật. FE hộp duyệt đang làm",
-      "prs": "BE #138 DRAFT head d7bacac4 (S1, V91) · BE #143 DRAFT head 00f95554 (S2: DELETE duyệt từng yêu cầu + hoàn tác, V93, chồng trên #138; cờ TẮT, chỉ DEV) · Master #88",
+      "qa": "#138 và #143: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT). FE #102: REPORTED unit 5000 test 0 lỗi, spec 132/132, mutant 22/23, bundle PROD không có dấu vết khi cờ TẮT; QA/SEC độc lập đang chạy. Chưa chạy: E2E backend thật",
+      "prs": "BE #138 DRAFT head d7bacac4 (S1, V91) · BE #143 DRAFT head 00f95554 (S2, V93) · FE #102 DRAFT head 07d25d6d (hộp duyệt yêu cầu ghi, soạn chính sách, Hoàn tác; cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Owner bấm Ready #138 → merge dev (cờ TẮT) rồi #143; FE hộp duyệt/chính sách; PROD chỉ khi Owner duyệt riêng.",
+      "next": "Owner bấm Ready #138 → merge dev rồi #143; QA FE #102; bổ sung backend (dataSourceId, danh mục ứng viên); PROD chỉ khi Owner duyệt riêng.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1323,8 +1323,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "S1 và S2 đều có QA độc lập đạt cho dev (PR #138, #143 DRAFT, chờ Ready); FE đang làm.",
-        "reportedAt": "2026-11-07T03:30:22+07:00"
+        "note": "Backend S1/S2 QA đạt cho dev; FE #102 đã có mã, QA độc lập đang chạy.",
+        "reportedAt": "2026-11-07T05:29:57+07:00"
       }
     },
     {
@@ -1663,7 +1663,7 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Home vòng 1 QA/SEC độc lập (VERIFIED): không FAIL, không P0/P1; 2 lỗi P2 đã sửa (REPORTED), QA vòng 2 đang chạy. BE #147 QA vòng 2 (VERIFIED): không P0–P2, đạt có điều kiện (quy trình). Chưa chạy: backend thật, AI thật",
+      "qa": "Home vòng 2 QA/SEC độc lập (VERIFIED): không FAIL, không P0/P1; các lỗi vòng 1 đã sửa thật; lỗi P2 mới (bộ quét mạnh làm rơi bản nháp Edit thường khi cờ TẮT) đang sửa (REPORTED). BE #147 QA vòng 2 (VERIFIED) không P0–P2. Chưa chạy: backend thật, AI thật",
       "prs": "FE #83 docs · FE #90 (48a8bfdb), #99 (bfd5acb3), #100 (5eb6789c), #101 (3bcb46ad) DRAFT, cờ TẮT · BE #147 DRAFT head 91c89d9b (B1 tạo dự án idempotent, V95, cờ TẮT)",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
       "next": "QA độc lập #84; P1 chờ FE #85 (bỏ giới hạn prompt) merge; P2–P4 ~7,5 ngày công; cần B1 (Idempotency-Key cho tạo dự án, backend).",
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T04:30:17+07:00"
+        "reportedAt": "2026-11-07T05:29:57+07:00"
       }
     }
   ],
