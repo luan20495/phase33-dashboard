@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T13:05:33+07:00",
+  "asOf": "2026-11-06T13:10:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -865,8 +865,8 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "QA-R3 no blocker; 101 B3 checks; paid AI allocation flow NOT_RUN",
-      "prs": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync",
+      "qa": "66/71 lần đầu; 5 lỗi đã sửa, rerun NOT_RUN",
+      "prs": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync · FE PR #80 (R4 DRAFT)",
       "summary": "B3 API/migration V78 đã deploy R3 nhưng cờ OFF. Bật ngay có thể khiến project chưa có allocation không chạy AI dù workspace đã được cấp.",
       "next": "Dự án thiếu allocation hiển thị thông báo và yêu cầu ngân sách rõ.",
       "work": {
@@ -941,8 +941,8 @@
       "progress": {
         "percent": 78,
         "basis": "estimate",
-        "note": "FE-B3: có commit nháp, đang kiểm hợp đồng F3/BE; chưa có PR hoặc QA/SEC.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "FE PR #80 đã mở; đối chiếu 12 điểm FE/BE, 66/71 unit ban đầu, 5 lỗi đã sửa nhưng chưa chạy lại; chưa QA độc lập.",
+        "reportedAt": "2026-11-06T13:10:00+07:00"
       }
     },
     {
@@ -953,12 +953,12 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Chưa hoàn tất",
+      "qa": "Agent: 4887 unit PASS, spec liên quan 173 PASS; QA FE độc lập + backend DEV E2E NOT_RUN",
       "prs": "FE #60 · Master #88",
-      "summary": "Admin nguồn dữ liệu và Studio Dữ liệu còn chưa có luồng hoàn chỉnh cho người không kỹ thuật: kết nối, import Org/Company, mapping, preview và xử lý lỗi.",
+      "summary": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
       "next": "Người dùng không kỹ thuật hoàn tất import Excel/CSV không cần sửa code.",
       "work": {
-        "problem": "Admin nguồn dữ liệu và Studio Dữ liệu còn chưa có luồng hoàn chỉnh cho người không kỹ thuật: kết nối, import Org/Company, mapping, preview và xử lý lỗi.",
+        "problem": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
         "approach": "Hoàn thiện wizard 4 bước chọn nguồn → mapping → dry-run → duyệt/đồng bộ, hỗ trợ file và API với bảo vệ quyền.",
         "tasks": [
           {
@@ -1020,8 +1020,8 @@
       "progress": {
         "percent": 65,
         "basis": "estimate",
-        "note": "FE PR #60 DRAFT; Claude báo đã gộp dev, 1 test mới lỗi, 22 file sửa dở.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "FE PR #60 head 9fa38dbe: Claude/C0 xác nhận mã sạch, 4887 unit PASS, spec mới 80+23+70 PASS; hai bộ test cũ lỗi cả trên dev sạch. CHƯA QA FE độc lập/backend E2E.",
+        "reportedAt": "2026-11-06T13:10:00+07:00"
       }
     },
     {
@@ -1118,7 +1118,7 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "Chưa xác minh",
+      "qa": "4/100 lỗi (trước sửa cuối); rerun/mutant NOT_RUN",
       "prs": "Master #88 · Data/IAM #86",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
       "next": "User A không truy vấn được dữ liệu company B bằng URL/API trực tiếp.",
@@ -1195,8 +1195,8 @@
       "progress": {
         "percent": 35,
         "basis": "estimate",
-        "note": "X3 có mã trong worktree và đang sửa test lỗi; chưa PR và chưa QA/SEC.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "Branch b2124aa7, X3 mã WIP; 4/100 test lỗi trước lần sửa cuối, 15 mutant chưa chạy; chưa PR.",
+        "reportedAt": "2026-11-06T13:10:00+07:00"
       }
     },
     {
@@ -1393,7 +1393,7 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "Chưa hoàn thiện",
+      "qa": "96/96 + 8/8 REPORTED; integration 2 FAIL; chưa QA độc lập",
       "prs": "Chưa xác minh",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
       "next": "Project map cập nhật khi sửa/đổi tên file/route.",
@@ -1460,8 +1460,8 @@
       "progress": {
         "percent": 25,
         "basis": "estimate",
-        "note": "Project Map/Memory có công việc và test trong worktree, chưa PR nộp.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "Project Map nhánh efabb608 đã push, 96/96 unit và 8/8 mutant REPORTED; 2 integration test lỗi, chưa PR/QA độc lập.",
+        "reportedAt": "2026-11-06T13:10:00+07:00"
       }
     },
     {
@@ -1556,7 +1556,7 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "Chưa có bằng chứng hoàn tất",
+      "qa": "Browser specs NOT_RUN; chưa PR và QA độc lập",
       "prs": "Master #88",
       "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
       "next": "Chụp ảnh, khoanh, vẽ mũi tên, undo và gửi thành công.",
@@ -1626,10 +1626,10 @@
         ]
       },
       "progress": {
-        "percent": 20,
+        "percent": 70,
         "basis": "estimate",
-        "note": "FE-ANNOT: 17 file chỉnh trong worktree, chưa commit hoặc PR.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "FE-ANNOT ~70% theo Claude 13:10: html-to-image 1.11.13 (MIT), che/làm mờ; đã có nhánh commit 35191cc, chưa PR/browser QA.",
+        "reportedAt": "2026-11-06T13:10:00+07:00"
       }
     },
     {
