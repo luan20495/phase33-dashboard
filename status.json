@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T10:16:00+07:00",
+  "asOf": "2026-11-06T11:08:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -42,10 +42,10 @@
       "integrated": true,
       "qa": "QA-R1 PASS",
       "prs": "BE #98/#108/#119 · FE #70/#76 merged DEV",
-      "summary": "Quản trị quyền AI đã bật PROD nhưng chưa có bằng chứng UAT đầy đủ: cấp/thu hồi hàng loạt, quyền hiệu lực ngay, xung đột role và audit từng thao tác.",
-      "next": "Admin được cấp/thu hồi đúng người, người không có quyền bị 403.",
+      "summary": "PROD entitlement ON; QA 10:50 xác minh cấp quyền AI theo PROJECT được ghi nhận nhưng không có hiệu lực thực tế (R37-ENT-1 P2). Thu hồi quyền tạm PASS; chưa Owner UAT.",
+      "next": "R4 sửa R37-ENT-1: thống nhất effective entitlement với backend AI admission, kiểm quyền PROJECT/WORKSPACE/ENV, negative tests và thu hồi tức thời.",
       "work": {
-        "problem": "Quản trị quyền AI đã bật PROD nhưng chưa có bằng chứng UAT đầy đủ: cấp/thu hồi hàng loạt, quyền hiệu lực ngay, xung đột role và audit từng thao tác.",
+        "problem": "PROD entitlement ON; QA 10:50 xác minh cấp quyền AI theo PROJECT được ghi nhận nhưng không có hiệu lực thực tế (R37-ENT-1 P2). Thu hồi quyền tạm PASS; chưa Owner UAT.",
         "approach": "Kiểm tra đường cấp/quyền user và workspace, quyền admin động và việc chặn AI thật ngay khi thu hồi. Không đồng nhất UI hiển thị với quyền hiệu lực backend.",
         "tasks": [
           {
@@ -63,7 +63,7 @@
           {
             "team": "QA",
             "text": "Thử 2 role có/không có quyền, cấp rồi thu hồi và xác minh AI deny",
-            "state": "TODO",
+            "state": "VERIFY",
             "textEn": "Run independent real end-to-end positive/negative tests — Verify entitlements API and admin UX; confirm server enforcement and audit."
           },
           {
@@ -73,19 +73,22 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Verify entitlements API and admin UX; confirm server enforcement and audit."
           }
         ],
-        "lastEvidence": "QA-R1 PASS",
+        "lastEvidence": "C0 QA PROD 06/11/2026 10:50–10:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
         "source": "BE #98/#108/#119 · FE #70/#76 merged DEV",
-        "problemEn": "AI entitlements are ON in production but bulk grant, effective revocation and admin audit still need owner acceptance.",
+        "problemEn": "Production AI entitlements are ON, but 10:50 ICT QA found a P2 discrepancy: PROJECT-scoped grants were accepted and shown as effective yet rejected by the actual AI authorization path. Temporary revocation passed; owner acceptance remains pending.",
         "approachEn": "Verify entitlements API and admin UX; confirm server enforcement and audit.",
         "done": [
           "R1 quyền AI đã ON trên PROD; R3 bổ sung UI Platform F1/F2 qua BE #119 và FE #76.",
-          "QA-R1 cho phạm vi quyền AI PASS; chưa thay cho Owner UAT R3."
+          "QA-R1 cho phạm vi quyền AI PASS; chưa thay cho Owner UAT R3.",
+          "10:50 06/11 — QA PROD: cấp 2 quyền AI tạm theo PROJECT trả 201, màn effective nhận quyền; thu hồi cả hai quyền PASS, không gọi AI trả phí."
         ],
         "blockers": [
-          "Chưa có biên bản Owner UAT các thao tác mới trên PROD."
+          "Chưa có biên bản Owner UAT các thao tác mới trên PROD.",
+          "R37-ENT-1 (P2): quyền PROJECT được nhận trên màn effective nhưng Studio/API vẫn từ chối AI; cần sửa đường kiểm quyền thật trước khi nghiệm thu."
         ],
         "blockersEn": [
-          "Owner UAT and authorization negative tests pending."
+          "Owner UAT and authorization negative tests pending.",
+          "R37-ENT-1 (P2): PROJECT-scoped grants appear effective but actual Studio/API AI authorization rejects them; enforcement and effective-access reporting must agree."
         ],
         "acceptance": [
           "Admin được cấp/thu hồi đúng người, người không có quyền bị 403.",
@@ -94,7 +97,9 @@
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/pull/119",
-          "https://github.com/luan20495/Xweb01fe/pull/76"
+          "https://github.com/luan20495/Xweb01fe/pull/76",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676285134"
         ],
         "acceptanceEn": [
           "Admin can grant and revoke precisely scoped AI access; unauthorized requests return 403.",
@@ -103,7 +108,8 @@
         ],
         "doneEn": [
           "AI entitlements were enabled in R1; R3 added Platform F1/F2 UI updates.",
-          "R1 QA passed its stated scope; R3 owner acceptance is not yet confirmed."
+          "R1 QA passed its stated scope; R3 owner acceptance is not yet confirmed.",
+          "Nov 6 10:50 ICT PROD QA: two temporary PROJECT-scoped grants returned 201 and appeared in the effective-access view; both were successfully revoked, with no paid AI calls."
         ]
       }
     },
@@ -193,10 +199,10 @@
       "integrated": true,
       "qa": "PROD QA PASS: live resume, queued/offline jobs, idempotent enqueue, queue pause/resume and cancel pending; 3 R37 P3 defects remain",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-      "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở.",
-      "next": "R4: sửa R37-Q1-1 (kiểm build quota trước khi gọi AI), R37-Q1-2 (cancel-all includeRunning), R37-J1-1 (tính phí khi hủy). Kiểm case đa người dùng và file.",
+      "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
+      "next": "R4: sửa R37-Q1-1 (kiểm build quota trước khi gọi AI), R37-Q1-2 (cancel-all includeRunning), R37-J1-1 (tính phí khi hủy). Kiểm case đa người dùng và file. Sau sửa R37-ENT-1, chạy lại Q1 hai người dùng và quyền khi dequeue.",
       "work": {
-        "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở.",
+        "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
         "tasks": [
           {
@@ -224,9 +230,9 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
           }
         ],
-        "lastEvidence": "C0 PROD browser/API QA 06/11/2026 09:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408",
+        "lastEvidence": "C0 PROD QA 06/11/2026 10:50–10:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
         "source": "C0 PROD QA #88 (09:55 ICT); BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-        "problemEn": "J1 and Prompt Queue are ON PROD. Real-browser QA PASSED live resume while RUNNING, ordered/offline queued execution, idempotent enqueue, pause/resume, cancel pending, and direct job cancel. Three R37 P3 issues remain in quota ordering, cancel-all running jobs, and cancellation reservation accounting.",
+        "problemEn": "J1 and Prompt Queue are ON PROD. Real-browser QA PASSED live resume while RUNNING, ordered/offline queued execution, idempotent enqueue, pause/resume, cancel pending, and direct job cancel. Three R37 P3 issues remain in quota ordering, cancel-all running jobs, and cancellation reservation accounting. A 10:50 ICT second-user test was blocked by a PROJECT-grant authorization discrepancy, leaving cross-user queue tests unexecuted.",
         "approachEn": "Validate persistent job identity and budget checks across resume, offline queues and retries.",
         "done": [
           "J1 chạy một lượt AI thật thành công trên PROD.",
@@ -239,13 +245,15 @@
           "R37-Q1-1: queue gọi AI trước khi kiểm build concurrency, có lượt bị từ chối vẫn phát sinh phí.",
           "R37-Q1-2: cancel-all includeRunning:true không hủy job composer đang chạy (2/2).",
           "R37-J1-1: cancel giữa lượt có thể tính nguyên khoản giữ chỗ; cần đối soát và sửa.",
-          "NOT_RUN: file đính kèm, hai người dùng song song và một số kiểm quyền/SEC nâng cao."
+          "NOT_RUN: file đính kèm, hai người dùng song song và một số kiểm quyền/SEC nâng cao.",
+          "R37-ENT-1 (P2) chặn QA queue hai người dùng: grant PROJECT hiển thị effective nhưng AI bị 403; các ca Q1 đa người vẫn NOT_RUN."
         ],
         "blockersEn": [
           "R37-Q1-1: a queued call reaches AI before build-concurrency rejection and incurs costs.",
           "R37-Q1-2: cancel-all(includeRunning:true) does not cancel a direct running composer job (2/2).",
           "R37-J1-1: cancellation may charge the full reserved amount instead of the actual provider charge.",
-          "NOT_RUN: attachments, concurrent second user and additional authorization/SEC scenarios."
+          "NOT_RUN: attachments, concurrent second user and additional authorization/SEC scenarios.",
+          "R37-ENT-1 (P2) blocks two-user queue QA: PROJECT grants appear effective but real AI calls return 403; cross-user cases remain NOT_RUN."
         ],
         "acceptance": [
           "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
@@ -259,7 +267,9 @@
           "https://github.com/luan20495/xweb01/pull/125",
           "https://github.com/luan20495/Xweb01fe/pull/79",
           "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629",
-          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408"
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676081856",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6676285134"
         ],
         "acceptanceEn": [
           "After reload, the same job ID and log resume without a new paid request.",
