@@ -1729,7 +1729,7 @@
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
-    "note": "Kiểm kê các tiêu chí chưa có bằng chứng đóng nghiệm thu riêng, không phải khẳng định chưa viết mã. Trạng thái không suy ra từ tiến độ Phase 3.3; phải đối chiếu PR/SHA/QA/PROD và Owner UAT. Các mục có thể trùng năng lực với Phase 3.3 nhưng không được tự động đánh dấu DONE.",
+    "note": "Phân loại phạm vi để chống giao việc trùng: COVERED_BY_P33 = tiêu chí đã thuộc 19 mục nhưng vẫn cần bằng chứng nghiệm thu; PARTIALLY_COVERED = phần giao nhau dùng chung workstream, phần khác giữ độc lập; INDEPENDENT = gate/chức năng riêng. Không tự đánh dấu DONE, không xóa LEG và không cộng 23 mục như 23 nhiệm vụ phát triển mới.",
     "owner": "Claude Operator cập nhật theo bằng chứng GitHub; ChatGPT giám sát read-only sau lần bổ sung này",
     "items": [
       {
@@ -1743,7 +1743,14 @@
         "detailEn": "Verify grant sources, inheritance, revocation, direct-URL denial and provenance.",
         "next": "Kiểm E2E độc lập trên PROD với nhiều tenant/role.",
         "nextEn": "Run independent multi-tenant/role PROD E2E.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/1"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/1",
+        "coverage": "PARTIALLY_COVERED",
+        "coveredBy": [
+          "E1/E2+F1",
+          "P0-14"
+        ],
+        "coverageNote": "APP_USE nhiều chủ thể và URL trực tiếp vượt ngoài quyền AI của P3.3; dùng chung các test SSO/IAM, giữ acceptance riêng.",
+        "coverageNoteEn": "Cross-subject APP_USE remains broader than P3.3 AI access."
       },
       {
         "id": "LEG-02",
@@ -1756,7 +1763,14 @@
         "detailEn": "Time-bound grant expiry, org/position picker, paginated search, audited user exceptions.",
         "next": "Test thu hồi/hết hạn, cache và lịch sử audit.",
         "nextEn": "Test expiration, revocation, cache and audit.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/3"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/3",
+        "coverage": "PARTIALLY_COVERED",
+        "coveredBy": [
+          "E1/E2+F1",
+          "X3"
+        ],
+        "coverageNote": "Thời hạn quyền AI và IAM người xem liên quan; picker Org và expiry của cấp quyền APP_USE phải nghiệm thu riêng.",
+        "coverageNoteEn": "Grant expiry and org picker require separate acceptance."
       },
       {
         "id": "LEG-03",
@@ -1769,7 +1783,15 @@
         "detailEn": "New IAM/field policy does not prove versioned app-local roles and resource-level server authorization.",
         "next": "Chứng minh app tự khai báo role/capability, Admin gán và backend áp quyền.",
         "nextEn": "Prove app-defined capabilities, admin assignment and backend authorization.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/3"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/3",
+        "coverage": "PARTIALLY_COVERED",
+        "coveredBy": [
+          "X1+F6",
+          "X3",
+          "X4"
+        ],
+        "coverageNote": "Trường/record/operation có phần giao nhau; app-local versioned roles và Page/Form/Workflow còn phạm vi riêng.",
+        "coverageNoteEn": "App-local Page/Form/Workflow permissions remain separate."
       },
       {
         "id": "LEG-04",
@@ -1782,7 +1804,13 @@
         "detailEn": "Scope-limited delegation, no self-grant, org moves, position changes, disabled-user reconciliation.",
         "next": "Kiểm matrix giao/thu hồi quyền và xuyên tenant.",
         "nextEn": "Test delegation, revocation and tenant-isolation matrix.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/3"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/3",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "X3"
+        ],
+        "coverageNote": "Vòng đời nhân sự, chuyển công tác và ủy quyền quản trị có gate nghiệp vụ riêng; dùng IAM X3 làm dependency.",
+        "coverageNoteEn": "Delegated administration and identity lifecycle are separate."
       },
       {
         "id": "LEG-05",
@@ -1795,7 +1823,15 @@
         "detailEn": "Initial org contract and code slices do not prove complete inheritance and lifecycle handling.",
         "next": "Hoàn thiện hợp đồng Org, kiểm độ sâu bất kỳ, includeChildren và negative tests.",
         "nextEn": "Verify arbitrary depth, descendants and security negative cases.",
-        "source": "https://github.com/luan20495/xweb01/pull/129"
+        "source": "https://github.com/luan20495/xweb01/pull/129",
+        "coverage": "COVERED_BY_P33",
+        "coveredBy": [
+          "X2",
+          "X3",
+          "UX13"
+        ],
+        "coverageNote": "Company/Org nhiều tầng, phân cấp, kế thừa và kiểm tra âm tính đã thuộc phạm vi X2/X3/UX13; không giao lập trình lặp, giữ tiêu chí nghiệm thu LEG.",
+        "coverageNoteEn": "Company/Org hierarchy is already in X2/X3/UX13; retain legacy acceptance evidence."
       },
       {
         "id": "LEG-06",
@@ -1808,7 +1844,17 @@
         "detailEn": "Prove multi-page AI-built app with CRUD, IAM, workflow, checkout integration, build/publish and iterative edits.",
         "next": "Chạy test thực với source HTML lớn và app nhiều màn hình, lưu SHA/ảnh/lỗi.",
         "nextEn": "Execute representative real application and large-source E2E with evidence.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/42"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/42",
+        "coverage": "COVERED_BY_P33",
+        "coveredBy": [
+          "I1+F5",
+          "J1",
+          "P0-16 A/C/G",
+          "P0-16 B/E",
+          "X4"
+        ],
+        "coverageNote": "E2E ứng dụng thật là bài test xuyên suốt P3.3; không mở một engine AI Studio thứ hai. Phần thương mại/ph thanh toán ngoài scope cần đánh dấu gap.",
+        "coverageNoteEn": "Real-app E2E is a cross-cutting P3.3 acceptance suite, not a second Studio implementation."
       },
       {
         "id": "LEG-07",
@@ -1821,7 +1867,13 @@
         "detailEn": "Runner/mirror/DNS isolation and real build/publish need operational proof and rollback.",
         "next": "Kiểm môi trường thật, bảo mật build, publish và khôi phục sau lỗi.",
         "nextEn": "Verify real runner isolation, publish and recovery.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/42"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/42",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "J1"
+        ],
+        "coverageNote": "Runner, sandbox, DNS, network isolation và disaster recovery là gate hạ tầng riêng; phụ thuộc job/build của Studio.",
+        "coverageNoteEn": "Runner isolation is a separate infrastructure gate."
       },
       {
         "id": "LEG-08",
@@ -1834,7 +1886,15 @@
         "detailEn": "Verify blank site/page, inspector, reorder, diff/undo and edit-target precision.",
         "next": "E2E browser + QA UI độc lập và không hồi quy.",
         "nextEn": "Independent browser QA and non-regression.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/2"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/2",
+        "coverage": "PARTIALLY_COVERED",
+        "coveredBy": [
+          "P0-16 A/C/G",
+          "P0-16 B/E",
+          "P0-19"
+        ],
+        "coverageNote": "Sửa AI đúng file và Studio UX nằm trong P3.3; trình kéo thả, inspector và undo/redo thủ công là acceptance riêng.",
+        "coverageNoteEn": "AI edits overlap; drag-drop inspector/undo remain separate."
       },
       {
         "id": "LEG-09",
@@ -1847,7 +1907,18 @@
         "detailEn": "Reads exist; REST writes, no-code wizard, secret isolation and viewer scope need E2E.",
         "next": "Kiểm READ/WRITE default-deny ở Preview lẫn Publish.",
         "nextEn": "Verify approved read/write default-deny in preview and published runtime.",
-        "source": "https://github.com/luan20495/xweb01/issues/74"
+        "source": "https://github.com/luan20495/xweb01/issues/74",
+        "coverage": "COVERED_BY_P33",
+        "coveredBy": [
+          "UX13",
+          "X2",
+          "X3",
+          "X4",
+          "X5",
+          "P0-17"
+        ],
+        "coverageNote": "REST CRUD được duyệt, wizard, nguồn dữ liệu, quyền từng người đã thuộc P3.3. Giữ LEG làm tham chiếu, không làm lại connector.",
+        "coverageNoteEn": "Data connector and approved CRUD are in existing P3.3 scope."
       },
       {
         "id": "LEG-10",
@@ -1860,7 +1931,11 @@
         "detailEn": "Template sharing, acceptance, install, expiry, revocation and safe data isolation.",
         "next": "Chốt ADR, API/UX và test cross-tenant sau khi đóng các gate IAM.",
         "nextEn": "Approve ADR and cross-tenant security acceptance.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/3"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/3",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [],
+        "coverageNote": "Phân phối template/license giữa tenant là chức năng độc lập, chờ IAM/gate dữ liệu.",
+        "coverageNoteEn": "Cross-tenant template licensing is independent."
       },
       {
         "id": "LEG-11",
@@ -1873,7 +1948,13 @@
         "detailEn": "Tenant-specific routing, DB/cache isolation, migration and isolated restore are unverified.",
         "next": "Kiểm ADR, migration/rollback, backup và truy cập dữ liệu chéo.",
         "nextEn": "Verify routing, migrations, restores and cross-tenant denial.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/3"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/3",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "X3"
+        ],
+        "coverageNote": "Tenant DB/router/storage độc lập với quyền dữ liệu ở cấp ứng dụng.",
+        "coverageNoteEn": "Hybrid tenant storage remains distinct."
       },
       {
         "id": "LEG-12",
@@ -1886,7 +1967,15 @@
         "detailEn": "Org source of truth, imports, conflict handling, audit and membership updates.",
         "next": "Đối chiếu hợp đồng dữ liệu và test cập nhật quyền khi đồng bộ.",
         "nextEn": "Verify org synchronization updates effective access.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/42"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/42",
+        "coverage": "COVERED_BY_P33",
+        "coveredBy": [
+          "X2",
+          "X3",
+          "UX13"
+        ],
+        "coverageNote": "Import Excel/CSV và API sync Org/Company đã được thêm vào X2/UX13; không chia công việc hai nơi.",
+        "coverageNoteEn": "Org sync/Excel/API mapping already belongs to X2/UX13."
       },
       {
         "id": "LEG-13",
@@ -1899,7 +1988,13 @@
         "detailEn": "External app registry, vendor authorization, SSO and supported provisioning.",
         "next": "Test link launch, SSO, mất quyền và nguồn bên ngoài.",
         "nextEn": "Test vendor launches, SSO and revoked access.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/42"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/42",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "P0-14"
+        ],
+        "coverageNote": "External App Hub/provisioning khác XApp/SSO nội bộ; kiểm chứng tích hợp ngoài riêng.",
+        "coverageNoteEn": "External app provisioning is separate from XApp."
       },
       {
         "id": "LEG-14",
@@ -1912,7 +2007,12 @@
         "detailEn": "Deploy backups exist; off-host restore drills, RPO/RTO, alerting and production recovery remain unverified.",
         "next": "Chứng minh backup khôi phục được và runbook sự cố.",
         "nextEn": "Prove recoverable backups, DR exercise and incident runbooks.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/147"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/147",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [],
+        "coverageNote": "Giữ gate vận hành riêng nhưng dùng chung một bộ evidence DR/restore với P4-04; không chạy hai chương trình backup độc lập.",
+        "coverageNoteEn": "Share operational DR evidence with P4-04.",
+        "sharedGate": "OPERATIONS_DR"
       },
       {
         "id": "LEG-15",
@@ -1925,7 +2025,13 @@
         "detailEn": "10K–10M row sizes are test targets, not proven capacity; profile pagination, virtualization and render churn.",
         "next": "Đo p95, memory, network, CRUD từng dòng và CI regression.",
         "nextEn": "Measure p95, memory, per-row CRUD and regression.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/5"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/5",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "UX13"
+        ],
+        "coverageNote": "Benchmark 10K–10M dòng là kiểm thử hiệu năng độc lập; không suy ra từ UX bảng dữ liệu.",
+        "coverageNoteEn": "Large-table performance remains an independent benchmark."
       },
       {
         "id": "LEG-16",
@@ -1938,7 +2044,13 @@
         "detailEn": "1K/10K/100K concurrency requires measured and verified benchmarks.",
         "next": "Chạy thử tải an toàn, đề xuất kiến trúc và chi phí theo số liệu.",
         "nextEn": "Benchmark safely and size topology/cost from evidence.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/4"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/4",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "E1/E2+F1"
+        ],
+        "coverageNote": "1k–10k tài khoản đủ quyền khác với 1k/10k/100k yêu cầu đồng thời; cần benchmark HA độc lập.",
+        "coverageNoteEn": "Account entitlement scale is not concurrent load capacity."
       },
       {
         "id": "LEG-17",
@@ -1951,7 +2063,11 @@
         "detailEn": "There is no verified single historical task-to-release-and-UAT matrix.",
         "next": "Lập ma trận chỉ đọc, phân nhóm DONE/QA_ONLY/DEV_ONLY/BACKLOG và đóng theo bằng chứng.",
         "nextEn": "Create evidence-based historical task audit before closure.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/42"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/42",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [],
+        "coverageNote": "Đây là gate đối soát acceptance lịch sử, không phải hạng mục code để đếm trùng.",
+        "coverageNoteEn": "Historical acceptance reconciliation is its own audit gate."
       },
       {
         "id": "P4-01",
@@ -1964,7 +2080,14 @@
         "detailEn": "ASVS mapping, pentest, AI sandbox and supply-chain security.",
         "next": "Kiểm toán và sửa các lỗ hổng cần thiết để thương mại hóa.",
         "nextEn": "Audit against controls and remediate launch blockers.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/140"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/140",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "X3",
+          "X4"
+        ],
+        "coverageNote": "Pentest/ASVS SaaS tổng thể là gate mở bán; tái sử dụng kết quả SEC P3.3 nhưng không tự coi đã đạt.",
+        "coverageNoteEn": "Commercial ASVS/pentest is separate."
       },
       {
         "id": "P4-02",
@@ -1977,7 +2100,14 @@
         "detailEn": "Audit extensibility, specialist agent/reviewer, skill registry and objective quality benchmark.",
         "next": "Pilot cô lập và so sánh với Phase 3.1 trên cùng bộ bài.",
         "nextEn": "Run isolated pilot and identical-task benchmark.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/146"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/146",
+        "coverage": "PARTIALLY_COVERED",
+        "coveredBy": [
+          "P0-16 A/C/G",
+          "P0-16 B/E"
+        ],
+        "coverageNote": "Skill đọc nhiều lượt, Map/Memory và Browser QA đã thuộc P0-16; chỉ giữ ở Phase 4 năng lực mở rộng agent/reviewer và benchmark thương mại vượt scope.",
+        "coverageNoteEn": "Source tools/Map/Memory/QA overlap; agent extensibility remains Phase 4."
       },
       {
         "id": "P4-03",
@@ -1990,7 +2120,15 @@
         "detailEn": "Shared design system, VI/EN, themes and WCAG usability acceptance.",
         "next": "Kiểm thử độc lập từng portal, từng vai trò.",
         "nextEn": "Independent role-by-role accessibility audit.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/140"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/140",
+        "coverage": "PARTIALLY_COVERED",
+        "coveredBy": [
+          "P0-17",
+          "P0-19",
+          "UX13"
+        ],
+        "coverageNote": "Theme/VI-EN và UX Studio/Data đã nằm trong P3.3; giữ audit WCAG 2.2 AA độc lập cho 5 portal và generated apps.",
+        "coverageNoteEn": "Theme/i18n overlap; formal 5-portal accessibility audit remains."
       },
       {
         "id": "P4-04",
@@ -2003,7 +2141,12 @@
         "detailEn": "Secure pipeline, provenance, real restore, observability, SLO and rollback.",
         "next": "Hoàn thiện gate vận hành trước mở rộng người dùng.",
         "nextEn": "Prove resilience gates before broad customer use.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/140"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/140",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [],
+        "coverageNote": "Chung nhóm gate với LEG-14; dùng chung bảng DR/SLO/rollback/restore evidence và một owner, không nhân đôi agent.",
+        "coverageNoteEn": "Share one operations/recovery workstream with LEG-14.",
+        "sharedGate": "OPERATIONS_DR"
       },
       {
         "id": "P4-05",
@@ -2016,7 +2159,13 @@
         "detailEn": "Tenant onboarding, subscriptions, trials, billing, support and data portability/legal.",
         "next": "Thiết kế entitlement theo gói, hợp đồng và luồng thanh toán an toàn.",
         "nextEn": "Scope commercial workflows and payment/legal gates.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/140"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/140",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [
+          "B1/B1-1"
+        ],
+        "coverageNote": "Subscription/trial/billing SaaS không đồng nghĩa ledger chi phí AI nội bộ; giữ riêng.",
+        "coverageNoteEn": "Commercial subscription billing is separate from AI spend ledger."
       },
       {
         "id": "P4-06",
@@ -2029,8 +2178,19 @@
         "detailEn": "Independent release-candidate security, QA, UX, risk and legal verification.",
         "next": "Chuẩn bị hồ sơ quyết định mở bán dựa trên bằng chứng.",
         "nextEn": "Build evidence-led commercial release pack.",
-        "source": "https://github.com/luan20495/HBLXWeb/issues/140"
+        "source": "https://github.com/luan20495/HBLXWeb/issues/140",
+        "coverage": "INDEPENDENT",
+        "coveredBy": [],
+        "coverageNote": "GO/NO-GO thương mại dựa trên toàn bộ gate, không phải chức năng trùng Phase 3.3.",
+        "coverageNoteEn": "Commercial GO/NO-GO remains separate."
       }
-    ]
+    ],
+    "coverageReviewedAt": "2026-11-06",
+    "coverageSource": "https://github.com/luan20495/xweb01/issues/88",
+    "coverageCounts": {
+      "PARTIALLY_COVERED": 6,
+      "INDEPENDENT": 13,
+      "COVERED_BY_P33": 4
+    }
   }
 }
