@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T14:25:46+07:00",
+  "asOf": "2026-11-06T14:42:07+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -967,7 +967,7 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Agent: 4887 unit PASS, spec liên quan 173 PASS; QA FE độc lập + backend DEV E2E NOT_RUN",
+      "qa": "Agent: 4887 unit PASS, spec liên quan 173 PASS; QA FE độc lập + backend DEV E2E NOT_RUN · PR #60 lại DIRTY sau khi dev đi tiếp (R4a), đang gộp lại dev (REPORTED 14:45)",
       "prs": "FE #60 · Master #88",
       "summary": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
       "next": "Người dùng không kỹ thuật hoàn tất import Excel/CSV không cần sửa code.",
@@ -1034,8 +1034,8 @@
       "progress": {
         "percent": 65,
         "basis": "estimate",
-        "note": "FE PR #60 head 9fa38dbe: Claude/C0 xác nhận mã sạch, 4887 unit PASS, spec mới 80+23+70 PASS; hai bộ test cũ lỗi cả trên dev sạch. CHƯA QA FE độc lập/backend E2E.",
-        "reportedAt": "2026-11-06T13:10:00+07:00"
+        "note": "FE PR #60 head 9fa38dbe: DIRTY vì dev đã merge #80 và deploy R4a; FE-UX13 đang gộp lại dev. Số test cũ là REPORTED của agent; chưa QA FE độc lập/backend E2E.",
+        "reportedAt": "2026-11-06T14:42:07+07:00"
       }
     },
     {
@@ -1046,10 +1046,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "PR #121 báo 117 test targeted PASS; full regression/mutation sau sync chưa chạy",
+      "qa": "QA/SEC độc lập #121+#131: GATE-PASS-WITH-CONDITIONS, không P0/P1; 2 P2 (P2-1 quyền danh mục tenant khi duyệt chính sách, P2-2 SYS_SCOPE_TOO_BROAD) đang được sửa; 249 test đạt 0 lỗi (QA/SEC chạy)",
       "prs": "BE #121 OPEN (X2/X5) · Master #88/#86",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "Company mẹ→con→cháu→chắt không hardcode độ sâu.",
+      "next": "BE-X sửa P2-1/P2-2 + test thiếu; QA/SEC lại; Owner bấm Ready #121; merge #121 rồi #131 vào dev (cờ TẮT) → R4c; bật cờ chỉ sau khi P2 đóng.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1120,8 +1120,8 @@
       "progress": {
         "percent": 88,
         "basis": "estimate",
-        "note": "BE PR #121 mã xong, 23/24 mutant KILLED và 1 tương đương; chưa QA/SEC độc lập, chưa Ready.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "PR #121 mã xong; QA/SEC độc lập GATE-PASS-WITH-CONDITIONS (2 P2 đang sửa). Chưa merge, chưa deploy.",
+        "reportedAt": "2026-11-06T14:42:07+07:00"
       }
     },
     {
@@ -1132,8 +1132,8 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "4/100 lỗi (trước sửa cuối); rerun/mutant NOT_RUN",
-      "prs": "Master #88 · Data/IAM #86",
+      "qa": "PR #131 (X3): QA/SEC độc lập GATE-PASS-WITH-CONDITIONS, 265 test đạt 0 lỗi (QA/SEC chạy), mutant 11/15; P2-2 liên quan SYS_SCOPE_TOO_BROAD đang sửa",
+      "prs": "BE #131 DRAFT head d305e1af (xếp chồng #121) · Master #88",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
       "next": "User A không truy vấn được dữ liệu company B bằng URL/API trực tiếp.",
       "work": {
@@ -1207,10 +1207,10 @@
         ]
       },
       "progress": {
-        "percent": 35,
+        "percent": 75,
         "basis": "estimate",
-        "note": "Branch b2124aa7, X3 mã WIP; 4/100 test lỗi trước lần sửa cuối, 15 mutant chưa chạy; chưa PR.",
-        "reportedAt": "2026-11-06T13:10:00+07:00"
+        "note": "PR #131 mã xong, cờ TẮT, V83 không dùng. QA/SEC độc lập đạt có điều kiện; chờ sửa P2 và merge sau #121.",
+        "reportedAt": "2026-11-06T14:42:07+07:00"
       }
     },
     {
@@ -1326,7 +1326,7 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "PR #121 báo targeted context tests PASS; chưa E2E AI thực",
+      "qa": "QA/SEC độc lập #121: GATE-PASS-WITH-CONDITIONS; builder chỉ biết tên/loại/lớp (PASS); thiếu test dấu phân tách system_context; 1 lượt Haiku DEV khuyến nghị trước khi bật",
       "prs": "BE #121 OPEN · Master #88",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
       "next": "AI sinh app dùng approved source/alias, không yêu cầu secret.",
@@ -1396,7 +1396,7 @@
         "percent": 75,
         "basis": "estimate",
         "note": "Trong BE PR #121; chưa có E2E AI thật, chưa QA/SEC.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "reportedAt": "2026-11-06T14:42:07+07:00"
       }
     },
     {
