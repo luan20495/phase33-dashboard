@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T11:08:00+07:00",
+  "asOf": "2026-11-06T11:52:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -756,7 +756,7 @@
           },
           {
             "team": "BE",
-            "text": "B2-WEB-01: kiểm kê thực trạng và hợp đồng dynamic AI config, docs-only; đang chạy",
+            "text": "B2-WEB-01: đang kiểm kê + hợp đồng; phần mở rộng ~3% (ước lượng Claude), chưa có PR",
             "state": "IN_PROGRESS"
           },
           {
@@ -815,17 +815,17 @@
       "progress": {
         "percent": 100,
         "basis": "prod_on",
-        "note": "REOPEN · Phần mới '100% cấu hình AI qua web' đang triển khai, chưa có % đo. Thanh 100% chỉ là B2/F2 cũ đã ON PROD.",
-        "reportedAt": "2026-11-06T11:45:00+07:00",
+        "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC.",
+        "reportedAt": "2026-11-06T11:52:00+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
-        "extensionPercent": null
+        "extensionPercent": 3
       },
       "extension": {
         "status": "REOPEN_IN_PROGRESS",
         "title": "100% cấu hình AI qua web",
-        "progressPercent": null,
+        "progressPercent": 3,
         "qa": "NOT_RUN",
-        "notes": "Claude đã khởi động B2-WEB-01 kiểm kê mã và hợp đồng; chưa có PR hoặc ETA kiểm chứng. Không sửa PROD.",
+        "notes": "Claude ước lượng 3%: B2-WEB-01 đang kiểm kê và soạn hợp đồng, 7 gói còn lại chưa giao; chưa có PR hoàn tất.",
         "related": [
           "E1/E2+F1",
           "B3+F3"
@@ -919,10 +919,10 @@
         ]
       },
       "progress": {
-        "percent": 75,
+        "percent": 78,
         "basis": "estimate",
-        "note": "B3/F3 đã deploy nhưng OFF; FE-B3 đang đối chiếu API và hoàn thiện màn duyệt.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "FE-B3: có commit nháp, đang kiểm hợp đồng F3/BE; chưa có PR hoặc QA/SEC.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -998,10 +998,10 @@
         ]
       },
       "progress": {
-        "percent": 60,
+        "percent": 65,
         "basis": "estimate",
-        "note": "FE PR #60 DRAFT; chưa đủ gate.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "FE PR #60 DRAFT; Claude báo đã gộp dev, 1 test mới lỗi, 22 file sửa dở.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1084,10 +1084,10 @@
         ]
       },
       "progress": {
-        "percent": 85,
+        "percent": 88,
         "basis": "estimate",
-        "note": "BE PR #121 đã có mã giai đoạn 1; QA/SEC độc lập và E2E vẫn thiếu.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "BE PR #121 mã xong, 23/24 mutant KILLED và 1 tương đương; chưa QA/SEC độc lập, chưa Ready.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1168,10 +1168,10 @@
         ]
       },
       "progress": {
-        "percent": 0,
+        "percent": 35,
         "basis": "estimate",
-        "note": "Đã có mã nháp tại DEV nhưng chưa có PR/test đạt; 0% là mốc bảo thủ của bảng tiến độ, không phải không có mã.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "X3 có mã trong worktree và đang sửa test lỗi; chưa PR và chưa QA/SEC.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1275,8 +1275,8 @@
       "progress": {
         "percent": 0,
         "basis": "estimate",
-        "note": "Chưa có PR; cần X3/IAM.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "Chưa có agent/mã hoàn tất theo báo cáo 11:52; phụ thuộc X3 và IAM.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1354,10 +1354,10 @@
         ]
       },
       "progress": {
-        "percent": 70,
+        "percent": 75,
         "basis": "estimate",
-        "note": "PR #121 đã có context BE; cần QA/SEC và E2E AI thật.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "Trong BE PR #121; chưa có E2E AI thật, chưa QA/SEC.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1433,10 +1433,10 @@
         ]
       },
       "progress": {
-        "percent": 10,
+        "percent": 25,
         "basis": "estimate",
-        "note": "Có công việc trong worktree, chưa có PR hoàn chỉnh.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "Project Map/Memory có công việc và test trong worktree, chưa PR nộp.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1517,10 +1517,10 @@
         ]
       },
       "progress": {
-        "percent": 5,
+        "percent": 8,
         "basis": "estimate",
-        "note": "Phụ thuộc X5/X3; mới một phần giao diện.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "FE vi/en trong PR #60; AI kết nối dữ liệu phụ thuộc X5/X3.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1601,10 +1601,10 @@
         ]
       },
       "progress": {
-        "percent": 0,
+        "percent": 20,
         "basis": "estimate",
-        "note": "Có worktree khởi đầu, chưa có PR.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "FE-ANNOT: 17 file chỉnh trong worktree, chưa commit hoặc PR.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     },
     {
@@ -1681,8 +1681,8 @@
       "progress": {
         "percent": 25,
         "basis": "estimate",
-        "note": "Composer đã chạy PROD; phần thiết kế Editor/Preview còn thiếu.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "Workspace Edit Studio vẫn chỉ có phần nền composer/nháp/queue trên PROD; chưa có chứng cứ % mới.",
+        "reportedAt": "2026-11-06T11:52:00+07:00"
       }
     }
   ],
