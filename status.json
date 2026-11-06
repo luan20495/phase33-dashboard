@@ -3,7 +3,7 @@
   "project": "XWeb Phase 3.3",
   "asOf": "2026-11-06T04:05:38+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
-  "evidenceNote": "R3 PROD recorded in BE dev RELEASE_LOG at 03:41–03:44 VN 06/11 (BE ade1e1be, FE bae5a0c3), flags B3/Q1 OFF, X2/X5 excluded; QA-R3 gaps remain. Main RELEASE_LOG still R1/R2. Claude process UNKNOWN.",
+  "evidenceNote": "Detailed work/acceptance audit using R1-R3 RELEASE_LOG, issues #88/#86/#87/#93 and PR state; statuses are evidence-based, not live Mac agent telemetry. X2 PR #121 and UX13 FE #60 remain DRAFT; X4 has no verified write-runtime E2E.",
   "releases": [
     {
       "id": "R1",
@@ -42,35 +42,60 @@
       "integrated": true,
       "qa": "QA-R1 PASS",
       "prs": "BE #98/#108/#119 · FE #70/#76 merged DEV",
-      "summary": "Platform có tab Quyền dùng AI; nội bộ, cần Owner UAT",
-      "next": "QA xác minh UI quản trị F1/F2 mới trong R3 trên PROD, Owner UAT; không suy diễn đã được chấp nhận.",
+      "summary": "Quản trị quyền AI đã bật PROD nhưng chưa có bằng chứng UAT đầy đủ: cấp/thu hồi hàng loạt, quyền hiệu lực ngay, xung đột role và audit từng thao tác.",
+      "next": "Admin được cấp/thu hồi đúng người, người không có quyền bị 403.",
       "work": {
-        "problem": "Quản trị quyền AI cần kiểm chứng thao tác cấp/thu hồi quyền thực tế.",
-        "approach": "Kiểm tra UI, API cấp quyền và quyền hiệu lực sau thay đổi.",
+        "problem": "Quản trị quyền AI đã bật PROD nhưng chưa có bằng chứng UAT đầy đủ: cấp/thu hồi hàng loạt, quyền hiệu lực ngay, xung đột role và audit từng thao tác.",
+        "approach": "Kiểm tra đường cấp/quyền user và workspace, quyền admin động và việc chặn AI thật ngay khi thu hồi. Không đồng nhất UI hiển thị với quyền hiệu lực backend.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Xác minh API quyền và audit",
+            "text": "Đối chiếu API cấp/thu hồi, audit, hiệu lực token và cache",
             "state": "VERIFY",
-            "textEn": "Verify entitlement APIs and audit"
+            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
           },
           {
             "team": "FE",
-            "text": "Kiểm tra tab quản trị quyền AI",
+            "text": "Kiểm tra màn Platform cấp quyền, hàng loạt, trạng thái lỗi",
             "state": "VERIFY",
-            "textEn": "Review AI entitlement admin tab"
+            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
           },
           {
             "team": "QA",
-            "text": "UAT cấp/thu hồi trên tài khoản được phép",
+            "text": "Thử 2 role có/không có quyền, cấp rồi thu hồi và xác minh AI deny",
             "state": "TODO",
-            "textEn": "Run grant/revoke user acceptance"
+            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
+          },
+          {
+            "team": "SEC",
+            "text": "Kiểm thử IDOR, cross-tenant, escalation qua bulk grant",
+            "state": "TODO",
+            "textEn": "Verify entitlements API and admin UX; confirm server enforcement and audit."
           }
         ],
         "lastEvidence": "QA-R1 PASS",
-        "source": "BE #98/#108 · FE #70",
-        "problemEn": "AI entitlement grant and revocation need real user acceptance.",
-        "approachEn": "Validate rights APIs, admin controls and immediate effective permissions."
+        "source": "BE #98/#108/#119 · FE #70/#76 merged DEV",
+        "problemEn": "AI entitlements are ON in production but bulk grant, effective revocation and admin audit still need owner acceptance.",
+        "approachEn": "Verify entitlements API and admin UX; confirm server enforcement and audit.",
+        "done": [
+          "R1 quyền AI đã ON trên PROD; R3 bổ sung UI Platform F1/F2 qua BE #119 và FE #76.",
+          "QA-R1 cho phạm vi quyền AI PASS; chưa thay cho Owner UAT R3."
+        ],
+        "blockers": [
+          "Chưa có biên bản Owner UAT các thao tác mới trên PROD."
+        ],
+        "blockersEn": [
+          "Owner UAT and authorization negative tests pending."
+        ],
+        "acceptance": [
+          "Admin được cấp/thu hồi đúng người, người không có quyền bị 403.",
+          "Thu hồi hiệu lực ngay trên API và Studio; audit lưu actor/target/time.",
+          "Bulk grant có preview/dry-run và không tự mở rộng quyền."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/119",
+          "https://github.com/luan20495/Xweb01fe/pull/76"
+        ]
       }
     },
     {
@@ -83,41 +108,61 @@
       "integrated": true,
       "qa": "QA-R1 PASS",
       "prs": "BE #97 · FE #71",
-      "summary": "ZIP dry run HTTP 200; chưa chứng minh import-build-publish end-to-end",
-      "next": "UAT import-build-publish; phối hợp P0-16 để AI đọc source lớn bằng tool loop (Owner REQUESTED, chưa tích hợp).",
+      "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
+      "next": "Import file gần ngưỡng 10 MB/300 file và từ chối zip-slip/secret rõ lý do.",
       "work": {
-        "problem": "Đã kiểm tra ZIP dry-run; chưa chứng minh toàn bộ import → build → publish.",
-        "approach": "Hoàn thiện luồng nhập và kiểm tra thành phẩm end-to-end.",
+        "problem": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
+        "approach": "Chạy một dự án HTML và một React/Vite đa trang từ upload tới site chạy thật, giữ cấu trúc nguồn/asset và quyền, có log file nào bị bỏ qua.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Đối chiếu validate/import an toàn",
+            "text": "Kiểm tra bộ lọc file, import snapshot/asset và giới hạn 10MB/300 file",
             "state": "VERIFY",
-            "textEn": "Verify validation and safe import"
+            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
           },
           {
             "team": "FE",
-            "text": "Kiểm tra trải nghiệm upload và thông báo",
+            "text": "Import wizard + thông báo file được nhận/bỏ qua/lỗi",
             "state": "VERIFY",
-            "textEn": "Review upload UX and feedback"
-          },
-          {
-            "team": "QA",
-            "text": "Chạy import-build-publish thực tế",
-            "state": "TODO",
-            "textEn": "Run actual import/build/publish E2E"
+            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
           },
           {
             "team": "BE",
-            "text": "Kết nối snapshot import với đọc/search theo revision; HTML minified dùng byte range, không coi index là đọc hết",
-            "textEn": "Connect imported snapshots to revision-scoped search/read; handle minified HTML with byte ranges, not index-only reads",
-            "state": "TODO"
+            "text": "Liên kết snapshot import với tool read/search theo revision",
+            "state": "TODO",
+            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
+          },
+          {
+            "team": "QA",
+            "text": "Chạy E2E HTML và React nhiều trang, build/publish và rà asset",
+            "state": "TODO",
+            "textEn": "Test large HTML/React imports through publishing and report skipped source files."
           }
         ],
         "lastEvidence": "QA-R1 PASS",
-        "source": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6660994350",
-        "problemEn": "ZIP dry-run passed; full import-to-publish is unverified.",
-        "approachEn": "Complete and validate the import, build and publish path."
+        "source": "BE #97 · FE #71",
+        "problemEn": "Import is enabled, but dry-run 200 does not establish import→AI edit→build→publish E2E.",
+        "approachEn": "Test large HTML/React imports through publishing and report skipped source files.",
+        "done": [
+          "BE #97 và FE #71 đã tích hợp trong đợt trước, cờ nhập dự án ON.",
+          "Dry-run ZIP trả 200; không đồng nghĩa E2E publish."
+        ],
+        "blockers": [
+          "Chưa có QA real-run import → AI edit → build → publish.",
+          "Phần đọc source lớn theo tool loop của P0-16 chưa tích hợp."
+        ],
+        "blockersEn": [
+          "Full production E2E and large-source agent reading unverified."
+        ],
+        "acceptance": [
+          "Import file gần ngưỡng 10 MB/300 file và từ chối zip-slip/secret rõ lý do.",
+          "Source nhập, sửa một trang, build và publish đúng; không mất assets.",
+          "AI công khai danh sách file đã đọc/bỏ qua và phiên bản nguồn."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/97",
+          "https://github.com/luan20495/Xweb01fe/pull/71"
+        ]
       }
     },
     {
@@ -130,53 +175,62 @@
       "integrated": true,
       "qa": "1 lượt AI thật PASS cơ bản",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-      "summary": "J1 cơ bản từ R1; Q1 server queue đã deploy R3 nhưng flag OFF; FE–BE Studio UI, resume và paid turn E2E NOT_RUN.",
-      "next": "QA Studio queue/reload/reconnect và chống paid turn trùng; Q1 vẫn OFF chờ Owner GO.",
+      "summary": "Job bền ON nhưng sau reload/mất mạng, khôi phục tiến độ và chống chạy/thu phí trùng chưa được chứng minh E2E; Q1 có code R3 nhưng flag OFF.",
+      "next": "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
       "work": {
-        "problem": "Job AI hoàn tất cơ bản nhưng chưa xác nhận resume/reconnect/reload.",
-        "approach": "Dùng cùng job ID và lịch sử tiến độ qua reload, không gọi AI trùng.",
+        "problem": "Job bền ON nhưng sau reload/mất mạng, khôi phục tiến độ và chống chạy/thu phí trùng chưa được chứng minh E2E; Q1 có code R3 nhưng flag OFF.",
+        "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Đối chiếu job storage và reconnect",
+            "text": "Kiểm tra durable job persistence, resume và idempotency ở backend",
             "state": "VERIFY",
-            "textEn": "Verify persisted jobs and reconnect"
+            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
           },
           {
             "team": "FE",
-            "text": "Hiển thị khôi phục job sau reload",
+            "text": "Kiểm tra resume/queue UI và dữ liệu giữ khi reload",
             "state": "VERIFY",
-            "textEn": "Show restored job after reload"
+            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
           },
           {
             "team": "QA",
-            "text": "E2E reload, mất mạng, cancel và chống tính phí trùng",
+            "text": "E2E mất mạng, reload, tab song song, cancel/retry",
             "state": "TODO",
-            "textEn": "Test reload, network loss and duplicate billing"
+            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
           },
           {
-            "team": "BE",
-            "text": "Xác minh queue Q1 V79 sau merge DEV, flag OFF; chưa có PROD",
-            "textEn": "Verify merged DEV Q1 queue V79, flag OFF; not yet PROD",
-            "state": "VERIFY"
-          },
-          {
-            "team": "QA",
-            "text": "E2E FE–BE queue, reload/restart, chống duplicate paid turn",
-            "textEn": "E2E FE–BE queue, reload/restart and duplicate paid-turn protection",
-            "state": "TODO"
-          },
-          {
-            "team": "QA",
-            "text": "Xác minh FE–BE runtime sau đồng bộ BE #123; combined-check GREEN không thay thế E2E",
-            "textEn": "Verify FE–BE runtime after BE #123 sync; combined-check GREEN is not E2E",
-            "state": "VERIFY"
+            "team": "SEC",
+            "text": "Test quyền hết hạn và ngân sách khi queue vẫn còn",
+            "state": "TODO",
+            "textEn": "Validate persistent job identity and budget checks across resume, offline queues and retries."
           }
         ],
-        "lastEvidence": "RELEASE_LOG dev R3: Q1 PROD code, flag OFF, Studio UI NOT_RUN",
-        "source": "BE #99/#101/#120 · FE #58 · BE #123",
-        "problemEn": "One AI job succeeded; resume and reconnect remain unverified.",
-        "approachEn": "Recover one durable job without duplicate AI requests or charges."
+        "lastEvidence": "1 lượt AI thật PASS cơ bản",
+        "source": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
+        "problemEn": "Durable jobs are ON; reload/reconnect and duplicate paid calls need E2E. Q1 is deployed but OFF.",
+        "approachEn": "Validate persistent job identity and budget checks across resume, offline queues and retries.",
+        "done": [
+          "J1 chạy một lượt AI thật thành công trên PROD.",
+          "R3 đã deploy Q1 migration V79, BUILDER_PROMPT_QUEUE vẫn OFF; không có GO bật."
+        ],
+        "blockers": [
+          "QA queue thật, reconnect, duplicate paid call NOT_RUN.",
+          "Bật Q1 cần Owner GO do job có thể chạy khi người dùng offline."
+        ],
+        "blockersEn": [
+          "Q1 requires Owner approval; queue E2E remains NOT_RUN."
+        ],
+        "acceptance": [
+          "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
+          "Cancel/reorder queue nhất quán; không chạy lệnh đã hủy.",
+          "Quyền/budget kiểm lại tại lúc dequeue; không chi vượt trần hoặc gọi trùng."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/120",
+          "https://github.com/luan20495/Xweb01fe/pull/58",
+          "https://github.com/luan20495/xweb01/issues/93"
+        ]
       }
     },
     {
@@ -189,53 +243,67 @@
       "integrated": true,
       "qa": "1 lượt AI thật PASS cơ bản",
       "prs": "BE #102 · FE #67 · Owner #88/6660994350 (REQUESTED)",
-      "summary": "Context Selector đã có thử nghiệm cơ bản; Owner mới yêu cầu tích hợp OSS đọc source/HTML lớn vào AI thực trong Studio (REQUESTED, chưa có PR triển khai).",
-      "next": "BE audit builder/provider call path, tích hợp Repomix pin + bounded tool loop, revision/IAM/J1; QA chứng minh đọc vùng ngoài cutoff và A/B tổng chi phí.",
+      "summary": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
+      "next": "AI dùng search/read thực để tìm và đọc file ngoài đợt chọn đầu.",
       "work": {
-        "problem": "AI chưa có bằng chứng đọc đầy đủ source/HTML lớn, đặc biệt minified một dòng và vùng ngoài context cutoff. Chỉ đạo OSS mới ở mức REQUESTED.",
-        "approach": "Giữ Open Lovable; pin/audit Repomix core/MCP + Explorer và frontend-design/webapp-testing; thêm server adapter và vòng read/search có giới hạn, revision/IAM/J1, manifest ghi vùng đã đọc; QA preview thật và A/B chi phí.",
+        "problem": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
+        "approach": "Dùng manifest + công cụ tìm kiếm/đọc từng đoạn theo revision và IAM, giới hạn vòng/byte/USD; ưu tiên Repomix được pin/audit trước khi tích hợp, không nhét cả repo vào prompt.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Đối chiếu Context Builder/selector",
-            "state": "VERIFY",
-            "textEn": "Review Context Builder and manifest"
-          },
-          {
-            "team": "FE",
-            "text": "Hiển thị ngữ cảnh và tình trạng lượt AI",
-            "state": "VERIFY",
-            "textEn": "Display AI context and job state"
-          },
-          {
-            "team": "QA",
-            "text": "Test nhiều prompt, nhiều file và IAM",
+            "text": "Audit provider/tool call, pin/audit Repomix, bounded read/search loop",
             "state": "TODO",
-            "textEn": "Test multiple prompts, file changes and IAM"
+            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           },
           {
             "team": "BE",
-            "text": "Audit đường gọi AI Studio; tích hợp Repomix pin + tool loop chỉ đọc, giới hạn byte/round/USD, cache theo revision và IAM",
-            "textEn": "Audit Studio model call path; integrate pinned Repomix with bounded read-only tool loop, revision-scoped IAM cache and cost limits",
-            "state": "TODO"
+            "text": "Revision-aware manifest: file read/skipped/truncated/changed",
+            "state": "TODO",
+            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
+          },
+          {
+            "team": "FE",
+            "text": "Hiển thị ngữ cảnh đã đọc và độ tin cậy theo từng turn",
+            "state": "VERIFY",
+            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           },
           {
             "team": "SEC",
-            "text": "Kiểm tra license/NOTICE, sandbox không credential/network, tenant/outputId isolation, prompt injection",
-            "textEn": "Audit licenses/notices, sandbox isolation, tenant/outputId access and untrusted-source handling",
-            "state": "TODO"
+            "text": "Test sandbox, prompt injection, cross-tenant file reads",
+            "state": "TODO",
+            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           },
           {
             "team": "QA",
-            "text": "Test HTML lớn/minified, React ≥12 trang, đọc ngoài cutoff, build/preview, resume và A/B tổng token/USD",
-            "textEn": "Test large/minified HTML, 12+ page React, beyond-cutoff reads, build/preview, resume and total-token/USD A/B",
-            "state": "TODO"
+            "text": "E2E HTML một dòng, React 12+ trang, source ngoài cutoff và A/B chi phí",
+            "state": "TODO",
+            "textEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads."
           }
         ],
         "lastEvidence": "1 lượt AI thật PASS cơ bản",
-        "source": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6660994350",
-        "problemEn": "No proof that Studio AI reads large HTML/code beyond the context cutoff or minified one-line sources. OSS integration is REQUESTED only.",
-        "approachEn": "Keep Open Lovable; pin and audit Repomix and selected skills; add bounded server read/search loop, revision/IAM/J1 controls, actual-range manifest, preview QA and total-cost A/B."
+        "source": "BE #102 · FE #67 · Owner #88/6660994350 (REQUESTED)",
+        "problemEn": "Selected context does not prove full-codebase understanding. Large/minified HTML and beyond-cutoff reads are unverified.",
+        "approachEn": "Add bounded source search/read loop and revision/IAM-aware manifest, independently test actual reads.",
+        "done": [
+          "Context Manifest/Selector đã ON; một lượt AI thật cơ bản PASS.",
+          "BE #102 có manifest, xếp hạng file và thông báo lược ngữ cảnh."
+        ],
+        "blockers": [
+          "Tool loop/Repomix chỉ mới được yêu cầu trên #88; chưa có PR tích hợp được xác minh.",
+          "Chưa có E2E đọc ngoài cutoff, source minified hoặc dự án 12+ trang."
+        ],
+        "blockersEn": [
+          "OSS loop integration has only been requested, no verified PR."
+        ],
+        "acceptance": [
+          "AI dùng search/read thực để tìm và đọc file ngoài đợt chọn đầu.",
+          "Hiển thị đường dẫn/vùng byte đã đọc, bỏ qua, lý do và test đã chạy.",
+          "Chứng minh giảm hoặc khống chế tổng token/USD qua A/B, không vượt IAM."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/102",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6660994350"
+        ]
       }
     },
     {
@@ -248,35 +316,55 @@
       "integrated": true,
       "qa": "Chưa có Owner UAT",
       "prs": "FE #56",
-      "summary": "Enter, Shift+Enter, giữ/lưu nháp",
-      "next": "Owner UAT trên Studio",
+      "summary": "Composer đã deploy nhưng Owner chưa xác nhận chính xác hành vi Enter/Shift+Enter, giữ file/ảnh và nháp sau reload; có ngoại lệ với nội dung nhạy cảm và upload dang dở.",
+      "next": "Prompt 5k ký tự + 3 ảnh + 2 file reload được nội dung/refs hợp lệ.",
       "work": {
-        "problem": "Composer đã có mã nhưng chưa Owner UAT về lưu nháp/reload.",
-        "approach": "Kiểm tra Enter/Shift+Enter, giữ nháp và file đính kèm.",
+        "problem": "Composer đã deploy nhưng Owner chưa xác nhận chính xác hành vi Enter/Shift+Enter, giữ file/ảnh và nháp sau reload; có ngoại lệ với nội dung nhạy cảm và upload dang dở.",
+        "approach": "UAT đúng composer Studio cùng model/effort/attachment. Không khôi phục file upload chưa hoàn thành như file thật.",
         "tasks": [
           {
             "team": "FE",
-            "text": "Rà soát composer và autosave",
+            "text": "Xác minh lưu nháp và tình trạng upload ở Studio hiện hành",
             "state": "VERIFY",
-            "textEn": "Review composer and draft autosave"
-          },
-          {
-            "team": "BE",
-            "text": "Kiểm tra điểm lưu nháp nếu backend cần",
-            "state": "VERIFY",
-            "textEn": "Check server draft storage if required"
+            "textEn": "Test model, draft text, uploads and failure recovery across reload/logout."
           },
           {
             "team": "QA",
-            "text": "UAT reload với prompt và file",
+            "text": "UAT Enter/IME, reload, mất mạng, logout/login với file/ảnh",
             "state": "TODO",
-            "textEn": "UAT reload with prompts and files"
+            "textEn": "Test model, draft text, uploads and failure recovery across reload/logout."
+          },
+          {
+            "team": "SEC",
+            "text": "Kiểm tra draft không lưu secret hay lộ giữa tài khoản",
+            "state": "TODO",
+            "textEn": "Test model, draft text, uploads and failure recovery across reload/logout."
           }
         ],
         "lastEvidence": "Chưa có Owner UAT",
         "source": "FE #56",
-        "problemEn": "Composer code is present but lacks owner acceptance.",
-        "approachEn": "Validate Enter/Shift+Enter, drafts and attachments after reload."
+        "problemEn": "Draft composer code is deployed, but real prompt/file restore after reload is not owner accepted.",
+        "approachEn": "Test model, draft text, uploads and failure recovery across reload/logout.",
+        "done": [
+          "FE #56 có Enter gửi, Shift+Enter xuống dòng, IndexedDB cho file và local draft.",
+          "Mã composer đã nằm trong ứng dụng phát hành; UAT thực chưa có."
+        ],
+        "blockers": [
+          "Chưa có ảnh/bằng chứng UAT reload với nhiều tệp và job đang chạy.",
+          "Chưa có đồng bộ draft an toàn đa thiết bị."
+        ],
+        "blockersEn": [
+          "Real multi-file reload acceptance not verified."
+        ],
+        "acceptance": [
+          "Prompt 5k ký tự + 3 ảnh + 2 file reload được nội dung/refs hợp lệ.",
+          "Đang gửi/reload không tự gửi lại và không tính phí trùng.",
+          "Logout hoặc đổi user không lộ draft người trước."
+        ],
+        "refs": [
+          "https://github.com/luan20495/Xweb01fe/pull/56",
+          "https://github.com/luan20495/xweb01/issues/93"
+        ]
       }
     },
     {
@@ -289,35 +377,55 @@
       "integrated": true,
       "qa": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
       "prs": "FE #59 · BE #118/#119 merged DEV; PROD chưa xác minh",
-      "summary": "R3 PROD đã đóng gói build arg XApp; gói Studio chứa địa chỉ XApp. Render XApp qua đăng nhập thật vẫn NOT_RUN.",
-      "next": "QA xác minh render/điều hướng XApp sau login, Owner UAT.",
+      "summary": "R1 thiếu build arg XApp làm điều hướng không hoạt động; R3 đã chứa origin trong Studio build nhưng đăng nhập XApp và kiểm tra giao diện end-to-end vẫn NOT_RUN.",
+      "next": "Bấm logo từ các portal về XApp đúng và không tạo vòng lặp SSO.",
       "work": {
-        "problem": "XApp UX được deploy trong R1 nhưng thiếu NEXT_PUBLIC_PORTAL_URL_XAPP ở build args; sửa đã merge, chưa chứng minh trên PROD.",
-        "approach": "Xác minh ảnh portal được rebuild với build arg đúng, kiểm tra các hành vi điều hướng và session expiry trước Owner UAT.",
+        "problem": "R1 thiếu build arg XApp làm điều hướng không hoạt động; R3 đã chứa origin trong Studio build nhưng đăng nhập XApp và kiểm tra giao diện end-to-end vẫn NOT_RUN.",
+        "approach": "Kiểm tra hành trình SSO từ tất cả portal, khi hết phiên, tài khoản không có quyền và logo/link quay về XApp.",
         "tasks": [
           {
-            "team": "FE",
-            "text": "Kiểm tra logo, đường dẫn XApp và trang hết quyền",
+            "team": "INFRA",
+            "text": "Xác minh build arg XApp trong image R3",
             "state": "VERIFY",
-            "textEn": "Test logos, navigation and access denied"
+            "textEn": "Test real login, portal links and expiry/no-access fallbacks."
           },
           {
-            "team": "INFRA",
-            "text": "Xác minh biến build và routing 5 cổng",
-            "state": "TODO",
-            "textEn": "Verify portal build args and routes"
+            "team": "FE",
+            "text": "Kiểm tra điều hướng và thông báo khi hết phiên",
+            "state": "VERIFY",
+            "textEn": "Test real login, portal links and expiry/no-access fallbacks."
           },
           {
             "team": "QA",
-            "text": "Owner UAT và kiểm tra login/logout",
+            "text": "Đăng nhập XApp thực, kiểm tra điều hướng đủ 5 portal",
             "state": "TODO",
-            "textEn": "Owner acceptance for login and logout"
+            "textEn": "Test real login, portal links and expiry/no-access fallbacks."
           }
         ],
-        "lastEvidence": "RELEASE_LOG dev R3 PROD: build arg packaged; authenticated XApp render NOT_RUN",
-        "source": "FE #59",
-        "problemEn": "R1 XApp UX was shipped without its XApp build argument; the fix was merged but not verified in production.",
-        "approachEn": "Verify a rebuilt portal image includes the XApp origin and smoke-test navigation and session expiry before Owner acceptance."
+        "lastEvidence": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
+        "source": "FE #59 · BE #118/#119 merged DEV; PROD chưa xác minh",
+        "problemEn": "XApp build origin is fixed in R3; authenticated navigation is NOT_RUN.",
+        "approachEn": "Test real login, portal links and expiry/no-access fallbacks.",
+        "done": [
+          "BE #118 đã merge; R3 PROD bundle Studio chứa https://xapp.happinno.net.",
+          "R3 smoke năm cổng PASS ở mức đăng nhập trang."
+        ],
+        "blockers": [
+          "Chưa test render qua đăng nhập XApp thực.",
+          "Không nên ghi Owner UAT PASS cho XApp."
+        ],
+        "blockersEn": [
+          "XApp authenticated UI acceptance remains NOT_RUN."
+        ],
+        "acceptance": [
+          "Bấm logo từ các portal về XApp đúng và không tạo vòng lặp SSO.",
+          "Hết phiên/không quyền có nút quay lại XApp, không dead end.",
+          "QA có ảnh/đường đi đã thử và status PASS thực."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/118",
+          "https://github.com/luan20495/Xweb01fe/pull/59"
+        ]
       }
     },
     {
@@ -330,35 +438,60 @@
       "integrated": true,
       "qa": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
       "prs": "BE #100/#113 · FE #71",
-      "summary": "Chính sách trường dữ liệu ON từ 19:25 giờ VN, STRICT=false; STRICT=true chưa bật",
-      "next": "Đánh giá tác động app cũ, Owner quyết riêng khi nào bật STRICT=true",
+      "summary": "Field Policy đã ON nhưng STRICT=false; chưa có đánh giá tác động ứng dụng cũ nếu bật STRICT=true, đồng thời phải giữ thao tác từ chối đúng quyền.",
+      "next": "Người không có quyền đọc/ghi trường bị từ chối kể cả gọi API trực tiếp.",
       "work": {
-        "problem": "Chính sách trường dữ liệu đang ON nhưng STRICT=false.",
-        "approach": "Đánh giá tác động trước khi bật strict; không bật tự động.",
+        "problem": "Field Policy đã ON nhưng STRICT=false; chưa có đánh giá tác động ứng dụng cũ nếu bật STRICT=true, đồng thời phải giữ thao tác từ chối đúng quyền.",
+        "approach": "Review policy theo operation/field và migration an toàn; chỉ bật STRICT theo GO riêng sau dry-run/diff với app cũ.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Kiểm tra policy evaluation và phân quyền trường",
+            "text": "Đối chiếu policy theo operation, field, role và tenant",
             "state": "VERIFY",
-            "textEn": "Review server-side field policy"
+            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
           },
           {
             "team": "FE",
-            "text": "Admin duyệt field allow-list",
+            "text": "Kiểm tra UI cấu hình danh sách field được phép",
             "state": "VERIFY",
-            "textEn": "Review field allow-list UI"
+            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
+          },
+          {
+            "team": "SEC",
+            "text": "Negative test trường ẩn, request sửa quyền, cross-tenant",
+            "state": "TODO",
+            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
           },
           {
             "team": "QA",
-            "text": "Test cross-tenant và app cũ ở STRICT=false",
+            "text": "Chạy compatibility matrix legacy trước khi đề xuất STRICT",
             "state": "TODO",
-            "textEn": "Test tenant boundaries and legacy apps"
+            "textEn": "Audit per-field/operation authorization and plan strict rollout with rollback."
           }
         ],
         "lastEvidence": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
         "source": "BE #100/#113 · FE #71",
-        "problemEn": "Field policy is ON with STRICT=false.",
-        "approachEn": "Assess legacy apps before any separately authorized strict rollout."
+        "problemEn": "Field policy is ON but STRICT=false; legacy application impact is unknown.",
+        "approachEn": "Audit per-field/operation authorization and plan strict rollout with rollback.",
+        "done": [
+          "R2 bật field policy ON, STRICT=false.",
+          "QA-R2 lỗi D-01 đã sửa; SEC-R2 không P0/P1/P2."
+        ],
+        "blockers": [
+          "Chưa có quyết định Owner và báo cáo ảnh hưởng để bật STRICT=true."
+        ],
+        "blockersEn": [
+          "Owner decision on STRICT=true and compatibility evidence pending."
+        ],
+        "acceptance": [
+          "Người không có quyền đọc/ghi trường bị từ chối kể cả gọi API trực tiếp.",
+          "App cũ không gãy khi STRICT=false; nếu chuyển true có dry-run, rollback.",
+          "Chính sách thay đổi có audit và không xuyên tenant."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/113",
+          "https://github.com/luan20495/Xweb01fe/pull/71"
+        ]
       }
     },
     {
@@ -371,35 +504,54 @@
       "integrated": true,
       "qa": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
       "prs": "BE #109/#115",
-      "summary": "Sổ ngân sách bật 19:25 giờ VN; đã tính tiền một lượt Haiku đúng trong ledger",
-      "next": "Hoàn tất các trường hợp từ chối, giới hạn và chạy song song thực tế",
+      "summary": "Ledger ON và từng có lượt settled thật; chưa kiểm đủ HTTP reject, race concurrent requests, idempotency/reconcile khi provider timeout.",
+      "next": "Hai yêu cầu đồng thời không chi vượt mức cấp.",
       "work": {
-        "problem": "Ledger đã ghi một lượt AI; trường hợp từ chối thật và đua đồng thời chưa đủ.",
-        "approach": "Hoàn thiện negative/concurrency E2E và đối soát sổ chi tiêu.",
+        "problem": "Ledger ON và từng có lượt settled thật; chưa kiểm đủ HTTP reject, race concurrent requests, idempotency/reconcile khi provider timeout.",
+        "approach": "Chứng minh bất biến ledger reserve → settle/release, không vượt khoản cấp dưới tải đồng thời, không nhân đôi phí sau retry.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Bổ sung idempotency, giới hạn và reject cases",
+            "text": "Kiểm tra reservation, atomicity và phân bổ theo user/workspace/project",
             "state": "VERIFY",
-            "textEn": "Test caps, denial and idempotency"
-          },
-          {
-            "team": "FE",
-            "text": "Hiển thị trạng thái ngân sách rõ",
-            "state": "VERIFY",
-            "textEn": "Show budget states and errors"
+            "textEn": "Validate atomic reservations, idempotency, retry and reconciliation."
           },
           {
             "team": "QA",
-            "text": "Test race/concurrency và reject paid API",
+            "text": "Test chạy song song paid AI, negative cap, timeout và retry",
             "state": "TODO",
-            "textEn": "Run parallel requests and rejected paid calls"
+            "textEn": "Validate atomic reservations, idempotency, retry and reconciliation."
+          },
+          {
+            "team": "SEC",
+            "text": "Rà soát bypass allocation/tenant và idempotency key",
+            "state": "TODO",
+            "textEn": "Validate atomic reservations, idempotency, retry and reconciliation."
           }
         ],
         "lastEvidence": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
         "source": "BE #109/#115",
-        "problemEn": "A paid AI ledger settlement passed; live rejection and concurrency need tests.",
-        "approachEn": "Finish negative and race-condition coverage, reconcile charging."
+        "problemEn": "A real ledger settlement passed, but negative paid calls and concurrency remain unverified.",
+        "approachEn": "Validate atomic reservations, idempotency, retry and reconciliation.",
+        "done": [
+          "Một lượt Haiku ledger SETTLED đã được xác minh R2.",
+          "R3 sửa một số P3 liên quan nhưng negative/concurrency thật chưa được xác nhận hoàn tất."
+        ],
+        "blockers": [
+          "E2E rejected paid request/concurrency/unknown outcome còn NOT_RUN theo release log."
+        ],
+        "blockersEn": [
+          "Live concurrency/rejection cases remain NOT_RUN."
+        ],
+        "acceptance": [
+          "Hai yêu cầu đồng thời không chi vượt mức cấp.",
+          "403/409/429 và timeout không tạo settled/release sai.",
+          "Có báo cáo đối soát holds và audit."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/109",
+          "https://github.com/luan20495/xweb01/pull/115"
+        ]
       }
     },
     {
@@ -412,35 +564,61 @@
       "integrated": true,
       "qa": "QA/SEC R2 PASS; API PROD trả 200",
       "prs": "BE #112/#119 · FE #73/#76 merged DEV",
-      "summary": "API và màn quản trị ngân sách đã deploy R2; auto-renew và release khoản treo vẫn OFF",
-      "next": "QA REL3 và Owner UAT; giữ các cờ tự gia hạn/spend release OFF.",
+      "summary": "Budget API ON nhưng UI REL3 mới và quyền admin chưa Owner UAT; tự gia hạn cửa sổ và giải phóng khoản treo vẫn OFF có chủ đích.",
+      "next": "Chỉ đúng admin được tạo/sửa/revoke phân bổ; audit đầy đủ.",
       "work": {
-        "problem": "API ngân sách PROD hoạt động; tự gia hạn và giải phóng khoản treo vẫn OFF.",
-        "approach": "UAT quyền quản trị và giữ cờ tài chính theo quyết định Owner.",
+        "problem": "Budget API ON nhưng UI REL3 mới và quyền admin chưa Owner UAT; tự gia hạn cửa sổ và giải phóng khoản treo vẫn OFF có chủ đích.",
+        "approach": "UAT cấp phân bổ, revoke, history và audit theo quyền; review khoản treo với OpenRouter trước mọi thao tác tài chính.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Đối chiếu ledger/automation và audit",
+            "text": "Kiểm tra budget routes, audit, nhất quán ledger",
             "state": "VERIFY",
-            "textEn": "Audit budget APIs and automation controls"
+            "textEn": "Test allocations, history and audit without changing disabled finance flags."
           },
           {
             "team": "FE",
-            "text": "Kiểm tra Platform budget UX",
+            "text": "UAT Platform tạo phân bổ, history, bulk grant và thông báo",
             "state": "VERIFY",
-            "textEn": "Review Platform budget screens"
+            "textEn": "Test allocations, history and audit without changing disabled finance flags."
           },
           {
             "team": "QA",
-            "text": "UAT báo cáo, cảnh báo và quyền admin",
+            "text": "Kiểm thử đúng role, cảnh báo gần hạn và số dư",
             "state": "TODO",
-            "textEn": "UAT alerts, approvals and admin access"
+            "textEn": "Test allocations, history and audit without changing disabled finance flags."
+          },
+          {
+            "team": "SEC",
+            "text": "Kiểm thử quyền admin và ngăn tự tăng khoản cấp",
+            "state": "TODO",
+            "textEn": "Test allocations, history and audit without changing disabled finance flags."
           }
         ],
         "lastEvidence": "QA/SEC R2 PASS; API PROD trả 200",
-        "source": "BE #112 · FE #73",
-        "problemEn": "Budget API is live; auto-renew and held-fund release stay OFF.",
-        "approachEn": "Verify budget administration while keeping financial flags unchanged."
+        "source": "BE #112/#119 · FE #73/#76 merged DEV",
+        "problemEn": "Budget API is live, but R3 budget administration UX and controls still require UAT.",
+        "approachEn": "Test allocations, history and audit without changing disabled finance flags.",
+        "done": [
+          "R2 API budget PROD 200; R3 Platform F1/F2 UI nâng cấp.",
+          "Không tự tăng cap hay tự giải phóng hold."
+        ],
+        "blockers": [
+          "Owner UAT UI/permissions R3 chưa có bằng chứng.",
+          "Khoản treo cần đối chiếu nhà cung cấp; không tự release."
+        ],
+        "blockersEn": [
+          "Owner UAT and reconciliation of held funds pending."
+        ],
+        "acceptance": [
+          "Chỉ đúng admin được tạo/sửa/revoke phân bổ; audit đầy đủ.",
+          "UI hiển thị balance và kỳ hạn khớp API.",
+          "Flags renewal/release vẫn OFF khi chưa được duyệt."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/112",
+          "https://github.com/luan20495/Xweb01fe/pull/76"
+        ]
       }
     },
     {
@@ -453,41 +631,62 @@
       "integrated": false,
       "qa": "QA-R3 no blocker; 101 B3 checks; paid AI allocation flow NOT_RUN",
       "prs": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync",
-      "summary": "B3 backend xin/duyệt ngân sách đã deploy R3, flag OFF; chưa bật hoặc UAT; UI Studio/paid turn NOT_RUN.",
-      "next": "Chờ Owner GO bật B3 sau safety gates; kiểm thử Studio UI, lượt AI thật và hết hạn.",
+      "summary": "B3 API/migration V78 đã deploy R3 nhưng cờ OFF. Bật ngay có thể khiến project chưa có allocation không chạy AI dù workspace đã được cấp.",
+      "next": "Dự án thiếu allocation hiển thị thông báo và yêu cầu ngân sách rõ.",
       "work": {
-        "problem": "BE B3 đã merge DEV, còn test package đỏ và chưa có E2E FE–BE/PROD.",
-        "approach": "Hoàn thiện API xin/duyệt ngân sách, tích hợp vào Studio.",
+        "problem": "B3 API/migration V78 đã deploy R3 nhưng cờ OFF. Bật ngay có thể khiến project chưa có allocation không chạy AI dù workspace đã được cấp.",
+        "approach": "Lập danh sách project cần phân bổ và hiệu ứng bật cờ; UAT luồng đề nghị/duyệt/hết hạn rồi mới xin GO, không tự bật.",
         "tasks": [
           {
             "team": "BE",
-            "text": "API request/approve/reject và audit",
+            "text": "Audit B3 API V78, approval và quyền trên project",
             "state": "VERIFY",
-            "textEn": "Build audited request/approve/reject endpoints"
+            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
             "team": "FE",
-            "text": "Kết nối form Studio với API",
-            "state": "TODO",
-            "textEn": "Connect Studio form to API"
+            "text": "Nối Studio với B3 route + hiển thị cảnh báo khóa AI",
+            "state": "VERIFY",
+            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
             "team": "QA",
-            "text": "Kiểm thử đủ quyền, workflow và giới hạn",
+            "text": "E2E cấp ngân sách riêng, request/approve/reject/expire, real paid turn",
             "state": "TODO",
-            "textEn": "Test roles, workflow and caps"
+            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           },
           {
-            "team": "QA",
-            "text": "Xác minh FE–BE runtime sau đồng bộ BE #123; combined-check GREEN không thay thế E2E",
-            "textEn": "Verify FE–BE runtime after BE #123 sync; combined-check GREEN is not E2E",
-            "state": "VERIFY"
+            "team": "OWNER",
+            "text": "Duyệt danh sách khoản cấp và quyết định bật B3",
+            "state": "TODO",
+            "textEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization."
           }
         ],
-        "lastEvidence": "RELEASE_LOG dev R3 PROD 03:41–03:44, B3 OFF",
-        "source": "BE #122 · FE #67 · BE #123",
-        "problemEn": "B3 backend merged to DEV; one package test failure and FE–BE/PROD E2E remain unverified.",
-        "approachEn": "Complete budget request/approval API and wire Studio UI."
+        "lastEvidence": "QA-R3 no blocker; 101 B3 checks; paid AI allocation flow NOT_RUN",
+        "source": "BE #122 merged DEV · FE #67/#77 merged DEV (FE #77: docs/i18n only) · BE #123 DEV integration sync",
+        "problemEn": "B3 code is deployed but flag OFF; enabling may block existing projects without allocations.",
+        "approachEn": "Prepare per-project allocations, confirm workflow and get explicit owner authorization.",
+        "done": [
+          "BE #122 đã có trong R3; route B3 trả 404 khi OFF là đúng dự kiến.",
+          "FE #67 có giao diện xin ngân sách code-only trước đó."
+        ],
+        "blockers": [
+          "Chưa Owner GO và chưa chuẩn bị allocation cho từng project.",
+          "QA paid turn theo B3, Studio UI, expiration E2E NOT_RUN."
+        ],
+        "blockersEn": [
+          "Owner GO and real paid budget-request E2E are pending."
+        ],
+        "acceptance": [
+          "Dự án thiếu allocation hiển thị thông báo và yêu cầu ngân sách rõ.",
+          "Duyệt/reject chỉ đúng vai trò; dự án được cấp mới gọi AI.",
+          "Hết hạn/thiếu ngân sách fail-closed; bật/tắt có rollback."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/122",
+          "https://github.com/luan20495/Xweb01fe/pull/67",
+          "https://github.com/luan20495/xweb01/issues/87"
+        ]
       }
     },
     {
@@ -500,41 +699,59 @@
       "integrated": false,
       "qa": "Chưa hoàn tất",
       "prs": "FE #60 · Master #88",
-      "summary": "Wizard import Excel/CSV, mapping cột, preview/dry-run và kết nối API cho Công ty/Org",
-      "next": "Hoàn thiện FE UX13 và luồng import/sync có duyệt",
+      "summary": "Admin nguồn dữ liệu và Studio Dữ liệu còn chưa có luồng hoàn chỉnh cho người không kỹ thuật: kết nối, import Org/Company, mapping, preview và xử lý lỗi.",
+      "next": "Người dùng không kỹ thuật hoàn tất import Excel/CSV không cần sửa code.",
       "work": {
-        "problem": "Wizard nhập Org/Company và hướng dẫn nguồn dữ liệu chưa hoàn thiện.",
-        "approach": "Thiết kế import Excel/CSV, mapping cột, dry-run, xác nhận và API.",
+        "problem": "Admin nguồn dữ liệu và Studio Dữ liệu còn chưa có luồng hoàn chỉnh cho người không kỹ thuật: kết nối, import Org/Company, mapping, preview và xử lý lỗi.",
+        "approach": "Hoàn thiện wizard 4 bước chọn nguồn → mapping → dry-run → duyệt/đồng bộ, hỗ trợ file và API với bảo vệ quyền.",
         "tasks": [
           {
             "team": "BA",
-            "text": "Chốt luồng người dùng không kỹ thuật",
+            "text": "Chốt luồng nguồn dữ liệu, lỗi thường gặp và mẫu import",
             "state": "TODO",
-            "textEn": "Define nontechnical user journey"
+            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           },
           {
             "team": "FE",
-            "text": "Wizard mapping và preview lỗi theo dòng",
-            "state": "TODO",
-            "textEn": "Implement mapping/preview UI"
+            "text": "Hoàn thiện FE PR #60, wizard preview/mapping/approve",
+            "state": "VERIFY",
+            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           },
           {
             "team": "BE",
-            "text": "API validate/import và kết nối nguồn",
+            "text": "Nối validate/import/API sync với effective IAM",
             "state": "TODO",
-            "textEn": "Create import validation and sync APIs"
+            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           },
           {
             "team": "QA",
-            "text": "Test file sai, rollback và mobile",
+            "text": "Test Excel/CSV sai, API lỗi, mobile và song ngữ",
             "state": "TODO",
-            "textEn": "Test invalid files, rollback and mobile"
+            "textEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX."
           }
         ],
         "lastEvidence": "Chưa hoàn tất",
         "source": "FE #60 · Master #88",
-        "problemEn": "Company/Org import wizard and source onboarding are unfinished.",
-        "approachEn": "Provide upload, mapping, preview, validation, approval and API sync."
+        "problemEn": "Source wizard is incomplete and FE PR #60 is still draft.",
+        "approachEn": "Finish Excel/CSV/API mapping, preview, approval and accessible responsive UX.",
+        "done": [
+          "FE PR #60 có bản nháp UX13, chưa merge DEV hoặc PROD."
+        ],
+        "blockers": [
+          "FE #60 vẫn DRAFT; thiếu E2E BE/API và nghiệm thu thực."
+        ],
+        "blockersEn": [
+          "Missing merged FE and integrated backend acceptance."
+        ],
+        "acceptance": [
+          "Người dùng không kỹ thuật hoàn tất import Excel/CSV không cần sửa code.",
+          "Mapping hiển thị lỗi theo hàng và diff trước ghi thật.",
+          "Theme sáng/tối, VI/EN và mobile dùng được, IAM đúng."
+        ],
+        "refs": [
+          "https://github.com/luan20495/Xweb01fe/pull/60",
+          "https://github.com/luan20495/xweb01/issues/86"
+        ]
       }
     },
     {
@@ -547,41 +764,66 @@
       "integrated": false,
       "qa": "PR #121 báo 117 test targeted PASS; full regression/mutation sau sync chưa chạy",
       "prs": "BE #121 OPEN (X2/X5) · Master #88/#86",
-      "summary": "BE X2 catalog + X5 AI Context đã có PR #121 đang mở; 117 test post-merge sync PASS theo PR, chưa merge DEV/PROD.",
-      "next": "Review #121, QA toàn diện và SEC tenant/IAM; bổ sung FE danh mục và import Company/Org; chưa có PROD.",
+      "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
+      "next": "Company mẹ→con→cháu→chắt không hardcode độ sâu.",
       "work": {
-        "problem": "Danh mục Company–Org chưa hỗ trợ đầy đủ cây mẹ/con/cháu và nhập API/file.",
-        "approach": "Thiết kế Company tree không giới hạn cấp và OrgUnit tree riêng, đồng bộ file/API.",
+        "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
+        "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
         "tasks": [
           {
             "team": "BA",
-            "text": "Chốt model Company/OrgUnit và mẫu import",
+            "text": "Chốt schema, template file và quyền mỗi cấp",
             "state": "TODO",
-            "textEn": "Define Company/OrgUnit model and templates"
+            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           },
           {
             "team": "BE",
-            "text": "Schema cây, API sync, chống vòng lặp/cross-tenant",
+            "text": "Hoàn thiện BE #121, Company/OrgUnit CRUD, validated import/API",
             "state": "VERIFY",
-            "textEn": "Implement tree, sync and tenant isolation"
+            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           },
           {
             "team": "FE",
-            "text": "Danh mục và cây nhiều cấp; import wizard",
+            "text": "Làm giao diện cây, tìm kiếm và import wizard",
             "state": "TODO",
-            "textEn": "Implement hierarchy and import UI"
+            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
+          },
+          {
+            "team": "SEC",
+            "text": "Kiểm thử chuyển cha, cross-tenant, phân quyền con cháu",
+            "state": "TODO",
+            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           },
           {
             "team": "QA",
-            "text": "Test ≥6 cấp, parent missing, import/export",
+            "text": "E2E Company/Org 6+ cấp, diff và rollback",
             "state": "TODO",
-            "textEn": "Test 6+ levels, missing parents and cycles"
+            "textEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation."
           }
         ],
         "lastEvidence": "PR #121 báo 117 test targeted PASS; full regression/mutation sau sync chưa chạy",
-        "source": "BE PR #121 · Master #88/#86",
-        "problemEn": "Unlimited company hierarchy and Org import/API are not complete.",
-        "approachEn": "Separate Company and OrgUnit trees with safe multi-level import and API sync."
+        "source": "BE #121 OPEN (X2/X5) · Master #88/#86",
+        "problemEn": "System catalog X2/X5 is draft PR #121; company/org hierarchy and import/API are not proven.",
+        "approachEn": "Separate Company/OrgUnit trees, validate import/sync and tenant isolation.",
+        "done": [
+          "BE PR #121 đã có code draft và targeted test theo mô tả PR; chưa merge/PROD."
+        ],
+        "blockers": [
+          "PR #121 vẫn DRAFT.",
+          "Chưa có UI/QA cho cây Company và nhập Excel/API 6+ cấp."
+        ],
+        "blockersEn": [
+          "PR #121 draft; missing FE and independent QA."
+        ],
+        "acceptance": [
+          "Company mẹ→con→cháu→chắt không hardcode độ sâu.",
+          "File nhiều cấp không phụ thuộc thứ tự dòng, kiểm tra parent/cycle/tenant.",
+          "API sync được audit, preview và không xóa hàng loạt ngoài ý muốn."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/121",
+          "https://github.com/luan20495/xweb01/issues/86"
+        ]
       }
     },
     {
@@ -594,35 +836,64 @@
       "integrated": false,
       "qa": "Chưa xác minh",
       "prs": "Master #88 · Data/IAM #86",
-      "summary": "IAM theo người và công ty/đơn vị; thay đổi sơ đồ tổ chức không tự cấp quyền",
-      "next": "Kiểm thử tenant isolation, role/membership và sync dữ liệu",
+      "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
+      "next": "User A không truy vấn được dữ liệu company B bằng URL/API trực tiếp.",
       "work": {
-        "problem": "Phân quyền người xem cần gắn công ty/đơn vị và không tự mở rộng khi đổi cây.",
-        "approach": "Ràng buộc effective IAM theo tenant, company, org, record và field.",
+        "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
+        "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
         "tasks": [
           {
-            "team": "BE",
-            "text": "Kiểm tra scope SELF/TEAM và lọc ở server",
+            "team": "BA",
+            "text": "Định nghĩa ma trận self/team/company/subtree/role và tình huống multi-company",
             "state": "TODO",
-            "textEn": "Validate server-side SELF/TEAM filtering"
+            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
+          },
+          {
+            "team": "BE",
+            "text": "Server-side scope policy cho list/detail/export và quyền field",
+            "state": "TODO",
+            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
           },
           {
             "team": "FE",
-            "text": "Hiển thị quyền hiệu lực rõ ràng",
+            "text": "Hiển thị thông báo thiếu quyền và scope dữ liệu phù hợp",
             "state": "TODO",
-            "textEn": "Display effective access clearly"
+            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
           },
           {
             "team": "SEC",
-            "text": "Negative tests vượt tenant và cấp quyền ngầm",
+            "text": "Negative tests IDOR, cross-tenant và cache/revocation",
             "state": "TODO",
-            "textEn": "Test tenant escapes and indirect grants"
+            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
+          },
+          {
+            "team": "QA",
+            "text": "E2E chuyển đơn vị/multiple roles và publish app",
+            "state": "TODO",
+            "textEn": "Enforce per-request tenant/company/org/row/field authorization at the server."
           }
         ],
         "lastEvidence": "Chưa xác minh",
         "source": "Master #88 · Data/IAM #86",
-        "problemEn": "Viewer access needs company/org scope without implicit privilege gain.",
-        "approachEn": "Enforce effective row/field permissions by tenant and membership."
+        "problemEn": "Viewer data may cross company/org boundaries without fully validated effective scoping.",
+        "approachEn": "Enforce per-request tenant/company/org/row/field authorization at the server.",
+        "done": [
+          "Đã có yêu cầu IAM chi tiết ở #86/#88; chưa tìm thấy PR hoàn tất X3 riêng."
+        ],
+        "blockers": [
+          "Thiếu BE+FE integration và SEC negative tests."
+        ],
+        "blockersEn": [
+          "No complete BE/FE + security E2E verified."
+        ],
+        "acceptance": [
+          "User A không truy vấn được dữ liệu company B bằng URL/API trực tiếp.",
+          "Thu hồi hoặc đổi org có hiệu lực, không dùng cache quyền cũ.",
+          "Danh sách/chi tiết/export đều cùng scope và không leak metadata."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/issues/86"
+        ]
       }
     },
     {
@@ -635,35 +906,82 @@
       "integrated": false,
       "qa": "Chưa xác minh",
       "prs": "Chưa xác minh",
-      "summary": "Write-back REST cần gate dữ liệu",
-      "next": "Hoàn thiện và kiểm toán",
+      "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
+      "next": "Admin chỉ định nguồn và từng operation POST/PUT/PATCH/DELETE được phép; mặc định DENY.",
       "work": {
-        "problem": "Ghi dữ liệu qua REST chưa được chứng minh đủ gate an toàn.",
-        "approach": "Approved operation CRUD, kiểm tra quyền, idempotency và xác nhận xóa.",
+        "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
+        "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
         "tasks": [
           {
-            "team": "BE",
-            "text": "Runtime CRUD có policy, audit và rollback",
+            "team": "BA",
+            "text": "Định nghĩa CRUD use cases, schema, ownership, rule xác nhận/duyệt và fallback",
             "state": "TODO",
-            "textEn": "Build guarded CRUD and audit trail"
+            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+          },
+          {
+            "team": "BE",
+            "text": "ActionRuntime REST có operation allow-list, outbound SSRF guard và quản lý credential",
+            "state": "TODO",
+            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+          },
+          {
+            "team": "BE",
+            "text": "Ràng buộc IAM tenant/user/row/field, validate payload và idempotency/rollback",
+            "state": "TODO",
+            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "FE",
-            "text": "Form tạo/sửa/xóa có xác nhận",
+            "text": "Giao diện Admin duyệt operation và Studio binding các action ghi",
             "state": "TODO",
-            "textEn": "Build authorized edit/delete forms"
+            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+          },
+          {
+            "team": "FE",
+            "text": "Form create/edit/delete có quyền, thông báo lỗi và xác nhận xóa",
+            "state": "TODO",
+            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           },
           {
             "team": "SEC",
-            "text": "Test unauthorized write, replay, CSRF",
+            "text": "Test IDOR, SSRF, field tampering, replay, CSRF, credential leakage",
             "state": "TODO",
-            "textEn": "Test unauthorized writes, replay and CSRF"
+            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
+          },
+          {
+            "team": "QA",
+            "text": "E2E create/update/delete và case deny, concurrent retry, publish app",
+            "state": "TODO",
+            "textEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete."
           }
         ],
         "lastEvidence": "Chưa xác minh",
         "source": "Chưa xác minh",
-        "problemEn": "Approved REST writes lack complete safety evidence.",
-        "approachEn": "Enforce CRUD policy, approval, audit, idempotency and deletion consent."
+        "problemEn": "Existing Phase 3.2 source slots are read-only; approved REST write operations are not verified.",
+        "approachEn": "Implement authorized server-side CRUD ActionRuntime with validation, audit, idempotency and safe delete.",
+        "done": [
+          "Phase 3.2 có contract đọc nguồn được phê duyệt và UI dữ liệu cơ bản.",
+          "Issue #86 đã mô tả yêu cầu CRUD, chưa xác minh PR X4 triển khai end-to-end."
+        ],
+        "blockers": [
+          "Chưa xác minh BE ActionRuntime có policy ghi theo operation + row/field.",
+          "Chưa có FE tạo/sửa/xóa thật dùng contract write.",
+          "Chưa có SEC negative tests và QA E2E write; cờ vẫn OFF."
+        ],
+        "blockersEn": [
+          "No confirmed full X4 backend, UI or security E2E."
+        ],
+        "acceptance": [
+          "Admin chỉ định nguồn và từng operation POST/PUT/PATCH/DELETE được phép; mặc định DENY.",
+          "POST/PATCH hợp lệ thay đổi đúng bản ghi thuộc tenant; field cấm bị 403, ghi ngoài scope bị chặn.",
+          "DELETE có xác nhận và duyệt theo rủi ro; retry cùng key không tạo ghi trùng.",
+          "Audit actor/operation/record/result, che credential; lỗi/timeouts có phương án đối soát/rollback.",
+          "QA thực tế từ AI Studio → Preview → app đã publish; có test quyền sau thu hồi."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/issues/86",
+          "https://github.com/luan20495/xweb01/issues/88"
+        ]
       }
     },
     {
@@ -676,35 +994,60 @@
       "integrated": false,
       "qa": "PR #121 báo targeted context tests PASS; chưa E2E AI thực",
       "prs": "BE #121 OPEN · Master #88",
-      "summary": "AI system context trong BE PR #121, chưa merge DEV; chưa chứng minh AI Studio thực đọc schema và operation.",
-      "next": "Review/merge có gate; E2E Studio Preview/Publish, IAM, FE và QA độc lập.",
+      "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
+      "next": "AI sinh app dùng approved source/alias, không yêu cầu secret.",
       "work": {
-        "problem": "AI chưa được chứng minh hiểu catalog/schema/operation của nguồn nội bộ.",
-        "approach": "Đưa schema và quyền được duyệt vào AI context, chỉ gọi operation hợp lệ.",
+        "problem": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
+        "approach": "Chỉ inject nguồn/mẫu schema sanitized theo effective IAM vào Context Builder, có trace provenance và test không tiết lộ PII.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Kết nối schema/operation vào Context Builder",
+            "text": "Rà PR #121, context schema/operation theo approved scope",
             "state": "VERIFY",
-            "textEn": "Supply schema/operations to Context Builder"
+            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
           },
           {
             "team": "FE",
-            "text": "Chọn nguồn và xem quyền trong Studio",
+            "text": "Cho người dùng chọn nguồn, quyền và trạng thái tại Studio",
             "state": "TODO",
-            "textEn": "Allow source selection and permission preview"
+            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
+          },
+          {
+            "team": "SEC",
+            "text": "Test prompt injection/cross-tenant schema leakage",
+            "state": "TODO",
+            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
           },
           {
             "team": "QA",
-            "text": "Test prompt tạo app và dữ liệu Preview/Publish",
+            "text": "E2E AI dựng app bằng nguồn nội bộ và publish",
             "state": "TODO",
-            "textEn": "Test app generation and Preview/Publish scope"
+            "textEn": "Inject only approved sanitized schema/operations; test actual generated apps."
           }
         ],
         "lastEvidence": "PR #121 báo targeted context tests PASS; chưa E2E AI thực",
-        "source": "BE PR #121",
-        "problemEn": "AI understanding of internal data has insufficient proof.",
-        "approachEn": "Pass only approved schemas, operations and effective rights to AI."
+        "source": "BE #121 OPEN · Master #88",
+        "problemEn": "AI system-source context is in draft PR #121 and not in R3.",
+        "approachEn": "Inject only approved sanitized schema/operations; test actual generated apps.",
+        "done": [
+          "BE PR #121 đã viết catalog + AI context theo mô tả; chưa merge.",
+          "Không có bằng chứng real AI Studio E2E của X5."
+        ],
+        "blockers": [
+          "BE #121 DRAFT; FE picker và QA real AI NOT_RUN."
+        ],
+        "blockersEn": [
+          "PR draft; no real AI Studio Preview/Publish test."
+        ],
+        "acceptance": [
+          "AI sinh app dùng approved source/alias, không yêu cầu secret.",
+          "Không thấy nguồn cấm hoặc field thuộc tenant khác.",
+          "Preview/Publish đọc đúng dữ liệu thật, audit operation."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/pull/121",
+          "https://github.com/luan20495/xweb01/issues/86"
+        ]
       }
     },
     {
@@ -717,35 +1060,59 @@
       "integrated": false,
       "qa": "Chưa hoàn thiện",
       "prs": "Chưa xác minh",
-      "summary": "Bản đồ và bộ nhớ dài hạn dự án",
-      "next": "Hoàn thiện backlog",
+      "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
+      "next": "Project map cập nhật khi sửa/đổi tên file/route.",
       "work": {
-        "problem": "Project Map và Memory dài hạn chưa xác nhận hoàn thiện.",
-        "approach": "Thiết kế bản đồ mã nguồn và trí nhớ thay đổi có version/IAM.",
+        "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
+        "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Project map và memory gắn commit/job",
+            "text": "Build project map route/component/API/permission graph incremental",
             "state": "TODO",
-            "textEn": "Build project map and versioned memory"
+            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
+          },
+          {
+            "team": "BE",
+            "text": "Tạo persistent project decisions/memory với version và IAM",
+            "state": "TODO",
+            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
           },
           {
             "team": "FE",
-            "text": "UI xem lịch sử và ngữ cảnh",
+            "text": "Hiển thị lịch sử/context và nguồn AI dùng cho từng lượt",
             "state": "TODO",
-            "textEn": "Show context and history UI"
+            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
           },
           {
             "team": "QA",
-            "text": "Test prompt nhiều lượt và tránh memory leak",
+            "text": "E2E 12+ trang, 10 edits liên tục, reload và rào dữ liệu",
             "state": "TODO",
-            "textEn": "Test multi-turn context and data isolation"
+            "textEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall."
           }
         ],
         "lastEvidence": "Chưa hoàn thiện",
         "source": "Chưa xác minh",
-        "problemEn": "Project map and long-term memory are not verified complete.",
-        "approachEn": "Version source context and memory by project, job and permissions."
+        "problemEn": "Project Map/Memory is not verified; AI can miss prior workflow decisions across turns.",
+        "approachEn": "Persist revision-aware project graph and scoped decisions, prove multi-turn recall.",
+        "done": [
+          "Context Selector A/C đã ON, không đồng nghĩa Project Map/Memory B/E đã hoàn thành."
+        ],
+        "blockers": [
+          "Chưa có PR E2E B/E được xác minh.",
+          "Chưa có QA 10 lượt sửa liên tục không quên nghiệp vụ."
+        ],
+        "blockersEn": [
+          "No validated project-memory E2E."
+        ],
+        "acceptance": [
+          "Project map cập nhật khi sửa/đổi tên file/route.",
+          "AI nhớ workflow đã xác nhận qua 10 lần sửa và reload.",
+          "Không ghép memory giữa tenant/project; có revision và provenance."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/issues/88"
+        ]
       }
     },
     {
@@ -758,35 +1125,64 @@
       "integrated": false,
       "qa": "Chưa có bằng chứng hoàn tất",
       "prs": "Master #88",
-      "summary": "Hướng dẫn tích hợp dữ liệu bằng AI; kiểm tra đồng bộ giao diện tối/sáng và Việt/Anh trên 5 web",
-      "next": "Hoàn thiện tích hợp và nghiệm thu từng phần",
+      "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
+      "next": "Kết nối thử REST/GraphQL bằng wizard, có báo lỗi và quyền rõ.",
       "work": {
-        "problem": "Tích hợp dữ liệu bằng AI và theme/i18n trên các cổng còn thiếu bằng chứng.",
-        "approach": "Dùng approved connector, kiểm tra UX sáng/tối và tiếng Việt/Anh.",
+        "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
+        "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
         "tasks": [
           {
             "team": "BE",
-            "text": "Adapter nguồn và hợp đồng API được duyệt",
+            "text": "Data Specialist/connector tool schema discovery dưới IAM và quota",
             "state": "TODO",
-            "textEn": "Implement approved adapter contracts"
+            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           },
           {
             "team": "FE",
-            "text": "Theme/i18n và hướng dẫn kết nối",
+            "text": "Theme tokens và ngôn ngữ đồng nhất tất cả portal",
             "state": "TODO",
-            "textEn": "Implement theme/i18n and onboarding UI"
+            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
+          },
+          {
+            "team": "FE",
+            "text": "Wizard kết nối API có preview mapping, lỗi rõ",
+            "state": "TODO",
+            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
+          },
+          {
+            "team": "SEC",
+            "text": "Test credential/SSRF/tenant, không đưa secret vào AI",
+            "state": "TODO",
+            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           },
           {
             "team": "QA",
-            "text": "E2E 5 portal và khả năng truy cập",
+            "text": "5 portal × 3 theme × 2 locale, mobile/desktop và connector E2E",
             "state": "TODO",
-            "textEn": "Test five portals and accessibility"
+            "textEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX."
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
         "source": "Master #88",
-        "problemEn": "AI source integration and multi-theme/i18n need cross-portal validation.",
-        "approachEn": "Use approved connectors and accessible light/dark Vietnamese/English UI."
+        "problemEn": "AI data connector onboarding and complete theme/i18n across five portals lack evidence.",
+        "approachEn": "Integrate secure source-discovery tools and shared light/dark/VI/EN UX.",
+        "done": [
+          "Yêu cầu Owner cho DEV trên #88; chưa có QA xác nhận mọi portal."
+        ],
+        "blockers": [
+          "Không có E2E kết nối nguồn đầy đủ và matrix theme/locale trên 5 portal."
+        ],
+        "blockersEn": [
+          "Cross-portal QA matrix incomplete."
+        ],
+        "acceptance": [
+          "Kết nối thử REST/GraphQL bằng wizard, có báo lỗi và quyền rõ.",
+          "VI/EN hoàn chỉnh ở form, modal, toast, empty/error state.",
+          "System theme theo OS, lưu lựa chọn, chữ dễ đọc trên iPhone và desktop."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/issues/88"
+        ]
       }
     },
     {
@@ -799,35 +1195,64 @@
       "integrated": false,
       "qa": "Chưa có bằng chứng hoàn tất",
       "prs": "Master #88",
-      "summary": "Chụp màn hình ngay trong biểu mẫu hỗ trợ, khoanh tròn, vẽ mũi tên và gửi kèm mô tả",
-      "next": "Tích hợp widget hiện có và kiểm thử quyền riêng tư",
+      "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
+      "next": "Chụp ảnh, khoanh, vẽ mũi tên, undo và gửi thành công.",
       "work": {
-        "problem": "Widget báo lỗi cần chụp màn hình và đánh dấu trực tiếp.",
-        "approach": "Thêm công cụ ảnh, chú thích, gửi bản ghi có audit và giới hạn dữ liệu.",
+        "problem": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
+        "approach": "Tái sử dụng widget feedback; chụp/annotate cục bộ trước khi gửi, preview/redact, upload theo quyền và lưu liên kết ticket.",
         "tasks": [
           {
-            "team": "FE",
-            "text": "Chụp ảnh, khoanh/vẽ mũi tên, xem trước",
+            "team": "UX",
+            "text": "Chốt overlay, thao tác bút/chạm, che vùng nhạy cảm",
             "state": "TODO",
-            "textEn": "Capture and annotate screenshots"
+            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
+          },
+          {
+            "team": "FE",
+            "text": "Canvas annotation + ảnh preview và nút undo/redact",
+            "state": "TODO",
+            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
           },
           {
             "team": "BE",
-            "text": "Nhận file và lưu phản hồi có quyền",
+            "text": "API upload bảo vệ file, size, retention, ticket link",
             "state": "TODO",
-            "textEn": "Store protected feedback and files"
+            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
           },
           {
             "team": "SEC",
-            "text": "Kiểm tra che dữ liệu nhạy cảm và kích thước",
+            "text": "Test XSS/file validation/privacy giữa tenant",
             "state": "TODO",
-            "textEn": "Test redaction, size limits and privacy"
+            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
+          },
+          {
+            "team": "QA",
+            "text": "E2E desktop/mobile, touch và gửi feedback có ảnh",
+            "state": "TODO",
+            "textEn": "Build capture/annotate/redact/upload workflow with privacy checks."
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
         "source": "Master #88",
-        "problemEn": "Bug reporting needs screenshot capture and annotation.",
-        "approachEn": "Provide crop/draw/arrow attachments with protected report storage."
+        "problemEn": "In-page screenshot annotation and protected upload are not verified.",
+        "approachEn": "Build capture/annotate/redact/upload workflow with privacy checks.",
+        "done": [
+          "Widget feedback hiện có từ các giai đoạn trước; tính năng annotation P0-18 chưa xác nhận hoàn tất."
+        ],
+        "blockers": [
+          "Chưa có PR/QA thực tế cho chụp và vẽ annotation."
+        ],
+        "blockersEn": [
+          "No verified annotation E2E."
+        ],
+        "acceptance": [
+          "Chụp ảnh, khoanh, vẽ mũi tên, undo và gửi thành công.",
+          "Không thu thập token/sensitive data tự động; upload đúng tenant/retention.",
+          "Mất mạng giữ bản nháp, retry không tạo ticket trùng."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/issues/88"
+        ]
       }
     },
     {
@@ -840,36 +1265,60 @@
       "integrated": false,
       "qa": "Chưa có bằng chứng hoàn tất",
       "prs": "Master #88",
-      "summary": "Bố cục Edit tập trung prompt và preview, giao diện dễ nhìn, linh hoạt theo màn hình",
-      "next": "Hoàn thiện UX và kiểm thử desktop/mobile",
+      "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
+      "next": "Mặc định ~30% chat/70% preview, kéo thay đổi và nhớ layout.",
       "work": {
-        "problem": "Workspace Edit Studio còn cần tối ưu prompt-first trên desktop/mobile.",
-        "approach": "Thiết kế layout tối giản, context panel và Preview phản hồi.",
+        "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
+        "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
         "tasks": [
           {
             "team": "UX",
-            "text": "Luồng thao tác theo chuẩn dễ dùng",
+            "text": "Thiết kế responsive layout, trạng thái và mẫu lỗi",
             "state": "TODO",
-            "textEn": "Specify accessible user journey"
+            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
           },
           {
             "team": "FE",
-            "text": "Triển khai layout và responsive",
+            "text": "Splitter resizable, lưu theo user/project, reset layout",
             "state": "TODO",
-            "textEn": "Implement adaptive Studio layout"
+            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
+          },
+          {
+            "team": "FE",
+            "text": "Overflow menu Data/Code/History/Logs/Settings, preview ưu tiên",
+            "state": "TODO",
+            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
           },
           {
             "team": "QA",
-            "text": "UAT keyboard, mobile, reload và focus",
+            "text": "Real-browser keyboard/touch/mobile, reload và preview snapshot",
             "state": "TODO",
-            "textEn": "UAT mobile, keyboard, reload and focus"
+            "textEn": "Implement resizable panes, persistent layout and keyboard/mobile support."
           }
         ],
         "lastEvidence": "Chưa có bằng chứng hoàn tất",
         "source": "Master #88",
-        "problemEn": "Edit Studio needs a cleaner responsive prompt-first workspace.",
-        "approachEn": "Improve prompt, Preview, inspectors, keyboard and mobile layout."
+        "problemEn": "Edit Studio responsive prompt/preview workspace has not passed real UX acceptance.",
+        "approachEn": "Implement resizable panes, persistent layout and keyboard/mobile support.",
+        "done": [
+          "Đã có yêu cầu thiết kế và GO triển khai DEV ở Master #88; chưa có bằng chứng QA hoàn tất."
+        ],
+        "blockers": [
+          "Chưa xác minh FE PR và QA visual/keyboard trên các thiết bị."
+        ],
+        "blockersEn": [
+          "No validated responsive visual QA."
+        ],
+        "acceptance": [
+          "Mặc định ~30% chat/70% preview, kéo thay đổi và nhớ layout.",
+          "Màn mobile hiển thị hợp lý, không mất draft/AI job sau reload.",
+          "Keyboard splitter/focus/zoom không vỡ; light/dark theo chính sách Studio."
+        ],
+        "refs": [
+          "https://github.com/luan20495/xweb01/issues/88"
+        ]
       }
     }
-  ]
+  ],
+  "detailUpdatedAt": "2026-11-06"
 }
