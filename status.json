@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T13:33:12+07:00",
+  "asOf": "2026-11-06T14:25:46+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -29,6 +29,15 @@
       "backendSha": "ade1e1bee824c7ac522fa9f9cb6c730ce102886a",
       "frontendSha": "bae5a0c31896f66f97740f571245ab6a52246fed",
       "notes": "RELEASE_LOG dev: PROD 03:41–03:44 VN; 17 container healthy, Flyway V78/V79/V84, 5 portal smoke. B3/Q1 flags OFF tại thời điểm deploy; Q1 ON sau đó lúc 08:04 06/11 (không đổi mã, queue bị AI_SPEND_EXPIRED); X2/X5 chưa phát hành. QA-R3 no blockers, nhiều E2E NOT_RUN; SEC-R3 no P0/P1/P2. Main release log chưa đồng bộ."
+    },
+    {
+      "id": "R4a",
+      "label": "Đợt 4a",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-06T14:20:00+07:00",
+      "backendSha": "7c30bae62e495bf8c978a89b2f3f04b042d21bb9",
+      "frontendSha": "5e13dd1f02adb360256c971333b6290984ed8187",
+      "notes": "Sửa R37-ENT-1 (quyền AI theo dự án), hủy hàng đợi, hạn mức build trước khi giữ chỗ tiền, hủy lượt tính theo chi phí nhà cung cấp, P3 SEC-R3 (BE #127) + FE B3/F3 (FE #80, tab Platform Yêu cầu ngân sách). Deploy 14:18–14:20 VN; QA/SEC độc lập #127 và #80 GATE-PASS-WITH-CONDITIONS, không P0–P2; 17 container, 0 lỗi API, Flyway V84 (không migration), smoke 5 cổng OK. Không bật cờ mới; AI_BUDGET_REQUESTS vẫn OFF (ai-budget 404). Rollback: env sao lưu + bản cũ chạy được trên DB hiện tại. Hành vi quyền PROJECT và luồng B3 thật trên PROD: NOT_RUN."
     }
   ],
   "features": [
@@ -865,10 +874,10 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "FE-B3 agent: 4878 unit PASS, 8 SKIP; 311 related specs PASS; QA/SEC độc lập #80 RUNNING, CHƯA PASS",
-      "prs": "BE #122 merged, FE #67 merged · FE R4 PR #80 head 8167e129 (code complete/CLEAN; QA pending)",
+      "qa": "QA/SEC độc lập FE #80: GATE-PASS-WITH-CONDITIONS (không P0–P2, 7 P3); smoke PROD cờ OFF đạt; luồng B3 trên PROD thật NOT_RUN (cờ OFF)",
+      "prs": "BE #122 merged · FE #67, #80 merged và đã deploy PROD (R4a)",
       "summary": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
-      "next": "Chờ QA/SEC độc lập PR #80 đạt, merge dev, deploy FE theo gate, smoke PROD rồi mới cân nhắc bật AI_BUDGET_REQUESTS nội bộ trong test workspace cô lập để không chặn 22 dự án QA.",
+      "next": "Bật AI_BUDGET_REQUESTS nội bộ cần Owner xác nhận (hiện 0 phân bổ nên chưa chặn ai); sau đó smoke B3 đầy đủ trên PROD bằng tài khoản QA, không dùng AI trả phí; còn thiếu UI thu hồi, hộp thư workspace, chuông.",
       "work": {
         "problem": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
         "approach": "Chờ QA/SEC độc lập PR #80 đạt, merge dev, deploy FE theo gate, smoke PROD rồi mới cân nhắc bật AI_BUDGET_REQUESTS nội bộ trong test workspace cô lập để không chặn 22 dự án QA.",
@@ -943,10 +952,10 @@
         ]
       },
       "progress": {
-        "percent": 78,
+        "percent": 90,
         "basis": "estimate",
-        "note": "FE PR #80 hoàn tất CODE, CLEAN, không DRAFT; QA/SEC độc lập đang chạy. 78% vẫn là ước lượng 11:52 chưa đo lại; flag OFF.",
-        "reportedAt": "2026-11-06T13:15:00+07:00",
+        "note": "FE #80 đã deploy PROD (R4a) với cờ OFF; QA/SEC độc lập đạt có điều kiện. 90% là ước lượng: còn bật cờ + smoke B3 trên PROD thật và các phần chưa xây.",
+        "reportedAt": "2026-11-06T14:25:46+07:00",
         "codeStatus": "CODE_COMPLETE_QA_PENDING"
       }
     },
