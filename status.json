@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T12:10:44+07:00",
+  "asOf": "2026-11-06T13:05:33+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -738,7 +738,7 @@
       "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-        "approach": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
+        "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
         "tasks": [
           {
             "team": "BE",
@@ -766,8 +766,9 @@
           },
           {
             "team": "BE",
-            "text": "B2-WEB-01: đang kiểm kê + hợp đồng; phần mở rộng ~3% (ước lượng Claude), chưa có PR",
-            "state": "IN_PROGRESS"
+            "text": "B2-WEB-01: PR #128 tài liệu kiểm kê/hợp đồng đã nộp; chờ review, chưa có triển khai runtime",
+            "state": "VERIFY",
+            "textEn": "B2-WEB-01: PR #128 docs-only inventory/contract submitted; awaiting review, no runtime implementation"
           },
           {
             "team": "BE/FE",
@@ -780,10 +781,10 @@
             "state": "TODO"
           }
         ],
-        "lastEvidence": "06/11/2026 12:10 ICT — https://github.com/luan20495/xweb01/pull/128",
+        "lastEvidence": "06/11/2026 12:25 ICT (comment timestamp corrected by operator) — BE PR #128 docs-only; https://github.com/luan20495/xweb01/pull/128",
         "source": "BE #112/#119 · FE #73/#76 merged DEV",
         "problemEn": "Existing Platform budget API remains ON in PROD. REOPEN: 100% web-based AI configuration extension is not built or QA-approved yet.",
-        "approachEn": "B2-WEB-01 inventory and contract in progress, followed by 02–08 in separately gated releases.",
+        "approachEn": "B2-WEB-01 submitted docs-only PR #128; review before B2-WEB-02..08. Existing PROD behavior unchanged.",
         "done": [
           "R2 API budget PROD 200; R3 Platform F1/F2 UI nâng cấp.",
           "Không tự tăng cap hay tự giải phóng hold.",
@@ -793,13 +794,12 @@
         "blockers": [
           "Owner UAT UI/permissions R3 chưa có bằng chứng.",
           "Khoản treo cần đối chiếu nhà cung cấp; không tự release.",
-          "B2-WEB-01 chưa có PR/ma trận kiểm kê được duyệt; B2-WEB-02..08 chưa triển khai.",
           "Không tự bật auto-renew, nâng trần USD hoặc thay quyền PROD khi phát triển.",
           "B2-WEB-01 mới là tài liệu đề xuất; B2-WEB-02..08 chưa triển khai."
         ],
         "blockersEn": [
           "Owner UAT and reconciliation of held funds pending.",
-          "B2-WEB-01 is a proposed document; B2-WEB-02..08 remain unimplemented."
+          "PR #128 is docs-only and awaiting review; B2-WEB-02..08 have no verified runtime implementation."
         ],
         "acceptance": [
           "Chỉ đúng admin được tạo/sửa/revoke phân bổ; audit đầy đủ.",
@@ -1711,5 +1711,5 @@
       }
     }
   ],
-  "detailUpdatedAt": "2026-11-06"
+  "detailUpdatedAt": "2026-11-06T13:05:33+07:00"
 }
