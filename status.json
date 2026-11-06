@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T20:29:44+07:00",
+  "asOf": "2026-11-06T21:29:48+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -750,8 +750,8 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS phần đã ON; phần mở rộng B2-WEB-01..08 CHƯA QA/SEC",
-      "prs": "BE #112/#119 · docs #128 · gói 02a (dịch vụ cấu hình động) đang làm: nhánh feat/p34-b2web-02a-config-core-20261106 (V92, cờ AI_CONFIG_SERVICE TẮT)",
+      "qa": "QA/SEC R2 PASS phần đã ON; phần mở rộng B2-WEB-01..08 CHƯA QA/SEC · 02a (#142) REPORTED: 170 test 0 lỗi, mutant 12/12 (12 chưa chạy); QA/SEC độc lập đang chạy",
+      "prs": "BE #112/#119 · docs #128 · BE #142 DRAFT head b0dd5bbf (02a: dịch vụ cấu hình động, V92, cờ AI_CONFIG_SERVICE TẮT)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
       "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
       "work": {
@@ -849,9 +849,9 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC.",
-        "reportedAt": "2026-11-06T19:29:49+07:00",
+        "reportedAt": "2026-11-06T21:29:48+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
-        "extensionPercent": 3
+        "extensionPercent": 12
       },
       "extension": {
         "status": "REOPEN_IN_PROGRESS",
@@ -1055,10 +1055,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC #121+#131 r2 PASS-WITH-COND (VERIFIED); QA/SEC #94: PASS-WITH-COND, F-1 (P1 để bật cờ) đã sửa ở r2 (agent báo: spec 91/91, mutant 12/12; chưa QA lại); BE #141 đóng P3-N1 (agent báo: 15 test mới, 288 hồi quy, mutant 18/18); QA/SEC độc lập #141 đang chạy",
-      "prs": "BE #121 DEPLOYED (4e) · BE #141 CLEAN (P3-N1, chờ review độc lập) · FE #94 DRAFT head 7874d879 (F-1 đã sửa, phụ thuộc #60) · Master #88",
+      "qa": "QA/SEC #121+#131 r2 PASS-WITH-COND (VERIFIED); QA/SEC độc lập #141: GATE-PASS (VERIFIED: duyệt nguồn hệ thống cần quyền tenant, không lộ danh tính, 36 lớp 274 test 0 lỗi, mutant 8/8); QA/SEC #94: PASS-WITH-COND, F-1 đã sửa ở r2 (agent báo spec 91/91, chưa QA lại)",
+      "prs": "BE #121 DEPLOYED (4e) · BE #141 MERGED dev b93fe260 (P3-N1) · FE #94 DRAFT head 7874d879 (phụ thuộc #60) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "QA #141 → merge; #60 merge → #94 merge; smoke thật 2 quản trị tenant (10 bước); Owner duyệt bật SYSTEM_SOURCES.",
+      "next": "Owner Ready #60 → merge #94; smoke thật 2 quản trị tenant + xác nhận cờ cũ false + đọc log khởi động; Owner duyệt bật SYSTEM_SOURCES.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1127,10 +1127,10 @@
         ]
       },
       "progress": {
-        "percent": 96,
+        "percent": 97,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T20:29:44+07:00"
+        "reportedAt": "2026-11-06T21:29:48+07:00"
       }
     },
     {
@@ -1230,10 +1230,10 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "Chưa xác minh",
-      "prs": "BE #138 (hợp đồng, docs, DRAFT) · BE-X4 pha 2 đang chạy (V91, cờ TẮT, chỉ DEV)",
+      "qa": "REPORTED (agent): 4 lớp mới (CodeSourceWritesLiveTests 21...), hồi quy 136 lớp 1159 test 0 lỗi, mutant 19/20 (+1 tương đương); 3 test rộng đỏ chưa chứng minh có sẵn trên dev; QA/SEC độc lập đang chạy. NOT_RUN: FE, backend thật, S2 (DELETE, HIGH, duyệt từng yêu cầu, hoàn tác)",
+      "prs": "BE #138 DRAFT head b9c24b4a (hợp đồng + S1, V91, cờ TẮT, chỉ DEV; PROD đóng cứng bằng mã) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Cài đặt S1 (REST ngoài, tạo/sửa/gửi bản ghi đơn, rủi ro thấp/vừa), PROD đóng cứng bằng mã; kiểm DEV; QA/SEC.",
+      "next": "QA/SEC #138; sau đó S2 (V93), FE F7, mẫu srcAction cho ứng dụng sinh bởi AI; PROD chỉ khi Owner duyệt riêng.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1321,10 +1321,10 @@
         ]
       },
       "progress": {
-        "percent": 12,
+        "percent": 45,
         "basis": "estimate",
-        "note": "Hợp đồng và mô hình đe dọa xong (PR #138); mã chưa có.",
-        "reportedAt": "2026-11-06T18:19:35+07:00"
+        "note": "S1 có mã (PR #138 DRAFT), chỉ DEV; chưa QA độc lập.",
+        "reportedAt": "2026-11-06T21:29:48+07:00"
       }
     },
     {
