@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T18:44:23+07:00",
+  "asOf": "2026-11-06T19:29:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -751,7 +751,7 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC R2 PASS phần đã ON; phần mở rộng B2-WEB-01..08 CHƯA QA/SEC",
-      "prs": "BE #112/#119 · FE #73/#76 merged DEV",
+      "prs": "BE #112/#119 · docs #128 · gói 02a (dịch vụ cấu hình động) đang làm: nhánh feat/p34-b2web-02a-config-core-20261106 (V92, cờ AI_CONFIG_SERVICE TẮT)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
       "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
       "work": {
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC.",
-        "reportedAt": "2026-11-06T11:52:00+07:00",
+        "reportedAt": "2026-11-06T19:29:49+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 3
       },
@@ -977,9 +977,9 @@
       "risk": "LOW",
       "integrated": false,
       "qa": "QA độc lập vòng 2: GATE-PASS-WITH-CONDITIONS (QA chạy: unit 4966/4974, queue-modes 144/144, prompt-limit 57/57, 80 cảnh đo Send không bị che, combined-check GREEN, mutant 3/5). Điều kiện: C1 hàng đợi tạm dừng không hiện dòng nào (sửa nhỏ), C2 test thanh blocked/budget; C3/C4 đồng bộ vendored + mirror PROD_DEPLOY sau merge (C0)",
-      "prs": "FE #60 DRAFT head 42071f4 (đã gộp dev b0952327) · Master #88",
+      "prs": "FE #60 DRAFT head 560c61c (C1/C2 đã sửa, REPORTED) · Master #88",
       "summary": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
-      "next": "FE-UX13 sửa C1/C2; Owner bấm Ready; C0 merge dev, đồng bộ vendored + kiểm kê QA, deploy đợt 2.",
+      "next": "Owner bấm Ready; C0 merge dev, đồng bộ vendored + kiểm kê QA, deploy đợt 2.",
       "work": {
         "problem": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
         "approach": "Hoàn thiện wizard 4 bước chọn nguồn → mapping → dry-run → duyệt/đồng bộ, hỗ trợ file và API với bảo vệ quyền.",
@@ -1041,10 +1041,10 @@
         ]
       },
       "progress": {
-        "percent": 85,
+        "percent": 90,
         "basis": "estimate",
         "note": "QA vòng 2 đạt có điều kiện; đang sửa C1/C2; chưa merge, chưa deploy.",
-        "reportedAt": "2026-11-06T18:25:15+07:00"
+        "reportedAt": "2026-11-06T19:29:49+07:00"
       }
     },
     {
@@ -1055,10 +1055,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
-      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
+      "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN · QA/SEC #94: PASS-WITH-COND; F-1 (P1 để bật cờ): duyệt nguồn cần expectedVersion nhưng khối duyệt dùng chung không gửi → FE-F7 đang sửa",
+      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 · FE #94 DRAFT (F7 màn hình) · BE #141 (sửa P3-N1)",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: chưa có màn hình FE bật/duyệt danh mục (F7 chưa làm); cần quyết P3-N1; ≥2 quản trị tenant; xác nhận TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false; kiểm DEV hai tài khoản; Owner duyệt. | FE-F7 (màn hình bật/duyệt danh mục) đang làm (18:28)",
+      "next": "FE-F7 sửa F-1 (gộp #60); BE #141 (P3-N1) QA; ≥2 quản trị tenant; Owner duyệt bật SYSTEM_SOURCES.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1127,10 +1127,10 @@
         ]
       },
       "progress": {
-        "percent": 92,
+        "percent": 94,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T18:29:37+07:00"
+        "reportedAt": "2026-11-06T19:29:49+07:00"
       }
     },
     {
@@ -1416,10 +1416,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA/SEC độc lập #130: GATE-PASS-WITH-CONDITIONS cho merge dev (cờ TẮT): migration V88/V89 PASS trên Postgres thật; P1 ReDoS (SourceScan: 50.000 khoảng trắng → 20 giây, `<h1>` >40 giây), P2-1 khử ký tự đóng thẻ yếu, P2-2 ký tự Unicode ẩn, P2-3 bản đồ+ghi nhớ có thể đẩy yêu cầu gần ngưỡng thành 413. KHÔNG bật cờ trước khi sửa P1/P2. AI-MAP đang sửa",
-      "prs": "BE #130 DRAFT head 2bf19118 (V88 Map, V89 Memory; DIRTY, cần gộp lại dev) · Master #88",
+      "qa": "QA/SEC độc lập #130: GATE-PASS-WITH-CONDITIONS cho merge dev (cờ TẮT): migration V88/V89 PASS trên Postgres thật; P1 ReDoS (SourceScan: 50.000 khoảng trắng → 20 giây, `<h1>` >40 giây), P2-1 khử ký tự đóng thẻ yếu, P2-2 ký tự Unicode ẩn, P2-3 bản đồ+ghi nhớ có thể đẩy yêu cầu gần ngưỡng thành 413. KHÔNG bật cờ trước khi sửa P1/P2. AI-MAP đang sửa · Đã sửa P1 ReDoS + P2 (agent báo); em chạy lại 39 test hostile/map/scan: 39/39 (VERIFIED); prod-floors F-7 đỏ cả trên dev sạch (có sẵn, không do #130)",
+      "prs": "BE #130 DRAFT head 20de1803 (V88 Map, V89 Memory; P1/P2 đã sửa) · Master #88",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "AI-MAP sửa P1/P2, gộp dev; QA kiểm lại; merge dev; deploy cờ TẮT; bật cờ cần Owner duyệt riêng; V87 (Org) phải giải quyết trước V88/V89.",
+      "next": "Owner bấm Ready; merge dev; deploy đợt 2 cờ TẮT; bật cờ cần duyệt riêng; Org đánh số lại V90.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1481,10 +1481,10 @@
         ]
       },
       "progress": {
-        "percent": 70,
+        "percent": 85,
         "basis": "estimate",
         "note": "QA/SEC độc lập xong (đạt có điều kiện); đang sửa lỗi; chưa merge, chưa deploy.",
-        "reportedAt": "2026-11-06T18:25:15+07:00"
+        "reportedAt": "2026-11-06T19:29:49+07:00"
       }
     },
     {
@@ -1579,10 +1579,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA/SEC độc lập vòng 2: GATE-PASS-WITH-CONDITIONS (QA chạy: bí mật gõ vào ô nhập 5.075/4.830/1.874 px → 0 trong khung và byte gửi đi; vùng che 12.000/12.000 điểm đen; chặn phần tử hoạt động). Điều kiện: đếm cả shadow DOM mở, hạ trần ~2.500 phần tử, test shadow/dọn dẹp; P4 giá trị >4.000 ký tự chỉ kiểm phần đầu",
-      "prs": "FE #81 DRAFT head 6a75549 (đã gộp dev b0952327) · Master #88",
+      "qa": "QA/SEC độc lập vòng 2: GATE-PASS-WITH-CONDITIONS (QA chạy: bí mật gõ vào ô nhập 5.075/4.830/1.874 px → 0 trong khung và byte gửi đi; vùng che 12.000/12.000 điểm đen; chặn phần tử hoạt động). Điều kiện: đếm cả shadow DOM mở, hạ trần ~2.500 phần tử, test shadow/dọn dẹp; P4 giá trị >4.000 ký tự chỉ kiểm phần đầu · Điều kiện đã sửa (agent báo; em chạy lại 31 test unit phần đánh dấu: 31/31, VERIFIED): đếm shadow DOM, trần 2.500, test shadow/dọn dẹp",
+      "prs": "FE #81 DRAFT head cf88935 (3 điều kiện QA đã sửa) · Master #88",
       "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
-      "next": "FE-ANNOT sửa 3 điều kiện; QA kiểm nhanh; Owner Ready; C0 merge dev + đồng bộ fbk.ts; deploy đợt 2.",
+      "next": "Owner bấm Ready; C0 merge dev + đồng bộ fbk.ts; deploy đợt 2.",
       "work": {
         "problem": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
         "approach": "Tái sử dụng widget feedback; chụp/annotate cục bộ trước khi gửi, preview/redact, upload theo quyền và lưu liên kết ticket.",
@@ -1649,10 +1649,10 @@
         ]
       },
       "progress": {
-        "percent": 90,
+        "percent": 93,
         "basis": "estimate",
         "note": "QA r2 đạt có điều kiện; đang sửa; chưa merge, chưa deploy.",
-        "reportedAt": "2026-11-06T18:29:37+07:00"
+        "reportedAt": "2026-11-06T19:29:49+07:00"
       }
     },
     {
