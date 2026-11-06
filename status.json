@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T14:42:07+07:00",
+  "asOf": "2026-11-06T15:43:09+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -419,9 +419,9 @@
       "risk": "LOW",
       "integrated": true,
       "qa": "PROD QA PASS (draft reload, Haiku submit, live-job resume); attachment / multi-user / logout tests NOT_RUN",
-      "prs": "FE #56",
+      "prs": "FE #56 · FE #85 (bỏ giới hạn prompt 4.000, DRAFT head f656b14d) · BE-PROMPT nhánh fix/p34-prompt-limit-be-20261106 (chưa PR)",
       "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
-      "next": "R4: kiểm file/ảnh và ranh giới draft giữa các user; sửa lỗi tính phí khi hủy (R37-J1-1). Không gọi đây là kiểm thử toàn bộ các trường hợp.",
+      "next": "Bỏ giới hạn 4.000 ký tự (FE #85 + BE-PROMPT, đang chạy); sau đó E2E 17.444/50.000 ký tự, đính kèm, riêng tư.",
       "work": {
         "problem": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
         "approach": "UAT đúng composer Studio cùng model/effort/attachment. Không khôi phục file upload chưa hoàn thành như file thật.",
@@ -492,7 +492,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "reportedAt": "2026-11-06T15:43:09+07:00"
       }
     },
     {
@@ -1407,10 +1407,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "BE PR #130 (agent báo): 52 test mới đạt, 131 test rộng (1 lỗi có sẵn), hồi quy 96 đạt, 13/13 mutant; QA/SEC độc lập, FE màn hình, AI thật NOT_RUN",
+      "qa": "BE PR #130 (agent báo): 52 test mới đạt, 131 test rộng (1 lỗi có sẵn), hồi quy 96 đạt, 13/13 mutant; QA/SEC độc lập, FE màn hình, AI thật NOT_RUN · Phát hiện: số migration V80/V81 trong #130 thấp hơn V84 đã chạy trên PROD (outOfOrder=false) → phải đánh số lại (đề xuất V87/V88)",
       "prs": "BE #130 DRAFT head fc38c0f2 (V80 Map, V81 Memory; 2 cờ mặc định TẮT) · Master #88",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "QA/SEC độc lập cho PR #130; FE màn Memory/Map (chưa có); nối đề xuất ghi nhớ từ mô hình (chưa nối); bật cờ trên PROD cần Owner duyệt riêng vì đổi prompt.",
+      "next": "Đánh số lại migration (V87/V88); QA/SEC độc lập #130; FE màn Map/Memory; Smart IQC.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1475,7 +1475,7 @@
         "percent": 60,
         "basis": "estimate",
         "note": "BE PR #130 mã xong: quét tĩnh Kotlin (không dùng Repomix), Map V80 + Memory V81, cờ TẮT. Đo mô hình giả: prompt không nhỏ đi, giảm ~60% lượt đọc repo; chưa đo trên dự án thật. Chưa QA/SEC độc lập, FE chưa có.",
-        "reportedAt": "2026-11-06T13:33:12+07:00"
+        "reportedAt": "2026-11-06T15:43:09+07:00"
       }
     },
     {
@@ -1654,10 +1654,10 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Chưa có bằng chứng hoàn tất",
-      "prs": "Master #88",
+      "qa": "FE #84: unit 4898/4906, spec mới 104/104, mutant 12/12 (REPORTED bởi agent); QA độc lập #84 đang chạy; backend thật NOT_RUN. P1–P4 (Shared Composer, Home CREATE) chưa có mã",
+      "prs": "FE #83 (thiết kế, docs) · FE #84 (hàng đợi 3 chế độ, head b5becb01) · Master #88",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "Mặc định ~30% chat/70% preview, kéo thay đổi và nhớ layout.",
+      "next": "QA độc lập #84; P1 chờ FE #85 (bỏ giới hạn prompt) merge; P2–P4 ~7,5 ngày công; cần B1 (Idempotency-Key cho tạo dự án, backend).",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1718,10 +1718,10 @@
         ]
       },
       "progress": {
-        "percent": 25,
+        "percent": 35,
         "basis": "estimate",
-        "note": "Workspace Edit Studio vẫn chỉ có phần nền composer/nháp/queue trên PROD; chưa có chứng cứ % mới.",
-        "reportedAt": "2026-11-06T11:52:00+07:00"
+        "note": "Hàng đợi MINI/EXPANDED/FULL (FE #84) code xong chờ QA; thiết kế Home/Create App xong (FE #83); chưa có mã Shared Composer.",
+        "reportedAt": "2026-11-06T15:43:09+07:00"
       }
     }
   ],
