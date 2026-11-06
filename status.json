@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T09:13:00+07:00",
+  "asOf": "2026-11-06T09:55:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -191,12 +191,12 @@
       "flag": "ON (J1 + Q1)",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "Q1 API GET 200 / enqueue 201 / BLOCKED AI_SPEND_EXPIRED; clean-project Studio UI E2E BLOCKED by expired AI window",
+      "qa": "PROD QA PASS: live resume, queued/offline jobs, idempotent enqueue, queue pause/resume and cancel pending; 3 R37 P3 defects remain",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-      "summary": "J1 và Q1 đã bật PROD; API queue GET 200, enqueue 201, dequeue BLOCKED AI_SPEND_EXPIRED, không tốn AI. Dự án QA sạch đã tạo trên PROD lúc 08:15 để thử Studio nhưng composer bị vô hiệu do cửa sổ AI hết hạn; UI queue và reload/resume E2E chưa kiểm được.",
-      "next": "Chỉ sau khi cửa sổ chi tiêu AI được gia hạn theo quyết định hợp lệ: kiểm panel queue/composer trên dự án QA sạch, reload/resume và queue chạy thành công. Không tự gia hạn hoặc tăng ngân sách.",
+      "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở.",
+      "next": "R4: sửa R37-Q1-1 (kiểm build quota trước khi gọi AI), R37-Q1-2 (cancel-all includeRunning), R37-J1-1 (tính phí khi hủy). Kiểm case đa người dùng và file.",
       "work": {
-        "problem": "J1 và Q1 đã bật PROD; API queue GET 200, enqueue 201, dequeue BLOCKED AI_SPEND_EXPIRED, không tốn AI. Dự án QA sạch đã tạo trên PROD lúc 08:15 để thử Studio nhưng composer bị vô hiệu do cửa sổ AI hết hạn; UI queue và reload/resume E2E chưa kiểm được.",
+        "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
         "tasks": [
           {
@@ -213,9 +213,9 @@
           },
           {
             "team": "QA",
-            "text": "E2E queue chạy hoàn tất, UI, mất mạng, reload, tab song song, cancel/retry (chưa chạy)",
-            "state": "TODO",
-            "textEn": "Run queue completion and UI E2E, disconnect/reload, multiple tabs, cancel/retry (not yet run)."
+            "text": "PASS live Resume, offline queue, pause/resume và cancel pending; còn file/đa user, 3 P3",
+            "state": "VERIFY",
+            "textEn": "Live Resume, offline queue, pause/resume, pending cancel PASS; attachments, multiple users and 3 P3 fixes remain"
           },
           {
             "team": "SEC",
@@ -224,23 +224,27 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
           }
         ],
-        "lastEvidence": "C0 report 06/11 08:15 ICT: clean QA project created without AI spend; Studio composer disabled with AI_SPEND_EXPIRED. Queue API evidence remains GET 200 / enqueue 201 / BLOCKED.",
-        "source": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-        "problemEn": "J1 and Q1 are enabled on PROD. Queue GET 200 and enqueue 201 passed, but dequeue was BLOCKED by AI_SPEND_EXPIRED with no AI spend. A clean QA project was created at 08:15 ICT; the Studio composer is disabled because the AI spend window expired, preventing queue UI and reload/resume E2E.",
+        "lastEvidence": "C0 PROD browser/API QA 06/11/2026 09:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408",
+        "source": "C0 PROD QA #88 (09:55 ICT); BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
+        "problemEn": "J1 and Prompt Queue are ON PROD. Real-browser QA PASSED live resume while RUNNING, ordered/offline queued execution, idempotent enqueue, pause/resume, cancel pending, and direct job cancel. Three R37 P3 issues remain in quota ordering, cancel-all running jobs, and cancellation reservation accounting.",
         "approachEn": "Validate persistent job identity and budget checks across resume, offline queues and retries.",
         "done": [
           "J1 chạy một lượt AI thật thành công trên PROD.",
           "08:04 06/11: Q1 APP_BUILDER_PROMPT_QUEUE_ENABLED ON trên PROD, không thay BE/FE SHA; API GET 200, enqueue 201, 17 container healthy.",
-          "08:15 06/11: tạo dự án QA sạch trên PROD để kiểm giao diện; không phát sinh AI hoặc chi tiêu (C0 báo cáo)."
+          "08:15 06/11: tạo dự án QA sạch trên PROD để kiểm giao diện; không phát sinh AI hoặc chi tiêu (C0 báo cáo).",
+          "09:55 06/11 — QA PROD PASS: job live Resume, queue tuần tự/offline, idempotency, hủy pending và hủy job trực tiếp."
         ],
         "blockers": [
-          "QA queue thật, reconnect, duplicate paid call NOT_RUN.",
-          "Lệnh queue BLOCKED AI_SPEND_EXPIRED; không có lượt chạy hoàn tất. UI queue và resume E2E NOT_RUN.",
-          "Trên cả dự án QA mới, Composer bị vô hiệu khi AI_SPEND_EXPIRED; không thể kiểm UI queue/reload-resume đến khi có cửa sổ AI hợp lệ."
+          "R37-Q1-1: queue gọi AI trước khi kiểm build concurrency, có lượt bị từ chối vẫn phát sinh phí.",
+          "R37-Q1-2: cancel-all includeRunning:true không hủy job composer đang chạy (2/2).",
+          "R37-J1-1: cancel giữa lượt có thể tính nguyên khoản giữ chỗ; cần đối soát và sửa.",
+          "NOT_RUN: file đính kèm, hai người dùng song song và một số kiểm quyền/SEC nâng cao."
         ],
         "blockersEn": [
-          "Queue execution was blocked by AI_SPEND_EXPIRED; UI, completion and reload-resume E2E remain unverified.",
-          "The newly created QA project still has its Studio composer disabled by AI_SPEND_EXPIRED; queue UI and reload-resume E2E cannot proceed until an authorized spend window is available."
+          "R37-Q1-1: a queued call reaches AI before build-concurrency rejection and incurs costs.",
+          "R37-Q1-2: cancel-all(includeRunning:true) does not cancel a direct running composer job (2/2).",
+          "R37-J1-1: cancellation may charge the full reserved amount instead of the actual provider charge.",
+          "NOT_RUN: attachments, concurrent second user and additional authorization/SEC scenarios."
         ],
         "acceptance": [
           "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
@@ -253,7 +257,8 @@
           "https://github.com/luan20495/xweb01/issues/93",
           "https://github.com/luan20495/xweb01/pull/125",
           "https://github.com/luan20495/Xweb01fe/pull/79",
-          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629"
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408"
         ],
         "acceptanceEn": [
           "After reload, the same job ID and log resume without a new paid request.",
@@ -263,7 +268,8 @@
         "doneEn": [
           "One real AI job completed successfully.",
           "At 08:04 ICT on Nov 6, Q1 was enabled on PROD without a code release; GET 200, enqueue 201, 17 containers healthy.",
-          "At 08:15 ICT Nov 6, C0 reported a clean QA project created on PROD for UI testing without an AI call or cost."
+          "At 08:15 ICT Nov 6, C0 reported a clean QA project created on PROD for UI testing without an AI call or cost.",
+          "Nov 6 09:55 ICT: PROD QA passed live job resume, ordered and offline queue execution, idempotency, pending cancellation and direct job cancellation."
         ]
       }
     },
@@ -353,29 +359,29 @@
       "id": "P0-05/06",
       "name": "Prompt Composer / lưu nháp",
       "batch": "R1",
-      "stage": "PROD_DEPLOYED",
-      "flag": "N/A",
+      "stage": "PROD_VERIFIED",
+      "flag": "N/A (deployed; no feature flag)",
       "risk": "LOW",
       "integrated": true,
-      "qa": "Owner UAT / Composer reload: BLOCKED by AI_SPEND_EXPIRED on new QA project (06/11 08:15)",
+      "qa": "PROD QA PASS (draft reload, Haiku submit, live-job resume); attachment / multi-user / logout tests NOT_RUN",
       "prs": "FE #56",
-      "summary": "Composer đã deploy nhưng chưa nghiệm thu Enter/Shift+Enter, file/ảnh, nháp sau reload. Dự án QA mới được tạo để thử nhưng ô soạn lệnh vẫn bị vô hiệu do cửa sổ chi tiêu AI hết hạn; chưa thể kết luận UI PASS hay FAIL.",
-      "next": "Sau khi cửa sổ AI được gia hạn có phê duyệt: chạy UAT Composer với prompt, ảnh/file và reload trên dự án QA sạch; không tự kích hoạt AI hay đổi trần USD.",
+      "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
+      "next": "R4: kiểm file/ảnh và ranh giới draft giữa các user; sửa lỗi tính phí khi hủy (R37-J1-1). Không gọi đây là kiểm thử toàn bộ các trường hợp.",
       "work": {
-        "problem": "Composer đã deploy nhưng chưa nghiệm thu Enter/Shift+Enter, file/ảnh, nháp sau reload. Dự án QA mới được tạo để thử nhưng ô soạn lệnh vẫn bị vô hiệu do cửa sổ chi tiêu AI hết hạn; chưa thể kết luận UI PASS hay FAIL.",
+        "problem": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
         "approach": "UAT đúng composer Studio cùng model/effort/attachment. Không khôi phục file upload chưa hoàn thành như file thật.",
         "tasks": [
           {
             "team": "FE",
-            "text": "Xác minh lưu nháp và tình trạng upload ở Studio hiện hành",
+            "text": "Đã PASS nháp/reload và live Resume trên PROD; còn kiểm file/ảnh và logout",
             "state": "VERIFY",
-            "textEn": "Implement/verify UI integration, accessibility and user feedback — Test model, draft text, uploads and failure recovery across reload/logout."
+            "textEn": "PROD draft reload and live Resume PASSED; verify attachments and logout"
           },
           {
             "team": "QA",
-            "text": "UAT Enter/IME, reload, mất mạng, logout/login với file/ảnh",
-            "state": "TODO",
-            "textEn": "Run independent real end-to-end positive/negative tests — Test model, draft text, uploads and failure recovery across reload/logout."
+            "text": "PASS: draft reload và live Resume; còn NOT_RUN: attachment, multi-user, IME/logout",
+            "state": "VERIFY",
+            "textEn": "PASS: draft reload and live Resume. NOT_RUN: attachments, multi-user, IME/logout"
           },
           {
             "team": "SEC",
@@ -384,23 +390,23 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Test model, draft text, uploads and failure recovery across reload/logout."
           }
         ],
-        "lastEvidence": "C0 report 06/11 08:15 ICT: clean QA project created; Studio composer disabled by AI_SPEND_EXPIRED.",
-        "source": "FE #56",
-        "problemEn": "Composer is deployed, but real reload/attachment and shortcut acceptance is incomplete. A new QA project was created, yet Studio input is disabled by AI_SPEND_EXPIRED; UI acceptance remains blocked, not failed.",
+        "lastEvidence": "C0 PROD browser/API QA 06/11/2026 09:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408",
+        "source": "C0 PROD QA #88 (09:55 ICT); FE #56",
+        "problemEn": "PROD QA verified draft restoration after reload, Haiku editing, and a live RUNNING job reconnecting after reload and completing. No separate feature flag. Attachment and multi-user/privacy scenarios remain untested.",
         "approachEn": "Test model, draft text, uploads and failure recovery across reload/logout.",
         "done": [
           "FE #56 có Enter gửi, Shift+Enter xuống dòng, IndexedDB cho file và local draft.",
           "Mã composer đã nằm trong ứng dụng phát hành; UAT thực chưa có.",
-          "08:15 06/11: có dự án QA mới để thử Composer; chưa gọi AI, chi tiêu không đổi."
+          "08:15 06/11: có dự án QA mới để thử Composer; chưa gọi AI, chi tiêu không đổi.",
+          "09:55 06/11 — QA PROD PASS: nháp được khôi phục sau reload, gửi Haiku sửa mã và nối lại job đang RUNNING sau reload (rel37-resume-live.png)."
         ],
         "blockers": [
-          "Chưa có ảnh/bằng chứng UAT reload với nhiều tệp và job đang chạy.",
-          "Chưa có đồng bộ draft an toàn đa thiết bị.",
-          "Dự án QA mới không thể nhập prompt khi AI_SPEND_EXPIRED; chờ cửa sổ hợp lệ để UAT UI."
+          "NOT_RUN: kiểm file/ảnh đính kèm, hai người dùng đồng thời và kiểm ranh giới draft giữa người dùng.",
+          "R37-J1-1: lượt bị hủy có thể tính toàn bộ khoản giữ chỗ thay vì chi phí sử dụng thực, cần đối soát/sửa trong R4."
         ],
         "blockersEn": [
-          "Real multi-file reload acceptance not verified.",
-          "The new QA project cannot enter a prompt while AI_SPEND_EXPIRED; UI acceptance awaits an authorized active window."
+          "NOT_RUN: attachments, simultaneous second user, and draft isolation across accounts.",
+          "R37-J1-1: cancelling a running turn may charge the entire reservation; investigate provider actual cost and fix in R4."
         ],
         "acceptance": [
           "Prompt 5k ký tự + 3 ảnh + 2 file reload được nội dung/refs hợp lệ.",
@@ -410,7 +416,8 @@
         "refs": [
           "https://github.com/luan20495/Xweb01fe/pull/56",
           "https://github.com/luan20495/xweb01/issues/93",
-          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629"
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6673930629",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408"
         ],
         "acceptanceEn": [
           "Draft prompt, selected model and valid attachments survive reload.",
@@ -420,7 +427,8 @@
         "doneEn": [
           "FE #56 implements draft persistence and composer shortcuts.",
           "Owner acceptance in live Studio is not verified.",
-          "A new QA project was created at 08:15 ICT Nov 6 for Composer testing; no AI call or spend occurred."
+          "A new QA project was created at 08:15 ICT Nov 6 for Composer testing; no AI call or spend occurred.",
+          "Nov 6 09:55 ICT: PROD QA passed draft reload, Haiku edit, and live running-job reconnection after reload."
         ]
       }
     },
@@ -428,16 +436,16 @@
       "id": "P0-14",
       "name": "XApp UX",
       "batch": "R1",
-      "stage": "PROD_DEPLOYED",
-      "flag": "N/A",
+      "stage": "PROD_VERIFIED",
+      "flag": "N/A (deployed; no feature flag)",
       "risk": "LOW",
       "integrated": true,
-      "qa": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
-      "prs": "FE #59 · BE #118/#119 merged DEV; PROD chưa xác minh",
-      "summary": "R1 thiếu build arg XApp làm điều hướng không hoạt động; R3 đã chứa origin trong Studio build nhưng đăng nhập XApp và kiểm tra giao diện end-to-end vẫn NOT_RUN.",
-      "next": "Bấm logo từ các portal về XApp đúng và không tạo vòng lặp SSO.",
+      "qa": "PROD real-browser SSO PASS: portal links, XApp launcher, denied Admin return, deep-link restoration; remaining negative cases NOT_RUN",
+      "prs": "FE #59 · BE #118/#119; R3 PROD",
+      "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): Studio/Admin/Apps có liên kết về launcher XApp; điều hướng không vòng lặp; người thiếu quyền Admin có nút quay về XApp; đăng nhập bảo toàn deep link site/path (bug #150). Không cần bật feature flag.",
+      "next": "R4: kiểm hết phiên thật; Apps-only, khách site PRIVATE không APP_VIEW, Caddy /auth/* XApp và tín hiệu vòng lặp.",
       "work": {
-        "problem": "R1 thiếu build arg XApp làm điều hướng không hoạt động; R3 đã chứa origin trong Studio build nhưng đăng nhập XApp và kiểm tra giao diện end-to-end vẫn NOT_RUN.",
+        "problem": "ĐÃ KIỂM PROD (PASS trong phạm vi): Studio/Admin/Apps có liên kết về launcher XApp; điều hướng không vòng lặp; người thiếu quyền Admin có nút quay về XApp; đăng nhập bảo toàn deep link site/path (bug #150). Không cần bật feature flag.",
         "approach": "Kiểm tra hành trình SSO từ tất cả portal, khi hết phiên, tài khoản không có quyền và logo/link quay về XApp.",
         "tasks": [
           {
@@ -448,31 +456,33 @@
           },
           {
             "team": "FE",
-            "text": "Kiểm tra điều hướng và thông báo khi hết phiên",
-            "state": "VERIFY",
-            "textEn": "Implement/verify UI integration, accessibility and user feedback — Test real login, portal links and expiry/no-access fallbacks."
+            "text": "PASS điều hướng XApp và thông báo không quyền trên PROD",
+            "state": "DONE",
+            "textEn": "PROD PASS for XApp navigation and no-access return action"
           },
           {
             "team": "QA",
-            "text": "Đăng nhập XApp thực, kiểm tra điều hướng đủ 5 portal",
-            "state": "TODO",
-            "textEn": "Run independent real end-to-end positive/negative tests — Test real login, portal links and expiry/no-access fallbacks."
+            "text": "PASS đăng nhập thật và điều hướng XApp; còn các negative case chưa chạy",
+            "state": "VERIFY",
+            "textEn": "Real-login and XApp navigation PASS; remaining negative access/expiry cases NOT_RUN"
           }
         ],
-        "lastEvidence": "R1: chưa Owner UAT; fix build arg chỉ CODE, chưa smoke PROD",
-        "source": "FE #59 · BE #118/#119 merged DEV; PROD chưa xác minh",
-        "problemEn": "XApp build origin is fixed in R3; authenticated navigation is NOT_RUN.",
+        "lastEvidence": "C0 PROD browser/API QA 06/11/2026 09:55 ICT — https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408",
+        "source": "C0 PROD QA #88 (09:55 ICT); FE #59 · BE #118/#119; R3 PROD",
+        "problemEn": "PROD real-browser login PASSED for Studio/Admin/Apps return links to XApp, launcher navigation without redirect loops, denied Admin access return, and deep-link site/path restoration (#150). No separate feature flag.",
         "approachEn": "Test real login, portal links and expiry/no-access fallbacks.",
         "done": [
           "BE #118 đã merge; R3 PROD bundle Studio chứa https://xapp.happinno.net.",
-          "R3 smoke năm cổng PASS ở mức đăng nhập trang."
+          "R3 smoke năm cổng PASS ở mức đăng nhập trang.",
+          "09:55 06/11 — QA PROD PASS đăng nhập thật XApp/SSO, launcher, no-access return, deep-link site/path (rel37-xapp-*.png)."
         ],
         "blockers": [
-          "Chưa test render qua đăng nhập XApp thực.",
-          "Không nên ghi Owner UAT PASS cho XApp."
+          "NOT_RUN: hết phiên thật theo thời gian, Apps-only, khách PRIVATE thiếu APP_VIEW.",
+          "R4: cần kiểm Caddy /auth/* của XApp và dấu hiệu redirect loop trên đầy đủ luồng."
         ],
         "blockersEn": [
-          "XApp authenticated UI acceptance remains NOT_RUN."
+          "NOT_RUN: natural session expiry, Apps-only, private site guest lacking APP_VIEW.",
+          "R4: XApp Caddy /auth/* and redirect-loop telemetry still need verification."
         ],
         "acceptance": [
           "Bấm logo từ các portal về XApp đúng và không tạo vòng lặp SSO.",
@@ -481,7 +491,8 @@
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/pull/118",
-          "https://github.com/luan20495/Xweb01fe/pull/59"
+          "https://github.com/luan20495/Xweb01fe/pull/59",
+          "https://github.com/luan20495/xweb01/issues/88#issuecomment-6675379408"
         ],
         "acceptanceEn": [
           "Portal navigation to XApp works after real SSO login.",
@@ -490,7 +501,8 @@
         ],
         "doneEn": [
           "R3 Studio build contains the XApp origin after BE #118.",
-          "Five portal login surfaces passed R3 smoke testing."
+          "Five portal login surfaces passed R3 smoke testing.",
+          "Nov 6 09:55 ICT: PROD authenticated browser QA PASSED launcher navigation, denied-access fallback, and site/path deep-link restoration."
         ]
       }
     },
