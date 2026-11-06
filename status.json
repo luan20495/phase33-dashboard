@@ -716,19 +716,19 @@
     },
     {
       "id": "B2+F2",
-      "name": "Quản trị ngân sách Platform",
+      "name": "Quản trị ngân sách & cấu hình AI Platform",
       "batch": "R2",
       "stage": "PROD_ENABLED",
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS; API PROD trả 200",
+      "qa": "QA/SEC R2 PASS phần đã ON; phần mở rộng B2-WEB-01..08 CHƯA QA/SEC",
       "prs": "BE #112/#119 · FE #73/#76 merged DEV",
-      "summary": "Budget API ON nhưng UI REL3 mới và quyền admin chưa Owner UAT; tự gia hạn cửa sổ và giải phóng khoản treo vẫn OFF có chủ đích.",
-      "next": "Chỉ đúng admin được tạo/sửa/revoke phân bổ; audit đầy đủ.",
+      "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
+      "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
       "work": {
-        "problem": "Budget API ON nhưng UI REL3 mới và quyền admin chưa Owner UAT; tự gia hạn cửa sổ và giải phóng khoản treo vẫn OFF có chủ đích.",
-        "approach": "UAT cấp phân bổ, revoke, history và audit theo quyền; review khoản treo với OpenRouter trước mọi thao tác tài chính.",
+        "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
+        "approach": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
         "tasks": [
           {
             "team": "BE",
@@ -753,19 +753,37 @@
             "text": "Kiểm thử quyền admin và ngăn tự tăng khoản cấp",
             "state": "TODO",
             "textEn": "Perform authorization, tenant-isolation and threat tests — Test allocations, history and audit without changing disabled finance flags."
+          },
+          {
+            "team": "BE",
+            "text": "B2-WEB-01: kiểm kê thực trạng và hợp đồng dynamic AI config, docs-only; đang chạy",
+            "state": "IN_PROGRESS"
+          },
+          {
+            "team": "BE/FE",
+            "text": "B2-WEB-02..07: cấu hình AI động trên web, chia PR nhỏ sau kiểm kê",
+            "state": "TODO"
+          },
+          {
+            "team": "QA/SEC",
+            "text": "B2-WEB-08: kiểm thử và rollout/rollback độc lập theo từng đợt",
+            "state": "TODO"
           }
         ],
         "lastEvidence": "QA/SEC R2 PASS; API PROD trả 200",
         "source": "BE #112/#119 · FE #73/#76 merged DEV",
-        "problemEn": "Budget API is live, but R3 budget administration UX and controls still require UAT.",
-        "approachEn": "Test allocations, history and audit without changing disabled finance flags.",
+        "problemEn": "Existing Platform budget API remains ON in PROD. REOPEN: 100% web-based AI configuration extension is not built or QA-approved yet.",
+        "approachEn": "B2-WEB-01 inventory and contract in progress, followed by 02–08 in separately gated releases.",
         "done": [
           "R2 API budget PROD 200; R3 Platform F1/F2 UI nâng cấp.",
-          "Không tự tăng cap hay tự giải phóng hold."
+          "Không tự tăng cap hay tự giải phóng hold.",
+          "B2/F2 cơ bản đang ON PROD; phần mở rộng REOPEN không làm thay đổi trạng thái hiện tại."
         ],
         "blockers": [
           "Owner UAT UI/permissions R3 chưa có bằng chứng.",
-          "Khoản treo cần đối chiếu nhà cung cấp; không tự release."
+          "Khoản treo cần đối chiếu nhà cung cấp; không tự release.",
+          "B2-WEB-01 chưa có PR/ma trận kiểm kê được duyệt; B2-WEB-02..08 chưa triển khai.",
+          "Không tự bật auto-renew, nâng trần USD hoặc thay quyền PROD khi phát triển."
         ],
         "blockersEn": [
           "Owner UAT and reconciliation of held funds pending."
@@ -773,11 +791,16 @@
         "acceptance": [
           "Chỉ đúng admin được tạo/sửa/revoke phân bổ; audit đầy đủ.",
           "UI hiển thị balance và kỳ hạn khớp API.",
-          "Flags renewal/release vẫn OFF khi chưa được duyệt."
+          "Flags renewal/release vẫn OFF khi chưa được duyệt.",
+          "Tất cả cấu hình AI vận hành qua web, lưu DB, áp dụng động không restart; quyền và audit đạt QA/SEC.",
+          "Hard ceiling được đổi qua luồng đặc quyền có kiểm soát, provider ceiling vẫn độc lập; không tự nâng ngân sách.",
+          "Giữ nguyên B2/F2 cũ và không gián đoạn tài khoản đang dùng AI."
         ],
         "refs": [
           "https://github.com/luan20495/xweb01/pull/112",
-          "https://github.com/luan20495/Xweb01fe/pull/76"
+          "https://github.com/luan20495/Xweb01fe/pull/76",
+          "https://github.com/luan20495/xweb01/issues/88",
+          "https://github.com/luan20495/xweb01/pull/127"
         ],
         "acceptanceEn": [
           "Only authorized admins can create/revoke budget allocations.",
@@ -792,8 +815,31 @@
       "progress": {
         "percent": 100,
         "basis": "prod_on",
-        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản.",
-        "reportedAt": "2026-11-06T11:35:00+07:00"
+        "note": "REOPEN · Phần mới '100% cấu hình AI qua web' đang triển khai, chưa có % đo. Thanh 100% chỉ là B2/F2 cũ đã ON PROD.",
+        "reportedAt": "2026-11-06T11:45:00+07:00",
+        "extensionStatus": "REOPEN_IN_PROGRESS",
+        "extensionPercent": null
+      },
+      "extension": {
+        "status": "REOPEN_IN_PROGRESS",
+        "title": "100% cấu hình AI qua web",
+        "progressPercent": null,
+        "qa": "NOT_RUN",
+        "notes": "Claude đã khởi động B2-WEB-01 kiểm kê mã và hợp đồng; chưa có PR hoặc ETA kiểm chứng. Không sửa PROD.",
+        "related": [
+          "E1/E2+F1",
+          "B3+F3"
+        ],
+        "tasks": [
+          "B2-WEB-01: Kiểm kê và hợp đồng cấu hình — agent đang chạy, tài liệu",
+          "B2-WEB-02: TTL/request/quota/concurrency trên web",
+          "B2-WEB-03: Auto-renew trong ngân sách, xử lý AI_SPEND_EXPIRED",
+          "B2-WEB-04: IAM động DB, migration allowlist 15 người",
+          "B2-WEB-05: Model/Provider/Secret Management",
+          "B2-WEB-06: Hard ceiling Owner workflow",
+          "B2-WEB-07: UI tổng quan/cảnh báo/audit/hướng dẫn",
+          "B2-WEB-08: QA/SEC/E2E và phát hành liên tục"
+        ]
       }
     },
     {
