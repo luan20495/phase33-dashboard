@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T04:05:38+07:00",
+  "asOf": "2026-11-06T09:09:09+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
-  "evidenceNote": "Detailed work/acceptance audit using R1-R3 RELEASE_LOG, issues #88/#86/#87/#93 and PR state; statuses are evidence-based, not live Mac agent telemetry. X2 PR #121 and UX13 FE #60 remain DRAFT; X4 has no verified write-runtime E2E.",
+  "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
     {
       "id": "R1",
@@ -28,7 +28,7 @@
       "actualAt": "2026-11-06T03:44:00+07:00",
       "backendSha": "ade1e1bee824c7ac522fa9f9cb6c730ce102886a",
       "frontendSha": "bae5a0c31896f66f97740f571245ab6a52246fed",
-      "notes": "RELEASE_LOG dev: PROD 03:41–03:44 VN; 17 container healthy, Flyway V78/V79/V84, 5 portal smoke. B3/Q1 flags OFF; X2/X5 chưa phát hành. QA-R3 no blockers, nhiều E2E NOT_RUN; SEC-R3 no P0/P1/P2. Main release log chưa đồng bộ."
+      "notes": "RELEASE_LOG dev: PROD 03:41–03:44 VN; 17 container healthy, Flyway V78/V79/V84, 5 portal smoke. B3/Q1 flags OFF tại thời điểm deploy; Q1 ON sau đó lúc 08:04 06/11 (không đổi mã, queue bị AI_SPEND_EXPIRED); X2/X5 chưa phát hành. QA-R3 no blockers, nhiều E2E NOT_RUN; SEC-R3 no P0/P1/P2. Main release log chưa đồng bộ."
     }
   ],
   "features": [
@@ -188,15 +188,15 @@
       "name": "Job AI bền vững",
       "batch": "R1",
       "stage": "PROD_ENABLED",
-      "flag": "ON",
+      "flag": "ON (J1 + Q1)",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "1 lượt AI thật PASS cơ bản",
+      "qa": "Q1 API GET 200 / enqueue 201; dequeue BLOCKED AI_SPEND_EXPIRED; UI/E2E NOT_RUN",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-      "summary": "Job bền ON nhưng sau reload/mất mạng, khôi phục tiến độ và chống chạy/thu phí trùng chưa được chứng minh E2E; Q1 có code R3 nhưng flag OFF.",
-      "next": "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
+      "summary": "J1 durable job ON; Q1 Prompt Queue đã được bật PROD lúc 08:04 ngày 06/11 (không đổi mã). API GET 200, thêm lệnh 201 nhưng lệnh BLOCKED AI_SPEND_EXPIRED; chưa chứng minh queue chạy hoàn tất, UI hoặc resume sau reload.",
+      "next": "Xác minh AI_SPEND_EXPIRED qua chính sách hiện hành (không tự gia hạn); QA UI, dequeue thành công, reload/resume và kiểm tra quyền/budget.",
       "work": {
-        "problem": "Job bền ON nhưng sau reload/mất mạng, khôi phục tiến độ và chống chạy/thu phí trùng chưa được chứng minh E2E; Q1 có code R3 nhưng flag OFF.",
+        "problem": "J1 durable job ON; Q1 Prompt Queue đã được bật PROD lúc 08:04 ngày 06/11 (không đổi mã). API GET 200, thêm lệnh 201 nhưng lệnh BLOCKED AI_SPEND_EXPIRED; chưa chứng minh queue chạy hoàn tất, UI hoặc resume sau reload.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
         "tasks": [
           {
@@ -213,9 +213,9 @@
           },
           {
             "team": "QA",
-            "text": "E2E mất mạng, reload, tab song song, cancel/retry",
+            "text": "E2E queue chạy hoàn tất, UI, mất mạng, reload, tab song song, cancel/retry (chưa chạy)",
             "state": "TODO",
-            "textEn": "Run independent real end-to-end positive/negative tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
+            "textEn": "Run queue completion and UI E2E, disconnect/reload, multiple tabs, cancel/retry (not yet run)."
           },
           {
             "team": "SEC",
@@ -224,20 +224,20 @@
             "textEn": "Perform authorization, tenant-isolation and threat tests — Validate persistent job identity and budget checks across resume, offline queues and retries."
           }
         ],
-        "lastEvidence": "1 lượt AI thật PASS cơ bản",
+        "lastEvidence": "RELEASE_LOG dev BE/FE 2026-11-06 01:03Z: Q1 enabled, GET 200, enqueue 201, BLOCKED AI_SPEND_EXPIRED; no code change.",
         "source": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync",
-        "problemEn": "Durable jobs are ON; reload/reconnect and duplicate paid calls need E2E. Q1 is deployed but OFF.",
+        "problemEn": "Durable jobs are ON. Q1 Prompt Queue was enabled on PROD at 08:04 ICT on Nov 6 without a code release. GET 200 and enqueue 201 passed, but execution was blocked by AI_SPEND_EXPIRED; UI, completion, and reload-resume E2E remain unverified.",
         "approachEn": "Validate persistent job identity and budget checks across resume, offline queues and retries.",
         "done": [
           "J1 chạy một lượt AI thật thành công trên PROD.",
-          "R3 đã deploy Q1 migration V79, BUILDER_PROMPT_QUEUE vẫn OFF; không có GO bật."
+          "08:04 06/11: Q1 APP_BUILDER_PROMPT_QUEUE_ENABLED ON trên PROD, không thay BE/FE SHA; API GET 200, enqueue 201, 17 container healthy."
         ],
         "blockers": [
           "QA queue thật, reconnect, duplicate paid call NOT_RUN.",
-          "Bật Q1 cần Owner GO do job có thể chạy khi người dùng offline."
+          "Lệnh queue BLOCKED AI_SPEND_EXPIRED; không có lượt chạy hoàn tất. UI queue và resume E2E NOT_RUN."
         ],
         "blockersEn": [
-          "Q1 requires Owner approval; queue E2E remains NOT_RUN."
+          "Queue execution was blocked by AI_SPEND_EXPIRED; UI, completion and reload-resume E2E remain unverified."
         ],
         "acceptance": [
           "Reload khi job chạy: hiển thị cùng jobId và log, không tạo request mới.",
@@ -247,7 +247,9 @@
         "refs": [
           "https://github.com/luan20495/xweb01/pull/120",
           "https://github.com/luan20495/Xweb01fe/pull/58",
-          "https://github.com/luan20495/xweb01/issues/93"
+          "https://github.com/luan20495/xweb01/issues/93",
+          "https://github.com/luan20495/xweb01/pull/125",
+          "https://github.com/luan20495/Xweb01fe/pull/79"
         ],
         "acceptanceEn": [
           "After reload, the same job ID and log resume without a new paid request.",
@@ -256,7 +258,7 @@
         ],
         "doneEn": [
           "One real AI job completed successfully.",
-          "Q1 queue code is deployed in R3; flag remains OFF."
+          "At 08:04 ICT on Nov 6, Q1 was enabled on PROD without a code release; GET 200, enqueue 201, 17 containers healthy."
         ]
       }
     },
