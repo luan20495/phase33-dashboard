@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-06T18:29:37+07:00",
+  "asOf": "2026-11-06T18:44:23+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -879,14 +879,14 @@
       "id": "B3+F3",
       "name": "Xin ngân sách trong Studio",
       "batch": "R3",
-      "stage": "PROD_DEPLOYED",
-      "flag": "OFF",
+      "stage": "PROD_ENABLED",
+      "flag": "ON",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "QA/SEC độc lập FE #80: GATE-PASS-WITH-CONDITIONS (không P0–P2, 7 P3); smoke PROD cờ OFF đạt; luồng B3 trên PROD thật NOT_RUN (cờ OFF)",
-      "prs": "BE #122 merged · FE #67, #80 merged và đã deploy PROD (R4a)",
+      "qa": "QA/SEC độc lập FE #80 PASS-WITH-COND; smoke PROD với tài khoản QA (VERIFIED, 0 AI trả phí): GET ai-budget 200 (canRequest:false: chưa có phân bổ nên cờ trơ), thành viên ngoài 404, admin thấy tab \"Yêu cầu ngân sách\" (danh sách rỗng), không phải admin 403, xin thêm khi chưa có khoản cấp → 409 AI_BUDGET_TOPUP_WITHOUT_GRANT. NOT_RUN: luồng yêu cầu→duyệt→khoản cấp, RAISE, tắt cờ→404",
+      "prs": "BE #122 · FE #67, #80 · cờ AI_BUDGET_REQUESTS BẬT 18:40 (Owner chạy lệnh) · RELEASE_LOG xweb01 #140 / Xweb01fe #93",
       "summary": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
-      "next": "Lệnh bật cờ AI_BUDGET_REQUESTS trên PROD bị hệ thống quyền chặn; cần Owner nói rõ để bật; sau đó smoke B3 (không AI trả phí). | Chưa bật vì: lệnh ghi cờ trên PROD bị hệ thống quyền chặn (2 lần), cần Owner cho phép hoặc tự chạy; E2E đầy đủ cần phân bổ ở workspace chỉ chứa dự án QA (workspace QA có 22 dự án); hiện 0 phân bổ nên bật là trơ.",
+      "next": "Cần một workspace thử riêng (hoặc Owner cho phép phân bổ ở workspace QA 22 dự án) để chạy E2E yêu cầu→duyệt→cấp; thiếu UI thu hồi, hộp thư, chuông (không chặn).",
       "work": {
         "problem": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
         "approach": "Chờ QA/SEC độc lập PR #80 đạt, merge dev, deploy FE theo gate, smoke PROD rồi mới cân nhắc bật AI_BUDGET_REQUESTS nội bộ trong test workspace cô lập để không chặn 22 dự án QA.",
@@ -961,10 +961,10 @@
         ]
       },
       "progress": {
-        "percent": 90,
+        "percent": 92,
         "basis": "estimate",
-        "note": "FE #80 đã deploy PROD (R4a) với cờ OFF; QA/SEC độc lập đạt có điều kiện. 90% là ước lượng: còn bật cờ + smoke B3 trên PROD thật và các phần chưa xây.",
-        "reportedAt": "2026-11-06T18:26:35+07:00",
+        "note": "Đã bật PROD, smoke một phần PASS; luồng đầy đủ chưa E2E thật.",
+        "reportedAt": "2026-11-06T18:44:23+07:00",
         "codeStatus": "CODE_COMPLETE_QA_PENDING"
       }
     },
