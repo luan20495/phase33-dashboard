@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T19:29:45+07:00",
+  "asOf": "2026-11-07T20:30:30+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -753,7 +753,7 @@
       "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ). Mở rộng: #142 và #145 QA vòng 2 (VERIFIED) đạt cho dev; FE #98 QA vòng 2 (VERIFIED) GATE-PASS cho dev, bật cờ DEV cần chạy với controller thật; BE #150 QA phát hiện lỗ hổng (hủy trước chunk đầu bị tính theo ước lượng), đang vá",
       "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Deploy đợt 2 cùng V92/V94 (cờ TẮT); bật cờ DEV cần chạy với controller thật; gói B2-WEB-03, 05, 06, 07, 08 chưa làm.",
+      "next": "Cờ AI_CONFIG vẫn TẮT (BLOCKED: E2E controller thật + vai trò DB); chạy E2E DEV thật rồi bật theo chính sách mặc định BẬT.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -1058,7 +1058,7 @@
       "qa": "QA/SEC #141 GATE-PASS (VERIFIED). FE #94: QA/SEC r4 độc lập PASS trên đúng head (VERIFIED), đã merge vào dev 15:49 cùng BE #154 (mirror vendored, 15:54). Backend thật NOT_RUN.",
       "prs": "BE #121 DEPLOYED (4e) · BE #141 MERGED dev b93fe260 (P3-N1) · FE #94 DRAFT head 7874d879 (phụ thuộc #60) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "UI X2 đã deploy PROD (cờ nguồn hệ thống TẮT, route probe-gated); smoke 2 quản trị tenant; bật cờ cần Owner duyệt riêng.",
+      "next": "Cờ SYSTEM_SOURCES vẫn TẮT (BLOCKED: E2E DEV thật); sau E2E bật theo chính sách mặc định BẬT.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1230,10 +1230,10 @@
       "flag": "OFF (PROD đóng cứng bằng mã)",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE (BE #159 + FE #110): tác giả báo 52/52 mutant giết (REPORTED); QA/SEC độc lập đang chạy; E2E trình duyệt trên stack DEV thật NOT_RUN.",
+      "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE: BE #159 + FE #110 QA/SEC độc lập PASS trên đúng head (VERIFIED, không P0–P2), đã merge dev 19:40/20:14; E2E trình duyệt DEV thật NOT_RUN.",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "QA/SEC #159+#110; E2E DEV; cờ vẫn TẮT, sàn PROD không bao giờ bật.",
+      "next": "Đợt 3 lên PROD với cờ TẮT (sàn mã fail-closed); PR sửa 3 điểm P3 cho đợt 4; Owner quyết nâng sàn PROD để bật.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1323,8 +1323,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "Đã deploy PROD 07/11 17:22 ICT với cờ TẮT, API trả 404 đúng thiết kế (VERIFIED); phần còn thiếu đang làm trên dev.",
-        "reportedAt": "2026-11-07T17:26:56+07:00"
+        "note": "BE S1/S2 đã trên PROD (OFF); X4 COMPLETE đã vào dev, RELEASE_READY chờ GO QA tích hợp; sàn PROD giữ.",
+        "reportedAt": "2026-11-07T20:30:30+07:00"
       }
     },
     {
