@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T10:26:43+07:00",
+  "asOf": "2026-11-07T10:27:26+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T10:26:43+07:00",
+    "updatedAt": "2026-11-07T10:27:26+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2221,8 +2221,8 @@
         "kind": "READY",
         "priority": "P1",
         "status": "OPEN",
-        "title": "Bấm Ready rồi Merge 3 PR đã QA đạt: FE #103, FE #98, BE #152 (docs)",
-        "detail": "Cả ba base dev, CLEAN, QA/SEC độc lập đạt cho dev (cờ TẮT, không P0–P3 còn lại): FE #103 (sửa lỗi hàng đợi), FE #98 (tab cấu hình AI, ẩn khi cờ TẮT), BE #152 (tài liệu AGENTSXWeb cho #98; merge cùng #98). Chưa bấm: BE #151 + FE #104 (nhập dự án, đang sửa lỗi P3 theo QA, merge theo cặp), BE #150 (quyết toán khi hủy lượt AI, QA vòng 2 đang chạy), FE #94 (DIRTY), chuỗi Home #99–#101 (QA vòng 4 đang chạy), AI-17 #96/#97 (đang gộp dev).",
+        "title": "Bấm Ready rồi Merge FE #98 và BE #152 (QA đạt, CLEAN)",
+        "detail": "FE #103 đã được Owner merge lúc 10:05 (xong). Còn: FE #98 (tab cấu hình AI, ẩn khi cờ TẮT) và BE #152 (tài liệu AGENTSXWeb cho #98), cả hai base dev, CLEAN, QA/SEC độc lập đạt cho dev, merge cùng nhau. Chưa bấm: BE #151 + FE #104 (nhập dự án, đang sửa lỗi P3 theo QA, merge theo cặp), BE #150 (quyết toán khi hủy lượt AI, QA phát hiện lỗ hổng hủy trước chunk đầu, đang sửa), FE #94 (DIRTY), chuỗi Home #99–#101 (QA vòng 4 đang chạy), AI-17 #96/#97 (đang gộp dev).",
         "link": "https://github.com/luan20495/Xweb01fe/pull/98",
         "since": "2026-11-07T09:43:30+07:00"
       },
