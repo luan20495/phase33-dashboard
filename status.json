@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T03:05:22+07:00",
+  "asOf": "2026-11-08T03:27:53+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T18:30:01+07:00",
+    "updatedAt": "2026-11-08T03:27:53+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2284,11 +2284,11 @@
         "kind": "DECISION",
         "priority": "P2",
         "status": "OPEN",
-        "title": "Bật cờ: chỉ 2 nhóm đủ bằng chứng; chọn cách cho X2 và cấu hình AI web",
-        "solution": "Trả lời A (QA chạy DEV thật trước, khoảng nửa ngày, khuyến nghị) hoặc B (bật luôn trên PROD, Owner QA cùng, chấp nhận tài khoản DB là superuser).",
-        "detail": "Phân tích cho thấy chỉ PROJECT_CREATE_IDEMPOTENCY và AI_SPEND_AUTOMATION bật được ngay (không có tác động người dùng); mình đề xuất bật cùng đợt 3. X2 và AI_CONFIG cần quyết định A/B. Các nhóm khác giữ TẮT kèm lý do trong kế hoạch.",
+        "title": "Bật cờ giai đoạn 2: xác nhận cho X2 và cấu hình AI web",
+        "solution": "Đọc điều kiện ở báo cáo #88 rồi trả lời xác nhận; Claude bật trong vài phút (một lần khởi động lại khoảng 1,5 phút).",
+        "detail": "Giai đoạn 1 đã bật 08/11 03:24 (tạo dự án không trùng lặp và tự gia hạn cửa sổ AI ở trạng thái trơ). Các nhóm còn lại giữ TẮT có lý do, xem báo cáo #88.",
         "link": "https://github.com/luan20495/xweb01/issues/88",
-        "since": "2026-11-07T18:30:01+07:00"
+        "since": "2026-11-08T03:27:53+07:00"
       }
     ]
   }
