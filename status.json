@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T11:36:24+07:00",
+  "asOf": "2026-11-07T12:30:11+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -751,9 +751,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ). Mở rộng: #142 và #145 QA vòng 2 (VERIFIED) đạt cho dev; FE #98 QA vòng 2 (VERIFIED) GATE-PASS cho dev, bật cờ DEV cần chạy với controller thật; BE #150 QA phát hiện lỗ hổng (hủy trước chunk đầu bị tính theo ước lượng), đang vá",
-      "prs": "BE #112/#119 · docs #128 · BE #142 (đã chứa #145) đã MERGE dev 09:23 ICT · BE #148 đã MERGE dev · FE #98 DRAFT head 1cce0e01 (QA vòng 2 đạt cho dev) + BE docs #152 DRAFT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
+      "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Owner Ready+Merge FE #98 và BE #152; deploy đợt 2 cùng V92/V94 (cờ TẮT); gói B2-WEB-03, 05, 06, 07, 08 chưa làm.",
+      "next": "Deploy đợt 2 cùng V92/V94 (cờ TẮT); bật cờ DEV cần chạy với controller thật; gói B2-WEB-03, 05, 06, 07, 08 chưa làm.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T10:29:57+07:00",
+        "reportedAt": "2026-11-07T12:30:11+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -1496,9 +1496,9 @@
       "risk": "MEDIUM",
       "integrated": false,
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 (68a91b63, base dev, CLEAN) và #97 (7311c53a, base dev, đang gộp dev) DRAFT, cờ TẮT",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "Ready+Merge #96 → #97; đồng bộ lại vendored lúc merge; backend N1/N2; quyết định OD-33 cho theme.",
+      "next": "Deploy đợt 2 (cờ TẮT); backend N1/N2; quyết định OD-33 cho theme.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-07T11:00:52+07:00"
+        "reportedAt": "2026-11-07T12:30:11+07:00"
       }
     },
     {
@@ -1662,11 +1662,11 @@
       "stage": "INCOMPLETE",
       "flag": "OFF",
       "risk": "LOW",
-      "integrated": false,
+      "integrated": true,
       "qa": "Home QA vòng 4 (VERIFIED): #99, #100, #101 GATE-PASS merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (cần E2E backend thật). 29/29 dạng thông tin xác thực/URL năng lực bị chặn, bộ quét toàn văn bản, bundle production thật 0 dấu vết khi cờ tắt, plain Edit giống dev 374/374. Điều kiện: áp patch đồng hành BE cùng lúc. BE #147 (V95) đã vào dev, QA vòng 2 không P0–P2. Chưa chạy: backend thật, AI thật",
-      "prs": "FE #90 (P1) đã MERGE dev · FE #99 (5de63054), #100 (454be840), #101 (5b2bb62f) DRAFT, base dev, CLEAN, cờ TẮT · BE #147 (V95, B1 tạo dự án idempotent) đã MERGE dev",
+      "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "Ready+Merge #99 → #100 → #101 kèm patch đồng hành BE; deploy đợt 2 cờ TẮT.",
+      "next": "Deploy đợt 2 (cờ TẮT) cùng patch đồng hành BE (BE #153); E2E backend thật trước khi bật cờ.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T11:08:39+07:00"
+        "reportedAt": "2026-11-07T12:30:11+07:00"
       }
     }
   ],
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T11:36:24+07:00",
+    "updatedAt": "2026-11-07T12:30:11+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2218,13 +2218,13 @@
       },
       {
         "id": "OA-03",
-        "kind": "READY",
+        "kind": "MERGE",
         "priority": "P1",
         "status": "OPEN",
-        "title": "Bấm Ready rồi Merge: FE #98 + BE #152, FE #96 → #97, FE #99 → #100 → #101, FE #105 (QA đạt)",
-        "detail": "Sẵn sàng (QA/SEC độc lập đạt cho dev và PROD với cờ TẮT, CLEAN, base dev): (1) FE #98 (tab cấu hình AI) cùng BE #152 (tài liệu); (2) FE #96 rồi #97 (trợ lý dữ liệu); (3) FE #99 → #100 → #101 (Studio Home; cần áp patch đồng hành BE cùng lúc, em lo). PR nào vào sau sẽ cần gộp lại danh sách cờ dùng chung trong nextConfig, em giao agent làm ngay khi anh merge. Thêm FE #105 (follow-up hàng đợi, QA kiểm lại GATE-PASS cho dev; ghi chú trong release: ở màn hình một khung, nút báo lỗi bị ẩn khi FULL mở, người dùng bàn phím không có điều khiển phản hồi ở đó). Chưa bấm: BE #150 (QA vòng 3 bị chặn bởi sự cố ổ đĩa/Docker), BE #151 + FE #104 (nhập dự án: lỗi P2 DoS trước xác thực đang sửa, chưa deploy), FE #94 (DIRTY).",
-        "link": "https://github.com/luan20495/Xweb01fe/pull/99",
-        "since": "2026-11-07T09:43:30+07:00"
+        "title": "Bấm Ready rồi Merge theo thứ tự: FE #106 → BE #153 (đồng bộ để dev xanh)",
+        "detail": "Hai PR đồng bộ (CLEAN, base dev): FE #106 chép PROD_DEPLOY.md và thêm 8 nhãn audit; BE #153 đồng bộ lõi vendored, .gitleaksignore, AGENTSXWeb và kiểm kê QA. combined-check đầy đủ xanh trên hai nhánh. Merge sát nhau: nếu chỉ một bên vào thì dev chưa xanh. FE #98, #96, #97, #99–#101, #105 và BE #152 đã được Owner merge. Chưa bấm: FE #94 (DIRTY), FE #104 (DIRTY), BE #150, BE #151 (QA chờ Docker).",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/106",
+        "since": "2026-11-07T12:30:11+07:00"
       },
       {
         "id": "OA-04",
