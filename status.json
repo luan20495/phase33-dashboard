@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T09:43:30+07:00",
+  "asOf": "2026-11-07T09:59:41+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T09:43:30+07:00",
+    "updatedAt": "2026-11-07T09:59:41+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2222,17 +2222,17 @@
         "priority": "P2",
         "status": "OPEN",
         "title": "Đổi base về dev cho chuỗi Home #99–#101 và AI-17 #96/#97 (em bị chặn quyền)",
-        "detail": "FE #90 (Home P1) đã vào dev nên base của #99 đang là nhánh cũ đã merge. Cần bấm Edit trên từng PR đổi base thành dev (lần lượt #99 → #100 → #101; #96 → #97). Sau đó em báo khi từng PR CLEAN và QA đạt để bấm Ready/Merge. Quy tắc: chỉ bấm Merge PR ghi 'into dev'.",
+        "detail": "FE #90 (Home P1) đã vào dev nên base của #99 đang là nhánh cũ đã merge. Bấm Edit trên từng PR đổi base thành dev, lần lượt #99 → #100 → #101; #96 → #97 (AI-17, chồng trên #60 đã merge). Sau đó em báo khi từng PR CLEAN và QA đạt để bấm Ready/Merge. Quy tắc: chỉ bấm Merge PR ghi 'into dev'. QA vòng 4 cho chuỗi Home đang chạy.",
         "link": "https://github.com/luan20495/Xweb01fe/pull/99",
         "since": "2026-11-07T09:43:30+07:00"
       },
       {
         "id": "OA-03",
         "kind": "READY",
-        "priority": "P2",
+        "priority": "P1",
         "status": "OPEN",
-        "title": "Bấm Ready khi em báo QA đạt: FE #103, #104; BE #150, #151; FE #94, #98",
-        "detail": "Các PR này đang DRAFT (em không bấm Ready được). FE #103 (sửa lỗi hàng đợi) và BE #151 + FE #104 (sửa lỗi nhập dự án) đang QA độc lập. BE #150 (sửa quyết toán khi hủy lượt AI, V96) đang được sửa lỗi QA về tiền. FE #94 và #98 cần QA kiểm lại.",
+        "title": "Bấm Ready rồi Merge FE #103 (QA đạt); các PR khác chờ QA/gộp",
+        "detail": "FE #103 (sửa lỗi hàng đợi: nút báo lỗi che nút mở hàng đợi, bộ đếm byte, chữ khi tự tạm dừng, thời gian từng job): base dev, CLEAN, QA/SEC độc lập đạt cho dev (không P0–P2; các lỗi P3 còn lại sẽ làm ở PR sau). Còn lại: BE #151 + FE #104 (sửa lỗi nhập dự án) đang được sửa lỗi P3 theo QA, BE #150 (quyết toán khi hủy lượt AI, V96) đang sửa lỗi tiền, FE #98 (QA kiểm lại), FE #94 (đang DIRTY).",
         "link": "https://github.com/luan20495/Xweb01fe/pull/103",
         "since": "2026-11-07T09:43:30+07:00"
       },
