@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T21:30:36+07:00",
+  "asOf": "2026-11-07T22:29:46+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -342,7 +342,7 @@
       "qa": "1 lượt AI thật PASS cơ bản",
       "prs": "BE #102 · FE #67 · Owner #88/6660994350 (REQUESTED)",
       "summary": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
-      "next": "Tool loop (BE #165) đang dev theo backlog; OD-05 hạn mức chi.",
+      "next": "Tool loop BE #165 đang QA/SEC độc lập; sau đó FE panel + mirror PROD_DEPLOY, rồi QA 12 lượt Haiku khi có cửa sổ AI; OD-05 hạn mức chi.",
       "work": {
         "problem": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
         "approach": "Dùng manifest + công cụ tìm kiếm/đọc từng đoạn theo revision và IAM, giới hạn vòng/byte/USD; ưu tiên Repomix được pin/audit trước khi tích hợp, không nhét cả repo vào prompt.",
@@ -753,7 +753,7 @@
       "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ). Mở rộng: #142 và #145 QA vòng 2 (VERIFIED) đạt cho dev; FE #98 QA vòng 2 (VERIFIED) GATE-PASS cho dev, bật cờ DEV cần chạy với controller thật; BE #150 QA phát hiện lỗ hổng (hủy trước chunk đầu bị tính theo ước lượng), đang vá",
       "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Gói 02b (BE #164) đang dev; cờ AI_CONFIG vẫn TẮT (BLOCKED: E2E controller thật + vai trò DB); B2 là đường găng ≈243 giờ-agent.",
+      "next": "Gói 02b BE #164 lát 1 xong (REPORTED), chờ QA độc lập + FE B2-6; cờ AI_CONFIG vẫn TẮT; D-02b-1 chờ Owner.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
