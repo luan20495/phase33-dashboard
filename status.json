@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T04:30:00+07:00",
+  "asOf": "2026-11-08T05:29:58+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1141,10 +1141,10 @@
       "flag": "OFF",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (P2-2 đã sửa, QA tự chứng minh); 6 P3 mới (không chặn)",
+      "qa": "QA r2 PASS-WITH-COND (BE 4e). Hoàn tất X3 BE #156 + FE #108: QA/SEC độc lập PASS cả hai (VERIFIED), đã merge dev 05:18.",
       "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "Cặp BE #156 + FE #108 đang QA/SEC độc lập; sau đó gộp dev, mirror vendored, đợt 4; bật sau X2.",
+      "next": "Bật cờ SYSTEM_SCOPE sau X2 (chờ Owner xác nhận); xuất bản lại ứng dụng; E2E PROD bằng dữ liệu thử.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1335,10 +1335,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
+      "qa": "QA/SEC #121+#141 PASS có điều kiện. Khống chế chi phí BE #168 + FE #116: QA/SEC độc lập PASS (VERIFIED), đã merge dev 04:55.",
       "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
-      "next": "FE picker đang dev (PR sắp mở); cần X2 bật và một lượt Haiku thật.",
+      "next": "Bật cờ sau X2 + một lượt Haiku thật (cần cửa sổ AI); không cần FE picker.",
       "work": {
         "problem": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
         "approach": "Chỉ inject nguồn/mẫu schema sanitized theo effective IAM vào Context Builder, có trace provenance và test không tiết lộ PII.",
