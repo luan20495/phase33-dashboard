@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T14:46:37+07:00",
+  "asOf": "2026-11-07T14:48:52+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T14:32:35+07:00",
+    "updatedAt": "2026-11-07T14:48:52+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2211,10 +2211,11 @@
         "kind": "INCIDENT",
         "priority": "P1",
         "status": "OPEN",
-        "title": "Sự cố QA CQB-1 trên PROD cần Owner chọn cách sửa",
-        "detail": "Lúc 08:03 ICT 07/11 một agent QA đã ghi nhầm chính sách trường dữ liệu của một nguồn QA, làm hỏng bộ chọn nhân viên của một app pilot đang chạy. Cách 1 (khuyến nghị, khoảng 5 phút): một admin workspace không phải một trong ba tài khoản QA đã sửa lưu lại 4 cột id, firstName, lastName, email rồi một admin khác duyệt. Cách 2: script backend xóa dòng chính sách (cần ghi DB PROD và nạp khóa SSH). Cần Owner nói cách nào và ai là admin.",
+        "title": "CQB-1: 2 admin độc lập khôi phục và duyệt 4 cột (id, firstName, lastName, email)",
+        "detail": "Owner đã chọn cách sửa (07/11). Claude không ghi dữ liệu PROD nên cần 2 admin của anh thực hiện; Claude đã soạn kịch bản từng bước. Đến khi xong, chọn nhân viên trong ứng dụng marketing vẫn lỗi.",
         "link": "",
-        "since": "2026-11-07T08:03:00+07:00"
+        "since": "2026-11-07T14:48:52+07:00",
+        "solution": "Admin A tick đúng 4 cột và lưu; Admin B (người khác, chưa từng sửa nguồn này) bấm Duyệt. Xong báo Claude để kiểm lại chỉ-đọc."
       },
       {
         "id": "OA-04",
