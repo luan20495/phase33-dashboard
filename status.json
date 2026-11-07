@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T14:32:35+07:00",
+  "asOf": "2026-11-07T14:46:37+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -150,10 +150,10 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20. Bản sửa BE #151 @15119bea + FE #104 @993f673: QA/SEC r3 độc lập PASS (VERIFIED), 39/39 mutant giết, không P0–P2; còn 1 P3 (kết nối upload chậm của người đã đăng nhập giữ slot).",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20. Bản sửa BE #151 + FE #104: QA/SEC r3 độc lập PASS (VERIFIED), đã merge vào dev 14:04; còn 1 P3.",
       "prs": "BE #97 · FE #71 · BE #151 (35f93332) + FE #104 (ccc52a4f) DRAFT, đã sửa lỗi P2 DoS trước xác thực (REPORTED); test Docker chưa chạy lại",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
-      "next": "Owner Ready + Merge BE #151 rồi FE #104 (base dev); deploy đợt 2 kèm đổi ack nhập dự án sang SHA mới; chấp nhận hoặc sửa P3.",
+      "next": "Deploy đợt 2 kèm đổi ack nhập dự án sang SHA mới; sửa P3 (hạn đọc tổng upload); E2E nhập→sửa→build→publish.",
       "work": {
         "problem": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
         "approach": "Chạy một dự án HTML và một React/Vite đa trang từ upload tới site chạy thật, giữ cấu trúc nguồn/asset và quyền, có log file nào bị bỏ qua.",
@@ -220,8 +220,8 @@
       "progress": {
         "percent": 100,
         "basis": "prod_on",
-        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T11:30:05+07:00"
+        "note": "Đã bật PROD (bản cũ); bản sửa DoS/nhập dự án đã vào dev, chưa lên PROD. Chưa đồng nghĩa nghiệm thu.",
+        "reportedAt": "2026-11-07T14:46:37+07:00"
       }
     },
     {
