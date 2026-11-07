@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T05:29:58+07:00",
+  "asOf": "2026-11-08T05:46:26+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1413,13 +1413,13 @@
       "name": "Project Map / Memory",
       "batch": "Unassigned",
       "stage": "PROD_DEPLOYED",
-      "flag": "OFF",
+      "flag": "Map BẬT (08/11 05:42); Memory TẮT",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC độc lập #130: GATE-PASS-WITH-CONDITIONS cho merge dev (cờ TẮT): migration V88/V89 PASS trên Postgres thật; P1 ReDoS (SourceScan: 50.000 khoảng trắng → 20 giây, `<h1>` >40 giây), P2-1 khử ký tự đóng thẻ yếu, P2-2 ký tự Unicode ẩn, P2-3 bản đồ+ghi nhớ có thể đẩy yêu cầu gần ngưỡng thành 413. KHÔNG bật cờ trước khi sửa P1/P2. AI-MAP đang sửa · Đã sửa P1 ReDoS + P2 (agent báo); em chạy lại 39 test hostile/map/scan: 39/39 (VERIFIED); prod-floors F-7 đỏ cả trên dev sạch (có sẵn, không do #130)",
+      "qa": "QA/SEC độc lập (VERIFIED): Project Map QA PASS + SEC PASS (ReDoS P1 đã đóng, đo trên kho thật); Memory QA PASS + SEC PASS với 2 điểm P3 (neutraliser thiếu thẻ, chưa có màn FE). Smoke Map sau bật PASS (VERIFIED).",
       "prs": "BE #130 đã MERGE vào dev lúc 07:39 ICT 07/11 (GitHub). V88/V89 chưa lên PROD. Cờ TẮT.",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "PROD testing khi Owner duyệt bật cờ; QA 10 lượt sửa liên tục.",
+      "next": "Sửa neutraliser Memory + nhãn audit (đang dev) rồi QA lại; màn FE Memory (ước lượng riêng); một lượt Haiku trả phí để xem project_map trong blocks (cần cửa sổ AI).",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1483,8 +1483,8 @@
       "progress": {
         "percent": 85,
         "basis": "estimate",
-        "note": "Đã deploy PROD 07/11 17:22 ICT với cờ TẮT (V88/V89 chạy, API trả 404 khi TẮT, VERIFIED).",
-        "reportedAt": "2026-11-07T17:26:56+07:00"
+        "note": "Project Map đã BẬT trên PROD 08/11 05:42 ICT, smoke PASS (VERIFIED); Memory chưa bật.",
+        "reportedAt": "2026-11-08T05:46:26+07:00"
       }
     },
     {
