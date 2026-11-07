@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T11:00:52+07:00",
+  "asOf": "2026-11-07T11:08:39+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1663,10 +1663,10 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Home QA vòng 3 (VERIFIED): GATE-PASS merge dev và PROD cờ TẮT cho #99–#101; R3-F1..F7 đã sửa (REPORTED: gate:frontend xanh, mutant 110/110), QA vòng 4 đang chạy. BE #147 QA vòng 2 (VERIFIED): không P0–P2. Chưa chạy: backend thật, AI thật",
+      "qa": "Home QA vòng 4 (VERIFIED): #99, #100, #101 GATE-PASS merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (cần E2E backend thật). 29/29 dạng thông tin xác thực/URL năng lực bị chặn, bộ quét toàn văn bản, bundle production thật 0 dấu vết khi cờ tắt, plain Edit giống dev 374/374. Điều kiện: áp patch đồng hành BE cùng lúc. BE #147 (V95) đã vào dev, QA vòng 2 không P0–P2. Chưa chạy: backend thật, AI thật",
       "prs": "FE #90 (P1) đã MERGE dev · FE #99 (5de63054), #100 (454be840), #101 (5b2bb62f) DRAFT, base dev, CLEAN, cờ TẮT · BE #147 (V95, B1 tạo dự án idempotent) đã MERGE dev",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "QA vòng 4; Ready+Merge theo thứ tự #99 → #100 → #101; patch đồng hành BE cùng lúc; deploy đợt 2 cờ TẮT.",
+      "next": "Ready+Merge #99 → #100 → #101 kèm patch đồng hành BE; deploy đợt 2 cờ TẮT.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T10:29:57+07:00"
+        "reportedAt": "2026-11-07T11:08:39+07:00"
       }
     }
   ],
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T11:00:52+07:00",
+    "updatedAt": "2026-11-07T11:08:39+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2221,9 +2221,9 @@
         "kind": "READY",
         "priority": "P1",
         "status": "OPEN",
-        "title": "Bấm Ready rồi Merge: FE #98 + BE #152, rồi FE #96 → #97 (QA đạt, CLEAN, base dev)",
-        "detail": "Sẵn sàng (QA/SEC độc lập đạt cho dev và PROD với cờ TẮT, CLEAN): (1) FE #98 (tab cấu hình AI) cùng BE #152 (tài liệu); (2) FE #96 (trợ lý dữ liệu Studio) rồi FE #97 (wizard Admin) sau khi #96 vào. Chưa bấm: FE #105 (follow-up hàng đợi, đang làm commit cuối), BE #150 (quyết toán khi hủy lượt AI, QA vòng 3 đang chạy), BE #151 + FE #104 (nhập dự án: QA phát hiện lỗi P2 DoS trước xác thực, đang sửa, tuyệt đối chưa deploy), FE #94 (DIRTY), chuỗi Home #99–#101 (QA vòng 4 đang chạy).",
-        "link": "https://github.com/luan20495/Xweb01fe/pull/96",
+        "title": "Bấm Ready rồi Merge: FE #98 + BE #152, FE #96 → #97, FE #99 → #100 → #101 (QA đạt)",
+        "detail": "Sẵn sàng (QA/SEC độc lập đạt cho dev và PROD với cờ TẮT, CLEAN, base dev): (1) FE #98 (tab cấu hình AI) cùng BE #152 (tài liệu); (2) FE #96 rồi #97 (trợ lý dữ liệu); (3) FE #99 → #100 → #101 (Studio Home; cần áp patch đồng hành BE cùng lúc, em lo). PR nào vào sau sẽ cần gộp lại danh sách cờ dùng chung trong nextConfig, em giao agent làm ngay khi anh merge. Chưa bấm: FE #105 (đang làm commit cuối), BE #150 (QA vòng 3 bị chặn bởi sự cố ổ đĩa/Docker), BE #151 + FE #104 (nhập dự án: lỗi P2 DoS trước xác thực đang sửa, chưa deploy), FE #94 (DIRTY).",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/99",
         "since": "2026-11-07T09:43:30+07:00"
       },
       {
@@ -2265,6 +2265,16 @@
         "detail": "Đã xóa 136 nhánh đã merge (có lưu SHA). Còn 22 nhánh không PR và chưa merge (17 BE, 5 FE: phase3/*, feat/xapp-*, docs/xapp-r1-*, pr/N) và nhiều PR mở từ phase cũ (30 BE, 28 FE). Cho em biết nhánh/PR nào bỏ được thì em xóa/đóng.",
         "link": "",
         "since": "2026-11-07T09:43:30+07:00"
+      },
+      {
+        "id": "OA-08",
+        "kind": "INFRA",
+        "priority": "P2",
+        "status": "OPEN",
+        "title": "Ổ đĩa máy dev đầy 100%: Docker chuyển sang chỉ đọc, các test dùng container đang lỗi",
+        "detail": "Ổ dữ liệu còn khoảng 2 GiB trên 460 GiB; thư mục worktree chiếm khoảng 79 GiB trong 254 worktree. Em dọn có chọn lọc các worktree sạch đã merge, sau đó cần Owner khởi động lại Docker Desktop. Không xóa gì ngoài worktree sạch.",
+        "link": "",
+        "since": "2026-11-07T11:08:39+07:00"
       }
     ]
   }
