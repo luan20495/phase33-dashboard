@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T05:46:26+07:00",
+  "asOf": "2026-11-08T06:30:11+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -750,10 +750,10 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS phần đã ON. Gói 02b BE #164: QA/SEC độc lập PASS (VERIFIED), đã merge dev 03:51; cờ AI_CONFIG vẫn TẮT.",
+      "qa": "QA/SEC R2 PASS phần đã ON. Gói 02b: BE #164 và FE #117 QA/SEC độc lập PASS (VERIFIED), đã merge dev (03:51, 06:24); cờ AI_CONFIG vẫn TẮT.",
       "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "FE B2-6, gói 03b/05/06; xác nhận của Owner để bật phần cấu hình AI đã có.",
+      "next": "Gói 03b/05/06; xác nhận của Owner để bật phần cấu hình AI đã có (backend + FE đều có trong dev).",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
