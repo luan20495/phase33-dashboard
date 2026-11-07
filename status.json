@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T22:29:46+07:00",
+  "asOf": "2026-11-07T23:29:46+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -339,10 +339,10 @@
       "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "1 lượt AI thật PASS cơ bản",
+      "qa": "1 lượt AI thật PASS cơ bản. Tool loop BE #165: QA PASS, SEC PASS có điều kiện (VERIFIED, không P0–P2); 3 P3 đang sửa.",
       "prs": "BE #102 · FE #67 · Owner #88/6660994350 (REQUESTED)",
       "summary": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
-      "next": "Tool loop BE #165 đang QA/SEC độc lập; sau đó FE panel + mirror PROD_DEPLOY, rồi QA 12 lượt Haiku khi có cửa sổ AI; OD-05 hạn mức chi.",
+      "next": "Sửa 3 P3 của #165 + QA delta; FE panel + mirror PROD_DEPLOY; QA 12 lượt Haiku khi có cửa sổ AI; OD-05.",
       "work": {
         "problem": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
         "approach": "Dùng manifest + công cụ tìm kiếm/đọc từng đoạn theo revision và IAM, giới hạn vòng/byte/USD; ưu tiên Repomix được pin/audit trước khi tích hợp, không nhét cả repo vào prompt.",
@@ -1230,10 +1230,10 @@
       "flag": "OFF (PROD đóng cứng bằng mã)",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE: BE #159 + FE #110 QA/SEC độc lập PASS trên đúng head (VERIFIED, không P0–P2), đã merge dev 19:40/20:14; E2E trình duyệt DEV thật NOT_RUN.",
+      "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE (BE #159 + FE #110) trên PROD (OFF). Follow-up BE #161 + #166 QA/SEC độc lập PASS (VERIFIED), đã merge dev; còn 1 P4 (surrogate mồ côi).",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "BE #161 (3 P3) đang QA cho đợt 4; Owner quyết nâng sàn PROD để bật; E2E DEV thật.",
+      "next": "Đợt 4 mang #161/#166 lên PROD (cờ vẫn TẮT, sàn mã); Owner quyết nâng sàn; E2E DEV thật.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
