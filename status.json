@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T03:27:53+07:00",
+  "asOf": "2026-11-08T04:30:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -339,10 +339,10 @@
       "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "1 lượt AI thật PASS cơ bản. Tool loop BE #165: QA PASS, SEC PASS có điều kiện (VERIFIED, không P0–P2); 3 P3 đang sửa.",
+      "qa": "1 lượt AI thật PASS cơ bản. Tool loop BE #165 + FE #114: QA/SEC độc lập vòng 3 PASS (VERIFIED), đã merge dev 04:13.",
       "prs": "BE #102 · FE #67 · Owner #88/6660994350 (REQUESTED)",
       "summary": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
-      "next": "Sửa 3 P3 của #165 + QA delta; FE panel + mirror PROD_DEPLOY; QA 12 lượt Haiku khi có cửa sổ AI; OD-05.",
+      "next": "Panel FE + hướng dẫn; QA 12 lượt Haiku khi có cửa sổ AI; OD-05 hạn mức chi; bật cờ tool loop qua cổng phát hành.",
       "work": {
         "problem": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
         "approach": "Dùng manifest + công cụ tìm kiếm/đọc từng đoạn theo revision và IAM, giới hạn vòng/byte/USD; ưu tiên Repomix được pin/audit trước khi tích hợp, không nhét cả repo vào prompt.",
@@ -750,10 +750,10 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ). Mở rộng: #142 và #145 QA vòng 2 (VERIFIED) đạt cho dev; FE #98 QA vòng 2 (VERIFIED) GATE-PASS cho dev, bật cờ DEV cần chạy với controller thật; BE #150 QA phát hiện lỗ hổng (hủy trước chunk đầu bị tính theo ước lượng), đang vá",
+      "qa": "QA/SEC R2 PASS phần đã ON. Gói 02b BE #164: QA/SEC độc lập PASS (VERIFIED), đã merge dev 03:51; cờ AI_CONFIG vẫn TẮT.",
       "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Gói 02b BE #164 lát 1 xong (REPORTED), chờ QA độc lập + FE B2-6; cờ AI_CONFIG vẫn TẮT; D-02b-1 chờ Owner.",
+      "next": "FE B2-6, gói 03b/05/06; xác nhận của Owner để bật phần cấu hình AI đã có.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -1144,7 +1144,7 @@
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (P2-2 đã sửa, QA tự chứng minh); 6 P3 mới (không chặn)",
       "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "BE #156 + FE #108 chờ QA độc lập; cần X2 bật trước; Org (#126) và SENSITIVE cần Owner.",
+      "next": "Cặp BE #156 + FE #108 đang QA/SEC độc lập; sau đó gộp dev, mirror vendored, đợt 4; bật sau X2.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1338,7 +1338,7 @@
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (không P0–P2; P2-1 đã sửa, QA tự chứng minh); 273 test 0 lỗi (QA chạy, cây gộp #131+dev); mutant 9/11 bị giết; E2E AI thật NOT_RUN",
       "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
-      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: phụ thuộc X2 (chưa có ô nguồn nào bật để AI mô tả); cần 1 lượt Haiku thử khối system_context; Owner duyệt.",
+      "next": "FE picker đang dev (PR sắp mở); cần X2 bật và một lượt Haiku thật.",
       "work": {
         "problem": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
         "approach": "Chỉ inject nguồn/mẫu schema sanitized theo effective IAM vào Context Builder, có trace provenance và test không tiết lộ PII.",
@@ -1666,7 +1666,7 @@
       "qa": "Home QA vòng 4 (VERIFIED): #99, #100, #101 GATE-PASS merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (cần E2E backend thật). 29/29 dạng thông tin xác thực/URL năng lực bị chặn, bộ quét toàn văn bản, bundle production thật 0 dấu vết khi cờ tắt, plain Edit giống dev 374/374. Điều kiện: áp patch đồng hành BE cùng lúc. BE #147 (V95) đã vào dev, QA vòng 2 không P0–P2. Chưa chạy: backend thật, AI thật",
       "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "INF-3 (công tắc build FE, FE #113 + BE #167) đang QA/SEC độc lập; sau đó bật Home theo cổng phát hành; khung kéo thả theo yêu cầu của Owner chưa xây (OD-19).",
+      "next": "INF-3 đã merge dev; FE #115 (sửa follow-up) đang làm; đợt 4 build lại image bật công tắc Home; khung kéo thả chưa xây (OD-19).",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
