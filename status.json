@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T08:30:08+07:00",
+  "asOf": "2026-11-07T09:20:42+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2201,5 +2201,74 @@
       "INDEPENDENT": 13,
       "COVERED_BY_P33": 4
     }
+  },
+  "ownerActions": {
+    "updatedAt": "2026-11-07T09:20:42+07:00",
+    "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật/tài chính ở đây. Em (C0) chỉ merge PR có base dev khi đã đủ điều kiện; Ready/đổi base/ngân sách/quyền/cờ/PROD luôn cần Owner.",
+    "items": [
+      {
+        "id": "OA-01",
+        "kind": "INCIDENT",
+        "priority": "P1",
+        "title": "Sự cố QA CQB-1 trên PROD cần Owner chọn cách sửa",
+        "detail": "Lúc 08:03 ICT một agent QA đã ghi nhầm chính sách trường dữ liệu của một nguồn QA, làm hỏng bộ chọn nhân viên của một app pilot đang chạy. Cách 1 (khuyến nghị, khoảng 5 phút): một admin workspace không phải một trong ba tài khoản QA đã sửa lưu lại 4 cột id, firstName, lastName, email rồi một admin khác duyệt. Cách 2: script backend xóa dòng chính sách (cần ghi DB PROD và nạp khóa SSH). Cần Owner nói cách nào và ai là admin.",
+        "link": "",
+        "since": "2026-11-07T08:03:00+07:00"
+      },
+      {
+        "id": "OA-02",
+        "kind": "MERGE",
+        "priority": "P1",
+        "title": "BE #142 (cấu hình AI động V92 + IAM động V94) đã CLEAN, bấm Merge",
+        "detail": "Base dev, CLEAN, QA/SEC độc lập vòng 2 đạt cho dev (cờ TẮT). Phần Gradle cuối của QA sẽ chạy trước cổng dev → main. Chỉ bấm Merge PR có chữ 'into dev'.",
+        "link": "https://github.com/luan20495/xweb01/pull/142",
+        "since": "2026-11-07T09:20:42+07:00"
+      },
+      {
+        "id": "OA-03",
+        "kind": "MERGE",
+        "priority": "P2",
+        "title": "BE #147 (tạo dự án idempotent V95) CLEAN nhưng chỉ merge SAU #142",
+        "detail": "Flyway outOfOrder=false: V95 phải đứng sau V92/V94. Em gộp dev vào #147 lần cuối sau khi #142 vào rồi báo bấm.",
+        "link": "https://github.com/luan20495/xweb01/pull/147",
+        "since": "2026-11-07T09:20:42+07:00"
+      },
+      {
+        "id": "OA-04",
+        "kind": "READY",
+        "priority": "P2",
+        "title": "Bấm Ready cho các FE đã CLEAN khi sẵn sàng",
+        "detail": "FE #102 (X4 giao diện, QA đạt có điều kiện), FE #103 (sửa lỗi hàng đợi, QA độc lập đang chạy). FE #94 và #98 CLEAN nhưng cần QA kiểm lại trước. Em không bấm Ready được (bị chặn quyền). Chuỗi Home #90–#101 và AI-17 #96/#97 có base chồng: em báo thứ tự khi gỡ.",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/103",
+        "since": "2026-11-07T09:20:42+07:00"
+      },
+      {
+        "id": "OA-05",
+        "kind": "DEPLOY",
+        "priority": "P2",
+        "title": "Thông báo deploy: đợt 2 chưa lên PROD",
+        "detail": "Dev đã có UX13, chụp/đánh dấu ảnh lỗi, Project Map/Memory, X4 S1+S2, sửa đồng hồ ngân sách (cờ TẮT). Đợt 2 phải gồm đủ migration V88, V89, V91, V92, V93, V94, V95 trong một lần (outOfOrder=false), V90 sẽ tuyên bố void nếu Org không vào trước. Còn: #142 → #147 vào dev, QA tích hợp, script promote dev → main, deploy. Khi tới bước deploy cần Owner nạp lại khóa SSH (khóa 12 giờ đã hết hạn).",
+        "link": "",
+        "since": "2026-11-07T09:20:42+07:00"
+      },
+      {
+        "id": "OA-06",
+        "kind": "BUDGET",
+        "priority": "P2",
+        "title": "Quyết định ngân sách/quyền để đóng QA B1/B3 trên PROD",
+        "detail": "PROD chưa có phân bổ nên không kiểm được đường tiền (từ chối, đồng thời, kết quả không rõ; yêu cầu → duyệt → cấp → lượt AI → hết hạn). Cần Owner chuẩn bị một workspace QA riêng với phân bổ rất nhỏ và quyền AI trả phí cho nó (chi tiết chặn trên và số lượt ở file QA cục bộ, không đăng công khai). Không đụng workspace thật. Cửa sổ AI mở tới 11:39 ICT 07/11; gia hạn là quyết định của Owner. Cũng cần: cho phép cấp tạm quyền dự án cho một tài khoản QA 30 phút để chứng minh bản sửa R37-ENT-1, và một lượt thử AI thật để chứng minh lại việc hủy sau khi sửa.",
+        "link": "",
+        "since": "2026-11-07T09:20:42+07:00"
+      },
+      {
+        "id": "OA-07",
+        "kind": "DECISION",
+        "priority": "P3",
+        "title": "Các quyết định còn mở",
+        "detail": "D-04-1 (cấp quyền AI trả phí cho admin cần 3 admin) và D-04-2 (khôi phục danh sách env bằng 1 admin); ngày bật X1 STRICT=true (chỉ sau báo cáo ảnh hưởng); giao 'pha B' vòng lặp công cụ đọc/tìm nguồn lớn cho một agent backend; dry-run phía server cho cấp hàng loạt có cần không; nâng giới hạn byte prompt (hiện 60.000) hay giữ; OD-C1..C6 của #128 và duyệt hợp đồng #126; tài khoản QA bổ sung (chỉ Apps, chỉ APP_VIEW không Studio, tenant thứ hai); chuông thông báo B3 và nút thu hồi coi là backlog.",
+        "link": "https://github.com/luan20495/xweb01/pull/128",
+        "since": "2026-11-07T09:20:42+07:00"
+      }
+    ]
   }
 }
