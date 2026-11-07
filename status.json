@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T11:08:39+07:00",
+  "asOf": "2026-11-07T11:30:05+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -151,7 +151,7 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20 PASS, 4 FAIL (trang HTML tĩnh trống khi publish, giới hạn 1 MiB, ảnh không viết lại, không có xem trước Studio), 2 NOT_IMPLEMENTED, 2 NOT_RUN. Các PR sửa BE #151 + FE #104: QA/SEC độc lập (VERIFIED) đạt có điều kiện, không P0–P2; đang sửa P3. Chưa xong 100% (pha B vòng lặp đọc nguồn lớn chưa giao)",
-      "prs": "BE #97 · FE #71 · BE #151 + FE #104 DRAFT (sửa lỗi nhập dự án, QA đạt có điều kiện)",
+      "prs": "BE #97 · FE #71 · BE #151 (35f93332) + FE #104 (ccc52a4f) DRAFT, đã sửa lỗi P2 DoS trước xác thực (REPORTED); test Docker chưa chạy lại",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
       "next": "Import file gần ngưỡng 10 MB/300 file và từ chối zip-slip/secret rõ lý do.",
       "work": {
@@ -221,7 +221,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T10:29:57+07:00"
+        "reportedAt": "2026-11-07T11:30:05+07:00"
       }
     },
     {
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T11:08:39+07:00",
+    "updatedAt": "2026-11-07T11:30:05+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2269,10 +2269,10 @@
       {
         "id": "OA-08",
         "kind": "INFRA",
-        "priority": "P2",
+        "priority": "P1",
         "status": "OPEN",
-        "title": "Ổ đĩa máy dev đầy 100%: Docker chuyển sang chỉ đọc, các test dùng container đang lỗi",
-        "detail": "Ổ dữ liệu còn khoảng 2 GiB trên 460 GiB; thư mục worktree chiếm khoảng 79 GiB trong 254 worktree. Em dọn có chọn lọc các worktree sạch đã merge, sau đó cần Owner khởi động lại Docker Desktop. Không xóa gì ngoài worktree sạch.",
+        "title": "Khởi động lại Docker Desktop (ổ đĩa đã giải phóng 42 GiB)",
+        "detail": "Ổ dữ liệu từng đầy 100% làm Docker chuyển sang chỉ đọc từ ~11:00; em đã gỡ 133 worktree sạch/đã merge, ổ còn 29 GiB trống. Docker vẫn báo read-only cho tới khi Docker Desktop khởi động lại, nên các test dùng container (BE #150, #151) chưa chạy lại được. Khởi động lại sẽ dừng stack Plane và các container test đang chạy: xin Owner làm khi sẵn sàng.",
         "link": "",
         "since": "2026-11-07T11:08:39+07:00"
       }
