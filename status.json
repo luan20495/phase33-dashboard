@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T11:30:05+07:00",
+  "asOf": "2026-11-07T11:36:24+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T11:30:05+07:00",
+    "updatedAt": "2026-11-07T11:36:24+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2221,8 +2221,8 @@
         "kind": "READY",
         "priority": "P1",
         "status": "OPEN",
-        "title": "Bấm Ready rồi Merge: FE #98 + BE #152, FE #96 → #97, FE #99 → #100 → #101 (QA đạt)",
-        "detail": "Sẵn sàng (QA/SEC độc lập đạt cho dev và PROD với cờ TẮT, CLEAN, base dev): (1) FE #98 (tab cấu hình AI) cùng BE #152 (tài liệu); (2) FE #96 rồi #97 (trợ lý dữ liệu); (3) FE #99 → #100 → #101 (Studio Home; cần áp patch đồng hành BE cùng lúc, em lo). PR nào vào sau sẽ cần gộp lại danh sách cờ dùng chung trong nextConfig, em giao agent làm ngay khi anh merge. Chưa bấm: FE #105 (đang làm commit cuối), BE #150 (QA vòng 3 bị chặn bởi sự cố ổ đĩa/Docker), BE #151 + FE #104 (nhập dự án: lỗi P2 DoS trước xác thực đang sửa, chưa deploy), FE #94 (DIRTY).",
+        "title": "Bấm Ready rồi Merge: FE #98 + BE #152, FE #96 → #97, FE #99 → #100 → #101, FE #105 (QA đạt)",
+        "detail": "Sẵn sàng (QA/SEC độc lập đạt cho dev và PROD với cờ TẮT, CLEAN, base dev): (1) FE #98 (tab cấu hình AI) cùng BE #152 (tài liệu); (2) FE #96 rồi #97 (trợ lý dữ liệu); (3) FE #99 → #100 → #101 (Studio Home; cần áp patch đồng hành BE cùng lúc, em lo). PR nào vào sau sẽ cần gộp lại danh sách cờ dùng chung trong nextConfig, em giao agent làm ngay khi anh merge. Thêm FE #105 (follow-up hàng đợi, QA kiểm lại GATE-PASS cho dev; ghi chú trong release: ở màn hình một khung, nút báo lỗi bị ẩn khi FULL mở, người dùng bàn phím không có điều khiển phản hồi ở đó). Chưa bấm: BE #150 (QA vòng 3 bị chặn bởi sự cố ổ đĩa/Docker), BE #151 + FE #104 (nhập dự án: lỗi P2 DoS trước xác thực đang sửa, chưa deploy), FE #94 (DIRTY).",
         "link": "https://github.com/luan20495/Xweb01fe/pull/99",
         "since": "2026-11-07T09:43:30+07:00"
       },
