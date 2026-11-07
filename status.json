@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T14:48:52+07:00",
+  "asOf": "2026-11-07T15:29:52+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -232,10 +232,10 @@
       "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 18/23. BE #150 (V96) gộp dev, test container xanh theo tác giả với 1 lỗi M2 chưa xác minh (REPORTED); QA r3 độc lập đang chạy.",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 18/23. BE #150 QA r3 độc lập (VERIFIED): SEC PASS, QA FAIL hẹp (1 test P2, 2 điểm P3); tác giả đã sửa (REPORTED), QA delta đang chạy.",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) DEPLOYED PROD 18:14 (R4e)",
       "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
-      "next": "QA r3 trên đúng head BE #150; migration V96 thử trên DB dạng PROD; deploy đợt 2.",
+      "next": "QA delta trên head BE #150 mới; đạt thì Claude merge vào dev; deploy đợt 3.",
       "work": {
         "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
@@ -1055,10 +1055,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC #121+#131 r2 PASS-WITH-COND (VERIFIED); QA/SEC độc lập #141: GATE-PASS (VERIFIED: duyệt nguồn hệ thống cần quyền tenant, không lộ danh tính, 36 lớp 274 test 0 lỗi, mutant 8/8); QA/SEC #94: PASS-WITH-COND, F-1 đã sửa ở r2 (agent báo spec 91/91, chưa QA lại)",
+      "qa": "QA/SEC #141 GATE-PASS (VERIFIED). FE #94: QA/SEC r3 độc lập PASS trên đúng head (VERIFIED), không P0–P2; đang gộp dev và sửa 3 điểm P3, sau đó QA delta.",
       "prs": "BE #121 DEPLOYED (4e) · BE #141 MERGED dev b93fe260 (P3-N1) · FE #94 DRAFT head 7874d879 (phụ thuộc #60) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "FE #94 đã hết xung đột (CLEAN, DRAFT); cần QA độc lập (backend thật, 2 quản trị tenant), mirror BE, rồi merge dev và deploy đợt 2.",
+      "next": "QA delta FE #94, merge dev, mirror BE; smoke 2 quản trị tenant; bật cờ cần Owner duyệt riêng.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T14:48:52+07:00",
+    "updatedAt": "2026-11-07T15:29:52+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2267,6 +2267,17 @@
         "detail": "Quyết định thiết kế Org IAM phải do Owner. #129 (V97 trở lên) chờ hợp đồng này. Các việc rebase, QA, Ready, Merge vào dev khác Claude tự làm, không cần anh.",
         "link": "https://github.com/luan20495/xweb01/pull/126",
         "since": "2026-11-07T14:32:35+07:00"
+      },
+      {
+        "id": "OA-12",
+        "kind": "BUDGET",
+        "priority": "P2",
+        "status": "OPEN",
+        "title": "QA B1/B3: xác nhận giá trị USD kỹ thuật cho cấu hình QA",
+        "solution": "Trả lời một con số USD kỹ thuật (trần tối thiểu nền tảng bắt buộc) hoặc chọn người đặt cấu hình; Claude không tự chọn.",
+        "detail": "Anh đã chỉ đạo phạm vi QA (workspace QA riêng, chỉ model nhẹ, thêm lượt, hết hạn có thời hạn). Nền tảng bắt buộc một giá trị trần USD nên Claude dừng để hỏi; chưa cấu hình gì.",
+        "link": "https://github.com/luan20495/xweb01/issues/88",
+        "since": "2026-11-07T15:29:52+07:00"
       }
     ]
   }
