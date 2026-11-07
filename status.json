@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T17:26:56+07:00",
+  "asOf": "2026-11-07T18:30:01+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -150,10 +150,10 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20. Bản sửa BE #151 + FE #104: QA/SEC r3 độc lập PASS (VERIFIED), đã merge vào dev 14:04; còn 1 P3.",
+      "qa": "QA đóng việc 12/20 (VERIFIED, bản cũ). Bản sửa BE #151+FE #104 đã trên PROD (QA r3 PASS). BE #157 (hardening + giảm thiểu DoS không cần tài khoản): QA r4 FAIL → tác giả sửa → QA delta r5 đang chạy.",
       "prs": "BE #97 · FE #71 · BE #151 (35f93332) + FE #104 (ccc52a4f) DRAFT, đã sửa lỗi P2 DoS trước xác thực (REPORTED); test Docker chưa chạy lại",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
-      "next": "PROD testing import (bản sửa đã chạy); BE #157 (hạn tổng upload) đang QA cho đợt 3.",
+      "next": "QA r5 BE #157; PR FE nhỏ cho giới hạn đệm thân của portal; đợt 3.",
       "work": {
         "problem": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
         "approach": "Chạy một dự án HTML và một React/Vite đa trang từ upload tới site chạy thật, giữ cấu trúc nguồn/asset và quyền, có log file nào bị bỏ qua.",
@@ -1144,7 +1144,7 @@
       "qa": "QA/SEC độc lập vòng 2 GATE-PASS-WITH-CONDITIONS (P2-2 đã sửa, QA tự chứng minh); 6 P3 mới (không chặn)",
       "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "Bật cờ từng bước cần Owner duyệt riêng: kiểm DEV 2 tài khoản (SYSTEM_SOURCES), 1 lượt Haiku (BUILDER_SYSTEM_CONTEXT), 4 vai + xuất bản lại ứng dụng (SYSTEM_SCOPE); điều kiện: >= 2 quản trị tenant, TENANCY_SYSTEM_ADMIN_BUSINESS_ACCESS=false trên PROD. | Chưa bật vì: cần X2 + cầu nối LIVE; chưa có màn gán vai trò theo ô; chưa kiểm trình duyệt thật 4 vai + thu hồi; ứng dụng đã xuất bản phải xuất bản lại; Owner duyệt.",
+      "next": "BE #156 + FE #108 chờ QA độc lập; cần X2 bật trước; Org (#126) và SENSITIVE cần Owner.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1230,10 +1230,10 @@
       "flag": "OFF (PROD đóng cứng bằng mã)",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "#138 và #143/S2: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT); đã nằm trong dev. FE #102: QA/SEC độc lập (VERIFIED) đạt có điều kiện, lỗi bundle PROD đã sửa (REPORTED). Chưa chạy: E2E backend thật",
+      "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE (BE #159 + FE #110): tác giả báo 52/52 mutant giết (REPORTED); QA/SEC độc lập đang chạy; E2E trình duyệt trên stack DEV thật NOT_RUN.",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "DEV-X4 đang hoàn tất dataSourceId/danh mục + luồng FE; cờ TẮT, sàn PROD giữ.",
+      "next": "QA/SEC #159+#110; E2E DEV; cờ vẫn TẮT, sàn PROD không bao giờ bật.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T15:29:52+07:00",
+    "updatedAt": "2026-11-07T18:30:01+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2278,6 +2278,17 @@
         "detail": "Anh đã chỉ đạo phạm vi QA (workspace QA riêng, chỉ model nhẹ, thêm lượt, hết hạn có thời hạn). Nền tảng bắt buộc một giá trị trần USD nên Claude dừng để hỏi; chưa cấu hình gì.",
         "link": "https://github.com/luan20495/xweb01/issues/88",
         "since": "2026-11-07T15:29:52+07:00"
+      },
+      {
+        "id": "OA-13",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "title": "Bật cờ: chỉ 2 nhóm đủ bằng chứng; chọn cách cho X2 và cấu hình AI web",
+        "solution": "Trả lời A (QA chạy DEV thật trước, khoảng nửa ngày, khuyến nghị) hoặc B (bật luôn trên PROD, Owner QA cùng, chấp nhận tài khoản DB là superuser).",
+        "detail": "Phân tích cho thấy chỉ PROJECT_CREATE_IDEMPOTENCY và AI_SPEND_AUTOMATION bật được ngay (không có tác động người dùng); mình đề xuất bật cùng đợt 3. X2 và AI_CONFIG cần quyết định A/B. Các nhóm khác giữ TẮT kèm lý do trong kế hoạch.",
+        "link": "https://github.com/luan20495/xweb01/issues/88",
+        "since": "2026-11-07T18:30:01+07:00"
       }
     ]
   }
