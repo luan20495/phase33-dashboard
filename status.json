@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T09:30:06+07:00",
+  "asOf": "2026-11-07T09:43:30+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,71 +2203,78 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T09:30:06+07:00",
-    "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật/tài chính ở đây. Em (C0) chỉ merge PR có base dev khi đã đủ điều kiện; Ready/đổi base/ngân sách/quyền/cờ/PROD luôn cần Owner.",
+    "updatedAt": "2026-11-07T09:43:30+07:00",
+    "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
         "id": "OA-01",
         "kind": "INCIDENT",
         "priority": "P1",
+        "status": "OPEN",
         "title": "Sự cố QA CQB-1 trên PROD cần Owner chọn cách sửa",
-        "detail": "Lúc 08:03 ICT một agent QA đã ghi nhầm chính sách trường dữ liệu của một nguồn QA, làm hỏng bộ chọn nhân viên của một app pilot đang chạy. Cách 1 (khuyến nghị, khoảng 5 phút): một admin workspace không phải một trong ba tài khoản QA đã sửa lưu lại 4 cột id, firstName, lastName, email rồi một admin khác duyệt. Cách 2: script backend xóa dòng chính sách (cần ghi DB PROD và nạp khóa SSH). Cần Owner nói cách nào và ai là admin.",
+        "detail": "Lúc 08:03 ICT 07/11 một agent QA đã ghi nhầm chính sách trường dữ liệu của một nguồn QA, làm hỏng bộ chọn nhân viên của một app pilot đang chạy. Cách 1 (khuyến nghị, khoảng 5 phút): một admin workspace không phải một trong ba tài khoản QA đã sửa lưu lại 4 cột id, firstName, lastName, email rồi một admin khác duyệt. Cách 2: script backend xóa dòng chính sách (cần ghi DB PROD và nạp khóa SSH). Cần Owner nói cách nào và ai là admin.",
         "link": "",
         "since": "2026-11-07T08:03:00+07:00"
       },
       {
         "id": "OA-02",
-        "kind": "DONE",
-        "priority": "P3",
-        "title": "BE #142 đã được Owner merge vào dev lúc 09:23 (xong)",
-        "detail": "Cảm ơn. Việc tiếp: #147 (V95) rồi QA tích hợp, promote và deploy đợt 2.",
-        "link": "https://github.com/luan20495/xweb01/pull/142",
-        "since": "2026-11-07T09:20:42+07:00"
+        "kind": "READY",
+        "priority": "P2",
+        "status": "OPEN",
+        "title": "Đổi base về dev cho chuỗi Home #99–#101 và AI-17 #96/#97 (em bị chặn quyền)",
+        "detail": "FE #90 (Home P1) đã vào dev nên base của #99 đang là nhánh cũ đã merge. Cần bấm Edit trên từng PR đổi base thành dev (lần lượt #99 → #100 → #101; #96 → #97). Sau đó em báo khi từng PR CLEAN và QA đạt để bấm Ready/Merge. Quy tắc: chỉ bấm Merge PR ghi 'into dev'.",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/99",
+        "since": "2026-11-07T09:43:30+07:00"
       },
       {
         "id": "OA-03",
-        "kind": "MERGE",
-        "priority": "P1",
-        "title": "BE #147 (V95 tạo dự án idempotent) đã CLEAN: bấm Merge khi sẵn sàng (sau #142 đã xong)",
-        "detail": "Base dev, CLEAN, QA vòng 2 không P0–P2. Chỉ bấm PR ghi 'into dev'.",
-        "link": "https://github.com/luan20495/xweb01/pull/147",
-        "since": "2026-11-07T09:20:42+07:00"
+        "kind": "READY",
+        "priority": "P2",
+        "status": "OPEN",
+        "title": "Bấm Ready khi em báo QA đạt: FE #103, #104; BE #150, #151; FE #94, #98",
+        "detail": "Các PR này đang DRAFT (em không bấm Ready được). FE #103 (sửa lỗi hàng đợi) và BE #151 + FE #104 (sửa lỗi nhập dự án) đang QA độc lập. BE #150 (sửa quyết toán khi hủy lượt AI, V96) đang được sửa lỗi QA về tiền. FE #94 và #98 cần QA kiểm lại.",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/103",
+        "since": "2026-11-07T09:43:30+07:00"
       },
       {
         "id": "OA-04",
-        "kind": "READY",
+        "kind": "DEPLOY",
         "priority": "P2",
-        "title": "Bấm Ready cho các FE đã CLEAN khi sẵn sàng",
-        "detail": "FE #90 và #102 đã merge. Còn: FE #103 (sửa hàng đợi, QA đang chạy), FE #94 và #98 (cần QA kiểm lại). Chuỗi Home #99–#101: base đang là nhánh của #90 đã vào dev, cần Owner bấm Edit đổi base về dev (em bị chặn quyền đổi base). AI-17 #96/#97 chồng trên #60 cũng vậy.",
-        "link": "https://github.com/luan20495/Xweb01fe/pull/103",
-        "since": "2026-11-07T09:20:42+07:00"
+        "status": "OPEN",
+        "title": "Thông báo deploy: đợt 2 chưa lên PROD; sẽ cần Owner nạp khóa SSH",
+        "detail": "Dev đã có đủ migration V88, V89, V91, V92, V93, V94, V95 (V87 và V90 void). Còn: gộp #150 (V96) sau khi sửa, QA tích hợp, script promote dev → main, rồi deploy. Khi tới bước deploy cần Owner nạp lại khóa SSH (khóa 12 giờ đã hết hạn). Mọi cờ mới giữ TẮT.",
+        "link": "",
+        "since": "2026-11-07T09:43:30+07:00"
       },
       {
         "id": "OA-05",
-        "kind": "DEPLOY",
+        "kind": "BUDGET",
         "priority": "P2",
-        "title": "Thông báo deploy: đợt 2 chưa lên PROD",
-        "detail": "Dev đã có UX13, chụp/đánh dấu ảnh lỗi, Project Map/Memory, X4 S1+S2, sửa đồng hồ ngân sách (cờ TẮT). Đợt 2 phải gồm đủ migration V88, V89, V91, V92, V93, V94, V95 trong một lần (outOfOrder=false), V90 sẽ tuyên bố void nếu Org không vào trước. Còn: #142 → #147 vào dev, QA tích hợp, script promote dev → main, deploy. Khi tới bước deploy cần Owner nạp lại khóa SSH (khóa 12 giờ đã hết hạn).",
+        "status": "OPEN",
+        "title": "Quyết định ngân sách/quyền để đóng QA B1/B3 trên PROD",
+        "detail": "PROD chưa có phân bổ nên không kiểm được đường tiền (từ chối, đồng thời, kết quả không rõ; yêu cầu → duyệt → cấp → lượt AI → hết hạn). Cần Owner chuẩn bị một workspace QA riêng với phân bổ rất nhỏ và quyền AI trả phí cho nó (chi tiết ở file QA cục bộ, không đăng công khai). Cũng cần: cho phép cấp tạm quyền dự án cho một tài khoản QA 30 phút để chứng minh bản sửa R37-ENT-1, và một lượt thử AI thật để chứng minh việc hủy sau khi sửa. Cửa sổ AI hết 11:39 ICT 07/11; gia hạn là quyết định của Owner.",
         "link": "",
-        "since": "2026-11-07T09:20:42+07:00"
+        "since": "2026-11-07T09:43:30+07:00"
       },
       {
         "id": "OA-06",
-        "kind": "BUDGET",
-        "priority": "P2",
-        "title": "Quyết định ngân sách/quyền để đóng QA B1/B3 trên PROD",
-        "detail": "PROD chưa có phân bổ nên không kiểm được đường tiền (từ chối, đồng thời, kết quả không rõ; yêu cầu → duyệt → cấp → lượt AI → hết hạn). Cần Owner chuẩn bị một workspace QA riêng với phân bổ rất nhỏ và quyền AI trả phí cho nó (chi tiết chặn trên và số lượt ở file QA cục bộ, không đăng công khai). Không đụng workspace thật. Cửa sổ AI mở tới 11:39 ICT 07/11; gia hạn là quyết định của Owner. Cũng cần: cho phép cấp tạm quyền dự án cho một tài khoản QA 30 phút để chứng minh bản sửa R37-ENT-1, và một lượt thử AI thật để chứng minh lại việc hủy sau khi sửa.",
-        "link": "",
-        "since": "2026-11-07T09:20:42+07:00"
+        "kind": "DECISION",
+        "priority": "P3",
+        "status": "OPEN",
+        "title": "Các quyết định còn mở",
+        "detail": "D-04-1 (cấp quyền AI trả phí cho admin cần 3 admin) và D-04-2 (khôi phục danh sách env bằng 1 admin); ngày bật X1 STRICT=true (chỉ sau báo cáo ảnh hưởng); giao 'pha B' vòng lặp công cụ đọc/tìm nguồn lớn cho một agent backend; dry-run phía server cho cấp hàng loạt có cần không; giới hạn byte prompt (hiện 60.000); OD-C1..C6 (#128) và duyệt hợp đồng #126; tài khoản QA bổ sung (chỉ Apps, chỉ APP_VIEW không Studio, tenant thứ hai); chuông thông báo B3 và nút thu hồi coi là backlog.",
+        "link": "https://github.com/luan20495/xweb01/pull/128",
+        "since": "2026-11-07T09:43:30+07:00"
       },
       {
         "id": "OA-07",
-        "kind": "DECISION",
-        "priority": "P3",
-        "title": "Các quyết định còn mở",
-        "detail": "D-04-1 (cấp quyền AI trả phí cho admin cần 3 admin) và D-04-2 (khôi phục danh sách env bằng 1 admin); ngày bật X1 STRICT=true (chỉ sau báo cáo ảnh hưởng); giao 'pha B' vòng lặp công cụ đọc/tìm nguồn lớn cho một agent backend; dry-run phía server cho cấp hàng loạt có cần không; nâng giới hạn byte prompt (hiện 60.000) hay giữ; OD-C1..C6 của #128 và duyệt hợp đồng #126; tài khoản QA bổ sung (chỉ Apps, chỉ APP_VIEW không Studio, tenant thứ hai); chuông thông báo B3 và nút thu hồi coi là backlog.",
-        "link": "https://github.com/luan20495/xweb01/pull/128",
-        "since": "2026-11-07T09:20:42+07:00"
+        "kind": "CLEANUP",
+        "priority": "P4",
+        "status": "OPEN",
+        "title": "Dọn git: 22 nhánh chưa merge và không có PR; PR mở cũ",
+        "detail": "Đã xóa 136 nhánh đã merge (có lưu SHA). Còn 22 nhánh không PR và chưa merge (17 BE, 5 FE: phase3/*, feat/xapp-*, docs/xapp-r1-*, pr/N) và nhiều PR mở từ phase cũ (30 BE, 28 FE). Cho em biết nhánh/PR nào bỏ được thì em xóa/đóng.",
+        "link": "",
+        "since": "2026-11-07T09:43:30+07:00"
       }
     ]
   }
