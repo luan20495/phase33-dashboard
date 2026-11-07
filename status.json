@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T16:30:33+07:00",
+  "asOf": "2026-11-07T17:26:56+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -153,7 +153,7 @@
       "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20. Bản sửa BE #151 + FE #104: QA/SEC r3 độc lập PASS (VERIFIED), đã merge vào dev 14:04; còn 1 P3.",
       "prs": "BE #97 · FE #71 · BE #151 (35f93332) + FE #104 (ccc52a4f) DRAFT, đã sửa lỗi P2 DoS trước xác thực (REPORTED); test Docker chưa chạy lại",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
-      "next": "Deploy đợt 2 kèm đổi ack nhập dự án sang SHA mới; sửa P3 (hạn đọc tổng upload); E2E nhập→sửa→build→publish.",
+      "next": "PROD testing import (bản sửa đã chạy); BE #157 (hạn tổng upload) đang QA cho đợt 3.",
       "work": {
         "problem": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
         "approach": "Chạy một dự án HTML và một React/Vite đa trang từ upload tới site chạy thật, giữ cấu trúc nguồn/asset và quyền, có log file nào bị bỏ qua.",
@@ -220,8 +220,8 @@
       "progress": {
         "percent": 100,
         "basis": "prod_on",
-        "note": "Đã bật PROD (bản cũ); bản sửa DoS/nhập dự án đã vào dev, chưa lên PROD. Chưa đồng nghĩa nghiệm thu.",
-        "reportedAt": "2026-11-07T14:46:37+07:00"
+        "note": "Bản sửa nhập dự án đã deploy PROD 07/11 17:22 ICT (ack mới); PROD_TESTING; chưa đồng nghĩa nghiệm thu.",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     },
     {
@@ -235,7 +235,7 @@
       "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 18/23. BE #150 QA r3 độc lập (VERIFIED): SEC PASS, QA FAIL hẹp (1 test P2, 2 điểm P3); tác giả đã sửa (REPORTED), QA delta đang chạy.",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) DEPLOYED PROD 18:14 (R4e)",
       "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
-      "next": "QA delta trên head BE #150 mới; đạt thì Claude merge vào dev; deploy đợt 3.",
+      "next": "BE #150 (V96) đã merge dev, đi đợt 3; FE hiển thị giờ job chưa làm.",
       "work": {
         "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
@@ -327,8 +327,8 @@
       "progress": {
         "percent": 100,
         "basis": "prod_on",
-        "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T10:29:57+07:00"
+        "note": "UI hàng đợi sửa đã deploy PROD 07/11 17:22 ICT; sửa hủy job tiền (#150) ở đợt 3.",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     },
     {
@@ -972,14 +972,14 @@
       "id": "UX13",
       "name": "UX hướng dẫn nguồn dữ liệu",
       "batch": "Unassigned",
-      "stage": "INCOMPLETE",
-      "flag": "Không có cờ riêng (hiện ngay khi deploy)",
+      "stage": "PROD_DEPLOYED",
+      "flag": "Không có cờ riêng (đã hiện)",
       "risk": "LOW",
       "integrated": true,
       "qa": "QA độc lập vòng 2: GATE-PASS-WITH-CONDITIONS (QA chạy: unit 4966/4974, queue-modes 144/144, prompt-limit 57/57, 80 cảnh đo Send không bị che, combined-check GREEN, mutant 3/5). Điều kiện: C1 hàng đợi tạm dừng không hiện dòng nào (sửa nhỏ), C2 test thanh blocked/budget; C3/C4 đồng bộ vendored + mirror PROD_DEPLOY sau merge (C0)",
       "prs": "FE #60 đã MERGE vào dev lúc 07:36 ICT 07/11 (GitHub). Chưa deploy PROD (đợt 2). Cờ TẮT.",
       "summary": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
-      "next": "Deploy đợt 2: trang hướng dẫn nguồn dữ liệu trong Admin hiện ngay vì không có cờ chặn; Owner UAT sau deploy.",
+      "next": "PROD testing bằng workspace thử; Owner UAT khi sẵn sàng.",
       "work": {
         "problem": "FE UX13 PR #60 đã hoàn thiện giai đoạn mã (head 9fa38dbe), worktree sạch. Có bản vá expectedVersion khi duyệt nguồn; test liên quan PASS, hồi quy cũ có lỗi tái hiện dev sạch. Chưa QA FE độc lập và chưa test với BE DEV thật.",
         "approach": "Hoàn thiện wizard 4 bước chọn nguồn → mapping → dry-run → duyệt/đồng bộ, hỗ trợ file và API với bảo vệ quyền.",
@@ -1043,8 +1043,8 @@
       "progress": {
         "percent": 90,
         "basis": "estimate",
-        "note": "QA vòng 2 đạt có điều kiện; đang sửa C1/C2; chưa merge, chưa deploy.",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "note": "Đã deploy PROD 07/11 17:22 ICT (release f3c354b74861); smoke sau deploy bằng tài khoản QA đạt (VERIFIED), PROD_TESTING; chưa Owner UAT.",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     },
     {
@@ -1058,7 +1058,7 @@
       "qa": "QA/SEC #141 GATE-PASS (VERIFIED). FE #94: QA/SEC r4 độc lập PASS trên đúng head (VERIFIED), đã merge vào dev 15:49 cùng BE #154 (mirror vendored, 15:54). Backend thật NOT_RUN.",
       "prs": "BE #121 DEPLOYED (4e) · BE #141 MERGED dev b93fe260 (P3-N1) · FE #94 DRAFT head 7874d879 (phụ thuộc #60) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "UI X2 lên PROD ở đợt 2 (cờ nguồn hệ thống vẫn TẮT); smoke 2 quản trị tenant; bật cờ cần Owner duyệt riêng.",
+      "next": "UI X2 đã deploy PROD (cờ nguồn hệ thống TẮT, route probe-gated); smoke 2 quản trị tenant; bật cờ cần Owner duyệt riêng.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1129,8 +1129,8 @@
       "progress": {
         "percent": 97,
         "basis": "estimate",
-        "note": "BE đã deploy PROD cờ TẮT; UI X2 đã vào dev (QA đạt), chờ đợt 2; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-07T16:30:33+07:00"
+        "note": "BE+UI đã deploy PROD 07/11 17:22 ICT với cờ TẮT; chưa bật cờ, chưa E2E AI thật.",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     },
     {
@@ -1226,14 +1226,14 @@
       "id": "X4",
       "name": "Ghi dữ liệu qua REST",
       "batch": "Unassigned",
-      "stage": "INCOMPLETE",
-      "flag": "OFF",
+      "stage": "PROD_DEPLOYED",
+      "flag": "OFF (PROD đóng cứng bằng mã)",
       "risk": "HIGH",
       "integrated": true,
       "qa": "#138 và #143/S2: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT); đã nằm trong dev. FE #102: QA/SEC độc lập (VERIFIED) đạt có điều kiện, lỗi bundle PROD đã sửa (REPORTED). Chưa chạy: E2E backend thật",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Deploy đợt 2 (cờ TẮT, PROD đóng cứng bằng mã); backend thiếu dataSourceId/danh mục ứng viên; PROD bật chỉ khi Owner duyệt riêng.",
+      "next": "DEV-X4 đang hoàn tất dataSourceId/danh mục + luồng FE; cờ TẮT, sàn PROD giữ.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1323,8 +1323,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "Backend S1 và S2 đã vào dev (QA độc lập đạt); FE #102 đang gộp, chưa merge.",
-        "reportedAt": "2026-11-07T09:30:06+07:00"
+        "note": "Đã deploy PROD 07/11 17:22 ICT với cờ TẮT, API trả 404 đúng thiết kế (VERIFIED); phần còn thiếu đang làm trên dev.",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     },
     {
@@ -1412,14 +1412,14 @@
       "id": "P0-16 B/E",
       "name": "Project Map / Memory",
       "batch": "Unassigned",
-      "stage": "INCOMPLETE",
+      "stage": "PROD_DEPLOYED",
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "QA/SEC độc lập #130: GATE-PASS-WITH-CONDITIONS cho merge dev (cờ TẮT): migration V88/V89 PASS trên Postgres thật; P1 ReDoS (SourceScan: 50.000 khoảng trắng → 20 giây, `<h1>` >40 giây), P2-1 khử ký tự đóng thẻ yếu, P2-2 ký tự Unicode ẩn, P2-3 bản đồ+ghi nhớ có thể đẩy yêu cầu gần ngưỡng thành 413. KHÔNG bật cờ trước khi sửa P1/P2. AI-MAP đang sửa · Đã sửa P1 ReDoS + P2 (agent báo); em chạy lại 39 test hostile/map/scan: 39/39 (VERIFIED); prod-floors F-7 đỏ cả trên dev sạch (có sẵn, không do #130)",
       "prs": "BE #130 đã MERGE vào dev lúc 07:39 ICT 07/11 (GitHub). V88/V89 chưa lên PROD. Cờ TẮT.",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "Deploy đợt 2 (V88/V89 sau V86); Org chưa; cờ vẫn TẮT.",
+      "next": "PROD testing khi Owner duyệt bật cờ; QA 10 lượt sửa liên tục.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1483,8 +1483,8 @@
       "progress": {
         "percent": 85,
         "basis": "estimate",
-        "note": "QA/SEC độc lập xong (đạt có điều kiện); đang sửa lỗi; chưa merge, chưa deploy.",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "note": "Đã deploy PROD 07/11 17:22 ICT với cờ TẮT (V88/V89 chạy, API trả 404 khi TẮT, VERIFIED).",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     },
     {
@@ -1498,7 +1498,7 @@
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt",
       "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "Deploy đợt 2 (cờ TẮT); backend N1/N2; quyết định OD-33 cho theme.",
+      "next": "BE N1/N2 chưa có mã; theme/ngôn ngữ nền đã deploy với công tắc TẮT.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1575,14 +1575,14 @@
       "id": "P0-18",
       "name": "Chụp và đánh dấu ảnh khi báo lỗi",
       "batch": "Unassigned",
-      "stage": "INCOMPLETE",
-      "flag": "Không có cờ build riêng (phụ thuộc năng lực phản hồi của máy chủ)",
+      "stage": "PROD_DEPLOYED",
+      "flag": "Không có cờ build riêng (đã hiện)",
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "QA/SEC độc lập vòng 2: GATE-PASS-WITH-CONDITIONS (QA chạy: bí mật gõ vào ô nhập 5.075/4.830/1.874 px → 0 trong khung và byte gửi đi; vùng che 12.000/12.000 điểm đen; chặn phần tử hoạt động). Điều kiện: đếm cả shadow DOM mở, hạ trần ~2.500 phần tử, test shadow/dọn dẹp; P4 giá trị >4.000 ký tự chỉ kiểm phần đầu · Điều kiện đã sửa (agent báo; em chạy lại 31 test unit phần đánh dấu: 31/31, VERIFIED): đếm shadow DOM, trần 2.500, test shadow/dọn dẹp",
       "prs": "FE #81 đã MERGE vào dev lúc 07:37 ICT 07/11 (GitHub). Chưa deploy PROD. Cờ TẮT.",
       "summary": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
-      "next": "Deploy đợt 2: nút chụp và đánh dấu ảnh trong hộp báo lỗi của cả 5 cổng hiện ngay vì không có cờ chặn; Owner UAT sau deploy.",
+      "next": "PROD testing: chụp/đánh dấu ảnh trên 5 cổng; Owner UAT khi sẵn sàng.",
       "work": {
         "problem": "Widget lỗi chưa có bằng chứng người dùng chụp, khoanh/vẽ mũi tên và gửi ảnh kèm báo lỗi thành công, không lộ dữ liệu nhạy cảm.",
         "approach": "Tái sử dụng widget feedback; chụp/annotate cục bộ trước khi gửi, preview/redact, upload theo quyền và lưu liên kết ticket.",
@@ -1651,22 +1651,22 @@
       "progress": {
         "percent": 93,
         "basis": "estimate",
-        "note": "QA r2 đạt có điều kiện; đang sửa; chưa merge, chưa deploy.",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "note": "Đã deploy PROD 07/11 17:22 ICT (release f3c354b74861); smoke sau deploy bằng tài khoản QA đạt (VERIFIED), PROD_TESTING; chưa Owner UAT.",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     },
     {
       "id": "P0-19",
       "name": "Thiết kế lại workspace Edit Studio",
       "batch": "Unassigned",
-      "stage": "INCOMPLETE",
+      "stage": "PROD_DEPLOYED",
       "flag": "OFF",
       "risk": "LOW",
       "integrated": true,
       "qa": "Home QA vòng 4 (VERIFIED): #99, #100, #101 GATE-PASS merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (cần E2E backend thật). 29/29 dạng thông tin xác thực/URL năng lực bị chặn, bộ quét toàn văn bản, bundle production thật 0 dấu vết khi cờ tắt, plain Edit giống dev 374/374. Điều kiện: áp patch đồng hành BE cùng lúc. BE #147 (V95) đã vào dev, QA vòng 2 không P0–P2. Chưa chạy: backend thật, AI thật",
       "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "Deploy đợt 2 (cờ TẮT) cùng patch đồng hành BE (BE #153); E2E backend thật trước khi bật cờ.",
+      "next": "E2E backend thật; bật cờ Home sau duyệt riêng.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1729,8 +1729,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T12:30:11+07:00"
+        "note": "Home P1–P4 và V95 đã deploy PROD 07/11 17:22 ICT với công tắc TẮT (VERIFIED: Studio Home vẫn bản cũ).",
+        "reportedAt": "2026-11-07T17:26:56+07:00"
       }
     }
   ],
