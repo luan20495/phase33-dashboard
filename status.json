@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T12:35:42+07:00",
+  "asOf": "2026-11-07T12:44:09+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T12:35:42+07:00",
+    "updatedAt": "2026-11-07T12:44:09+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2217,14 +2217,26 @@
         "since": "2026-11-07T08:03:00+07:00"
       },
       {
+        "id": "OA-10",
+        "kind": "AUDIT",
+        "priority": "P2",
+        "status": "OPEN",
+        "title": "AUDIT 57 PR OPEN (BE 38 + FE 19): không bulk merge, chờ Owner GO từng nhóm",
+        "solution": "Duyệt GO đóng nhóm CAO (BE #2 #35 #38 #72, FE #2 #3 #12 #23 #29) và nhóm ARCHIVE; các PR thật còn thiếu đi theo cổng QA/SEC.",
+        "detail": "Kết quả audit chỉ đọc (đã đăng ở #88): 13 PR REPLACED_CLOSE, 10 ARCHIVE_CLOSE, 4 MERGE_TO_DEV sau cổng, 16 REBASE_AND_TEST, 14 KEEP_BLOCKED (gồm BE #48/#49 Owner HOLD). Chưa đóng hay merge PR nào theo audit. Cần Owner: (1) GO đóng nhóm bằng chứng CAO (đầu PR là ancestor của dev và main; đóng không xóa nhánh); (2) quyết định nhóm Owner: runner CI Mac, dữ liệu UAT trên host PROD, watcher Windows, HBL cũ, hợp đồng Org #126; (3) PR thật còn thiếu (B7, RT-DETAIL, W1-C/B/D, BE #44, #22, #24+FE #16) được rebase và qua cổng theo thứ tự, không merge hàng loạt.",
+        "link": "https://github.com/luan20495/xweb01/issues/88",
+        "since": "2026-11-07T12:44:09+07:00"
+      },
+      {
         "id": "OA-09",
         "kind": "READY",
         "priority": "P2",
         "status": "OPEN",
-        "title": "Các PR còn lại chưa vào dev: chờ Docker, sửa conflict hoặc quyết định",
-        "detail": "Đã merge vào dev (Owner dặn merge hết): FE #106 + BE #153 (đồng bộ, combined-check đầy đủ xanh trên hai dev), FE #83 và #89 (tài liệu thiết kế). Chưa merge và lý do: BE #150 (V96, tiền: QA vòng 3 chờ Docker), BE #151 + FE #104 (nhập dự án: DIRTY, test Docker chưa chạy, PROD đã bật cờ nhập), FE #94 (DIRTY, cần QA kiểm lại), BE #129 (Org, DIRTY, đánh số lại), BE #126 (hợp đồng Org cần Owner duyệt), FE #92 (theme, chờ quyết định OD-33), và khoảng 50 PR cũ Phase 3.0–3.2 (agent đang kiểm nội dung; đừng merge hàng loạt).",
-        "link": "https://github.com/luan20495/Xweb01fe/pull/94",
-        "since": "2026-11-07T12:35:42+07:00"
+        "title": "Các PR chưa vào dev đang xử lý: BE #150, BE #151 + FE #104, FE #94",
+        "solution": "Chờ Claude báo CLEAN + QA đạt đúng head; Ready khác Merge, chỉ Merge PR base dev.",
+        "detail": "Docker đã chạy lại, QA container chạy lại được. BE #150 (V96, tiền): QA vòng 3 chạy lại. BE #151 + FE #104 (nhập dự án): gộp dev, chạy test container, QA lại; merge theo cặp. FE #94 (X2 UI): sửa 2 xung đột rồi QA lại. BE #129 chờ #126 và đánh số lại V90; FE #92 chờ OD-33.",
+        "link": "",
+        "since": "2026-11-07T12:44:09+07:00"
       },
       {
         "id": "OA-04",
@@ -2265,16 +2277,6 @@
         "detail": "Đã xóa 136 nhánh đã merge (có lưu SHA). Còn 22 nhánh không PR và chưa merge (17 BE, 5 FE: phase3/*, feat/xapp-*, docs/xapp-r1-*, pr/N) và nhiều PR mở từ phase cũ (30 BE, 28 FE). Cho em biết nhánh/PR nào bỏ được thì em xóa/đóng.",
         "link": "",
         "since": "2026-11-07T09:43:30+07:00"
-      },
-      {
-        "id": "OA-08",
-        "kind": "INFRA",
-        "priority": "P1",
-        "status": "OPEN",
-        "title": "Khởi động lại Docker Desktop (ổ đĩa đã giải phóng 42 GiB)",
-        "detail": "Ổ dữ liệu từng đầy 100% làm Docker chuyển sang chỉ đọc từ ~11:00; em đã gỡ 133 worktree sạch/đã merge, ổ còn 29 GiB trống. Docker vẫn báo read-only cho tới khi Docker Desktop khởi động lại, nên các test dùng container (BE #150, #151) chưa chạy lại được. Khởi động lại sẽ dừng stack Plane và các container test đang chạy: xin Owner làm khi sẵn sàng.",
-        "link": "",
-        "since": "2026-11-07T11:08:39+07:00"
       }
     ]
   }
