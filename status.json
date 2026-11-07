@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T15:31:25+07:00",
+  "asOf": "2026-11-07T16:30:33+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1055,10 +1055,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC #141 GATE-PASS (VERIFIED). FE #94: QA/SEC r3 độc lập PASS trên đúng head (VERIFIED), không P0–P2; đang gộp dev và sửa 3 điểm P3, sau đó QA delta.",
+      "qa": "QA/SEC #141 GATE-PASS (VERIFIED). FE #94: QA/SEC r4 độc lập PASS trên đúng head (VERIFIED), đã merge vào dev 15:49 cùng BE #154 (mirror vendored, 15:54). Backend thật NOT_RUN.",
       "prs": "BE #121 DEPLOYED (4e) · BE #141 MERGED dev b93fe260 (P3-N1) · FE #94 DRAFT head 7874d879 (phụ thuộc #60) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "QA delta FE #94, merge dev, mirror BE; smoke 2 quản trị tenant; bật cờ cần Owner duyệt riêng.",
+      "next": "UI X2 lên PROD ở đợt 2 (cờ nguồn hệ thống vẫn TẮT); smoke 2 quản trị tenant; bật cờ cần Owner duyệt riêng.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1129,8 +1129,8 @@
       "progress": {
         "percent": 97,
         "basis": "estimate",
-        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; UI X2 (FE #94) CLEAN, chờ QA; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-07T13:30:28+07:00"
+        "note": "BE đã deploy PROD cờ TẮT; UI X2 đã vào dev (QA đạt), chờ đợt 2; chưa bật cờ, chưa E2E AI thật.",
+        "reportedAt": "2026-11-07T16:30:33+07:00"
       }
     },
     {
