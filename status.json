@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T13:30:28+07:00",
+  "asOf": "2026-11-07T13:54:14+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -150,10 +150,10 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20. Bản sửa BE #151 + FE #104: test container xanh theo tác giả (REPORTED); QA/SEC r3 độc lập đang chạy.",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20. Bản sửa BE #151 @15119bea + FE #104 @993f673: QA/SEC r3 độc lập PASS (VERIFIED), 39/39 mutant giết, không P0–P2; còn 1 P3 (kết nối upload chậm của người đã đăng nhập giữ slot).",
       "prs": "BE #97 · FE #71 · BE #151 (35f93332) + FE #104 (ccc52a4f) DRAFT, đã sửa lỗi P2 DoS trước xác thực (REPORTED); test Docker chưa chạy lại",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
-      "next": "QA r3 trên đúng head BE #151 / FE #104; sau đó Owner merge theo cặp (base dev); deploy đợt 2 kèm đổi ack nhập dự án sang SHA mới.",
+      "next": "Owner Ready + Merge BE #151 rồi FE #104 (base dev); deploy đợt 2 kèm đổi ack nhập dự án sang SHA mới; chấp nhận hoặc sửa P3.",
       "work": {
         "problem": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
         "approach": "Chạy một dự án HTML và một React/Vite đa trang từ upload tới site chạy thật, giữ cấu trúc nguồn/asset và quyền, có log file nào bị bỏ qua.",
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T12:53:55+07:00",
+    "updatedAt": "2026-11-07T13:54:14+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2230,13 +2230,13 @@
       {
         "id": "OA-09",
         "kind": "READY",
-        "priority": "P2",
+        "priority": "P1",
         "status": "OPEN",
-        "title": "Các PR chưa vào dev đang xử lý: BE #150, BE #151 + FE #104, FE #94",
-        "solution": "Chờ Claude báo CLEAN + QA đạt đúng head; Ready khác Merge, chỉ Merge PR base dev.",
-        "detail": "Docker đã chạy lại, QA container chạy lại được. BE #150 (V96, tiền): QA vòng 3 chạy lại. BE #151 + FE #104 (nhập dự án): gộp dev, chạy test container, QA lại; merge theo cặp. FE #94 (X2 UI): sửa 2 xung đột rồi QA lại. BE #129 chờ #126 và đánh số lại V90; FE #92 chờ OD-33.",
-        "link": "",
-        "since": "2026-11-07T12:44:09+07:00"
+        "title": "Bấm Ready rồi Merge cặp nhập dự án: BE #151 rồi FE #104 (QA/SEC đạt)",
+        "solution": "Mở PR, bấm Ready for review rồi Merge (base dev) theo thứ tự BE #151 → FE #104. Chỉ làm 2 PR này; #150 và #94 chưa đạt.",
+        "detail": "QA/SEC vòng 3 độc lập đạt trên đúng head (BE 15119bea, FE 993f673), 39/39 mutant giết, CLEAN, base dev. Còn 1 P3 chấp nhận được: người đã đăng nhập có quyền tạo dự án gửi upload cực chậm giữ slot nhập dự án (chỉ ảnh hưởng nhập dự án). Sửa sau. BE #150 (V96) và FE #94 đang QA; chưa có link.",
+        "link": "https://github.com/luan20495/xweb01/pull/151",
+        "since": "2026-11-07T13:54:14+07:00"
       },
       {
         "id": "OA-04",
