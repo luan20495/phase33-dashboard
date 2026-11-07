@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T06:29:56+07:00",
+  "asOf": "2026-11-07T07:30:02+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1663,8 +1663,8 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Home vòng 2 QA/SEC độc lập (VERIFIED): không FAIL, không P0/P1; các lỗi vòng 1 đã sửa thật; lỗi P2 mới (bộ quét mạnh làm rơi bản nháp Edit thường khi cờ TẮT) đang sửa (REPORTED). BE #147 QA vòng 2 (VERIFIED) không P0–P2. Chưa chạy: backend thật, AI thật",
-      "prs": "FE #83 docs · FE #90 (48a8bfdb), #99 (bfd5acb3), #100 (5eb6789c), #101 (3bcb46ad) DRAFT, cờ TẮT · BE #147 DRAFT head 91c89d9b (B1 tạo dự án idempotent, V95, cờ TẮT)",
+      "qa": "Home vòng 2 QA/SEC độc lập (VERIFIED): không FAIL, không P0/P1; lỗi P2 R2-F1 và các lỗi nhỏ cùng lỗi bundle PROD của ba cờ Home đã sửa (REPORTED: unit 5004, spec 130/130, mutant 100/100, build thật 0 dấu vết); QA vòng 3 đang chạy. BE #147 QA vòng 2 (VERIFIED) không P0–P2. Chưa chạy: backend thật, AI thật",
+      "prs": "FE #83 docs · FE #90 (48a8bfdb), #99 (3ce5eb50), #100 (79201c93), #101 (1eb85104) DRAFT, cờ TẮT · BE #147 DRAFT head 91c89d9b (B1 tạo dự án idempotent, V95, cờ TẮT)",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
       "next": "QA độc lập #84; P1 chờ FE #85 (bỏ giới hạn prompt) merge; P2–P4 ~7,5 ngày công; cần B1 (Idempotency-Key cho tạo dự án, backend).",
       "work": {
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T05:29:57+07:00"
+        "reportedAt": "2026-11-07T07:30:02+07:00"
       }
     }
   ],
