@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T12:30:11+07:00",
+  "asOf": "2026-11-07T12:35:42+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T12:30:11+07:00",
+    "updatedAt": "2026-11-07T12:35:42+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2217,14 +2217,14 @@
         "since": "2026-11-07T08:03:00+07:00"
       },
       {
-        "id": "OA-03",
-        "kind": "MERGE",
-        "priority": "P1",
+        "id": "OA-09",
+        "kind": "READY",
+        "priority": "P2",
         "status": "OPEN",
-        "title": "Bấm Ready rồi Merge theo thứ tự: FE #106 → BE #153 (đồng bộ để dev xanh)",
-        "detail": "Hai PR đồng bộ (CLEAN, base dev): FE #106 chép PROD_DEPLOY.md và thêm 8 nhãn audit; BE #153 đồng bộ lõi vendored, .gitleaksignore, AGENTSXWeb và kiểm kê QA. combined-check đầy đủ xanh trên hai nhánh. Merge sát nhau: nếu chỉ một bên vào thì dev chưa xanh. FE #98, #96, #97, #99–#101, #105 và BE #152 đã được Owner merge. Chưa bấm: FE #94 (DIRTY), FE #104 (DIRTY), BE #150, BE #151 (QA chờ Docker).",
-        "link": "https://github.com/luan20495/Xweb01fe/pull/106",
-        "since": "2026-11-07T12:30:11+07:00"
+        "title": "Các PR còn lại chưa vào dev: chờ Docker, sửa conflict hoặc quyết định",
+        "detail": "Đã merge vào dev (Owner dặn merge hết): FE #106 + BE #153 (đồng bộ, combined-check đầy đủ xanh trên hai dev), FE #83 và #89 (tài liệu thiết kế). Chưa merge và lý do: BE #150 (V96, tiền: QA vòng 3 chờ Docker), BE #151 + FE #104 (nhập dự án: DIRTY, test Docker chưa chạy, PROD đã bật cờ nhập), FE #94 (DIRTY, cần QA kiểm lại), BE #129 (Org, DIRTY, đánh số lại), BE #126 (hợp đồng Org cần Owner duyệt), FE #92 (theme, chờ quyết định OD-33), và khoảng 50 PR cũ Phase 3.0–3.2 (agent đang kiểm nội dung; đừng merge hàng loạt).",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/94",
+        "since": "2026-11-07T12:35:42+07:00"
       },
       {
         "id": "OA-04",
