@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T12:44:09+07:00",
+  "asOf": "2026-11-07T12:53:55+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T12:44:09+07:00",
+    "updatedAt": "2026-11-07T12:53:55+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2221,11 +2221,11 @@
         "kind": "AUDIT",
         "priority": "P2",
         "status": "OPEN",
-        "title": "AUDIT 57 PR OPEN (BE 38 + FE 19): không bulk merge, chờ Owner GO từng nhóm",
-        "solution": "Duyệt GO đóng nhóm CAO (BE #2 #35 #38 #72, FE #2 #3 #12 #23 #29) và nhóm ARCHIVE; các PR thật còn thiếu đi theo cổng QA/SEC.",
-        "detail": "Kết quả audit chỉ đọc (đã đăng ở #88): 13 PR REPLACED_CLOSE, 10 ARCHIVE_CLOSE, 4 MERGE_TO_DEV sau cổng, 16 REBASE_AND_TEST, 14 KEEP_BLOCKED (gồm BE #48/#49 Owner HOLD). Chưa đóng hay merge PR nào theo audit. Cần Owner: (1) GO đóng nhóm bằng chứng CAO (đầu PR là ancestor của dev và main; đóng không xóa nhánh); (2) quyết định nhóm Owner: runner CI Mac, dữ liệu UAT trên host PROD, watcher Windows, HBL cũ, hợp đồng Org #126; (3) PR thật còn thiếu (B7, RT-DETAIL, W1-C/B/D, BE #44, #22, #24+FE #16) được rebase và qua cổng theo thứ tự, không merge hàng loạt.",
+        "title": "AUDIT PR: đã đóng 8/9 PR bằng chứng cao; còn 48 PR + BE #72 chờ xác nhận",
+        "solution": "Xác nhận GO đóng riêng BE #72 (file cũ, đã bị bản mới thay); các PR còn lại đi theo cổng QA/SEC, không bulk merge.",
+        "detail": "Đã đóng BE #2 #35 #38 và FE #2 #3 #12 #23 #29 sau khi kiểm ancestor trên GitHub (không xóa nhánh). BE #72 không phải ancestor (AGENTSXWeb.md bản cũ 720 dòng, dev 1076) nên giữ mở chờ Owner. 48 PR còn lại đang audit; PR thật còn thiếu rebase và qua QA/SEC theo thứ tự.",
         "link": "https://github.com/luan20495/xweb01/issues/88",
-        "since": "2026-11-07T12:44:09+07:00"
+        "since": "2026-11-07T12:53:55+07:00"
       },
       {
         "id": "OA-09",
