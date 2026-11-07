@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T10:27:26+07:00",
+  "asOf": "2026-11-07T10:29:57+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -150,8 +150,8 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA-R1 PASS",
-      "prs": "BE #97 · FE #71",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20 PASS, 4 FAIL (trang HTML tĩnh trống khi publish, giới hạn 1 MiB, ảnh không viết lại, không có xem trước Studio), 2 NOT_IMPLEMENTED, 2 NOT_RUN. Các PR sửa BE #151 + FE #104: QA/SEC độc lập (VERIFIED) đạt có điều kiện, không P0–P2; đang sửa P3. Chưa xong 100% (pha B vòng lặp đọc nguồn lớn chưa giao)",
+      "prs": "BE #97 · FE #71 · BE #151 + FE #104 DRAFT (sửa lỗi nhập dự án, QA đạt có điều kiện)",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
       "next": "Import file gần ngưỡng 10 MB/300 file và từ chối zip-slip/secret rõ lý do.",
       "work": {
@@ -221,7 +221,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "reportedAt": "2026-11-07T10:29:57+07:00"
       }
     },
     {
@@ -232,7 +232,7 @@
       "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "PROD QA PASS: live resume, queued/offline jobs, idempotent enqueue, queue pause/resume and cancel pending; 3 R37 P3 defects remain · UI hàng đợi trên PROD: GET queue 200; thao tác thật với người dùng NOT_RUN",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 18/23 PASS; R37-Q1-1 và R37-Q1-2 đã sửa trên PROD; R37-J1-1 (hủy giữa lượt bị tính cả khoản giữ chỗ) còn mở, BE #150 đang vá sau QA; FE #103 (sửa giao diện hàng đợi) đã MERGE dev. Chưa xong 100%",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) DEPLOYED PROD 18:14 (R4e)",
       "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
       "next": "Deploy UI hàng đợi (#84) cùng đợt tối nay; thiếu thời gian từng job (backend cần createdAt/finishedAt); multi-user/negative NOT_RUN.",
@@ -328,7 +328,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "reportedAt": "2026-11-07T10:29:57+07:00"
       }
     },
     {
@@ -750,10 +750,10 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ), cảnh báo gần hết hạn chưa làm. Phần mở rộng: #148 đã MERGE dev 07:38; #142 (đã chứa #145) đang gộp với dev; FE #98 đã sửa P2-1 (REPORTED)",
-      "prs": "BE #112/#119 · docs #128 · BE #142 (đã chứa #145) đã MERGE vào dev 09:23 ICT · FE #98 DRAFT head 35345da3 · BE #148 đã MERGE dev",
+      "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ). Mở rộng: #142 và #145 QA vòng 2 (VERIFIED) đạt cho dev; FE #98 QA vòng 2 (VERIFIED) GATE-PASS cho dev, bật cờ DEV cần chạy với controller thật; BE #150 QA phát hiện lỗ hổng (hủy trước chunk đầu bị tính theo ước lượng), đang vá",
+      "prs": "BE #112/#119 · docs #128 · BE #142 (đã chứa #145) đã MERGE dev 09:23 ICT · BE #148 đã MERGE dev · FE #98 DRAFT head 1cce0e01 (QA vòng 2 đạt cho dev) + BE docs #152 DRAFT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Deploy đợt 2 cùng V92/V94 (cờ TẮT); FE #98 cần QA kiểm lại; gói B2-WEB-03, 05, 06, 07, 08 chưa làm.",
+      "next": "Owner Ready+Merge FE #98 và BE #152; deploy đợt 2 cùng V92/V94 (cờ TẮT); gói B2-WEB-03, 05, 06, 07, 08 chưa làm.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T09:30:06+07:00",
+        "reportedAt": "2026-11-07T10:29:57+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -1496,7 +1496,7 @@
       "risk": "MEDIUM",
       "integrated": false,
       "qa": "QA/SEC độc lập #96/#97 (VERIFIED): đạt có điều kiện cho dev và PROD cờ TẮT, không P0/P1. F1–F6 và lỗi bundle PROD đã sửa (REPORTED, build thật 0 dấu vết), chưa QA lại. Chưa chạy: backend thật, N1/N2 (BE chưa có)",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 (head 37882592) và #97 (head 7311c53a) DRAFT, chồng trên #60, cờ TẮT",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 (68a91b63, base dev, CLEAN) và #97 (7311c53a, base dev, đang gộp dev) DRAFT, cờ TẮT",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
       "next": "Owner quyết bật NEXT_PUBLIC_XWEB_PREFERENCES trên PROD (cờ build) và OD-33 (Studio sáng); PR2/PR3 trợ lý dữ liệu chờ #60 merge; backend N1/N2.",
       "work": {
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-07T06:29:56+07:00"
+        "reportedAt": "2026-11-07T10:29:57+07:00"
       }
     },
     {
@@ -1663,10 +1663,10 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Home QA vòng 3 (VERIFIED): GATE-PASS merge dev và PROD với cờ TẮT cho #99–#101 (điều kiện: patch đồng hành BE); lỗi P2 R3-F1 (URL năng lực lọt vào tên dự án khi cờ BẬT) đang sửa (REPORTED). BE #147 QA vòng 2 (VERIFIED): không P0–P2. Chưa chạy: backend thật, AI thật",
-      "prs": "FE #90 (P1) đã MERGE vào dev · FE #99 (5fe98c75), #100 (98384ff6), #101 (63a8e176) DRAFT, cờ TẮT, base cần đổi về dev · BE #147 (9bc128c2) CLEAN, V95, merge sau cùng",
+      "qa": "Home QA vòng 3 (VERIFIED): GATE-PASS merge dev và PROD cờ TẮT cho #99–#101; R3-F1..F7 đã sửa (REPORTED: gate:frontend xanh, mutant 110/110), QA vòng 4 đang chạy. BE #147 QA vòng 2 (VERIFIED): không P0–P2. Chưa chạy: backend thật, AI thật",
+      "prs": "FE #90 (P1) đã MERGE dev · FE #99 (5de63054), #100 (454be840), #101 (5b2bb62f) DRAFT, base dev, CLEAN, cờ TẮT · BE #147 (V95, B1 tạo dự án idempotent) đã MERGE dev",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "QA độc lập #84; P1 chờ FE #85 (bỏ giới hạn prompt) merge; P2–P4 ~7,5 ngày công; cần B1 (Idempotency-Key cho tạo dự án, backend).",
+      "next": "QA vòng 4; Ready+Merge theo thứ tự #99 → #100 → #101; patch đồng hành BE cùng lúc; deploy đợt 2 cờ TẮT.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T09:30:06+07:00"
+        "reportedAt": "2026-11-07T10:29:57+07:00"
       }
     }
   ],
