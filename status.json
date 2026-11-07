@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T10:29:57+07:00",
+  "asOf": "2026-11-07T11:00:52+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1495,10 +1495,10 @@
       "flag": "OFF",
       "risk": "MEDIUM",
       "integrated": false,
-      "qa": "QA/SEC độc lập #96/#97 (VERIFIED): đạt có điều kiện cho dev và PROD cờ TẮT, không P0/P1. F1–F6 và lỗi bundle PROD đã sửa (REPORTED, build thật 0 dấu vết), chưa QA lại. Chưa chạy: backend thật, N1/N2 (BE chưa có)",
+      "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt",
       "prs": "FE #89 docs · #92 theme DRAFT · FE #96 (68a91b63, base dev, CLEAN) và #97 (7311c53a, base dev, đang gộp dev) DRAFT, cờ TẮT",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "Owner quyết bật NEXT_PUBLIC_XWEB_PREFERENCES trên PROD (cờ build) và OD-33 (Studio sáng); PR2/PR3 trợ lý dữ liệu chờ #60 merge; backend N1/N2.",
+      "next": "Ready+Merge #96 → #97; đồng bộ lại vendored lúc merge; backend N1/N2; quyết định OD-33 cho theme.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-07T10:29:57+07:00"
+        "reportedAt": "2026-11-07T11:00:52+07:00"
       }
     },
     {
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T10:27:26+07:00",
+    "updatedAt": "2026-11-07T11:00:52+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2221,9 +2221,9 @@
         "kind": "READY",
         "priority": "P1",
         "status": "OPEN",
-        "title": "Bấm Ready rồi Merge FE #98 và BE #152 (QA đạt, CLEAN)",
-        "detail": "FE #103 đã được Owner merge lúc 10:05 (xong). Còn: FE #98 (tab cấu hình AI, ẩn khi cờ TẮT) và BE #152 (tài liệu AGENTSXWeb cho #98), cả hai base dev, CLEAN, QA/SEC độc lập đạt cho dev, merge cùng nhau. Chưa bấm: BE #151 + FE #104 (nhập dự án, đang sửa lỗi P3 theo QA, merge theo cặp), BE #150 (quyết toán khi hủy lượt AI, QA phát hiện lỗ hổng hủy trước chunk đầu, đang sửa), FE #94 (DIRTY), chuỗi Home #99–#101 (QA vòng 4 đang chạy), AI-17 #96/#97 (đang gộp dev).",
-        "link": "https://github.com/luan20495/Xweb01fe/pull/98",
+        "title": "Bấm Ready rồi Merge: FE #98 + BE #152, rồi FE #96 → #97 (QA đạt, CLEAN, base dev)",
+        "detail": "Sẵn sàng (QA/SEC độc lập đạt cho dev và PROD với cờ TẮT, CLEAN): (1) FE #98 (tab cấu hình AI) cùng BE #152 (tài liệu); (2) FE #96 (trợ lý dữ liệu Studio) rồi FE #97 (wizard Admin) sau khi #96 vào. Chưa bấm: FE #105 (follow-up hàng đợi, đang làm commit cuối), BE #150 (quyết toán khi hủy lượt AI, QA vòng 3 đang chạy), BE #151 + FE #104 (nhập dự án: QA phát hiện lỗi P2 DoS trước xác thực, đang sửa, tuyệt đối chưa deploy), FE #94 (DIRTY), chuỗi Home #99–#101 (QA vòng 4 đang chạy).",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/96",
         "since": "2026-11-07T09:43:30+07:00"
       },
       {
