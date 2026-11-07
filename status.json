@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T08:02:05+07:00",
+  "asOf": "2026-11-07T08:30:08+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -427,7 +427,7 @@
       "flag": "ON",
       "risk": "LOW",
       "integrated": true,
-      "qa": "PROD (C0 VERIFIED): nháp, Haiku, resume, đính kèm csv/png PASS, .exe từ chối. Bỏ giới hạn 4.000: QA/SEC độc lập BE #133 PASS-WITH-COND, FE #85 sửa P1 (lịch sử >20.000 ký tự), em chạy lại test liên quan 30/30; E2E 17.444/50.000 ký tự với backend+AI thật NOT_RUN · PROD R4e (VERIFIED): promptMaxBytes=60000; 70.000 ký tự → 413 không tốn AI; 17.441 ký tự → lượt Haiku UPDATED đủ phần đuôi; 50.000 ký tự/HTML một dòng/React 12 trang/Smart IQC NOT_RUN",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 25/31 tiêu chí PASS, 2 FAIL (nút phản hồi nổi che nút mở hàng đợi ở 375/768 px; hàng đợi chưa có thời gian từng job), 1 BLOCKED, 1 NOT_RUN. Giới hạn byte, bản nháp, lịch sử >20.000 ký tự và hàng đợi gửi đúng đuôi đã được kiểm với backend thật. Chưa xong 100%: còn lỗi giao diện và chờ Owner nghiệm thu",
       "prs": "FE #56 · FE #85 + BE #133 DEPLOYED PROD 18:14 (R4e, V86) · Master #88",
       "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
       "next": "Quyết định Owner: nâng trần thân yêu cầu trả phí (giới hạn hiệu lực 60.000 byte); pha B (AI đọc nhiều lượt bằng công cụ) chưa giao.",
@@ -501,7 +501,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "reportedAt": "2026-11-07T08:30:08+07:00"
       }
     },
     {
@@ -512,7 +512,7 @@
       "flag": "ON",
       "risk": "LOW",
       "integrated": true,
-      "qa": "PROD real-browser SSO PASS: portal links, XApp launcher, denied Admin return, deep-link restoration; remaining negative cases NOT_RUN",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 15/18 tiêu chí PASS, 3 BLOCKED (hết phiên theo thời gian thật, người chỉ dùng Apps, khách site riêng tư thiếu quyền Studio); lỗi nhỏ P3: vài đường /auth/* cũ trả 404 rỗng. Chưa xong 100%: cần tài khoản QA bổ sung và Owner nghiệm thu",
       "prs": "FE #59 · BE #118/#119; R3 PROD",
       "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): Studio/Admin/Apps có liên kết về launcher XApp; điều hướng không vòng lặp; người thiếu quyền Admin có nút quay về XApp; đăng nhập bảo toàn deep link site/path (bug #150). Không cần bật feature flag.",
       "next": "R4: kiểm hết phiên thật; Apps-only, khách site PRIVATE không APP_VIEW, Caddy /auth/* XApp và tín hiệu vòng lặp.",
@@ -583,7 +583,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "reportedAt": "2026-11-07T08:30:08+07:00"
       }
     },
     {
@@ -594,7 +594,7 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA-R2 D-01 PASS; SEC-R2 không P0/P1/P2",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 15/24 PASS, 1 FAIL, 4 BLOCKED, 3 NOT_RUN. Hành vi LEGACY khi STRICT=false đúng. Sự cố QA P2 (CQB-1) lúc 08:03 làm đóng một thao tác của nguồn QA; đang chờ Owner chọn cách sửa. Báo cáo ảnh hưởng STRICT chưa đủ (thiếu danh sách thao tác chưa có chính sách được duyệt)",
       "prs": "BE #100/#113 · FE #71",
       "summary": "Field Policy đã ON nhưng STRICT=false; chưa có đánh giá tác động ứng dụng cũ nếu bật STRICT=true, đồng thời phải giữ thao tác từ chối đúng quyền.",
       "next": "Người không có quyền đọc/ghi trường bị từ chối kể cả gọi API trực tiếp.",
@@ -664,7 +664,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "reportedAt": "2026-11-07T08:30:08+07:00"
       }
     },
     {
@@ -675,7 +675,7 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS theo phạm vi; Haiku ledger SETTLED; negative/concurrency thật chưa đủ",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 7/16 PASS, 1 BLOCKED, 7 NOT_RUN, 1 UNKNOWN. Sổ cái khớp chi tiêu của cửa sổ; đường từ chối/đồng thời/kết quả không rõ chưa kiểm được vì PROD chưa có phân bổ (Owner quyết). Chưa xong 100%",
       "prs": "BE #109/#115",
       "summary": "Ledger ON và từng có lượt settled thật; chưa kiểm đủ HTTP reject, race concurrent requests, idempotency/reconcile khi provider timeout.",
       "next": "Hai yêu cầu đồng thời không chi vượt mức cấp.",
@@ -739,7 +739,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "reportedAt": "2026-11-07T08:30:08+07:00"
       }
     },
     {
@@ -750,7 +750,7 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA/SEC R2 PASS phần đã ON; mở rộng: #142 QA vòng 2 (VERIFIED) đạt cho dev; #98 QA (VERIFIED) đạt có điều kiện, P2-1 đã sửa (REPORTED); #145 QA vòng 2 (VERIFIED) đạt cho dev và bật DEV; #148 QA/SEC độc lập (VERIFIED) đạt cho dev, không P0–P2, chỉ siết không nới",
+      "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ), cảnh báo gần hết hạn chưa làm. Phần mở rộng: #148 đã MERGE dev 07:38; #142 (đã chứa #145) đang gộp với dev; FE #98 đã sửa P2-1 (REPORTED)",
       "prs": "BE #112/#119 · docs #128 · BE #142 head 019b0875 (V92; đang gộp với dev) · FE #98 DRAFT head 35345da3 + BE docs #144 · BE #145 DRAFT head 5ff5980c (IAM động V94) · BE #148 đã MERGE vào dev 07:38 ICT (sửa đồng hồ valid_from)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
       "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00",
+        "reportedAt": "2026-11-07T08:30:08+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -883,7 +883,7 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": false,
-      "qa": "QA/SEC độc lập FE #80 PASS-WITH-COND; smoke PROD với tài khoản QA (VERIFIED, 0 AI trả phí): GET ai-budget 200 (canRequest:false: chưa có phân bổ nên cờ trơ), thành viên ngoài 404, admin thấy tab \"Yêu cầu ngân sách\" (danh sách rỗng), không phải admin 403, xin thêm khi chưa có khoản cấp → 409 AI_BUDGET_TOPUP_WITHOUT_GRANT. NOT_RUN: luồng yêu cầu→duyệt→khoản cấp, RAISE, tắt cờ→404",
+      "qa": "Smoke PROD với tài khoản QA (VERIFIED); QA đóng việc độc lập 07/11: 10/22 PASS, 7 BLOCKED (cần phân bổ ngân sách do Owner chuẩn bị), chuông thông báo chưa làm. Chưa xong 100%",
       "prs": "BE #122 · FE #67, #80 · cờ AI_BUDGET_REQUESTS BẬT 18:40 (Owner chạy lệnh) · RELEASE_LOG xweb01 #140 / Xweb01fe #93",
       "summary": "B3/F3: API BE và FE cũ đã deploy PROD nhưng cờ AI_BUDGET_REQUESTS vẫn OFF. FE PR #80 head 8167e129 đã hoàn thành mã, CLEAN và không còn DRAFT: sửa 12 chỗ lệch F3/BE, thêm tab Platform AI 'Yêu cầu ngân sách', duyệt/từ chối + RAISE. Agent báo unit 4878 PASS / 8 SKIP; 311 spec liên quan PASS; tsc/combined-check PASS. QA/SEC độc lập cho #80 đã khởi chạy, CHƯA có GATE-PASS. Chưa có thu hồi khoản cấp hoặc chuông thông báo.",
       "next": "Cần một workspace thử riêng (hoặc Owner cho phép phân bổ ở workspace QA 22 dự án) để chạy E2E yêu cầu→duyệt→cấp; thiếu UI thu hồi, hộp thư, chuông (không chặn).",
@@ -964,7 +964,7 @@
         "percent": 92,
         "basis": "estimate",
         "note": "Đã bật PROD, smoke một phần PASS; luồng đầy đủ chưa E2E thật. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:02:05+07:00",
+        "reportedAt": "2026-11-07T08:30:08+07:00",
         "codeStatus": "CODE_COMPLETE_QA_PENDING"
       }
     },
@@ -1229,11 +1229,11 @@
       "stage": "INCOMPLETE",
       "flag": "OFF",
       "risk": "HIGH",
-      "integrated": false,
-      "qa": "#138 và #143: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT). FE #102: QA/SEC độc lập (VERIFIED) không P0/P1, đạt có điều kiện; lỗi P2 (bundle PROD còn dấu vết khi cờ TẮT) đã sửa (REPORTED, build thật 0 dấu vết). Chưa chạy: E2E backend thật",
-      "prs": "BE #138 đã MERGE vào dev lúc 07:50 ICT (S1, V91) · BE #143 DRAFT head 1aac6775 (S2, V93; cần đổi base về dev) · FE #102 DRAFT head fbb1a2b8 (cờ TẮT) · Master #88",
+      "integrated": true,
+      "qa": "#138 và #143/S2: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT); đã nằm trong dev. FE #102: QA/SEC độc lập (VERIFIED) đạt có điều kiện, lỗi bundle PROD đã sửa (REPORTED). Chưa chạy: E2E backend thật",
+      "prs": "BE #138 (S1, V91) đã MERGE vào dev 07:50 ICT · X4 S2 (V93) đã vào dev qua BE #149 lúc 08:18 ICT (#143 bị merge nhầm vào nhánh gốc, đã đưa lại) · FE #102 DRAFT (đang gộp FE dev; cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Đổi base #143 về dev (cần Owner); QA delta #143 sau gộp; merge #143 rồi FE #102; PROD chỉ khi Owner duyệt riêng.",
+      "next": "Gộp FE dev vào #102 rồi merge; deploy cùng đợt 2 với cờ TẮT (PROD đóng cứng bằng mã); bật PROD chỉ khi Owner duyệt riêng.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1323,8 +1323,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "Backend S1/S2 và FE #102 đều có QA độc lập đạt có điều kiện cho dev (DRAFT, chờ Ready).",
-        "reportedAt": "2026-11-07T08:02:05+07:00"
+        "note": "Backend S1 và S2 đã vào dev (QA độc lập đạt); FE #102 đang gộp, chưa merge.",
+        "reportedAt": "2026-11-07T08:30:08+07:00"
       }
     },
     {
