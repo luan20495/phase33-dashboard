@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T09:20:42+07:00",
+  "asOf": "2026-11-07T09:30:06+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -751,9 +751,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ), cảnh báo gần hết hạn chưa làm. Phần mở rộng: #148 đã MERGE dev 07:38; #142 (đã chứa #145) đang gộp với dev; FE #98 đã sửa P2-1 (REPORTED)",
-      "prs": "BE #112/#119 · docs #128 · BE #142 head 019b0875 (V92; đang gộp với dev) · FE #98 DRAFT head 35345da3 + BE docs #144 · BE #145 DRAFT head 5ff5980c (IAM động V94) · BE #148 đã MERGE vào dev 07:38 ICT (sửa đồng hồ valid_from)",
+      "prs": "BE #112/#119 · docs #128 · BE #142 (đã chứa #145) đã MERGE vào dev 09:23 ICT · FE #98 DRAFT head 35345da3 · BE #148 đã MERGE dev",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "B2-WEB-01 kiểm kê & hợp đồng (agent đã khởi động, chưa có PR xác nhận); kế tiếp B2-WEB-02/03/04, rồi 05–08. Không chặn R4; triển khai theo gate DEV→QA/SEC→PROD.",
+      "next": "Deploy đợt 2 cùng V92/V94 (cờ TẮT); FE #98 cần QA kiểm lại; gói B2-WEB-03, 05, 06, 07, 08 chưa làm.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "REOPEN · B2/F2 cũ PROD ON. Phần nâng cấp cấu hình AI toàn bộ trên web mới ~3% theo Claude; chưa QA/SEC. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:30:08+07:00",
+        "reportedAt": "2026-11-07T09:30:06+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -1231,9 +1231,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "#138 và #143/S2: QA/SEC độc lập vòng 2 (VERIFIED) đạt cho dev (cờ TẮT); đã nằm trong dev. FE #102: QA/SEC độc lập (VERIFIED) đạt có điều kiện, lỗi bundle PROD đã sửa (REPORTED). Chưa chạy: E2E backend thật",
-      "prs": "BE #138 (S1, V91) đã MERGE vào dev 07:50 ICT · X4 S2 (V93) đã vào dev qua BE #149 lúc 08:18 ICT (#143 bị merge nhầm vào nhánh gốc, đã đưa lại) · FE #102 DRAFT (đang gộp FE dev; cờ TẮT) · Master #88",
+      "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Gộp FE dev vào #102 rồi merge; deploy cùng đợt 2 với cờ TẮT (PROD đóng cứng bằng mã); bật PROD chỉ khi Owner duyệt riêng.",
+      "next": "Deploy đợt 2 (cờ TẮT, PROD đóng cứng bằng mã); backend thiếu dataSourceId/danh mục ứng viên; PROD bật chỉ khi Owner duyệt riêng.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1324,7 +1324,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "Backend S1 và S2 đã vào dev (QA độc lập đạt); FE #102 đang gộp, chưa merge.",
-        "reportedAt": "2026-11-07T08:30:08+07:00"
+        "reportedAt": "2026-11-07T09:30:06+07:00"
       }
     },
     {
@@ -1663,8 +1663,8 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": false,
-      "qa": "Home vòng 2 QA/SEC độc lập (VERIFIED): không FAIL, không P0/P1; lỗi P2 R2-F1 và các lỗi nhỏ cùng lỗi bundle PROD của ba cờ Home đã sửa (REPORTED: unit 5004, spec 130/130, mutant 100/100, build thật 0 dấu vết); QA vòng 3 đang chạy. BE #147 QA vòng 2 (VERIFIED) không P0–P2. Chưa chạy: backend thật, AI thật",
-      "prs": "FE #83 docs · FE #90 (48a8bfdb), #99 (3ce5eb50), #100 (79201c93), #101 (1eb85104) DRAFT, cờ TẮT · BE #147 DRAFT head 91c89d9b (B1 tạo dự án idempotent, V95, cờ TẮT)",
+      "qa": "Home QA vòng 3 (VERIFIED): GATE-PASS merge dev và PROD với cờ TẮT cho #99–#101 (điều kiện: patch đồng hành BE); lỗi P2 R3-F1 (URL năng lực lọt vào tên dự án khi cờ BẬT) đang sửa (REPORTED). BE #147 QA vòng 2 (VERIFIED): không P0–P2. Chưa chạy: backend thật, AI thật",
+      "prs": "FE #90 (P1) đã MERGE vào dev · FE #99 (5fe98c75), #100 (98384ff6), #101 (63a8e176) DRAFT, cờ TẮT, base cần đổi về dev · BE #147 (9bc128c2) CLEAN, V95, merge sau cùng",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
       "next": "QA độc lập #84; P1 chờ FE #85 (bỏ giới hạn prompt) merge; P2–P4 ~7,5 ngày công; cần B1 (Idempotency-Key cho tạo dự án, backend).",
       "work": {
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "UI hàng đợi đã lên PROD; P1 Shared Composer có PR nháp #90 (4925/4933 test, REPORTED); P2–P4 chưa.",
-        "reportedAt": "2026-11-07T07:30:02+07:00"
+        "reportedAt": "2026-11-07T09:30:06+07:00"
       }
     }
   ],
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T09:20:42+07:00",
+    "updatedAt": "2026-11-07T09:30:06+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật/tài chính ở đây. Em (C0) chỉ merge PR có base dev khi đã đủ điều kiện; Ready/đổi base/ngân sách/quyền/cờ/PROD luôn cần Owner.",
     "items": [
       {
@@ -2217,19 +2217,19 @@
       },
       {
         "id": "OA-02",
-        "kind": "MERGE",
-        "priority": "P1",
-        "title": "BE #142 (cấu hình AI động V92 + IAM động V94) đã CLEAN, bấm Merge",
-        "detail": "Base dev, CLEAN, QA/SEC độc lập vòng 2 đạt cho dev (cờ TẮT). Phần Gradle cuối của QA sẽ chạy trước cổng dev → main. Chỉ bấm Merge PR có chữ 'into dev'.",
+        "kind": "DONE",
+        "priority": "P3",
+        "title": "BE #142 đã được Owner merge vào dev lúc 09:23 (xong)",
+        "detail": "Cảm ơn. Việc tiếp: #147 (V95) rồi QA tích hợp, promote và deploy đợt 2.",
         "link": "https://github.com/luan20495/xweb01/pull/142",
         "since": "2026-11-07T09:20:42+07:00"
       },
       {
         "id": "OA-03",
         "kind": "MERGE",
-        "priority": "P2",
-        "title": "BE #147 (tạo dự án idempotent V95) CLEAN nhưng chỉ merge SAU #142",
-        "detail": "Flyway outOfOrder=false: V95 phải đứng sau V92/V94. Em gộp dev vào #147 lần cuối sau khi #142 vào rồi báo bấm.",
+        "priority": "P1",
+        "title": "BE #147 (V95 tạo dự án idempotent) đã CLEAN: bấm Merge khi sẵn sàng (sau #142 đã xong)",
+        "detail": "Base dev, CLEAN, QA vòng 2 không P0–P2. Chỉ bấm PR ghi 'into dev'.",
         "link": "https://github.com/luan20495/xweb01/pull/147",
         "since": "2026-11-07T09:20:42+07:00"
       },
@@ -2238,7 +2238,7 @@
         "kind": "READY",
         "priority": "P2",
         "title": "Bấm Ready cho các FE đã CLEAN khi sẵn sàng",
-        "detail": "FE #102 (X4 giao diện, QA đạt có điều kiện), FE #103 (sửa lỗi hàng đợi, QA độc lập đang chạy). FE #94 và #98 CLEAN nhưng cần QA kiểm lại trước. Em không bấm Ready được (bị chặn quyền). Chuỗi Home #90–#101 và AI-17 #96/#97 có base chồng: em báo thứ tự khi gỡ.",
+        "detail": "FE #90 và #102 đã merge. Còn: FE #103 (sửa hàng đợi, QA đang chạy), FE #94 và #98 (cần QA kiểm lại). Chuỗi Home #99–#101: base đang là nhánh của #90 đã vào dev, cần Owner bấm Edit đổi base về dev (em bị chặn quyền đổi base). AI-17 #96/#97 chồng trên #60 cũng vậy.",
         "link": "https://github.com/luan20495/Xweb01fe/pull/103",
         "since": "2026-11-07T09:20:42+07:00"
       },
