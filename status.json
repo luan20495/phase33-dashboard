@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T12:53:55+07:00",
+  "asOf": "2026-11-07T13:30:28+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -150,10 +150,10 @@
       "flag": "ON",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20 PASS, 4 FAIL (trang HTML tĩnh trống khi publish, giới hạn 1 MiB, ảnh không viết lại, không có xem trước Studio), 2 NOT_IMPLEMENTED, 2 NOT_RUN. Các PR sửa BE #151 + FE #104: QA/SEC độc lập (VERIFIED) đạt có điều kiện, không P0–P2; đang sửa P3. Chưa xong 100% (pha B vòng lặp đọc nguồn lớn chưa giao)",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 12/20. Bản sửa BE #151 + FE #104: test container xanh theo tác giả (REPORTED); QA/SEC r3 độc lập đang chạy.",
       "prs": "BE #97 · FE #71 · BE #151 (35f93332) + FE #104 (ccc52a4f) DRAFT, đã sửa lỗi P2 DoS trước xác thực (REPORTED); test Docker chưa chạy lại",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
-      "next": "Import file gần ngưỡng 10 MB/300 file và từ chối zip-slip/secret rõ lý do.",
+      "next": "QA r3 trên đúng head BE #151 / FE #104; sau đó Owner merge theo cặp (base dev); deploy đợt 2 kèm đổi ack nhập dự án sang SHA mới.",
       "work": {
         "problem": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
         "approach": "Chạy một dự án HTML và một React/Vite đa trang từ upload tới site chạy thật, giữ cấu trúc nguồn/asset và quyền, có log file nào bị bỏ qua.",
@@ -232,10 +232,10 @@
       "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 18/23 PASS; R37-Q1-1 và R37-Q1-2 đã sửa trên PROD; R37-J1-1 (hủy giữa lượt bị tính cả khoản giữ chỗ) còn mở, BE #150 đang vá sau QA; FE #103 (sửa giao diện hàng đợi) đã MERGE dev. Chưa xong 100%",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 18/23. BE #150 (V96) gộp dev, test container xanh theo tác giả với 1 lỗi M2 chưa xác minh (REPORTED); QA r3 độc lập đang chạy.",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) DEPLOYED PROD 18:14 (R4e)",
       "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
-      "next": "Deploy UI hàng đợi (#84) cùng đợt tối nay; thiếu thời gian từng job (backend cần createdAt/finishedAt); multi-user/negative NOT_RUN.",
+      "next": "QA r3 trên đúng head BE #150; migration V96 thử trên DB dạng PROD; deploy đợt 2.",
       "work": {
         "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
@@ -1058,7 +1058,7 @@
       "qa": "QA/SEC #121+#131 r2 PASS-WITH-COND (VERIFIED); QA/SEC độc lập #141: GATE-PASS (VERIFIED: duyệt nguồn hệ thống cần quyền tenant, không lộ danh tính, 36 lớp 274 test 0 lỗi, mutant 8/8); QA/SEC #94: PASS-WITH-COND, F-1 đã sửa ở r2 (agent báo spec 91/91, chưa QA lại)",
       "prs": "BE #121 DEPLOYED (4e) · BE #141 MERGED dev b93fe260 (P3-N1) · FE #94 DRAFT head 7874d879 (phụ thuộc #60) · Master #88",
       "summary": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
-      "next": "Owner Ready #60 → merge #94; smoke thật 2 quản trị tenant + xác nhận cờ cũ false + đọc log khởi động; Owner duyệt bật SYSTEM_SOURCES.",
+      "next": "FE #94 đã hết xung đột (CLEAN, DRAFT); cần QA độc lập (backend thật, 2 quản trị tenant), mirror BE, rồi merge dev và deploy đợt 2.",
       "work": {
         "problem": "BE catalog X2/X5 đang ở PR #121 DRAFT; không nằm trong R3. Yêu cầu Company mẹ/con/cháu và OrgUnit nhiều cấp kèm import/API vẫn chưa đủ bằng chứng triển khai.",
         "approach": "Dùng Company(parentCompanyId,tenantId) và OrgUnit(parentOrgUnitId,companyId) tách biệt; sync theo externalId, chặn vòng, đảm bảo tenant.",
@@ -1129,8 +1129,8 @@
       "progress": {
         "percent": 97,
         "basis": "estimate",
-        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T21:29:48+07:00"
+        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; UI X2 (FE #94) CLEAN, chờ QA; chưa bật cờ, chưa E2E AI thật.",
+        "reportedAt": "2026-11-07T13:30:28+07:00"
       }
     },
     {
