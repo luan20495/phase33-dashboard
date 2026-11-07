@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T13:54:14+07:00",
+  "asOf": "2026-11-07T14:32:35+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-07T13:54:14+07:00",
+    "updatedAt": "2026-11-07T14:32:35+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2215,28 +2215,6 @@
         "detail": "Lúc 08:03 ICT 07/11 một agent QA đã ghi nhầm chính sách trường dữ liệu của một nguồn QA, làm hỏng bộ chọn nhân viên của một app pilot đang chạy. Cách 1 (khuyến nghị, khoảng 5 phút): một admin workspace không phải một trong ba tài khoản QA đã sửa lưu lại 4 cột id, firstName, lastName, email rồi một admin khác duyệt. Cách 2: script backend xóa dòng chính sách (cần ghi DB PROD và nạp khóa SSH). Cần Owner nói cách nào và ai là admin.",
         "link": "",
         "since": "2026-11-07T08:03:00+07:00"
-      },
-      {
-        "id": "OA-10",
-        "kind": "AUDIT",
-        "priority": "P2",
-        "status": "OPEN",
-        "title": "AUDIT PR: đã đóng 8/9 PR bằng chứng cao; còn 48 PR + BE #72 chờ xác nhận",
-        "solution": "Xác nhận GO đóng riêng BE #72 (file cũ, đã bị bản mới thay); các PR còn lại đi theo cổng QA/SEC, không bulk merge.",
-        "detail": "Đã đóng BE #2 #35 #38 và FE #2 #3 #12 #23 #29 sau khi kiểm ancestor trên GitHub (không xóa nhánh). BE #72 không phải ancestor (AGENTSXWeb.md bản cũ 720 dòng, dev 1076) nên giữ mở chờ Owner. 48 PR còn lại đang audit; PR thật còn thiếu rebase và qua QA/SEC theo thứ tự.",
-        "link": "https://github.com/luan20495/xweb01/issues/88",
-        "since": "2026-11-07T12:53:55+07:00"
-      },
-      {
-        "id": "OA-09",
-        "kind": "READY",
-        "priority": "P1",
-        "status": "OPEN",
-        "title": "Bấm Ready rồi Merge cặp nhập dự án: BE #151 rồi FE #104 (QA/SEC đạt)",
-        "solution": "Mở PR, bấm Ready for review rồi Merge (base dev) theo thứ tự BE #151 → FE #104. Chỉ làm 2 PR này; #150 và #94 chưa đạt.",
-        "detail": "QA/SEC vòng 3 độc lập đạt trên đúng head (BE 15119bea, FE 993f673), 39/39 mutant giết, CLEAN, base dev. Còn 1 P3 chấp nhận được: người đã đăng nhập có quyền tạo dự án gửi upload cực chậm giữ slot nhập dự án (chỉ ảnh hưởng nhập dự án). Sửa sau. BE #150 (V96) và FE #94 đang QA; chưa có link.",
-        "link": "https://github.com/luan20495/xweb01/pull/151",
-        "since": "2026-11-07T13:54:14+07:00"
       },
       {
         "id": "OA-04",
@@ -2277,6 +2255,17 @@
         "detail": "Đã xóa 136 nhánh đã merge (có lưu SHA). Còn 22 nhánh không PR và chưa merge (17 BE, 5 FE: phase3/*, feat/xapp-*, docs/xapp-r1-*, pr/N) và nhiều PR mở từ phase cũ (30 BE, 28 FE). Cho em biết nhánh/PR nào bỏ được thì em xóa/đóng.",
         "link": "",
         "since": "2026-11-07T09:43:30+07:00"
+      },
+      {
+        "id": "OA-11",
+        "kind": "DECISION",
+        "priority": "P3",
+        "status": "OPEN",
+        "title": "Thiết kế Org IAM: duyệt hợp đồng #126 trước khi làm tiếp #129",
+        "solution": "Đọc BE #126 (hợp đồng truy cập theo tổ chức) rồi trả lời duyệt hoặc yêu cầu sửa; Claude đánh số lại migration #129 sau khi anh duyệt.",
+        "detail": "Quyết định thiết kế Org IAM phải do Owner. #129 (V97 trở lên) chờ hợp đồng này. Các việc rebase, QA, Ready, Merge vào dev khác Claude tự làm, không cần anh.",
+        "link": "https://github.com/luan20495/xweb01/pull/126",
+        "since": "2026-11-07T14:32:35+07:00"
       }
     ]
   }
