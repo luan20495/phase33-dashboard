@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-07T20:30:30+07:00",
+  "asOf": "2026-11-07T21:30:36+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -153,7 +153,7 @@
       "qa": "QA đóng việc 12/20 (VERIFIED, bản cũ). Bản sửa BE #151+FE #104 đã trên PROD. BE #157 (hardening + giảm thiểu DoS): QA/SEC độc lập r6 PASS trên đúng head (VERIFIED), đã merge dev 19:21; đi đợt 3.",
       "prs": "BE #97 · FE #71 · BE #151 (35f93332) + FE #104 (ccc52a4f) DRAFT, đã sửa lỗi P2 DoS trước xác thực (REPORTED); test Docker chưa chạy lại",
       "summary": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
-      "next": "Đợt 3 lên PROD (tối nay, CHƯA XÁC MINH); PROD testing nhập dự án; việc sau: CSRF chỉ đọc header (phòng thủ nhiều lớp).",
+      "next": "PROD testing nhập dự án thật (dự án thử cô lập); việc sau: CSRF chỉ đọc header.",
       "work": {
         "problem": "Nhập ZIP/HTML đã ON nhưng chỉ có dry-run 200; chưa xác minh đầy đủ tạo dự án, biên dịch, sửa bằng AI, phê duyệt và publish, đặc biệt với file nguồn lớn.",
         "approach": "Chạy một dự án HTML và một React/Vite đa trang từ upload tới site chạy thật, giữ cấu trúc nguồn/asset và quyền, có log file nào bị bỏ qua.",
@@ -220,8 +220,8 @@
       "progress": {
         "percent": 100,
         "basis": "prod_on",
-        "note": "Bản sửa nhập dự án đã deploy PROD 07/11 17:22 ICT (ack mới); PROD_TESTING; chưa đồng nghĩa nghiệm thu.",
-        "reportedAt": "2026-11-07T17:26:56+07:00"
+        "note": "Hardening #157 (hạn tổng upload, giảm thiểu DoS) đã deploy PROD đợt 3. IMPORT40 PASS (VERIFIED). Chưa nghiệm thu.",
+        "reportedAt": "2026-11-07T21:30:36+07:00"
       }
     },
     {
@@ -232,10 +232,10 @@
       "flag": "ON",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 18/23. BE #150 QA r3 độc lập (VERIFIED): SEC PASS, QA FAIL hẹp (1 test P2, 2 điểm P3); tác giả đã sửa (REPORTED), QA delta đang chạy.",
+      "qa": "QA đóng việc 18/23 (VERIFIED, bản cũ). BE #150 QA/SEC r4 PASS + tích hợp GO (VERIFIED), đã trên PROD.",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) DEPLOYED PROD 18:14 (R4e)",
       "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
-      "next": "BE #150 (V96) đã merge dev, đi đợt 3 cùng #157; FE hiển thị giờ job chưa làm.",
+      "next": "PROD testing hủy job trả phí thật (cần cửa sổ AI); FE hiển thị giờ job chưa làm.",
       "work": {
         "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
@@ -327,8 +327,8 @@
       "progress": {
         "percent": 100,
         "basis": "prod_on",
-        "note": "UI hàng đợi sửa đã deploy PROD 07/11 17:22 ICT; sửa hủy job tiền (#150) ở đợt 3.",
-        "reportedAt": "2026-11-07T17:26:56+07:00"
+        "note": "BE #150 (V96) đã deploy PROD đợt 3 21:02 ICT. Đợt 3 đã deploy PROD 07/11 21:02 ICT (release a5d6237d3049); smoke sau deploy đạt (VERIFIED); PROD_TESTING.",
+        "reportedAt": "2026-11-07T21:30:36+07:00"
       }
     },
     {
@@ -342,7 +342,7 @@
       "qa": "1 lượt AI thật PASS cơ bản",
       "prs": "BE #102 · FE #67 · Owner #88/6660994350 (REQUESTED)",
       "summary": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
-      "next": "AI dùng search/read thực để tìm và đọc file ngoài đợt chọn đầu.",
+      "next": "Tool loop (BE #165) đang dev theo backlog; OD-05 hạn mức chi.",
       "work": {
         "problem": "Selector ON chỉ đưa vào ngữ cảnh phần source được chọn. File HTML minified/đa trăm file có thể ngoài giới hạn 64KB; chưa có bằng chứng model tự tìm, đọc tiếp và xác minh vùng bị lược.",
         "approach": "Dùng manifest + công cụ tìm kiếm/đọc từng đoạn theo revision và IAM, giới hạn vòng/byte/USD; ưu tiên Repomix được pin/audit trước khi tích hợp, không nhét cả repo vào prompt.",
@@ -753,7 +753,7 @@
       "qa": "QA/SEC R2 PASS phần đã ON; QA đóng việc độc lập 07/11 (VERIFIED, PROD): 9/15 PASS, 3 BLOCKED (cần phân bổ). Mở rộng: #142 và #145 QA vòng 2 (VERIFIED) đạt cho dev; FE #98 QA vòng 2 (VERIFIED) GATE-PASS cho dev, bật cờ DEV cần chạy với controller thật; BE #150 QA phát hiện lỗ hổng (hủy trước chunk đầu bị tính theo ước lượng), đang vá",
       "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Cờ AI_CONFIG vẫn TẮT (BLOCKED: E2E controller thật + vai trò DB); chạy E2E DEV thật rồi bật theo chính sách mặc định BẬT.",
+      "next": "Gói 02b (BE #164) đang dev; cờ AI_CONFIG vẫn TẮT (BLOCKED: E2E controller thật + vai trò DB); B2 là đường găng ≈243 giờ-agent.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -1233,7 +1233,7 @@
       "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE: BE #159 + FE #110 QA/SEC độc lập PASS trên đúng head (VERIFIED, không P0–P2), đã merge dev 19:40/20:14; E2E trình duyệt DEV thật NOT_RUN.",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Đợt 3 lên PROD với cờ TẮT (sàn mã fail-closed); PR sửa 3 điểm P3 cho đợt 4; Owner quyết nâng sàn PROD để bật.",
+      "next": "BE #161 (3 P3) đang QA cho đợt 4; Owner quyết nâng sàn PROD để bật; E2E DEV thật.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1323,8 +1323,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "BE S1/S2 đã trên PROD (OFF); X4 COMPLETE đã vào dev, RELEASE_READY chờ GO QA tích hợp; sàn PROD giữ.",
-        "reportedAt": "2026-11-07T20:30:30+07:00"
+        "note": "X4 COMPLETE (BE #159 + FE #110) đã deploy PROD đợt 3 với cờ TẮT, sàn mã giữ; API mới trả 404 khi TẮT (VERIFIED).",
+        "reportedAt": "2026-11-07T21:30:36+07:00"
       }
     },
     {
