@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T07:32:43+07:00",
+  "asOf": "2026-11-08T07:56:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1417,9 +1417,9 @@
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "QA/SEC độc lập (VERIFIED): Project Map QA PASS + SEC PASS, đang BẬT, smoke sau bật PASS. Memory: bộ trung hòa thẻ giao thức chung (BE #170 + FE #118 nhãn audit) QA PASS + SEC PASS và đã merge dev 07:28 ICT; điểm P3 M-F1 và M-F2 đã đóng.",
-      "prs": "BE #130 trong PROD. BE #170 + FE #118 đã MERGE vào dev 08/11 07:28 ICT (GitHub). Memory vẫn TẮT.",
+      "prs": "BE #130 trong PROD. BE #170 + FE #118 đã MERGE vào dev 08/11 07:28 ICT. Màn FE Memory: FE #120 (DRAFT, nhãn status:qa), QA/SEC độc lập đang chạy. Memory vẫn TẮT.",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "Màn FE Project Memory (agent dev đang làm, ước lượng ≈20–24 giờ dev + 6 giờ QA độc lập), sau đó QA rồi bật Memory (hoặc Owner chấp nhận bằng chữ chỉ-API). Một lượt Haiku trả phí để xem project_map trong blocks cần cửa sổ AI.",
+      "next": "QA/SEC độc lập màn FE Memory (FE #120) đang chạy; sau đó merge dev, PR BE nhỏ cho mirror và QA tích hợp rồi bật Memory (hoặc Owner chấp nhận bằng chữ chỉ-API). BE còn thiếu route xem khối AI nhận thật (màn đang tính gần đúng) và chưa có bên đề xuất ghi nhớ. Một lượt Haiku trả phí để xem project_map cần cửa sổ AI.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1483,8 +1483,8 @@
       "progress": {
         "percent": 85,
         "basis": "estimate",
-        "note": "Map ON trên PROD (VERIFIED). Memory: backend + neutraliser xong và QA PASS, chỉ còn thiếu màn FE.",
-        "reportedAt": "2026-11-08T07:32:43+07:00"
+        "note": "Map ON trên PROD (VERIFIED). Memory: backend + neutraliser xong; màn FE #120 đã code, đang QA độc lập (bằng chứng hiện từ server giả, chưa chạy server thật).",
+        "reportedAt": "2026-11-08T07:56:00+07:00"
       }
     },
     {
