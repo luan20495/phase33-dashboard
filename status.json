@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T08:42:11+07:00",
+  "asOf": "2026-11-08T08:43:37+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1663,10 +1663,10 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": true,
-      "qa": "Home QA vòng 4 (VERIFIED): #99, #100, #101 GATE-PASS merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (cần E2E backend thật). 29/29 dạng thông tin xác thực/URL năng lực bị chặn, bộ quét toàn văn bản, bundle production thật 0 dấu vết khi cờ tắt, plain Edit giống dev 374/374. Điều kiện: áp patch đồng hành BE cùng lúc. BE #147 (V95) đã vào dev, QA vòng 2 không P0–P2. Chưa chạy: backend thật, AI thật",
+      "qa": "QA/SEC độc lập INF-3 PASS (VERIFIED). Bản sửa tiếp theo (FE #115 + BE #169): FE PASS/PASS, BE PASS có điều kiện (khe `KEY: 1` dấu hai chấm, sửa trước khi đặt bất kỳ công tắc FE nào lên 1).",
       "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "INF-3 đã merge dev; FE #115 (sửa follow-up) đang làm; đợt 4 build lại image bật công tắc Home; khung kéo thả chưa xây (OD-19).",
+      "next": "Agent đang gộp dev vào hai nhánh, rồi PR riêng sửa khe dấu hai chấm + QA lại; sau đó đợt deploy 4 build lại image và QA trạng thái BẬT trước khi đặt công tắc Home. Khung kéo thả chưa xây.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1729,8 +1729,8 @@
       "progress": {
         "percent": 45,
         "basis": "estimate",
-        "note": "Home P1–P4 và V95 đã deploy PROD 07/11 17:22 ICT với công tắc TẮT (VERIFIED: Studio Home vẫn bản cũ).",
-        "reportedAt": "2026-11-07T17:26:56+07:00"
+        "note": "INF-3 đã merge dev; follow-up QA PASS (có điều kiện); công tắc Home vẫn TẮT. Ước lượng, chưa phải số đo.",
+        "reportedAt": "2026-11-08T08:43:37+07:00"
       }
     }
   ],
