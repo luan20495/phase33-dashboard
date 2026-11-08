@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T06:30:11+07:00",
+  "asOf": "2026-11-08T07:32:43+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1416,10 +1416,10 @@
       "flag": "Map BẬT (08/11 05:42); Memory TẮT",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC độc lập (VERIFIED): Project Map QA PASS + SEC PASS (ReDoS P1 đã đóng, đo trên kho thật); Memory QA PASS + SEC PASS với 2 điểm P3 (neutraliser thiếu thẻ, chưa có màn FE). Smoke Map sau bật PASS (VERIFIED).",
-      "prs": "BE #130 đã MERGE vào dev lúc 07:39 ICT 07/11 (GitHub). V88/V89 chưa lên PROD. Cờ TẮT.",
+      "qa": "QA/SEC độc lập (VERIFIED): Project Map QA PASS + SEC PASS, đang BẬT, smoke sau bật PASS. Memory: bộ trung hòa thẻ giao thức chung (BE #170 + FE #118 nhãn audit) QA PASS + SEC PASS và đã merge dev 07:28 ICT; điểm P3 M-F1 và M-F2 đã đóng.",
+      "prs": "BE #130 trong PROD. BE #170 + FE #118 đã MERGE vào dev 08/11 07:28 ICT (GitHub). Memory vẫn TẮT.",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "Sửa neutraliser Memory + nhãn audit (đang dev) rồi QA lại; màn FE Memory (ước lượng riêng); một lượt Haiku trả phí để xem project_map trong blocks (cần cửa sổ AI).",
+      "next": "Màn FE Project Memory (agent dev đang làm, ước lượng ≈20–24 giờ dev + 6 giờ QA độc lập), sau đó QA rồi bật Memory (hoặc Owner chấp nhận bằng chữ chỉ-API). Một lượt Haiku trả phí để xem project_map trong blocks cần cửa sổ AI.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1483,8 +1483,8 @@
       "progress": {
         "percent": 85,
         "basis": "estimate",
-        "note": "Project Map đã BẬT trên PROD 08/11 05:42 ICT, smoke PASS (VERIFIED); Memory chưa bật.",
-        "reportedAt": "2026-11-08T05:46:26+07:00"
+        "note": "Map ON trên PROD (VERIFIED). Memory: backend + neutraliser xong và QA PASS, chỉ còn thiếu màn FE.",
+        "reportedAt": "2026-11-08T07:32:43+07:00"
       }
     },
     {
