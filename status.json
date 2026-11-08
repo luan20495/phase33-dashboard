@@ -751,7 +751,7 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC R2 PASS phần đã ON. Gói 02b: BE #164 và FE #117 QA/SEC độc lập PASS (VERIFIED), đã merge dev (03:51, 06:24); cờ AI_CONFIG ĐÃ BẬT 08:33 ICT 08/11 theo quyết định Owner (chưa E2E thật trên DEV), smoke PASS: 31 khóa, quản trị 200, người khác 403, ẩn danh 401, limits không đổi. 03b: đường tiền PASS sau vòng sửa; mô phỏng đồng thời 5 đồng hồ lệch giữ tiền đã chi ≤ trần trừ biên.",
-      "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96) Gói 03b (tự gia hạn trong ngân sách, migration V97): BE #183 đang QA/SEC độc lập. Gói 03b (BE #183 + gương FE #140): QA/SEC delta độc lập PASS, đã MERGE dev 09/11 02:45; cờ TẮT, chưa lên PROD (đợt 7).",
+      "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96) Gói 03b (BE #183 + gương FE #140): QA/SEC delta độc lập PASS, đã MERGE dev 09/11 02:45; cờ TẮT, chưa lên PROD (đợt 7).",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
       "next": "Đợt 7: dump DB + diễn tập V97 trên bản sao, ship cờ TẮT; gói 05/06/07/08.",
       "work": {
