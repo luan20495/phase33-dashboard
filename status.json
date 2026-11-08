@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T12:29:50+07:00",
+  "asOf": "2026-11-08T13:30:02+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1496,9 +1496,9 @@
       "risk": "MEDIUM",
       "integrated": false,
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập.",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "Theo thứ tự Owner (14→19 sau 13/15/16): DEV bắt đầu BE N-1 (route chỉ-đọc khám phá dữ liệu dự án, không migration, cờ riêng TẮT). N-2 chờ OD-08 và migration.",
+      "next": "QA/SEC độc lập BE #173; N-2 chờ OD-08 + migration (số V97+ do C0 cấp); FE N-3 sau đó.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-08T12:29:50+07:00"
+        "reportedAt": "2026-11-08T13:30:02+07:00"
       }
     },
     {
