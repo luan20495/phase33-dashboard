@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T01:29:45+07:00",
+  "asOf": "2026-11-09T02:16:13+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1492,13 +1492,13 @@
       "name": "AI hỗ trợ kết nối dữ liệu + giao diện đa chủ đề/ngôn ngữ",
       "batch": "Unassigned",
       "stage": "INCOMPLETE",
-      "flag": "OFF",
+      "flag": "Theme + ngôn ngữ ON cho Apps/Admin/Platform/XApp (09/11 ~02:08); Studio chỉ tiếng Việt; route khám phá dữ liệu ON (09/11 ~02:14), chưa có giao diện trợ lý",
       "risk": "MEDIUM",
-      "integrated": false,
+      "integrated": true,
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt BE #173: QA/SEC độc lập PASS/PASS (VERIFIED). Theme FE #127: QA độc lập FAIL 1 lỗi P2 (nút trung tính XApp chế độ tối mất chữ khi rê chuột), SEC PASS, DEV đang sửa. Song ngữ FE #126/#128/#129: QA PASS/SEC PASS từng PR, đã sửa các lỗi gộp chuỗi, QA delta đang chạy.",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập. Đợt 5 (08/11 20:29) lên PROD gồm sửa đăng xuất (BE #176 + FE #133); route khám phá dữ liệu N-1 (BE #173) lên PROD với cờ TẮT. Theme Apps + XApp (FE #127, 23:16) và Platform + Admin (FE #131 + BE #178, 23:52) QA/SEC độc lập PASS/PASS, đã merge dev 09/11; chưa lên PROD (công tắc TẮT). QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build, chưa lên PROD.",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập. Đợt 5 (08/11 20:29) lên PROD gồm sửa đăng xuất (BE #176 + FE #133); route khám phá dữ liệu N-1 (BE #173) lên PROD với cờ TẮT. Theme Apps + XApp (FE #127, 23:16) và Platform + Admin (FE #131 + BE #178, 23:52) QA/SEC độc lập PASS/PASS, đã merge dev 09/11; chưa lên PROD (công tắc TẮT). QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc theme + ngôn ngữ và route khám phá dữ liệu bật; smoke PROD 52/52 (4 cổng) và khám phá dữ liệu PASS.",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "QA tích hợp đợt 6 rồi bật FE_PREFERENCES_UI; tiếng Anh còn thiếu: quyền Admin, vỏ giao diện, Studio.",
+      "next": "Các lô dịch còn lại (Admin quyền/ủy quyền, vỏ, Studio); phần AI (N-2/N-3).",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1565,10 +1565,10 @@
         ]
       },
       "progress": {
-        "percent": 22,
+        "percent": 55,
         "basis": "estimate",
-        "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-09T01:29:45+07:00"
+        "note": "Theme + ngôn ngữ ON trên 4 cổng (smoke PASS); route khám phá dữ liệu ON. Còn thiếu: tiếng Anh cho quyền Admin, vỏ giao diện, Studio; trợ lý dữ liệu AI (N-2/N-3). Ước lượng, chưa phải số đo.",
+        "reportedAt": "2026-11-09T02:16:13+07:00"
       }
     },
     {
@@ -1660,13 +1660,13 @@
       "name": "Thiết kế lại workspace Edit Studio",
       "batch": "Unassigned",
       "stage": "PROD_ENABLED",
-      "flag": "Home ON (08/11 16:30); khung kéo thả OFF",
+      "flag": "Home ON (08/11 16:30); khung kéo thả ON (09/11 ~01:52)",
       "risk": "LOW",
       "integrated": true,
       "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38.",
-      "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev. Đợt 5 (08/11 20:29) đưa mã khung kéo thả lên PROD ở trạng thái TẮT; cặp công tắc PROD (FE #130 + BE #177) đang QA độc lập. QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build, chưa lên PROD.",
+      "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev. Đợt 5 (08/11 20:29) đưa mã khung kéo thả lên PROD ở trạng thái TẮT; cặp công tắc PROD (FE #130 + BE #177) đang QA độc lập. QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc khung kéo thả bật 01:52, smoke khung kéo thả PASS (bằng phím, chưa thử kéo chuột trên PROD).",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "Đợt 6: promote, dựng lại 4 image portal, rồi FE_EDIT_PANES_UI=1 và dựng lại Studio; smoke thật (kéo, thu gọn, lưu, lượt Haiku). Công tắc Home đã ON.",
+      "next": "UAT Owner; thử kéo chuột trên PROD.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1727,10 +1727,10 @@
         ]
       },
       "progress": {
-        "percent": 85,
+        "percent": 92,
         "basis": "estimate",
-        "note": "Home đã ON trên PROD 08/11 16:30; khung kéo thả còn thiếu bước phát hành PROD (đang dev). Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T01:29:45+07:00"
+        "note": "Home ON 08/11; khung kéo thả ON 09/11 (đợt 6, smoke PASS). Còn: kéo chuột thật trên PROD và UAT của Owner. Ước lượng, chưa phải số đo.",
+        "reportedAt": "2026-11-09T02:16:13+07:00"
       }
     }
   ],
