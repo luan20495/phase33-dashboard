@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T23:29:48+07:00",
+  "asOf": "2026-11-09T00:29:45+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -751,9 +751,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC R2 PASS phần đã ON. Gói 02b: BE #164 và FE #117 QA/SEC độc lập PASS (VERIFIED), đã merge dev (03:51, 06:24); cờ AI_CONFIG ĐÃ BẬT 08:33 ICT 08/11 theo quyết định Owner (chưa E2E thật trên DEV), smoke PASS: 31 khóa, quản trị 200, người khác 403, ẩn danh 401, limits không đổi.",
-      "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96) Gói 03b (tự gia hạn trong ngân sách, migration V97): BE #183 đang QA/SEC độc lập.",
+      "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96) Gói 03b (tự gia hạn trong ngân sách, migration V97): BE #183 đang QA/SEC độc lập. Gói 03b (BE #183): QA đường tiền ĐẠT, 3 P2 + 1 P3 đã được sửa, chờ QA delta (đợt 7).",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "QA/SEC độc lập 03b (đường đua gia hạn, trần không bao giờ bị vượt); thử migration V97 trên bản sao DB PROD; FE màn xin thêm; sau đó 05, 06, 07, 08. Phần cấu hình 02b đã ON.",
+      "next": "QA delta 03b, diễn tập V97 trên bản sao, gói 05/06/07/08.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "B2/F2 cũ PROD ON; cấu hình AI web (AI_CONFIG_SERVICE) đã bật 08/11 08:33, smoke PASS; phần 03b/05/06 còn lại chưa làm.",
-        "reportedAt": "2026-11-08T22:31:31+07:00",
+        "reportedAt": "2026-11-09T00:29:45+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -1496,9 +1496,9 @@
       "risk": "MEDIUM",
       "integrated": false,
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt BE #173: QA/SEC độc lập PASS/PASS (VERIFIED). Theme FE #127: QA độc lập FAIL 1 lỗi P2 (nút trung tính XApp chế độ tối mất chữ khi rê chuột), SEC PASS, DEV đang sửa. Song ngữ FE #126/#128/#129: QA PASS/SEC PASS từng PR, đã sửa các lỗi gộp chuỗi, QA delta đang chạy.",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập. Đợt 5 (08/11 20:29) lên PROD gồm sửa đăng xuất (BE #176 + FE #133); route khám phá dữ liệu N-1 (BE #173) lên PROD với cờ TẮT. Theme Apps + XApp (FE #127) QA PASS, merge dev 08/11 23:16; FE #131 (Platform + Admin) + BE #178 QA đang chạy.",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập. Đợt 5 (08/11 20:29) lên PROD gồm sửa đăng xuất (BE #176 + FE #133); route khám phá dữ liệu N-1 (BE #173) lên PROD với cờ TẮT. Theme Apps + XApp (FE #127, 23:16) và Platform + Admin (FE #131 + BE #178, 23:52) QA/SEC độc lập PASS/PASS, đã merge dev 09/11; chưa lên PROD (công tắc TẮT).",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "QA #131 + BE #178, rồi đợt 6: dựng lại 4 image portal với FE_PREFERENCES_UI=1 và smoke bật; song ngữ còn: quyền Admin, vỏ giao diện, Studio.",
+      "next": "QA tích hợp đợt 6 rồi bật FE_PREFERENCES_UI; tiếng Anh còn thiếu: quyền Admin, vỏ giao diện, Studio.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-08T23:29:48+07:00"
+        "reportedAt": "2026-11-09T00:29:45+07:00"
       }
     },
     {
