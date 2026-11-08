@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T10:29:59+07:00",
+  "asOf": "2026-11-08T11:33:51+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2299,6 +2299,13 @@
       "decision": "Cho bật X2 (SYSTEM_SOURCES) + AI_CONFIG_SERVICE trên PROD; chấp nhận giới hạn vai trò DB (QA 4.1); chưa có E2E thật trên DEV; rollback = tắt cờ",
       "source": "Tin nhắn trực tiếp của Owner trong phiên điều hành; GitHub #88 comment 6715617912",
       "scope": "Chỉ hai cờ này; không đổi ngân sách, mô hình, quyền, X3/X5/X4"
+    },
+    {
+      "id": "OD-PRIORITY",
+      "at": "2026-11-08T11:33:51+07:00",
+      "decision": "Thứ tự làm: 13 (X3), 15 (X5), 16 (P0-16 B/E) trước; sau đó 14 đến 19; sau đó phần còn lại (gồm phần mở rộng B2+F2 03b/05/06/07/08). Mục 9 không chặn 13/15/16.",
+      "source": "Tin nhắn trực tiếp của Owner trong phiên điều hành; GitHub #88",
+      "scope": "Thay thế thứ tự \"P0-17 để cuối\""
     }
   ]
 }
