@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T17:29:51+07:00",
+  "asOf": "2026-11-08T18:30:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1230,10 +1230,10 @@
       "flag": "OFF (PROD đóng cứng bằng mã)",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE (BE #159 + FE #110) trên PROD (OFF). Follow-up BE #161 + #166 QA/SEC độc lập PASS (VERIFIED), đã merge dev; còn 1 P4 (surrogate mồ côi).",
+      "qa": "QA/SEC độc lập cho gỡ sàn có điều kiện (BE #175 + FE #132): PASS/PASS, GO merge dev, không P0–P2 (VERIFIED): mặc định đóng chứng minh bằng 44 cấu hình sai, bốn mắt và danh sách nguồn được phép đúng. Còn 1 P3 (tên hồ sơ production) đang sửa. NOT_RUN: E2E nguồn HTTPS thử cô lập, PowerShell trên Windows, công tắc FE.",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Owner cho gỡ sàn mã PROD có giới hạn (08/11): chỉ nguồn/thao tác đã duyệt, mặc định từ chối, xóa luôn cần duyệt, thử bằng nguồn thử cô lập. DEV đang làm (gỡ sàn có điều kiện + danh sách nguồn + kiểm bảo mật), rồi QA/SEC, E2E nguồn thử, phát hành, bật cờ bước riêng.",
+      "next": "Sửa P3 + tạm dừng mặc định, merge dev sau công tắc khung kéo thả; công tắc FE (8–10 giờ); E2E nguồn thử cô lập; Owner duyệt riêng khi bật cờ.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1324,7 +1324,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "X4 COMPLETE (BE #159 + FE #110) đã deploy PROD đợt 3 với cờ TẮT, sàn mã giữ; API mới trả 404 khi TẮT (VERIFIED).",
-        "reportedAt": "2026-11-08T16:36:06+07:00"
+        "reportedAt": "2026-11-08T18:30:00+07:00"
       }
     },
     {
@@ -1666,7 +1666,7 @@
       "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ.",
       "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev.",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "Cặp PR công tắc khung kéo thả (FE_EDIT_PANES_UI) → QA độc lập → deploy → bật; theo dõi Home sau bật; Owner UAT.",
+      "next": "QA/SEC độc lập cặp công tắc khung kéo thả (FE #130 + BE #177) đang chạy; khi đạt: promote, dựng lại riêng Studio với FE_EDIT_PANES_UI=1, thử thật trên PROD.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 85,
         "basis": "estimate",
         "note": "Home đã ON trên PROD 08/11 16:30; khung kéo thả còn thiếu bước phát hành PROD (đang dev). Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-08T16:36:06+07:00"
+        "reportedAt": "2026-11-08T18:30:00+07:00"
       }
     }
   ],
