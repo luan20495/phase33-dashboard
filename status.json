@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T20:40:03+07:00",
+  "asOf": "2026-11-08T22:31:31+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -751,9 +751,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC R2 PASS phần đã ON. Gói 02b: BE #164 và FE #117 QA/SEC độc lập PASS (VERIFIED), đã merge dev (03:51, 06:24); cờ AI_CONFIG ĐÃ BẬT 08:33 ICT 08/11 theo quyết định Owner (chưa E2E thật trên DEV), smoke PASS: 31 khóa, quản trị 200, người khác 403, ẩn danh 401, limits không đổi.",
-      "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
+      "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96) Gói 03b (tự gia hạn trong ngân sách, migration V97): BE #183 đang QA/SEC độc lập.",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Bắt đầu gói 03b (tự gia hạn trong ngân sách) 08/11: thiết kế trước (xin số migration nếu cần), rồi code + QA; sau đó 05, 06, 07, 08. Phần cấu hình AI web 02b đã ON.",
+      "next": "QA/SEC độc lập 03b (đường đua gia hạn, trần không bao giờ bị vượt); thử migration V97 trên bản sao DB PROD; FE màn xin thêm; sau đó 05, 06, 07, 08. Phần cấu hình 02b đã ON.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "B2/F2 cũ PROD ON; cấu hình AI web (AI_CONFIG_SERVICE) đã bật 08/11 08:33, smoke PASS; phần 03b/05/06 còn lại chưa làm.",
-        "reportedAt": "2026-11-08T20:40:03+07:00",
+        "reportedAt": "2026-11-08T22:31:31+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
