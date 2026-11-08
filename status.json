@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T07:56:00+07:00",
+  "asOf": "2026-11-08T08:28:28+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-08T03:27:53+07:00",
+    "updatedAt": "2026-11-08T08:28:28+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
     "items": [
       {
@@ -2283,13 +2283,22 @@
         "id": "OA-13",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
-        "title": "Bật cờ giai đoạn 2: xác nhận cho X2 và cấu hình AI web",
+        "status": "RESOLVED",
+        "title": "Bật cờ giai đoạn 2 (X2 + cấu hình AI web): Owner ĐÃ xác nhận 08/11",
         "solution": "Đọc điều kiện ở báo cáo #88 rồi trả lời xác nhận; Claude bật trong vài phút (một lần khởi động lại khoảng 1,5 phút).",
-        "detail": "Giai đoạn 1 đã bật 08/11 03:24 (tạo dự án không trùng lặp và tự gia hạn cửa sổ AI ở trạng thái trơ). Các nhóm còn lại giữ TẮT có lý do, xem báo cáo #88.",
+        "detail": "Owner đã chấp nhận giới hạn vai trò DB (điều kiện QA 4.1) và cho bật X2 + AI_CONFIG_SERVICE trên PROD dù chưa có E2E thật trên DEV; điều kiện vận hành: mất gì thì tắt cờ. Ghi nhận trên #88 (comment 6715617912). Đây là Owner waive điều kiện độc lập, không phải QA PASS. C0 đang bật từng cờ một.",
         "link": "https://github.com/luan20495/xweb01/issues/88",
         "since": "2026-11-08T03:27:53+07:00"
       }
     ]
-  }
+  },
+  "ownerDecisions": [
+    {
+      "id": "OD-X2-CFG",
+      "at": "2026-11-08T08:28:28+07:00",
+      "decision": "Cho bật X2 (SYSTEM_SOURCES) + AI_CONFIG_SERVICE trên PROD; chấp nhận giới hạn vai trò DB (QA 4.1); chưa có E2E thật trên DEV; rollback = tắt cờ",
+      "source": "Tin nhắn trực tiếp của Owner trong phiên điều hành; GitHub #88 comment 6715617912",
+      "scope": "Chỉ hai cờ này; không đổi ngân sách, mô hình, quyền, X3/X5/X4"
+    }
+  ]
 }
