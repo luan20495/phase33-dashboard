@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T16:36:06+07:00",
+  "asOf": "2026-11-08T17:29:51+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1496,9 +1496,9 @@
       "risk": "MEDIUM",
       "integrated": false,
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt BE #173: QA/SEC độc lập PASS/PASS (VERIFIED).",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration).",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập.",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "Chương PROD_DEPLOY cho nhóm cờ N-1 (cần PR FE cặp) trước khi bật; N-2 chờ OD-08 + migration; FE N-3 sau đó.",
+      "next": "17a (theme + song ngữ) trước, 17b (phần AI) sau theo thứ tự Owner: QA/SEC theme và song ngữ, PR mirror BE cho file vendored, các đợt song ngữ còn lại (quyền Admin ~690 chuỗi, vỏ giao diện, Studio ~900 chuỗi), ma trận QA trên 4 cổng; N-2/N-3 phần AI sau (OD-08 + migration).",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-08T14:30:07+07:00"
+        "reportedAt": "2026-11-08T17:29:51+07:00"
       }
     },
     {
