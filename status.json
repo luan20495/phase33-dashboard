@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T13:30:02+07:00",
+  "asOf": "2026-11-08T14:15:54+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -235,7 +235,7 @@
       "qa": "QA đóng việc 18/23 (VERIFIED, bản cũ). BE #150 QA/SEC r4 PASS + tích hợp GO (VERIFIED), đã trên PROD.",
       "prs": "BE #99/#101 · FE #58 · BE #120 queue merged DEV · FE #77 docs/i18n DEV · BE #123 DEV integration sync · FE #84 (UI hàng đợi 3 chế độ) DEPLOYED PROD 18:14 (R4e)",
       "summary": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
-      "next": "FE hiển thị giờ job (FE #119) đã MERGE dev 08:39 (giờ Việt Nam, QA/SEC PASS); lên PROD ở đợt 4.",
+      "next": "FE giờ job (giờ Việt Nam) đã lên PROD đợt 4 (08/11 14:02); hủy job trả phí thật cần cửa sổ AI.",
       "work": {
         "problem": "J1/Prompt Queue đang ON PROD; QA PASS trên trình duyệt thật: resume khi job còn RUNNING, queue tuần tự và offline vẫn chạy, idempotency, cancel pending, cancel trực tiếp job. 3 lỗi P3 R37 về quota, cancel-all đang chạy, và phí giữ chỗ của job hủy còn mở. Kiểm thử 10:50 cho thấy người thứ hai không được phép gọi AI dù grant PROJECT hiển thị effective; các ca đa người dùng vẫn NOT_RUN.",
         "approach": "Theo dõi server jobId/clientTurnId qua reload, tab khác và offline; chỉ tiếp tục queue sau xác thực lại quyền và ngân sách từng lượt.",
@@ -328,7 +328,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "BE #150 (V96) đã deploy PROD đợt 3 21:02 ICT. Đợt 3 đã deploy PROD 07/11 21:02 ICT (release a5d6237d3049); smoke sau deploy đạt (VERIFIED); PROD_TESTING.",
-        "reportedAt": "2026-11-07T21:30:36+07:00"
+        "reportedAt": "2026-11-08T14:15:54+07:00"
       }
     },
     {
@@ -1142,9 +1142,9 @@
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA r2 PASS-WITH-COND (BE 4e). Hoàn tất X3 BE #156 + FE #108: QA/SEC độc lập PASS cả hai (VERIFIED), đã merge dev 05:18.",
-      "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
+      "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 Đã lên PROD trong đợt 4 (08/11 14:02), cờ TẮT.",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "Bật cờ SYSTEM_SCOPE sau X2 (chờ Owner xác nhận); xuất bản lại ứng dụng; E2E PROD bằng dữ liệu thử.",
+      "next": "X2 đã ON; bước tiếp: xuất bản lại apps, E2E dữ liệu thử 4 vai trò, đánh giá tác động rồi bật cờ riêng.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1219,7 +1219,7 @@
         "percent": 88,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T18:26:35+07:00"
+        "reportedAt": "2026-11-08T14:15:54+07:00"
       }
     },
     {
@@ -1233,7 +1233,7 @@
       "qa": "QA BE r2 PASS (VERIFIED). X4 COMPLETE (BE #159 + FE #110) trên PROD (OFF). Follow-up BE #161 + #166 QA/SEC độc lập PASS (VERIFIED), đã merge dev; còn 1 P4 (surrogate mồ côi).",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Đợt 4 mang #161/#166 lên PROD (cờ vẫn TẮT, sàn mã); Owner quyết nâng sàn; E2E DEV thật.",
+      "next": "Mã X4 hoàn chỉnh đã lên PROD đợt 4, cờ TẮT, sàn PROD 3 lớp không đổi; cần quyết định nâng sàn của Owner.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1324,7 +1324,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "X4 COMPLETE (BE #159 + FE #110) đã deploy PROD đợt 3 với cờ TẮT, sàn mã giữ; API mới trả 404 khi TẮT (VERIFIED).",
-        "reportedAt": "2026-11-07T21:30:36+07:00"
+        "reportedAt": "2026-11-08T14:15:54+07:00"
       }
     },
     {
@@ -1336,9 +1336,9 @@
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "QA/SEC #121+#141 PASS có điều kiện. Khống chế chi phí BE #168 + FE #116: QA/SEC độc lập PASS (VERIFIED), đã merge dev 04:55.",
-      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88",
+      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 Đã lên PROD trong đợt 4 (08/11 14:02), cờ TẮT.",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
-      "next": "Bật cờ sau X2 + một lượt Haiku thật (cần cửa sổ AI); không cần FE picker.",
+      "next": "X2 đã ON; bật X5 cần quyết định chi phí token thêm mỗi lượt trả phí và 1 lượt AI thật (cửa sổ AI).",
       "work": {
         "problem": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
         "approach": "Chỉ inject nguồn/mẫu schema sanitized theo effective IAM vào Context Builder, có trace provenance và test không tiết lộ PII.",
@@ -1405,21 +1405,21 @@
         "percent": 80,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-06T18:26:35+07:00"
+        "reportedAt": "2026-11-08T14:15:54+07:00"
       }
     },
     {
       "id": "P0-16 B/E",
       "name": "Project Map / Memory",
       "batch": "Unassigned",
-      "stage": "PROD_DEPLOYED",
-      "flag": "Map BẬT (08/11 05:42); Memory TẮT",
+      "stage": "PROD_ENABLED",
+      "flag": "ON (Map 05:42, Memory 14:12 ngày 08/11)",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC độc lập (VERIFIED): Map PASS/PASS (đang ON; lượt Haiku thật: mapBytes 1.491 ≤ 8.000). Memory: neutraliser #170/#118 PASS/PASS; màn FE #120 PASS/PASS; sửa câu chữ #121 PASS/PASS (đối chiếu normalize của BE trên ~7,2 triệu đầu vào).",
-      "prs": "BE #130 trong PROD. Neutraliser BE #170 + FE #118, màn Memory FE #120, sửa câu chữ FE #121 và mirror BE #171 đều đã MERGE vào dev 08/11 (07:28–09:44 ICT). Memory vẫn TẮT.",
+      "qa": "QA/SEC độc lập (VERIFIED): Map, neutraliser, màn FE Memory và sửa câu chữ đều PASS; QA tích hợp đợt 4 GO-có-điều-kiện. Smoke sau bật PASS (thêm/sửa/xóa ghi chú thử, từ chối bí mật, người ngoài 404). NOT_RUN: E2E màn FE với backend thật, lượt AI thật có khối ghi nhớ.",
+      "prs": "Đợt 4 (release 28a4ee09efd0) đã lên PROD 08/11 14:02; Project Memory BẬT 14:12 theo chính sách mặc định sau QA/SEC độc lập.",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "Đợt deploy 4 (QA tích hợp trên dev, promote bằng script), rồi bật Memory sau smoke. BE còn thiếu route xem khối AI nhận thật (màn đang tính gần đúng) và chưa có bên đề xuất ghi nhớ.",
+      "next": "Lượt AI thật có khối ghi nhớ khi có cửa sổ AI; BE còn thiếu route xem khối AI nhận thật (màn đang tính gần đúng) và chưa có bên đề xuất ghi nhớ; Owner UAT.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1481,10 +1481,10 @@
         ]
       },
       "progress": {
-        "percent": 85,
-        "basis": "estimate",
-        "note": "Map ON + lượt AI thật PASS. Memory: BE + neutraliser + màn FE + sửa câu chữ + mirror đều đã merge dev, QA PASS; chờ đợt deploy 4. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-08T10:29:59+07:00"
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã ON trên PROD 08/11 14:12; không đồng nghĩa QA/E2E thật hoàn tất.",
+        "reportedAt": "2026-11-08T14:15:54+07:00"
       }
     },
     {
@@ -1498,7 +1498,7 @@
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt",
       "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập.",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "QA/SEC độc lập BE #173; N-2 chờ OD-08 + migration (số V97+ do C0 cấp); FE N-3 sau đó.",
+      "next": "BE #173 (N-1) QA/SEC PASS, đang sửa P3 (hàng kiểm kê), sau đó merge dev; N-2 chờ OD-08 + migration.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1568,7 +1568,7 @@
         "percent": 22,
         "basis": "estimate",
         "note": "Kiểm kê + thiết kế xong; PR1 theme/ngôn ngữ nền đã có mã (DRAFT); trợ lý dữ liệu chưa có mã.",
-        "reportedAt": "2026-11-08T13:30:02+07:00"
+        "reportedAt": "2026-11-08T14:15:54+07:00"
       }
     },
     {
@@ -1664,9 +1664,9 @@
       "risk": "LOW",
       "integrated": true,
       "qa": "QA/SEC độc lập INF-3 PASS (VERIFIED). Follow-up #115/#169 và bản sửa dấu hai chấm #122/#172 PASS/PASS (684 dòng thử, 0 khe cho 6 khóa FE_*_UI và X4), đã merge dev.",
-      "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev INF-3 follow-up FE #115 + BE #169 đã MERGE dev 08/11 10:13 ICT; PR sửa dấu hai chấm FE #122 + BE #172 đang QA. Sửa khe dấu hai chấm FE #122 + BE #172 đã MERGE dev 08/11 12:26 ICT.",
+      "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev INF-3 follow-up FE #115 + BE #169 đã MERGE dev 08/11 10:13 ICT; PR sửa dấu hai chấm FE #122 + BE #172 đang QA. Sửa khe dấu hai chấm FE #122 + BE #172 đã MERGE dev 08/11 12:26 ICT. INF-3 follow-up + sửa dấu hai chấm đã lên PROD đợt 4 (08/11 14:02). Khung kéo thả: FE #123 đang QA/SEC độc lập.",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "QA tích hợp đợt 4 (đang chạy), đợt deploy 4 build lại image, QA trạng thái BẬT trước khi đặt công tắc Home. Khung kéo thả hai cột: DEV bắt đầu 08/11 (ước lượng 44 giờ làm + 14 giờ QA).",
+      "next": "QA/SEC FE #123 (khung kéo thả, công tắc riêng TẮT); build lại image bật công tắc Home, QA trạng thái BẬT; E2E thật.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "INF-3 + follow-up + sửa dấu hai chấm đã merge dev; công tắc Home vẫn TẮT; khung kéo thả đang làm. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-08T12:29:50+07:00"
+        "reportedAt": "2026-11-08T14:15:54+07:00"
       }
     }
   ],
