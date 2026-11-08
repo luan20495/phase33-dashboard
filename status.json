@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T20:34:55+07:00",
+  "asOf": "2026-11-08T20:40:03+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -753,7 +753,7 @@
       "qa": "QA/SEC R2 PASS phần đã ON. Gói 02b: BE #164 và FE #117 QA/SEC độc lập PASS (VERIFIED), đã merge dev (03:51, 06:24); cờ AI_CONFIG ĐÃ BẬT 08:33 ICT 08/11 theo quyết định Owner (chưa E2E thật trên DEV), smoke PASS: 31 khóa, quản trị 200, người khác 403, ẩn danh 401, limits không đổi.",
       "prs": "BE #142 (V92+V94) đã MERGE dev · FE #98 (tab cấu hình AI) và BE #152 (tài liệu) đã MERGE dev lúc 12:01 ICT · BE #150 DRAFT (quyết toán khi hủy lượt AI, V96)",
       "summary": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
-      "next": "Gói 03b/05/06; xác nhận của Owner để bật phần cấu hình AI đã có (backend + FE đều có trong dev).",
+      "next": "Bắt đầu gói 03b (tự gia hạn trong ngân sách) 08/11: thiết kế trước (xin số migration nếu cần), rồi code + QA; sau đó 05, 06, 07, 08. Phần cấu hình AI web 02b đã ON.",
       "work": {
         "problem": "B2/F2 hiện tại đã PROD ON; MỞ LẠI phần mở rộng để 100% cấu hình vận hành AI qua web: TTL, max requests, concurrency, auto-renew, model/provider, quyền động, ngân sách theo phạm vi, bí mật và hard-ceiling có phê duyệt. Chức năng mở rộng CHƯA hoàn thành/QA; không thay đổi PROD hiện có.",
         "approach": "B2-WEB-01 đã nộp PR #128 (docs-only); cần review trước B2-WEB-02..08. Không thay đổi PROD hiện tại.",
@@ -849,7 +849,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "B2/F2 cũ PROD ON; cấu hình AI web (AI_CONFIG_SERVICE) đã bật 08/11 08:33, smoke PASS; phần 03b/05/06 còn lại chưa làm.",
-        "reportedAt": "2026-11-08T08:42:11+07:00",
+        "reportedAt": "2026-11-08T20:40:03+07:00",
         "extensionStatus": "REOPEN_IN_PROGRESS",
         "extensionPercent": 12
       },
@@ -1233,7 +1233,7 @@
       "qa": "QA/SEC độc lập cho gỡ sàn có điều kiện (BE #175 + FE #132): PASS/PASS, GO merge dev, không P0–P2 (VERIFIED): mặc định đóng chứng minh bằng 44 cấu hình sai, bốn mắt và danh sách nguồn được phép đúng. Còn 1 P3 (tên hồ sơ production) đang sửa. NOT_RUN: E2E nguồn HTTPS thử cô lập, PowerShell trên Windows, công tắc FE.",
       "prs": "BE #138 + #149 (S2) đã MERGE vào dev · FE #102 đã MERGE vào dev lúc ~08:50 ICT 07/11 (cờ TẮT) · Master #88",
       "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
-      "next": "Sửa P3 + tạm dừng mặc định, merge dev sau công tắc khung kéo thả; công tắc FE (8–10 giờ); E2E nguồn thử cô lập; Owner duyệt riêng khi bật cờ.",
+      "next": "Gỡ sàn có điều kiện đã QA PASS; dev đang gộp dev + QA delta; sau đó công tắc FE, E2E nguồn thử cô lập, Owner duyệt riêng khi bật cờ.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
         "approach": "Xây ActionRuntime cấp server với operation allow-list theo nguồn và người dùng; xác thực schema/field/record, xác nhận và duyệt thao tác nguy hiểm, audit, idempotency, error/rollback. AI chỉ sinh lời gọi qua contract được duyệt, không dùng URL/secret tùy ý.",
@@ -1324,7 +1324,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "X4 COMPLETE (BE #159 + FE #110) đã deploy PROD đợt 3 với cờ TẮT, sàn mã giữ; API mới trả 404 khi TẮT (VERIFIED).",
-        "reportedAt": "2026-11-08T18:30:00+07:00"
+        "reportedAt": "2026-11-08T20:40:03+07:00"
       }
     },
     {
@@ -1663,10 +1663,10 @@
       "flag": "Home ON (08/11 16:30); khung kéo thả OFF",
       "risk": "LOW",
       "integrated": true,
-      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ.",
+      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38.",
       "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev. Đợt 5 (08/11 20:29) đưa mã khung kéo thả lên PROD ở trạng thái TẮT; cặp công tắc PROD (FE #130 + BE #177) đang QA độc lập.",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "QA/SEC độc lập cặp công tắc khung kéo thả (FE #130 + BE #177) đang chạy; khi đạt: promote, dựng lại riêng Studio với FE_EDIT_PANES_UI=1, thử thật trên PROD.",
+      "next": "Đợt 6: promote, dựng lại 4 image portal, rồi FE_EDIT_PANES_UI=1 và dựng lại Studio; smoke thật (kéo, thu gọn, lưu, lượt Haiku). Công tắc Home đã ON.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 85,
         "basis": "estimate",
         "note": "Home đã ON trên PROD 08/11 16:30; khung kéo thả còn thiếu bước phát hành PROD (đang dev). Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-08T20:34:55+07:00"
+        "reportedAt": "2026-11-08T20:40:03+07:00"
       }
     }
   ],
