@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T15:22:02+07:00",
+  "asOf": "2026-11-08T15:29:56+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1144,7 +1144,7 @@
       "qa": "QA r2 PASS-WITH-COND (BE 4e). Hoàn tất X3 BE #156 + FE #108: QA/SEC độc lập PASS cả hai (VERIFIED), đã merge dev 05:18.",
       "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 Đã lên PROD trong đợt 4 (08/11 14:02), cờ TẮT.",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "Cờ còn TẮT. E2E 4 vai trò cần tạm nâng quyền một tài khoản QA và bật danh mục nhân sự cho workspace QA: chờ Owner chỉ cách làm (hệ thống phân quyền phiên điều hành chặn việc nâng quyền trên PROD).",
+      "next": "E2E PROD phần 1 đang chạy bằng tài khoản quản trị tenant QA có sẵn (không đổi quyền ai); duyệt chính sách cần quản trị tenant thứ hai: chờ Owner chọn cách.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1219,7 +1219,7 @@
         "percent": 88,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-08T15:22:02+07:00"
+        "reportedAt": "2026-11-08T15:29:56+07:00"
       }
     },
     {
@@ -1663,10 +1663,10 @@
       "flag": "OFF",
       "risk": "LOW",
       "integrated": true,
-      "qa": "QA/SEC độc lập INF-3 PASS (VERIFIED). Follow-up #115/#169 và bản sửa dấu hai chấm #122/#172 PASS/PASS (684 dòng thử, 0 khe cho 6 khóa FE_*_UI và X4), đã merge dev.",
-      "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev INF-3 follow-up FE #115 + BE #169 đã MERGE dev 08/11 10:13 ICT; PR sửa dấu hai chấm FE #122 + BE #172 đang QA. Sửa khe dấu hai chấm FE #122 + BE #172 đã MERGE dev 08/11 12:26 ICT. INF-3 follow-up + sửa dấu hai chấm đã lên PROD đợt 4 (08/11 14:02). Khung kéo thả: FE #123 đang QA/SEC độc lập.",
+      "qa": "QA/SEC độc lập INF-3 PASS (VERIFIED). Follow-up #115/#169 và bản sửa dấu hai chấm #122/#172 PASS/PASS (684 dòng thử, 0 khe cho 6 khóa FE_*_UI và X4), đã merge dev. FE #123: QA/SEC độc lập PASS/PASS (VERIFIED), công tắc TẮT = DOM giống hệt dev.",
+      "prs": "FE #90 (P1), #99 (P2), #100 (P3), #101 (P4) đã MERGE dev (cờ TẮT) · BE #147 (V95) đã MERGE dev INF-3 follow-up FE #115 + BE #169 đã MERGE dev 08/11 10:13 ICT; PR sửa dấu hai chấm FE #122 + BE #172 đang QA. Sửa khe dấu hai chấm FE #122 + BE #172 đã MERGE dev 08/11 12:26 ICT. INF-3 follow-up + sửa dấu hai chấm đã lên PROD đợt 4 (08/11 14:02). Khung kéo thả: FE #123 đang QA/SEC độc lập. FE #123 (khung kéo thả) QA/SEC PASS/PASS, đã MERGE dev 08/11 14:56 ICT; FE #125 (sửa lỗi P3/P4 của QA) đang QA delta.",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "QA/SEC độc lập FE #123 (khung kéo thả, công tắc riêng TẮT) đang chạy, đã thấy 1 điểm P3 cần sửa; sau đó đợt deploy, build lại image bật công tắc Home, QA trạng thái BẬT.",
+      "next": "QA delta FE #125; đợt deploy sau: bước phát hành riêng cho công tắc khung kéo thả (ARG + cặp script/tài liệu BE) và build lại image bật công tắc Home, QA trạng thái BẬT.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 45,
         "basis": "estimate",
         "note": "INF-3 + follow-up + sửa dấu hai chấm đã merge dev; công tắc Home vẫn TẮT; khung kéo thả đang làm. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-08T14:30:07+07:00"
+        "reportedAt": "2026-11-08T15:29:56+07:00"
       }
     }
   ],
