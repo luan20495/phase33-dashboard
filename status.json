@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T02:16:13+07:00",
+  "asOf": "2026-11-09T02:29:41+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1568,7 +1568,7 @@
         "percent": 55,
         "basis": "estimate",
         "note": "Theme + ngôn ngữ ON trên 4 cổng (smoke PASS); route khám phá dữ liệu ON. Còn thiếu: tiếng Anh cho quyền Admin, vỏ giao diện, Studio; trợ lý dữ liệu AI (N-2/N-3). Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T02:16:13+07:00"
+        "reportedAt": "2026-11-09T02:29:41+07:00"
       }
     },
     {
@@ -1730,7 +1730,7 @@
         "percent": 92,
         "basis": "estimate",
         "note": "Home ON 08/11; khung kéo thả ON 09/11 (đợt 6, smoke PASS). Còn: kéo chuột thật trên PROD và UAT của Owner. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T02:16:13+07:00"
+        "reportedAt": "2026-11-09T02:29:41+07:00"
       }
     }
   ],
