@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T08:43:37+07:00",
+  "asOf": "2026-11-08T09:29:45+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1417,9 +1417,9 @@
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "QA/SEC độc lập (VERIFIED): Map PASS/PASS đang ON, lượt Haiku thật 08/11: mapBytes 1.491 ≤ 8.000, không PROMPT_TOO_LARGE. Memory: neutraliser #170/#118 PASS/PASS; màn FE #120 QA PASS + SEC PASS (3 điểm P3/P4 sửa ở PR riêng trước khi bật cờ).",
-      "prs": "BE #130 trong PROD. BE #170 + FE #118 (neutraliser) và màn FE Memory FE #120 đã MERGE vào dev 08/11 (07:28 và 08:41 ICT). Memory vẫn TẮT.",
+      "prs": "BE #130 trong PROD. BE #170 + FE #118 (neutraliser) và màn FE Memory FE #120 đã MERGE vào dev 08/11 (07:28 và 08:41 ICT). Memory vẫn TẮT. FE #121 (sửa câu chữ) đang QA.",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
-      "next": "PR sửa wording màn Memory (F-3, F-7) + QA lại; PR BE mirror; đợt deploy 4; rồi bật Memory. BE còn thiếu route xem khối AI nhận thật.",
+      "next": "QA/SEC độc lập delta cho FE #121 (sửa câu chữ màn Memory: lỗi cổng, tiêu đề 'tối đa N', ký tự ẩn) đang chạy; sau đó merge, PR BE mirror, đợt deploy 4, rồi bật Memory. BE còn thiếu route xem khối AI nhận thật.",
       "work": {
         "problem": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
         "approach": "Lập graph route/component/API/permission theo revision, ghi nhớ quyết định đã duyệt và những gì đọc/sửa/test; nạp lại chọn lọc mỗi lượt theo IAM.",
@@ -1484,7 +1484,7 @@
         "percent": 85,
         "basis": "estimate",
         "note": "Map ON + lượt AI thật PASS. Memory: BE + neutraliser + màn FE đã merge dev; chờ sửa wording, mirror BE và deploy.",
-        "reportedAt": "2026-11-08T08:42:11+07:00"
+        "reportedAt": "2026-11-08T09:29:45+07:00"
       }
     },
     {
