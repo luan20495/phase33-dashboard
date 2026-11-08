@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T15:29:56+07:00",
+  "asOf": "2026-11-08T15:46:55+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1137,14 +1137,14 @@
       "id": "X3",
       "name": "Giới hạn dữ liệu người xem",
       "batch": "R4e",
-      "stage": "PROD_DEPLOYED",
-      "flag": "OFF",
+      "stage": "PROD_ENABLED",
+      "flag": "ON (08/11 15:44)",
       "risk": "HIGH",
       "integrated": true,
-      "qa": "QA r2 PASS-WITH-COND (BE 4e). Hoàn tất X3 BE #156 + FE #108: QA/SEC độc lập PASS cả hai (VERIFIED), đã merge dev 05:18.",
-      "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 Đã lên PROD trong đợt 4 (08/11 14:02), cờ TẮT.",
+      "qa": "QA/SEC độc lập X3 PASS/PASS (VERIFIED). E2E phần 1 trên PROD (tài khoản QA): bật danh mục → chính sách chờ duyệt, tự duyệt bị 403, người thường bị 403/404, đã tắt lại; smoke sau bật PASS. NOT_RUN: đọc dữ liệu 4 vai trò, thu hồi, xuất bản lại (cần quản trị tenant thứ hai).",
+      "prs": "BE #131/#141/#156, FE #108 trong PROD (đợt 4). Cờ BẬT 08/11 15:44 ICT theo lệnh Owner.",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "E2E PROD phần 1 đang chạy bằng tài khoản quản trị tenant QA có sẵn (không đổi quyền ai); duyệt chính sách cần quản trị tenant thứ hai: chờ Owner chọn cách.",
+      "next": "Phần 2 E2E khi Owner cấp tài khoản QA quản trị tenant thứ hai và đồng ý bài test đọc dữ liệu nhân viên (chỉ in số lượng); chưa có nguồn hệ thống nào được duyệt nên cờ hiện không mở truy cập.",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1216,10 +1216,10 @@
         ]
       },
       "progress": {
-        "percent": 88,
-        "basis": "estimate",
-        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-08T15:29:56+07:00"
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã ON trên PROD 08/11 15:44; không đồng nghĩa E2E đầy đủ.",
+        "reportedAt": "2026-11-08T15:46:55+07:00"
       }
     },
     {
