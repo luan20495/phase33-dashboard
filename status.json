@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T03:29:36+07:00",
+  "asOf": "2026-11-09T06:45:23+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1663,10 +1663,10 @@
       "flag": "Home ON (08/11 16:30); khung kéo thả ON (09/11 ~01:52)",
       "risk": "LOW",
       "integrated": true,
-      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38.",
+      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38. Thử thật trên PROD 09/11 (kịch bản chỉ-đọc, tài khoản QA, không gửi lượt AI nào, 0 yêu cầu ghi): kéo bằng CHUỘT THẬT làm rộng khung trò chuyện (30% → 47%), kéo quá mức bị chặn ở 21%/60%, thả chuột thì khung không còn đi theo, tải lại vẫn nhớ độ rộng, bấm đúp thanh kéo và nút đặt lại về 30%, thu gọn/mở lại hai khung bằng chuột giữ nguyên ô nhập, cửa sổ ≤ 900 px ẩn thanh kéo (công tắc Trò chuyện/Kết quả), kéo cảm ứng mô phỏng qua CDP đổi được độ rộng; 17/17 điểm kiểm PASS (do C0 chạy, chưa phải QA độc lập). CHƯA: cảm ứng thật trên thiết bị, bố cục phải-sang-trái, Owner nghiệm thu.",
       "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev. Đợt 5 (08/11 20:29) đưa mã khung kéo thả lên PROD ở trạng thái TẮT; cặp công tắc PROD (FE #130 + BE #177) đang QA độc lập. QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc khung kéo thả bật 01:52, smoke khung kéo thả PASS (bằng phím, chưa thử kéo chuột trên PROD).",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "UAT Owner; thử kéo chuột trên PROD.",
+      "next": "Owner UAT; QA độc lập chạy lại kịch bản chuột/cảm ứng; thử cảm ứng trên thiết bị thật; cập nhật tài liệu hướng dẫn (dòng 'chưa xác minh kéo chuột').",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1727,10 +1727,10 @@
         ]
       },
       "progress": {
-        "percent": 92,
+        "percent": 96,
         "basis": "estimate",
-        "note": "Home ON 08/11; khung kéo thả ON 09/11 (đợt 6, smoke PASS). Còn: kéo chuột thật trên PROD và UAT của Owner. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T02:29:41+07:00"
+        "note": "Home ON 08/11; khung kéo thả ON 09/11; kéo chuột thật + đặt lại + thu gọn + nhớ độ rộng đã thử trên PROD (C0, 17/17). Còn: cảm ứng thật, QA độc lập chạy lại và UAT Owner. Ước lượng, chưa phải số đo.",
+        "reportedAt": "2026-11-09T06:45:23+07:00"
       }
     }
   ],
