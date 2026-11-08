@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-08T14:30:07+07:00",
+  "asOf": "2026-11-08T15:22:02+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1144,7 +1144,7 @@
       "qa": "QA r2 PASS-WITH-COND (BE 4e). Hoàn tất X3 BE #156 + FE #108: QA/SEC độc lập PASS cả hai (VERIFIED), đã merge dev 05:18.",
       "prs": "BE #131 MERGED dev e80f922a (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 Đã lên PROD trong đợt 4 (08/11 14:02), cờ TẮT.",
       "summary": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
-      "next": "Gói quyết định: bật sau E2E 4 vai trò (DEV đề xuất, hoặc PROD với duyệt riêng); PROD hiện chưa có nguồn hệ thống nào và tenant công ty chỉ có 1 quản trị tenant.",
+      "next": "Cờ còn TẮT. E2E 4 vai trò cần tạm nâng quyền một tài khoản QA và bật danh mục nhân sự cho workspace QA: chờ Owner chỉ cách làm (hệ thống phân quyền phiên điều hành chặn việc nâng quyền trên PROD).",
       "work": {
         "problem": "Người xem app có thể thuộc nhiều công ty/đơn vị nhưng chưa có bằng chứng scope dữ liệu chính xác theo membership, record và field. Di chuyển Org không được vô tình tăng quyền.",
         "approach": "Backend giải quyền hiệu lực trên mỗi request theo tenant/company/org/user; FE chỉ hiển thị dữ liệu đã được backend lọc.",
@@ -1219,7 +1219,7 @@
         "percent": 88,
         "basis": "estimate",
         "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-08T14:30:07+07:00"
+        "reportedAt": "2026-11-08T15:22:02+07:00"
       }
     },
     {
@@ -1331,14 +1331,14 @@
       "id": "X5",
       "name": "AI hiểu nguồn dữ liệu hệ thống",
       "batch": "R4e",
-      "stage": "PROD_DEPLOYED",
-      "flag": "OFF",
+      "stage": "PROD_ENABLED",
+      "flag": "ON (08/11 15:07)",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC #121+#141 PASS có điều kiện. Khống chế chi phí BE #168 + FE #116: QA/SEC độc lập PASS (VERIFIED), đã merge dev 04:55.",
-      "prs": "BE #121 MERGED dev aeca1150 (cờ TẮT, chưa deploy PROD) · DEPLOYED PROD 18:14 (R4e, cờ TẮT) · Master #88 Đã lên PROD trong đợt 4 (08/11 14:02), cờ TẮT.",
+      "qa": "QA/SEC độc lập X5 PASS/PASS (VERIFIED). Hai lượt Haiku thật trước/sau khi bật: không lỗi, không PROMPT_TOO_LARGE, dữ liệu prompt tăng 1.690 byte trong dự án QA có nguồn dữ liệu (dưới trần 4.000). NOT_RUN: 7 kiểm tra đủ (PROD chưa có nguồn dữ liệu hệ thống nào được duyệt).",
+      "prs": "BE #121 + #168, FE #116 trong PROD (đợt 4). Cờ BẬT 08/11 15:07 ICT theo chính sách mặc định và chỉ đạo test trên PROD của Owner.",
       "summary": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
-      "next": "Gói quyết định: bật sau khi Owner cho gia hạn cửa sổ AI + chấp nhận chi phí token (dự án không có nguồn dữ liệu hệ thống không bị tính thêm); 1–2 lượt Haiku xác nhận.",
+      "next": "Theo dõi PROMPT_TOO_LARGE và tổng token/lượt; chạy đủ 7 kiểm tra khi có nguồn hệ thống được duyệt (sau E2E X3/X2); Owner UAT.",
       "work": {
         "problem": "AI dùng catalog nguồn hệ thống mới có BE #121 DRAFT và không trong R3. Chưa chứng minh AI chỉ nhìn schema/operation đã duyệt và tạo app dùng đúng connector.",
         "approach": "Chỉ inject nguồn/mẫu schema sanitized theo effective IAM vào Context Builder, có trace provenance và test không tiết lộ PII.",
@@ -1402,10 +1402,10 @@
         ]
       },
       "progress": {
-        "percent": 80,
-        "basis": "estimate",
-        "note": "Đã deploy PROD (R4e) với cờ TẮT, smoke OK; chưa bật cờ, chưa E2E AI thật.",
-        "reportedAt": "2026-11-08T14:30:07+07:00"
+        "percent": 100,
+        "basis": "prod_on",
+        "note": "Đã ON trên PROD 08/11 15:07; không đồng nghĩa QA/E2E đầy đủ.",
+        "reportedAt": "2026-11-08T15:22:02+07:00"
       }
     },
     {
@@ -1416,7 +1416,7 @@
       "flag": "ON (Map 05:42, Memory 14:12 ngày 08/11)",
       "risk": "MEDIUM",
       "integrated": true,
-      "qa": "QA/SEC độc lập (VERIFIED): Map, neutraliser, màn FE Memory và sửa câu chữ đều PASS; QA tích hợp đợt 4 GO-có-điều-kiện. Smoke sau bật PASS (thêm/sửa/xóa ghi chú thử, từ chối bí mật, người ngoài 404). NOT_RUN: E2E màn FE với backend thật, lượt AI thật có khối ghi nhớ.",
+      "qa": "QA/SEC độc lập (VERIFIED): Map, neutraliser, màn FE Memory và sửa câu chữ đều PASS; QA tích hợp đợt 4 GO-có-điều-kiện. Smoke sau bật PASS (thêm/sửa/xóa ghi chú thử, từ chối bí mật, người ngoài 404). NOT_RUN: E2E màn FE với backend thật, lượt AI thật có khối ghi nhớ. Lượt Haiku thật 08/11: khối project_memory có mặt trong prompt (430 byte), không lỗi.",
       "prs": "Đợt 4 (release 28a4ee09efd0) đã lên PROD 08/11 14:02; Project Memory BẬT 14:12 theo chính sách mặc định sau QA/SEC độc lập.",
       "summary": "Chưa có Project Map/Memory đã được xác minh: AI có thể quên quyết định/lịch sử và bỏ qua file nghiệp vụ ở lượt sau, nhất là dự án nhiều trang.",
       "next": "Lượt AI thật có khối ghi nhớ khi có cửa sổ AI; BE còn thiếu route xem khối AI nhận thật (màn đang tính gần đúng) và chưa có bên đề xuất ghi nhớ; Owner UAT.",
@@ -1484,7 +1484,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã ON trên PROD 08/11 14:12; không đồng nghĩa QA/E2E thật hoàn tất.",
-        "reportedAt": "2026-11-08T14:15:54+07:00"
+        "reportedAt": "2026-11-08T15:22:02+07:00"
       }
     },
     {
