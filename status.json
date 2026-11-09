@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T19:05:31+07:00",
+  "asOf": "2026-11-09T19:13:32+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T19:05:31+07:00",
+    "updatedAt": "2026-11-09T19:13:32+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2417,8 +2417,8 @@
         "group": "IN_PROGRESS",
         "title": "Hàng đợi build: thông báo cho người đang chờ, số slot theo máy, tối đa 10 lượt chờ mỗi slot",
         "titleEn": "Build queue: notice for waiting users, slots by machine capacity, up to 10 waiting per slot",
-        "status": "Đã deploy lên PROD 17:35, công tắc hàng đợi TẮT (chưa bật). Đã đo máy: 4 vCPU, 16 GB; sẽ bật với slots=1 sau xác nhận",
-        "statusEn": "Deployed to PROD 17:35, queue switch OFF (not enabled). Machine measured: 4 vCPU, 16 GB; will enable with slots=1 after confirmation",
+        "status": "19:10: ĐÃ BẬT công tắc hàng đợi (slots=1, max-per-workspace=0, theo lời Owner “Bật ngay”); lùi = đặt enabled=false. Một lượt build thật qua hàng đợi đạt (QUEUED → RUNNING → READY, ~40 giây). CHƯA chứng minh xếp hàng nhiều lượt: kho nhập chỉ cho 1 lượt/ngày cho tài khoản thử (429), cần lượt AI Haiku hoặc nâng giới hạn nhập để thử. Máy: runner chỉ 1 tiến trình nên thực tế 1 build một lúc; mỗi build tối đa 2 GB; máy 4 vCPU/16 GB chịu được tối đa 2 build song song (CPU), 4 (bộ nhớ) nếu thêm tiến trình runner",
+        "statusEn": "19:10: queue switch ENABLED (slots=1, max-per-workspace=0, on the Owner's 'enable now'); rollback = set enabled=false. One real build through the queue passed (QUEUED → RUNNING → READY, ~40 s). Multi-job queueing NOT proven yet: the import path allows only 1 per day for the test account (429), needs Haiku AI turns or a higher import limit. Machine: the runner is a single process so effectively 1 build at a time; each build up to 2 GB; 4 vCPU/16 GB supports at most 2 parallel builds (CPU), 4 (memory) if more runner processes are added",
         "prs": "BE #193 #195, FE #150 #153",
         "eta": "",
         "evidence": "QA độc lập GO có điều kiện / GO; điều kiện: max-per-workspace = 0 khi thử một workspace"
