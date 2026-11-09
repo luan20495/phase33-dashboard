@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T22:47:06+07:00",
+  "asOf": "2026-11-09T23:09:23+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T22:47:06+07:00",
+    "updatedAt": "2026-11-09T23:09:23+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2546,11 +2546,11 @@
       },
       {
         "id": "T22",
-        "group": "IN_PROGRESS",
+        "group": "ON_PROD",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "T22-A ĐÃ LÊN PROD 21:41, CHƯA đánh dấu ON: 1 lượt Haiku thật hoàn tất bình thường (UPDATED, finish_reason=stop, 6.712 token ra, 2.493 token suy luận ≈ 37%); đường chạm trần (mã OUTPUT_LIMIT_REACHED + thẻ lỗi mới) CHƯA kiểm thật vì lượt không chạm trần. Giả thuyết suy luận ăn hết trần vẫn chưa xác minh cho ca thất bại. T22-B (chia bước): agent BE đang thiết kế + lát cắt đầu | 22:50: T22-B BE PR #203 đã mở (chia bước, cờ `ai.builder.steps.enabled` mặc định TẮT, không migration, tiến độ trong `src/PLAN.md`); tác giả báo 27 test mới + 15 lớp hồi quy xanh, 25/26 phá mã (REPORTED); QA/SEC độc lập và FE PR đang chạy. Câu hỏi cho Owner: trần chi phí 0,30 USD/kế hoạch, tối đa 6 bước, ngưỡng yêu cầu lớn, tự nối bước hay bấm 'tiếp tục' | 22:40 (VERIFIED, 2 lượt Haiku thật thêm, đã dùng 8/20): lượt yêu cầu quá lớn dùng đủ 16.000 token ra, finish_reason=length, token suy luận 12.238 (≈76% trần) nhưng vẫn trả 3 file hợp lệ (UPDATED); giả thuyết 'suy luận ăn phần lớn trần' ĐƯỢC XÁC NHẬN bằng dữ liệu thật. Đường trả lời RỖNG (mã OUTPUT_LIMIT_REACHED + thẻ lỗi) chưa tái hiện được; chỉ có bằng chứng test + QA. Cần Owner chọn: nhận ON với nhãn 'đường rỗng chỉ kiểm bằng test', hoặc cho thêm lượt/tắt suy luận",
-        "statusEn": "T22-A ON PROD 21:41, NOT marked ON: 1 real Haiku turn completed normally (UPDATED, finish_reason=stop, 6,712 output tokens, 2,493 reasoning ≈ 37%); the cap path (OUTPUT_LIMIT_REACHED + new error card) NOT yet checked for real because the turn did not hit the cap. Reasoning-ate-the-cap hypothesis still unverified for the failing case. T22-B (steps): BE agent designing + first slice",
+        "status": "T22-A: ON TRÊN PROD (nhận theo lời Owner 'chọn a', 09/11): mã đã chạy từ 21:41, 3 lượt Haiku thật: lượt thường hoàn tất (finish=stop), lượt rất lớn dùng đủ 16.000 token (finish_reason=length, token suy luận 12.238 ≈ 76% trần) vẫn trả file hợp lệ. NHÃN: đường trả lời RỖNG (mã OUTPUT_LIMIT_REACHED + thẻ lỗi) chỉ kiểm bằng test + QA độc lập, chưa tái hiện thật. T22-B (chia bước): BE #203 QA GO-WITH-CONDITIONS (không P1/P2), cờ TẮT, chưa merge; FE đang làm",
+        "statusEn": "T22-A: ON PROD (accepted on the Owner's 'choose a', 09/11): code live since 21:41, 3 real Haiku turns: normal turn finished (finish=stop), a very large turn used all 16,000 tokens (finish_reason=length, 12,238 reasoning tokens ≈ 76% of the cap) yet returned valid files. LABEL: the EMPTY-answer path (OUTPUT_LIMIT_REACHED + error card) verified by tests + independent QA only, not reproduced for real. T22-B (steps): BE #203 QA GO-WITH-CONDITIONS (no P1/P2), flag OFF, not merged; FE in progress",
         "prs": "T22-A: BE #197 + FE #158 (trên PROD); T22-B: BE #203 (451725fb)",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
         "evidence": "Đề xuất từ audit",
@@ -2725,12 +2725,12 @@
       },
       {
         "id": "T32",
-        "group": "IN_PROGRESS",
+        "group": "ON_PROD",
         "prio": 1,
         "title": "Nhập MỘT file HTML và chạy nguyên nội dung trong Preview và Publish (CSS/JS viết trong HTML, ảnh/font nhúng); không chuyển React, không AI",
         "titleEn": "Import ONE HTML file and run it as-is in Preview and Publish (inline CSS/JS, embedded images/fonts); no React, no AI",
-        "status": "ĐÃ LÊN PROD 21:41 (đợt 10) với cờ TẮT (xác nhận `false` trong container API). Dry-run nhập trên PROD trả phát hiện mới. CHƯA kiểm Preview/Publish/CSP thật và bộ thử xâm nhập: tài khoản QA bị giới hạn nhập 429 (còn ~11 giờ). Bật cờ cần lời duyệt bằng chữ của Owner + điều kiện E1–E6",
-        "statusEn": "ON PROD 21:41 (release 10) with the flag OFF (confirmed `false` in the API container). Import dry-run on PROD returns the new findings. NOT yet checked: real Preview/Publish/CSP and the probe suite: the QA account is import-rate-limited (429, ~11 h left). Enabling the flag needs the Owner's written word + conditions E1–E6",
+        "status": "ĐÃ BẬT TRÊN PROD 22:52 theo lời duyệt bằng chữ của Owner (09/11; ghi trên #88 #6744431912). Kiểm thật trên PROD (Preview + Publish PRIVATE, Chrome thật): 16/16 PASS (script chạy, onclick, localStorage SecurityError, eval chặn, API cũ/ngoài lỗi, ảnh nhúng); bộ thử xâm nhập 138 PASS, 15 GAP đã biết, 10 FAIL đã được QA độc lập phân loại: không FAIL nào do cờ (lỗi kỳ vọng probe hoặc hành vi có sẵn: Caddy ghi đè Referrer-Policy, nginx không chuyển If-None-Match, ..%2f về trang chính); CSP chỉ nới ở trang đã nhập. CHƯA chạy: xuất bản CÔNG KHAI. Điều kiện E3/E4 còn hiệu lực. Lùi: MODE=off + khởi động lại API",
+        "statusEn": "ENABLED ON PROD 22:52 on the Owner's written approval (09/11; on #88 #6744431912). Verified on PROD (Preview + Publish PRIVATE, real Chrome): 16/16 PASS (script runs, onclick, localStorage SecurityError, eval blocked, old/external API fail, embedded image); probe suite 138 PASS, 15 known GAP, 10 FAIL triaged by independent QA: none caused by the flag (probe expectation errors or pre-existing behaviour: Caddy overrides Referrer-Policy, nginx drops If-None-Match, ..%2f returns the app index); CSP relaxed only on imported pages. NOT run: PUBLIC visibility publish. Conditions E3/E4 still apply. Rollback: MODE=off + API restart",
         "prs": "BE #198 (87dd2756), FE #157 (7163dafe)",
         "eta": "",
         "etaFirst": "QA/SEC độc lập xong ~20:30; đợt 10 sớm hơn nếu đạt (đề xuất tối nay ~21:30 thay vì 13:00 mai nếu T33/T22-A/T29 kịp); bật cờ rồi kiểm Preview+Publish thật trên PROD bằng HTML có nút/tương tác; chỉ ghi ON sau kiểm thật",
