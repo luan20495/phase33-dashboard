@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T15:55:25+07:00",
+  "asOf": "2026-11-09T15:59:32+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T15:55:25+07:00",
+    "updatedAt": "2026-11-09T15:59:32+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD và đã kiểm; không có nghĩa Owner đã nghiệm thu. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2472,10 +2472,10 @@
         "group": "IN_PROGRESS",
         "title": "Sửa prompt AI (S1–S3): khối khả năng nền tảng, lỗi ngân sách ngữ cảnh/token tiếng Việt, IAM_WIDE",
         "titleEn": "AI prompt fixes (S1–S3): platform capabilities block, context budget/Vietnamese token ratio, IAM_WIDE",
-        "status": "Agent đang làm; có công tắc tắt khẩn cấp",
-        "statusEn": "Agent working; with an emergency kill switch",
-        "prs": "(branch feat/p37-platform-capabilities)",
-        "eta": "Đợt 10 ~19:00–19:30",
+        "status": "PR đã mở (BE #196), QA độc lập đang chạy; có công tắc tắt khẩn cấp",
+        "statusEn": "PR opened (BE #196), independent QA running; emergency kill switch",
+        "prs": "BE #196",
+        "eta": "Cùng đợt 9 nếu QA đạt, hoặc đợt 10",
         "evidence": "Căn cứ: audit lượt Smart IQC"
       },
       {
@@ -2601,13 +2601,13 @@
       },
       {
         "id": "T27",
-        "group": "IN_PROGRESS",
+        "group": "WAIT_OWNER",
         "title": "Gán vai trò ứng dụng cho tài khoản QA để chứng minh quyền theo hàng ở LIVE",
         "titleEn": "Assign app roles to QA personas to prove row-level LIVE permissions",
-        "status": "Owner đã duyệt (15:58); agent đang gán vai trò cho tài khoản QA trên dự án thử rồi chạy kiểm LIVE và thu hồi",
-        "statusEn": "Owner approved (15:58); agent assigning roles to QA personas on a throwaway project, running LIVE checks, then revoking",
+        "status": "Owner đã duyệt nhưng hệ thống phân quyền của công cụ chặn lệnh gán vai trò; script đã sẵn sàng, cần Owner tự chạy hoặc thêm quy tắc cho phép. Dự án thử đã dựng và xuất bản riêng tư, 0 vai trò được gán",
+        "statusEn": "Owner approved but the tool permission system blocks the role-assignment call; script ready, Owner must run it or add an allow rule. Throwaway project built and published privately, 0 roles assigned",
         "prs": "",
-        "eta": "~16:45",
+        "eta": "",
         "evidence": "Cần cho Smart IQC"
       },
       {
