@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T19:29:44+07:00",
+  "asOf": "2026-11-09T19:52:01+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T19:29:44+07:00",
+    "updatedAt": "2026-11-09T19:52:01+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2549,7 +2549,7 @@
         "group": "PLANNED",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "T22-A có PR BE #197 (mã lỗi riêng OUTPUT_LIMIT_REACHED thay cho PROVIDER_UNAVAILABLE khi chạm trần; ghi finish_reason và token suy luận để xác nhận giả thuyết). Tác giả báo 49/49 test, hồi quy 122, 17/17 phá mã (REPORTED). QA/SEC độc lập đang chạy; FE PR (kind mới + vi/en) đang làm. T22-B chưa bắt đầu",
+        "status": "BE #197 (948d156c): QA độc lập GO-WITH-CONDITIONS trên a7dc8489, tác giả đã sửa (lưu errorCode cả ca bị cắt, sửa tài liệu, test cooldown; 20/20 phá mã REPORTED); QA delta đang chạy; FE PR (kind outputLimit vi/en) bắt buộc đi cùng, đang làm. Chưa merge",
         "statusEn": "T22-A has BE PR #197 (own code OUTPUT_LIMIT_REACHED instead of PROVIDER_UNAVAILABLE at the cap; records finish_reason and reasoning tokens to confirm the hypothesis). Author reports 49/49 tests, 122 regression, 17/17 mutants (REPORTED). Independent QA/SEC running; FE PR (new kind + vi/en) in progress. T22-B not started",
         "prs": "BE #197 (a7dc8489, T22-A)",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
@@ -2669,7 +2669,7 @@
         "group": "IN_PROGRESS",
         "title": "Tắt đường Code mode cũ (/code/ai) bằng công tắc mặc định TẮT; đọc tệp qua chính sách đọc, che bí mật",
         "titleEn": "Disable the legacy Code mode path behind a default-OFF switch; route file reads through ReadPolicy and mask secrets",
-        "status": "Có PR BE #200: công tắc `app.code.legacy-ai.enabled` mặc định TẮT, /code/ai trả 404 thống nhất sau kiểm quyền, có dòng audit khi từ chối; F10: model không đọc được `src/xweb/**`. Tác giả báo 61/62 test, 12/13 phá mã (REPORTED). QA/SEC độc lập đang chạy; FE PR (ẩn composer cũ) đang làm. Trước deploy cần xác nhận không dự án PROD nào dùng composer cũ",
+        "status": "BE #200 (8da0d7a0): QA độc lập GO-WITH-CONDITIONS trên b5f76252, tác giả đã sửa (công tắc StrictFlag, giới hạn 30 dòng audit/phút, sửa tài liệu; 6 phá mã mới REPORTED); QA delta đang chạy; FE PR (thông báo + ẩn composer cũ) đang làm. C1 đã kiểm trên PROD 19:52: 0 lượt dùng Code mode cũ, 0 lệnh gọi công cụ (VERIFIED, SQL chỉ đọc)",
         "statusEn": "BE PR #200: switch `app.code.legacy-ai.enabled` default OFF, /code/ai returns a uniform 404 after the access check, audit row on refusal; F10: the model cannot read `src/xweb/**`. Author reports 61/62 tests, 12/13 mutants (REPORTED). Independent QA/SEC running; FE PR (hide the old composer) in progress. Before deploy confirm no PROD project uses the old composer",
         "prs": "BE #200 (b5f76252)",
         "eta": "Sau đợt 10",
@@ -2729,8 +2729,8 @@
         "prio": 1,
         "title": "Nhập MỘT file HTML và chạy nguyên nội dung trong Preview và Publish (CSS/JS viết trong HTML, ảnh/font nhúng); không chuyển React, không AI",
         "titleEn": "Import ONE HTML file and run it as-is in Preview and Publish (inline CSS/JS, embedded images/fonts); no React, no AI",
-        "status": "QA/SEC độc lập GO-WITH-CONDITIONS (VERIFIED 132 test, 8/8 phá mã, 40/40 Chrome trên máy chủ giả). Phải sửa trước PROD: M1 (regex phân tích bậc hai, P3) và M2 (hướng dẫn); tác giả đang sửa rồi QA delta. Cờ vẫn TẮT; bật cần lời duyệt của Owner + điều kiện QA (rủi ro P3 nhóm dùng thử, P2 nếu dự án có dữ liệu thật). Chưa kiểm Publish thật trên PROD",
-        "statusEn": "Independent QA/SEC GO-WITH-CONDITIONS (VERIFIED 132 tests, 8/8 mutants, 40/40 Chrome on a fake server). Must fix before PROD: M1 (quadratic analysis regex, P3) and M2 (guide); author fixing, then delta QA. Switch stays OFF; enabling needs the Owner's word + QA conditions (P3 for the trial group, P2 if a project has real data). Publish on real PROD not checked",
+        "status": "19:50: QA/SEC độc lập delta xong: BE #198 (cc715f33) GO-WITH-CONDITIONS (điều kiện còn lại CHỈ cho việc bật cờ), FE #157 (a487f3ed) GO; cả hai đã merge dev (BE dev b7ef2f1a, FE dev 28cd5df9). Cờ `app.publish.imported-static.inline-scripts.enabled` vẫn TẮT, chưa lên PROD. Bật cần: lời duyệt bằng chữ của Owner, liệt kê app có imported/**.html, dự án có script inline không có dữ liệu/LIVE, chỉ tài khoản trong tổ chức, chạy bộ thử xâm nhập sau deploy (FAIL thì tắt cờ)",
+        "statusEn": "19:50: independent QA/SEC delta done: BE #198 (cc715f33) GO-WITH-CONDITIONS (remaining conditions ONLY for turning the flag on), FE #157 (a487f3ed) GO; both merged to dev (BE dev b7ef2f1a, FE dev 28cd5df9). Flag `app.publish.imported-static.inline-scripts.enabled` still OFF, not on PROD yet. Enabling needs: the Owner's written word, list of apps with imported/**.html, inline-script projects without data/LIVE, in-organisation accounts only, probe suite after deploy (any FAIL turns the flag off)",
         "prs": "BE #198 (87dd2756), FE #157 (7163dafe)",
         "eta": "",
         "etaFirst": "QA/SEC độc lập xong ~20:30; đợt 10 sớm hơn nếu đạt (đề xuất tối nay ~21:30 thay vì 13:00 mai nếu T33/T22-A/T29 kịp); bật cờ rồi kiểm Preview+Publish thật trên PROD bằng HTML có nút/tương tác; chỉ ghi ON sau kiểm thật",
