@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T17:42:39+07:00",
+  "asOf": "2026-11-09T17:53:46+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T17:42:39+07:00",
+    "updatedAt": "2026-11-09T17:53:46+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2549,7 +2549,7 @@
         "group": "PLANNED",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "Chưa bắt đầu (sau S1–S3, cùng tệp)",
+        "status": "Chưa bắt đầu (sau S1–S3, cùng tệp) | Bằng chứng từ T26: yêu cầu xây mới lớn FAILED vì chạm trần 16.000 token; T22 phải chia bước và xử lý chạm trần",
         "statusEn": "Not started (after S1–S3, same files)",
         "prs": "",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
@@ -2625,14 +2625,14 @@
       },
       {
         "id": "T26",
-        "group": "PLANNED",
+        "group": "IN_PROGRESS",
         "title": "Nghiệm thu độc lập prompt Smart IQC dài trên DEV và PROD (dự án 0 bảng và dự án đã cấu hình dữ liệu)",
         "titleEn": "Independent acceptance of the long Smart IQC prompt on DEV and PROD",
-        "status": "Sau khi S1–S3 có QA; trong hạn mức Haiku Owner đã cấp",
-        "statusEn": "After S1–S3 QA; within the Haiku allowance granted",
+        "status": "Vòng 1 xong 17:53 (5 lượt Haiku, còn 15 trong 20 lượt đã cấp): prompt 89 KB nay UPDATED + build đạt (trước: NO_CHANGE); Node.js/Chart.js không bị nhầm tên tệp; AI nói đúng giới hạn và nêu bước cấu hình dữ liệu. CÒN LỖI: yêu cầu “xây mới” lớn dùng hết 16.000 token và FAILED 2/2 lần (báo sai là lỗi nhà cung cấp); chưa thử công tắc tắt khẩn cấp và dự án 2 bảng",
+        "statusEn": "Round 1 done 17:53 (5 Haiku turns, 15 left of the 20 granted): the 89 KB prompt is now UPDATED with a passing build (before: NO_CHANGE); Node.js/Chart.js no longer mistaken for file names; AI states limits correctly and lists the data setup steps. STILL BROKEN: a large 'build new' request uses all 16,000 tokens and FAILED 2/2 times (wrongly reported as a provider error); kill switch and 2-table project not tried yet",
         "prs": "",
         "eta": "Sau đợt 10",
-        "evidence": "",
+        "evidence": "t26-round1-report.md (local)",
         "etaFirst": "Vòng 1 (Haiku thật trên PROD, trong 20 lượt đã cho): TỐI NAY 09/11 ~19:30–21:00, ngay sau khi đợt 9 lên; kết quả là mốc trước/sau",
         "etaFull": "Vòng đầy đủ (DEV: dự án 0 bảng và có bảng, prompt dài thật): 10/11 chiều tối, sau bản đầu T22; lặp lại sau mỗi mốc T22/T23",
         "prio": 1
