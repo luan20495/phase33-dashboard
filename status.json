@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T15:59:32+07:00",
+  "asOf": "2026-11-09T16:20:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T15:59:32+07:00",
+    "updatedAt": "2026-11-09T16:20:49+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD và đã kiểm; không có nghĩa Owner đã nghiệm thu. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2601,14 +2601,14 @@
       },
       {
         "id": "T27",
-        "group": "WAIT_OWNER",
-        "title": "Gán vai trò ứng dụng cho tài khoản QA để chứng minh quyền theo hàng ở LIVE",
-        "titleEn": "Assign app roles to QA personas to prove row-level LIVE permissions",
-        "status": "Owner đã duyệt nhưng hệ thống phân quyền của công cụ chặn lệnh gán vai trò; script đã sẵn sàng, cần Owner tự chạy hoặc thêm quy tắc cho phép. Dự án thử đã dựng và xuất bản riêng tư, 0 vai trò được gán",
-        "statusEn": "Owner approved but the tool permission system blocks the role-assignment call; script ready, Owner must run it or add an allow rule. Throwaway project built and published privately, 0 roles assigned",
+        "group": "AUDIT_DONE",
+        "title": "Gán vai trò app cho tài khoản QA và chứng minh quyền theo hàng ở LIVE (Owner chạy script bằng tay)",
+        "titleEn": "Assign app roles to QA personas and prove row-level LIVE permissions (Owner ran the script)",
+        "status": "Xong 16:19: 40/45 bước đạt; 5 bước lệch chỉ do mã từ chối là 404 thay vì 403 (vẫn bị từ chối đúng). SELF/TENANT, từ chối mặc định, thu hồi tức thì đều chứng minh trên PROD; đã thu hồi mọi vai trò và xóa dự án thử",
+        "statusEn": "Done 16:19: 40/45 steps passed; the 5 mismatches are only 404 instead of 403 (still correctly denied). SELF/TENANT scopes, default deny and instant revoke proven on PROD; all roles revoked and the throwaway project removed",
         "prs": "",
         "eta": "",
-        "evidence": "Cần cho Smart IQC"
+        "evidence": "live-smoke-report.md mục 9"
       },
       {
         "id": "T28",
