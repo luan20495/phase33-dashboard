@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T20:57:54+07:00",
+  "asOf": "2026-11-09T21:29:58+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T20:57:54+07:00",
+    "updatedAt": "2026-11-09T21:29:58+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2549,7 +2549,7 @@
         "group": "PLANNED",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "20:02: BE #197 (948d156c) QA độc lập delta GO-WITH-CONDITIONS, ĐÃ MERGE dev (BE dev beb01e09). Điều kiện còn lại: FE PR (kind outputLimit vi/en) phải cùng đợt; agent FE đang làm. Chưa lên PROD. Giả thuyết token suy luận chưa xác minh (sẽ đọc manifest sau lượt thật) | 20:37: FE #158 (a6854fa1, kind outputLimit) QA độc lập GO-WITH-CONDITIONS (không điều kiện chặn; 9 phá mã bị bắt) và đã merge FE dev; chờ đợt 10",
+        "status": "20:02: BE #197 (948d156c) QA độc lập delta GO-WITH-CONDITIONS, ĐÃ MERGE dev (BE dev beb01e09). Điều kiện còn lại: FE PR (kind outputLimit vi/en) phải cùng đợt; agent FE đang làm. Chưa lên PROD. Giả thuyết token suy luận chưa xác minh (sẽ đọc manifest sau lượt thật) | 20:37: FE #158 (a6854fa1, kind outputLimit) QA độc lập GO-WITH-CONDITIONS (không điều kiện chặn; 9 phá mã bị bắt) và đã merge FE dev; chờ đợt 10 | 21:30: đã promote lên main (BE 4cc15c4a / FE 61fd84d0), QA/SEC tích hợp GO-WITH-CONDITIONS, đợt 10 đang dựng; CHƯA deploy",
         "statusEn": "20:02: BE #197 (948d156c) independent QA delta GO-WITH-CONDITIONS, MERGED to dev (BE dev beb01e09). Remaining condition: the FE PR (outputLimit kind vi/en) must ship in the same release; FE agent working. Not on PROD yet. Reasoning-token hypothesis still unverified (to be read from the manifest after a real turn)",
         "prs": "BE #197 (a7dc8489, T22-A)",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
@@ -2669,7 +2669,7 @@
         "group": "IN_PROGRESS",
         "title": "Tắt đường Code mode cũ (/code/ai) bằng công tắc mặc định TẮT; đọc tệp qua chính sách đọc, che bí mật",
         "titleEn": "Disable the legacy Code mode path behind a default-OFF switch; route file reads through ReadPolicy and mask secrets",
-        "status": "20:02: BE #200 (8da0d7a0) QA độc lập delta GO-WITH-CONDITIONS (C2/C3/C4 đóng), ĐÃ MERGE dev. C1 VERIFIED 19:52 (0 lượt dùng cũ). Điều kiện còn lại: FE PR (thông báo + ẩn composer cũ) cùng đợt. Chưa lên PROD; PROD luôn TẮT đường cũ vì compose không truyền biến | 20:37: FE #158 (thông báo + ẩn composer cũ) đã merge FE dev; chờ đợt 10",
+        "status": "20:02: BE #200 (8da0d7a0) QA độc lập delta GO-WITH-CONDITIONS (C2/C3/C4 đóng), ĐÃ MERGE dev. C1 VERIFIED 19:52 (0 lượt dùng cũ). Điều kiện còn lại: FE PR (thông báo + ẩn composer cũ) cùng đợt. Chưa lên PROD; PROD luôn TẮT đường cũ vì compose không truyền biến | 20:37: FE #158 (thông báo + ẩn composer cũ) đã merge FE dev; chờ đợt 10 | 21:30: đã promote lên main (BE 4cc15c4a / FE 61fd84d0), QA/SEC tích hợp GO-WITH-CONDITIONS, đợt 10 đang dựng; CHƯA deploy",
         "statusEn": "20:02: BE #200 (8da0d7a0) independent QA delta GO-WITH-CONDITIONS (C2/C3/C4 closed), MERGED to dev. C1 VERIFIED 19:52 (0 legacy runs). Remaining condition: FE PR (notice + hide old composer) in the same release. Not on PROD yet; PROD always has the old path OFF because compose does not pass the variable",
         "prs": "BE #200 (b5f76252)",
         "eta": "Sau đợt 10",
@@ -2729,7 +2729,7 @@
         "prio": 1,
         "title": "Nhập MỘT file HTML và chạy nguyên nội dung trong Preview và Publish (CSS/JS viết trong HTML, ảnh/font nhúng); không chuyển React, không AI",
         "titleEn": "Import ONE HTML file and run it as-is in Preview and Publish (inline CSS/JS, embedded images/fonts); no React, no AI",
-        "status": "19:50: QA/SEC độc lập delta xong: BE #198 (cc715f33) GO-WITH-CONDITIONS (điều kiện còn lại CHỈ cho việc bật cờ), FE #157 (a487f3ed) GO; cả hai đã merge dev (BE dev b7ef2f1a, FE dev 28cd5df9). Cờ `app.publish.imported-static.inline-scripts.enabled` vẫn TẮT, chưa lên PROD. Bật cần: lời duyệt bằng chữ của Owner, liệt kê app có imported/**.html, dự án có script inline không có dữ liệu/LIVE, chỉ tài khoản trong tổ chức, chạy bộ thử xâm nhập sau deploy (FAIL thì tắt cờ)",
+        "status": "19:50: QA/SEC độc lập delta xong: BE #198 (cc715f33) GO-WITH-CONDITIONS (điều kiện còn lại CHỈ cho việc bật cờ), FE #157 (a487f3ed) GO; cả hai đã merge dev (BE dev b7ef2f1a, FE dev 28cd5df9). Cờ `app.publish.imported-static.inline-scripts.enabled` vẫn TẮT, chưa lên PROD. Bật cần: lời duyệt bằng chữ của Owner, liệt kê app có imported/**.html, dự án có script inline không có dữ liệu/LIVE, chỉ tài khoản trong tổ chức, chạy bộ thử xâm nhập sau deploy (FAIL thì tắt cờ) | 21:30: đã promote lên main (BE 4cc15c4a / FE 61fd84d0), QA/SEC tích hợp GO-WITH-CONDITIONS, đợt 10 đang dựng; CHƯA deploy",
         "statusEn": "19:50: independent QA/SEC delta done: BE #198 (cc715f33) GO-WITH-CONDITIONS (remaining conditions ONLY for turning the flag on), FE #157 (a487f3ed) GO; both merged to dev (BE dev b7ef2f1a, FE dev 28cd5df9). Flag `app.publish.imported-static.inline-scripts.enabled` still OFF, not on PROD yet. Enabling needs: the Owner's written word, list of apps with imported/**.html, inline-script projects without data/LIVE, in-organisation accounts only, probe suite after deploy (any FAIL turns the flag off)",
         "prs": "BE #198 (87dd2756), FE #157 (7163dafe)",
         "eta": "",
@@ -2752,7 +2752,7 @@
         "group": "IN_PROGRESS",
         "title": "Lỗi đính kèm: sau khi xóa bớt file, file bị từ chối vì “tối đa 3” vẫn nằm lại cùng cảnh báo",
         "titleEn": "Attachment bug: after deleting a file, the file rejected for the max-3 rule stays rejected and the warning stays",
-        "status": "PR FE #155 + #156 đã merge dev (QA độc lập GO); chờ đợt 10. Kiểm chuỗi thật trên PROD sau deploy (script chuẩn bị sẵn)",
+        "status": "PR FE #155 + #156 đã merge dev (QA độc lập GO); chờ đợt 10. Kiểm chuỗi thật trên PROD sau deploy (script chuẩn bị sẵn) | 21:30: đã promote lên main (BE 4cc15c4a / FE 61fd84d0), QA/SEC tích hợp GO-WITH-CONDITIONS, đợt 10 đang dựng; CHƯA deploy",
         "statusEn": "FE PRs #155 + #156 merged to dev (independent QA GO); waits for release 10. Real-chain check on PROD after deploy (script being prepared)",
         "prs": "",
         "eta": "PR + QA độc lập: ước tính 09/11 ~20:30–21:30; lên PROD cùng đợt 10 (10/11 sáng) hoặc đợt riêng nếu Owner muốn ngay",
@@ -2775,7 +2775,7 @@
         "prio": 1,
         "title": "Nhập HTML tham chiếu file CSS, JS, ảnh, font bên cạnh: nhiều file/ZIP, giữ đường dẫn, báo file thiếu, kiểm Preview/Publish",
         "titleEn": "Import an HTML that references sibling CSS, JS, image and font files: multi-file/ZIP, keep paths, report missing files, check Preview/Publish",
-        "status": "Owner 20:50: ưu tiên T34 để dứt điểm phần HTML. Agent BE+FE đã bắt đầu (từ dev 4cc15c4a / 61fd84d0); chỉ mở PR, KHÔNG merge cho đến khi đợt 10 deploy xong. Phạm vi: nhập HTML + file bên cạnh (nhiều file/ZIP), giữ đường dẫn tương đối, báo file thiếu (kể cả sai hoa/thường, ../, đường dẫn gốc /x), loại file bị từ chối, tài nguyên ngoài bị chặn; kiểm Preview/Publish. Không kéo dài T32",
+        "status": "Owner 20:50: ưu tiên T34 để dứt điểm phần HTML. Agent BE+FE đã bắt đầu (từ dev 4cc15c4a / 61fd84d0); chỉ mở PR, KHÔNG merge cho đến khi đợt 10 deploy xong. Phạm vi: nhập HTML + file bên cạnh (nhiều file/ZIP), giữ đường dẫn tương đối, báo file thiếu (kể cả sai hoa/thường, ../, đường dẫn gốc /x), loại file bị từ chối, tài nguyên ngoài bị chặn; kiểm Preview/Publish. Không kéo dài T32 | 21:30: BE WIP đã đẩy (SiteRefs, font, viết lại /x thành tương đối, chọn trang vào), FE đang làm",
         "statusEn": "Owner 20:50: T34 prioritised to finish the HTML area. BE+FE agent started (from dev 4cc15c4a / 61fd84d0); PRs only, NO merge until release 10 is deployed. Scope: import HTML + sibling files (multi-file/ZIP), keep relative paths, report missing files (case, ../, root-absolute /x), refused file types, blocked external resources; check Preview/Publish. Does not extend T32",
         "prs": "",
         "eta": "",
