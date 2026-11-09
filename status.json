@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T16:29:45+07:00",
+  "asOf": "2026-11-09T16:42:47+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,9 +2309,9 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T16:29:45+07:00",
+    "updatedAt": "2026-11-09T16:42:47+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
-    "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD và đã kiểm; không có nghĩa Owner đã nghiệm thu. Không có thông tin bí mật hay tài chính.",
+    "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
       {
         "id": "T01",
@@ -2553,7 +2553,15 @@
         "statusEn": "Not started (after S1–S3, same files)",
         "prs": "",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
-        "evidence": "Đề xuất từ audit"
+        "evidence": "Đề xuất từ audit",
+        "etaFirst": "Bản dùng được đầu tiên: lên PROD ~13:00–15:00 ngày 10/11 (kế hoạch PLAN.md + tạo và build file bước 1 + “tiếp tục” ở lượt sau; công tắc mặc định TẮT cho tới khi QA đạt)",
+        "etaFull": "Bản hoàn chỉnh: ~12–13/11 (trạng thái bước tự động, hiển thị bước trên giao diện, build kiểm từng bước, nhiều dự án, QA độc lập đầy đủ)",
+        "accept": [
+          "P0–P20 hoặc yêu cầu > ngưỡng không còn trả NO_CHANGE: lượt đầu tạo PLAN.md và file + build của bước 1",
+          "Nêu rõ phần đã làm, phần cần cấu hình dữ liệu, bước tiếp theo; không tuyên bố đã tạo bảng hoặc tích hợp API khi chưa làm",
+          "Lượt kế tiếp tiếp tục đúng bước từ PLAN.md; mất/đổi tệp PLAN.md được xử lý an toàn",
+          "Công tắc tắt = hành vi cũ từng byte; QA độc lập GO trên SHA"
+        ]
       },
       {
         "id": "T23",
@@ -2564,7 +2572,14 @@
         "statusEn": "OFF in PROD; not enabled",
         "prs": "",
         "eta": "Sớm nhất chiều/tối 10/11",
-        "evidence": "6 cổng QA G1–G6 trong audit"
+        "evidence": "6 cổng QA G1–G6 trong audit",
+        "etaFirst": "Bản dùng được đầu tiên: bật tool loop sẵn có (3 công cụ đọc: list/search/read) trên PROD sau 6 cổng QA G1–G6 và ~12 lượt Haiku thử: sớm nhất tối 10/11 hoặc 11/11 (cần vá lỗi “hết chỗ thì dừng mất tiền” và xung đột giao thức JSON với định dạng đầu ra)",
+        "etaFull": "Bản hoàn chỉnh: ~15–18/11 (giới hạn vòng/dung lượng cấu hình được, ghép với các bước S4, công cụ đọc schema, đo chi phí thật, QA độc lập đầy đủ)",
+        "accept": [
+          "G1 quyền (viewer/workspace khác bị từ chối đồng nhất, audit đủ), G2 chi phí (trần mỗi lượt, mỗi vòng tính tiền đúng), G3 giới hạn vòng, G4 chất lượng, G5 an toàn nội dung (không đọc tệp bí mật/nền tảng), G6 vận hành",
+          "Chạy với model thật trên DEV và PROD, có số liệu trước/sau",
+          "Chỉ bật sau QA độc lập GO; công tắc có đường tắt khẩn cấp"
+        ]
       },
       {
         "id": "T24",
@@ -2575,18 +2590,34 @@
         "statusEn": "Not started",
         "prs": "",
         "eta": "Khoảng 1–2 tuần",
-        "evidence": "Nút thắt lớn nhất với tệp HTML/JS dài"
+        "evidence": "Nút thắt lớn nhất với tệp HTML/JS dài",
+        "etaFirst": "Bản dùng được đầu tiên: sửa MỘT đoạn liên tục trong tệp lớn (kiểm tra khớp ngữ cảnh, từ chối khi lệch): ~17–20/11",
+        "etaFull": "Bản hoàn chỉnh: ~25/11–2/12 (nhiều đoạn, xung đột, hoàn tác, ghép với tool loop, QA độc lập đầy đủ, 3–4 ngày QA)",
+        "accept": [
+          "Sửa được tệp HTML/JS lớn (>24.000 byte) mà không viết lại cả tệp",
+          "Chặn “viết lại sau khi chỉ đọc một phần” chỉ còn cho trường hợp không có vùng hợp lệ",
+          "Vùng sai hoặc lệch bị từ chối rõ ràng, không ghi nửa chừng; hoàn tác được",
+          "Test phá mã và QA độc lập GO"
+        ]
       },
       {
         "id": "T25",
         "group": "PLANNED",
-        "title": "Gói công thức (skill) dựng web chọn theo ý định",
-        "titleEn": "Intent-selected recipe packs (skills)",
-        "status": "Chưa có cơ chế nạp skill; thiết kế đã nêu trong audit",
-        "statusEn": "No skill loading mechanism yet; design proposed in audit",
+        "title": "Gói công thức (skill dạng văn bản) chọn theo ý định: CHỈ là văn bản nạp vào prompt, KHÔNG phải Agent đa vai trò",
+        "titleEn": "Intent-selected recipe packs (text only): NOT a multi-role Agent",
+        "status": "Xác nhận 17:00: hiện chỉ có công thức SITE/SHOP chọn bằng từ khóa (SHOP_HINTS); chưa có cơ chế chọn theo ý định, chưa có Agent tự chọn vai trò BA/UX/UI/Dev/QA, tool hay skill. Việc Agent đa vai trò được tách thành T30",
+        "statusEn": "Confirmed 17:00: today only SITE/SHOP recipes picked by keyword (SHOP_HINTS); no intent selection and no Agent that picks BA/UX/UI/Dev/QA roles, tools or skills. The multi-role Agent is split out as T30",
         "prs": "",
         "eta": "Sau S4",
-        "evidence": ""
+        "evidence": "",
+        "etaFirst": "Bản dùng được đầu tiên: 3 gói (dashboard, CRUD với dữ liệu managed, biểu mẫu) chọn theo ý định: ~14/11",
+        "etaFull": "Bản hoàn chỉnh: 8–10 gói có ngân sách kích thước, đo hiệu quả: ~20/11",
+        "accept": [
+          "Mỗi gói ≤ 2–3 KB, có phiên bản, điều kiện áp dụng và test ghim kích thước",
+          "Chọn bằng hàm thuần có test (tối đa 2 gói mỗi lượt), công tắc tắt = prompt cũ từng byte",
+          "Kiểm bằng lượt AI thật: chất lượng đầu ra tốt hơn bản không có gói, không tăng lỗi build",
+          "QA độc lập GO"
+        ]
       },
       {
         "id": "T26",
@@ -2631,6 +2662,27 @@
         "prs": "",
         "eta": "Sau đợt 10",
         "evidence": "audit-sec-legacy-code-mode.md; 0 lượt chạy qua đường cũ trên PROD"
+      },
+      {
+        "id": "T30",
+        "group": "PLANNED",
+        "title": "Agent đa vai trò: tự chọn vai trò BA / UX / UI / Dev / QA, kèm tool và skill tương ứng theo yêu cầu và theo từng bước",
+        "titleEn": "Multi-role Agent: picks the BA / UX / UI / Dev / QA role, with matching tools and skills, per request and per step",
+        "status": "Chưa có: hiện không có chọn vai trò, không có tool nào, không có cơ chế nạp skill. Phụ thuộc T22 (bước), T23 (tool đọc) và T25 (gói skill). Chưa bắt đầu",
+        "statusEn": "Does not exist: no role selection, no tools, no skill loading today. Depends on T22 (steps), T23 (read tools) and T25 (skill packs). Not started",
+        "prs": "",
+        "eta": "",
+        "etaFirst": "Bản dùng được đầu tiên: ~25–28/11 (2 vai trò BA và Dev, gói skill riêng, người dùng xem và đổi được vai trò; công tắc TẮT mặc định)",
+        "etaFull": "Bản hoàn chỉnh: ~15–20/12 (5 vai trò BA/UX/UI/Dev/QA, bàn giao qua PLAN.md, trần chi phí theo vai trò, QA độc lập, nghiệm thu Smart IQC trên DEV và PROD)",
+        "evidence": "Căn cứ: audit-agent-tools-skills.md (mặt phẳng agent hiện có là tính năng riêng, không nối với lượt builder)",
+        "accept": [
+          "Bộ phân loại chọn vai trò cho từng yêu cầu/bước và GHI lại lý do trong bản kê lượt chạy (người dùng thấy và đổi được)",
+          "Mỗi vai trò có gói prompt/skill riêng và tập tool tối thiểu quyền (BA: yêu cầu và kế hoạch; UX/UI: bố cục và thiết kế; Dev: mã; QA: kiểm tra)",
+          "Bàn giao giữa vai trò qua PLAN.md/bước của T22; không tự tạo bảng hay cấp quyền ngoài khả năng API",
+          "Trần chi phí và số vòng theo vai trò; công tắc tắt khẩn cấp mặc định TẮT",
+          "Chống chèn lệnh từ tệp dự án vào lựa chọn vai trò/tool; QA độc lập GO",
+          "Nghiệm thu Smart IQC trên DEV và PROD: thấy vai trò đã chọn, tài liệu BA, bố cục UX, rồi mã bước đầu, build chạy"
+        ]
       }
     ]
   }
