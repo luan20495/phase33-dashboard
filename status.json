@@ -2307,5 +2307,320 @@
       "source": "Tin nhắn trực tiếp của Owner trong phiên điều hành; GitHub #88",
       "scope": "Thay thế thứ tự \"P0-17 để cuối\""
     }
-  ]
+  ],
+  "dailyWork": {
+    "updatedAt": "2026-11-09T16:00:00+07:00",
+    "title": "Việc giao ngày 09/11: tiến độ lên PROD",
+    "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD và đã kiểm; không có nghĩa Owner đã nghiệm thu. Không có thông tin bí mật hay tài chính.",
+    "items": [
+      {
+        "id": "T01",
+        "group": "ON_PROD",
+        "title": "Đợt 6: khung kéo thả, giao diện/ngôn ngữ, khám phá dữ liệu",
+        "titleEn": "Release 6: resizable panes, theme/language, data discovery",
+        "status": "Đã ON trên PROD (09/11 01:52–02:14), đã smoke",
+        "statusEn": "ON in PROD (09/11 01:52–02:14), smoke passed",
+        "prs": "",
+        "eta": "",
+        "evidence": "Smoke s154/s135/s146 đạt"
+      },
+      {
+        "id": "T02",
+        "group": "ON_PROD",
+        "title": "Mô hình Tự động = Haiku",
+        "titleEn": "Auto model = Haiku",
+        "status": "Đã ON (cài đặt Admin, 07:39); kiểm bằng lượt AI thật",
+        "statusEn": "ON (Admin setting, 07:39); verified with real AI turns",
+        "prs": "",
+        "eta": "",
+        "evidence": "Auto trỏ Haiku 5.5, danh sách chọn tay giữ nguyên"
+      },
+      {
+        "id": "T03",
+        "group": "ON_PROD",
+        "title": "Giới hạn build đồng thời mỗi workspace 4 → 10",
+        "titleEn": "Concurrent builds per workspace 4 → 10",
+        "status": "Đã ON (cài đặt Admin, 07:51)",
+        "statusEn": "ON (Admin setting, 07:51)",
+        "prs": "",
+        "eta": "",
+        "evidence": "Đọc lại cài đặt = 10; vượt giới hạn vẫn bị từ chối 429 (chưa xếp hàng)"
+      },
+      {
+        "id": "T04",
+        "group": "ON_PROD",
+        "title": "Gõ chữ trong ô nhập tăng 5 lần (60.000 → 300.000 byte)",
+        "titleEn": "Typed prompt limit x5 (60,000 → 300,000 bytes)",
+        "status": "Đã ON (10:04), server công bố 300.000 byte",
+        "statusEn": "ON (10:04), server announces 300,000 bytes",
+        "prs": "",
+        "eta": "",
+        "evidence": "Builder config công bố promptMaxBytes = 300000"
+      },
+      {
+        "id": "T05",
+        "group": "ON_PROD",
+        "title": "Tệp đính kèm văn bản tăng 5 lần (24.000 → 120.000 ký tự/tệp, 240.000 tổng)",
+        "titleEn": "Attachment text x5 (24,000 → 120,000 chars/file, 240,000 total)",
+        "status": "Đã ON (đợt 7, 12:32); thử Haiku thật với tệp 98.290 ký tự, không cắt",
+        "statusEn": "ON (release 7, 12:32); real Haiku turn with a 98,290-char file, not cut",
+        "prs": "BE #190, FE #146",
+        "eta": "",
+        "evidence": "QA độc lập GO có điều kiện / GO"
+      },
+      {
+        "id": "T06",
+        "group": "ON_PROD",
+        "title": "Mục 17: XApp là nơi duy nhất đổi theme, ngôn ngữ, đăng xuất (XApp hub)",
+        "titleEn": "Item 17: XApp is the only place for theme, language and sign-out",
+        "status": "Đã ON (đợt 7, 12:32); lưu theo trình duyệt (Owner chấp nhận)",
+        "statusEn": "ON (release 7, 12:32); per-browser storage (Owner accepted)",
+        "prs": "FE #143, BE #188",
+        "eta": "",
+        "evidence": "QA độc lập GO có điều kiện; smoke 4 cổng, đăng xuất tại XApp kết thúc phiên"
+      },
+      {
+        "id": "T07",
+        "group": "ON_PROD",
+        "title": "Mục 19: bố cục màn Edit Studio gọn (menu …, thanh Preview một hàng)",
+        "titleEn": "Item 19: compact Studio Edit layout",
+        "status": "Đã ON (đợt 7, 12:32)",
+        "statusEn": "ON (release 7, 12:32)",
+        "prs": "FE #144, BE #189",
+        "eta": "",
+        "evidence": "QA độc lập GO có điều kiện; còn 2 lỗi P2 đang sửa (FE #148)"
+      },
+      {
+        "id": "T08",
+        "group": "ON_PROD",
+        "title": "Sửa menu “Cài đặt” bị che ở màn Edit",
+        "titleEn": "Fix: Settings menu hidden under the work area",
+        "status": "Đã ON (đợt 7, 12:32)",
+        "statusEn": "ON (release 7, 12:32)",
+        "prs": "FE #145",
+        "eta": "",
+        "evidence": "QA độc lập GO"
+      },
+      {
+        "id": "T09",
+        "group": "ON_PROD",
+        "title": "AI trả lời tối đa 48.000 ký tự (trước đó bị cắt ở 500)",
+        "titleEn": "AI answers up to 48,000 chars (was cut at 500)",
+        "status": "Đã ON (đợt 8, 14:39); thử Haiku thật: câu trả lời 12.610 ký tự hiện trọn, giữ nguyên sau tải lại",
+        "statusEn": "ON (release 8, 14:39); real Haiku turn: 12,610-char answer shown whole and kept after reload",
+        "prs": "BE #192 (migration V98)",
+        "eta": "",
+        "evidence": "QA độc lập GO có điều kiện; Flyway 98|86|0"
+      },
+      {
+        "id": "T10",
+        "group": "DEV_WAIT",
+        "title": "Hàng đợi build: thông báo cho người đang chờ, số slot theo máy, tối đa 10 lượt chờ mỗi slot",
+        "titleEn": "Build queue: notice for waiting users, slots by machine capacity, up to 10 waiting per slot",
+        "status": "Đã vào dev, công tắc TẮT; chờ đợt 9 rồi đo máy build và bật",
+        "statusEn": "Merged to dev, switch OFF; waits for release 9, then measure the build machine and enable",
+        "prs": "BE #193 #195, FE #150 #153",
+        "eta": "Bật khoảng 18:30",
+        "evidence": "QA độc lập GO có điều kiện / GO; điều kiện: max-per-workspace = 0 khi thử một workspace"
+      },
+      {
+        "id": "T11",
+        "group": "DEV_WAIT",
+        "title": "Tiếng Anh/Việt các panel Studio, hộp xuất bản, nhãn vai trò",
+        "titleEn": "English/Vietnamese: Studio panels, publish dialog, role labels",
+        "status": "Đã vào dev (15:46), chờ đợt 9",
+        "statusEn": "Merged to dev (15:46), waits for release 9",
+        "prs": "FE #151",
+        "eta": "Đợt 9 ~17:30–18:15",
+        "evidence": "QA độc lập GO (delta)"
+      },
+      {
+        "id": "T12",
+        "group": "DEV_WAIT",
+        "title": "Sửa bộ test Studio (13 lỗi cũ là test lỗi thời)",
+        "titleEn": "Studio test debt (13 old failures were stale tests)",
+        "status": "Đã vào dev; chỉ sửa test, không đổi hành vi PROD",
+        "statusEn": "Merged to dev; tests only, no PROD behaviour change",
+        "prs": "FE #152",
+        "eta": "",
+        "evidence": "Không có lỗi sản phẩm; studio-lovable 348/348"
+      },
+      {
+        "id": "T13",
+        "group": "IN_PROGRESS",
+        "title": "Tiếng Anh/Việt trang chủ, builder, thư viện Studio (2.272 → 21 chuỗi Việt cứng)",
+        "titleEn": "English/Vietnamese: Studio home, builder, library",
+        "status": "Agent đang sửa điều kiện của QA (GO có điều kiện)",
+        "statusEn": "Agent fixing QA conditions (GO with conditions)",
+        "prs": "FE #154, BE #194 (đồng bộ)",
+        "eta": "Đợt 9",
+        "evidence": "Người dùng tiếng Việt không hồi quy (1.873 giá trị khớp byte)"
+      },
+      {
+        "id": "T14",
+        "group": "IN_PROGRESS",
+        "title": "Hai lỗi P2 bố cục Studio: khóa “Bỏ thay đổi” khi đang gửi; cảnh báo lượt chạy hiện ngoài khối đóng",
+        "titleEn": "Layout P2s: lock Discard while sending; show run warnings outside the closed block",
+        "status": "Gate xanh, còn bài phá mã rồi merge",
+        "statusEn": "Gate green; mutant check then merge",
+        "prs": "FE #148",
+        "eta": "Đợt 9",
+        "evidence": "Đã có mã và test"
+      },
+      {
+        "id": "T15",
+        "group": "IN_PROGRESS",
+        "title": "Sửa prompt AI (S1–S3): khối khả năng nền tảng, lỗi ngân sách ngữ cảnh/token tiếng Việt, IAM_WIDE",
+        "titleEn": "AI prompt fixes (S1–S3): platform capabilities block, context budget/Vietnamese token ratio, IAM_WIDE",
+        "status": "Agent đang làm; có công tắc tắt khẩn cấp",
+        "statusEn": "Agent working; with an emergency kill switch",
+        "prs": "(branch feat/p37-platform-capabilities)",
+        "eta": "Đợt 10 ~19:00–19:30",
+        "evidence": "Căn cứ: audit lượt Smart IQC"
+      },
+      {
+        "id": "T16",
+        "group": "IN_PROGRESS",
+        "title": "Kiểm bảo mật đường Code mode cũ (/code/ai, read_project_file)",
+        "titleEn": "Security audit of the legacy Code mode",
+        "status": "Agent đang kiểm chỉ đọc",
+        "statusEn": "Read-only audit in progress",
+        "prs": "",
+        "eta": "~16:40",
+        "evidence": "Nghi: không dùng chính sách đọc, không che bí mật; chưa xác minh trên PROD"
+      },
+      {
+        "id": "T17",
+        "group": "AUDIT_DONE",
+        "title": "Audit backend dữ liệu cho app Open Lovable (4 ý của Owner)",
+        "titleEn": "Audit: XWeb data backend for Open Lovable apps",
+        "status": "Xong. Có bảng riêng theo app, CRUD, ràng buộc ở backend; AI không tự tạo bảng/bind; Smart IQC không chuyển nguyên khối được",
+        "statusEn": "Done. Per-app tables, CRUD, BE-enforced; AI cannot create/bind; Smart IQC cannot be ported as-is",
+        "prs": "",
+        "eta": "",
+        "evidence": "Báo cáo audit-data-backend.md"
+      },
+      {
+        "id": "T18",
+        "group": "AUDIT_DONE",
+        "title": "Audit lượt Smart IQC (vì sao “không có máy chủ”, không tạo file)",
+        "titleEn": "Audit: the Smart IQC turn",
+        "status": "Xong. Do prompt hệ thống, khối dữ liệu rỗng với dự án 0 bảng/0 nguồn, lỗi trần mềm token, Haiku trả lời bằng chữ",
+        "statusEn": "Done. System prompt text, empty data blocks (0 tables/0 sources), soft-cap bug, Haiku answered in words",
+        "prs": "",
+        "eta": "",
+        "evidence": "Báo cáo audit-smartiqc-turn.md"
+      },
+      {
+        "id": "T19",
+        "group": "AUDIT_DONE",
+        "title": "Audit tool và skill của lượt AI Studio",
+        "titleEn": "Audit: tools and skills of a Studio AI turn",
+        "status": "Xong. 0 tool, tool loop tắt và chưa từng chạy với model thật, không có cơ chế nạp skill",
+        "statusEn": "Done. 0 tools, tool loop OFF and never run with a real model, no skill loading",
+        "prs": "",
+        "eta": "",
+        "evidence": "Báo cáo audit-agent-tools-skills.md"
+      },
+      {
+        "id": "T20",
+        "group": "AUDIT_DONE",
+        "title": "Smoke tạo/sửa/xóa dữ liệu mẫu (managed data) trên PROD",
+        "titleEn": "Smoke: managed-data CRUD on PROD",
+        "status": "Xong 134 đạt / 1 lỗi nhỏ / 1 bị chặn; dự án thử đã xóa",
+        "statusEn": "Done 134 pass / 1 minor fail / 1 blocked; throwaway project removed",
+        "prs": "",
+        "eta": "",
+        "evidence": "Chưa chứng minh vai trò theo hàng ở LIVE (cần gán vai trò cho tài khoản QA)"
+      },
+      {
+        "id": "T21",
+        "group": "AUDIT_DONE",
+        "title": "Ghi nhận Owner chấp nhận 3 rủi ro còn lại của dữ liệu LIVE",
+        "titleEn": "Owner acceptance of 3 residual LIVE-data risks",
+        "status": "Đã ghi trên issue #88 (15:00)",
+        "statusEn": "Recorded on issue #88 (15:00)",
+        "prs": "",
+        "eta": "",
+        "evidence": ""
+      },
+      {
+        "id": "T22",
+        "group": "PLANNED",
+        "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
+        "titleEn": "S4: split large requests into resumable steps",
+        "status": "Chưa bắt đầu (sau S1–S3, cùng tệp)",
+        "statusEn": "Not started (after S1–S3, same files)",
+        "prs": "",
+        "eta": "PR sáng 10/11, lên PROD ~trưa",
+        "evidence": "Đề xuất từ audit"
+      },
+      {
+        "id": "T23",
+        "group": "PLANNED",
+        "title": "Bật tool loop (công cụ đọc tiếp) sau QA quyền, chi phí, giới hạn vòng",
+        "titleEn": "Enable the read tool loop after QA (permissions, cost, loop limits)",
+        "status": "Đang TẮT trên PROD; chưa bật",
+        "statusEn": "OFF in PROD; not enabled",
+        "prs": "",
+        "eta": "Sớm nhất chiều/tối 10/11",
+        "evidence": "6 cổng QA G1–G6 trong audit"
+      },
+      {
+        "id": "T24",
+        "group": "PLANNED",
+        "title": "Sửa file theo từng đoạn (patch theo vùng)",
+        "titleEn": "Patch-by-range file edits",
+        "status": "Chưa bắt đầu",
+        "statusEn": "Not started",
+        "prs": "",
+        "eta": "Khoảng 1–2 tuần",
+        "evidence": "Nút thắt lớn nhất với tệp HTML/JS dài"
+      },
+      {
+        "id": "T25",
+        "group": "PLANNED",
+        "title": "Gói công thức (skill) dựng web chọn theo ý định",
+        "titleEn": "Intent-selected recipe packs (skills)",
+        "status": "Chưa có cơ chế nạp skill; thiết kế đã nêu trong audit",
+        "statusEn": "No skill loading mechanism yet; design proposed in audit",
+        "prs": "",
+        "eta": "Sau S4",
+        "evidence": ""
+      },
+      {
+        "id": "T26",
+        "group": "PLANNED",
+        "title": "Nghiệm thu độc lập prompt Smart IQC dài trên DEV và PROD (dự án 0 bảng và dự án đã cấu hình dữ liệu)",
+        "titleEn": "Independent acceptance of the long Smart IQC prompt on DEV and PROD",
+        "status": "Sau khi S1–S3 có QA; trong hạn mức Haiku Owner đã cấp",
+        "statusEn": "After S1–S3 QA; within the Haiku allowance granted",
+        "prs": "",
+        "eta": "Sau đợt 10",
+        "evidence": ""
+      },
+      {
+        "id": "T27",
+        "group": "WAIT_OWNER",
+        "title": "Gán vai trò ứng dụng cho tài khoản QA để chứng minh quyền theo hàng ở LIVE",
+        "titleEn": "Assign app roles to QA personas to prove row-level LIVE permissions",
+        "status": "Chờ Owner duyệt riêng (là việc cấp quyền)",
+        "statusEn": "Waiting for a separate Owner approval (permission grant)",
+        "prs": "",
+        "eta": "",
+        "evidence": "Cần cho Smart IQC"
+      },
+      {
+        "id": "T28",
+        "group": "PARKED",
+        "title": "Tạm gác theo lệnh Owner (tập trung Studio): Admin tiếng Anh, gói 03b 05–08, X4, lưu theme theo tài khoản, phần AI của mục 17, hai việc F2/F3 của XApp hub",
+        "titleEn": "Parked by Owner (Studio focus): Admin English, 03b packages 05–08, X4, per-account theme, item 17 AI part, XApp hub F2/F3",
+        "status": "Tạm gác",
+        "statusEn": "Parked",
+        "prs": "",
+        "eta": "",
+        "evidence": ""
+      }
+    ]
+  }
 }
