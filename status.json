@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T16:48:05+07:00",
+  "asOf": "2026-11-09T17:05:07+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T16:48:05+07:00",
+    "updatedAt": "2026-11-09T17:05:07+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2711,6 +2711,29 @@
         "etaFirst": "Bản dùng được đầu tiên: ~13–14/11 (đọc cấu trúc dữ liệu đã được cấp quyền rồi gắn đúng bảng/trường vào giao diện; phụ thuộc cổng tool loop của T23)",
         "etaFull": "Bản hoàn chỉnh: ~21–25/11 (nhiều nguồn, kiểm quyền theo vai trò, chỉ đề xuất, người duyệt mới tạo)",
         "prio": 3
+      },
+      {
+        "id": "T32",
+        "group": "PLANNED",
+        "prio": 8,
+        "title": "Nhập HTML có sẵn → dựng lại bằng React → so sánh giao diện và chức năng với bản gốc",
+        "titleEn": "Import existing HTML → rebuild in React → compare look and behaviour with the original",
+        "status": "Chưa bắt đầu (mới ghi nhận). Hiện có: nhập tệp/zip HTML-CSS-JS hoặc src Vite/React thành dự án mới qua duyệt (đã kiểm trên PROD). Chưa có: AI dựng lại thành React có kế hoạch từng bước, chưa có so sánh giao diện/chức năng với bản gốc",
+        "statusEn": "Not started (just recorded). Exists: importing HTML/CSS/JS files or zip, or a Vite/React src, as a new reviewed project (checked on PROD). Missing: AI rebuild into React in planned steps, and any comparison of look and behaviour with the original",
+        "prs": "",
+        "eta": "",
+        "etaFirst": "Bản dùng được đầu tiên: ~24–28/11 (dựng lại thành React theo bước và so sánh giao diện bằng ảnh chụp cạnh nhau trên máy tính và điện thoại; phụ thuộc T22 và T24; công tắc TẮT)",
+        "etaFull": "Bản hoàn chỉnh: ~8–15/12 (so sánh chức năng: thao tác, biểu mẫu, điều hướng; báo cáo chênh lệch; nghiệm thu với trang thật)",
+        "evidence": "Căn cứ: mã nhập sẵn có (importing/ImportService, ImportPolicy); phụ thuộc T22 (bước), T24 (tệp HTML lớn), T26 (nghiệm thu thật)",
+        "accept": [
+          "Nhập một trang HTML tĩnh có sẵn (nhiều tệp, có CSS/JS) vào dự án mới, qua duyệt, không bỏ sót tệp",
+          "AI dựng lại thành React/Vite theo bước (kế hoạch từ T22), build chạy được",
+          "So sánh giao diện: ảnh chụp bản gốc và bản React ở cỡ máy tính và điện thoại, chênh lệch được đánh dấu và đo (ngưỡng đặt trước)",
+          "So sánh chức năng: các thao tác chính (liên kết, biểu mẫu, nút) cho kết quả tương đương; chênh lệch liệt kê rõ",
+          "Không chạy mã của bản gốc trong cổng nền tảng; mã nhập vẫn qua kiểm bảo mật và duyệt bốn mắt",
+          "Báo rõ phần giống, phần khác, phần không so sánh được; không tuyên bố tương đương khi chưa đo",
+          "QA độc lập GO trên SHA; công tắc TẮT mặc định cho tới khi đạt"
+        ]
       }
     ]
   }
