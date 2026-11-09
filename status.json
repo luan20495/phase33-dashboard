@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T19:13:32+07:00",
+  "asOf": "2026-11-09T19:18:42+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T19:13:32+07:00",
+    "updatedAt": "2026-11-09T19:18:42+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2549,9 +2549,9 @@
         "group": "PLANNED",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "Chia 2 phần, không tạo việc mới: T22-A (chạm trần 16.000 token: lỗi nằm ở đọc `finish_reason`, hiện báo nhầm là lỗi nhà cung cấp, khác NO_CHANGE) và T22-B (chia bước, lưu tiến độ, tiếp tục ở lượt sau). Chưa có PR",
-        "statusEn": "Split in two, no new item: T22-A (hits the 16,000-token cap: the bug is in how finish_reason is read, wrongly shown as a provider error, different from NO_CHANGE) and T22-B (split into steps, persist progress, continue next turn). No PR yet",
-        "prs": "",
+        "status": "T22-A có PR BE #197 (mã lỗi riêng OUTPUT_LIMIT_REACHED thay cho PROVIDER_UNAVAILABLE khi chạm trần; ghi finish_reason và token suy luận để xác nhận giả thuyết). Tác giả báo 49/49 test, hồi quy 122, 17/17 phá mã (REPORTED). QA/SEC độc lập đang chạy; FE PR (kind mới + vi/en) đang làm. T22-B chưa bắt đầu",
+        "statusEn": "T22-A has BE PR #197 (own code OUTPUT_LIMIT_REACHED instead of PROVIDER_UNAVAILABLE at the cap; records finish_reason and reasoning tokens to confirm the hypothesis). Author reports 49/49 tests, 122 regression, 17/17 mutants (REPORTED). Independent QA/SEC running; FE PR (new kind + vi/en) in progress. T22-B not started",
+        "prs": "BE #197 (a7dc8489, T22-A)",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
         "evidence": "Đề xuất từ audit",
         "etaFirst": "Ưu tiên 2 (T22-A, trần 16.000 token): agent BE đã bắt đầu 18:30; PR ~21:30, QA độc lập ~01:00, đợt 10 (10/11 ~13:00); ON khi lượt “xây mới IQC” thật không còn báo lỗi nhà cung cấp: ~10/11 14:00. T22-B (chia bước) sau đó: đợt 11 (11/11 ~15:00)",
@@ -2669,12 +2669,12 @@
         "group": "IN_PROGRESS",
         "title": "Tắt đường Code mode cũ (/code/ai) bằng công tắc mặc định TẮT; đọc tệp qua chính sách đọc, che bí mật",
         "titleEn": "Disable the legacy Code mode path behind a default-OFF switch; route file reads through ReadPolicy and mask secrets",
-        "status": "Chưa có PR; làm sau T22-A cùng agent (chung tệp). Không bật gì: công tắc `app.code.legacy-ai.enabled` mặc định TẮT",
-        "statusEn": "No PR yet; done after T22-A by the same agent (shared files). Nothing to enable: switch `app.code.legacy-ai.enabled` default OFF",
-        "prs": "",
+        "status": "Có PR BE #200: công tắc `app.code.legacy-ai.enabled` mặc định TẮT, /code/ai trả 404 thống nhất sau kiểm quyền, có dòng audit khi từ chối; F10: model không đọc được `src/xweb/**`. Tác giả báo 61/62 test, 12/13 phá mã (REPORTED). QA/SEC độc lập đang chạy; FE PR (ẩn composer cũ) đang làm. Trước deploy cần xác nhận không dự án PROD nào dùng composer cũ",
+        "statusEn": "BE PR #200: switch `app.code.legacy-ai.enabled` default OFF, /code/ai returns a uniform 404 after the access check, audit row on refusal; F10: the model cannot read `src/xweb/**`. Author reports 61/62 tests, 12/13 mutants (REPORTED). Independent QA/SEC running; FE PR (hide the old composer) in progress. Before deploy confirm no PROD project uses the old composer",
+        "prs": "BE #200 (b5f76252)",
         "eta": "Sau đợt 10",
         "evidence": "audit-sec-legacy-code-mode.md; 0 lượt chạy qua đường cũ trên PROD",
-        "etaFirst": "Ưu tiên 3. PR ~00:30 10/11, QA ~05:00, đợt 10 (10/11 ~13:00); xác nhận trên PROD Code mode AI trả từ chối: ~10/11 14:00",
+        "etaFirst": "Ưu tiên 3. PR có (19:25); QA độc lập ~20:15; đợt 10",
         "etaFull": "Ổn định ngay (đường chưa từng được dùng)",
         "etaFallback": "Dự phòng: đợt 11 (11/11)",
         "prio": 4
