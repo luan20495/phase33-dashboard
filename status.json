@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T14:47:32+07:00",
+  "asOf": "2026-11-09T15:55:25+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T16:00:00+07:00",
+    "updatedAt": "2026-11-09T15:55:25+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD và đã kiểm; không có nghĩa Owner đã nghiệm thu. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2480,13 +2480,13 @@
       },
       {
         "id": "T16",
-        "group": "IN_PROGRESS",
+        "group": "AUDIT_DONE",
         "title": "Kiểm bảo mật đường Code mode cũ (/code/ai, read_project_file)",
         "titleEn": "Security audit of the legacy Code mode",
-        "status": "Agent đang kiểm chỉ đọc",
-        "statusEn": "Read-only audit in progress",
+        "status": "Xong: tới được trên PROD, chưa từng được dùng, mức cao nhất P3, không P0/P1",
+        "statusEn": "Done: reachable on PROD, never used, highest P3, no P0/P1",
         "prs": "",
-        "eta": "~16:40",
+        "eta": "",
         "evidence": "Nghi: không dùng chính sách đọc, không che bí mật; chưa xác minh trên PROD"
       },
       {
@@ -2601,13 +2601,13 @@
       },
       {
         "id": "T27",
-        "group": "WAIT_OWNER",
+        "group": "IN_PROGRESS",
         "title": "Gán vai trò ứng dụng cho tài khoản QA để chứng minh quyền theo hàng ở LIVE",
         "titleEn": "Assign app roles to QA personas to prove row-level LIVE permissions",
-        "status": "Chờ Owner duyệt riêng (là việc cấp quyền)",
-        "statusEn": "Waiting for a separate Owner approval (permission grant)",
+        "status": "Owner đã duyệt (15:58); agent đang gán vai trò cho tài khoản QA trên dự án thử rồi chạy kiểm LIVE và thu hồi",
+        "statusEn": "Owner approved (15:58); agent assigning roles to QA personas on a throwaway project, running LIVE checks, then revoking",
         "prs": "",
-        "eta": "",
+        "eta": "~16:45",
         "evidence": "Cần cho Smart IQC"
       },
       {
@@ -2620,6 +2620,17 @@
         "prs": "",
         "eta": "",
         "evidence": ""
+      },
+      {
+        "id": "T29",
+        "group": "PLANNED",
+        "title": "Tắt đường Code mode cũ (/code/ai) bằng công tắc mặc định TẮT; đọc tệp qua chính sách đọc, che bí mật",
+        "titleEn": "Disable the legacy Code mode path behind a default-OFF switch; route file reads through ReadPolicy and mask secrets",
+        "status": "Audit bảo mật xong (mức cao nhất P3, chưa ai dùng đường này); đề xuất làm sau S1–S3",
+        "statusEn": "Security audit done (highest P3, path never used); proposed after S1–S3",
+        "prs": "",
+        "eta": "Sau đợt 10",
+        "evidence": "audit-sec-legacy-code-mode.md; 0 lượt chạy qua đường cũ trên PROD"
       }
     ]
   }
