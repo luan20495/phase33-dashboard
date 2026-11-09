@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T17:53:46+07:00",
+  "asOf": "2026-11-09T18:10:25+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T17:53:46+07:00",
+    "updatedAt": "2026-11-09T18:10:25+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2549,20 +2549,21 @@
         "group": "PLANNED",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "Chưa bắt đầu (sau S1–S3, cùng tệp) | Bằng chứng từ T26: yêu cầu xây mới lớn FAILED vì chạm trần 16.000 token; T22 phải chia bước và xử lý chạm trần",
-        "statusEn": "Not started (after S1–S3, same files)",
+        "status": "Chia 2 phần, không tạo việc mới: T22-A (chạm trần 16.000 token: lỗi nằm ở đọc `finish_reason`, hiện báo nhầm là lỗi nhà cung cấp, khác NO_CHANGE) và T22-B (chia bước, lưu tiến độ, tiếp tục ở lượt sau). Chưa có PR",
+        "statusEn": "Split in two, no new item: T22-A (hits the 16,000-token cap: the bug is in how finish_reason is read, wrongly shown as a provider error, different from NO_CHANGE) and T22-B (split into steps, persist progress, continue next turn). No PR yet",
         "prs": "",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
         "evidence": "Đề xuất từ audit",
-        "etaFirst": "Bản dùng được đầu tiên: 10/11 chiều (PR sáng, QA độc lập, lên PROD ~15:00–17:00), công tắc TẮT cho tới khi QA đạt",
-        "etaFull": "Bản hoàn chỉnh: ~13/11",
+        "etaFirst": "QA project: T22-A (trần 16.000 token, báo đúng lỗi) lên PROD đợt 10 (10/11 ~13:00); T22-B (chia bước, tiếp tục) lên PROD cờ TẮT đợt 11 (11/11 ~15:00), bật cho dự án QA ~16:30",
+        "etaFull": "Mọi user: ~14–15/11 sau 3 vòng T26 và đo chi phí thật",
         "accept": [
           "P0–P20 hoặc yêu cầu > ngưỡng không còn trả NO_CHANGE: lượt đầu tạo PLAN.md và file + build của bước 1",
           "Nêu rõ phần đã làm, phần cần cấu hình dữ liệu, bước tiếp theo; không tuyên bố đã tạo bảng hoặc tích hợp API khi chưa làm",
           "Lượt kế tiếp tiếp tục đúng bước từ PLAN.md; mất/đổi tệp PLAN.md được xử lý an toàn",
           "Công tắc tắt = hành vi cũ từng byte; QA độc lập GO trên SHA"
         ],
-        "prio": 2
+        "prio": 2,
+        "etaFallback": "Dự phòng: +6 giờ mỗi vòng QA lỗi: đợt 11 → 12/11 sáng; mọi user 16–18/11. Giờ công BE 91 / FE 28 / QA 28"
       },
       {
         "id": "T23",
@@ -2574,14 +2575,15 @@
         "prs": "",
         "eta": "Sớm nhất chiều/tối 10/11",
         "evidence": "6 cổng QA G1–G6 trong audit",
-        "etaFirst": "Bản dùng được đầu tiên: 11/11 tối đến 12/11 (sửa lỗi QA, 6 cổng quyền/chi phí/vòng, ~12 lượt Haiku thử); làm sau T22 vì cùng tệp",
-        "etaFull": "Bản hoàn chỉnh: ~15–18/11",
+        "etaFirst": "QA project: PR 10/11 ~14:00, QA 6 cổng xong 11/11 ~12:00, lên PROD cờ TẮT đợt 11, ~12 lượt Haiku → bật cho QA 11/11 ~19:00",
+        "etaFull": "Mọi user: 15–17/11 sau đo chi phí/lỗi và Owner duyệt bật cờ",
         "accept": [
           "G1 quyền (viewer/workspace khác bị từ chối đồng nhất, audit đủ), G2 chi phí (trần mỗi lượt, mỗi vòng tính tiền đúng), G3 giới hạn vòng, G4 chất lượng, G5 an toàn nội dung (không đọc tệp bí mật/nền tảng), G6 vận hành",
           "Chạy với model thật trên DEV và PROD, có số liệu trước/sau",
           "Chỉ bật sau QA độc lập GO; công tắc có đường tắt khẩn cấp"
         ],
-        "prio": 3
+        "prio": 3,
+        "etaFallback": "Dự phòng: P1 quyền/nội dung → dừng bật cờ, +1–2 ngày: mọi user 18–21/11. Giờ công BE 25 / QA 41"
       },
       {
         "id": "T24",
@@ -2593,15 +2595,16 @@
         "prs": "",
         "eta": "Khoảng 1–2 tuần",
         "evidence": "Nút thắt lớn nhất với tệp HTML/JS dài",
-        "etaFirst": "Bản dùng được đầu tiên: ~24–28/11 (sửa một đoạn liên tục trong tệp lớn)",
-        "etaFull": "Bản hoàn chỉnh: ~8–15/12",
+        "etaFirst": "QA project: sửa một đoạn: PR 12/11 ~16:00, lên PROD đợt 13 (14/11), bật QA 14/11",
+        "etaFull": "Mọi user: 19–22/11 sau lượt thật trên tệp lớn (cần T23 ổn định)",
         "accept": [
           "Sửa được tệp HTML/JS lớn (>24.000 byte) mà không viết lại cả tệp",
           "Chặn “viết lại sau khi chỉ đọc một phần” chỉ còn cho trường hợp không có vùng hợp lệ",
           "Vùng sai hoặc lệch bị từ chối rõ ràng, không ghi nửa chừng; hoàn tác được",
           "Test phá mã và QA độc lập GO"
         ],
-        "prio": 7
+        "prio": 7,
+        "etaFallback": "Dự phòng: 23–27/11. Giờ công BE 62 / FE 6 / QA 16"
       },
       {
         "id": "T25",
@@ -2613,15 +2616,16 @@
         "prs": "",
         "eta": "Sau S4",
         "evidence": "",
-        "etaFirst": "Công thức HTML→React (kéo lên để phục vụ T32): ~14–16/11. Ba gói còn lại (dashboard, CRUD dữ liệu managed, biểu mẫu): ~22–25/11",
-        "etaFull": "Bản hoàn chỉnh: ~1–5/12",
+        "etaFirst": "QA project: 3 gói đầu (HTML→React, CRUD dữ liệu managed, biểu mẫu) PR 13/11 ~12:00, lên PROD đợt 13 (14/11 ~14:00)",
+        "etaFull": "Mọi user: 19–21/11 sau đánh giá chất lượng bằng lượt thật",
         "accept": [
           "Mỗi gói ≤ 2–3 KB, có phiên bản, điều kiện áp dụng và test ghim kích thước",
           "Chọn bằng hàm thuần có test (tối đa 2 gói mỗi lượt), công tắc tắt = prompt cũ từng byte",
           "Kiểm bằng lượt AI thật: chất lượng đầu ra tốt hơn bản không có gói, không tăng lỗi build",
           "QA độc lập GO"
         ],
-        "prio": 6
+        "prio": 6,
+        "etaFallback": "Dự phòng: 23–27/11. Giờ công BE 32 / FE 4 / QA 30"
       },
       {
         "id": "T26",
@@ -2633,9 +2637,10 @@
         "prs": "",
         "eta": "Sau đợt 10",
         "evidence": "t26-round1-report.md (local)",
-        "etaFirst": "Vòng 1 (Haiku thật trên PROD, trong 20 lượt đã cho): TỐI NAY 09/11 ~19:30–21:00, ngay sau khi đợt 9 lên; kết quả là mốc trước/sau",
-        "etaFull": "Vòng đầy đủ (DEV: dự án 0 bảng và có bảng, prompt dài thật): 10/11 chiều tối, sau bản đầu T22; lặp lại sau mỗi mốc T22/T23",
-        "prio": 1
+        "etaFirst": "Dự án QA: vòng 1 xong 17:53 09/11; vòng 2 sau đợt 10 (10/11 ~13:00); vòng 3 sau T22-B (11/11 ~18:00)",
+        "etaFull": "Là mốc đo, kết thúc khi S1–S4 đạt trong bộ kịch bản",
+        "prio": 1,
+        "etaFallback": "Dự phòng: mỗi vòng chờ bản đã deploy; thiếu lượt Haiku thì dừng (còn 15, sẽ xin thêm ~30)"
       },
       {
         "id": "T27",
@@ -2668,7 +2673,10 @@
         "statusEn": "Security audit done (highest P3, path never used); proposed after S1–S3",
         "prs": "",
         "eta": "Sau đợt 10",
-        "evidence": "audit-sec-legacy-code-mode.md; 0 lượt chạy qua đường cũ trên PROD"
+        "evidence": "audit-sec-legacy-code-mode.md; 0 lượt chạy qua đường cũ trên PROD",
+        "etaFirst": "QA project: không áp dụng (khóa đường cũ). PR 10/11 ~06:00, lên PROD đợt 10",
+        "etaFull": "Ổn định ngay sau đợt 10 + kiểm Code mode AI trả từ chối",
+        "etaFallback": "Dự phòng: sau T22-A (cùng tệp); +6 giờ nếu QA lỗi. Giờ công BE 6 / QA 6 (ước tính)"
       },
       {
         "id": "T30",
@@ -2679,8 +2687,8 @@
         "statusEn": "Does not exist: no role selection, no tools, no skill loading today. Depends on T22 (steps), T23 (read tools) and T25 (skill packs). Not started",
         "prs": "",
         "eta": "",
-        "etaFirst": "Bản dùng được đầu tiên: ~4–8/12 (2 vai trò BA và Dev, công tắc TẮT)",
-        "etaFull": "Bản hoàn chỉnh: ~20/12–10/1",
+        "etaFirst": "QA project: 2 vai trò: PR 17/11, QA 18–19/11, lên PROD đợt 14 (19/11), bật QA 20/11",
+        "etaFull": "Mọi user: 26–30/11",
         "evidence": "Căn cứ: audit-agent-tools-skills.md (mặt phẳng agent hiện có là tính năng riêng, không nối với lượt builder)",
         "accept": [
           "Bộ phân loại chọn vai trò cho từng yêu cầu/bước và GHI lại lý do trong bản kê lượt chạy (người dùng thấy và đổi được)",
@@ -2690,7 +2698,8 @@
           "Chống chèn lệnh từ tệp dự án vào lựa chọn vai trò/tool; QA độc lập GO",
           "Nghiệm thu Smart IQC trên DEV và PROD: thấy vai trò đã chọn, tài liệu BA, bố cục UX, rồi mã bước đầu, build chạy"
         ],
-        "prio": 8
+        "prio": 8,
+        "etaFallback": "Dự phòng: 1–6/12; phụ thuộc runner T22-B. Giờ công BE 62 / FE 24 / QA 24"
       },
       {
         "id": "T31",
@@ -2708,9 +2717,10 @@
           "Chỉ đề xuất bảng/nguồn mới; người duyệt tạo; không tự cấp quyền",
           "Nghiệm thu Smart IQC trên DEV và PROD: 0 bảng và có bảng"
         ],
-        "etaFirst": "Bản dùng được đầu tiên: ~19–22/11 (cần cổng tool loop của T23 qua QA; đọc cấu trúc dữ liệu được cấp quyền và gắn vào giao diện)",
-        "etaFull": "Bản hoàn chỉnh: ~2–9/12",
-        "prio": 5
+        "etaFirst": "QA project: PR 12/11 ~20:00, lên PROD đợt 12 (13/11 ~12:00), bật QA 13/11",
+        "etaFull": "Mọi user: 18–20/11 (khối prompt); biến thể tool +2 ngày sau T23",
+        "prio": 5,
+        "etaFallback": "Dự phòng: 21–24/11. Giờ công BE 36 / FE 24 / QA 20"
       },
       {
         "id": "T32",
@@ -2718,12 +2728,12 @@
         "prio": 4,
         "title": "Nhập HTML có sẵn → dựng lại bằng React → so sánh giao diện và chức năng với bản gốc",
         "titleEn": "Import existing HTML → rebuild in React → compare look and behaviour with the original",
-        "status": "Chưa bắt đầu (mới ghi nhận). Hiện có: nhập tệp/zip HTML-CSS-JS hoặc src Vite/React thành dự án mới qua duyệt (đã kiểm trên PROD). Chưa có: AI dựng lại thành React có kế hoạch từng bước, chưa có so sánh giao diện/chức năng với bản gốc",
-        "statusEn": "Not started (just recorded). Exists: importing HTML/CSS/JS files or zip, or a Vite/React src, as a new reviewed project (checked on PROD). Missing: AI rebuild into React in planned steps, and any comparison of look and behaviour with the original",
+        "status": "Nhập HTML nguyên bản đã có sẵn và chạy: thử 18:03 với tệp thật (27 KB, 0 script): Preview và Publish riêng tư đúng nội dung; chỉ khác font Google bị chặn bởi chính sách nền tảng. Còn: cảnh báo tài nguyên ngoài, tải kèm font/ảnh, ZIP. Chuyển React + so sánh là phạm vi mở rộng (T32-b)",
+        "statusEn": "Importing HTML as-is already exists and works: tested 18:03 with the real file (27 KB, 0 scripts): Preview and private Publish show the right content; only difference is the Google font blocked by the platform policy. Remaining: external-resource warning, bundled fonts/images, ZIP. React conversion + comparison is the extended scope (T32-b)",
         "prs": "",
         "eta": "",
-        "etaFirst": "Bản dùng được đầu tiên: ~17–20/11 (công cụ so sánh trên Chrome làm song song từ 11/11; nhập, dựng React theo bước, ảnh chụp cạnh nhau máy tính/điện thoại; trang nhỏ và vừa; công tắc TẮT)",
-        "etaFull": "Bản hoàn chỉnh: ~28/11–5/12 (so sánh tương tác: liên kết, biểu mẫu, nút; trang lớn nhờ T24; báo cáo chênh lệch; nghiệm thu với trang thật)",
+        "etaFirst": "QA project: T32-a (nhập HTML nguyên bản: cảnh báo tài nguyên ngoài, tải kèm font/ảnh, ZIP) PR 10/11 ~18:00, lên PROD đợt 11 (11/11); đã thử đường nhập hiện có 18:03: tệp thật chạy đúng ở Preview/Publish riêng tư. T32-b (chuyển React + so sánh Chrome) 16–18/11",
+        "etaFull": "T32-a ổn định mọi user 12–13/11 (không cờ); T32-b 24–26/11",
         "evidence": "Căn cứ: mã nhập sẵn có (importing/ImportService, ImportPolicy); phụ thuộc T22 (bước), T24 (tệp HTML lớn), T26 (nghiệm thu thật)",
         "accept": [
           "Nhập một trang HTML tĩnh có sẵn (nhiều tệp, có CSS/JS) vào dự án mới, qua duyệt, không bỏ sót tệp",
@@ -2733,7 +2743,8 @@
           "Không chạy mã của bản gốc trong cổng nền tảng; mã nhập vẫn qua kiểm bảo mật và duyệt bốn mắt",
           "Báo rõ phần giống, phần khác, phần không so sánh được; không tuyên bố tương đương khi chưa đo",
           "QA độc lập GO trên SHA; công tắc TẮT mặc định cho tới khi đạt"
-        ]
+        ],
+        "etaFallback": "Dự phòng: T32-a 13–14/11, T32-b 28/11–2/12 (cần T22-B và T25). Giờ công a: BE 16 / FE 10 / QA 12; b: BE 20 / FE 20 / QA 24 (ước tính)"
       },
       {
         "id": "T33",
@@ -2744,8 +2755,8 @@
         "statusEn": "Reported by the Owner at 17:35 from real testing. Agent fixing: re-evaluate files rejected only for the count when room appears and clear the warning; mutant-proven test. No PR yet",
         "prs": "",
         "eta": "PR + QA độc lập: ước tính 09/11 ~20:30–21:30; lên PROD cùng đợt 10 (10/11 sáng) hoặc đợt riêng nếu Owner muốn ngay",
-        "etaFirst": "",
-        "etaFull": "",
+        "etaFirst": "PR #155 (sửa tự xét lại file bị từ chối) đang QA độc lập; lên PROD đợt 10 (10/11 ~13:00)",
+        "etaFull": "Ổn định ngay sau đợt 10 + kiểm chuỗi thật; nâng trên 3 file là việc riêng (FE ~6, BE ~4, QA ~6)",
         "evidence": "Báo cáo của Owner (ảnh trước/sau khi xóa file)",
         "accept": [
           "Đã có 3 file sẵn sàng + file thứ 4 bị từ chối vì tối đa 3: xóa một file sẵn sàng thì file thứ 4 tự được xét lại và thành sẵn sàng (hoặc có nút Thử lại hoạt động)",
@@ -2753,7 +2764,8 @@
           "File bị từ chối vì lý do khác (quá lớn, sai loại, vượt tổng ký tự) vẫn bị từ chối",
           "Có thông báo trạng thái cho trình đọc màn hình; không chuỗi cứng tiếng Việt; tiếng Anh/Việt đủ",
           "Test thất bại khi bỏ bản sửa; QA độc lập GO"
-        ]
+        ],
+        "etaFallback": "Dự phòng: +6 giờ nếu QA lỗi"
       }
     ]
   }
