@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T12:39:31+07:00",
+  "asOf": "2026-11-09T13:29:43+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1498,7 +1498,7 @@
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt BE #173: QA/SEC độc lập PASS/PASS (VERIFIED). Theme FE #127: QA độc lập FAIL 1 lỗi P2 (nút trung tính XApp chế độ tối mất chữ khi rê chuột), SEC PASS, DEV đang sửa. Song ngữ FE #126/#128/#129: QA PASS/SEC PASS từng PR, đã sửa các lỗi gộp chuỗi, QA delta đang chạy. Owner 09/11 07:09 yêu cầu XApp là nơi duy nhất đổi theme/ngôn ngữ; báo Apps chưa nhận phiên XApp. C0 đo trên PROD (chạy chỉ-đọc, trình duyệt sạch): bấm từ XApp và mở link trực tiếp đều vào được, đăng xuất ở XApp kết thúc Apps và Studio; chốt chặn chống lặp theo tab tái hiện được khiến Apps hiện nút Đăng nhập. Mã sửa chưa có, chưa QA độc lập. FE #143: agent tự chạy (REPORTED, harness giả, không phải Keycloak thật): 5 cổng bật 69/69 PASS, gate:frontend và combined-check xanh; CHƯA có QA/SEC độc lập. QA/SEC độc lập FE #143 + BE #188: GO-WITH-CONDITIONS, không P0 (VERIFIED). Smoke PROD sau deploy (C0, chỉ đọc): 4 cổng Apps/Platform/Admin/Studio không còn nút Đăng xuất và có liên kết về XApp; cookie dùng chung ghi ở tên miền cha; XApp → Apps vào đúng phiên; đăng xuất tại XApp kết thúc phiên Apps và Studio. Còn: F2 (XApp không với tới thì không đăng xuất được ở 4 cổng) và F3 (câu đăng xuất một phần) P2; chưa kiểm Keycloak cho mọi người dùng, Safari/Firefox, điện thoại; Owner nghiệm thu.",
       "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập. Đợt 5 (08/11 20:29) lên PROD gồm sửa đăng xuất (BE #176 + FE #133); route khám phá dữ liệu N-1 (BE #173) lên PROD với cờ TẮT. Theme Apps + XApp (FE #127, 23:16) và Platform + Admin (FE #131 + BE #178, 23:52) QA/SEC độc lập PASS/PASS, đã merge dev 09/11; chưa lên PROD (công tắc TẮT). QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc theme + ngôn ngữ và route khám phá dữ liệu bật; smoke PROD 52/52 (4 cổng) và khám phá dữ liệu PASS. 09/11 08:20: FE #143 (XApp là nơi duy nhất đổi theme/ngôn ngữ/chuyển cổng/đăng xuất + sửa chốt chặn đăng nhập Apps) mở vào dev, sau công tắc build mặc định TẮT; chưa QA độc lập, chưa lên PROD. 09/11 09:2x: BE #188 (nửa hạ tầng của công tắc XApp-hub, không migration) mở cùng FE #143; Owner chấp nhận lần đầu lưu theo trình duyệt, chưa theo tài khoản. QA/SEC độc lập đang chạy. Đợt 7 (09/11 12:32): FE #143 + BE #188 (XApp là nơi duy nhất đổi theme/ngôn ngữ/chuyển cổng/đăng xuất; sửa chốt chặn đăng nhập Apps) đã lên PROD và BẬT.",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "Owner UAT bản XApp hub; sửa F2/F3 (liên kết Đăng xuất tại XApp, câu thông báo); lưu theme/ngôn ngữ theo tài khoản (cần endpoint BE + migration ≥ V98); 17b phần AI.",
+      "next": "Owner UAT bản XApp hub; sửa F2/F3 (liên kết Đăng xuất tại XApp, câu thông báo); lưu theme/ngôn ngữ theo tài khoản (cần endpoint BE + migration ≥ V98); 17b phần AI. Owner 09/11 13:25: tiếng Anh/Việt còn sót nhiều (quét PROD ở English: Home Studio 36 chuỗi, vỏ Admin, Apps...); đã giao 3 agent chia vùng, bài chặn quay lại, test English phải ra 0 chuỗi Việt.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1565,10 +1565,10 @@
         ]
       },
       "progress": {
-        "percent": 85,
+        "percent": 80,
         "basis": "estimate",
-        "note": "Theme + ngôn ngữ ON; XApp hub ON 09/11 12:32 (QA độc lập GO có điều kiện, smoke PROD). Còn: lưu theo tài khoản, phủ ngôn ngữ tiếng Anh, 17b AI, Owner nghiệm thu. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T12:39:31+07:00"
+        "note": "Theme + ngôn ngữ + XApp hub ON; phủ tiếng Anh còn thiếu nhiều (khoảng 3.100 dòng mã còn chữ Việt cứng, đo trên FE dev 09/11), đang sửa. Ước lượng, chưa phải số đo.",
+        "reportedAt": "2026-11-09T13:29:43+07:00"
       }
     },
     {
