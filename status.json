@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T17:29:55+07:00",
+  "asOf": "2026-11-09T17:35:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T17:29:55+07:00",
+    "updatedAt": "2026-11-09T17:35:49+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2733,6 +2733,26 @@
           "Không chạy mã của bản gốc trong cổng nền tảng; mã nhập vẫn qua kiểm bảo mật và duyệt bốn mắt",
           "Báo rõ phần giống, phần khác, phần không so sánh được; không tuyên bố tương đương khi chưa đo",
           "QA độc lập GO trên SHA; công tắc TẮT mặc định cho tới khi đạt"
+        ]
+      },
+      {
+        "id": "T33",
+        "group": "IN_PROGRESS",
+        "title": "Lỗi đính kèm: sau khi xóa bớt file, file bị từ chối vì “tối đa 3” vẫn nằm lại cùng cảnh báo",
+        "titleEn": "Attachment bug: after deleting a file, the file rejected for the max-3 rule stays rejected and the warning stays",
+        "status": "Owner báo 17:35 qua thử nghiệm thật. Agent đang làm bản sửa: tự xét lại file bị từ chối vì số lượng khi có chỗ trống và xóa cảnh báo; có test sai-khi-bỏ-sửa. Chưa có PR",
+        "statusEn": "Reported by the Owner at 17:35 from real testing. Agent fixing: re-evaluate files rejected only for the count when room appears and clear the warning; mutant-proven test. No PR yet",
+        "prs": "",
+        "eta": "PR + QA độc lập: ước tính 09/11 ~20:30–21:30; lên PROD cùng đợt 10 (10/11 sáng) hoặc đợt riêng nếu Owner muốn ngay",
+        "etaFirst": "",
+        "etaFull": "",
+        "evidence": "Báo cáo của Owner (ảnh trước/sau khi xóa file)",
+        "accept": [
+          "Đã có 3 file sẵn sàng + file thứ 4 bị từ chối vì tối đa 3: xóa một file sẵn sàng thì file thứ 4 tự được xét lại và thành sẵn sàng (hoặc có nút Thử lại hoạt động)",
+          "Cảnh báo “tối đa 3” biến mất khi số file dưới giới hạn",
+          "File bị từ chối vì lý do khác (quá lớn, sai loại, vượt tổng ký tự) vẫn bị từ chối",
+          "Có thông báo trạng thái cho trình đọc màn hình; không chuỗi cứng tiếng Việt; tiếng Anh/Việt đủ",
+          "Test thất bại khi bỏ bản sửa; QA độc lập GO"
         ]
       }
     ]
