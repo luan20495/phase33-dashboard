@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T04:30:09+07:00",
+  "asOf": "2026-11-10T05:30:12+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-10T04:30:09+07:00",
+    "updatedAt": "2026-11-10T05:30:12+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2797,7 +2797,7 @@
         "prio": 1,
         "title": "Studio Project: 1 Header + ☰ ghim (Apple/Google), bỏ logo X, menu ⋯, Mở bằng IDE",
         "titleEn": "Studio Project: one Header + pinned ☰ sidebar (Apple/Google), remove X logo, ⋯ menu, Open in IDE",
-        "status": "03:42: FE #164 QA độc lập delta GO-WITH-CONDITIONS (VERIFIED: C1 đóng: huy hiệu ở mọi cỡ, 0 sai khác ở 1440/1100/1024/768/600/390 × 4 vai trò; C2 đóng: 12 đường × 2 vai trò × 2 cỡ = 48 trang đều 1 header 60px, 0 X/⋯/IDE/tab cũ; gate đầy đủ xanh, 5.658 test, spec 89/89 + 4 spec cũ, mutants bị bắt) và ĐÃ MERGE dev (chưa lên PROD). KHÔNG đánh dấu DONE: T35b (page-app, FE #165) còn đang QA nên 'đạt 0 X/0 ⋯/0 IDE cho mọi màn /studio/projects/...' chưa thể khẳng định. P3: tràn ngang 10px ở /code trên 390px; nút Mở tab mới 40px. Chờ Owner: 'Thu gọn kết quả' bị bỏ, 'Cài đặt' là nhóm, công tắc riêng. Mirror BE + combined-check cặp cuối đang làm",
+        "status": "03:42: FE #164 QA độc lập delta GO-WITH-CONDITIONS (VERIFIED: C1 đóng: huy hiệu ở mọi cỡ, 0 sai khác ở 1440/1100/1024/768/600/390 × 4 vai trò; C2 đóng: 12 đường × 2 vai trò × 2 cỡ = 48 trang đều 1 header 60px, 0 X/⋯/IDE/tab cũ; gate đầy đủ xanh, 5.658 test, spec 89/89 + 4 spec cũ, mutants bị bắt) và ĐÃ MERGE dev (chưa lên PROD). KHÔNG đánh dấu DONE: T35b (page-app, FE #165) còn đang QA nên 'đạt 0 X/0 ⋯/0 IDE cho mọi màn /studio/projects/...' chưa thể khẳng định. P3: tràn ngang 10px ở /code trên 390px; nút Mở tab mới 40px. Chờ Owner: 'Thu gọn kết quả' bị bỏ, 'Cài đặt' là nhóm, công tắc riêng. Mirror BE + combined-check cặp cuối đang làm | 05:30: T35b FE #165 QA GO-WITH-CONDITIONS (0 P1, không mất tính năng; 2 P2: header tràn ≤390px khi người xem bật Dùng thử; wave3 chế độ cờ BẬT bỏ sót ~109/148 điểm kiểm): tác giả đang sửa → đợt 13. Đợt 12 chỉ có T35 (màn Open Lovable): QA tích hợp đang chạy, deploy dự kiến 06:30–07:30",
         "statusEn": "00:45: FE PR #164 opened (Open Lovable project page: one 60px header, pinned ☰, 0 X logo, 0 ⋯, 0 Open in IDE; menu opens the real tabs/routes; 3 default quick actions, max 4). Author reports (REPORTED): gate:frontend green, new header spec 72/72 (5 widths × 4 roles), edit-layout spec ported 73/73, unit 5,664, mutants caught, 59 before/after screenshots. Uses the existing compact-layout flag (ON on PROD since release 7). Independent QA/SEC + E2E running. SCOPE: page-app screens (ProjectWorkspace, BuilderTopBar) keep the old header → handed to T35b (PR stacked on #164). Owner questions: the pane bar's 'fold the result' button is gone (chat fold remains), 'Cài đặt' is a group of 3 entries, whether a dedicated kill switch is wanted",
         "prs": "FE #164 (489b300b, ĐÃ MERGE dev; FE dev 83ca6787), T35b FE #165 (cd39f050)",
         "eta": "",
