@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T19:52:01+07:00",
+  "asOf": "2026-11-09T20:02:46+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T19:52:01+07:00",
+    "updatedAt": "2026-11-09T20:02:46+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2549,8 +2549,8 @@
         "group": "PLANNED",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "BE #197 (948d156c): QA độc lập GO-WITH-CONDITIONS trên a7dc8489, tác giả đã sửa (lưu errorCode cả ca bị cắt, sửa tài liệu, test cooldown; 20/20 phá mã REPORTED); QA delta đang chạy; FE PR (kind outputLimit vi/en) bắt buộc đi cùng, đang làm. Chưa merge",
-        "statusEn": "T22-A has BE PR #197 (own code OUTPUT_LIMIT_REACHED instead of PROVIDER_UNAVAILABLE at the cap; records finish_reason and reasoning tokens to confirm the hypothesis). Author reports 49/49 tests, 122 regression, 17/17 mutants (REPORTED). Independent QA/SEC running; FE PR (new kind + vi/en) in progress. T22-B not started",
+        "status": "20:02: BE #197 (948d156c) QA độc lập delta GO-WITH-CONDITIONS, ĐÃ MERGE dev (BE dev beb01e09). Điều kiện còn lại: FE PR (kind outputLimit vi/en) phải cùng đợt; agent FE đang làm. Chưa lên PROD. Giả thuyết token suy luận chưa xác minh (sẽ đọc manifest sau lượt thật)",
+        "statusEn": "20:02: BE #197 (948d156c) independent QA delta GO-WITH-CONDITIONS, MERGED to dev (BE dev beb01e09). Remaining condition: the FE PR (outputLimit kind vi/en) must ship in the same release; FE agent working. Not on PROD yet. Reasoning-token hypothesis still unverified (to be read from the manifest after a real turn)",
         "prs": "BE #197 (a7dc8489, T22-A)",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
         "evidence": "Đề xuất từ audit",
@@ -2669,8 +2669,8 @@
         "group": "IN_PROGRESS",
         "title": "Tắt đường Code mode cũ (/code/ai) bằng công tắc mặc định TẮT; đọc tệp qua chính sách đọc, che bí mật",
         "titleEn": "Disable the legacy Code mode path behind a default-OFF switch; route file reads through ReadPolicy and mask secrets",
-        "status": "BE #200 (8da0d7a0): QA độc lập GO-WITH-CONDITIONS trên b5f76252, tác giả đã sửa (công tắc StrictFlag, giới hạn 30 dòng audit/phút, sửa tài liệu; 6 phá mã mới REPORTED); QA delta đang chạy; FE PR (thông báo + ẩn composer cũ) đang làm. C1 đã kiểm trên PROD 19:52: 0 lượt dùng Code mode cũ, 0 lệnh gọi công cụ (VERIFIED, SQL chỉ đọc)",
-        "statusEn": "BE PR #200: switch `app.code.legacy-ai.enabled` default OFF, /code/ai returns a uniform 404 after the access check, audit row on refusal; F10: the model cannot read `src/xweb/**`. Author reports 61/62 tests, 12/13 mutants (REPORTED). Independent QA/SEC running; FE PR (hide the old composer) in progress. Before deploy confirm no PROD project uses the old composer",
+        "status": "20:02: BE #200 (8da0d7a0) QA độc lập delta GO-WITH-CONDITIONS (C2/C3/C4 đóng), ĐÃ MERGE dev. C1 VERIFIED 19:52 (0 lượt dùng cũ). Điều kiện còn lại: FE PR (thông báo + ẩn composer cũ) cùng đợt. Chưa lên PROD; PROD luôn TẮT đường cũ vì compose không truyền biến",
+        "statusEn": "20:02: BE #200 (8da0d7a0) independent QA delta GO-WITH-CONDITIONS (C2/C3/C4 closed), MERGED to dev. C1 VERIFIED 19:52 (0 legacy runs). Remaining condition: FE PR (notice + hide old composer) in the same release. Not on PROD yet; PROD always has the old path OFF because compose does not pass the variable",
         "prs": "BE #200 (b5f76252)",
         "eta": "Sau đợt 10",
         "evidence": "audit-sec-legacy-code-mode.md; 0 lượt chạy qua đường cũ trên PROD",
