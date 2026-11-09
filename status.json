@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T13:29:43+07:00",
+  "asOf": "2026-11-09T14:47:32+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -427,7 +427,7 @@
       "flag": "ON",
       "risk": "LOW",
       "integrated": true,
-      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 25/31 tiêu chí PASS, 2 FAIL (nút phản hồi nổi che nút mở hàng đợi ở 375/768 px; hàng đợi chưa có thời gian từng job), 1 BLOCKED, 1 NOT_RUN. Giới hạn byte, bản nháp, lịch sử >20.000 ký tự và hàng đợi gửi đúng đuôi đã được kiểm với backend thật. Chưa xong 100%: còn lỗi giao diện và chờ Owner nghiệm thu",
+      "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 25/31 tiêu chí PASS, 2 FAIL (nút phản hồi nổi che nút mở hàng đợi ở 375/768 px; hàng đợi chưa có thời gian từng job), 1 BLOCKED, 1 NOT_RUN. Giới hạn byte, bản nháp, lịch sử >20.000 ký tự và hàng đợi gửi đúng đuôi đã được kiểm với backend thật. Chưa xong 100%: còn lỗi giao diện và chờ Owner nghiệm thu 09/11 14:39 (đợt 8, release 03caf5a0c0e3, VERIFIED): câu trả lời của AI không còn bị cắt ở 500/2.000 ký tự, giới hạn mới 48.000 ký tự (BE #192, QA/SEC độc lập GO có điều kiện, không P0/P1; migration V98 đổi cột lưu sang TEXT). Kiểm trên PROD bằng 2 lượt Haiku thật: câu trả lời dài 12.610 ký tự hiện trọn và giống hệt sau khi tải lại; tệp HTML đính kèm 98.290 ký tự được đọc tới dòng cuối, không cảnh báo cắt.",
       "prs": "FE #56 · FE #85 + BE #133 DEPLOYED PROD 18:14 (R4e, V86) · Master #88",
       "summary": "ĐÃ KIỂM PROD (PASS trong phạm vi): nháp giữ sau reload; gửi Haiku và sửa mã; reload ở giây 1,5 khi job RUNNING rồi tự nối lại, lượt AI hoàn tất. Không có feature flag riêng. File đính kèm, đa người dùng và các ca chưa chạy vẫn mở.",
       "next": "Quyết định Owner: nâng trần thân yêu cầu trả phí (giới hạn hiệu lực 60.000 byte); pha B (AI đọc nhiều lượt bằng công cụ) chưa giao.",
@@ -501,7 +501,7 @@
         "percent": 100,
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
-        "reportedAt": "2026-11-07T08:30:08+07:00"
+        "reportedAt": "2026-11-09T14:47:32+07:00"
       }
     },
     {
@@ -1663,7 +1663,7 @@
       "flag": "Home ON (08/11 16:30); khung kéo thả ON (09/11 ~01:52) | bố cục Edit gọn ON (09/11 12:32, đợt 7, FE_EDIT_LAYOUT_UI)",
       "risk": "LOW",
       "integrated": true,
-      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38. Thử thật trên PROD 09/11 (kịch bản chỉ-đọc, tài khoản QA, không gửi lượt AI nào, 0 yêu cầu ghi): kéo bằng CHUỘT THẬT làm rộng khung trò chuyện (30% → 47%), kéo quá mức bị chặn ở 21%/60%, thả chuột thì khung không còn đi theo, tải lại vẫn nhớ độ rộng, bấm đúp thanh kéo và nút đặt lại về 30%, thu gọn/mở lại hai khung bằng chuột giữ nguyên ô nhập, cửa sổ ≤ 900 px ẩn thanh kéo (công tắc Trò chuyện/Kết quả), kéo cảm ứng mô phỏng qua CDP đổi được độ rộng; 17/17 điểm kiểm PASS (do C0 chạy, chưa phải QA độc lập). CHƯA: cảm ứng thật trên thiết bị, bố cục phải-sang-trái, Owner nghiệm thu. FE #144: agent tự chạy (REPORTED, harness giả, không AI thật): spec mới 86/86, gate:frontend và combined-check xanh; CHƯA có QA/SEC độc lập. Phát hiện trên PROD (chỉ đọc): menu Cài đặt ở header mở dưới vùng làm việc, bấm chuột có thể trượt mục đầu; bản vá đang làm. QA/SEC độc lập FE #144 + BE #189: GO-WITH-CONDITIONS, không P0/P1 (VERIFIED); FE #145: GO (VERIFIED). Smoke PROD sau deploy (C0, chỉ đọc): header chỉ còn tên, trạng thái lưu, Xuất bản và menu; thanh Preview một hàng; khung web 612 px và ô prompt cùng thấy khi mở. Còn 2 P2 (Bỏ thay đổi chưa khóa khi đang gửi; cảnh báo lượt chạy nằm trong khối đóng) sửa ở FE #148; chưa kiểm cảm ứng thật, Safari/Firefox; Owner nghiệm thu.",
+      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38. Thử thật trên PROD 09/11 (kịch bản chỉ-đọc, tài khoản QA, không gửi lượt AI nào, 0 yêu cầu ghi): kéo bằng CHUỘT THẬT làm rộng khung trò chuyện (30% → 47%), kéo quá mức bị chặn ở 21%/60%, thả chuột thì khung không còn đi theo, tải lại vẫn nhớ độ rộng, bấm đúp thanh kéo và nút đặt lại về 30%, thu gọn/mở lại hai khung bằng chuột giữ nguyên ô nhập, cửa sổ ≤ 900 px ẩn thanh kéo (công tắc Trò chuyện/Kết quả), kéo cảm ứng mô phỏng qua CDP đổi được độ rộng; 17/17 điểm kiểm PASS (do C0 chạy, chưa phải QA độc lập). CHƯA: cảm ứng thật trên thiết bị, bố cục phải-sang-trái, Owner nghiệm thu. FE #144: agent tự chạy (REPORTED, harness giả, không AI thật): spec mới 86/86, gate:frontend và combined-check xanh; CHƯA có QA/SEC độc lập. Phát hiện trên PROD (chỉ đọc): menu Cài đặt ở header mở dưới vùng làm việc, bấm chuột có thể trượt mục đầu; bản vá đang làm. QA/SEC độc lập FE #144 + BE #189: GO-WITH-CONDITIONS, không P0/P1 (VERIFIED); FE #145: GO (VERIFIED). Smoke PROD sau deploy (C0, chỉ đọc): header chỉ còn tên, trạng thái lưu, Xuất bản và menu; thanh Preview một hàng; khung web 612 px và ô prompt cùng thấy khi mở. Còn 2 P2 (Bỏ thay đổi chưa khóa khi đang gửi; cảnh báo lượt chạy nằm trong khối đóng) sửa ở FE #148; chưa kiểm cảm ứng thật, Safari/Firefox; Owner nghiệm thu. 09/11: nợ test Studio đã xử lý (FE #152 vào dev): 13 lỗi cũ là test lỗi thời hoặc lệnh dựng sai, không có lỗi sản phẩm; studio-lovable 348/348. FE #148 (hai P2) gate xanh, chưa lên PROD.",
       "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev. Đợt 5 (08/11 20:29) đưa mã khung kéo thả lên PROD ở trạng thái TẮT; cặp công tắc PROD (FE #130 + BE #177) đang QA độc lập. QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc khung kéo thả bật 01:52, smoke khung kéo thả PASS (bằng phím, chưa thử kéo chuột trên PROD). 09/11 09:2x: FE #144 (bố cục Edit gọn: menu ..., thanh Preview một hàng, chi tiết lượt chạy; công tắc build mặc định TẮT) mở vào dev; chưa QA độc lập, chưa lên PROD. Đợt 7 (09/11 12:32): FE #144 + BE #189 (bố cục Edit gọn) và FE #145 (sửa menu Cài đặt) đã lên PROD; FE #148 (2 P2) chưa.",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
       "next": "Owner UAT; hoàn tất và đưa FE #148 (2 P2) lên PROD; cảm ứng thật.",
@@ -1730,7 +1730,7 @@
         "percent": 97,
         "basis": "estimate",
         "note": "Home + khung kéo thả + bố cục Edit gọn ON (đợt 7 12:32, QA độc lập GO có điều kiện). Còn: 2 P2 (FE #148), cảm ứng thật, Owner nghiệm thu. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T12:39:31+07:00"
+        "reportedAt": "2026-11-09T14:47:32+07:00"
       }
     }
   ],
