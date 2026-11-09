@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T16:42:47+07:00",
+  "asOf": "2026-11-09T16:48:05+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T16:42:47+07:00",
+    "updatedAt": "2026-11-09T16:48:05+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2554,14 +2554,15 @@
         "prs": "",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
         "evidence": "Đề xuất từ audit",
-        "etaFirst": "Bản dùng được đầu tiên: lên PROD ~13:00–15:00 ngày 10/11 (kế hoạch PLAN.md + tạo và build file bước 1 + “tiếp tục” ở lượt sau; công tắc mặc định TẮT cho tới khi QA đạt)",
-        "etaFull": "Bản hoàn chỉnh: ~12–13/11 (trạng thái bước tự động, hiển thị bước trên giao diện, build kiểm từng bước, nhiều dự án, QA độc lập đầy đủ)",
+        "etaFirst": "Bản dùng được đầu tiên: ~10/11 chiều (PR sáng, QA độc lập, lên PROD ~15:00–17:00), công tắc mặc định TẮT cho tới khi QA đạt",
+        "etaFull": "Bản hoàn chỉnh: ~13/11",
         "accept": [
           "P0–P20 hoặc yêu cầu > ngưỡng không còn trả NO_CHANGE: lượt đầu tạo PLAN.md và file + build của bước 1",
           "Nêu rõ phần đã làm, phần cần cấu hình dữ liệu, bước tiếp theo; không tuyên bố đã tạo bảng hoặc tích hợp API khi chưa làm",
           "Lượt kế tiếp tiếp tục đúng bước từ PLAN.md; mất/đổi tệp PLAN.md được xử lý an toàn",
           "Công tắc tắt = hành vi cũ từng byte; QA độc lập GO trên SHA"
-        ]
+        ],
+        "prio": 2
       },
       {
         "id": "T23",
@@ -2573,13 +2574,14 @@
         "prs": "",
         "eta": "Sớm nhất chiều/tối 10/11",
         "evidence": "6 cổng QA G1–G6 trong audit",
-        "etaFirst": "Bản dùng được đầu tiên: bật tool loop sẵn có (3 công cụ đọc: list/search/read) trên PROD sau 6 cổng QA G1–G6 và ~12 lượt Haiku thử: sớm nhất tối 10/11 hoặc 11/11 (cần vá lỗi “hết chỗ thì dừng mất tiền” và xung đột giao thức JSON với định dạng đầu ra)",
-        "etaFull": "Bản hoàn chỉnh: ~15–18/11 (giới hạn vòng/dung lượng cấu hình được, ghép với các bước S4, công cụ đọc schema, đo chi phí thật, QA độc lập đầy đủ)",
+        "etaFirst": "Bản dùng được đầu tiên: ~11/11 tối đến 12/11 (sửa lỗi QA: dừng mất tiền khi hết chỗ, xung đột giao thức JSON; 6 cổng QA; ~12 lượt Haiku thử)",
+        "etaFull": "Bản hoàn chỉnh: ~15–18/11",
         "accept": [
           "G1 quyền (viewer/workspace khác bị từ chối đồng nhất, audit đủ), G2 chi phí (trần mỗi lượt, mỗi vòng tính tiền đúng), G3 giới hạn vòng, G4 chất lượng, G5 an toàn nội dung (không đọc tệp bí mật/nền tảng), G6 vận hành",
           "Chạy với model thật trên DEV và PROD, có số liệu trước/sau",
           "Chỉ bật sau QA độc lập GO; công tắc có đường tắt khẩn cấp"
-        ]
+        ],
+        "prio": 4
       },
       {
         "id": "T24",
@@ -2591,14 +2593,15 @@
         "prs": "",
         "eta": "Khoảng 1–2 tuần",
         "evidence": "Nút thắt lớn nhất với tệp HTML/JS dài",
-        "etaFirst": "Bản dùng được đầu tiên: sửa MỘT đoạn liên tục trong tệp lớn (kiểm tra khớp ngữ cảnh, từ chối khi lệch): ~17–20/11",
-        "etaFull": "Bản hoàn chỉnh: ~25/11–2/12 (nhiều đoạn, xung đột, hoàn tác, ghép với tool loop, QA độc lập đầy đủ, 3–4 ngày QA)",
+        "etaFirst": "Bản dùng được đầu tiên: ~19–21/11 (sửa một đoạn liên tục trong tệp lớn)",
+        "etaFull": "Bản hoàn chỉnh: ~28/11–3/12",
         "accept": [
           "Sửa được tệp HTML/JS lớn (>24.000 byte) mà không viết lại cả tệp",
           "Chặn “viết lại sau khi chỉ đọc một phần” chỉ còn cho trường hợp không có vùng hợp lệ",
           "Vùng sai hoặc lệch bị từ chối rõ ràng, không ghi nửa chừng; hoàn tác được",
           "Test phá mã và QA độc lập GO"
-        ]
+        ],
+        "prio": 6
       },
       {
         "id": "T25",
@@ -2610,14 +2613,15 @@
         "prs": "",
         "eta": "Sau S4",
         "evidence": "",
-        "etaFirst": "Bản dùng được đầu tiên: 3 gói (dashboard, CRUD với dữ liệu managed, biểu mẫu) chọn theo ý định: ~14/11",
-        "etaFull": "Bản hoàn chỉnh: 8–10 gói có ngân sách kích thước, đo hiệu quả: ~20/11",
+        "etaFirst": "Bản dùng được đầu tiên: ~14–15/11 (3 gói chọn theo ý định)",
+        "etaFull": "Bản hoàn chỉnh: ~20–22/11",
         "accept": [
           "Mỗi gói ≤ 2–3 KB, có phiên bản, điều kiện áp dụng và test ghim kích thước",
           "Chọn bằng hàm thuần có test (tối đa 2 gói mỗi lượt), công tắc tắt = prompt cũ từng byte",
           "Kiểm bằng lượt AI thật: chất lượng đầu ra tốt hơn bản không có gói, không tăng lỗi build",
           "QA độc lập GO"
-        ]
+        ],
+        "prio": 5
       },
       {
         "id": "T26",
@@ -2628,7 +2632,10 @@
         "statusEn": "After S1–S3 QA; within the Haiku allowance granted",
         "prs": "",
         "eta": "Sau đợt 10",
-        "evidence": ""
+        "evidence": "",
+        "etaFirst": "Vòng 1 (Haiku thật trên PROD, trong 20 lượt đã cho): 10/11 tối nay ~19:30–21:00, ngay sau khi đợt 9 lên (~18:45)",
+        "etaFull": "Vòng đầy đủ (DEV: dự án 0 bảng và có bảng, prompt dài thật): ~11/11, sau bản đầu của T22",
+        "prio": 1
       },
       {
         "id": "T27",
@@ -2672,8 +2679,8 @@
         "statusEn": "Does not exist: no role selection, no tools, no skill loading today. Depends on T22 (steps), T23 (read tools) and T25 (skill packs). Not started",
         "prs": "",
         "eta": "",
-        "etaFirst": "Bản dùng được đầu tiên: ~25–28/11 (2 vai trò BA và Dev, gói skill riêng, người dùng xem và đổi được vai trò; công tắc TẮT mặc định)",
-        "etaFull": "Bản hoàn chỉnh: ~15–20/12 (5 vai trò BA/UX/UI/Dev/QA, bàn giao qua PLAN.md, trần chi phí theo vai trò, QA độc lập, nghiệm thu Smart IQC trên DEV và PROD)",
+        "etaFirst": "Bản dùng được đầu tiên: ~28/11–1/12 (2 vai trò BA và Dev, công tắc TẮT)",
+        "etaFull": "Bản hoàn chỉnh: ~18–23/12 (5 vai trò)",
         "evidence": "Căn cứ: audit-agent-tools-skills.md (mặt phẳng agent hiện có là tính năng riêng, không nối với lượt builder)",
         "accept": [
           "Bộ phân loại chọn vai trò cho từng yêu cầu/bước và GHI lại lý do trong bản kê lượt chạy (người dùng thấy và đổi được)",
@@ -2682,7 +2689,28 @@
           "Trần chi phí và số vòng theo vai trò; công tắc tắt khẩn cấp mặc định TẮT",
           "Chống chèn lệnh từ tệp dự án vào lựa chọn vai trò/tool; QA độc lập GO",
           "Nghiệm thu Smart IQC trên DEV và PROD: thấy vai trò đã chọn, tài liệu BA, bố cục UX, rồi mã bước đầu, build chạy"
-        ]
+        ],
+        "prio": 7
+      },
+      {
+        "id": "T31",
+        "group": "PLANNED",
+        "title": "Agent tự khám phá cấu trúc dữ liệu đã được cấp quyền và gắn đúng dữ liệu vào giao diện",
+        "titleEn": "Agent discovers the permitted data schema and binds the right data into the UI",
+        "status": "Chưa có T riêng trước 17:00; nay tách thành T31. Hiện đã có: khối <data_model>/<data_sources> trong prompt khi dự án có bảng/nguồn và route khám phá dữ liệu (ON từ đợt 6). Chưa có: Agent tự gọi công cụ đọc cấu trúc, tự chọn nguồn và gắn vào giao diện, chưa chứng minh bằng model thật",
+        "statusEn": "No own T before 17:00; now split out as T31. Exists: <data_model>/<data_sources> prompt blocks when a project has tables/sources, and the data-discovery route (ON since release 6). Missing: the Agent calling a schema-read tool, choosing sources and binding them into the UI; not proven with a real model",
+        "prs": "",
+        "eta": "",
+        "evidence": "audit-data-backend.md, audit-smartiqc-turn.md",
+        "accept": [
+          "Với dự án đã cấp quyền bảng/nguồn, Agent liệt kê đúng cấu trúc được phép đọc, không thấy cấu trúc ngoài quyền",
+          "Gắn đúng bảng/trường vào danh sách, biểu mẫu, bộ lọc; app build và chạy, đọc/ghi qua cầu dữ liệu theo vai trò",
+          "Chỉ đề xuất bảng/nguồn mới; người duyệt tạo; không tự cấp quyền",
+          "Nghiệm thu Smart IQC trên DEV và PROD: 0 bảng và có bảng"
+        ],
+        "etaFirst": "Bản dùng được đầu tiên: ~13–14/11 (đọc cấu trúc dữ liệu đã được cấp quyền rồi gắn đúng bảng/trường vào giao diện; phụ thuộc cổng tool loop của T23)",
+        "etaFull": "Bản hoàn chỉnh: ~21–25/11 (nhiều nguồn, kiểm quyền theo vai trò, chỉ đề xuất, người duyệt mới tạo)",
+        "prio": 3
       }
     ]
   }

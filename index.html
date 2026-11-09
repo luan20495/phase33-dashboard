@@ -400,7 +400,7 @@ function renderToday(){
   if(x.eta)meta.append(el('span','',(tr?'Dự kiến: ':'ETA: ')+x.eta));
   if(x.evidence)meta.append(el('span','',(tr?'Bằng chứng: ':'Evidence: ')+x.evidence));
   if(meta.childNodes.length)card.append(meta);
-  if(x.etaFirst||x.etaFull){const eta=el('div','today-meta');if(x.etaFirst)eta.append(el('span','',x.etaFirst));if(x.etaFull)eta.append(el('span','',x.etaFull));card.append(eta)}
+  if(x.etaFirst||x.etaFull){const eta=el('div','today-meta');if(x.prio)eta.append(el('span','',(tr?'Ưu tiên ':'Priority ')+x.prio));if(x.etaFirst)eta.append(el('span','',x.etaFirst));if(x.etaFull)eta.append(el('span','',x.etaFull));card.append(eta)}
   if(Array.isArray(x.accept)&&x.accept.length){const det=document.createElement('details');det.className='today-meta';const sm=document.createElement('summary');sm.textContent=(tr?'Tiêu chí nghiệm thu':'Acceptance criteria')+' ('+x.accept.length+')';det.append(sm);const ul=document.createElement('ul');for(const a of x.accept){const li=document.createElement('li');li.textContent=a;ul.append(li)}det.append(ul);card.append(det)}
   host.append(card);
  }
