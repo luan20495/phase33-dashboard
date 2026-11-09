@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T08:30:01+07:00",
+  "asOf": "2026-11-09T09:29:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1496,9 +1496,9 @@
       "risk": "MEDIUM",
       "integrated": true,
       "qa": "QA/SEC độc lập vòng 2 (VERIFIED): FE #96 và #97 GATE-PASS cho merge dev và PROD với cờ TẮT; bật cờ DEV đạt có điều kiện (mới chứng minh các trạng thái chung; N1/N2 backend chưa có, chưa E2E backend thật). F1 (tên trường nhạy cảm) và lỗi bundle PROD đã sửa thật, build production thật 0 dấu vết khi cờ tắt BE #173: QA/SEC độc lập PASS/PASS (VERIFIED). Theme FE #127: QA độc lập FAIL 1 lỗi P2 (nút trung tính XApp chế độ tối mất chữ khi rê chuột), SEC PASS, DEV đang sửa. Song ngữ FE #126/#128/#129: QA PASS/SEC PASS từng PR, đã sửa các lỗi gộp chuỗi, QA delta đang chạy. Owner 09/11 07:09 yêu cầu XApp là nơi duy nhất đổi theme/ngôn ngữ; báo Apps chưa nhận phiên XApp. C0 đo trên PROD (chạy chỉ-đọc, trình duyệt sạch): bấm từ XApp và mở link trực tiếp đều vào được, đăng xuất ở XApp kết thúc Apps và Studio; chốt chặn chống lặp theo tab tái hiện được khiến Apps hiện nút Đăng nhập. Mã sửa chưa có, chưa QA độc lập. FE #143: agent tự chạy (REPORTED, harness giả, không phải Keycloak thật): 5 cổng bật 69/69 PASS, gate:frontend và combined-check xanh; CHƯA có QA/SEC độc lập.",
-      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập. Đợt 5 (08/11 20:29) lên PROD gồm sửa đăng xuất (BE #176 + FE #133); route khám phá dữ liệu N-1 (BE #173) lên PROD với cờ TẮT. Theme Apps + XApp (FE #127, 23:16) và Platform + Admin (FE #131 + BE #178, 23:52) QA/SEC độc lập PASS/PASS, đã merge dev 09/11; chưa lên PROD (công tắc TẮT). QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc theme + ngôn ngữ và route khám phá dữ liệu bật; smoke PROD 52/52 (4 cổng) và khám phá dữ liệu PASS. 09/11 08:20: FE #143 (XApp là nơi duy nhất đổi theme/ngôn ngữ/chuyển cổng/đăng xuất + sửa chốt chặn đăng nhập Apps) mở vào dev, sau công tắc build mặc định TẮT; chưa QA độc lập, chưa lên PROD.",
+      "prs": "FE #89 docs · #92 theme DRAFT · FE #96 và #97 đã MERGE dev (12:10–12:20 ICT), cờ TẮT BE #173 (N-1, route chỉ-đọc khám phá dữ liệu dự án, cờ riêng TẮT) đã code, chờ QA/SEC độc lập. BE #173 (N-1) QA/SEC PASS/PASS + delta, đã MERGE dev 08/11 14:28 ICT (cờ riêng TẮT, không migration). Theme: FE #127 (Apps + XApp) đang QA/SEC độc lập, FE #131 (Platform + Admin) bản nháp. Song ngữ: FE #126/#128/#129 đang QA/SEC độc lập. Đợt 5 (08/11 20:29) lên PROD gồm sửa đăng xuất (BE #176 + FE #133); route khám phá dữ liệu N-1 (BE #173) lên PROD với cờ TẮT. Theme Apps + XApp (FE #127, 23:16) và Platform + Admin (FE #131 + BE #178, 23:52) QA/SEC độc lập PASS/PASS, đã merge dev 09/11; chưa lên PROD (công tắc TẮT). QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc theme + ngôn ngữ và route khám phá dữ liệu bật; smoke PROD 52/52 (4 cổng) và khám phá dữ liệu PASS. 09/11 08:20: FE #143 (XApp là nơi duy nhất đổi theme/ngôn ngữ/chuyển cổng/đăng xuất + sửa chốt chặn đăng nhập Apps) mở vào dev, sau công tắc build mặc định TẮT; chưa QA độc lập, chưa lên PROD. 09/11 09:2x: BE #188 (nửa hạ tầng của công tắc XApp-hub, không migration) mở cùng FE #143; Owner chấp nhận lần đầu lưu theo trình duyệt, chưa theo tài khoản. QA/SEC độc lập đang chạy.",
       "summary": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
-      "next": "QA/SEC độc lập FE #143 (và PR BE hạ tầng công tắc), rồi xin bật. Giới hạn: lựa chọn theo trình duyệt, chưa theo tài khoản (cần endpoint BE + migration, đề xuất làm sau).",
+      "next": "QA/SEC độc lập FE #143 + BE #188 (đang chạy), rồi xin bật. Lưu theo tài khoản (endpoint BE + migration) làm sau.",
       "work": {
         "problem": "Chưa kiểm chứng Data Specialist kết nối API cho người không kỹ thuật; theme sáng/tối và VI/EN chưa thống nhất đủ 5 portal, có nguy cơ contrast và translation thiếu.",
         "approach": "Một agent tích hợp nguồn có tool đọc schema trước, LLM cho mapping khó; theme token dùng chung theo portal/profile và bản dịch đầy đủ.",
@@ -1568,7 +1568,7 @@
         "percent": 55,
         "basis": "estimate",
         "note": "Theme/ngôn ngữ ON ở 4 cổng (không gồm Studio); XApp-hub + sửa SSO Apps: mã đã có (FE #143), chờ QA độc lập. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T08:30:01+07:00"
+        "reportedAt": "2026-11-09T09:29:49+07:00"
       }
     },
     {
@@ -1663,10 +1663,10 @@
       "flag": "Home ON (08/11 16:30); khung kéo thả ON (09/11 ~01:52)",
       "risk": "LOW",
       "integrated": true,
-      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38. Thử thật trên PROD 09/11 (kịch bản chỉ-đọc, tài khoản QA, không gửi lượt AI nào, 0 yêu cầu ghi): kéo bằng CHUỘT THẬT làm rộng khung trò chuyện (30% → 47%), kéo quá mức bị chặn ở 21%/60%, thả chuột thì khung không còn đi theo, tải lại vẫn nhớ độ rộng, bấm đúp thanh kéo và nút đặt lại về 30%, thu gọn/mở lại hai khung bằng chuột giữ nguyên ô nhập, cửa sổ ≤ 900 px ẩn thanh kéo (công tắc Trò chuyện/Kết quả), kéo cảm ứng mô phỏng qua CDP đổi được độ rộng; 17/17 điểm kiểm PASS (do C0 chạy, chưa phải QA độc lập). CHƯA: cảm ứng thật trên thiết bị, bố cục phải-sang-trái, Owner nghiệm thu.",
-      "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev. Đợt 5 (08/11 20:29) đưa mã khung kéo thả lên PROD ở trạng thái TẮT; cặp công tắc PROD (FE #130 + BE #177) đang QA độc lập. QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc khung kéo thả bật 01:52, smoke khung kéo thả PASS (bằng phím, chưa thử kéo chuột trên PROD).",
+      "qa": "QA/SEC độc lập Home/INF-3 PASS (VERIFIED); khung kéo thả #123 + #125 PASS/PASS. Thử thật trên PROD bằng tài khoản QA (Haiku): tạo ứng dụng từ Home composer, bấm hai lần chỉ tạo 1 dự án, lượt AI đầu thành công; ô nhập ZIP có. NOT_RUN: hết các kịch bản Home với backend thật ngoài lần thử này; E2E đầy đủ. Cặp công tắc PROD khung kéo thả (FE #130 + BE #177): QA/SEC độc lập PASS/PASS (VERIFIED), đã merge dev 08/11 20:38. Thử thật trên PROD 09/11 (kịch bản chỉ-đọc, tài khoản QA, không gửi lượt AI nào, 0 yêu cầu ghi): kéo bằng CHUỘT THẬT làm rộng khung trò chuyện (30% → 47%), kéo quá mức bị chặn ở 21%/60%, thả chuột thì khung không còn đi theo, tải lại vẫn nhớ độ rộng, bấm đúp thanh kéo và nút đặt lại về 30%, thu gọn/mở lại hai khung bằng chuột giữ nguyên ô nhập, cửa sổ ≤ 900 px ẩn thanh kéo (công tắc Trò chuyện/Kết quả), kéo cảm ứng mô phỏng qua CDP đổi được độ rộng; 17/17 điểm kiểm PASS (do C0 chạy, chưa phải QA độc lập). CHƯA: cảm ứng thật trên thiết bị, bố cục phải-sang-trái, Owner nghiệm thu. FE #144: agent tự chạy (REPORTED, harness giả, không AI thật): spec mới 86/86, gate:frontend và combined-check xanh; CHƯA có QA/SEC độc lập. Phát hiện trên PROD (chỉ đọc): menu Cài đặt ở header mở dưới vùng làm việc, bấm chuột có thể trượt mục đầu; bản vá đang làm.",
+      "prs": "Home P1–P4 + INF-3 trên PROD (đợt 4). 3 công tắc Home (composer, tạo bằng AI, ZIP) BẬT 08/11 16:30 ICT bằng dựng lại riêng image Studio. Khung kéo thả: FE #123 + #125 đã MERGE dev (QA/SEC PASS/PASS); cặp PR công tắc PROD cho khung kéo thả đang dev. Đợt 5 (08/11 20:29) đưa mã khung kéo thả lên PROD ở trạng thái TẮT; cặp công tắc PROD (FE #130 + BE #177) đang QA độc lập. QA/SEC tích hợp đợt 6 GO-CÓ-ĐIỀU-KIỆN; đã promote main 09/11 01:11; đang build,  Đợt 6 lên PROD 09/11 01:42; công tắc khung kéo thả bật 01:52, smoke khung kéo thả PASS (bằng phím, chưa thử kéo chuột trên PROD). 09/11 09:2x: FE #144 (bố cục Edit gọn: menu ..., thanh Preview một hàng, chi tiết lượt chạy; công tắc build mặc định TẮT) mở vào dev; chưa QA độc lập, chưa lên PROD.",
       "summary": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
-      "next": "Owner UAT; QA độc lập chạy lại kịch bản chuột/cảm ứng; agent FE đang làm (từ 07:21 ICT 09/11) việc dời thao tác phụ vào menu/panel theo yêu cầu Owner (công tắc build mặc định TẮT, chưa PR).",
+      "next": "QA/SEC độc lập FE #144 (đang chạy) + PR BE công tắc + bản vá menu; Owner UAT; cảm ứng thật.",
       "work": {
         "problem": "Workspace Edit còn chưa chứng minh có bố cục prompt/preview có thể kéo, lưu chiều rộng và điều khiển bàn phím/mobile tốt, ảnh hưởng thao tác sửa web.",
         "approach": "Hai pane prompt/preview, splitter kéo/chạm/keyboard, mặc định preview rộng; công cụ ít dùng vào overflow và trạng thái khi reload.",
@@ -1730,7 +1730,7 @@
         "percent": 96,
         "basis": "estimate",
         "note": "Home ON 08/11; khung kéo thả ON 09/11; kéo chuột thật + đặt lại + thu gọn + nhớ độ rộng đã thử trên PROD (C0, 17/17). Còn: cảm ứng thật, QA độc lập chạy lại và UAT Owner. Ước lượng, chưa phải số đo.",
-        "reportedAt": "2026-11-09T07:36:11+07:00"
+        "reportedAt": "2026-11-09T09:29:49+07:00"
       }
     }
   ],
