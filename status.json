@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T17:35:49+07:00",
+  "asOf": "2026-11-09T17:42:39+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T17:35:49+07:00",
+    "updatedAt": "2026-11-09T17:42:39+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2414,46 +2414,46 @@
       },
       {
         "id": "T10",
-        "group": "DEV_WAIT",
+        "group": "IN_PROGRESS",
         "title": "Hàng đợi build: thông báo cho người đang chờ, số slot theo máy, tối đa 10 lượt chờ mỗi slot",
         "titleEn": "Build queue: notice for waiting users, slots by machine capacity, up to 10 waiting per slot",
-        "status": "Đã vào dev và đã promote lên main (17:06); đang nằm trong build đợt 9, công tắc TẮT; chưa deploy",
-        "statusEn": "Merged to dev and promoted to main (17:06); in the release 9 build, switch OFF; not deployed yet",
+        "status": "Đã deploy lên PROD 17:35, công tắc hàng đợi TẮT (chưa bật). Đã đo máy: 4 vCPU, 16 GB; sẽ bật với slots=1 sau xác nhận",
+        "statusEn": "Deployed to PROD 17:35, queue switch OFF (not enabled). Machine measured: 4 vCPU, 16 GB; will enable with slots=1 after confirmation",
         "prs": "BE #193 #195, FE #150 #153",
-        "eta": "Bật khoảng 18:30",
+        "eta": "",
         "evidence": "QA độc lập GO có điều kiện / GO; điều kiện: max-per-workspace = 0 khi thử một workspace"
       },
       {
         "id": "T11",
-        "group": "DEV_WAIT",
+        "group": "ON_PROD",
         "title": "Tiếng Anh/Việt các panel Studio, hộp xuất bản, nhãn vai trò",
         "titleEn": "English/Vietnamese: Studio panels, publish dialog, role labels",
-        "status": "Đã vào dev, đã promote lên main; trong build đợt 9; chưa deploy",
-        "statusEn": "In dev and promoted to main; in the release 9 build; not deployed yet",
+        "status": "Đã deploy 17:35; quét tiếng Anh trên PROD: Studio 0 chuỗi Việt (trước đợt 36 và 4)",
+        "statusEn": "Deployed 17:35; PROD English scan: Studio 0 Vietnamese strings (before: 36 and 4)",
         "prs": "FE #151",
-        "eta": "Đợt 9 ~17:30–18:15",
+        "eta": "",
         "evidence": "QA độc lập GO (delta)"
       },
       {
         "id": "T12",
-        "group": "DEV_WAIT",
+        "group": "ON_PROD",
         "title": "Sửa bộ test Studio (13 lỗi cũ là test lỗi thời)",
         "titleEn": "Studio test debt (13 old failures were stale tests)",
-        "status": "Đã vào dev; chỉ sửa test, không đổi hành vi PROD",
-        "statusEn": "Merged to dev; tests only, no PROD behaviour change",
+        "status": "Đã vào đợt 9 (sửa test, không đổi gì trên PROD)",
+        "statusEn": "In release 9 (test fix, nothing changes on PROD)",
         "prs": "FE #152",
         "eta": "",
         "evidence": "Không có lỗi sản phẩm; studio-lovable 348/348"
       },
       {
         "id": "T13",
-        "group": "IN_PROGRESS",
+        "group": "ON_PROD",
         "title": "Tiếng Anh/Việt trang chủ, builder, thư viện Studio (2.272 → 21 chuỗi Việt cứng)",
         "titleEn": "English/Vietnamese: Studio home, builder, library",
-        "status": "QA delta GO (f1aef90b); đã merge dev, đã promote lên main; trong build đợt 9; chưa deploy",
-        "statusEn": "Delta QA GO (f1aef90b); merged to dev, promoted to main; in the release 9 build; not deployed yet",
+        "status": "Đã deploy 17:35; quét tiếng Anh trên PROD: Studio 0 chuỗi Việt ở 3 màn; QA độc lập GO",
+        "statusEn": "Deployed 17:35; PROD English scan: Studio 0 Vietnamese strings on 3 screens; independent QA GO",
         "prs": "FE #154, BE #194 (đồng bộ)",
-        "eta": "Đợt 9",
+        "eta": "",
         "evidence": "Người dùng tiếng Việt không hồi quy (1.873 giá trị khớp byte)"
       },
       {
@@ -2461,10 +2461,10 @@
         "group": "IN_PROGRESS",
         "title": "Hai lỗi P2 bố cục Studio: khóa “Bỏ thay đổi” khi đang gửi; cảnh báo lượt chạy hiện ngoài khối đóng",
         "titleEn": "Layout P2s: lock Discard while sending; show run warnings outside the closed block",
-        "status": "Phá mã + gate xanh; đã merge dev (30ee7dde), đã promote; trong build đợt 9; chưa deploy",
-        "statusEn": "Mutants + gate green; merged to dev (30ee7dde), promoted; in the release 9 build; not deployed yet",
+        "status": "Đã deploy 17:35 (phá mã + gate xanh); chưa có smoke riêng trên PROD cho bố cục chỉnh giao diện",
+        "statusEn": "Deployed 17:35 (mutants + gate green); no dedicated PROD smoke yet for the edit layout",
         "prs": "FE #148",
-        "eta": "Đợt 9",
+        "eta": "",
         "evidence": "Đã có mã và test"
       },
       {
@@ -2472,10 +2472,10 @@
         "group": "IN_PROGRESS",
         "title": "Sửa prompt AI (S1–S3): khối khả năng nền tảng, lỗi ngân sách ngữ cảnh/token tiếng Việt, IAM_WIDE",
         "titleEn": "AI prompt fixes (S1–S3): platform capabilities block, context budget/Vietnamese token ratio, IAM_WIDE",
-        "status": "QA delta GO (1f2e6920); đã merge dev, đã promote; trong build đợt 9, công tắc S1 BẬT mặc định; chưa deploy",
-        "statusEn": "Delta QA GO (1f2e6920); merged to dev, promoted; in the release 9 build, S1 switch default ON; not deployed yet",
+        "status": "Đã deploy 17:35, công tắc S1 BẬT mặc định, QA độc lập GO. CHƯA kiểm với model thật: T26 vòng 1 sắp chạy",
+        "statusEn": "Deployed 17:35, S1 switch ON by default, independent QA GO. NOT yet checked with a real model: T26 round 1 about to run",
         "prs": "BE #196",
-        "eta": "Cùng đợt 9 nếu QA đạt, hoặc đợt 10",
+        "eta": "",
         "evidence": "Căn cứ: audit lượt Smart IQC"
       },
       {
