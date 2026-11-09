@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T17:15:37+07:00",
+  "asOf": "2026-11-09T17:29:55+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T17:15:37+07:00",
+    "updatedAt": "2026-11-09T17:29:55+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2417,8 +2417,8 @@
         "group": "DEV_WAIT",
         "title": "Hàng đợi build: thông báo cho người đang chờ, số slot theo máy, tối đa 10 lượt chờ mỗi slot",
         "titleEn": "Build queue: notice for waiting users, slots by machine capacity, up to 10 waiting per slot",
-        "status": "Đã vào dev, công tắc TẮT; QA sửa lỗi đã đạt (BE #195 GO có điều kiện, FE #153 GO); chờ đợt 9 rồi đo máy build và bật",
-        "statusEn": "Merged to dev, switch OFF; QA fixes passed (BE #195 GO with conditions, FE #153 GO); waits for release 9, then measure the build machine and enable",
+        "status": "Đã vào dev và đã promote lên main (17:06); đang nằm trong build đợt 9, công tắc TẮT; chưa deploy",
+        "statusEn": "Merged to dev and promoted to main (17:06); in the release 9 build, switch OFF; not deployed yet",
         "prs": "BE #193 #195, FE #150 #153",
         "eta": "Bật khoảng 18:30",
         "evidence": "QA độc lập GO có điều kiện / GO; điều kiện: max-per-workspace = 0 khi thử một workspace"
@@ -2428,8 +2428,8 @@
         "group": "DEV_WAIT",
         "title": "Tiếng Anh/Việt các panel Studio, hộp xuất bản, nhãn vai trò",
         "titleEn": "English/Vietnamese: Studio panels, publish dialog, role labels",
-        "status": "Đã merge dev (15:46), QA delta GO; chờ đợt 9",
-        "statusEn": "Merged to dev (15:46), delta QA GO; waits for release 9",
+        "status": "Đã vào dev, đã promote lên main; trong build đợt 9; chưa deploy",
+        "statusEn": "In dev and promoted to main; in the release 9 build; not deployed yet",
         "prs": "FE #151",
         "eta": "Đợt 9 ~17:30–18:15",
         "evidence": "QA độc lập GO (delta)"
@@ -2450,8 +2450,8 @@
         "group": "IN_PROGRESS",
         "title": "Tiếng Anh/Việt trang chủ, builder, thư viện Studio (2.272 → 21 chuỗi Việt cứng)",
         "titleEn": "English/Vietnamese: Studio home, builder, library",
-        "status": "QA GO có điều kiện; 4 điều kiện P2 đã sửa (head f1aef90b), QA delta đang chạy",
-        "statusEn": "QA GO with conditions; 4 P2 conditions fixed (head f1aef90b), delta QA running",
+        "status": "QA delta GO (f1aef90b); đã merge dev, đã promote lên main; trong build đợt 9; chưa deploy",
+        "statusEn": "Delta QA GO (f1aef90b); merged to dev, promoted to main; in the release 9 build; not deployed yet",
         "prs": "FE #154, BE #194 (đồng bộ)",
         "eta": "Đợt 9",
         "evidence": "Người dùng tiếng Việt không hồi quy (1.873 giá trị khớp byte)"
@@ -2461,8 +2461,8 @@
         "group": "IN_PROGRESS",
         "title": "Hai lỗi P2 bố cục Studio: khóa “Bỏ thay đổi” khi đang gửi; cảnh báo lượt chạy hiện ngoài khối đóng",
         "titleEn": "Layout P2s: lock Discard while sending; show run warnings outside the closed block",
-        "status": "Gate xanh; agent đang chạy bài phá mã rồi merge",
-        "statusEn": "Gate green; agent running mutant check then merge",
+        "status": "Phá mã + gate xanh; đã merge dev (30ee7dde), đã promote; trong build đợt 9; chưa deploy",
+        "statusEn": "Mutants + gate green; merged to dev (30ee7dde), promoted; in the release 9 build; not deployed yet",
         "prs": "FE #148",
         "eta": "Đợt 9",
         "evidence": "Đã có mã và test"
@@ -2472,8 +2472,8 @@
         "group": "IN_PROGRESS",
         "title": "Sửa prompt AI (S1–S3): khối khả năng nền tảng, lỗi ngân sách ngữ cảnh/token tiếng Việt, IAM_WIDE",
         "titleEn": "AI prompt fixes (S1–S3): platform capabilities block, context budget/Vietnamese token ratio, IAM_WIDE",
-        "status": "PR BE #196: QA độc lập GO có điều kiện (không P0/P1); agent đang sửa 2 điều kiện (câu liệt kê bước xung đột định dạng đầu ra, chữ “3 vai trò”)",
-        "statusEn": "BE #196: independent QA GO with conditions (no P0/P1); agent fixing 2 conditions (steps sentence vs output format, '3 roles' wording)",
+        "status": "QA delta GO (1f2e6920); đã merge dev, đã promote; trong build đợt 9, công tắc S1 BẬT mặc định; chưa deploy",
+        "statusEn": "Delta QA GO (1f2e6920); merged to dev, promoted; in the release 9 build, S1 switch default ON; not deployed yet",
         "prs": "BE #196",
         "eta": "Cùng đợt 9 nếu QA đạt, hoặc đợt 10",
         "evidence": "Căn cứ: audit lượt Smart IQC"
