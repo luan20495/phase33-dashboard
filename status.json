@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T18:10:25+07:00",
+  "asOf": "2026-11-09T18:25:06+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T18:10:25+07:00",
+    "updatedAt": "2026-11-09T18:25:06+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính.",
     "items": [
@@ -2554,8 +2554,8 @@
         "prs": "",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
         "evidence": "Đề xuất từ audit",
-        "etaFirst": "QA project: T22-A (trần 16.000 token, báo đúng lỗi) lên PROD đợt 10 (10/11 ~13:00); T22-B (chia bước, tiếp tục) lên PROD cờ TẮT đợt 11 (11/11 ~15:00), bật cho dự án QA ~16:30",
-        "etaFull": "Mọi user: ~14–15/11 sau 3 vòng T26 và đo chi phí thật",
+        "etaFirst": "Ưu tiên 2 (T22-A, trần 16.000 token): agent BE đã bắt đầu 18:30; PR ~21:30, QA độc lập ~01:00, đợt 10 (10/11 ~13:00); ON khi lượt “xây mới IQC” thật không còn báo lỗi nhà cung cấp: ~10/11 14:00. T22-B (chia bước) sau đó: đợt 11 (11/11 ~15:00)",
+        "etaFull": "T22-B ổn định mọi user ~14–15/11",
         "accept": [
           "P0–P20 hoặc yêu cầu > ngưỡng không còn trả NO_CHANGE: lượt đầu tạo PLAN.md và file + build của bước 1",
           "Nêu rõ phần đã làm, phần cần cấu hình dữ liệu, bước tiếp theo; không tuyên bố đã tạo bảng hoặc tích hợp API khi chưa làm",
@@ -2563,7 +2563,7 @@
           "Công tắc tắt = hành vi cũ từng byte; QA độc lập GO trên SHA"
         ],
         "prio": 2,
-        "etaFallback": "Dự phòng: +6 giờ mỗi vòng QA lỗi: đợt 11 → 12/11 sáng; mọi user 16–18/11. Giờ công BE 91 / FE 28 / QA 28"
+        "etaFallback": "Dự phòng: T22-A 10/11 ~19:00 hoặc 11/11 sáng; T22-B 16–18/11"
       },
       {
         "id": "T23",
@@ -2666,17 +2666,18 @@
       },
       {
         "id": "T29",
-        "group": "PLANNED",
+        "group": "IN_PROGRESS",
         "title": "Tắt đường Code mode cũ (/code/ai) bằng công tắc mặc định TẮT; đọc tệp qua chính sách đọc, che bí mật",
         "titleEn": "Disable the legacy Code mode path behind a default-OFF switch; route file reads through ReadPolicy and mask secrets",
-        "status": "Audit bảo mật xong (mức cao nhất P3, chưa ai dùng đường này); đề xuất làm sau S1–S3",
-        "statusEn": "Security audit done (highest P3, path never used); proposed after S1–S3",
+        "status": "Chưa có PR; làm sau T22-A cùng agent (chung tệp). Không bật gì: công tắc `app.code.legacy-ai.enabled` mặc định TẮT",
+        "statusEn": "No PR yet; done after T22-A by the same agent (shared files). Nothing to enable: switch `app.code.legacy-ai.enabled` default OFF",
         "prs": "",
         "eta": "Sau đợt 10",
         "evidence": "audit-sec-legacy-code-mode.md; 0 lượt chạy qua đường cũ trên PROD",
-        "etaFirst": "QA project: không áp dụng (khóa đường cũ). PR 10/11 ~06:00, lên PROD đợt 10",
-        "etaFull": "Ổn định ngay sau đợt 10 + kiểm Code mode AI trả từ chối",
-        "etaFallback": "Dự phòng: sau T22-A (cùng tệp); +6 giờ nếu QA lỗi. Giờ công BE 6 / QA 6 (ước tính)"
+        "etaFirst": "Ưu tiên 3. PR ~00:30 10/11, QA ~05:00, đợt 10 (10/11 ~13:00); xác nhận trên PROD Code mode AI trả từ chối: ~10/11 14:00",
+        "etaFull": "Ổn định ngay (đường chưa từng được dùng)",
+        "etaFallback": "Dự phòng: đợt 11 (11/11)",
+        "prio": 3
       },
       {
         "id": "T30",
@@ -2726,14 +2727,14 @@
         "id": "T32",
         "group": "PLANNED",
         "prio": 4,
-        "title": "Nhập HTML có sẵn → dựng lại bằng React → so sánh giao diện và chức năng với bản gốc",
-        "titleEn": "Import existing HTML → rebuild in React → compare look and behaviour with the original",
-        "status": "Nhập HTML nguyên bản đã có sẵn và chạy: thử 18:03 với tệp thật (27 KB, 0 script): Preview và Publish riêng tư đúng nội dung; chỉ khác font Google bị chặn bởi chính sách nền tảng. Còn: cảnh báo tài nguyên ngoài, tải kèm font/ảnh, ZIP. Chuyển React + so sánh là phạm vi mở rộng (T32-b)",
-        "statusEn": "Importing HTML as-is already exists and works: tested 18:03 with the real file (27 KB, 0 scripts): Preview and private Publish show the right content; only difference is the Google font blocked by the platform policy. Remaining: external-resource warning, bundled fonts/images, ZIP. React conversion + comparison is the extended scope (T32-b)",
+        "title": "Nhập MỘT file HTML và chạy nguyên nội dung trong Preview và Publish (CSS/JS viết trong HTML, ảnh/font nhúng); không chuyển React, không AI",
+        "titleEn": "Import ONE HTML file and run it as-is in Preview and Publish (inline CSS/JS, embedded images/fonts); no React, no AI",
+        "status": "Làm song song với T22-A (không chung tệp). Bằng chứng 18:23: HTML tĩnh (workflow-iqc) chạy đúng; HTML có JS inline KHÔNG chạy: chính sách bảo mật của Preview chặn script inline (ảnh/CSS nhúng thì chạy). Cần đổi cách phục vụ trang đã nhập (khung cách ly không cùng nguồn gốc) và cần QA bảo mật độc lập. Chưa kiểm Publish với JS; báo rõ khi HTML gọi API cũ hoặc tài nguyên ngoài",
+        "statusEn": "Runs in parallel with T22-A (no shared files). Evidence 18:23: a static HTML (workflow-iqc) works; an HTML with inline JS does NOT run: the Preview security policy blocks inline scripts (embedded images/CSS work). The way imported pages are served must change (isolated frame without same-origin) and needs independent security QA. Publish with JS not yet checked; old-API calls and external resources will be reported as not working",
         "prs": "",
         "eta": "",
-        "etaFirst": "QA project: T32-a (nhập HTML nguyên bản: cảnh báo tài nguyên ngoài, tải kèm font/ảnh, ZIP) PR 10/11 ~18:00, lên PROD đợt 11 (11/11); đã thử đường nhập hiện có 18:03: tệp thật chạy đúng ở Preview/Publish riêng tư. T32-b (chuyển React + so sánh Chrome) 16–18/11",
-        "etaFull": "T32-a ổn định mọi user 12–13/11 (không cờ); T32-b 24–26/11",
+        "etaFirst": "Agent BE+FE đã bắt đầu 18:30; PR ~22:30; QA/SEC độc lập 10/11 ~04:00–09:00; đợt 10 nếu QA đạt trước ~11:00 (10/11 ~13:00), ON (cờ riêng) sau kiểm thật Preview+Publish trên PROD bằng HTML có nút/tương tác: ~10/11 15:00",
+        "etaFull": "Chưa đánh dấu ON khi mới có PR hoặc cờ tắt. Nhập nhiều file/ZIP/tài nguyên bên cạnh là T34",
         "evidence": "Căn cứ: mã nhập sẵn có (importing/ImportService, ImportPolicy); phụ thuộc T22 (bước), T24 (tệp HTML lớn), T26 (nghiệm thu thật)",
         "accept": [
           "Nhập một trang HTML tĩnh có sẵn (nhiều tệp, có CSS/JS) vào dự án mới, qua duyệt, không bỏ sót tệp",
@@ -2744,7 +2745,7 @@
           "Báo rõ phần giống, phần khác, phần không so sánh được; không tuyên bố tương đương khi chưa đo",
           "QA độc lập GO trên SHA; công tắc TẮT mặc định cho tới khi đạt"
         ],
-        "etaFallback": "Dự phòng: T32-a 13–14/11, T32-b 28/11–2/12 (cần T22-B và T25). Giờ công a: BE 16 / FE 10 / QA 12; b: BE 20 / FE 20 / QA 24 (ước tính)"
+        "etaFallback": "Dự phòng: QA bảo mật tìm P1/P2 → đợt 11 (11/11 ~15:00), ON ~11/11 17:00; nếu phải thiết kế lại: 12/11"
       },
       {
         "id": "T33",
@@ -2755,8 +2756,8 @@
         "statusEn": "Reported by the Owner at 17:35 from real testing. Agent fixing: re-evaluate files rejected only for the count when room appears and clear the warning; mutant-proven test. No PR yet",
         "prs": "",
         "eta": "PR + QA độc lập: ước tính 09/11 ~20:30–21:30; lên PROD cùng đợt 10 (10/11 sáng) hoặc đợt riêng nếu Owner muốn ngay",
-        "etaFirst": "PR #155 (sửa tự xét lại file bị từ chối) đang QA độc lập; lên PROD đợt 10 (10/11 ~13:00)",
-        "etaFull": "Ổn định ngay sau đợt 10 + kiểm chuỗi thật; nâng trên 3 file là việc riêng (FE ~6, BE ~4, QA ~6)",
+        "etaFirst": "Ưu tiên 1. PR #155 đang QA độc lập (khoảng 18:45); lên PROD đợt 10 (10/11 ~13:00); ON khi kiểm chuỗi thật trên PROD (3 file → từ chối file 4 → xóa 1 → tự xét lại): ~10/11 14:00",
+        "etaFull": "Nâng giới hạn trên 3 file là việc riêng chưa làm",
         "evidence": "Báo cáo của Owner (ảnh trước/sau khi xóa file)",
         "accept": [
           "Đã có 3 file sẵn sàng + file thứ 4 bị từ chối vì tối đa 3: xóa một file sẵn sàng thì file thứ 4 tự được xét lại và thành sẵn sàng (hoặc có nút Thử lại hoạt động)",
@@ -2765,7 +2766,30 @@
           "Có thông báo trạng thái cho trình đọc màn hình; không chuỗi cứng tiếng Việt; tiếng Anh/Việt đủ",
           "Test thất bại khi bỏ bản sửa; QA độc lập GO"
         ],
-        "etaFallback": "Dự phòng: +6 giờ nếu QA lỗi"
+        "etaFallback": "Dự phòng: QA lỗi → 10/11 ~19:00",
+        "prio": 1
+      },
+      {
+        "id": "T34",
+        "group": "PLANNED",
+        "prio": 5,
+        "title": "Nhập HTML tham chiếu file CSS, JS, ảnh, font bên cạnh: nhiều file/ZIP, giữ đường dẫn, báo file thiếu, kiểm Preview/Publish",
+        "titleEn": "Import an HTML that references sibling CSS, JS, image and font files: multi-file/ZIP, keep paths, report missing files, check Preview/Publish",
+        "status": "Chưa bắt đầu; tách riêng khỏi T32, không kéo dài ETA của T32. Hiện có: nhập nhiều file/ZIP (đã có chế độ archive/files và quy tắc đường dẫn) nhưng chưa kiểm tra giữ đường dẫn tương đối, chưa báo file tham chiếu bị thiếu, chưa kiểm Preview/Publish với tài nguyên bên cạnh",
+        "statusEn": "Not started; split from T32, does not extend T32's ETA. Exists: multi-file/ZIP import (archive/files modes and path rules) but relative-path preservation, missing-file reporting and Preview/Publish with sibling resources are unchecked",
+        "prs": "",
+        "eta": "",
+        "etaFirst": "Bắt đầu khi PR của T32 đã đẩy (chung bộ phân tích nhập): PR ~11/11 08:00, QA ~14:00, đợt 11 (11/11 ~15:00); ON sau kiểm thật trên PROD: ~11/11 17:00",
+        "etaFull": "Ổn định mọi user: 12–13/11",
+        "etaFallback": "Dự phòng: 13–15/11 nếu QA lỗi; giờ công ước tính BE 14 / FE 8 / QA 10 (chưa audit)",
+        "evidence": "Căn cứ: ImportService/ImportMapper/ImportPolicy; thử 18:03 và 18:23 trên PROD (QA workspace)",
+        "accept": [
+          "Nhập ZIP hoặc nhiều file (HTML + CSS/JS/ảnh/font) giữ nguyên đường dẫn tương đối",
+          "Báo rõ file được tham chiếu nhưng thiếu (kể cả đường dẫn sai chữ hoa/thường) trước khi tạo dự án",
+          "Preview và Publish hiển thị đúng, tài nguyên bên cạnh tải được, tài nguyên ngoài bị chặn được báo",
+          "Không nhập .env/bí mật; giới hạn kích thước và số file vẫn áp dụng",
+          "Kiểm bằng trình duyệt thật trên PROD; QA độc lập GO; chỉ ON sau khi kiểm thật"
+        ]
       }
     ]
   }
