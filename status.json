@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-09T23:38:55+07:00",
+  "asOf": "2026-11-10T00:30:03+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2309,7 +2309,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-09T23:38:55+07:00",
+    "updatedAt": "2026-11-10T00:30:03+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
@@ -2549,7 +2549,7 @@
         "group": "ON_PROD",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "T22-A: ON TRÊN PROD (nhận theo lời Owner 'chọn a', 09/11): mã đã chạy từ 21:41, 3 lượt Haiku thật: lượt thường hoàn tất (finish=stop), lượt rất lớn dùng đủ 16.000 token (finish_reason=length, token suy luận 12.238 ≈ 76% trần) vẫn trả file hợp lệ. NHÃN: đường trả lời RỖNG (mã OUTPUT_LIMIT_REACHED + thẻ lỗi) chỉ kiểm bằng test + QA độc lập, chưa tái hiện thật. T22-B (chia bước): BE #203 QA GO-WITH-CONDITIONS (không P1/P2), cờ TẮT, chưa merge; FE đang làm | 23:40: FE #162 (9cf3ed35) mở, QA độc lập đang chạy; BE #203 đang sửa điều kiện QA",
+        "status": "T22-A: ON TRÊN PROD (nhận theo lời Owner 'chọn a', 09/11): mã đã chạy từ 21:41, 3 lượt Haiku thật: lượt thường hoàn tất (finish=stop), lượt rất lớn dùng đủ 16.000 token (finish_reason=length, token suy luận 12.238 ≈ 76% trần) vẫn trả file hợp lệ. NHÃN: đường trả lời RỖNG (mã OUTPUT_LIMIT_REACHED + thẻ lỗi) chỉ kiểm bằng test + QA độc lập, chưa tái hiện thật. T22-B (chia bước): BE #203 QA GO-WITH-CONDITIONS (không P1/P2), cờ TẮT, chưa merge; FE đang làm | 23:40: FE #162 (9cf3ed35) mở, QA độc lập đang chạy; BE #203 đang sửa điều kiện QA | 00:30: FE #162 QA GO-WITH-CONDITIONS (cần PR đồng bộ BE cho lovable.ts); BE #203 be9e6580 QA delta đang chạy; cờ TẮT, chỉ vào đợt 12 nếu kịp",
         "statusEn": "T22-A: ON PROD (accepted on the Owner's 'choose a', 09/11): code live since 21:41, 3 real Haiku turns: normal turn finished (finish=stop), a very large turn used all 16,000 tokens (finish_reason=length, 12,238 reasoning tokens ≈ 76% of the cap) yet returned valid files. LABEL: the EMPTY-answer path (OUTPUT_LIMIT_REACHED + error card) verified by tests + independent QA only, not reproduced for real. T22-B (steps): BE #203 QA GO-WITH-CONDITIONS (no P1/P2), flag OFF, not merged; FE in progress",
         "prs": "T22-A: BE #197 + FE #158 (trên PROD); T22-B: BE #203 (451725fb)",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
@@ -2789,6 +2789,29 @@
           "Preview và Publish hiển thị đúng, tài nguyên bên cạnh tải được, tài nguyên ngoài bị chặn được báo",
           "Không nhập .env/bí mật; giới hạn kích thước và số file vẫn áp dụng",
           "Kiểm bằng trình duyệt thật trên PROD; QA độc lập GO; chỉ ON sau khi kiểm thật"
+        ]
+      },
+      {
+        "id": "T35",
+        "group": "IN_PROGRESS",
+        "prio": 1,
+        "title": "Studio Project: 1 Header + ☰ ghim (Apple/Google), bỏ logo X, menu ⋯, Mở bằng IDE",
+        "titleEn": "Studio Project: one Header + pinned ☰ sidebar (Apple/Google), remove X logo, ⋯ menu, Open in IDE",
+        "status": "Agent FE đang làm (issue #204, thiết kế Owner duyệt PR #161). Báo cáo tác giả (REPORTED): spec header mới 72/72 (5 cỡ × 4 vai trò), spec edit-layout chuyển sang header mới 73/73, unit 5.664; đang chạy gate, PR dự kiến ~01:30; sau đó QA/SEC độc lập + E2E 1920/1440/1024/768/di động + ảnh trước-sau. Chưa merge, chưa lên PROD",
+        "statusEn": "FE agent working (issue #204, Owner-approved design PR #161). Author report (REPORTED): new header spec 72/72 (5 widths × 4 roles), edit-layout spec moved to the new header 73/73, unit 5,664; gate running, PR expected ~01:30; then independent QA/SEC + E2E 1920/1440/1024/768/mobile + before/after screenshots. Not merged, not on PROD",
+        "prs": "",
+        "eta": "",
+        "etaFirst": "PR ~01:30; QA/E2E 01:30–03:30; deploy đợt 12 ~05:00–06:00 (dự phòng 08:30–09:30)",
+        "etaFull": "ON sau kiểm thật trên PROD: 1 header, 1 ☰ ghim, 0 ⋯, 0 logo X, 0 Mở bằng IDE, 0 chức năng mất",
+        "etaFallback": "Dự phòng: QA tìm P1/P2 → 08:30–09:30",
+        "evidence": "issue #204; PR #161",
+        "accept": [
+          "1 Header cao 56–60px, không hàng phụ, không wrap ở mọi cỡ",
+          "1 nút ☰ mở Sidebar GHIM (không overlay ở desktop), chỉ bấm lại ☰ mới đóng",
+          "0 menu ⋯, 0 logo X, 0 'Mở bằng IDE'",
+          "Mọi mục menu cũ vào đúng route/panel thật; quick actions chạy luồng thật (mặc định Mở tab mới, Duyệt, Xuất bản; tối đa 4)",
+          "Giữ quyền, no-self-approval, read-only, dữ liệu TEST, publish, phiên bản, AI, undo/redo",
+          "E2E 5 cỡ × 4 vai trò; QA/SEC độc lập đúng SHA"
         ]
       }
     ]
