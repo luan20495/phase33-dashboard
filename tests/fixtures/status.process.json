@@ -1,0 +1,687 @@
+{
+ "asOf": "2026-11-10T18:14:00+07:00",
+ "features": [],
+ "releases": [],
+ "process": {
+  "updatedAt": "2026-11-10T18:14:00+07:00",
+  "note": "Bộ tiêu chuẩn vận hành XWeb do Owner chốt 10/11. Sửa một mục rồi “Gửi” để Claude áp dụng. Trạng thái: Đề xuất (chưa làm) / Chờ áp dụng (đã quyết, chưa chạy) / Đã áp dụng (Claude đang làm theo) / Đã xác minh (có bằng chứng đo thật).",
+  "groups": [
+   {
+    "id": "agents",
+    "title": "AI Agent",
+    "common": true,
+    "summary": "Số lượng, giám sát và mô hình",
+    "items": [
+     {
+      "id": "agents.min",
+      "label": "Số agent tối thiểu khi còn việc",
+      "value": 4,
+      "type": "number",
+      "editable": true,
+      "explain": "Luôn duy trì ít nhất số này khi đủ việc và tài nguyên.",
+      "impact": "Tăng: nhiều việc chạy song song hơn, máy tải cao hơn. Giảm: chậm hơn.",
+      "state": "applied",
+      "min": 1,
+      "max": 10
+     },
+     {
+      "id": "agents.max",
+      "label": "Số agent tối đa",
+      "value": 6,
+      "type": "number",
+      "editable": true,
+      "explain": "Trần thông thường.",
+      "impact": "Vượt trần làm máy quá tải (Mac dùng chung).",
+      "state": "applied",
+      "min": 1,
+      "max": 10
+     },
+     {
+      "id": "agents.max_extra",
+      "label": "Lên tối đa khi máy rảnh và việc không đụng nhau",
+      "value": 7,
+      "type": "number",
+      "editable": true,
+      "explain": "Chỉ dùng khi tải máy thấp và các việc không chung file.",
+      "impact": "Cao hơn tăng nguy cơ xung đột file và nghẽn Gradle/trình duyệt.",
+      "state": "applied",
+      "min": 1,
+      "max": 12
+     },
+     {
+      "id": "agents.heavy_one",
+      "label": "Chỉ một việc nặng một lúc trên Mac (Gradle, bộ spec trình duyệt lớn, gate)",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Tránh nghẽn máy khi nhiều agent chạy.",
+      "impact": "Tắt: có thể nhanh hơn nhưng dễ treo máy và test chập chờn.",
+      "state": "applied"
+     },
+     {
+      "id": "agents.hourly",
+      "label": "Giám sát mỗi giờ (ListAgents)",
+      "value": "Đang chạy thì giữ; hoàn thành thì kiểm tra rồi dừng; treo thì xác minh và khôi phục từ checkpoint",
+      "type": "text",
+      "editable": true,
+      "explain": "Mỗi giờ kiểm tra danh sách agent và xử lý theo trạng thái.",
+      "impact": "Không giám sát: agent treo có thể chiếm tài nguyên mà không ai biết.",
+      "state": "applied"
+     },
+     {
+      "id": "agents.on_hung",
+      "label": "Khi agent treo",
+      "value": "Khôi phục từ checkpoint",
+      "type": "select",
+      "editable": true,
+      "explain": "Cách xử lý khi một agent không còn phản hồi.",
+      "impact": "Báo Owner: chậm hơn nhưng Owner kiểm soát.",
+      "state": "applied",
+      "options": [
+       "Khôi phục từ checkpoint",
+       "Báo Owner trước khi khôi phục"
+      ]
+     },
+     {
+      "id": "agents.checkpoint",
+      "label": "Mỗi agent có nhiệm vụ, worktree và checkpoint riêng",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Checkpoint ở ~/xweb-handoff/agents/<việc>.md.",
+      "impact": "Thiếu checkpoint: không chạy lại được khi bị dừng.",
+      "state": "applied"
+     },
+     {
+      "id": "agents.model",
+      "label": "Mô hình cho C0 và agent",
+      "value": "Claude Sonnet 5.5 (claude-sonnet-5-5)",
+      "type": "text",
+      "editable": true,
+      "explain": "Mô hình mặc định cho điều phối và agent.",
+      "impact": "Đổi mô hình ảnh hưởng chất lượng, tốc độ và chi phí.",
+      "state": "applied"
+     },
+     {
+      "id": "agents.ai_test_model",
+      "label": "Mô hình cho lượt AI thử trên PROD",
+      "value": "Haiku 5.5; Auto = Haiku",
+      "type": "text",
+      "editable": true,
+      "explain": "Dùng mô hình nhẹ cho lượt thử.",
+      "impact": "Mô hình nặng hơn tăng chi phí cửa sổ AI.",
+      "state": "applied"
+     },
+     {
+      "id": "agents.qa_independent",
+      "label": "QA/SEC phải độc lập với tác giả và đo lại trên đúng SHA",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Số tác giả báo gắn REPORTED, số QA đo gắn VERIFIED.",
+      "impact": "Tắt: mất lớp kiểm độc lập, không khuyến nghị.",
+      "state": "applied"
+     }
+    ]
+   },
+   {
+    "id": "git",
+    "title": "Git và PR",
+    "common": true,
+    "summary": "Luồng, merge, nhãn, promote",
+    "items": [
+     {
+      "id": "git.flow",
+      "label": "Luồng",
+      "value": "Tính năng → PR vào dev → QA/SEC độc lập trên đúng SHA → merge",
+      "type": "text",
+      "editable": true,
+      "explain": "Mỗi thay đổi đi qua PR và QA độc lập.",
+      "impact": "Bỏ qua QA làm tăng rủi ro đưa lỗi lên PROD.",
+      "state": "applied"
+     },
+     {
+      "id": "git.no_force",
+      "label": "Không force-push, không sửa lịch sử nhánh đã đẩy",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Giữ nguyên lịch sử.",
+      "impact": "Cho phép force-push dễ làm mất commit.",
+      "state": "applied"
+     },
+     {
+      "id": "git.merge",
+      "label": "Cách merge",
+      "value": "gh pr merge N --merge --match-head-commit <SHA>; không squash với PR mirror; squash khi có commit bị gitleaks báo nhầm",
+      "type": "text",
+      "editable": true,
+      "explain": "Gắn merge với đúng SHA đã QA.",
+      "impact": "Sai SHA nghĩa là merge mã chưa QA.",
+      "state": "applied"
+     },
+     {
+      "id": "git.label",
+      "label": "Nhãn trạng thái",
+      "value": "Đúng một nhãn status:* trên mỗi PR",
+      "type": "text",
+      "editable": true,
+      "explain": "qa, ready, in-progress, blocked, needs-owner, done, archive, todo.",
+      "impact": "Nhiều nhãn gây hiểu nhầm trạng thái.",
+      "state": "applied"
+     },
+     {
+      "id": "git.promote",
+      "label": "Chuyển lên main",
+      "value": "Chỉ qua scripts/release/promote-dev-to-main.sh kèm bằng chứng QA (fast-forward)",
+      "type": "text",
+      "editable": true,
+      "explain": "Con đường duy nhất để main di chuyển.",
+      "impact": "Đẩy thẳng lên main bị chặn.",
+      "state": "applied"
+     },
+     {
+      "id": "git.mirror",
+      "label": "Mirror BE cho file FE vendored",
+      "value": "sync-frontend-core + qa-inventory --write + combined-check ĐẦY ĐỦ + QA tích hợp",
+      "type": "text",
+      "editable": true,
+      "explain": "Giữ BE và FE đồng bộ.",
+      "impact": "Bỏ mirror làm test chéo repo đỏ.",
+      "state": "applied"
+     },
+     {
+      "id": "git.ci",
+      "label": "CI",
+      "value": "GitHub Actions TẮT: dùng test chạy cục bộ và ghi rõ",
+      "type": "text",
+      "editable": true,
+      "explain": "Bằng chứng là kết quả chạy cục bộ.",
+      "impact": "Bật Actions cần quyết định riêng.",
+      "state": "applied"
+     },
+     {
+      "id": "git.trailer",
+      "label": "Dòng cuối commit",
+      "value": "Co-Authored-By: Claude Sonnet 5.5 <noreply>",
+      "type": "text",
+      "editable": true,
+      "explain": "Ghi nhận tác giả.",
+      "impact": "Không ảnh hưởng chạy.",
+      "state": "applied"
+     },
+     {
+      "id": "git.public",
+      "label": "Repo công khai: không bí mật, tài khoản, email, IP, tên máy chủ hay dự án, số liệu tài chính",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Mọi thứ đẩy lên GitHub là công khai.",
+      "impact": "Tắt: nguy cơ lộ thông tin.",
+      "state": "applied"
+     }
+    ]
+   },
+   {
+    "id": "deploy",
+    "title": "Deploy, bật tính năng và rollback",
+    "common": true,
+    "summary": "Promote, deploy, tự bật cờ, lùi",
+    "items": [
+     {
+      "id": "deploy.release_name",
+      "label": "Đợt hiện tại trên PROD",
+      "value": "đợt 14 (release e0853d4a6f95); đợt kế tiếp = đợt 15 (không dùng số 13)",
+      "type": "text",
+      "editable": false,
+      "explain": "Tên đợt do Owner đặt.",
+      "impact": "Không ảnh hưởng kỹ thuật.",
+      "state": "verified",
+      "evidence": "kiểm trên máy chủ 11:46 ICT 10/11"
+     },
+     {
+      "id": "deploy.promote",
+      "label": "Điều kiện deploy",
+      "value": "DEV DONE, QA/SEC PASS, không có blocker nghiêm trọng → promote dev sang main bằng script → deploy PROD; không chờ nghiệm thu toàn bộ",
+      "type": "text",
+      "editable": true,
+      "explain": "Phát hành theo từng tính năng.",
+      "impact": "Chờ cả gói làm chậm giá trị đến tay người dùng.",
+      "state": "applied"
+     },
+     {
+      "id": "deploy.auto_on",
+      "label": "Tự bật cờ ON trên PROD khi đủ điều kiện an toàn, kiểm thử thật sau khi bật",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Owner chốt 10/11: chỉ chặn khi rủi ro nghiêm trọng hoặc vượt chính sách Owner đã duyệt.",
+      "impact": "Tắt: mỗi lần bật cờ lại phải chờ Owner. Ngân sách, quyền, dữ liệu nhạy cảm vẫn cần Owner.",
+      "state": "applied",
+      "evidence": "Owner chốt 10/11; chưa dùng lần nào"
+     },
+     {
+      "id": "deploy.go_guard",
+      "label": "Bước go từ chối khi có lượt AI trong 3 phút trước",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Tránh cắt giữa một lượt AI.",
+      "impact": "Tắt: có thể làm hỏng lượt AI đang chạy.",
+      "state": "applied"
+     },
+     {
+      "id": "deploy.rollback",
+      "label": "Rollback",
+      "value": "Có backup, kiểm tra tương thích DB, image cũ và cách tắt cờ; lỗi nghiêm trọng thì lùi ngay",
+      "type": "text",
+      "editable": true,
+      "explain": "Mỗi đợt phải có đường lùi đã kiểm trước khi chạy.",
+      "impact": "Thiếu bước nào thì không deploy.",
+      "state": "applied"
+     },
+     {
+      "id": "deploy.docs",
+      "label": "Mỗi tính năng cập nhật AGENTSXWeb.md, hướng dẫn người dùng, nhãn trung thực",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Tài liệu đi cùng tính năng.",
+      "impact": "Thiếu tài liệu: tính năng khó dùng và khó kiểm.",
+      "state": "applied"
+     },
+     {
+      "id": "deploy.ssh",
+      "label": "Khóa SSH vào máy chủ",
+      "value": "Owner nạp bằng ssh-add; hiện hết ~23:45 ICT 10/11",
+      "type": "text",
+      "editable": false,
+      "explain": "Em nhắc trước khi hết.",
+      "impact": "Hết khóa: không deploy được.",
+      "state": "verified",
+      "evidence": "ssh-add -l 18:10"
+     }
+    ]
+   },
+   {
+    "id": "sso",
+    "title": "Phiên đăng nhập SSO",
+    "common": true,
+    "summary": "Mục tiêu 30 ngày nhàn rỗi, 365 ngày tối đa",
+    "items": [
+     {
+      "id": "sso.idle_days",
+      "label": "Keycloak: nhàn rỗi (ngày)",
+      "value": 30,
+      "type": "number",
+      "editable": true,
+      "explain": "Thời gian không hoạt động trước khi hết phiên.",
+      "impact": "Dài hơn: tiện hơn nhưng cookie bị lộ dùng được lâu hơn.",
+      "state": "verified",
+      "evidence": "đọc DB Keycloak 18:10 ICT: xweb idle 2592000 s",
+      "min": 1,
+      "max": 365
+     },
+     {
+      "id": "sso.max_days",
+      "label": "Keycloak: tối đa (ngày)",
+      "value": 365,
+      "type": "number",
+      "editable": true,
+      "explain": "Tuổi thọ tuyệt đối của phiên.",
+      "impact": "Dài hơn làm tăng rủi ro nếu máy bị bỏ ngỏ.",
+      "state": "verified",
+      "evidence": "đọc DB Keycloak 18:10 ICT: xweb max 31536000 s",
+      "min": 1,
+      "max": 3650
+     },
+     {
+      "id": "sso.backend_idle_min",
+      "label": "Backend: nhàn rỗi (phút)",
+      "value": 43200,
+      "type": "number",
+      "editable": true,
+      "explain": "Đang là 10080 (7 ngày); đổi lên 43200 khi chạy bước go đợt 15.",
+      "impact": "Backend không nên vượt Keycloak.",
+      "state": "pending",
+      "evidence": "đang chạy 10080 (đã kiểm 16:27); 43200 chờ đợt 15",
+      "min": 30,
+      "max": 525600
+     },
+     {
+      "id": "sso.backend_abs_min",
+      "label": "Backend: tối đa (phút)",
+      "value": 525600,
+      "type": "number",
+      "editable": true,
+      "explain": "Đang là 10080; đổi lên 525600 khi chạy bước go đợt 15.",
+      "impact": "Như trên.",
+      "state": "pending",
+      "evidence": "đang chạy 10080; 525600 chờ đợt 15",
+      "min": 60,
+      "max": 525600
+     },
+     {
+      "id": "sso.remember_me",
+      "label": "Bật “Ghi nhớ đăng nhập” (Remember Me)",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Cho phép phiên dài khi người dùng chọn.",
+      "impact": "Cần cấu hình Keycloak và giao diện đăng nhập; cần review bảo mật.",
+      "state": "proposed"
+     },
+     {
+      "id": "sso.refresh",
+      "label": "Tự làm mới token (refresh token)",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Phiên tự gia hạn khi đang làm việc.",
+      "impact": "Cần đổi cấu hình client Keycloak và mã FE/BE; chưa làm.",
+      "state": "proposed"
+     },
+     {
+      "id": "sso.no_work_loss",
+      "label": "Không mất công việc khi hết phiên",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Lưu nháp và quay lại đúng chỗ sau khi đăng nhập lại.",
+      "impact": "Cần mã FE; chưa làm.",
+      "state": "proposed"
+     },
+     {
+      "id": "sso.reauth",
+      "label": "Thao tác nhạy cảm yêu cầu xác thực lại",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Ví dụ đổi quyền, gia hạn AI, xóa dữ liệu.",
+      "impact": "Cần xác định danh sách thao tác và mã BE/FE; chưa làm.",
+      "state": "proposed"
+     }
+    ]
+   },
+   {
+    "id": "disk",
+    "title": "Dọn SSD Mac (512 GB)",
+    "common": false,
+    "summary": "Mốc dọn theo dung lượng trống",
+    "items": [
+     {
+      "id": "disk.free_now",
+      "label": "Dung lượng trống hiện tại (GiB)",
+      "value": 50,
+      "type": "number",
+      "editable": false,
+      "explain": "Giá trị đo gần nhất trên Mac.",
+      "impact": "Chỉ đọc.",
+      "state": "verified",
+      "evidence": "df 17:30 ICT: 50 GiB trống, thuộc mức dọn chủ động"
+     },
+     {
+      "id": "disk.t_monitor",
+      "label": "Trên mức này chỉ giám sát (GB trống)",
+      "value": 100,
+      "type": "number",
+      "editable": true,
+      "explain": "Không dọn.",
+      "impact": "Tăng: bắt đầu dọn muộn hơn.",
+      "state": "applied",
+      "min": 20,
+      "max": 300
+     },
+     {
+      "id": "disk.t_light",
+      "label": "70–100: dọn nhẹ",
+      "value": 70,
+      "type": "number",
+      "editable": true,
+      "explain": "Cache dư, thư mục tạm của Claude.",
+      "impact": "",
+      "state": "applied",
+      "min": 20,
+      "max": 300
+     },
+     {
+      "id": "disk.t_active",
+      "label": "40–70: dọn chủ động",
+      "value": 40,
+      "type": "number",
+      "editable": true,
+      "explain": "Worktree đã sạch và đã đẩy, node_modules không dùng, Docker đã dừng.",
+      "impact": "",
+      "state": "applied",
+      "min": 10,
+      "max": 300
+     },
+     {
+      "id": "disk.t_aggressive",
+      "label": "20–40: dọn tích cực",
+      "value": 20,
+      "type": "number",
+      "editable": true,
+      "explain": "Thêm snapshot Time Machine cục bộ (giữ 3 bản mới nhất).",
+      "impact": "",
+      "state": "applied",
+      "min": 5,
+      "max": 300
+     },
+     {
+      "id": "disk.t_urgent",
+      "label": "Dưới 20 GB: cảnh báo khẩn cho Owner",
+      "value": 20,
+      "type": "number",
+      "editable": true,
+      "explain": "Báo ngay.",
+      "impact": "",
+      "state": "applied",
+      "min": 5,
+      "max": 300
+     },
+     {
+      "id": "disk.safety",
+      "label": "Không xóa source chưa push, dữ liệu DB, backup duy nhất, checkpoint, tài nguyên agent đang dùng; không dọn cache làm ảnh hưởng build khi chưa cần",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Quy tắc an toàn dữ liệu bắt buộc.",
+      "impact": "Tắt: nguy cơ mất dữ liệu.",
+      "state": "applied"
+     }
+    ]
+   },
+   {
+    "id": "report",
+    "title": "Báo cáo và giờ giấc",
+    "common": false,
+    "summary": "Mỗi giờ, GitHub #88, dashboard",
+    "items": [
+     {
+      "id": "report.hourly",
+      "label": "Đồng bộ mỗi giờ",
+      "value": "Kiểm agent, Git/PR, QA, deploy, tài nguyên; cập nhật #88 và dashboard",
+      "type": "text",
+      "editable": true,
+      "explain": "Báo cáo 19 dòng nếu có thay đổi.",
+      "impact": "Bỏ qua: Owner không thấy tiến độ.",
+      "state": "applied"
+     },
+     {
+      "id": "report.tz",
+      "label": "Múi giờ",
+      "value": "ICT (UTC+7); giờ lấy từ lệnh date",
+      "type": "text",
+      "editable": true,
+      "explain": "Không đoán giờ.",
+      "impact": "Sai giờ làm lệch mốc.",
+      "state": "applied"
+     },
+     {
+      "id": "report.labels",
+      "label": "REPORTED = agent báo; VERIFIED = đã kiểm độc lập; thiếu bằng chứng ghi CHƯA XÁC MINH",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Phân biệt rõ mức tin cậy.",
+      "impact": "Tắt: dễ hiểu nhầm là đã xong.",
+      "state": "applied"
+     },
+     {
+      "id": "report.done",
+      "label": "Không coi 100% bật là DONE; không đánh dấu xong khi chưa có QA/SEC độc lập",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "",
+      "impact": "",
+      "state": "applied"
+     }
+    ]
+   },
+   {
+    "id": "decide",
+    "title": "Quyền của Owner",
+    "common": false,
+    "summary": "Ai quyết định gì",
+    "items": [
+     {
+      "id": "decide.claude",
+      "label": "Claude chủ động",
+      "value": "Xử lý kỹ thuật và deploy trong phạm vi đã duyệt",
+      "type": "text",
+      "editable": true,
+      "explain": "Không hỏi từng bước nhỏ.",
+      "impact": "Hỏi nhiều hơn làm chậm.",
+      "state": "applied"
+     },
+     {
+      "id": "decide.owner",
+      "label": "Chỉ xin Owner khi",
+      "value": "Thay đổi chính sách, quyền, ngân sách, dữ liệu nhạy cảm hoặc có rủi ro cao",
+      "type": "text",
+      "editable": true,
+      "explain": "Gồm gia hạn cửa sổ AI.",
+      "impact": "Mở rộng: Owner bị hỏi nhiều.",
+      "state": "applied"
+     },
+     {
+      "id": "decide.no_workaround",
+      "label": "Hệ thống chặn một thao tác thì dừng và báo, không lách",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "",
+      "impact": "",
+      "state": "applied"
+     }
+    ]
+   },
+   {
+    "id": "dash",
+    "title": "Dashboard quy trình",
+    "common": false,
+    "summary": "Lịch sử và trạng thái",
+    "items": [
+     {
+      "id": "dash.states",
+      "label": "Phân biệt Đề xuất / Chờ áp dụng / Đã áp dụng / Đã xác minh, không giả định",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Mỗi mục có trạng thái và bằng chứng.",
+      "impact": "Không có bằng chứng thì không ghi Đã xác minh.",
+      "state": "applied"
+     },
+     {
+      "id": "dash.history",
+      "label": "Lưu lịch sử thay đổi cấu hình",
+      "value": true,
+      "type": "bool",
+      "editable": true,
+      "explain": "Xem ai đổi gì, khi nào.",
+      "impact": "Chưa có giao diện lịch sử (đang làm).",
+      "state": "proposed"
+     }
+    ]
+   },
+   {
+    "id": "edge",
+    "title": "Trường hợp biên (kiểm thử)",
+    "common": false,
+    "items": [
+     {
+      "id": "edge.nolabel",
+      "value": 5,
+      "type": "number"
+     },
+     {
+      "id": "edge.weird",
+      "label": "Kiểu dữ liệu lạ",
+      "value": "abc",
+      "type": "colour",
+      "state": "applied"
+     },
+     {
+      "id": "edge.many",
+      "label": "Chọn một trong bốn",
+      "type": "select",
+      "value": "B",
+      "options": [
+       "A",
+       "B",
+       "C",
+       "D"
+      ],
+      "state": "pending",
+      "explain": "Select có nhiều lựa chọn dùng ô chọn.",
+      "impact": "Đổi lựa chọn có thể thay đổi cách chạy."
+     },
+     {
+      "id": "edge.short",
+      "label": "Văn bản ngắn",
+      "type": "text",
+      "value": "ICT",
+      "state": "verified",
+      "evidence": "Đo ngày 10/11",
+      "explain": "Một dòng ngắn."
+     },
+     {
+      "id": "edge.boolstr",
+      "label": "Bool dạng chuỗi",
+      "type": "bool",
+      "value": "true",
+      "state": "proposed"
+     },
+     {
+      "id": "edge.ro",
+      "label": "Chỉ đọc có bằng chứng",
+      "type": "number",
+      "value": 42,
+      "editable": false,
+      "state": "verified",
+      "evidence": "Số đo mẫu"
+     }
+    ]
+   },
+   {
+    "id": "edge-empty",
+    "title": "Nhóm rỗng",
+    "items": []
+   },
+   {
+    "title": "Nhóm thiếu id và items"
+   }
+  ],
+  "history": [
+   {
+    "at": "2026-11-10T18:14:00+07:00",
+    "by": "Owner",
+    "id": "*",
+    "note": "Chốt bộ tiêu chuẩn vận hành 12 nhóm (10/11); C0 áp dụng vào bảng này",
+    "state": "applied"
+   }
+  ]
+ }
+}
