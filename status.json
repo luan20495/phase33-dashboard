@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T20:32:00+07:00",
+  "asOf": "2026-11-10T21:10:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2210,7 +2210,7 @@
         "id": "OD-OA06-RECO",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T20:32:00+07:00",
         "title": "Các quyết định còn mở (OA-06): Claude khuyến nghị cho từng mục, duyệt cả bộ?",
         "detail": "Khuyến nghị (file đầy đủ cục bộ: ~/xweb-handoff/p37-studio/owner-decisions/OA-06-GO-NOGO.md): (1) cấp quyền AI trả phí cho admin cần 3 admin: GIỮ NGUYÊN, hoãn (cờ cấp quyền động đang TẮT, giao diện chưa có màn yêu cầu); (2) khôi phục danh sách env bằng 1 admin: ĐỒNG Ý (hướng an toàn, đã có xác nhận gõ chữ và audit); (3) ngày bật X1 STRICT=true: CHƯA đặt ngày, đặt điều kiện trước (sửa sự cố CQB-1, kiểm kê 2 workspace còn lại, có báo cáo chỉ-đọc thao tác chưa có chính sách); (4) vòng lặp đọc công cụ (pha B): giao làm T23, cờ giữ TẮT đến khi có khoảng 12 lượt Haiku thật và Owner duyệt chi phí; (5) dry-run phía server cho cấp hàng loạt: hoãn (đã có xác nhận gõ chữ, trần 500, giới hạn tốc độ, audit); (6) giới hạn byte prompt: thẻ cũ đã lỗi thời, đang là 300.000 byte từ 09/11: đóng mục; (7) OD-C1..C6: dùng 6 mặc định đề xuất (đã dùng ngầm trong 02a/02b/03b); (8) Org IAM #126/#129: đã hoãn; (9) tài khoản QA thêm: làm tài khoản chỉ Apps và chỉ APP_VIEW, hoãn tenant thứ hai đến khi làm X3 phần 2; (10) chuông thông báo B3 và nút thu hồi: giữ backlog.",
@@ -2228,13 +2228,15 @@
             "label": "Muốn xem từng mục",
             "desc": "Anh ghi số mục cần đổi vào ô ghi chú."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Duyệt cả bộ khuyến nghị (Owner 21:04). Claude làm từng mục; mục cần việc riêng có thẻ/PR riêng."
       },
       {
         "id": "OD-OA07-CLEAN",
         "kind": "CLEANUP",
         "priority": "P3",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T20:32:00+07:00",
         "title": "Dọn git (OA-07): danh sách nhánh/PR cũ đã lập, duyệt nhóm nào để xóa/đóng?",
         "detail": "Thẻ cũ lỗi thời: hiện có 15 PR mở ở BE và 10 ở FE (đa số PR cũ đã đóng 07/11). Nhánh không còn PR và chưa vào dev: BE 34, FE 6. Nhóm: XÓA AN TOÀN (nội dung đã có trong dev): BE 61, FE 70; ĐÓNG VÌ ĐÃ THAY THẾ: BE 2, FE 2 (hai trong số đó chờ quyết định hai bản nháp #24/#16); GIỮ: BE 4, FE 2; CẦN OWNER (lưu gói bundle rồi mới xóa): BE 26, FE 1. PR mở từ 14 ngày trở lên: BE 7, FE 4. Còn 47 worktree cục bộ có thay đổi chưa lưu hoặc commit chưa đẩy: KHÔNG xóa. Danh sách đầy đủ kèm SHA 40 ký tự: ~/xweb-handoff/p37-studio/owner-decisions/OA-07-LIST.md (cục bộ). Một nhánh đã merge vẫn có thể là nhánh đang dùng của một agent: Claude kiểm trước khi xóa.",
@@ -2257,13 +2259,15 @@
             "label": "Chưa dọn",
             "desc": "Giữ nguyên."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Chỉ xóa nhóm XÓA AN TOÀN; đã xóa 106 nhánh, SHA lưu cục bộ (Owner 21:04)."
       },
       {
         "id": "OD-OA12-BUDGET",
         "kind": "BUDGET",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T20:32:00+07:00",
         "title": "Workspace QA riêng để đóng QA B1/B3: đề xuất mức nhỏ nhất hệ thống cho phép, duyệt trước khi dùng",
         "detail": "Đề xuất đầy đủ (có số tiền, CHỈ ở file cục bộ): ~/xweb-handoff/p37-studio/owner-decisions/OA-12-BUDGET-PROPOSAL.md. Điểm chính: kế hoạch cũ dùng mức quá nhỏ nên mọi lượt thật sẽ bị từ chối (một lượt Haiku giữ chỗ lớn hơn cả khoản cấp đó); đề xuất M1: một workspace QA riêng (không phải workspace người dùng thật), một phân bổ cho workspace, hai khoản cấp theo dự án (1 ngày), một mức riêng theo người dùng để kiểm đua đồng thời, tối đa 4 lượt Haiku trong số còn lại; chi tiêu xấu nhất bị chặn bởi trần phân bổ (sổ cái từ chối vượt); chi tiêu thật dự kiến rất nhỏ; có thứ tự lùi (thu hồi quyền workspace trước, rồi khoản cấp, mức riêng, cuối cùng phân bổ). Phương án M0 nhỏ hơn: một dự án, không kiểm đua đồng thời. Trước khi áp dụng Claude đọc lại mức giữ chỗ xấu nhất của dự án QA và tính lại.",
@@ -2286,7 +2290,9 @@
             "label": "Chưa làm",
             "desc": "B1/B3 giữ NOT_RUN."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Duyệt M1 (B1/B3). Claude đọc lại mức giữ chỗ xấu nhất thực tế và báo số cuối trước khi tạo gì (chưa áp dụng)."
       },
       {
         "id": "OD-SSO-CONFIRM",
