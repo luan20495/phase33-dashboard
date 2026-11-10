@@ -3964,7 +3964,7 @@
         "etaFirst": "Deploy sau đợt 14: ~11:30–13:00 (QA delta, FE, QA tích hợp); bật ALWAYS_OPEN sau lời duyệt Owner",
         "etaFull": "",
         "etaFallback": "Dự phòng: 15:00",
-        "evidence": "qa-sec-ai-window.md (local)",
+        "evidence": "qa-sec-ai-window.md (local) 21:10 ICT: yêu cầu gia hạn cửa sổ AI một lần (OD-AIWIN-RENEW) KHÔNG cần chạy: chế độ hiện là luôn mở, không có hạn kết thúc (VERIFIED, đọc chỉ-đọc), nên không có gì hết hạn lúc 23:02. Không gia hạn, không lịch gia hạn định kỳ.",
         "accept": [
           "Chế độ mặc định TIMED giữ nguyên từng byte",
           "ALWAYS_OPEN: hết hạn cửa sổ không còn chặn người có quyền; trần số yêu cầu mỗi ngày, trần USD, trần chu kỳ vẫn chặn",
