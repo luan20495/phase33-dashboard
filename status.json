@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T08:49:00+07:00",
+  "asOf": "2026-11-10T09:28:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,14 +2203,14 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-10T08:42:00+07:00",
+    "updatedAt": "2026-11-10T09:28:00+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
         "id": "OD-T35-OL-RETRY",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "T35 (header Open Lovable): có thêm nút “Thử lại” khi lưu lỗi trên điện thoại không?",
         "solution": "Chọn A, B hoặc C bên dưới. Không chặn đợt 14 nếu chọn A/B.",
@@ -2233,13 +2233,15 @@
             "label": "Thêm trước đợt 14",
             "desc": "Đợt 14 trễ thêm, ước tính 2 đến 3 giờ (cần QA lại)."
           }
-        ]
+        ],
+        "decided": "B",
+        "decision": "Thêm nút “Thử lại” cho header Open Lovable ở một PR nhỏ SAU đợt 14 (không chặn đợt 14)"
       },
       {
         "id": "OD-T35-C3",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "T35: có cần công tắc tắt riêng cho giao diện header mới không?",
         "solution": "Chọn A hoặc B. Claude khuyến nghị A.",
@@ -2257,13 +2259,15 @@
             "label": "Thêm công tắc riêng cho T35/T35b",
             "desc": "Tắt nhanh không cần dựng lại, nhưng thêm mã và thêm một vòng QA."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Không thêm công tắc riêng cho giao diện header mới; đường lùi = image FE trước"
       },
       {
         "id": "OD-T35B-7",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "T35b: 7 điểm thiết kế màn ứng dụng dạng trang, QA khuyến nghị đồng ý cả 7",
         "solution": "Chọn A nếu đồng ý cả 7; chọn B nếu muốn đổi, ghi số điểm vào ô ghi chú.",
@@ -2281,13 +2285,15 @@
             "label": "Muốn đổi một số điểm",
             "desc": "Ghi số điểm và ý anh vào ô ghi chú bên dưới."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Đồng ý cả 7 điểm thiết kế T35b"
       },
       {
         "id": "OD-T36-N",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "Cửa sổ AI mở vĩnh viễn: giới hạn N lượt AI mỗi ngày (đặt lại 07:00 ICT)",
         "solution": "Chọn một mức, hoặc ghi số khác vào ô ghi chú. Đổi sau được bằng một lệnh quản trị (cần gõ RAISE).",
@@ -2310,13 +2316,15 @@
             "label": "5.000 lượt/ngày",
             "desc": "Gần như không giới hạn theo lượt; chỉ trần chi phí chặn."
           }
-        ]
+        ],
+        "decided": "C",
+        "decision": "Giới hạn 5.000 lượt AI mỗi ngày khi mở theo ngày (Owner chọn mức C, không phải mức khuyến nghị A)"
       },
       {
         "id": "OD-T36-CAP",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "Cửa sổ AI: có cần trần chi phí theo tháng (khác trần cộng dồn hiện có) không?",
         "solution": "Chọn A hoặc B.",
@@ -2334,13 +2342,15 @@
             "label": "Làm ngay trần theo tháng",
             "desc": "Thêm migration; T36 trễ, ước tính khoảng 1 ngày."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Chưa làm trần chi phí theo tháng; dùng trần cộng dồn hiện có"
       },
       {
         "id": "OD-T36-GATES",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "Các “cổng thời gian” khác của quyền AI (quyền hết hạn 06/12, phân bổ, quyền theo dự án)",
         "solution": "Chọn A hoặc B.",
@@ -2357,13 +2367,15 @@
             "label": "Gia hạn tất cả ngay",
             "desc": "Cần anh xác nhận từng hạn mới khi Claude báo giá trị."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Chỉ đọc giá trị các cổng thời gian khác trên PROD rồi báo Owner quyết"
       },
       {
         "id": "OD-AIWIN-RENEW",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "Cửa sổ AI hết hạn 23:02 hôm nay: gia hạn thêm lúc 21:00?",
         "solution": "Chọn A để Claude gia hạn 1.440 phút lúc khoảng 21:00 (hệ thống cho tối đa 1.440 phút mỗi lần).",
@@ -2380,13 +2392,15 @@
             "label": "Không gia hạn",
             "desc": "AI trả phí đóng sau 23:02 cho tới khi T36 được bật."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Gia hạn cửa sổ AI thêm 1.440 phút một lần lúc ~21:00 ICT 10/11 (hết hạn hiện tại 23:02)"
       },
       {
         "id": "OD-T22B",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "T22-B (AI làm theo bước): chạy 3 lượt Haiku thử trên PROD, cờ vẫn TẮT?",
         "solution": "Chọn A hoặc B. Bật cờ là một quyết định riêng, chưa hỏi ở đây.",
@@ -2403,13 +2417,15 @@
             "label": "Chưa chạy",
             "desc": "Giữ nguyên T22-B ở trạng thái đã deploy, cờ TẮT."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Duyệt 3 lượt Haiku thử T22-B (cờ vẫn TẮT); chạy sau deploy đợt 14"
       },
       {
         "id": "OD-5ACC",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "5 tài khoản dùng thử: chạy 1 lượt AI thật (Haiku) cho mỗi tài khoản?",
         "solution": "Chọn A hoặc B.",
@@ -2426,13 +2442,15 @@
             "label": "Chưa",
             "desc": "Chờ đến khi anh muốn."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Duyệt 1 lượt AI thật (Haiku) cho mỗi tài khoản dùng thử; chạy sau deploy đợt 14"
       },
       {
         "id": "OD-CLEAN-QA",
         "kind": "DECISION",
         "priority": "P3",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "Dọn các dự án thử cũ (tên bắt đầu bằng QA-) của một tài khoản dùng thử (19 dự án)",
         "solution": "Chọn A hoặc B.",
@@ -2449,13 +2467,15 @@
             "desc": "Không đụng.",
             "recommended": true
           }
-        ]
+        ],
+        "decided": "B",
+        "decision": "Giữ lại các dự án thử cũ, không xóa"
       },
       {
         "id": "OD-PR199",
         "kind": "DECISION",
         "priority": "P3",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "PR #199: “Quy trình vận hành XWeb” (phần 5 đến 13 do Claude bổ sung): duyệt merge?",
         "solution": "Chọn A hoặc B.",
@@ -2472,7 +2492,9 @@
             "label": "Cần sửa",
             "desc": "Ghi chỗ cần sửa vào ô ghi chú."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Duyệt merge PR #199 (quy trình vận hành): đã merge vào dev 09:28"
       },
       {
         "id": "OA-01",
@@ -2574,6 +2596,83 @@
       "decision": "Thứ tự làm: 13 (X3), 15 (X5), 16 (P0-16 B/E) trước; sau đó 14 đến 19; sau đó phần còn lại (gồm phần mở rộng B2+F2 03b/05/06/07/08). Mục 9 không chặn 13/15/16.",
       "source": "Tin nhắn trực tiếp của Owner trong phiên điều hành; GitHub #88",
       "scope": "Thay thế thứ tự \"P0-17 để cuối\""
+    },
+    {
+      "id": "OD-T35-OL-RETRY",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn B: Thêm nút “Thử lại” cho header Open Lovable ở một PR nhỏ SAU đợt 14 (không chặn đợt 14)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-T35-C3",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Không thêm công tắc riêng cho giao diện header mới; đường lùi = image FE trước",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-T35B-7",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Đồng ý cả 7 điểm thiết kế T35b",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-AIWIN-RENEW",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Gia hạn cửa sổ AI thêm 1.440 phút một lần lúc ~21:00 ICT 10/11 (hết hạn hiện tại 23:02)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-T36-N",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn C: Giới hạn 5.000 lượt AI mỗi ngày khi mở theo ngày (Owner chọn mức C, không phải mức khuyến nghị A)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-T36-CAP",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Chưa làm trần chi phí theo tháng; dùng trần cộng dồn hiện có",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-T36-GATES",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Chỉ đọc giá trị các cổng thời gian khác trên PROD rồi báo Owner quyết",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-T22B",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Duyệt 3 lượt Haiku thử T22-B (cờ vẫn TẮT); chạy sau deploy đợt 14",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-5ACC",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Duyệt 1 lượt AI thật (Haiku) cho mỗi tài khoản dùng thử; chạy sau deploy đợt 14",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-CLEAN-QA",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn B: Giữ lại các dự án thử cũ, không xóa",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-PR199",
+      "at": "2026-11-10T09:26:00+07:00",
+      "decision": "Chọn A: Duyệt merge PR #199 (quy trình vận hành): đã merge vào dev 09:28",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
     }
   ],
   "dailyWork": {
@@ -3088,9 +3187,9 @@
         "prio": 2,
         "title": "Cửa sổ AI: bỏ hạn thời gian (mở vĩnh viễn trong khuôn trần) và công tắc bật/tắt trong super admin",
         "titleEn": "AI window: remove the time limit (always open within caps) and a super-admin on/off switch",
-        "status": "Owner chọn phương án 3 (06:00). BE #207 (c49ff6e2): `ai.paid.window.mode` TIMED | ALWAYS_OPEN:N, bộ đếm theo ngày UTC, trần USD cộng dồn giữ nguyên, route admin có xác nhận RAISE + nhật ký; QA delta độc lập 08:00 = GO-WITH-CONDITIONS (0 P0/P1; P2-1 đã sửa; 14 phá mã bị bắt; VERIFIED), còn điều kiện sửa 3 chỗ tài liệu nói quá (tác giả đang làm). PR test-only #208 QA GO và ĐÃ MERGE vào dev. FE #167 (ab8d297f) đã mở (giao diện super admin, nhãn nhật ký, bản sao tài liệu; test của tác giả REPORTED), QA độc lập chưa chạy. Chưa merge #207/#167, chưa lên PROD; cửa sổ hiện mở đến 23:02 ICT (gia hạn 1.440 phút, tối đa mỗi lần). Chờ Owner: N/ngày, trần tháng, ngày hết hạn quyền AI (06/12)",
-        "statusEn": "Owner chose option 3 (06:00). BE #207 (c49ff6e2): `ai.paid.window.mode` TIMED | ALWAYS_OPEN:N, UTC-day counter, cumulative USD cap kept, admin route with RAISE confirm + audit; independent delta QA at 08:00 = GO-WITH-CONDITIONS (0 P0/P1; P2-1 fixed; 14 mutants caught; VERIFIED), three over-claiming doc passages still to fix (author working). Test-only PR #208 QA GO and MERGED to dev. FE #167 (ab8d297f) opened (super-admin UI, audit labels, doc copy; author's tests REPORTED), independent QA not run yet. #207/#167 not merged, not on PROD; the window is open until 23:02 ICT (renewed 1,440 min, the per-call maximum). Waiting for the Owner: N/day, monthly cap, AI entitlement end date (06/12)",
-        "prs": "BE #207 (c49ff6e2), FE #167 (ab8d297f), test-only BE #208 (merged dev)",
+        "status": "Owner chọn phương án 3 (06:00). BE #207 (c49ff6e2): `ai.paid.window.mode` TIMED | ALWAYS_OPEN:N, bộ đếm theo ngày UTC, trần USD cộng dồn giữ nguyên, route admin có xác nhận RAISE + nhật ký; QA delta độc lập 08:00 = GO-WITH-CONDITIONS (0 P0/P1; P2-1 đã sửa; 14 phá mã bị bắt; VERIFIED), còn điều kiện sửa 3 chỗ tài liệu nói quá (tác giả đang làm). PR test-only #208 QA GO và ĐÃ MERGE vào dev. FE #167 (ab8d297f) đã mở (giao diện super admin, nhãn nhật ký, bản sao tài liệu; test của tác giả REPORTED), QA độc lập chưa chạy. Chưa merge #207/#167, chưa lên PROD; cửa sổ hiện mở đến 23:02 ICT (gia hạn 1.440 phút, tối đa mỗi lần). Chờ Owner: N/ngày, trần tháng, ngày hết hạn quyền AI (06/12) | 09:30: Owner duyệt N = 5.000 lượt/ngày, không làm trần tháng, gia hạn 1.440 phút lúc ~21:00, đọc trước các cổng thời gian khác (OD-T36-*). QA độc lập cặp cuối BE #207 (38ce26d1) + FE #167 (c3047383) = GO/GO (VERIFIED, combined-check đầy đủ xanh); status:ready, CHƯA merge: giữ sau đợt 14 để đợt 14 chỉ chứa T35",
+        "statusEn": "Owner chose option 3 (06:00). BE #207 (c49ff6e2): `ai.paid.window.mode` TIMED | ALWAYS_OPEN:N, UTC-day counter, cumulative USD cap kept, admin route with RAISE confirm + audit; independent delta QA at 08:00 = GO-WITH-CONDITIONS (0 P0/P1; P2-1 fixed; 14 mutants caught; VERIFIED), three over-claiming doc passages still to fix (author working). Test-only PR #208 QA GO and MERGED to dev. FE #167 (ab8d297f) opened (super-admin UI, audit labels, doc copy; author's tests REPORTED), independent QA not run yet. #207/#167 not merged, not on PROD; the window is open until 23:02 ICT (renewed 1,440 min, the per-call maximum). Waiting for the Owner: N/day, monthly cap, AI entitlement end date (06/12) | 09:30: Owner approved N = 5,000 requests/day, no monthly cap, renewal of 1,440 min at ~21:00, read-only check of the other time gates (OD-T36-*). Independent QA of the final pair BE #207 (38ce26d1) + FE #167 (c3047383) = GO/GO (VERIFIED, full combined-check green), status:ready, NOT merged yet: held until after release 14 so release 14 carries only T35",
+        "prs": "BE #207 (38ce26d1, ready), FE #167 (c3047383, ready), test-only BE #208 (merged dev)",
         "eta": "",
         "etaFirst": "Deploy sau đợt 14: ~11:30–13:00 (QA delta, FE, QA tích hợp); bật ALWAYS_OPEN sau lời duyệt Owner",
         "etaFull": "",
