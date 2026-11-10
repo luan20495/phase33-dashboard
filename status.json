@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T15:31:00+07:00",
+  "asOf": "2026-11-10T15:47:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,14 +2203,14 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-10T15:29:00+07:00",
+    "updatedAt": "2026-11-10T15:47:00+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
         "id": "OD-T37-L",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-L: nguồn đồng bộ API chạy bằng gì",
         "detail": "Hiện mỗi tenant chỉ 1 nguồn, chạy theo quyền của người dùng cần QUERY_EXECUTE trong workspace.",
@@ -2233,13 +2233,15 @@
             "label": "Chỉ nhập bằng tệp, bỏ API",
             "desc": "Thiếu spec."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-K",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-K: Studio Preview với dữ liệu thật",
         "detail": "Spec §6 muốn Preview chạy dữ liệu thật; hiện Preview đọc dữ liệu GIẢ (fixture), không bao giờ đọc thật.",
@@ -2261,13 +2263,15 @@
             "label": "Dữ liệu thật theo quyền người tạo app",
             "desc": "Có thể lộ dữ liệu cho người xem không được cấp."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-J",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-J: mô hình “Công ty mẹ–con nhiều cấp”",
         "detail": "Hiện bảng tenants không có parent_id.",
@@ -2290,7 +2294,9 @@
             "label": "Chỉ dùng loại đơn vị gốc trong cây tổ chức",
             "desc": "Đơn giản nhưng không phải thực thể công ty."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-I",
@@ -2299,7 +2305,7 @@
         "status": "OPEN",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-I: lưu trữ và nhật ký audit",
-        "detail": "Chính sách lưu hiện tại chưa rõ (UNKNOWN). Pháp lý dữ liệu cá nhân là việc của anh.",
+        "detail": "Chính sách lưu hiện tại chưa rõ (UNKNOWN). Pháp lý dữ liệu cá nhân là việc của anh. | Owner: chính sách dữ liệu/pháp lý vẫn do Owner quyết; trong lúc chờ, T37 áp dụng phương án A tạm thời (audit ≥12 tháng, audit không chứa tên/email) và chưa bật gì trên PROD.",
         "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
         "link": "",
         "options": [
@@ -2319,7 +2325,7 @@
         "id": "OD-T37-H",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-H: cờ tính năng và cách bật trên PROD",
         "detail": "Cờ org-sync hiện chưa có nhóm xác nhận ProdFeature, chưa đưa vào compose.prod.yml nên chưa bật an toàn được.",
@@ -2337,13 +2343,15 @@
             "label": "Một cờ duy nhất",
             "desc": "Không tách được rủi ro Export/Sync."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-G",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-G: tách hồ sơ nhân viên khỏi tài khoản SSO",
         "detail": "Hiện nhân viên là users + tenant_members, và Import thành viên đang tạo tài khoản, trái với “Import không tự tạo tài khoản”.",
@@ -2366,13 +2374,15 @@
             "label": "Giữ nguyên",
             "desc": "Không đạt spec."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-F",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-F: Export: ai được xuất và xuất gì",
         "detail": "Hiện bất kỳ quyền *_VIEW nào cũng xuất được cột mặc định.",
@@ -2390,13 +2400,15 @@
             "label": "Giữ như hiện tại, chỉ thêm audit",
             "desc": "Không đạt yêu cầu bảo mật."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-E",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-E: Khôi phục một phiên Import",
         "detail": "Cần cột phiên bản cho hồ sơ nhân viên; xóa cứng không bao giờ làm.",
@@ -2418,13 +2430,15 @@
             "label": "Khôi phục bắt buộc cả dòng đã bị sửa sau",
             "desc": "Có thể mất dữ liệu người khác nhập sau; không khuyến nghị."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-D",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-D: giới hạn kỹ thuật cho mỗi lần Import (không phải giới hạn tùy tiện)",
         "detail": "Ước tính của audit (±40%), chưa kiểm tải thật.",
@@ -2447,13 +2461,15 @@
             "label": "Rộng hơn (tệp ≤20 MB)",
             "desc": "Rủi ro hiệu năng và nén bom."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-C",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-C: Quy tắc hai người duyệt của X2 và việc Import không cần duyệt",
         "detail": "Audit xác nhận trong mã đây là hai tầng khác nhau: nhập dữ liệu gốc (không cần duyệt) và cho một nguồn dữ liệu được ứng dụng đọc (X2, cần hai quản trị tenant). PROD mới có 1 TENANT_ADMIN.",
@@ -2471,13 +2487,15 @@
             "label": "Bỏ luôn quy tắc hai người của X2",
             "desc": "Giảm an toàn khi lộ dữ liệu cho app; cần quyết riêng."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-B",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-B: người phụ trách nhập liệu / xuất dữ liệu (“data steward”) được biểu diễn thế nào?",
         "detail": "Hiện chỉ có Delegation cho quyền ứng dụng, chưa có ủy quyền dữ liệu doanh nghiệp.",
@@ -2500,13 +2518,15 @@
             "label": "Mở rộng EMPLOYEE_MANAGE",
             "desc": "Quyền quá rộng."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T37-A",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-A: Org IAM (#126/#129) và T37: làm độc lập hay chờ nhau?",
         "detail": "Audit: #126/#129 là phân quyền truy cập trên cây tổ chức, bổ sung cho T37 (T37 là mô-đun dữ liệu), không trùng. #129 phải đánh số lại vì PROD đã ở V98 (V90 không dùng được).",
@@ -2528,7 +2548,9 @@
             "label": "T37 thay thế #126/#129",
             "desc": "Bỏ hợp đồng Org IAM; cần quyết riêng."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX"
       },
       {
         "id": "OD-T35-OL-RETRY",
@@ -3095,6 +3117,83 @@
       "decision": "Chọn A: Duyệt merge PR #199 (quy trình vận hành): đã merge vào dev 09:28",
       "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 09:26 ICT 10/11",
       "scope": "Chỉ đúng nội dung quyết định này; không mở rộng sang cờ, ngân sách hay quyền khác"
+    },
+    {
+      "id": "OD-T37-L",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-K",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-J",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-H",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-G",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-F",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-E",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-D",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-C",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-B",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-T37-A",
+      "at": "2026-11-10T15:47:00+07:00",
+      "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
+      "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
+      "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
     }
   ],
   "dailyWork": {
@@ -3108,8 +3207,8 @@
         "id": "T37",
         "title": "Enterprise Data Hub: Công ty của tôi, Cơ cấu tổ chức, Nhân viên (Import/Export, API Sync, dùng cho Web App từ Studio)",
         "titleEn": "Enterprise Data Hub: My Company, Organization Structure, Employees (Import/Export, API Sync, used by Studio web apps)",
-        "status": "15:00 Owner GO (P0, DEV): ba phân hệ dữ liệu doanh nghiệp, Company Admin Import trực tiếp không cần Super Admin duyệt, Export kiểm soát chặt (mặc định không cấp, che trường nhạy cảm, audit), API Sync (full/delta, không xóa hàng loạt khi API lỗi/rỗng), Web App Studio đọc qua Backend Data Connector (PRIVATE, theo quyền, thu hồi có hiệu lực). Spec lưu ở ~/xweb-handoff/p37-studio/t37/SPEC.md (cục bộ). Hiện CHƯA có mã: agent AUDIT chỉ đọc đang chạy (tái sử dụng X2/X3/X5/UX13, khoảng trống, câu hỏi cần Owner quyết có phương án, kế hoạch pha, ước lượng). Chưa chạy gì trên PROD. T35 vẫn là ưu tiên deploy trước (đợt 15); T37 không đổi tổng 19 hạng mục P0 | 16:20: AUDIT XONG (chỉ đọc, REPORTED): phần lớn đã có sẵn trên dev (cây tổ chức V32; nhập/xuất/đồng bộ cơ cấu tổ chức P3-16 V56/V60 với xem trước IAM, chống xóa hàng loạt, audit ORG_*; danh mục X2/X3 EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector có chống SSRF). Còn thiếu: Công ty mẹ–con (tenants chưa có parent_id), hồ sơ nhân viên tách khỏi SSO (Import thành viên hiện tạo tài khoản), XLSX (chưa có), khôi phục Import, lịch sử trước/sau, quyền Export, ủy quyền người phụ trách dữ liệu, API sync cấp tenant, delta thật. Xung đột spec §6: Preview Studio hiện đọc dữ liệu GIẢ. Cờ org-sync chưa bật an toàn được trên PROD (thiếu nhóm xác nhận). Migration tiếp theo V99 (V90 của #129 không dùng được). Ước lượng (±40%, giờ agent): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 giờ; đường găng P0→P1→P2a→P2b→P5 ≈ 240 giờ; Export và API Sync chạy song song. Đã đưa 12 câu hỏi thiết kế (có phương án và khuyến nghị) lên tab ‘Cần anh xử lý’ (OD-T37-A…L). Bước đầu an toàn: hợp đồng tài liệu + thư viện đọc/ghi XLSX có kiểm thử phá hoại (không phụ thuộc quyết định)",
-        "statusEn": "15:00 Owner GO (P0, DEV): three enterprise data modules; Company Admin imports directly without Super Admin approval; Export tightly controlled (default deny, sensitive-field masking, audit); API Sync (full/delta, no mass delete when the API fails or returns empty); Studio web apps read through the Backend Data Connector (PRIVATE, permission-scoped, revocation takes effect). Spec kept locally at ~/xweb-handoff/p37-studio/t37/SPEC.md. NO code yet: a read-only AUDIT agent is running (reuse of X2/X3/X5/UX13, gaps, questions for the Owner with options, phase plan, estimate). Nothing run on PROD. T35 still has deploy priority (release 15); T37 does not change the 19 original P0 items | 16:20: AUDIT DONE (read-only, REPORTED): most of it already exists on dev (org tree V32; org import/export/sync P3-16 V56/V60 with IAM impact preview, mass-removal guard, ORG_* audit; X2/X3 catalogs EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector with SSRF guard). Missing: parent-child companies (tenants have no parent_id), employee profile separated from SSO (members import currently creates accounts), XLSX (none), import rollback, before/after history, export grants, data-steward delegation, tenant-level API sync, real delta. Conflict with spec §6: Studio Preview reads FIXTURE data. The org-sync flag cannot be enabled safely on PROD yet (no ack group). Next migration V99 (#129's V90 is unusable). Estimate (±40%, agent-hours): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 h; critical path P0→P1→P2a→P2b→P5 ≈ 240 h; Export and API Sync in parallel. 12 design questions (with options and a recommendation) are on the Owner tab (OD-T37-A…L). Safe first step: contract doc + a pure XLSX reader/writer library with hostile tests (independent of the decisions)",
+        "status": "15:00 Owner GO (P0, DEV): ba phân hệ dữ liệu doanh nghiệp, Company Admin Import trực tiếp không cần Super Admin duyệt, Export kiểm soát chặt (mặc định không cấp, che trường nhạy cảm, audit), API Sync (full/delta, không xóa hàng loạt khi API lỗi/rỗng), Web App Studio đọc qua Backend Data Connector (PRIVATE, theo quyền, thu hồi có hiệu lực). Spec lưu ở ~/xweb-handoff/p37-studio/t37/SPEC.md (cục bộ). Hiện CHƯA có mã: agent AUDIT chỉ đọc đang chạy (tái sử dụng X2/X3/X5/UX13, khoảng trống, câu hỏi cần Owner quyết có phương án, kế hoạch pha, ước lượng). Chưa chạy gì trên PROD. T35 vẫn là ưu tiên deploy trước (đợt 15); T37 không đổi tổng 19 hạng mục P0 | 16:20: AUDIT XONG (chỉ đọc, REPORTED): phần lớn đã có sẵn trên dev (cây tổ chức V32; nhập/xuất/đồng bộ cơ cấu tổ chức P3-16 V56/V60 với xem trước IAM, chống xóa hàng loạt, audit ORG_*; danh mục X2/X3 EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector có chống SSRF). Còn thiếu: Công ty mẹ–con (tenants chưa có parent_id), hồ sơ nhân viên tách khỏi SSO (Import thành viên hiện tạo tài khoản), XLSX (chưa có), khôi phục Import, lịch sử trước/sau, quyền Export, ủy quyền người phụ trách dữ liệu, API sync cấp tenant, delta thật. Xung đột spec §6: Preview Studio hiện đọc dữ liệu GIẢ. Cờ org-sync chưa bật an toàn được trên PROD (thiếu nhóm xác nhận). Migration tiếp theo V99 (V90 của #129 không dùng được). Ước lượng (±40%, giờ agent): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 giờ; đường găng P0→P1→P2a→P2b→P5 ≈ 240 giờ; Export và API Sync chạy song song. Đã đưa 12 câu hỏi thiết kế (có phương án và khuyến nghị) lên tab ‘Cần anh xử lý’ (OD-T37-A…L). Bước đầu an toàn: hợp đồng tài liệu + thư viện đọc/ghi XLSX có kiểm thử phá hoại (không phụ thuộc quyết định) | 16:00 Owner cập nhật: giữ nguyên T37, KHÔNG làm lại, KHÔNG mở rộng; tái sử dụng toàn bộ mã Company/Org/Employees/CSV/API Sync/Nguồn hệ thống/IAM hiện có; kiểm thử phần đã có TRƯỚC khi viết mã mới; không tạo hệ thống/mô hình dữ liệu song song; hoãn AI Mapping, AI CRUD nâng cao, Approval Workflow cho Import/Export; chia nhỏ PR và release (không chờ toàn bộ T37); 530 giờ KHÔNG phải ngân sách được duyệt, sẽ ước lượng lại sau khi đo mức tái sử dụng. 11/12 câu hỏi đã đóng theo khuyến nghị BA/SA; còn 1 câu chính sách dữ liệu (lưu trữ audit/pháp lý) chờ Owner. Agent BA/SA+QA RUNNING: bảng EXISTING/WORKING/NEED FIX/MISSING/READY TO ON có bằng chứng và SHA (chạy test các phần đã có), ước lượng lại, PR đầu tiên",
+        "statusEn": "15:00 Owner GO (P0, DEV): three enterprise data modules; Company Admin imports directly without Super Admin approval; Export tightly controlled (default deny, sensitive-field masking, audit); API Sync (full/delta, no mass delete when the API fails or returns empty); Studio web apps read through the Backend Data Connector (PRIVATE, permission-scoped, revocation takes effect). Spec kept locally at ~/xweb-handoff/p37-studio/t37/SPEC.md. NO code yet: a read-only AUDIT agent is running (reuse of X2/X3/X5/UX13, gaps, questions for the Owner with options, phase plan, estimate). Nothing run on PROD. T35 still has deploy priority (release 15); T37 does not change the 19 original P0 items | 16:20: AUDIT DONE (read-only, REPORTED): most of it already exists on dev (org tree V32; org import/export/sync P3-16 V56/V60 with IAM impact preview, mass-removal guard, ORG_* audit; X2/X3 catalogs EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector with SSRF guard). Missing: parent-child companies (tenants have no parent_id), employee profile separated from SSO (members import currently creates accounts), XLSX (none), import rollback, before/after history, export grants, data-steward delegation, tenant-level API sync, real delta. Conflict with spec §6: Studio Preview reads FIXTURE data. The org-sync flag cannot be enabled safely on PROD yet (no ack group). Next migration V99 (#129's V90 is unusable). Estimate (±40%, agent-hours): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 h; critical path P0→P1→P2a→P2b→P5 ≈ 240 h; Export and API Sync in parallel. 12 design questions (with options and a recommendation) are on the Owner tab (OD-T37-A…L). Safe first step: contract doc + a pure XLSX reader/writer library with hostile tests (independent of the decisions) | 16:00 Owner update: keep T37 as is, do NOT restart, do NOT expand; reuse all existing Company/Org/Employees/CSV/API Sync/System Sources/IAM code; test what exists BEFORE new code; no parallel systems or data models; postpone AI Mapping, advanced AI CRUD, Approval Workflow for Import/Export; small PRs and releases (do not wait for all of T37); 530 h is NOT an approved budget, to be re-estimated after measuring reuse. 11/12 questions closed per BA/SA recommendation; 1 data-policy question (audit retention/legal) is left for the Owner. BA/SA+QA agent RUNNING: EXISTING/WORKING/NEED FIX/MISSING/READY TO ON matrix with evidence and SHA (runs the tests of what exists), re-estimate, first PR",
         "prs": "chưa có PR",
         "eta": "",
         "etaFirst": "Audit + kế hoạch pha + ước lượng: ~16:30–17:30 (ước tính); mã bắt đầu sau khi Owner trả lời các câu hỏi thiết kế",
