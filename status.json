@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T16:49:00+07:00",
+  "asOf": "2026-11-10T17:11:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -3728,6 +3728,373 @@
           "Chỉ quản trị hệ thống bật/tắt; bật cần RAISE + N; có nhật ký và cảnh báo",
           "Quay về TIMED là đường lùi, gia hạn thường khôi phục dịch vụ",
           "Giao diện super admin có biểu ngữ và công tắc; QA độc lập + SEC GO"
+        ]
+      }
+    ]
+  },
+  "process": {
+    "updatedAt": "2026-11-10T17:11:00+07:00",
+    "note": "Mọi quy tắc anh đã chỉ đạo, ở một chỗ. Sửa ô nào rồi bấm “Gửi thay đổi” để dán lên #88 hoặc cho Claude; Claude cập nhật bảng này, bộ nhớ và cách làm ở lần đồng bộ kế tiếp. Mục có nhãn chỉ-đọc là giá trị đã đo, không sửa ở đây.",
+    "groups": [
+      {
+        "id": "agents",
+        "title": "Agent và mô hình",
+        "items": [
+          {
+            "id": "agents.min",
+            "label": "Số agent tối thiểu khi còn việc",
+            "value": 4,
+            "type": "number",
+            "editable": true,
+            "note": "Owner 10/11 16:40"
+          },
+          {
+            "id": "agents.max",
+            "label": "Số agent tối đa",
+            "value": 6,
+            "type": "number",
+            "editable": true
+          },
+          {
+            "id": "agents.max_extra",
+            "label": "Lên tối đa khi máy và việc không xung đột",
+            "value": 7,
+            "type": "number",
+            "editable": true,
+            "note": "Chỉ khi tải máy thấp và các việc không chung file"
+          },
+          {
+            "id": "agents.heavy_one",
+            "label": "Chỉ một việc nặng một lúc trên Mac (Gradle, bộ spec trình duyệt lớn, gate)",
+            "value": true,
+            "type": "bool",
+            "editable": true,
+            "note": "Tải trên 20 thì không thêm việc nặng"
+          },
+          {
+            "id": "agents.model",
+            "label": "Mô hình cho C0 và agent",
+            "value": "Claude Sonnet 5.5 (claude-sonnet-5-5)",
+            "type": "text",
+            "editable": true,
+            "note": "Agent QA độc lập là agent riêng, không phải tác giả mã"
+          },
+          {
+            "id": "agents.ai_test_model",
+            "label": "Mô hình cho lượt AI thử trên PROD",
+            "value": "Haiku 5.5; Auto = Haiku",
+            "type": "text",
+            "editable": true,
+            "note": "Owner 05/11: tài khoản này sau dùng để huấn luyện agent AI"
+          },
+          {
+            "id": "agents.haiku_allowance",
+            "label": "Hạn mức lượt Haiku đã duyệt",
+            "value": "3 lượt T22-B + 1 lượt mỗi tài khoản dùng thử (5 tài khoản); xin thêm nếu cần",
+            "type": "text",
+            "editable": true,
+            "note": "Ghi chú nội bộ trên máy, không đưa vào repo"
+          },
+          {
+            "id": "agents.checkpoint",
+            "label": "Mỗi agent có checkpoint để chạy lại khi bị dừng",
+            "value": "~/xweb-handoff/agents/<việc>.md; trạng thái chung STATE-20261109.md; sổ tay AGENT-RESILIENCE.md",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "agents.qa_independent",
+            "label": "QA/SEC phải độc lập với tác giả, đo lại trên đúng SHA, ghi rõ VERIFIED hay NOT_RUN và liệt kê tên từng test đỏ",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          }
+        ]
+      },
+      {
+        "id": "git",
+        "title": "Git và PR",
+        "items": [
+          {
+            "id": "git.flow",
+            "label": "Luồng",
+            "value": "tính năng → PR vào dev → QA/SEC độc lập trên đúng SHA đầu → merge → (sau QA tích hợp) promote dev → main",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "git.merge",
+            "label": "Cách merge",
+            "value": "gh pr merge N --merge --match-head-commit <SHA>; không squash với PR mirror; squash chỉ khi có commit gitleaks báo nhầm",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "git.label",
+            "label": "Nhãn trạng thái",
+            "value": "đúng một nhãn status:* trên mỗi PR (qa, ready, in-progress, blocked, needs-owner, done, archive, todo)",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "git.promote",
+            "label": "Chuyển lên main",
+            "value": "chỉ qua scripts/release/promote-dev-to-main.sh <repo> <dev sha40> --evidence <link> --apply (fast-forward, không force)",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "git.no_force",
+            "label": "Không force-push, không sửa lịch sử nhánh đã đẩy",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          },
+          {
+            "id": "git.mirror",
+            "label": "Mirror BE cho file FE được vendored",
+            "value": "sync-frontend-core + qa-inventory --write trên cây ghép + combined-check ĐẦY ĐỦ (không --quick) + QA tích hợp liệt kê tên test đỏ",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "git.ci",
+            "label": "CI",
+            "value": "GitHub Actions TẮT: dùng test chạy cục bộ và ghi rõ",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "git.trailer",
+            "label": "Dòng cuối commit",
+            "value": "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "git.worktree",
+            "label": "Mỗi agent làm trong worktree riêng dưới ~/code/worktrees-xweb/, dọn node_modules và build khi xong",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          },
+          {
+            "id": "git.public",
+            "label": "Repo công khai: không bí mật, tài khoản, email, IP, tên máy chủ hay dự án, số liệu tài chính",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          }
+        ]
+      },
+      {
+        "id": "deploy",
+        "title": "Deploy và bật tính năng",
+        "items": [
+          {
+            "id": "deploy.release_name",
+            "label": "Đợt hiện tại trên PROD",
+            "value": "đợt 14 (release e0853d4a6f95); đợt kế tiếp = đợt 15 (không dùng số 13)",
+            "type": "text",
+            "editable": false
+          },
+          {
+            "id": "deploy.steps",
+            "label": "Các bước",
+            "value": "QA tích hợp đúng cặp SHA → promote → rel*-fill → upload → dump DB → rel APPLY=0 → caddy validate → build (nền) → go → smoke",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "deploy.go_guard",
+            "label": "Bước go từ chối khi có lượt AI trong 3 phút trước",
+            "value": true,
+            "type": "bool",
+            "editable": true,
+            "note": "Các lượt Haiku thử chạy SAU deploy"
+          },
+          {
+            "id": "deploy.per_feature",
+            "label": "Phát hành theo từng tính năng, DEV DONE → PROD → BẬT → kiểm thử thật; không chờ cả gói",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          },
+          {
+            "id": "deploy.flags",
+            "label": "Bật cờ trên PROD là quyết định riêng của Owner, từng cờ một, sao lưu env trước và có đường lùi",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          },
+          {
+            "id": "deploy.rollback",
+            "label": "Đường lùi mặc định",
+            "value": "quay image FE/BE của đợt trước; không đổi DB nếu không có migration; cờ: tắt khối đã đánh dấu",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "deploy.docs",
+            "label": "Mỗi tính năng cập nhật AGENTSXWeb.md, hướng dẫn người dùng, sách hướng dẫn, nhãn trung thực (CODE-ONLY / TẮT / chưa kiểm trên PROD)",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          },
+          {
+            "id": "deploy.ssh",
+            "label": "Khóa SSH vào máy chủ",
+            "value": "Owner nạp bằng ssh-add; hiện 8 giờ từ ~15:46 ICT 10/11 (hết ~23:45)",
+            "type": "text",
+            "editable": true,
+            "note": "Em nhắc trước khi hết"
+          },
+          {
+            "id": "deploy.windows",
+            "label": "Phân vai",
+            "value": "Mac viết mã và chạy QA; Windows sở hữu script CI/CD/deploy (em chạy theo bộ rel*)",
+            "type": "text",
+            "editable": true
+          }
+        ]
+      },
+      {
+        "id": "report",
+        "title": "Báo cáo và giờ giấc",
+        "items": [
+          {
+            "id": "report.hourly",
+            "label": "Đồng bộ mỗi giờ",
+            "value": "đọc comment [OWNER/[CHATGPT trên #88, kiểm agent và PR, đăng báo cáo 19 dòng nếu có thay đổi, cập nhật dashboard",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "report.tz",
+            "label": "Múi giờ báo cáo",
+            "value": "ICT (UTC+7); giờ lấy từ lệnh date, không đoán",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "report.labels",
+            "label": "Số do agent báo gắn REPORTED; số đã kiểm độc lập gắn VERIFIED; thiếu bằng chứng ghi CHƯA XÁC MINH",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          },
+          {
+            "id": "report.done",
+            "label": "Không coi 100% bật là DONE; không đánh dấu xong khi chưa có QA/SEC độc lập",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          },
+          {
+            "id": "report.owner_decisions",
+            "label": "Quyết định của Owner",
+            "value": "qua dashboard: chọn phương án rồi bấm Duyệt, dán lên #88 hoặc vào chat",
+            "type": "text",
+            "editable": true
+          }
+        ]
+      },
+      {
+        "id": "decide",
+        "title": "Ai quyết định gì",
+        "items": [
+          {
+            "id": "decide.owner",
+            "label": "Chỉ đưa Owner",
+            "value": "bảo mật, cấu trúc Tenant, chính sách dữ liệu, ngân sách và gia hạn cửa sổ AI, quyền, bật cờ/ thay đổi PROD",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "decide.tech",
+            "label": "Quyết định kỹ thuật không đổi chính sách sản phẩm",
+            "value": "BA/SA khuyến nghị + QA/SEC xử lý",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "decide.ai_window",
+            "label": "Cửa sổ AI",
+            "value": "gia hạn tối đa 1.440 phút mỗi lần, chỉ khi Owner nói; mở theo ngày (T36) 5.000 lượt/ngày đã duyệt, chưa bật",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "decide.no_workaround",
+            "label": "Hệ thống chặn một thao tác thì dừng và báo, không lách",
+            "value": true,
+            "type": "bool",
+            "editable": true
+          }
+        ]
+      },
+      {
+        "id": "priority",
+        "title": "Thứ tự ưu tiên hiện tại",
+        "items": [
+          {
+            "id": "priority.now",
+            "label": "Đang làm",
+            "value": "1) T35 xong toàn bộ (đợt 15: T35-FINAL #168 + sửa tràn ngang #169 + T36); 2) T36 bật mở theo ngày; 3) T37 theo lát nhỏ (S0 bật org-sync an toàn, S4 XLSX, S11 khung giao diện)",
+            "type": "text",
+            "editable": true,
+            "note": "Sửa thứ tự ở đây"
+          },
+          {
+            "id": "priority.later",
+            "label": "Việc sau",
+            "value": "lượt Haiku T22-B và 5 tài khoản; X3 phần 2; đọc các cổng thời gian của quyền AI; T22-B bật cờ; T23, T24, T25, T30, T31, T32-b, T26 các vòng sau",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "priority.sso",
+            "label": "Phiên đăng nhập SSO",
+            "value": "backend 7 ngày (đã đổi 16:27); Keycloak chờ Owner cấp quyền quản trị để đổi (đề xuất 30 ngày nhàn rỗi, 365 ngày tối đa)",
+            "type": "text",
+            "editable": true
+          }
+        ]
+      },
+      {
+        "id": "infra",
+        "title": "Máy và dọn dẹp",
+        "items": [
+          {
+            "id": "infra.disk_gib",
+            "label": "Dưới mức này (GiB trống) thì dọn snapshot Time Machine cục bộ",
+            "value": 30,
+            "type": "number",
+            "editable": true,
+            "note": "Giữ 3 bản mới nhất"
+          },
+          {
+            "id": "infra.cleanup",
+            "label": "Dọn định kỳ",
+            "value": "cache Gradle, node_modules, Docker đã dừng, thư mục tạm của Claude; chỉ worktree đã sạch và đã đẩy",
+            "type": "text",
+            "editable": true
+          },
+          {
+            "id": "infra.sso_idle_min",
+            "label": "Phiên backend nhàn rỗi (phút)",
+            "value": 10080,
+            "type": "number",
+            "editable": false,
+            "note": "Đã đặt 16:27 ICT 10/11; hạn Keycloak chưa đổi"
+          },
+          {
+            "id": "infra.sso_abs_min",
+            "label": "Phiên backend tối đa (phút)",
+            "value": 10080,
+            "type": "number",
+            "editable": false
+          }
         ]
       }
     ]
