@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T22:08:00+07:00",
+  "asOf": "2026-11-10T22:22:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -3550,6 +3550,22 @@
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ).",
     "items": [
+      {
+        "group": "IN_PROGRESS",
+        "prio": 0,
+        "id": "T37-P0",
+        "title": "P0 (Owner 22:15): Studio dùng dữ liệu nội bộ THẬT: Web App do AI tạo đọc Công ty / Phòng ban / Nhân viên theo quyền (chỉ đọc)",
+        "titleEn": "P0: Studio Web Apps read REAL internal data (Company / Org units / Employees) per access rights (read-only)",
+        "status": "22:20 Owner đổi ưu tiên: S10 (Studio) lên trước Import/Export/API Sync; không lập lại T37; tái dùng Data Connector, nguồn hệ thống, X2/X3/X5, IAM. TRẠNG THÁI TÁCH BẠCH: CODE: đã có sẵn (X2/X3/X5 trên PROD; danh mục Phòng ban/Nhân viên/Chức danh–bậc; Published PRIVATE đọc theo quyền, thu hồi không cần phát hành lại); CHƯA có: Preview đọc dữ liệu thật (S10 PR-B), danh mục Công ty (S10 PR-A; S2 đã merge dev), giao diện chọn nguồn/công tắc xem trước (agent FE đang kiểm hiện trạng). QA: X2/X3/X5 đã QA độc lập PASS (VERIFIED) nhưng E2E đọc dữ liệu 4 vai trò, thu hồi, xuất bản lại trên PROD là NOT_RUN. PROD: cờ X2/X3/X5 BẬT; CHƯA có nguồn hệ thống nào được duyệt nên không ứng dụng nào đọc được dữ liệu; S2/S3/S10 chưa lên PROD (đợt 17+). ON: Preview dữ liệu thật và danh mục Công ty CHƯA có cờ/mã; sẽ là cờ riêng mặc định TẮT. TEST THẬT: 0 (chưa có E2E thật nào trên PROD). Đang làm: BE S10 PR-A/PR-B, FE kiểm hiện trạng + PR, agent kiểm kê PROD chỉ đọc + chuẩn bị E2E (cần tài khoản quản trị tenant thứ hai); tạm dừng S1/S4-N8/S6/FE S2/FE S3 (có checkpoint, làm tiếp sau).",
+        "statusEn": "Owner re-prioritised: S10 ahead of Import/Export/API Sync. CODE/QA/PROD/ON/REAL-TEST tracked separately; real PROD E2E = 0 so far.",
+        "prs": "BE #214 (S2 merged), #215 (S3), S10 PR-A/B sắp mở",
+        "eta": "Mốc sớm nhất kiểm thử một Web App đọc dữ liệu thật trên PROD: cập nhật khi agent kiểm kê PROD trả kết quả (dự kiến trước 23:30)",
+        "etaFirst": "Audit + kế hoạch pha + ước lượng: ~16:30–17:30 (ước tính); mã bắt đầu sau khi Owner trả lời các câu hỏi thiết kế",
+        "etaFull": "~477 giờ agent (±35%), lịch thực tế 3–4 tuần: ước tính, chưa phải cam kết",
+        "etaFallback": "Dự phòng: pha nhỏ nhất (CRUD + Import cơ cấu tổ chức, cờ TẮT) trước",
+        "evidence": "cục bộ: ~/xweb-handoff/p37-studio/t37/slices/S10-PACKAGE.md",
+        "accept": "Người được cấp quyền tạo Web App bằng Studio, Preview và Published PRIVATE thấy dữ liệu nội bộ thật của đúng công ty; người không được cấp quyền không đọc được; thu hồi có hiệu lực; có bằng chứng E2E thật trên PROD."
+      },
       {
         "group": "IN_PROGRESS",
         "prio": 1,
