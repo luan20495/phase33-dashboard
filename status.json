@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T16:31:00+07:00",
+  "asOf": "2026-11-10T16:49:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-10T16:21:00+07:00",
+    "updatedAt": "2026-11-10T16:49:00+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
@@ -2212,31 +2212,26 @@
         "priority": "P1",
         "status": "OPEN",
         "since": "2026-11-10T16:21:00+07:00",
-        "title": "Phiên đăng nhập SSO hết hạn quá nhanh: tăng thời gian giữ phiên bao nhiêu?",
-        "detail": "Đã đọc trên PROD (chỉ đọc): phiên phía backend giữ 480 phút (8 giờ) khi không hoạt động và tối đa 10.080 phút (7 ngày). Phía Keycloak (phiên IdP) CHƯA đọc được giá trị PROD; mẫu DEV là 30 phút khi không hoạt động và tối đa 10 giờ, và tài liệu ghi quy tắc “backend không vượt quá thời gian nhàn rỗi của IdP”. Nhiều khả năng cái làm anh bị đăng xuất sớm là hạn nhàn rỗi 30 phút của Keycloak. Đổi là thay đổi chính sách phiên đăng nhập (bảo mật), nên cần anh chọn. Em sẽ đọc giá trị thật của Keycloak trên PROD (chỉ đọc), sao lưu cấu hình, đổi bằng một thay đổi cấu hình realm có lùi lại được, rồi kiểm lại đăng nhập/đăng xuất (lỗi đăng xuất từ đợt 5 giữ nguyên). Không cần deploy FE/BE.",
+        "title": "Phiên đăng nhập SSO: chọn cách giảm việc bị hỏi lại mật khẩu (đã tăng phiên backend lên 7 ngày)",
+        "detail": "Đã đọc giá trị THẬT trên PROD (chỉ đọc, bằng truy vấn đọc-only vào cơ sở dữ liệu Keycloak, không dùng thông tin đăng nhập quản trị): Keycloak nhàn rỗi 30 phút, tối đa 10 giờ, KHÔNG bật ‘Ghi nhớ đăng nhập’ (cookie phiên mất khi đóng trình duyệt); token truy cập 300 giây không phải nguyên nhân; phiên backend 7 ngày (đã đổi 16:27, VERIFIED). Nguyên nhân hay gặp nhất (suy luận, chưa có log phiên của anh): phiên Keycloak 30 phút không được gia hạn khi anh đang làm việc (backend dùng cookie, không dùng refresh token, nên chỉ lần chuyển hướng đăng nhập mới gia hạn); nên mở một cổng KHÁC sau hơn 30 phút sẽ hỏi lại mật khẩu; đóng trình duyệt cũng hỏi lại. LƯU Ý: phiên backend đã tạo TRƯỚC 16:27 vẫn giữ hạn 8 giờ cũ; anh cần đăng nhập lại MỘT lần để có hạn 7 ngày. Hệ quả bảo mật của backend 7 ngày: khóa hoặc đăng xuất từ phía Keycloak không cắt phiên cổng cho đến 7 ngày (PROD chưa có back-channel logout); tài khoản bị vô hiệu vẫn bị chặn ở request kế tiếp.",
         "solution": "Chọn một mức; chọn “Khuyến nghị” nếu đồng ý.",
         "link": "",
         "options": [
           {
             "key": "A",
-            "label": "Không hoạt động 8 giờ, tối đa 24 giờ",
-            "desc": "Hết ngày làm việc mới phải đăng nhập lại; khớp với phiên backend 8 giờ.",
-            "recommended": true
+            "label": "Giữ như hiện tại (backend 7 ngày), không đổi Keycloak",
+            "desc": "Chỉ cần đăng nhập lại 1 lần. Vẫn hỏi mật khẩu khi mở cổng khác sau 30 phút và sau khi đóng trình duyệt."
           },
           {
             "key": "B",
-            "label": "Không hoạt động 4 giờ, tối đa 12 giờ",
-            "desc": "Chặt hơn A, vẫn đủ một ngày làm việc."
+            "label": "Bật ‘Ghi nhớ đăng nhập’ trong Keycloak: người tick được 7 ngày nhàn rỗi, tối đa 30 ngày; người không tick giữ 30 phút/10 giờ",
+            "desc": "Phiên Keycloak dài chỉ cho người tick; cần security review và quyền quản trị Keycloak (em hoặc Windows đổi bằng kcadm, không sửa DB trực tiếp). Lùi: tắt rememberMe (hủy mọi phiên đã tick).",
+            "recommended": true
           },
           {
             "key": "C",
-            "label": "Không hoạt động 24 giờ, tối đa 7 ngày",
-            "desc": "Tiện nhất, rủi ro cao hơn nếu máy bị bỏ ngỏ."
-          },
-          {
-            "key": "D",
-            "label": "Giữ nguyên",
-            "desc": "Không đổi gì."
+            "label": "Hạ phiên backend về 8 giờ hoặc 30 phút cho đúng quy tắc ‘backend không vượt Keycloak’",
+            "desc": "An toàn nhất, hỏi mật khẩu thường hơn."
           }
         ]
       },
