@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T13:21:00+07:00",
+  "asOf": "2026-11-10T13:54:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,7 +2203,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-10T09:28:00+07:00",
+    "updatedAt": "2026-11-10T13:54:00+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
@@ -2505,7 +2505,25 @@
         "detail": "Owner đã chọn cách sửa (07/11). Claude không ghi dữ liệu PROD nên cần 2 admin của anh thực hiện; Claude đã soạn kịch bản từng bước. Đến khi xong, chọn nhân viên trong ứng dụng marketing vẫn lỗi.",
         "link": "",
         "since": "2026-11-07T14:48:52+07:00",
-        "solution": "Admin A tick đúng 4 cột và lưu; Admin B (người khác, chưa từng sửa nguồn này) bấm Duyệt. Xong báo Claude để kiểm lại chỉ-đọc."
+        "solution": "Admin A tick đúng 4 cột và lưu; Admin B (người khác, chưa từng sửa nguồn này) bấm Duyệt. Xong báo Claude để kiểm lại chỉ-đọc.",
+        "options": [
+          {
+            "key": "A",
+            "label": "Anh chỉ định 2 admin khác nhau làm ngay",
+            "desc": "Admin A tick đúng 4 cột và lưu; Admin B (chưa từng sửa nguồn này) bấm Duyệt. Ghi tên vai trò vào ô ghi chú, không ghi tên tài khoản. Xong Claude kiểm lại chỉ-đọc.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Hoãn, làm sau",
+            "desc": "Chọn nhân viên trong ứng dụng marketing vẫn lỗi cho đến khi làm."
+          },
+          {
+            "key": "C",
+            "label": "Bỏ, không dùng nguồn này nữa",
+            "desc": "Claude đánh dấu mục này đóng, không còn nhắc."
+          }
+        ]
       },
       {
         "id": "OA-04",
@@ -2525,7 +2543,25 @@
         "title": "Quyết định ngân sách/quyền để đóng QA B1/B3 trên PROD",
         "detail": "PROD chưa có phân bổ nên không kiểm được đường tiền (từ chối, đồng thời, kết quả không rõ; yêu cầu → duyệt → cấp → lượt AI → hết hạn). Cần Owner chuẩn bị một workspace QA riêng với phân bổ rất nhỏ và quyền AI trả phí cho nó (chi tiết ở file QA cục bộ, không đăng công khai). Cũng cần: cho phép cấp tạm quyền dự án cho một tài khoản QA 30 phút để chứng minh bản sửa R37-ENT-1, và một lượt thử AI thật để chứng minh việc hủy sau khi sửa. Cửa sổ AI hết 11:39 ICT 07/11; gia hạn là quyết định của Owner.",
         "link": "",
-        "since": "2026-11-07T09:43:30+07:00"
+        "since": "2026-11-07T09:43:30+07:00",
+        "options": [
+          {
+            "key": "A",
+            "label": "Duyệt: Claude chuẩn bị workspace QA riêng, phân bổ rất nhỏ",
+            "desc": "Anh vẫn phải duyệt con số riêng ở thẻ \"xác nhận giá trị USD kỹ thuật\". Không đụng workspace thật.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chưa làm",
+            "desc": "B1/B3 giữ trạng thái chưa kiểm được trên PROD (NOT_RUN)."
+          },
+          {
+            "key": "C",
+            "label": "Bỏ B1/B3 trên PROD, chấp nhận NOT_RUN",
+            "desc": "Đóng mục này; ghi rõ trong báo cáo là chưa kiểm."
+          }
+        ]
       },
       {
         "id": "OA-06",
@@ -2535,7 +2571,20 @@
         "title": "Các quyết định còn mở",
         "detail": "D-04-1 (cấp quyền AI trả phí cho admin cần 3 admin) và D-04-2 (khôi phục danh sách env bằng 1 admin); ngày bật X1 STRICT=true (chỉ sau báo cáo ảnh hưởng); giao 'pha B' vòng lặp công cụ đọc/tìm nguồn lớn cho một agent backend; dry-run phía server cho cấp hàng loạt có cần không; giới hạn byte prompt (hiện 60.000); OD-C1..C6 (#128) và duyệt hợp đồng #126; tài khoản QA bổ sung (chỉ Apps, chỉ APP_VIEW không Studio, tenant thứ hai); chuông thông báo B3 và nút thu hồi coi là backlog.",
         "link": "https://github.com/luan20495/xweb01/pull/128",
-        "since": "2026-11-07T09:43:30+07:00"
+        "since": "2026-11-07T09:43:30+07:00",
+        "options": [
+          {
+            "key": "A",
+            "label": "Claude gom từng mục thành GO/NO-GO có khuyến nghị, gửi trong báo cáo kế tiếp",
+            "desc": "Gồm: quyền AI trả phí cho admin cần 3 admin; khôi phục danh sách env bằng 1 admin; ngày bật STRICT; pha B vòng lặp công cụ; dry-run server cho cấp hàng loạt; giới hạn byte prompt; OD-C1..C6; tài khoản QA bổ sung; chuông thông báo B3.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Để sau, chưa cần quyết",
+            "desc": "Không ảnh hưởng T35/T36."
+          }
+        ]
       },
       {
         "id": "OA-07",
@@ -2545,7 +2594,20 @@
         "title": "Dọn git: 22 nhánh chưa merge và không có PR; PR mở cũ",
         "detail": "Đã xóa 136 nhánh đã merge (có lưu SHA). Còn 22 nhánh không PR và chưa merge (17 BE, 5 FE: phase3/*, feat/xapp-*, docs/xapp-r1-*, pr/N) và nhiều PR mở từ phase cũ (30 BE, 28 FE). Cho em biết nhánh/PR nào bỏ được thì em xóa/đóng.",
         "link": "",
-        "since": "2026-11-07T09:43:30+07:00"
+        "since": "2026-11-07T09:43:30+07:00",
+        "options": [
+          {
+            "key": "A",
+            "label": "Claude lập danh sách 22 nhánh và PR cũ kèm SHA, anh duyệt từng nhóm rồi mới xóa/đóng",
+            "desc": "Không xóa gì trước khi anh duyệt danh sách.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Giữ nguyên tất cả",
+            "desc": "Không dọn."
+          }
+        ]
       },
       {
         "id": "OA-11",
@@ -2556,7 +2618,25 @@
         "solution": "Đọc BE #126 (hợp đồng truy cập theo tổ chức) rồi trả lời duyệt hoặc yêu cầu sửa; Claude đánh số lại migration #129 sau khi anh duyệt.",
         "detail": "Quyết định thiết kế Org IAM phải do Owner. #129 (V97 trở lên) chờ hợp đồng này. Các việc rebase, QA, Ready, Merge vào dev khác Claude tự làm, không cần anh.",
         "link": "https://github.com/luan20495/xweb01/pull/126",
-        "since": "2026-11-07T14:32:35+07:00"
+        "since": "2026-11-07T14:32:35+07:00",
+        "options": [
+          {
+            "key": "A",
+            "label": "Duyệt hợp đồng Org IAM #126 như hiện tại",
+            "desc": "Claude đánh số lại migration #129 sau khi anh duyệt rồi làm tiếp."
+          },
+          {
+            "key": "B",
+            "label": "Cần sửa hợp đồng",
+            "desc": "Ghi chỗ cần sửa vào ô ghi chú."
+          },
+          {
+            "key": "C",
+            "label": "Chưa duyệt, đưa Org IAM xuống sau",
+            "desc": "#129 tiếp tục chờ; không ảnh hưởng các việc khác.",
+            "recommended": true
+          }
+        ]
       },
       {
         "id": "OA-12",
@@ -2567,7 +2647,25 @@
         "solution": "Trả lời một con số USD kỹ thuật (trần tối thiểu nền tảng bắt buộc) hoặc chọn người đặt cấu hình; Claude không tự chọn.",
         "detail": "Anh đã chỉ đạo phạm vi QA (workspace QA riêng, chỉ model nhẹ, thêm lượt, hết hạn có thời hạn). Nền tảng bắt buộc một giá trị trần USD nên Claude dừng để hỏi; chưa cấu hình gì.",
         "link": "https://github.com/luan20495/xweb01/issues/88",
-        "since": "2026-11-07T15:29:52+07:00"
+        "since": "2026-11-07T15:29:52+07:00",
+        "options": [
+          {
+            "key": "A",
+            "label": "Em sẽ ghi một con số vào ô ghi chú",
+            "desc": "Con số chỉ nằm trong tin dán lên #88 của anh; dashboard công khai không lưu số tiền."
+          },
+          {
+            "key": "B",
+            "label": "Claude đề xuất mức nhỏ nhất hệ thống cho phép, anh duyệt trước khi dùng",
+            "desc": "Claude không tự chọn: đề xuất sẽ nằm ở báo cáo kế tiếp.",
+            "recommended": true
+          },
+          {
+            "key": "C",
+            "label": "Chưa quyết, hoãn",
+            "desc": "Đi kèm với việc hoãn thẻ ngân sách QA ở trên."
+          }
+        ]
       },
       {
         "id": "OA-13",
