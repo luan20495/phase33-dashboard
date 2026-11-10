@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T19:30:00+07:00",
+  "asOf": "2026-11-10T20:12:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,14 +2203,43 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-10T16:49:00+07:00",
+    "updatedAt": "2026-11-10T20:12:00+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
+      {
+        "id": "OD-SSO-CONFIRM",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T20:12:00+07:00",
+        "title": "Phiên đăng nhập: anh chọn B (Ghi nhớ đăng nhập), nhưng phiên hiện đã đặt dài cho mọi người. Giữ hay đổi?",
+        "detail": "Lúc 18:10 em đã đặt phiên dịch vụ đăng nhập 30 ngày nhàn rỗi và 365 ngày tối đa cho MỌI người (theo lệnh “mặc định ≥7 ngày, 1 năm cũng được”) và backend theo khớp (đợt 15). Phương án B anh vừa chọn giữ người KHÔNG tick ở 30 phút/10 giờ, nghĩa là ngắn hơn hiện tại. Bật “Ghi nhớ đăng nhập” còn cần anh nhập mật khẩu quản trị lại (một lệnh). Chọn một cách để em làm đúng ý anh.",
+        "solution": "Chọn một phương án.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Giữ như hiện tại (30 ngày/365 ngày cho mọi người), CHƯA bật Ghi nhớ đăng nhập",
+            "desc": "Anh không phải làm gì thêm; tiện nhất, rủi ro cao hơn B.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Làm đúng phương án B: người không tick 30 phút/10 giờ, người tick 7 ngày/30 ngày",
+            "desc": "Cần hạ phiên hiện tại và bật Ghi nhớ đăng nhập (anh chạy thêm một lệnh nhập mật khẩu); hạ backend về 7 ngày/30 ngày khớp."
+          },
+          {
+            "key": "C",
+            "label": "Giữ 30 ngày/365 ngày cho mọi người VÀ bật Ghi nhớ đăng nhập",
+            "desc": "Không đổi hành vi thực tế ngoài việc thêm tùy chọn; cần một lệnh của anh."
+          }
+        ]
+      },
       {
         "id": "OD-SSO-SESSION",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T16:21:00+07:00",
         "title": "Phiên đăng nhập SSO: chọn cách giảm việc bị hỏi lại mật khẩu (đã tăng phiên backend lên 7 ngày)",
         "detail": "Đã đọc giá trị THẬT trên PROD (chỉ đọc, bằng truy vấn đọc-only vào cơ sở dữ liệu Keycloak, không dùng thông tin đăng nhập quản trị): Keycloak nhàn rỗi 30 phút, tối đa 10 giờ, KHÔNG bật ‘Ghi nhớ đăng nhập’ (cookie phiên mất khi đóng trình duyệt); token truy cập 300 giây không phải nguyên nhân; phiên backend 7 ngày (đã đổi 16:27, VERIFIED). Nguyên nhân hay gặp nhất (suy luận, chưa có log phiên của anh): phiên Keycloak 30 phút không được gia hạn khi anh đang làm việc (backend dùng cookie, không dùng refresh token, nên chỉ lần chuyển hướng đăng nhập mới gia hạn); nên mở một cổng KHÁC sau hơn 30 phút sẽ hỏi lại mật khẩu; đóng trình duyệt cũng hỏi lại. LƯU Ý: phiên backend đã tạo TRƯỚC 16:27 vẫn giữ hạn 8 giờ cũ; anh cần đăng nhập lại MỘT lần để có hạn 7 ngày. Hệ quả bảo mật của backend 7 ngày: khóa hoặc đăng xuất từ phía Keycloak không cắt phiên cổng cho đến 7 ngày (PROD chưa có back-channel logout); tài khoản bị vô hiệu vẫn bị chặn ở request kế tiếp.",
@@ -2233,13 +2262,15 @@
             "label": "Hạ phiên backend về 8 giờ hoặc 30 phút cho đúng quy tắc ‘backend không vượt Keycloak’",
             "desc": "An toàn nhất, hỏi mật khẩu thường hơn."
           }
-        ]
+        ],
+        "decided": "B",
+        "decision": "Bật “Ghi nhớ đăng nhập” trong Keycloak (người tick 7 ngày nhàn rỗi/30 ngày tối đa; người không tick 30 phút/10 giờ): Claude hỏi lại vì phiên hiện đã đặt 30 ngày/365 ngày cho mọi người (xem thẻ OD-SSO-CONFIRM)"
       },
       {
         "id": "OD-T37-L",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-L: nguồn đồng bộ API chạy bằng gì",
         "detail": "Hiện mỗi tenant chỉ 1 nguồn, chạy theo quyền của người dùng cần QUERY_EXECUTE trong workspace. | Agent BA/SA 17:00: Ai chạy đồng bộ API (bảo mật: danh tính dịch vụ). Chặn S9 (API sync v2 và delta). Đây là quyết định về bảo mật/cấu trúc Tenant/chính sách dữ liệu nên thuộc Owner (em đã đóng nhầm ở 16:00). Không chặn việc viết mã S0, S1, S4, S11.",
@@ -2262,13 +2293,15 @@
             "label": "Chỉ nhập bằng tệp, bỏ API",
             "desc": "Thiếu spec."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Nguồn đồng bộ cấp tenant chạy bằng danh tính dịch vụ của công ty: lát S9"
       },
       {
         "id": "OD-T37-K",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-K: Studio Preview với dữ liệu thật",
         "detail": "Spec §6 muốn Preview chạy dữ liệu thật; hiện Preview đọc dữ liệu GIẢ (fixture), không bao giờ đọc thật. | Agent BA/SA 17:00: Preview Studio đọc dữ liệu nhân sự THẬT (chính sách dữ liệu). Chặn phần Preview của S10. Bản Published PRIVATE dùng dữ liệu thật theo quyền không bị chặn bởi thẻ này. Đây là quyết định về bảo mật/cấu trúc Tenant/chính sách dữ liệu nên thuộc Owner (em đã đóng nhầm ở 16:00). Không chặn việc viết mã S0, S1, S4, S11.",
@@ -2290,13 +2323,15 @@
             "label": "Dữ liệu thật theo quyền người tạo app",
             "desc": "Có thể lộ dữ liệu cho người xem không được cấp."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Preview đọc dữ liệu thật theo quyền người đang xem với vai trò tường minh (Owner đồng ý bằng chữ cho dữ liệu nhân sự theo quyền): vào lát S10"
       },
       {
         "id": "OD-T37-J",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-J: mô hình “Công ty mẹ–con nhiều cấp”",
         "detail": "Hiện bảng tenants không có parent_id. | Agent BA/SA 17:00: Mô hình công ty mẹ–con (chạm cấu trúc Tenant). Chặn S2 (bảng công ty), S7, S10. Khuyến nghị: bảng pháp nhân trong một tenant, nhóm đa tenant ngoài phạm vi. Đây là quyết định về bảo mật/cấu trúc Tenant/chính sách dữ liệu nên thuộc Owner (em đã đóng nhầm ở 16:00). Không chặn việc viết mã S0, S1, S4, S11.",
@@ -2319,13 +2354,15 @@
             "label": "Chỉ dùng loại đơn vị gốc trong cây tổ chức",
             "desc": "Đơn giản nhưng không phải thực thể công ty."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Bảng pháp nhân (company) trong tenant có parent_id: lát S2 đang làm (migration V99)"
       },
       {
         "id": "OD-T37-I",
         "kind": "DECISION",
         "priority": "P3",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-I: lưu trữ và nhật ký audit",
         "detail": "Chính sách lưu hiện tại chưa rõ (UNKNOWN). Pháp lý dữ liệu cá nhân là việc của anh. | Owner: chính sách dữ liệu/pháp lý vẫn do Owner quyết; trong lúc chờ, T37 áp dụng phương án A tạm thời (audit ≥12 tháng, audit không chứa tên/email) và chưa bật gì trên PROD.",
@@ -2342,7 +2379,9 @@
             "label": "Anh quy định thời gian khác",
             "desc": "Ghi vào ô ghi chú."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Audit ≥12 tháng, không chứa tên/email, ảnh trước/sau ở bảng riêng xóa sau 30 ngày, audit Export ghi đủ trường: áp dụng cho các lát T37"
       },
       {
         "id": "OD-T37-H",
@@ -2374,7 +2413,7 @@
         "id": "OD-T37-G",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-G: tách hồ sơ nhân viên khỏi tài khoản SSO",
         "detail": "Hiện nhân viên là users + tenant_members, và Import thành viên đang tạo tài khoản, trái với “Import không tự tạo tài khoản”. | Agent BA/SA 17:00: Quy tắc liên kết hồ sơ nhân viên và tài khoản SSO (chạm SSO: cần QA/SEC riêng). Chặn S3 (hồ sơ nhân viên), S7, S10. Không chặn S0, S1, S4. Đây là quyết định về bảo mật/cấu trúc Tenant/chính sách dữ liệu nên thuộc Owner (em đã đóng nhầm ở 16:00). Không chặn việc viết mã S0, S1, S4, S11.",
@@ -2397,7 +2436,9 @@
             "label": "Giữ nguyên",
             "desc": "Không đạt spec."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Bảng employee_profiles riêng (user_id rỗng, liên kết tường minh, không tự liên kết) + danh mục EMPLOYEES_PROFILES; ẩn Import thành viên tạo tài khoản: lát S3 đang làm (V100)"
       },
       {
         "id": "OD-T37-F",
@@ -2516,7 +2557,7 @@
         "id": "OD-T37-B",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T15:29:00+07:00",
         "title": "T37-B: người phụ trách nhập liệu / xuất dữ liệu (“data steward”) được biểu diễn thế nào?",
         "detail": "Hiện chỉ có Delegation cho quyền ứng dụng, chưa có ủy quyền dữ liệu doanh nghiệp. | Agent BA/SA 17:00: Bảng quyền người phụ trách dữ liệu (quyền nhạy cảm: cần QA/SEC). Chặn S6 (quyền Export), S8, S9. Đây là quyết định về bảo mật/cấu trúc Tenant/chính sách dữ liệu nên thuộc Owner (em đã đóng nhầm ở 16:00). Không chặn việc viết mã S0, S1, S4, S11.",
@@ -2539,7 +2580,9 @@
             "label": "Mở rộng EMPLOYEE_MANAGE",
             "desc": "Quyền quá rộng."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Bảng enterprise_data_grants do Company Admin quản lý, từ vựng đóng: lát S6"
       },
       {
         "id": "OD-T37-A",
@@ -2865,7 +2908,7 @@
         "id": "OA-01",
         "kind": "INCIDENT",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "title": "CQB-1: 2 admin độc lập khôi phục và duyệt 4 cột (id, firstName, lastName, email)",
         "detail": "Owner đã chọn cách sửa (07/11). Claude không ghi dữ liệu PROD nên cần 2 admin của anh thực hiện; Claude đã soạn kịch bản từng bước. Đến khi xong, chọn nhân viên trong ứng dụng marketing vẫn lỗi.",
         "link": "",
@@ -2888,7 +2931,9 @@
             "label": "Bỏ, không dùng nguồn này nữa",
             "desc": "Claude đánh dấu mục này đóng, không còn nhắc."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Owner sẽ chỉ định 2 admin khác nhau để khôi phục và duyệt 4 cột (CQB-1): chờ Owner báo vai trò hai người"
       },
       {
         "id": "OA-04",
@@ -2904,7 +2949,7 @@
         "id": "OA-05",
         "kind": "BUDGET",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "title": "Quyết định ngân sách/quyền để đóng QA B1/B3 trên PROD",
         "detail": "PROD chưa có phân bổ nên không kiểm được đường tiền (từ chối, đồng thời, kết quả không rõ; yêu cầu → duyệt → cấp → lượt AI → hết hạn). Cần Owner chuẩn bị một workspace QA riêng với phân bổ rất nhỏ và quyền AI trả phí cho nó (chi tiết ở file QA cục bộ, không đăng công khai). Cũng cần: cho phép cấp tạm quyền dự án cho một tài khoản QA 30 phút để chứng minh bản sửa R37-ENT-1, và một lượt thử AI thật để chứng minh việc hủy sau khi sửa. Cửa sổ AI hết 11:39 ICT 07/11; gia hạn là quyết định của Owner.",
         "link": "",
@@ -2926,13 +2971,15 @@
             "label": "Bỏ B1/B3 trên PROD, chấp nhận NOT_RUN",
             "desc": "Đóng mục này; ghi rõ trong báo cáo là chưa kiểm."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Claude chuẩn bị workspace QA riêng với phân bổ nhỏ nhất: đang chuẩn bị đề xuất; số cụ thể do Owner duyệt trước khi dùng (OA-12)"
       },
       {
         "id": "OA-06",
         "kind": "DECISION",
         "priority": "P3",
-        "status": "OPEN",
+        "status": "DONE",
         "title": "Các quyết định còn mở",
         "detail": "D-04-1 (cấp quyền AI trả phí cho admin cần 3 admin) và D-04-2 (khôi phục danh sách env bằng 1 admin); ngày bật X1 STRICT=true (chỉ sau báo cáo ảnh hưởng); giao 'pha B' vòng lặp công cụ đọc/tìm nguồn lớn cho một agent backend; dry-run phía server cho cấp hàng loạt có cần không; giới hạn byte prompt (hiện 60.000); OD-C1..C6 (#128) và duyệt hợp đồng #126; tài khoản QA bổ sung (chỉ Apps, chỉ APP_VIEW không Studio, tenant thứ hai); chuông thông báo B3 và nút thu hồi coi là backlog.",
         "link": "https://github.com/luan20495/xweb01/pull/128",
@@ -2949,13 +2996,15 @@
             "label": "Để sau, chưa cần quyết",
             "desc": "Không ảnh hưởng T35/T36."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Claude gom từng mục thành GO/NO-GO có khuyến nghị: agent nghiên cứu đang làm, kết quả trong báo cáo kế tiếp"
       },
       {
         "id": "OA-07",
         "kind": "CLEANUP",
         "priority": "P4",
-        "status": "OPEN",
+        "status": "DONE",
         "title": "Dọn git: 22 nhánh chưa merge và không có PR; PR mở cũ",
         "detail": "Đã xóa 136 nhánh đã merge (có lưu SHA). Còn 22 nhánh không PR và chưa merge (17 BE, 5 FE: phase3/*, feat/xapp-*, docs/xapp-r1-*, pr/N) và nhiều PR mở từ phase cũ (30 BE, 28 FE). Cho em biết nhánh/PR nào bỏ được thì em xóa/đóng.",
         "link": "",
@@ -2972,13 +3021,15 @@
             "label": "Giữ nguyên tất cả",
             "desc": "Không dọn."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Claude lập danh sách 22 nhánh và PR cũ kèm SHA để Owner duyệt từng nhóm trước khi xóa/đóng: agent đang lập danh sách (chưa xóa gì)"
       },
       {
         "id": "OA-11",
         "kind": "DECISION",
         "priority": "P3",
-        "status": "OPEN",
+        "status": "DONE",
         "title": "Thiết kế Org IAM: duyệt hợp đồng #126 trước khi làm tiếp #129",
         "solution": "Đọc BE #126 (hợp đồng truy cập theo tổ chức) rồi trả lời duyệt hoặc yêu cầu sửa; Claude đánh số lại migration #129 sau khi anh duyệt.",
         "detail": "Quyết định thiết kế Org IAM phải do Owner. #129 (V97 trở lên) chờ hợp đồng này. Các việc rebase, QA, Ready, Merge vào dev khác Claude tự làm, không cần anh.",
@@ -3001,13 +3052,15 @@
             "desc": "#129 tiếp tục chờ; không ảnh hưởng các việc khác.",
             "recommended": true
           }
-        ]
+        ],
+        "decided": "C",
+        "decision": "Chưa duyệt, đưa Org IAM (#126/#129) xuống sau: không ảnh hưởng T37"
       },
       {
         "id": "OA-12",
         "kind": "BUDGET",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "title": "QA B1/B3: xác nhận giá trị USD kỹ thuật cho cấu hình QA",
         "solution": "Trả lời một con số USD kỹ thuật (trần tối thiểu nền tảng bắt buộc) hoặc chọn người đặt cấu hình; Claude không tự chọn.",
         "detail": "Anh đã chỉ đạo phạm vi QA (workspace QA riêng, chỉ model nhẹ, thêm lượt, hết hạn có thời hạn). Nền tảng bắt buộc một giá trị trần USD nên Claude dừng để hỏi; chưa cấu hình gì.",
@@ -3030,7 +3083,9 @@
             "label": "Chưa quyết, hoãn",
             "desc": "Đi kèm với việc hoãn thẻ ngân sách QA ở trên."
           }
-        ]
+        ],
+        "decided": "B",
+        "decision": "Claude đề xuất mức nhỏ nhất hệ thống cho phép, Owner duyệt trước khi dùng: agent nghiên cứu đang làm đề xuất (số tiền giữ cục bộ)"
       },
       {
         "id": "OA-13",
@@ -3178,6 +3233,97 @@
       "decision": "Phương án A theo khuyến nghị của audit: Quyết định kỹ thuật không đổi chính sách sản phẩm: xử lý theo khuyến nghị BA/SA và QA/SEC (Owner 10/11 ~16:00: chỉ đưa Owner các quyết định về bảo mật, cấu trúc Tenant và chính sách dữ liệu). Phương án A theo audit; nội dung có thể được agent BA/SA tinh chỉnh khi lập MATRIX",
       "source": "Owner cập nhật T37 ngày 10/11 (giữ T37, tái sử dụng, quyết định kỹ thuật theo BA/SA)",
       "scope": "Chỉ T37, qua QA/SEC riêng cho phần SSO, quyền nhạy cảm và cấu trúc Tenant"
+    },
+    {
+      "id": "OD-SSO-SESSION",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn B: Bật “Ghi nhớ đăng nhập” trong Keycloak (người tick 7 ngày nhàn rỗi/30 ngày tối đa; người không tick 30 phút/10 giờ): Claude hỏi lại vì phiên hiện đã đặt 30 ngày/365 ngày cho mọi người (xem thẻ OD-SSO-CONFIRM)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OD-T37-L",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Nguồn đồng bộ cấp tenant chạy bằng danh tính dịch vụ của công ty: lát S9",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OD-T37-K",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Preview đọc dữ liệu thật theo quyền người đang xem với vai trò tường minh (Owner đồng ý bằng chữ cho dữ liệu nhân sự theo quyền): vào lát S10",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OD-T37-J",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Bảng pháp nhân (company) trong tenant có parent_id: lát S2 đang làm (migration V99)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OD-T37-I",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Audit ≥12 tháng, không chứa tên/email, ảnh trước/sau ở bảng riêng xóa sau 30 ngày, audit Export ghi đủ trường: áp dụng cho các lát T37",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OD-T37-G",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Bảng employee_profiles riêng (user_id rỗng, liên kết tường minh, không tự liên kết) + danh mục EMPLOYEES_PROFILES; ẩn Import thành viên tạo tài khoản: lát S3 đang làm (V100)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OD-T37-B",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Bảng enterprise_data_grants do Company Admin quản lý, từ vựng đóng: lát S6",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OA-01",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Owner sẽ chỉ định 2 admin khác nhau để khôi phục và duyệt 4 cột (CQB-1): chờ Owner báo vai trò hai người",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OA-05",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Claude chuẩn bị workspace QA riêng với phân bổ nhỏ nhất: đang chuẩn bị đề xuất; số cụ thể do Owner duyệt trước khi dùng (OA-12)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OA-06",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Claude gom từng mục thành GO/NO-GO có khuyến nghị: agent nghiên cứu đang làm, kết quả trong báo cáo kế tiếp",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OA-07",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn A: Claude lập danh sách 22 nhánh và PR cũ kèm SHA để Owner duyệt từng nhóm trước khi xóa/đóng: agent đang lập danh sách (chưa xóa gì)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OA-11",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn C: Chưa duyệt, đưa Org IAM (#126/#129) xuống sau: không ảnh hưởng T37",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OA-12",
+      "at": "2026-11-10T20:12:00+07:00",
+      "decision": "Chọn B: Claude đề xuất mức nhỏ nhất hệ thống cho phép, Owner duyệt trước khi dùng: agent nghiên cứu đang làm đề xuất (số tiền giữ cục bộ)",
+      "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
+      "scope": "Chỉ đúng nội dung quyết định này"
     }
   ],
   "dailyWork": {
@@ -3191,8 +3337,8 @@
         "id": "T37",
         "title": "Enterprise Data Hub: Công ty của tôi, Cơ cấu tổ chức, Nhân viên (Import/Export, API Sync, dùng cho Web App từ Studio)",
         "titleEn": "Enterprise Data Hub: My Company, Organization Structure, Employees (Import/Export, API Sync, used by Studio web apps)",
-        "status": "15:00 Owner GO (P0, DEV): ba phân hệ dữ liệu doanh nghiệp, Company Admin Import trực tiếp không cần Super Admin duyệt, Export kiểm soát chặt (mặc định không cấp, che trường nhạy cảm, audit), API Sync (full/delta, không xóa hàng loạt khi API lỗi/rỗng), Web App Studio đọc qua Backend Data Connector (PRIVATE, theo quyền, thu hồi có hiệu lực). Spec lưu ở ~/xweb-handoff/p37-studio/t37/SPEC.md (cục bộ). Hiện CHƯA có mã: agent AUDIT chỉ đọc đang chạy (tái sử dụng X2/X3/X5/UX13, khoảng trống, câu hỏi cần Owner quyết có phương án, kế hoạch pha, ước lượng). Chưa chạy gì trên PROD. T35 vẫn là ưu tiên deploy trước (đợt 15); T37 không đổi tổng 19 hạng mục P0 | 16:20: AUDIT XONG (chỉ đọc, REPORTED): phần lớn đã có sẵn trên dev (cây tổ chức V32; nhập/xuất/đồng bộ cơ cấu tổ chức P3-16 V56/V60 với xem trước IAM, chống xóa hàng loạt, audit ORG_*; danh mục X2/X3 EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector có chống SSRF). Còn thiếu: Công ty mẹ–con (tenants chưa có parent_id), hồ sơ nhân viên tách khỏi SSO (Import thành viên hiện tạo tài khoản), XLSX (chưa có), khôi phục Import, lịch sử trước/sau, quyền Export, ủy quyền người phụ trách dữ liệu, API sync cấp tenant, delta thật. Xung đột spec §6: Preview Studio hiện đọc dữ liệu GIẢ. Cờ org-sync chưa bật an toàn được trên PROD (thiếu nhóm xác nhận). Migration tiếp theo V99 (V90 của #129 không dùng được). Ước lượng (±40%, giờ agent): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 giờ; đường găng P0→P1→P2a→P2b→P5 ≈ 240 giờ; Export và API Sync chạy song song. Đã đưa 12 câu hỏi thiết kế (có phương án và khuyến nghị) lên tab ‘Cần anh xử lý’ (OD-T37-A…L). Bước đầu an toàn: hợp đồng tài liệu + thư viện đọc/ghi XLSX có kiểm thử phá hoại (không phụ thuộc quyết định) | 16:00 Owner cập nhật: giữ nguyên T37, KHÔNG làm lại, KHÔNG mở rộng; tái sử dụng toàn bộ mã Company/Org/Employees/CSV/API Sync/Nguồn hệ thống/IAM hiện có; kiểm thử phần đã có TRƯỚC khi viết mã mới; không tạo hệ thống/mô hình dữ liệu song song; hoãn AI Mapping, AI CRUD nâng cao, Approval Workflow cho Import/Export; chia nhỏ PR và release (không chờ toàn bộ T37); 530 giờ KHÔNG phải ngân sách được duyệt, sẽ ước lượng lại sau khi đo mức tái sử dụng. 11/12 câu hỏi đã đóng theo khuyến nghị BA/SA; còn 1 câu chính sách dữ liệu (lưu trữ audit/pháp lý) chờ Owner. Agent BA/SA+QA RUNNING: bảng EXISTING/WORKING/NEED FIX/MISSING/READY TO ON có bằng chứng và SHA (chạy test các phần đã có), ước lượng lại, PR đầu tiên | 17:00: MATRIX xong (agent BA/SA, REPORTED, chạy test thật trên BE e0853d4a / FE 9a6c0896): BE 667 test / 0 lỗi (5 lần chạy), FE unit 406 (403 pass, 3 skip), 604 kiểm Chromium xanh (đều là harness fake fetch; E2E thật e2e-org01 CHƯA chạy). 43 dòng: WORKING 17 (+3 mức harness), EXISTING 2, NEED FIX 10, MISSING 11, READY TO ON 0. Lỗi so với spec: Import thành viên TẠO tài khoản; org-sync chưa có nhóm xác nhận ProdFeature và chưa trong compose.prod.yml; Preview đọc dữ liệu giả (có chủ ý, kiểm bởi test ST5); thiếu test empty-source+full; giới hạn FE 50k/25MB lệch BE 5k/1MB; Company Admin không ngừng được công ty (chỉ platform). Ước lượng lại sau khi đo tái sử dụng: ~477 giờ (BE 216 + FE 127 + QA/SEC 134), ±35%, KHÔNG phải ngân sách duyệt; lịch thực tế 3–4 tuần với 3–4 agent (đã tính cửa sổ QA/PROD và quyết định Owner). PR đầu = S0 (bật an toàn org-sync: nhóm ProdFeature ORG_SYNC + xác nhận SHA + compose + hàng sàn + cờ con đóng Import/Export thành viên (không tạo tài khoản) + 2 test + tài liệu; sau đó QA/SEC độc lập + E2E DEV; bật PROD là quyết định Owner riêng). Song song được: S1 (audit cấp tenant), S4 (XLSX), S11 (khung UI). Mở lại 5 thẻ quyết định Owner (G, J, B, K, L) vì thuộc bảo mật/cấu trúc Tenant/chính sách dữ liệu; thẻ I vẫn mở | 16:30: PR đầu S0 đã giao nhưng agent bị dừng giữa chừng (checkpoint có), chưa có PR; chờ Owner chọn các thẻ bảo mật/cấu trúc Tenant (G, J, B, K, L) cho các lát S2+ | 17:30: PR #210 (S4: thư viện XLSX thuần, không thêm phụ thuộc, không nối luồng; 48 test mới, REPORTED) đang QA/SEC độc lập; PR #211 (S0: nhóm ProdFeature ORG_SYNC + đóng Import/Export thành viên tạo tài khoản; REPORTED) xung đột với dev sau T36, tác giả đang hợp dev; S11 (khung giao diện, công tắc TẮT) đang làm; chưa bật gì trên PROD | 18:30: đợt 16 chuẩn bị song song: #210 (S4, sửa 2 lỗi cạn tài nguyên), #211 + FE #171 (S0), FE #170 (S11) đang QA độc lập; chưa merge (dev đóng băng đến hết promote đợt 15) | 19:10: S0 (BE #211 + FE #171 đã merge, FE #172 chỉnh câu chữ tài liệu) sẵn sàng QA delta; S11 (#170) QA đang chạy; S4 (#210) QA delta = NO-GO (hai cách né bước quét byte), tác giả đang sửa; S4 không chặn đợt 16 vì chưa nối luồng nào | 19:30: FE #170 (S11) ĐÃ MERGE dev sau QA độc lập GO-WITH-CONDITIONS (VERIFIED; công tắc TẮT; P2 cần Owner quyết trước khi bật: có gắn khu vực mới với công tắc giao diện org-sync không); FE #171 đã merge; BE #211 + FE #172 (S0) QA delta đang chạy; BE #210 (S4) tác giả đã sửa 2 cách né bước quét, QA kiểm lại đang chạy; chưa bật gì trên PROD; đợt 16 = S0 + S11 (S4 nếu kịp)",
-        "statusEn": "15:00 Owner GO (P0, DEV): three enterprise data modules; Company Admin imports directly without Super Admin approval; Export tightly controlled (default deny, sensitive-field masking, audit); API Sync (full/delta, no mass delete when the API fails or returns empty); Studio web apps read through the Backend Data Connector (PRIVATE, permission-scoped, revocation takes effect). Spec kept locally at ~/xweb-handoff/p37-studio/t37/SPEC.md. NO code yet: a read-only AUDIT agent is running (reuse of X2/X3/X5/UX13, gaps, questions for the Owner with options, phase plan, estimate). Nothing run on PROD. T35 still has deploy priority (release 15); T37 does not change the 19 original P0 items | 16:20: AUDIT DONE (read-only, REPORTED): most of it already exists on dev (org tree V32; org import/export/sync P3-16 V56/V60 with IAM impact preview, mass-removal guard, ORG_* audit; X2/X3 catalogs EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector with SSRF guard). Missing: parent-child companies (tenants have no parent_id), employee profile separated from SSO (members import currently creates accounts), XLSX (none), import rollback, before/after history, export grants, data-steward delegation, tenant-level API sync, real delta. Conflict with spec §6: Studio Preview reads FIXTURE data. The org-sync flag cannot be enabled safely on PROD yet (no ack group). Next migration V99 (#129's V90 is unusable). Estimate (±40%, agent-hours): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 h; critical path P0→P1→P2a→P2b→P5 ≈ 240 h; Export and API Sync in parallel. 12 design questions (with options and a recommendation) are on the Owner tab (OD-T37-A…L). Safe first step: contract doc + a pure XLSX reader/writer library with hostile tests (independent of the decisions) | 16:00 Owner update: keep T37 as is, do NOT restart, do NOT expand; reuse all existing Company/Org/Employees/CSV/API Sync/System Sources/IAM code; test what exists BEFORE new code; no parallel systems or data models; postpone AI Mapping, advanced AI CRUD, Approval Workflow for Import/Export; small PRs and releases (do not wait for all of T37); 530 h is NOT an approved budget, to be re-estimated after measuring reuse. 11/12 questions closed per BA/SA recommendation; 1 data-policy question (audit retention/legal) is left for the Owner. BA/SA+QA agent RUNNING: EXISTING/WORKING/NEED FIX/MISSING/READY TO ON matrix with evidence and SHA (runs the tests of what exists), re-estimate, first PR | 17:00: MATRIX done (BA/SA agent, REPORTED, real tests on BE e0853d4a / FE 9a6c0896): BE 667 tests / 0 fail (5 runs), FE unit 406 (403 pass, 3 skip), 604 Chromium checks green (all harness with fake fetch; real e2e-org01 NOT run). 43 rows: WORKING 17 (+3 harness level), EXISTING 2, NEED FIX 10, MISSING 11, READY TO ON 0. Defects vs spec: members import CREATES accounts; org-sync has no ProdFeature ack group and is not in compose.prod.yml; Preview reads fake data (by design, test ST5); no empty-source+full test; FE limits 50k/25MB vs BE 5k/1MB; Company Admin cannot deactivate a company (platform only). Re-estimate after measuring reuse: ~477 h (BE 216 + FE 127 + QA/SEC 134), ±35%, NOT an approved budget; realistic 3–4 weeks with 3–4 agents (incl. QA/PROD windows and Owner decisions). First PR = S0 (safe enablement of org-sync: ORG_SYNC ProdFeature group + SHA ack + compose + floor row + child flag closing members import/export (no account creation) + 2 tests + docs; then independent QA/SEC + DEV E2E; PROD enable is a separate Owner decision). In parallel: S1 (tenant audit), S4 (XLSX), S11 (UI shell). Re-opened 5 Owner decision cards (G, J, B, K, L) because they concern security / tenant structure / data policy; card I stays open | 16:30: first PR S0 was assigned but the agent was stopped midway (checkpoint kept), no PR yet; waiting for the Owner on the security / tenant-structure cards (G, J, B, K, L) for slices S2+ | 17:30: PR #210 (S4: pure XLSX library, no new dependency, not wired; 48 new tests, REPORTED) in independent QA/SEC; PR #211 (S0: ORG_SYNC ProdFeature group + closed members import/export that created accounts; REPORTED) conflicts with dev after T36, author merging dev; S11 (UI shell, switch OFF) in progress; nothing enabled on PROD | 18:30: release 16 prepared in parallel: #210 (S4, fixing 2 resource-exhaustion findings), #211 + FE #171 (S0), FE #170 (S11) in independent QA; not merged (dev frozen until release 15 promote is done) | 19:10: S0 (BE #211 + FE #171 merged, FE #172 docs wording) ready for delta QA; S11 (#170) QA running; S4 (#210) delta QA = NO-GO (two ways to bypass the byte scan), author fixing; S4 does not block release 16 because nothing calls it | 19:30: FE #170 (S11) MERGED to dev after independent QA GO-WITH-CONDITIONS (VERIFIED; switch OFF; a P2 needs an Owner decision before it is turned on: should the new area also require the org-sync UI switch); FE #171 merged; BE #211 + FE #172 (S0) delta QA running; BE #210 (S4) author fixed the two scan bypasses, QA re-check running; nothing enabled on PROD; release 16 = S0 + S11 (S4 if in time)",
+        "status": "15:00 Owner GO (P0, DEV): ba phân hệ dữ liệu doanh nghiệp, Company Admin Import trực tiếp không cần Super Admin duyệt, Export kiểm soát chặt (mặc định không cấp, che trường nhạy cảm, audit), API Sync (full/delta, không xóa hàng loạt khi API lỗi/rỗng), Web App Studio đọc qua Backend Data Connector (PRIVATE, theo quyền, thu hồi có hiệu lực). Spec lưu ở ~/xweb-handoff/p37-studio/t37/SPEC.md (cục bộ). Hiện CHƯA có mã: agent AUDIT chỉ đọc đang chạy (tái sử dụng X2/X3/X5/UX13, khoảng trống, câu hỏi cần Owner quyết có phương án, kế hoạch pha, ước lượng). Chưa chạy gì trên PROD. T35 vẫn là ưu tiên deploy trước (đợt 15); T37 không đổi tổng 19 hạng mục P0 | 16:20: AUDIT XONG (chỉ đọc, REPORTED): phần lớn đã có sẵn trên dev (cây tổ chức V32; nhập/xuất/đồng bộ cơ cấu tổ chức P3-16 V56/V60 với xem trước IAM, chống xóa hàng loạt, audit ORG_*; danh mục X2/X3 EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector có chống SSRF). Còn thiếu: Công ty mẹ–con (tenants chưa có parent_id), hồ sơ nhân viên tách khỏi SSO (Import thành viên hiện tạo tài khoản), XLSX (chưa có), khôi phục Import, lịch sử trước/sau, quyền Export, ủy quyền người phụ trách dữ liệu, API sync cấp tenant, delta thật. Xung đột spec §6: Preview Studio hiện đọc dữ liệu GIẢ. Cờ org-sync chưa bật an toàn được trên PROD (thiếu nhóm xác nhận). Migration tiếp theo V99 (V90 của #129 không dùng được). Ước lượng (±40%, giờ agent): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 giờ; đường găng P0→P1→P2a→P2b→P5 ≈ 240 giờ; Export và API Sync chạy song song. Đã đưa 12 câu hỏi thiết kế (có phương án và khuyến nghị) lên tab ‘Cần anh xử lý’ (OD-T37-A…L). Bước đầu an toàn: hợp đồng tài liệu + thư viện đọc/ghi XLSX có kiểm thử phá hoại (không phụ thuộc quyết định) | 16:00 Owner cập nhật: giữ nguyên T37, KHÔNG làm lại, KHÔNG mở rộng; tái sử dụng toàn bộ mã Company/Org/Employees/CSV/API Sync/Nguồn hệ thống/IAM hiện có; kiểm thử phần đã có TRƯỚC khi viết mã mới; không tạo hệ thống/mô hình dữ liệu song song; hoãn AI Mapping, AI CRUD nâng cao, Approval Workflow cho Import/Export; chia nhỏ PR và release (không chờ toàn bộ T37); 530 giờ KHÔNG phải ngân sách được duyệt, sẽ ước lượng lại sau khi đo mức tái sử dụng. 11/12 câu hỏi đã đóng theo khuyến nghị BA/SA; còn 1 câu chính sách dữ liệu (lưu trữ audit/pháp lý) chờ Owner. Agent BA/SA+QA RUNNING: bảng EXISTING/WORKING/NEED FIX/MISSING/READY TO ON có bằng chứng và SHA (chạy test các phần đã có), ước lượng lại, PR đầu tiên | 17:00: MATRIX xong (agent BA/SA, REPORTED, chạy test thật trên BE e0853d4a / FE 9a6c0896): BE 667 test / 0 lỗi (5 lần chạy), FE unit 406 (403 pass, 3 skip), 604 kiểm Chromium xanh (đều là harness fake fetch; E2E thật e2e-org01 CHƯA chạy). 43 dòng: WORKING 17 (+3 mức harness), EXISTING 2, NEED FIX 10, MISSING 11, READY TO ON 0. Lỗi so với spec: Import thành viên TẠO tài khoản; org-sync chưa có nhóm xác nhận ProdFeature và chưa trong compose.prod.yml; Preview đọc dữ liệu giả (có chủ ý, kiểm bởi test ST5); thiếu test empty-source+full; giới hạn FE 50k/25MB lệch BE 5k/1MB; Company Admin không ngừng được công ty (chỉ platform). Ước lượng lại sau khi đo tái sử dụng: ~477 giờ (BE 216 + FE 127 + QA/SEC 134), ±35%, KHÔNG phải ngân sách duyệt; lịch thực tế 3–4 tuần với 3–4 agent (đã tính cửa sổ QA/PROD và quyết định Owner). PR đầu = S0 (bật an toàn org-sync: nhóm ProdFeature ORG_SYNC + xác nhận SHA + compose + hàng sàn + cờ con đóng Import/Export thành viên (không tạo tài khoản) + 2 test + tài liệu; sau đó QA/SEC độc lập + E2E DEV; bật PROD là quyết định Owner riêng). Song song được: S1 (audit cấp tenant), S4 (XLSX), S11 (khung UI). Mở lại 5 thẻ quyết định Owner (G, J, B, K, L) vì thuộc bảo mật/cấu trúc Tenant/chính sách dữ liệu; thẻ I vẫn mở | 16:30: PR đầu S0 đã giao nhưng agent bị dừng giữa chừng (checkpoint có), chưa có PR; chờ Owner chọn các thẻ bảo mật/cấu trúc Tenant (G, J, B, K, L) cho các lát S2+ | 17:30: PR #210 (S4: thư viện XLSX thuần, không thêm phụ thuộc, không nối luồng; 48 test mới, REPORTED) đang QA/SEC độc lập; PR #211 (S0: nhóm ProdFeature ORG_SYNC + đóng Import/Export thành viên tạo tài khoản; REPORTED) xung đột với dev sau T36, tác giả đang hợp dev; S11 (khung giao diện, công tắc TẮT) đang làm; chưa bật gì trên PROD | 18:30: đợt 16 chuẩn bị song song: #210 (S4, sửa 2 lỗi cạn tài nguyên), #211 + FE #171 (S0), FE #170 (S11) đang QA độc lập; chưa merge (dev đóng băng đến hết promote đợt 15) | 19:10: S0 (BE #211 + FE #171 đã merge, FE #172 chỉnh câu chữ tài liệu) sẵn sàng QA delta; S11 (#170) QA đang chạy; S4 (#210) QA delta = NO-GO (hai cách né bước quét byte), tác giả đang sửa; S4 không chặn đợt 16 vì chưa nối luồng nào | 19:30: FE #170 (S11) ĐÃ MERGE dev sau QA độc lập GO-WITH-CONDITIONS (VERIFIED; công tắc TẮT; P2 cần Owner quyết trước khi bật: có gắn khu vực mới với công tắc giao diện org-sync không); FE #171 đã merge; BE #211 + FE #172 (S0) QA delta đang chạy; BE #210 (S4) tác giả đã sửa 2 cách né bước quét, QA kiểm lại đang chạy; chưa bật gì trên PROD; đợt 16 = S0 + S11 (S4 nếu kịp) | 20:30: Owner chốt 13 thẻ 20:10: công ty mẹ–con (bảng pháp nhân trong tenant, S2/V99), hồ sơ nhân viên tách SSO (S3/V100), quyền người phụ trách dữ liệu (S6), nguồn đồng bộ cấp tenant (S9), Preview đọc dữ liệu thật theo quyền (S10), audit ≥12 tháng. Agent S2 và S3 (BE) đang viết mã; đợt 16 (S0 + S11) đang QA tích hợp; S4 QA GO-WITH-CONDITIONS (chờ đợt 17)",
+        "statusEn": "15:00 Owner GO (P0, DEV): three enterprise data modules; Company Admin imports directly without Super Admin approval; Export tightly controlled (default deny, sensitive-field masking, audit); API Sync (full/delta, no mass delete when the API fails or returns empty); Studio web apps read through the Backend Data Connector (PRIVATE, permission-scoped, revocation takes effect). Spec kept locally at ~/xweb-handoff/p37-studio/t37/SPEC.md. NO code yet: a read-only AUDIT agent is running (reuse of X2/X3/X5/UX13, gaps, questions for the Owner with options, phase plan, estimate). Nothing run on PROD. T35 still has deploy priority (release 15); T37 does not change the 19 original P0 items | 16:20: AUDIT DONE (read-only, REPORTED): most of it already exists on dev (org tree V32; org import/export/sync P3-16 V56/V60 with IAM impact preview, mass-removal guard, ORG_* audit; X2/X3 catalogs EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector with SSRF guard). Missing: parent-child companies (tenants have no parent_id), employee profile separated from SSO (members import currently creates accounts), XLSX (none), import rollback, before/after history, export grants, data-steward delegation, tenant-level API sync, real delta. Conflict with spec §6: Studio Preview reads FIXTURE data. The org-sync flag cannot be enabled safely on PROD yet (no ack group). Next migration V99 (#129's V90 is unusable). Estimate (±40%, agent-hours): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 h; critical path P0→P1→P2a→P2b→P5 ≈ 240 h; Export and API Sync in parallel. 12 design questions (with options and a recommendation) are on the Owner tab (OD-T37-A…L). Safe first step: contract doc + a pure XLSX reader/writer library with hostile tests (independent of the decisions) | 16:00 Owner update: keep T37 as is, do NOT restart, do NOT expand; reuse all existing Company/Org/Employees/CSV/API Sync/System Sources/IAM code; test what exists BEFORE new code; no parallel systems or data models; postpone AI Mapping, advanced AI CRUD, Approval Workflow for Import/Export; small PRs and releases (do not wait for all of T37); 530 h is NOT an approved budget, to be re-estimated after measuring reuse. 11/12 questions closed per BA/SA recommendation; 1 data-policy question (audit retention/legal) is left for the Owner. BA/SA+QA agent RUNNING: EXISTING/WORKING/NEED FIX/MISSING/READY TO ON matrix with evidence and SHA (runs the tests of what exists), re-estimate, first PR | 17:00: MATRIX done (BA/SA agent, REPORTED, real tests on BE e0853d4a / FE 9a6c0896): BE 667 tests / 0 fail (5 runs), FE unit 406 (403 pass, 3 skip), 604 Chromium checks green (all harness with fake fetch; real e2e-org01 NOT run). 43 rows: WORKING 17 (+3 harness level), EXISTING 2, NEED FIX 10, MISSING 11, READY TO ON 0. Defects vs spec: members import CREATES accounts; org-sync has no ProdFeature ack group and is not in compose.prod.yml; Preview reads fake data (by design, test ST5); no empty-source+full test; FE limits 50k/25MB vs BE 5k/1MB; Company Admin cannot deactivate a company (platform only). Re-estimate after measuring reuse: ~477 h (BE 216 + FE 127 + QA/SEC 134), ±35%, NOT an approved budget; realistic 3–4 weeks with 3–4 agents (incl. QA/PROD windows and Owner decisions). First PR = S0 (safe enablement of org-sync: ORG_SYNC ProdFeature group + SHA ack + compose + floor row + child flag closing members import/export (no account creation) + 2 tests + docs; then independent QA/SEC + DEV E2E; PROD enable is a separate Owner decision). In parallel: S1 (tenant audit), S4 (XLSX), S11 (UI shell). Re-opened 5 Owner decision cards (G, J, B, K, L) because they concern security / tenant structure / data policy; card I stays open | 16:30: first PR S0 was assigned but the agent was stopped midway (checkpoint kept), no PR yet; waiting for the Owner on the security / tenant-structure cards (G, J, B, K, L) for slices S2+ | 17:30: PR #210 (S4: pure XLSX library, no new dependency, not wired; 48 new tests, REPORTED) in independent QA/SEC; PR #211 (S0: ORG_SYNC ProdFeature group + closed members import/export that created accounts; REPORTED) conflicts with dev after T36, author merging dev; S11 (UI shell, switch OFF) in progress; nothing enabled on PROD | 18:30: release 16 prepared in parallel: #210 (S4, fixing 2 resource-exhaustion findings), #211 + FE #171 (S0), FE #170 (S11) in independent QA; not merged (dev frozen until release 15 promote is done) | 19:10: S0 (BE #211 + FE #171 merged, FE #172 docs wording) ready for delta QA; S11 (#170) QA running; S4 (#210) delta QA = NO-GO (two ways to bypass the byte scan), author fixing; S4 does not block release 16 because nothing calls it | 19:30: FE #170 (S11) MERGED to dev after independent QA GO-WITH-CONDITIONS (VERIFIED; switch OFF; a P2 needs an Owner decision before it is turned on: should the new area also require the org-sync UI switch); FE #171 merged; BE #211 + FE #172 (S0) delta QA running; BE #210 (S4) author fixed the two scan bypasses, QA re-check running; nothing enabled on PROD; release 16 = S0 + S11 (S4 if in time) | 20:30: Owner settled 13 cards at 20:10: parent-child companies (legal-entity table inside the tenant, S2/V99), employee profiles separate from SSO (S3/V100), data-steward grants (S6), tenant-level sync source (S9), Preview reads real data per viewer (S10), audit >= 12 months. S2 and S3 (BE) authors running; release 16 (S0 + S11) in integrated QA; S4 QA GO-WITH-CONDITIONS (waits for release 17)",
         "prs": "FE #170, #171 (merged dev); BE #211 + FE #172 (S0, QA delta); BE #210 (S4, QA re-check)",
         "eta": "",
         "etaFirst": "Audit + kế hoạch pha + ước lượng: ~16:30–17:30 (ước tính); mã bắt đầu sau khi Owner trả lời các câu hỏi thiết kế",
