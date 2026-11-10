@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T08:30:00+07:00",
+  "asOf": "2026-11-10T08:42:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,9 +2203,277 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-08T08:42:11+07:00",
-    "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner.",
+    "updatedAt": "2026-11-10T08:42:00+07:00",
+    "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
+      {
+        "id": "OD-T35-OL-RETRY",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "T35 (header Open Lovable): có thêm nút “Thử lại” khi lưu lỗi trên điện thoại không?",
+        "solution": "Chọn A, B hoặc C bên dưới. Không chặn đợt 13 nếu chọn A/B.",
+        "detail": "Hotfix làm chip lưu ở header Open Lovable thành chữ có dấu “…”. Header này không có nút thử lại lưu (nút “Thử lại” bị ẩn chỉ là của màn ứng dụng dạng trang T35b, đã sửa). Thêm đường thử lại cho header Open Lovable cần viết mã mới, không phải sửa CSS. QA độc lập đang xác nhận điểm này.",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/166",
+        "options": [
+          {
+            "key": "A",
+            "label": "Không thêm",
+            "desc": "Giữ như hiện tại; lưu lỗi vẫn có thông báo và Xuất bản bị khóa có lý do."
+          },
+          {
+            "key": "B",
+            "label": "Thêm sau đợt 13",
+            "desc": "Làm một PR nhỏ riêng, QA rồi đưa lên ở đợt sau. Không làm chậm đợt 13.",
+            "recommended": true
+          },
+          {
+            "key": "C",
+            "label": "Thêm trước đợt 13",
+            "desc": "Đợt 13 trễ thêm, ước tính 2 đến 3 giờ (cần QA lại)."
+          }
+        ]
+      },
+      {
+        "id": "OD-T35-C3",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "T35: có cần công tắc tắt riêng cho giao diện header mới không?",
+        "solution": "Chọn A hoặc B. Claude khuyến nghị A.",
+        "detail": "T35 và T35b dùng chung công tắc build FE_EDIT_LAYOUT_UI (đang BẬT trên PROD), nên tắt = phải dựng lại FE. “Thu gọn kết quả” đã bỏ khỏi header; “Cài đặt” là một nhóm trong ☰. Đường lùi hiện tại: quay image FE trước (không đổi BE/DB/quyền).",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/165",
+        "options": [
+          {
+            "key": "A",
+            "label": "Không thêm công tắc riêng",
+            "desc": "Lùi bằng image FE trước; ít mã hơn, ít rủi ro hơn.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Thêm công tắc riêng cho T35/T35b",
+            "desc": "Tắt nhanh không cần dựng lại, nhưng thêm mã và thêm một vòng QA."
+          }
+        ]
+      },
+      {
+        "id": "OD-T35B-7",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "T35b: 7 điểm thiết kế màn ứng dụng dạng trang, QA khuyến nghị đồng ý cả 7",
+        "solution": "Chọn A nếu đồng ý cả 7; chọn B nếu muốn đổi, ghi số điểm vào ô ghi chú.",
+        "detail": "(1) Không có “Mở trong tab mới” cho ứng dụng dạng trang. (2) Dải chế độ chuyển vào ☰ (≤900 px không thấy tên chế độ khi ☰ đóng: việc nhỏ sau). (3) “Thành viên” hiện khóa kèm lý do. (4) “Chỉnh sửa” chỉ ở ☰ (Dùng thử là công tắc có chip TEST). (5) Hoàn tác/Làm lại ở thanh khi >1100 px, hẹp hơn chỉ trong ☰. (6) Bỏ link X về launcher. (7) Bỏ nhãn “Xem trước”.",
+        "link": "https://github.com/luan20495/Xweb01fe/pull/165",
+        "options": [
+          {
+            "key": "A",
+            "label": "Đồng ý cả 7",
+            "desc": "Theo khuyến nghị của QA độc lập.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Muốn đổi một số điểm",
+            "desc": "Ghi số điểm và ý anh vào ô ghi chú bên dưới."
+          }
+        ]
+      },
+      {
+        "id": "OD-T36-N",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "Cửa sổ AI mở vĩnh viễn: giới hạn N lượt AI mỗi ngày (đặt lại 07:00 ICT)",
+        "solution": "Chọn một mức, hoặc ghi số khác vào ô ghi chú. Đổi sau được bằng một lệnh quản trị (cần gõ RAISE).",
+        "detail": "Khi chuyển sang mở theo ngày, hạn thời gian không còn; chỉ còn trần số lượt mỗi ngày và trần chi phí cộng dồn hiện có. Claude khuyến nghị bắt đầu thấp rồi nâng theo nhu cầu thực. Chỉ áp dụng khi anh duyệt bật sau khi T36 lên PROD.",
+        "link": "https://github.com/luan20495/xweb01/pull/207",
+        "options": [
+          {
+            "key": "A",
+            "label": "500 lượt/ngày",
+            "desc": "Bắt đầu thấp, nâng khi cần.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "2.000 lượt/ngày",
+            "desc": "Thoải mái cho 5 tài khoản dùng thử và QA."
+          },
+          {
+            "key": "C",
+            "label": "5.000 lượt/ngày",
+            "desc": "Gần như không giới hạn theo lượt; chỉ trần chi phí chặn."
+          }
+        ]
+      },
+      {
+        "id": "OD-T36-CAP",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "Cửa sổ AI: có cần trần chi phí theo tháng (khác trần cộng dồn hiện có) không?",
+        "solution": "Chọn A hoặc B.",
+        "detail": "Hiện có trần chi phí cộng dồn (không theo tháng) vẫn chặn khi mở theo ngày. Trần theo tháng cần thêm migration và một vòng QA/SEC.",
+        "link": "https://github.com/luan20495/xweb01/pull/207",
+        "options": [
+          {
+            "key": "A",
+            "label": "Chưa cần; dùng trần cộng dồn hiện có",
+            "desc": "Làm trần theo tháng ở đợt sau nếu thấy cần.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Làm ngay trần theo tháng",
+            "desc": "Thêm migration; T36 trễ, ước tính khoảng 1 ngày."
+          }
+        ]
+      },
+      {
+        "id": "OD-T36-GATES",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "Các “cổng thời gian” khác của quyền AI (quyền hết hạn 06/12, phân bổ, quyền theo dự án)",
+        "solution": "Chọn A hoặc B.",
+        "detail": "Ngoài cửa sổ AI còn một số hạn khác có thể chặn AI. Claude chưa đụng vào; cần anh chọn cách xử lý.",
+        "options": [
+          {
+            "key": "A",
+            "label": "Chỉ đọc giá trị trên PROD, báo anh rồi anh quyết",
+            "desc": "An toàn, không đổi gì.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Gia hạn tất cả ngay",
+            "desc": "Cần anh xác nhận từng hạn mới khi Claude báo giá trị."
+          }
+        ]
+      },
+      {
+        "id": "OD-AIWIN-RENEW",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "Cửa sổ AI hết hạn 23:02 hôm nay: gia hạn thêm lúc 21:00?",
+        "solution": "Chọn A để Claude gia hạn 1.440 phút lúc khoảng 21:00 (hệ thống cho tối đa 1.440 phút mỗi lần).",
+        "detail": "Hiện cửa sổ mở đến 23:02 ICT 10/11. Nếu không gia hạn, AI trả phí đóng sau 23:02 cho đến khi T36 (mở theo ngày) lên PROD và được bật.",
+        "options": [
+          {
+            "key": "A",
+            "label": "Gia hạn thêm 1.440 phút lúc 21:00",
+            "desc": "Claude chỉ gia hạn khi anh chọn ở đây.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Không gia hạn",
+            "desc": "AI trả phí đóng sau 23:02 cho tới khi T36 được bật."
+          }
+        ]
+      },
+      {
+        "id": "OD-T22B",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "T22-B (AI làm theo bước): chạy 3 lượt Haiku thử trên PROD, cờ vẫn TẮT?",
+        "solution": "Chọn A hoặc B. Bật cờ là một quyết định riêng, chưa hỏi ở đây.",
+        "detail": "Cần chứng minh AI trả kế hoạch đúng định dạng bước trước khi bật cờ. 3 lượt dùng mô hình nhẹ (Haiku), trong cửa sổ AI đang mở, tài khoản QA, không đụng dữ liệu thật.",
+        "options": [
+          {
+            "key": "A",
+            "label": "Duyệt 3 lượt Haiku",
+            "desc": "Báo kết quả ngay sau khi chạy; cờ giữ TẮT.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chưa chạy",
+            "desc": "Giữ nguyên T22-B ở trạng thái đã deploy, cờ TẮT."
+          }
+        ]
+      },
+      {
+        "id": "OD-5ACC",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "5 tài khoản dùng thử: chạy 1 lượt AI thật (Haiku) cho mỗi tài khoản?",
+        "solution": "Chọn A hoặc B.",
+        "detail": "Đến giờ mới kiểm đăng nhập, vai trò EDITOR và AI khả dụng; chưa gửi lượt AI thật. Mỗi tài khoản 1 lượt Haiku trên một dự án thử rồi xóa dự án thử đó.",
+        "options": [
+          {
+            "key": "A",
+            "label": "Duyệt",
+            "desc": "Claude chạy, in kết quả (không in mật khẩu), xóa dự án thử.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chưa",
+            "desc": "Chờ đến khi anh muốn."
+          }
+        ]
+      },
+      {
+        "id": "OD-CLEAN-QA",
+        "kind": "DECISION",
+        "priority": "P3",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "Dọn các dự án thử cũ (tên bắt đầu bằng QA-) của một tài khoản dùng thử (19 dự án)",
+        "solution": "Chọn A hoặc B.",
+        "detail": "Xóa dự án là thao tác khó hoàn tác, nên cần anh duyệt. Claude chỉ xóa đúng danh sách dự án có tiền tố QA- mà chính các lượt kiểm thử đã tạo, in danh sách trước.",
+        "options": [
+          {
+            "key": "A",
+            "label": "Duyệt xóa",
+            "desc": "Sau khi in danh sách để anh thấy."
+          },
+          {
+            "key": "B",
+            "label": "Giữ lại",
+            "desc": "Không đụng.",
+            "recommended": true
+          }
+        ]
+      },
+      {
+        "id": "OD-PR199",
+        "kind": "DECISION",
+        "priority": "P3",
+        "status": "OPEN",
+        "since": "2026-11-10T08:42:00+07:00",
+        "title": "PR #199: “Quy trình vận hành XWeb” (phần 5 đến 13 do Claude bổ sung): duyệt merge?",
+        "solution": "Chọn A hoặc B.",
+        "detail": "Tài liệu quy trình gồm báo cáo mỗi giờ, git/deploy đúng quy trình, dọn máy, hồi phục agent. Chờ anh duyệt trước khi merge.",
+        "link": "https://github.com/luan20495/xweb01/pull/199",
+        "options": [
+          {
+            "key": "A",
+            "label": "Duyệt merge",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Cần sửa",
+            "desc": "Ghi chỗ cần sửa vào ô ghi chú."
+          }
+        ]
+      },
       {
         "id": "OA-01",
         "kind": "INCIDENT",
@@ -2221,9 +2489,9 @@
         "id": "OA-04",
         "kind": "DEPLOY",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "title": "Thông báo deploy: đợt 2 chưa lên PROD; sẽ cần Owner nạp khóa SSH",
-        "detail": "Dev đã có đủ migration V88, V89, V91, V92, V93, V94, V95 (V87 và V90 void). Còn: gộp #150 (V96) sau khi sửa, QA tích hợp, script promote dev → main, rồi deploy. Khi tới bước deploy cần Owner nạp lại khóa SSH (khóa 12 giờ đã hết hạn). Mọi cờ mới giữ TẮT.",
+        "detail": "Dev đã có đủ migration V88, V89, V91, V92, V93, V94, V95 (V87 và V90 void). Còn: gộp #150 (V96) sau khi sửa, QA tích hợp, script promote dev → main, rồi deploy. Khi tới bước deploy cần Owner nạp lại khóa SSH (khóa 12 giờ đã hết hạn). Mọi cờ mới giữ TẮT. | 10/11: đã xong, PROD đã qua đợt 12; khóa SSH đã nạp lại.",
         "link": "",
         "since": "2026-11-07T09:43:30+07:00"
       },
