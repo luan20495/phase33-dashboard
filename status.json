@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T22:00:00+07:00",
+  "asOf": "2026-11-10T22:05:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -3210,7 +3210,7 @@
         "id": "OD-T37-EXPORT",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T22:00:00+07:00",
         "title": "T37 xuất dữ liệu (S8): ai được thấy trường cá nhân?",
         "detail": "Khuyến nghị: chỉ Company Admin thấy trường cá nhân; người được ủy quyền xuất chỉ thấy trường thường; tuyến xuất đơn vị cũ cũng đi qua công tắc xuất mới của công ty; mặc định 5.000 dòng/lần, 3 lần/người/ngày, 20 lần/công ty/ngày. Việc xây trên DEV theo phương án A không cần chờ anh.",
@@ -3228,13 +3228,15 @@
             "label": "Người được ủy quyền cũng thấy trường cá nhân",
             "desc": "Cần thêm ghi nhận đồng ý và audit riêng."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Theo khuyến nghị: chỉ Company Admin thấy trường cá nhân khi xuất; người được ủy quyền chỉ thấy trường thường; tuyến xuất đơn vị cũ cũng đi qua công tắc xuất mới; mặc định 5.000 dòng/lần, 3 lần/người/ngày, 20 lần/công ty/ngày (Owner 22:04). Làm trên DEV, chưa bật gì trên PROD."
       },
       {
         "id": "OD-T37-SYNC",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T22:00:00+07:00",
         "title": "T37 đồng bộ API (S9): ai được tạo kết nối có khóa bí mật, và lượt đồng bộ ghi ai trong audit?",
         "detail": "Khuyến nghị: chỉ Company Admin tạo kết nối; lượt đồng bộ bằng danh tính dịch vụ cấp tenant, audit không ghi tên ai, chỉ ghi mã người duyệt; chạy tay trước, lịch tự động là bước bật riêng sau.",
@@ -3252,13 +3254,15 @@
             "label": "Cho Workspace Admin cũng tạo",
             "desc": "Mở rộng bề mặt tấn công, cần QA/SEC thêm."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Theo khuyến nghị: chỉ Company Admin tạo kết nối có khóa bí mật; lượt đồng bộ bằng danh tính dịch vụ cấp tenant, audit không ghi tên, chỉ ghi mã người duyệt; chạy tay trước, lịch tự động là bước bật riêng sau (Owner 22:04)."
       },
       {
         "id": "OD-T37-ROLLBACK",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T22:00:00+07:00",
         "title": "T37 khôi phục và nhập hàng loạt (S5/S7): ai được khôi phục, hồ sơ nhập có được đổi công ty của nhân viên?",
         "detail": "Khuyến nghị: chỉ Company Admin khôi phục, trong 7 ngày, ảnh trước/sau xóa sau 30 ngày; nhập hồ sơ chỉ đổi công ty khi có tùy chọn rõ ràng và có mã audit riêng; không thêm công tắc riêng cho nhập hồ sơ hàng loạt.",
@@ -3276,13 +3280,15 @@
             "label": "Thêm công tắc riêng cho nhập hồ sơ",
             "desc": "Chậm hơn một đợt, an toàn hơn."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Theo khuyến nghị: chỉ Company Admin khôi phục trong 7 ngày, ảnh trước/sau xóa sau 30 ngày; nhập hồ sơ chỉ đổi công ty khi có tùy chọn rõ ràng và mã audit riêng; không thêm công tắc riêng cho nhập hồ sơ hàng loạt (Owner 22:04)."
       },
       {
         "id": "OD-T37-TESTTENANT",
         "kind": "DECISION",
         "priority": "P3",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T22:00:00+07:00",
         "title": "Bằng chứng cuối trên PROD cho T37: dùng tenant thử với dữ liệu tổng hợp hay không?",
         "detail": "Mọi bước kiểm e2e làm trên DEV (tenant thử + admin thứ hai trên DEV, anh không phải làm gì). Chỉ bước chứng minh cuối trên PROD cần một tenant thử với dữ liệu tổng hợp và một admin thứ hai: khuyến nghị tenant thử, không bao giờ dùng dữ liệu nhân sự thật của công ty.",
@@ -3300,7 +3306,9 @@
             "label": "Không làm trên PROD",
             "desc": "T37 chỉ được gọi là xong ở mức DEV, không có bằng chứng PROD."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Tenant thử với dữ liệu tổng hợp cho bước chứng minh cuối trên PROD (Owner 22:04). Anh sẽ cấp admin thứ hai cho tenant thử trước đợt 21; mọi e2e khác trên DEV. Không dùng dữ liệu nhân sự thật."
       }
     ]
   },
