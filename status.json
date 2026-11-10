@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T18:14:00+07:00",
+  "asOf": "2026-11-10T18:16:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -3961,7 +3961,7 @@
           {
             "id": "deploy.release_name",
             "label": "Đợt hiện tại trên PROD",
-            "value": "đợt 14 (release e0853d4a6f95); đợt kế tiếp = đợt 15 (không dùng số 13)",
+            "value": "đợt 14 (release e0853d4a6f95) đang chạy trên PROD; đợt 15 đang QA tích hợp; đợt 16 (T37 S0 + S4 + S11) chuẩn bị ngay sau đợt 15",
             "type": "text",
             "editable": false,
             "explain": "Tên đợt do Owner đặt.",
@@ -4343,6 +4343,13 @@
         "by": "Owner",
         "id": "*",
         "note": "Chốt bộ tiêu chuẩn vận hành 12 nhóm (10/11); C0 áp dụng vào bảng này",
+        "state": "applied"
+      },
+      {
+        "at": "2026-11-10T18:16:00+07:00",
+        "by": "Owner",
+        "id": "deploy.release_name",
+        "note": "Chỉ đạo: deploy đợt 15 lên PROD, bật xong thì tăng tốc, deploy đợt 16 luôn (T37 S0 + S4 + S11 đang QA song song; dev đóng băng đến khi promote đợt 15)",
         "state": "applied"
       }
     ]
