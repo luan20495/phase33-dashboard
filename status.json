@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T08:42:00+07:00",
+  "asOf": "2026-11-10T08:49:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2213,7 +2213,7 @@
         "status": "OPEN",
         "since": "2026-11-10T08:42:00+07:00",
         "title": "T35 (header Open Lovable): có thêm nút “Thử lại” khi lưu lỗi trên điện thoại không?",
-        "solution": "Chọn A, B hoặc C bên dưới. Không chặn đợt 13 nếu chọn A/B.",
+        "solution": "Chọn A, B hoặc C bên dưới. Không chặn đợt 14 nếu chọn A/B.",
         "detail": "Hotfix làm chip lưu ở header Open Lovable thành chữ có dấu “…”. Header này không có nút thử lại lưu (nút “Thử lại” bị ẩn chỉ là của màn ứng dụng dạng trang T35b, đã sửa). Thêm đường thử lại cho header Open Lovable cần viết mã mới, không phải sửa CSS. QA độc lập đang xác nhận điểm này.",
         "link": "https://github.com/luan20495/Xweb01fe/pull/166",
         "options": [
@@ -2224,14 +2224,14 @@
           },
           {
             "key": "B",
-            "label": "Thêm sau đợt 13",
-            "desc": "Làm một PR nhỏ riêng, QA rồi đưa lên ở đợt sau. Không làm chậm đợt 13.",
+            "label": "Thêm sau đợt 14",
+            "desc": "Làm một PR nhỏ riêng, QA rồi đưa lên ở đợt sau. Không làm chậm đợt 14.",
             "recommended": true
           },
           {
             "key": "C",
-            "label": "Thêm trước đợt 13",
-            "desc": "Đợt 13 trễ thêm, ước tính 2 đến 3 giờ (cần QA lại)."
+            "label": "Thêm trước đợt 14",
+            "desc": "Đợt 14 trễ thêm, ước tính 2 đến 3 giờ (cần QA lại)."
           }
         ]
       },
@@ -2863,7 +2863,7 @@
         "prs": "",
         "eta": "Khoảng 1–2 tuần",
         "evidence": "Nút thắt lớn nhất với tệp HTML/JS dài",
-        "etaFirst": "QA project: sửa một đoạn: PR 12/11 ~16:00, lên PROD đợt 13 (14/11), bật QA 14/11",
+        "etaFirst": "QA project: sửa một đoạn: PR 12/11 ~16:00, lên PROD đợt 14 (14/11), bật QA 14/11",
         "etaFull": "Mọi user: 19–22/11 sau lượt thật trên tệp lớn (cần T23 ổn định)",
         "accept": [
           "Sửa được tệp HTML/JS lớn (>24.000 byte) mà không viết lại cả tệp",
@@ -2884,7 +2884,7 @@
         "prs": "",
         "eta": "Sau S4",
         "evidence": "",
-        "etaFirst": "QA project: 3 gói đầu (HTML→React, CRUD dữ liệu managed, biểu mẫu) PR 13/11 ~12:00, lên PROD đợt 13 (14/11 ~14:00)",
+        "etaFirst": "QA project: 3 gói đầu (HTML→React, CRUD dữ liệu managed, biểu mẫu) PR 13/11 ~12:00, lên PROD đợt 14 (14/11 ~14:00)",
         "etaFull": "Mọi user: 19–21/11 sau đánh giá chất lượng bằng lượt thật",
         "accept": [
           "Mỗi gói ≤ 2–3 KB, có phiên bản, điều kiện áp dụng và test ghim kích thước",
@@ -3065,8 +3065,8 @@
         "prio": 1,
         "title": "Studio Project: 1 Header + ☰ ghim (Apple/Google), bỏ logo X, menu ⋯, Mở bằng IDE",
         "titleEn": "Studio Project: one Header + pinned ☰ sidebar (Apple/Google), remove X logo, ⋯ menu, Open in IDE",
-        "status": "06:20: ĐÃ LÊN PROD (đợt 12, release `1d3d38ec686c`) nhưng CHƯA đạt nghiệm thu: Owner báo 06:30 trên PROD: (1) trang 'Xem trước' còn vùng đen ở dưới; (2) hộp 'Tùy chỉnh thao tác nhanh' nền trong suốt, không đọc được chữ. Script kiểm PROD của C0 (s210): 34 PASS / 4 FAIL / 6 NOT_RUN: tràn ngang 10px ở 390px (approver), huy hiệu trạng thái, mục menu Xem trước/Kiểm tra chưa tới đúng tab, 404 trên console. Harness API giả không bắt được các lỗi này. HOTFIX đang làm (nhánh hotfix/p37-t35-preview-dialog), QA delta + deploy ngay khi đạt; đường lùi: image FE đợt 11a | 06:45: Owner báo thêm: mục ‘Tệp đã sửa’, ‘Chi tiết thay đổi’, ‘Phiên bản’ trong ☰ không giữ trạng thái được chọn: đã thêm vào hotfix | 07:30: hotfix đã đẩy cc90b2d5 (chạy gate/spec đo thật), PR sắp mở; T35b head dcb139d3 (hộp thoại nền trong suốt cùng lỗi: đã sửa; vùng đen/trạng thái chọn đo không có ở page-app) QA đo độc lập; đợt 13 dự kiến 09:15–10:00 | 08:30: QA delta độc lập T35b trên dcb139d3 = GO-WITH-CONDITIONS, không P1 (C1/C2/C3, trạng thái chọn ☰, hộp ‘Tùy chỉnh’ đạt); P2 mới C-DOT: chấm lưu ≤520px tương phản <3:1 và ‘Thử lại’ ẩn ≤600px. Tác giả sửa, head mới 5a515328 (đã hợp nhánh hotfix), QA delta độc lập đang chạy; hotfix #166 (cc90b2d5) vẫn đang QA độc lập; header Open Lovable chưa có đường thử lại lưu (chờ Owner quyết); đợt 13 dự kiến 09:30–10:15",
-        "statusEn": "06:20: ON PROD (release 12, `1d3d38ec686c`) but NOT yet accepted: the Owner reported at 06:30 on PROD: (1) the 'Xem trước' page leaves a black area at the bottom; (2) the 'Tùy chỉnh thao tác nhanh' dialog has a transparent background so the text cannot be read. C0's PROD check (s210): 34 PASS / 4 FAIL / 6 NOT_RUN: 10px horizontal overflow at 390px (approver), status chips, Xem trước/Kiểm tra menu entries not reaching the right tab, console 404. The fake-API harness did not catch these. HOTFIX in progress (branch hotfix/p37-t35-preview-dialog), delta QA + deploy as soon as it passes; rollback: release 11a FE image | 08:30: independent delta QA of T35b on dcb139d3 = GO-WITH-CONDITIONS, no P1 (C1/C2/C3, ☰ selected state, customise dialog pass); new P2 C-DOT: save dot contrast <3:1 at ≤520px and 'Retry' hidden at ≤600px. Author fixed it, new head 5a515328 (hotfix branch merged in), independent delta QA running; hotfix #166 (cc90b2d5) still in independent QA; the Open Lovable header has no save-retry path (Owner to decide); release 13 expected 09:30–10:15",
+        "status": "06:20: ĐÃ LÊN PROD (đợt 12, release `1d3d38ec686c`) nhưng CHƯA đạt nghiệm thu: Owner báo 06:30 trên PROD: (1) trang 'Xem trước' còn vùng đen ở dưới; (2) hộp 'Tùy chỉnh thao tác nhanh' nền trong suốt, không đọc được chữ. Script kiểm PROD của C0 (s210): 34 PASS / 4 FAIL / 6 NOT_RUN: tràn ngang 10px ở 390px (approver), huy hiệu trạng thái, mục menu Xem trước/Kiểm tra chưa tới đúng tab, 404 trên console. Harness API giả không bắt được các lỗi này. HOTFIX đang làm (nhánh hotfix/p37-t35-preview-dialog), QA delta + deploy ngay khi đạt; đường lùi: image FE đợt 11a | 06:45: Owner báo thêm: mục ‘Tệp đã sửa’, ‘Chi tiết thay đổi’, ‘Phiên bản’ trong ☰ không giữ trạng thái được chọn: đã thêm vào hotfix | 07:30: hotfix đã đẩy cc90b2d5 (chạy gate/spec đo thật), PR sắp mở; T35b head dcb139d3 (hộp thoại nền trong suốt cùng lỗi: đã sửa; vùng đen/trạng thái chọn đo không có ở page-app) QA đo độc lập; đợt 14 dự kiến 09:15–10:00 | 08:30: QA delta độc lập T35b trên dcb139d3 = GO-WITH-CONDITIONS, không P1 (C1/C2/C3, trạng thái chọn ☰, hộp ‘Tùy chỉnh’ đạt); P2 mới C-DOT: chấm lưu ≤520px tương phản <3:1 và ‘Thử lại’ ẩn ≤600px. Tác giả sửa, head mới 5a515328 (đã hợp nhánh hotfix), QA delta độc lập đang chạy; hotfix #166 (cc90b2d5) vẫn đang QA độc lập; header Open Lovable chưa có đường thử lại lưu (chờ Owner quyết); đợt 14 dự kiến 09:30–10:15",
+        "statusEn": "06:20: ON PROD (release 12, `1d3d38ec686c`) but NOT yet accepted: the Owner reported at 06:30 on PROD: (1) the 'Xem trước' page leaves a black area at the bottom; (2) the 'Tùy chỉnh thao tác nhanh' dialog has a transparent background so the text cannot be read. C0's PROD check (s210): 34 PASS / 4 FAIL / 6 NOT_RUN: 10px horizontal overflow at 390px (approver), status chips, Xem trước/Kiểm tra menu entries not reaching the right tab, console 404. The fake-API harness did not catch these. HOTFIX in progress (branch hotfix/p37-t35-preview-dialog), delta QA + deploy as soon as it passes; rollback: release 11a FE image | 08:30: independent delta QA of T35b on dcb139d3 = GO-WITH-CONDITIONS, no P1 (C1/C2/C3, ☰ selected state, customise dialog pass); new P2 C-DOT: save dot contrast <3:1 at ≤520px and 'Retry' hidden at ≤600px. Author fixed it, new head 5a515328 (hotfix branch merged in), independent delta QA running; hotfix #166 (cc90b2d5) still in independent QA; the Open Lovable header has no save-retry path (Owner to decide); release 14 expected 09:30–10:15",
         "prs": "FE #164 (merged, PROD), hotfix FE #166 (cc90b2d5, QA), T35b FE #165 (5a515328, QA delta)",
         "eta": "",
         "etaFirst": "PR ~01:30; QA/E2E 01:30–03:30; deploy đợt 12 ~05:00–06:00 (dự phòng 08:30–09:30)",
@@ -3092,7 +3092,7 @@
         "statusEn": "Owner chose option 3 (06:00). BE #207 (c49ff6e2): `ai.paid.window.mode` TIMED | ALWAYS_OPEN:N, UTC-day counter, cumulative USD cap kept, admin route with RAISE confirm + audit; independent delta QA at 08:00 = GO-WITH-CONDITIONS (0 P0/P1; P2-1 fixed; 14 mutants caught; VERIFIED), three over-claiming doc passages still to fix (author working). Test-only PR #208 QA GO and MERGED to dev. FE #167 (ab8d297f) opened (super-admin UI, audit labels, doc copy; author's tests REPORTED), independent QA not run yet. #207/#167 not merged, not on PROD; the window is open until 23:02 ICT (renewed 1,440 min, the per-call maximum). Waiting for the Owner: N/day, monthly cap, AI entitlement end date (06/12)",
         "prs": "BE #207 (c49ff6e2), FE #167 (ab8d297f), test-only BE #208 (merged dev)",
         "eta": "",
-        "etaFirst": "Deploy sau đợt 13: ~11:30–13:00 (QA delta, FE, QA tích hợp); bật ALWAYS_OPEN sau lời duyệt Owner",
+        "etaFirst": "Deploy sau đợt 14: ~11:30–13:00 (QA delta, FE, QA tích hợp); bật ALWAYS_OPEN sau lời duyệt Owner",
         "etaFull": "",
         "etaFallback": "Dự phòng: 15:00",
         "evidence": "qa-sec-ai-window.md (local)",
