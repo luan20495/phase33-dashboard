@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T20:12:00+07:00",
+  "asOf": "2026-11-10T20:14:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,14 +2203,14 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-10T20:12:00+07:00",
+    "updatedAt": "2026-11-10T20:14:00+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
         "id": "OD-SSO-CONFIRM",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-10T20:12:00+07:00",
         "title": "Phiên đăng nhập: anh chọn B (Ghi nhớ đăng nhập), nhưng phiên hiện đã đặt dài cho mọi người. Giữ hay đổi?",
         "detail": "Lúc 18:10 em đã đặt phiên dịch vụ đăng nhập 30 ngày nhàn rỗi và 365 ngày tối đa cho MỌI người (theo lệnh “mặc định ≥7 ngày, 1 năm cũng được”) và backend theo khớp (đợt 15). Phương án B anh vừa chọn giữ người KHÔNG tick ở 30 phút/10 giờ, nghĩa là ngắn hơn hiện tại. Bật “Ghi nhớ đăng nhập” còn cần anh nhập mật khẩu quản trị lại (một lệnh). Chọn một cách để em làm đúng ý anh.",
@@ -2233,7 +2233,9 @@
             "label": "Giữ 30 ngày/365 ngày cho mọi người VÀ bật Ghi nhớ đăng nhập",
             "desc": "Không đổi hành vi thực tế ngoài việc thêm tùy chọn; cần một lệnh của anh."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Giữ như hiện tại (30 ngày/365 ngày cho mọi người), chưa bật Ghi nhớ đăng nhập. Không đổi gì trên hệ thống."
       },
       {
         "id": "OD-SSO-SESSION",
@@ -3324,6 +3326,13 @@
       "decision": "Chọn B: Claude đề xuất mức nhỏ nhất hệ thống cho phép, Owner duyệt trước khi dùng: agent nghiên cứu đang làm đề xuất (số tiền giữ cục bộ)",
       "source": "Owner duyệt từ dashboard, dán vào phiên điều hành 20:10 ICT 10/11",
       "scope": "Chỉ đúng nội dung quyết định này"
+    },
+    {
+      "id": "OD-SSO-CONFIRM",
+      "at": "2026-11-10T20:14:00+07:00",
+      "decision": "Chọn A: giữ phiên 30 ngày/365 ngày cho mọi người; Ghi nhớ đăng nhập chưa bật (dòng dán vào mất chữ CHƯA; đọc theo nhãn phương án A)",
+      "source": "Owner duyệt từ dashboard 20:14 ICT 10/11",
+      "scope": "Chỉ phiên đăng nhập"
     }
   ],
   "dailyWork": {
@@ -4240,12 +4249,13 @@
           {
             "id": "sso.remember_me",
             "label": "Bật “Ghi nhớ đăng nhập” (Remember Me)",
-            "value": true,
+            "value": false,
             "type": "bool",
             "editable": true,
             "explain": "Cho phép phiên dài khi người dùng chọn.",
             "impact": "Cần cấu hình Keycloak và giao diện đăng nhập; cần review bảo mật.",
-            "state": "proposed"
+            "state": "proposed",
+            "evidence": "Owner 20:14 chọn giữ như hiện tại: chưa bật; có thể bật sau"
           },
           {
             "id": "sso.refresh",
