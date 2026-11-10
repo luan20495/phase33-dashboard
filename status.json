@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-10T15:20:00+07:00",
+  "asOf": "2026-11-10T15:29:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -2203,9 +2203,333 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-10T13:54:00+07:00",
+    "updatedAt": "2026-11-10T15:29:00+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
+      {
+        "id": "OD-T37-L",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-L: nguồn đồng bộ API chạy bằng gì",
+        "detail": "Hiện mỗi tenant chỉ 1 nguồn, chạy theo quyền của người dùng cần QUERY_EXECUTE trong workspace.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Nguồn cấp tenant, chạy bằng danh tính dịch vụ của công ty (không dùng quyền người dùng)",
+            "desc": "Token lưu ở Backend.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Giữ nguồn trong workspace như hiện tại",
+            "desc": "Phụ thuộc quyền người dùng."
+          },
+          {
+            "key": "C",
+            "label": "Chỉ nhập bằng tệp, bỏ API",
+            "desc": "Thiếu spec."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-K",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-K: Studio Preview với dữ liệu thật",
+        "detail": "Spec §6 muốn Preview chạy dữ liệu thật; hiện Preview đọc dữ liệu GIẢ (fixture), không bao giờ đọc thật.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Preview đọc dữ liệu thật theo quyền của người đang xem, với vai trò tường minh (cần anh đồng ý bằng chữ cho dữ liệu nhân sự)",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Giữ dữ liệu giả ở Preview; chỉ bản Published PRIVATE đọc dữ liệu thật",
+            "desc": "An toàn hơn; lệch spec."
+          },
+          {
+            "key": "C",
+            "label": "Dữ liệu thật theo quyền người tạo app",
+            "desc": "Có thể lộ dữ liệu cho người xem không được cấp."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-J",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-J: mô hình “Công ty mẹ–con nhiều cấp”",
+        "detail": "Hiện bảng tenants không có parent_id.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Bảng pháp nhân (company) trong tenant, có parent_id",
+            "desc": "Giữ nguyên cách ly theo tenant; không làm nhóm đa tenant.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Tenant phân cấp",
+            "desc": "Đụng cách ly dữ liệu, rủi ro cao."
+          },
+          {
+            "key": "C",
+            "label": "Chỉ dùng loại đơn vị gốc trong cây tổ chức",
+            "desc": "Đơn giản nhưng không phải thực thể công ty."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-I",
+        "kind": "DECISION",
+        "priority": "P3",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-I: lưu trữ và nhật ký audit",
+        "detail": "Chính sách lưu hiện tại chưa rõ (UNKNOWN). Pháp lý dữ liệu cá nhân là việc của anh.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Giữ audit ≥12 tháng; audit không chứa tên/email; ảnh trước/sau ở bảng riêng, xóa sau 30 ngày; audit Export ghi người/thời gian/công ty/loại/phạm vi/số dòng/cột/có dữ liệu cá nhân",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Anh quy định thời gian khác",
+            "desc": "Ghi vào ô ghi chú."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-H",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-H: cờ tính năng và cách bật trên PROD",
+        "detail": "Cờ org-sync hiện chưa có nhóm xác nhận ProdFeature, chưa đưa vào compose.prod.yml nên chưa bật an toàn được.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "4 nhóm cờ (ENTERPRISE_DATA, _IMPORT, _EXPORT, _SYNC), mặc định TẮT, xác nhận theo SHA + chuỗi phụ thuộc + hàng security_floors; công tắc FE FE_ENTERPRISE_DATA_UI; gộp cờ org-sync cũ vào",
+            "desc": "Đúng quy trình bật từng cờ riêng của XWeb.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Một cờ duy nhất",
+            "desc": "Không tách được rủi ro Export/Sync."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-G",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-G: tách hồ sơ nhân viên khỏi tài khoản SSO",
+        "detail": "Hiện nhân viên là users + tenant_members, và Import thành viên đang tạo tài khoản, trái với “Import không tự tạo tài khoản”.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Bảng employee_profiles riêng (user_id rỗng, liên kết tường minh, không tự liên kết) + danh mục mới EMPLOYEE_PROFILES; ẩn Import thành viên có tạo tài khoản",
+            "desc": "Không đổi employees.list đang chạy.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chuyển các bảng employee_* sang profile_id",
+            "desc": "Thay đổi lớn, rủi ro hồi quy."
+          },
+          {
+            "key": "C",
+            "label": "Giữ nguyên",
+            "desc": "Không đạt spec."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-F",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-F: Export: ai được xuất và xuất gì",
+        "detail": "Hiện bất kỳ quyền *_VIEW nào cũng xuất được cột mặc định.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Mặc định chặn tất cả kể cả Company Admin cho đến khi công ty bật; cấp theo loại/trường/phạm vi/trần; trường cá nhân cần cờ riêng; trường nhạy cảm không bao giờ xuất; trần mặc định 5.000 dòng, 3 lần/ngày (ước tính)",
+            "desc": "Đúng chỉ thị: Export kiểm soát chặt.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Giữ như hiện tại, chỉ thêm audit",
+            "desc": "Không đạt yêu cầu bảo mật."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-E",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-E: Khôi phục một phiên Import",
+        "detail": "Cần cột phiên bản cho hồ sơ nhân viên; xóa cứng không bao giờ làm.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Chỉ khôi phục các dòng chưa bị sửa kể từ phiên đó (phiên cuối mỗi loại, trong 7 ngày; ảnh trước khi sửa giữ 30 ngày; tạo mới → lưu trữ, không xóa cứng)",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Không làm khôi phục ở T37",
+            "desc": "Nhanh hơn, nhưng thiếu yêu cầu của spec."
+          },
+          {
+            "key": "C",
+            "label": "Khôi phục bắt buộc cả dòng đã bị sửa sau",
+            "desc": "Có thể mất dữ liệu người khác nhập sau; không khuyến nghị."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-D",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-D: giới hạn kỹ thuật cho mỗi lần Import (không phải giới hạn tùy tiện)",
+        "detail": "Ước tính của audit (±40%), chưa kiểm tải thật.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Tệp ≤5 MB; công ty 500 / đơn vị 5.000 / nhân viên 20.000 dòng; 1 phiên chạy mỗi công ty; không giới hạn số lần/ngày, chỉ cách nhau ≥10 giây và 30 yêu cầu/phút/người",
+            "desc": "XLSX: 1 sheet dữ liệu, ≤50 mục zip, ≤50 MB sau giải nén, tỉ lệ nén ≤100:1, không macro/DTD/liên kết ngoài.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chặt hơn (tệp ≤2 MB, nhân viên 5.000 dòng)",
+            "desc": "An toàn hơn, bất tiện cho công ty lớn."
+          },
+          {
+            "key": "C",
+            "label": "Rộng hơn (tệp ≤20 MB)",
+            "desc": "Rủi ro hiệu năng và nén bom."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-C",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-C: Quy tắc hai người duyệt của X2 và việc Import không cần duyệt",
+        "detail": "Audit xác nhận trong mã đây là hai tầng khác nhau: nhập dữ liệu gốc (không cần duyệt) và cho một nguồn dữ liệu được ứng dụng đọc (X2, cần hai quản trị tenant). PROD mới có 1 TENANT_ADMIN.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Giữ X2 hai người cho việc mở nguồn cho app; Import không cần duyệt",
+            "desc": "Đúng chỉ thị của anh: Super Admin không là nút thắt Import.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Bỏ luôn quy tắc hai người của X2",
+            "desc": "Giảm an toàn khi lộ dữ liệu cho app; cần quyết riêng."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-B",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-B: người phụ trách nhập liệu / xuất dữ liệu (“data steward”) được biểu diễn thế nào?",
+        "detail": "Hiện chỉ có Delegation cho quyền ứng dụng, chưa có ủy quyền dữ liệu doanh nghiệp.",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Bảng mới enterprise_data_grants do Company Admin (TENANT_ADMIN) quản lý, từ vựng đóng",
+            "desc": "Tách khỏi quyền hiện có, dễ kiểm.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Dùng lại Delegation hiện có",
+            "desc": "Phải mở rộng ý nghĩa, rủi ro lẫn quyền."
+          },
+          {
+            "key": "C",
+            "label": "Mở rộng EMPLOYEE_MANAGE",
+            "desc": "Quyền quá rộng."
+          }
+        ]
+      },
+      {
+        "id": "OD-T37-A",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-10T15:29:00+07:00",
+        "title": "T37-A: Org IAM (#126/#129) và T37: làm độc lập hay chờ nhau?",
+        "detail": "Audit: #126/#129 là phân quyền truy cập trên cây tổ chức, bổ sung cho T37 (T37 là mô-đun dữ liệu), không trùng. #129 phải đánh số lại vì PROD đã ở V98 (V90 không dùng được).",
+        "solution": "Chọn một phương án; chọn dòng “Khuyến nghị” nếu anh đồng ý với audit.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "T37 làm độc lập, chạy song song; #129 đánh số lại",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chờ duyệt #126 rồi mới làm T37",
+            "desc": "T37 trễ."
+          },
+          {
+            "key": "C",
+            "label": "T37 thay thế #126/#129",
+            "desc": "Bỏ hợp đồng Org IAM; cần quyết riêng."
+          }
+        ]
+      },
       {
         "id": "OD-T35-OL-RETRY",
         "kind": "DECISION",
@@ -2784,12 +3108,12 @@
         "id": "T37",
         "title": "Enterprise Data Hub: Công ty của tôi, Cơ cấu tổ chức, Nhân viên (Import/Export, API Sync, dùng cho Web App từ Studio)",
         "titleEn": "Enterprise Data Hub: My Company, Organization Structure, Employees (Import/Export, API Sync, used by Studio web apps)",
-        "status": "15:00 Owner GO (P0, DEV): ba phân hệ dữ liệu doanh nghiệp, Company Admin Import trực tiếp không cần Super Admin duyệt, Export kiểm soát chặt (mặc định không cấp, che trường nhạy cảm, audit), API Sync (full/delta, không xóa hàng loạt khi API lỗi/rỗng), Web App Studio đọc qua Backend Data Connector (PRIVATE, theo quyền, thu hồi có hiệu lực). Spec lưu ở ~/xweb-handoff/p37-studio/t37/SPEC.md (cục bộ). Hiện CHƯA có mã: agent AUDIT chỉ đọc đang chạy (tái sử dụng X2/X3/X5/UX13, khoảng trống, câu hỏi cần Owner quyết có phương án, kế hoạch pha, ước lượng). Chưa chạy gì trên PROD. T35 vẫn là ưu tiên deploy trước (đợt 15); T37 không đổi tổng 19 hạng mục P0",
-        "statusEn": "15:00 Owner GO (P0, DEV): three enterprise data modules; Company Admin imports directly without Super Admin approval; Export tightly controlled (default deny, sensitive-field masking, audit); API Sync (full/delta, no mass delete when the API fails or returns empty); Studio web apps read through the Backend Data Connector (PRIVATE, permission-scoped, revocation takes effect). Spec kept locally at ~/xweb-handoff/p37-studio/t37/SPEC.md. NO code yet: a read-only AUDIT agent is running (reuse of X2/X3/X5/UX13, gaps, questions for the Owner with options, phase plan, estimate). Nothing run on PROD. T35 still has deploy priority (release 15); T37 does not change the 19 original P0 items",
+        "status": "15:00 Owner GO (P0, DEV): ba phân hệ dữ liệu doanh nghiệp, Company Admin Import trực tiếp không cần Super Admin duyệt, Export kiểm soát chặt (mặc định không cấp, che trường nhạy cảm, audit), API Sync (full/delta, không xóa hàng loạt khi API lỗi/rỗng), Web App Studio đọc qua Backend Data Connector (PRIVATE, theo quyền, thu hồi có hiệu lực). Spec lưu ở ~/xweb-handoff/p37-studio/t37/SPEC.md (cục bộ). Hiện CHƯA có mã: agent AUDIT chỉ đọc đang chạy (tái sử dụng X2/X3/X5/UX13, khoảng trống, câu hỏi cần Owner quyết có phương án, kế hoạch pha, ước lượng). Chưa chạy gì trên PROD. T35 vẫn là ưu tiên deploy trước (đợt 15); T37 không đổi tổng 19 hạng mục P0 | 16:20: AUDIT XONG (chỉ đọc, REPORTED): phần lớn đã có sẵn trên dev (cây tổ chức V32; nhập/xuất/đồng bộ cơ cấu tổ chức P3-16 V56/V60 với xem trước IAM, chống xóa hàng loạt, audit ORG_*; danh mục X2/X3 EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector có chống SSRF). Còn thiếu: Công ty mẹ–con (tenants chưa có parent_id), hồ sơ nhân viên tách khỏi SSO (Import thành viên hiện tạo tài khoản), XLSX (chưa có), khôi phục Import, lịch sử trước/sau, quyền Export, ủy quyền người phụ trách dữ liệu, API sync cấp tenant, delta thật. Xung đột spec §6: Preview Studio hiện đọc dữ liệu GIẢ. Cờ org-sync chưa bật an toàn được trên PROD (thiếu nhóm xác nhận). Migration tiếp theo V99 (V90 của #129 không dùng được). Ước lượng (±40%, giờ agent): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 giờ; đường găng P0→P1→P2a→P2b→P5 ≈ 240 giờ; Export và API Sync chạy song song. Đã đưa 11 câu hỏi thiết kế (có phương án và khuyến nghị) lên tab ‘Cần anh xử lý’ (OD-T37-A…L). Bước đầu an toàn: hợp đồng tài liệu + thư viện đọc/ghi XLSX có kiểm thử phá hoại (không phụ thuộc quyết định)",
+        "statusEn": "15:00 Owner GO (P0, DEV): three enterprise data modules; Company Admin imports directly without Super Admin approval; Export tightly controlled (default deny, sensitive-field masking, audit); API Sync (full/delta, no mass delete when the API fails or returns empty); Studio web apps read through the Backend Data Connector (PRIVATE, permission-scoped, revocation takes effect). Spec kept locally at ~/xweb-handoff/p37-studio/t37/SPEC.md. NO code yet: a read-only AUDIT agent is running (reuse of X2/X3/X5/UX13, gaps, questions for the Owner with options, phase plan, estimate). Nothing run on PROD. T35 still has deploy priority (release 15); T37 does not change the 19 original P0 items | 16:20: AUDIT DONE (read-only, REPORTED): most of it already exists on dev (org tree V32; org import/export/sync P3-16 V56/V60 with IAM impact preview, mass-removal guard, ORG_* audit; X2/X3 catalogs EMPLOYEES/ORG_UNITS/POSITIONS_GRADES; REST connector with SSRF guard). Missing: parent-child companies (tenants have no parent_id), employee profile separated from SSO (members import currently creates accounts), XLSX (none), import rollback, before/after history, export grants, data-steward delegation, tenant-level API sync, real delta. Conflict with spec §6: Studio Preview reads FIXTURE data. The org-sync flag cannot be enabled safely on PROD yet (no ack group). Next migration V99 (#129's V90 is unusable). Estimate (±40%, agent-hours): BE ~248 + FE ~144 + QA/SEC ~138 ≈ 530 h; critical path P0→P1→P2a→P2b→P5 ≈ 240 h; Export and API Sync in parallel. 11 design questions (with options and a recommendation) are on the Owner tab (OD-T37-A…L). Safe first step: contract doc + a pure XLSX reader/writer library with hostile tests (independent of the decisions)",
         "prs": "chưa có PR",
         "eta": "",
         "etaFirst": "Audit + kế hoạch pha + ước lượng: ~16:30–17:30 (ước tính); mã bắt đầu sau khi Owner trả lời các câu hỏi thiết kế",
-        "etaFull": "Chưa ước lượng (chờ audit)",
+        "etaFull": "Ước tính ~530 giờ agent (đường găng ~240 giờ), ±40%: chưa phải cam kết; phát hành theo pha sau cờ TẮT",
         "etaFallback": "Dự phòng: pha nhỏ nhất (CRUD + Import cơ cấu tổ chức, cờ TẮT) trước",
         "evidence": "cục bộ: ~/xweb-handoff/p37-studio/t37/",
         "accept": [
