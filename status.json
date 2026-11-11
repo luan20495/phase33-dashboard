@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T13:35:00+07:00",
+  "asOf": "2026-11-11T13:50:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1779,7 +1779,7 @@
       }
     }
   ],
-  "detailUpdatedAt": "2026-11-11T13:35:00+07:00",
+  "detailUpdatedAt": "2026-11-11T13:50:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4357,7 +4357,7 @@
           {
             "id": "agents.max",
             "label": "Số agent tối đa",
-            "value": 6,
+            "value": 8,
             "type": "number",
             "editable": true,
             "explain": "Trần thông thường.",
@@ -4369,7 +4369,7 @@
           {
             "id": "agents.max_extra",
             "label": "Lên tối đa khi máy rảnh và việc không đụng nhau",
-            "value": 7,
+            "value": 10,
             "type": "number",
             "editable": true,
             "explain": "Chỉ dùng khi tải máy thấp và các việc không chung file.",
@@ -4973,6 +4973,13 @@
         "id": "disk.free_now",
         "note": "Đĩa 34 GiB (mức dọn tích cực) → 52 GiB sau khi xóa 5 snapshot Time Machine cũ, giữ 3 mới nhất",
         "state": "verified"
+      },
+      {
+        "at": "2026-11-11T13:50:00+07:00",
+        "by": "C0",
+        "id": "agents.max",
+        "note": "Owner cấu hình lại từ dashboard: agents.max 6→8, agents.max_extra 7→10 (agents.min giữ 4). Đã áp dụng; một việc nặng một lúc vẫn giữ; tải máy >~20 thì không thêm.",
+        "state": "applied"
       }
     ]
   }
