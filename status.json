@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T04:28:00+07:00",
+  "asOf": "2026-11-12T06:42:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T04:28:00+07:00",
+  "detailUpdatedAt": "2026-11-12T06:42:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3778,23 +3778,27 @@
         "priority": "P1",
         "status": "OPEN",
         "since": "2026-11-11T21:23:00+07:00",
-        "title": "Hồ sơ nhân viên (ENTERPRISE_PROFILES): giả định 'chỉ dữ liệu tổng hợp' không có chốt trong mã",
+        "title": "Hồ sơ nhân viên (ENTERPRISE_PROFILES): Owner đã trả lời 06:38 — cần xác nhận cách hiểu trước khi làm",
         "detail": "Rà mã cho thấy khi bật cờ này, quản trị viên của BẤT KỲ tenant nào (kể cả 5 tài khoản dùng thử) có thể tạo hồ sơ có tên và email người thật qua API; hồ sơ không có đường xóa (chỉ vô hiệu hóa), lùi cờ không xóa dữ liệu đã tạo. Mã chỉ chặn trường nhạy cảm (điện thoại, ngày sinh, địa chỉ, lương, số giấy tờ). 'Chỉ dữ liệu tổng hợp' hiện chỉ là quy tắc vận hành. Hợp đồng còn 2 quyết định chưa chốt: chính sách xóa/lưu giữ và mã nhân viên có phải dữ liệu cá nhân không. Anh đã chọn A ở NO-05 dựa trên giả định này, nên C0 chưa bật và xin xác nhận lại.",
-        "solution": "C0 khuyến nghị A: giữ cờ TẮT; làm trước một chốt trong BE (cờ con chặn email/tên thật trên PROD hoặc route xóa/ẩn danh, khoảng 8–10 giờ BE) rồi bật.",
+        "solution": "C0 hiểu lời Owner (06:38) như sau, xin anh xác nhận bằng 1 chữ 'đúng' hoặc sửa: (1) hồ sơ nhân viên là dữ liệu nội bộ của TỪNG công ty, không xem chéo công ty; (2) chỉ AI Studio được ĐỌC (read-only), không ai/không AI nào ghi qua đường này; (3) 'toàn bộ' = đọc được toàn bộ hồ sơ của công ty đó, nhưng các trường nhạy cảm đang bị chặn trong mã (điện thoại, ngày sinh, địa chỉ, lương, số giấy tờ) VẪN chặn; (4) chỉ sau khi admin của chính công ty đó phê duyệt (cấp quyền theo công ty, ghi audit, thu hồi được). Điều này KHÁC cả A lẫn B của thẻ: cờ vẫn TẮT, chưa bật gì. Cần BE: quyền 'AI Studio đọc hồ sơ' theo công ty + bước phê duyệt của admin công ty + audit + chặn ghi/tạo hồ sơ có tên/email thật khi chưa có phê duyệt; ước lượng 8–12 giờ BE + QA/SEC độc lập, sau đó mới đề xuất bật. Câu hỏi còn lại: có cho phép TẠO hồ sơ thật (tên/email) khi đã có phê duyệt, hay chỉ nhập từ nguồn đồng bộ của công ty?",
         "link": "",
         "options": [
           {
             "key": "A",
-            "label": "Giữ TẮT, làm chốt BE trước",
-            "desc": "C0 giao tác giả thêm chốt (cờ con hoặc ẩn danh/xóa) rồi QA độc lập; bật sau.",
+            "label": "Đúng như C0 hiểu",
+            "desc": "Giữ TẮT, giao BE làm quyền đọc cho AI Studio theo phê duyệt admin công ty (spec trước, QA/SEC độc lập, rồi mới đề xuất bật).",
             "recommended": true
           },
           {
             "key": "B",
-            "label": "Bật ngay, dựa vào quy tắc vận hành",
-            "desc": "Chỉ dùng dữ liệu tổng hợp/giả; C0 đếm hàng sau mỗi lần smoke. Hồ sơ đã tạo không xóa được."
+            "label": "Anh sửa lại ý",
+            "desc": "Ghi chỗ sai vào ô ghi chú (ví dụ chỉ trường nào, hoặc cả ghi chứ không chỉ đọc)."
           }
-        ]
+        ],
+        "ownerReply": {
+          "at": "2026-11-12T06:38:00+07:00",
+          "text": "Hồ sơ nhân viên nói chung là dữ liệu nội bộ của công ty; chỉ cho AI Studio đọc (read-only, toàn bộ) theo phê duyệt của admin công ty đó."
+        }
       },
       {
         "id": "NO-26",
@@ -6207,6 +6211,13 @@
         "id": "disk.free_now",
         "note": "Đĩa Mac giảm 18→15 GiB (khoảng 1 GiB/giờ) do 7 snapshot Time Machine cục bộ tích lũy. Theo quy tắc 'giữ 3 bản mới nhất' đã xóa 4 bản cũ nhất: 15→25 GiB, trên ngưỡng khẩn 20. Chưa đụng cache Gradle 27 GiB (DEV bootRun còn chạy) và volume Docker không dùng (5 GiB, chưa xóa vì chưa chắc dữ liệu): vẫn chờ Owner chọn A/B.",
         "state": "verified"
+      },
+      {
+        "at": "2026-11-12T06:42:00+07:00",
+        "by": "C0",
+        "id": "decide.NO-25",
+        "note": "Nhận trả lời Owner 06:38 cho NO-25 (hồ sơ nhân viên: dữ liệu nội bộ công ty, chỉ AI Studio đọc read-only theo phê duyệt admin công ty). Lời trả lời không trùng A/B nên thẻ giữ OPEN kèm cách hiểu của C0 để xác nhận; cờ ENTERPRISE_PROFILES vẫn TẮT.",
+        "state": "pending"
       }
     ]
   },
