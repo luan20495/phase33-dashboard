@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T15:28:00+07:00",
+  "asOf": "2026-11-11T15:31:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1798,7 +1798,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T15:28:00+07:00",
+  "detailUpdatedAt": "2026-11-11T15:31:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3654,7 +3654,7 @@
         "id": "NO-21",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-11T15:09:00+07:00",
         "title": "Gói UAT (mục 1.10): cho C0 chuẩn bị dữ liệu thử và dùng vài lượt AI nhẹ?",
         "detail": "Gói UAT đã soạn (UX13, P0-18, T14, T15, P0-19 + hồi quy T35). Để Owner tự bấm thử được, C0 cần: (1) chuẩn bị 1 dự án QA có sẵn thay đổi AI đang chờ cho T14; (2) T15 dùng 3 lượt Haiku nhẹ (+1 tùy chọn); (3) P0-18 có thể gửi 1 báo cáo thật 'UAT-' (tạo phiếu thật); (4) thử luồng ghi thật của UX13 cần quản trị viên thứ hai (luật bốn mắt) nên mặc định chỉ đọc. Các tài khoản QA hiện có, không tạo mới.",
@@ -3672,7 +3672,9 @@
             "label": "Chỉ đọc, không dùng AI",
             "desc": "Bỏ T14/T15 khỏi UAT lần này (chờ T26 vòng 2); P0-18 không gửi báo cáo thật."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Cho phép (Owner 15:29): C0 chuẩn bị dự án QA có thay đổi AI chờ cho T14 và dùng lượt Haiku nhẹ cho T15; P0-18 được gửi 1 báo cáo UAT thật; UX13 chỉ đọc."
       }
     ]
   },
@@ -3910,7 +3912,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T15:28:00+07:00",
+    "updatedAt": "2026-11-11T15:31:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4869,7 +4871,7 @@
         "prio": "2",
         "title": "Đợt 1 · 1.10 Gói UAT cho Owner: UX13, P0-18, T14, T15, P0-19",
         "titleEn": "Batch 1 · 1.10 UAT pack",
-        "status": "15:09 11/11: ĐÃ SOẠN gói UAT (chỉ tài liệu, ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md): UX13 14 bước, P0-18 16 bước, T14 8 bước, T15 7 bước, P0-19 16 bước, T35 hồi quy 8 bước; mỗi bước có kết quả mong đợi và ô Đạt/Lỗi; không có mật khẩu/email/IP. Còn 9 điểm cần Owner nói rõ (thẻ NO-21). Chưa có Owner UAT. | Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
+        "status": "15:31 11/11: Owner chọn A (NO-21). C0 đã chuẩn bị T14: dự án QA chính có 1 thay đổi AI READY chưa merge (1 lượt Haiku, build thành công, ~0,003 USD); Owner KHÔNG bấm 'Đưa vào' thay đổi đó khi thử. Còn: Owner thử UAT từng mục. | 15:09 11/11: ĐÃ SOẠN gói UAT (chỉ tài liệu, ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md): UX13 14 bước, P0-18 16 bước, T14 8 bước, T15 7 bước, P0-19 16 bước, T35 hồi quy 8 bước; mỗi bước có kết quả mong đợi và ô Đạt/Lỗi; không có mật khẩu/email/IP. Còn 9 điểm cần Owner nói rõ (thẻ NO-21). Chưa có Owner UAT. | Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "statusEn": "Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "prs": "",
         "eta": "~14/11",
