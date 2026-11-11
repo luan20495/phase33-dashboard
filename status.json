@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T22:27:00+07:00",
+  "asOf": "2026-11-11T23:13:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T22:27:00+07:00",
+  "detailUpdatedAt": "2026-11-11T23:13:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4032,7 +4032,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T22:27:00+07:00",
+    "updatedAt": "2026-11-11T23:13:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4360,7 +4360,7 @@
         "group": "IN_PROGRESS",
         "title": "Bật tool loop (công cụ đọc tiếp) sau QA quyền, chi phí, giới hạn vòng",
         "titleEn": "Enable the read tool loop after QA (permissions, cost, loop limits)",
-        "status": "22:27 11/11: 3 PR lát QA-ON phía BE (cờ TẮT): #236 sửa 'dừng thay vì trả lời cuối', #238 tỉ lệ byte/token đo thật, #239 danh sách workspace được phép; QA độc lập đang chạy. Còn lại: runbook, màn hình FE + hướng dẫn, 12 lượt Haiku trong cửa sổ Owner, bước vận hành khi bật cờ khởi động. | Đang TẮT trên PROD; chưa bật",
+        "status": "23:13 11/11: lát QA-ON phía BE ĐÃ MERGE vào dev sau QA độc lập (VERIFIED): A2 #238 GO, A3 #239 GO, A1 #236 + bản sửa #241 GO (649 test, 0 lỗi; sửa lỗi toàn vẹn 'kết quả bị bỏ vẫn tính là đã đọc' + dấu omitted:true ở 4 nơi). Cờ TẮT, chưa lên PROD (chờ bản 22). Còn lại trước khi bật: màn FE + hướng dẫn (khoá sự kiện theo seq, hiện 'chưa đưa cho AI'), runbook + cách đếm audit mới, sửa N2 (cắt kết quả gần ngưỡng ~40 KB), 12 lượt Haiku trong cửa sổ Owner. | 22:27 11/11: 3 PR lát QA-ON phía BE (cờ TẮT): #236 sửa 'dừng thay vì trả lời cuối', #238 tỉ lệ byte/token đo thật, #239 danh sách workspace được phép; QA độc lập đang chạy. Còn lại: runbook, màn hình FE + hướng dẫn, 12 lượt Haiku trong cửa sổ Owner, bước vận hành khi bật cờ khởi động. | Đang TẮT trên PROD; chưa bật",
         "statusEn": "OFF in PROD; not enabled",
         "prs": "",
         "eta": "Sớm nhất chiều/tối 10/11",
@@ -4405,7 +4405,7 @@
         "group": "IN_PROGRESS",
         "title": "Gói công thức (skill dạng văn bản) chọn theo ý định: CHỈ là văn bản nạp vào prompt, KHÔNG phải Agent đa vai trò",
         "titleEn": "Intent-selected recipe packs (text only): NOT a multi-role Agent",
-        "status": "22:27 11/11: T25-1/2/7 (bộ nạp, lint, bộ chọn, 3 gói) BE #237 đã MERGE vào dev sau QA độc lập GO-WITH-CONDITIONS (VERIFIED): chưa nối vào prompt; 4 lỗi P2 (nội dung gói html-to-react và forms-validation lệch nền tảng, kích hoạt nhập mã quá rộng, bộ nạp chưa toàn vẹn) phải sửa trước khi nối: tác giả đang làm PR tiếp theo. | Xác nhận 17:00: hiện chỉ có công thức SITE/SHOP chọn bằng từ khóa (SHOP_HINTS); chưa có cơ chế chọn theo ý định, chưa có Agent tự chọn vai trò BA/UX/UI/Dev/QA, tool hay skill. Việc Agent đa vai trò được tách thành T30",
+        "status": "23:13 11/11: BE #240 (sửa 4 lỗi P2 của QA: nội dung gói, kích hoạt nhập mã, bộ nạp toàn vẹn) đã MERGE vào dev sau QA delta GO-WITH-CONDITIONS (VERIFIED). Chưa nối vào prompt (T25-3 chờ T31/T23; còn điều kiện: khối trước HARD LIMITS, lượt tự sửa không mang gói, cờ + công tắc từng gói). | 22:27 11/11: T25-1/2/7 (bộ nạp, lint, bộ chọn, 3 gói) BE #237 đã MERGE vào dev sau QA độc lập GO-WITH-CONDITIONS (VERIFIED): chưa nối vào prompt; 4 lỗi P2 (nội dung gói html-to-react và forms-validation lệch nền tảng, kích hoạt nhập mã quá rộng, bộ nạp chưa toàn vẹn) phải sửa trước khi nối: tác giả đang làm PR tiếp theo. | Xác nhận 17:00: hiện chỉ có công thức SITE/SHOP chọn bằng từ khóa (SHOP_HINTS); chưa có cơ chế chọn theo ý định, chưa có Agent tự chọn vai trò BA/UX/UI/Dev/QA, tool hay skill. Việc Agent đa vai trò được tách thành T30",
         "statusEn": "Confirmed 17:00: today only SITE/SHOP recipes picked by keyword (SHOP_HINTS); no intent selection and no Agent that picks BA/UX/UI/Dev/QA roles, tools or skills. The multi-role Agent is split out as T30",
         "prs": "",
         "eta": "Sau S4",
