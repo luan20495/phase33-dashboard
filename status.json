@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T23:44:00+07:00",
+  "asOf": "2026-11-12T04:28:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T23:44:00+07:00",
+  "detailUpdatedAt": "2026-11-12T04:28:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -5921,13 +5921,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 18,
+            "value": 25,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "df 17:30 ICT: 50 GiB trống, thuộc mức dọn chủ động"
+            "evidence": "df 04:28 ICT 12/11: 25 GiB trống sau khi xóa 4 snapshot Time Machine cục bộ (giữ 3 bản mới nhất); trước đó giảm dần 18→15 GiB trong 4 giờ vì snapshot mỗi giờ"
           },
           {
             "id": "disk.t_monitor",
@@ -6199,6 +6199,13 @@
         "by": "C0",
         "id": "deploy.ssh",
         "note": "Owner nạp lại khóa SSH 24 giờ (ssh-add -t 24h) lúc 21:21; đã thử kết nối thành công",
+        "state": "verified"
+      },
+      {
+        "at": "2026-11-12T04:28:00+07:00",
+        "by": "C0",
+        "id": "disk.free_now",
+        "note": "Đĩa Mac giảm 18→15 GiB (khoảng 1 GiB/giờ) do 7 snapshot Time Machine cục bộ tích lũy. Theo quy tắc 'giữ 3 bản mới nhất' đã xóa 4 bản cũ nhất: 15→25 GiB, trên ngưỡng khẩn 20. Chưa đụng cache Gradle 27 GiB (DEV bootRun còn chạy) và volume Docker không dùng (5 GiB, chưa xóa vì chưa chắc dữ liệu): vẫn chờ Owner chọn A/B.",
         "state": "verified"
       }
     ]
