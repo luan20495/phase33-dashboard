@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T14:19:00+07:00",
+  "asOf": "2026-11-11T14:29:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1798,7 +1798,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T14:19:00+07:00",
+  "detailUpdatedAt": "2026-11-11T14:29:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3886,7 +3886,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T14:19:00+07:00",
+    "updatedAt": "2026-11-11T14:29:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4615,7 +4615,7 @@
         "prio": "1",
         "title": "Đợt 1 · 1.4+1.5 ENTERPRISE_DATA + màn hình Công ty (FE #183)",
         "titleEn": "Batch 1 · 1.4+1.5 ENTERPRISE_DATA + Companies screen",
-        "status": "14:13 11/11: FE #182 (hồ sơ) đã MERGE vào dev sau QA độc lập GO. FE #183 (công ty): QA GO trên 219036f2, đã gộp dev (head 6e258af9), QA độc lập đang kiểm phần chênh lệch. Agent đang làm công tắc build FE_ENTERPRISE_UI. Cờ ENTERPRISE_DATA vẫn TẮT. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
+        "status": "14:29 11/11: FE #183 và #182 đã MERGE vào dev (QA độc lập GO trên đúng head, VERIFIED). FE PR #184 (công tắc build FE_ENTERPRISE_UI, mặc định TẮT) đang chờ QA độc lập; agent đang mở PR BE đi kèm. Agent E2E DEV cho ENTERPRISE_DATA/PROFILES (BE thật, cờ bật) đã giao. ENTERPRISE_DATA vẫn TẮT trên PROD. | 14:13 11/11: FE #182 (hồ sơ) đã MERGE vào dev sau QA độc lập GO. FE #183 (công ty): QA GO trên 219036f2, đã gộp dev (head 6e258af9), QA độc lập đang kiểm phần chênh lệch. Agent đang làm công tắc build FE_ENTERPRISE_UI. Cờ ENTERPRISE_DATA vẫn TẮT. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
         "statusEn": "14:13 11/11: FE #182 (profiles) MERGED into dev after independent QA GO. FE #183 (companies): QA GO on 219036f2, dev merged in (head 6e258af9), delta QA running. An agent is adding the FE_ENTERPRISE_UI build switch. ENTERPRISE_DATA flag still OFF. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
         "prs": "",
         "eta": "Đợt 20 ~12/11; bật cờ ~12–13/11",
@@ -4643,19 +4643,20 @@
             "state": "done"
           },
           {
-            "label": "QA độc lập FE #183 (phần chênh lệch sau gộp dev)",
+            "label": "QA độc lập FE #183 (GO, đã merge dev)",
             "labelEn": "Independent QA FE #183 (delta after dev merge)",
-            "state": "doing"
+            "state": "done"
           },
           {
             "label": "Công tắc build FE_ENTERPRISE_UI",
             "labelEn": "Build switch FE_ENTERPRISE_UI",
-            "state": "doing"
+            "state": "doing",
+            "note": "FE PR #184 chờ QA độc lập"
           },
           {
             "label": "Merge + mirror BE + QA tích hợp",
             "labelEn": "Merge + BE mirror + integration QA",
-            "state": "todo"
+            "state": "doing"
           },
           {
             "label": "Phát hành 20 (chỉ FE, cờ tắt)",
@@ -4665,7 +4666,7 @@
           {
             "label": "Lượt DEV với cờ bật",
             "labelEn": "DEV run with flag ON",
-            "state": "todo"
+            "state": "doing"
           },
           {
             "label": "Bật cờ + smoke PROD tenant QA",
@@ -5392,7 +5393,7 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 46,
+            "value": 39,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
@@ -5629,6 +5630,13 @@
         "id": "agents.max",
         "note": "Owner cấu hình lại từ dashboard: agents.max 6→8, agents.max_extra 7→10 (agents.min giữ 4). Đã áp dụng; một việc nặng một lúc vẫn giữ; tải máy >~20 thì không thêm.",
         "state": "applied"
+      },
+      {
+        "at": "2026-11-11T14:29:00+07:00",
+        "by": "C0",
+        "id": "disk.free_now",
+        "note": "Đĩa 31 GiB (mức dọn tích cực) → 39 GiB sau khi xóa 5 snapshot Time Machine cũ, giữ 3 mới nhất; không xóa gì khác",
+        "state": "verified"
       }
     ]
   },
