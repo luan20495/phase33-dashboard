@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T18:31:00+07:00",
+  "asOf": "2026-11-11T19:27:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1798,7 +1798,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T18:31:00+07:00",
+  "detailUpdatedAt": "2026-11-11T19:27:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3990,7 +3990,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T18:31:00+07:00",
+    "updatedAt": "2026-11-11T19:27:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4720,7 +4720,7 @@
         "prio": "1",
         "title": "Đợt 1 · 1.4+1.5 ENTERPRISE_DATA + màn hình Công ty (FE #183)",
         "titleEn": "Batch 1 · 1.4+1.5 ENTERPRISE_DATA + Companies screen",
-        "status": "18:29 11/11: QA tích hợp bản 20 = GO-WITH-CONDITIONS (VERIFIED) trên cặp BE 78707610 + FE 13986f90 (combined-check 7/7, gate:frontend 47 PASS, 8 spec xanh, prod-enablement 102/102, mô phỏng build với công tắc để trống không bị từ chối). Dev đã đi tiếp trong lúc QA (BE #232 sửa tiếng Việt, FE #188 file đính kèm) nên bản 20 sẽ chở đầu dev hiện tại: cần ghim lại mirror + kiểm tra kết hợp trên cặp mới (đang làm) rồi chuyển lên main và phát hành. Bản 20 vì vậy gồm cả sửa lỗi tiếng Việt (BE) và file đính kèm (FE). | 18:27 11/11: QA tích hợp bản 20: prod-enablement đầy đủ 102/102 PASS, gate:frontend + 8 spec xanh; 32 lỗi hạ tầng khác giống hệt trên main đang chạy PROD (có từ trước). Chờ kết luận cuối của QA rồi chuyển lên main và phát hành. | 17:27 11/11: BẢN PHÁT HÀNH 20 (chỉ FE, cờ TẮT) đã vào dev: BE #229/#230 + FE #186 merge sau QA độc lập GO; cặp SHA cuối BE40 78707610c9bb / FE40 13986f906a2f. QA tích hợp đang chạy (REPORTED: gate:frontend xanh, 8 spec xanh, prod-ps1-uiswitches đạt; còn prod-enablement đầy đủ). Chưa phát hành. | 16:28 11/11: FE #184 + BE #226 (công tắc build FE_ENTERPRISE_UI, mặc định TẮT) đã MERGE vào dev sau QA độc lập GO trên đúng head (VERIFIED; bản build tắt = hành vi cũ, bản bật khác đúng 2 file, không mất chức năng). Đang làm bản phát hành 20 (chỉ FE, cờ TẮT): PR sửa tài liệu + mirror lõi FE + bản sao PROD_DEPLOY, rồi QA tích hợp và phát hành. | 15:28 11/11: BE #227 (e2e DEV thật cho công ty + hồ sơ, cờ bật: 18/18 và 16/16, 0 5xx; bộ phân tích chặt của FE nhận 208 công ty + 66 hồ sơ thật, 0 bị từ chối) đã MERGE vào dev sau QA độc lập GO trên đúng head (VERIFIED). Còn QA cặp FE #184 + BE #226 (công tắc build) → bản phát hành 20 (chỉ FE, cờ TẮT). | 14:29 11/11: FE #183 và #182 đã MERGE vào dev (QA độc lập GO trên đúng head, VERIFIED). FE PR #184 (công tắc build FE_ENTERPRISE_UI, mặc định TẮT) đang chờ QA độc lập; agent đang mở PR BE đi kèm. Agent E2E DEV cho ENTERPRISE_DATA/PROFILES (BE thật, cờ bật) đã giao. ENTERPRISE_DATA vẫn TẮT trên PROD. | 14:13 11/11: FE #182 (hồ sơ) đã MERGE vào dev sau QA độc lập GO. FE #183 (công ty): QA GO trên 219036f2, đã gộp dev (head 6e258af9), QA độc lập đang kiểm phần chênh lệch. Agent đang làm công tắc build FE_ENTERPRISE_UI. Cờ ENTERPRISE_DATA vẫn TẮT. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
+        "status": "19:27 11/11: BẢN 20 ĐANG TRIỂN KHAI: QA tích hợp GO trên đúng cặp; đã chuyển main 19:10 (BE 9edbc6064c96 / FE a5fcc61bf296, không migration); sao lưu DB, chạy thử khô, kiểm Caddy xong; đang build 7 ảnh trên máy chủ. Bản 20 mang thêm sửa tiếng Việt (BE #232) và file đính kèm (FE #188). Chưa lên PROD. | 18:29 11/11: QA tích hợp bản 20 = GO-WITH-CONDITIONS (VERIFIED) trên cặp BE 78707610 + FE 13986f90 (combined-check 7/7, gate:frontend 47 PASS, 8 spec xanh, prod-enablement 102/102, mô phỏng build với công tắc để trống không bị từ chối). Dev đã đi tiếp trong lúc QA (BE #232 sửa tiếng Việt, FE #188 file đính kèm) nên bản 20 sẽ chở đầu dev hiện tại: cần ghim lại mirror + kiểm tra kết hợp trên cặp mới (đang làm) rồi chuyển lên main và phát hành. Bản 20 vì vậy gồm cả sửa lỗi tiếng Việt (BE) và file đính kèm (FE). | 18:27 11/11: QA tích hợp bản 20: prod-enablement đầy đủ 102/102 PASS, gate:frontend + 8 spec xanh; 32 lỗi hạ tầng khác giống hệt trên main đang chạy PROD (có từ trước). Chờ kết luận cuối của QA rồi chuyển lên main và phát hành. | 17:27 11/11: BẢN PHÁT HÀNH 20 (chỉ FE, cờ TẮT) đã vào dev: BE #229/#230 + FE #186 merge sau QA độc lập GO; cặp SHA cuối BE40 78707610c9bb / FE40 13986f906a2f. QA tích hợp đang chạy (REPORTED: gate:frontend xanh, 8 spec xanh, prod-ps1-uiswitches đạt; còn prod-enablement đầy đủ). Chưa phát hành. | 16:28 11/11: FE #184 + BE #226 (công tắc build FE_ENTERPRISE_UI, mặc định TẮT) đã MERGE vào dev sau QA độc lập GO trên đúng head (VERIFIED; bản build tắt = hành vi cũ, bản bật khác đúng 2 file, không mất chức năng). Đang làm bản phát hành 20 (chỉ FE, cờ TẮT): PR sửa tài liệu + mirror lõi FE + bản sao PROD_DEPLOY, rồi QA tích hợp và phát hành. | 15:28 11/11: BE #227 (e2e DEV thật cho công ty + hồ sơ, cờ bật: 18/18 và 16/16, 0 5xx; bộ phân tích chặt của FE nhận 208 công ty + 66 hồ sơ thật, 0 bị từ chối) đã MERGE vào dev sau QA độc lập GO trên đúng head (VERIFIED). Còn QA cặp FE #184 + BE #226 (công tắc build) → bản phát hành 20 (chỉ FE, cờ TẮT). | 14:29 11/11: FE #183 và #182 đã MERGE vào dev (QA độc lập GO trên đúng head, VERIFIED). FE PR #184 (công tắc build FE_ENTERPRISE_UI, mặc định TẮT) đang chờ QA độc lập; agent đang mở PR BE đi kèm. Agent E2E DEV cho ENTERPRISE_DATA/PROFILES (BE thật, cờ bật) đã giao. ENTERPRISE_DATA vẫn TẮT trên PROD. | 14:13 11/11: FE #182 (hồ sơ) đã MERGE vào dev sau QA độc lập GO. FE #183 (công ty): QA GO trên 219036f2, đã gộp dev (head 6e258af9), QA độc lập đang kiểm phần chênh lệch. Agent đang làm công tắc build FE_ENTERPRISE_UI. Cờ ENTERPRISE_DATA vẫn TẮT. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
         "statusEn": "14:13 11/11: FE #182 (profiles) MERGED into dev after independent QA GO. FE #183 (companies): QA GO on 219036f2, dev merged in (head 6e258af9), delta QA running. An agent is adding the FE_ENTERPRISE_UI build switch. ENTERPRISE_DATA flag still OFF. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
         "prs": "",
         "eta": "Đợt 20 ~12/11; bật cờ ~12–13/11",
@@ -5087,13 +5087,13 @@
       },
       {
         "id": "U1",
-        "group": "IN_PROGRESS",
+        "group": "ON_PROD",
         "prio": "0",
         "batch": 1,
-        "closed": false,
+        "closed": true,
         "title": "ƯU TIÊN CAO (Owner 11/11) · Giới hạn chữ của tệp đính kèm (bị cắt ở 120.000 ký tự)",
         "titleEn": "TOP PRIORITY · Attachment text limit (cut at 120,000 chars)",
-        "status": "18:27: ĐÃ NÂNG TRÊN PROD lúc 17:02 (VERIFIED). | 18:26: ĐÃ NÂNG TRÊN PROD (không cần phát hành): 240.000 ký tự mỗi tài liệu (mức tối đa của mã), tổng thực tế 318.000; đọc lại cấu hình VERIFIED. Muốn cao hơn phải sửa mã (hằng số 240k/480k) và nâng giới hạn 300.000 byte của yêu cầu.",
+        "status": "19:27: Owner xác nhận file 188.135 ký tự đọc đủ (hiện 'Sẵn sàng'). | 18:27: ĐÃ NÂNG TRÊN PROD lúc 17:02 (VERIFIED). | 18:26: ĐÃ NÂNG TRÊN PROD (không cần phát hành): 240.000 ký tự mỗi tài liệu (mức tối đa của mã), tổng thực tế 318.000; đọc lại cấu hình VERIFIED. Muốn cao hơn phải sửa mã (hằng số 240k/480k) và nâng giới hạn 300.000 byte của yêu cầu.",
         "statusEn": "18:26: ĐÃ NÂNG TRÊN PROD (không cần phát hành): 240.000 ký tự mỗi tài liệu (mức tối đa của mã), tổng thực tế 318.000; đọc lại cấu hình VERIFIED. Muốn cao hơn phải sửa mã (hằng số 240k/480k) và nâng giới hạn 300.000 byte của yêu cầu.",
         "prs": "cài đặt chạy nóng",
         "eta": "17:02",
@@ -5121,7 +5121,7 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · SVG không được đính kèm ('chỉ nhận PNG, JPG, WebP')",
         "titleEn": "TOP PRIORITY · SVG attachments refused",
-        "status": "18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
+        "status": "19:27: QA vòng 2 = GO (VERIFIED, head ea08e5ed, 527 SVG thật chỉ từ chối nhầm 1 file Chrome cũng không vẽ được). Chờ bản 21. | 18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
         "statusEn": "18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
         "prs": "FE #187",
         "eta": "bản 21",
@@ -5165,7 +5165,7 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Gửi prompt kèm file xong, Studio không xóa file khỏi ô nhập",
         "titleEn": "TOP PRIORITY · Attachments not cleared after a successful send",
-        "status": "18:29: đã merge dev, sẽ đi trong bản phát hành 20 (đầu dev hiện tại). | 18:26: nguyên nhân: lượt dài đi đường job (trạng thái 'idle') nên không xóa; FE #188 sửa theo mã lượt (chỉ xóa phần đã gửi). QA vòng 1: GO-WITH-CONDITIONS (1 test đỏ, đã sửa, head 87add5bf); QA vòng 2 đang chạy. Còn lại (PR sau): C3 tải lại trang giữa lượt thì chip file quay lại; C2 lượt trùng lặp cần BE thêm kết quả vào 409.",
+        "status": "19:27: FE #188 đã MERGE vào dev sau QA GO và đi trong bản 20 (đang triển khai). | 18:29: đã merge dev, sẽ đi trong bản phát hành 20 (đầu dev hiện tại). | 18:26: nguyên nhân: lượt dài đi đường job (trạng thái 'idle') nên không xóa; FE #188 sửa theo mã lượt (chỉ xóa phần đã gửi). QA vòng 1: GO-WITH-CONDITIONS (1 test đỏ, đã sửa, head 87add5bf); QA vòng 2 đang chạy. Còn lại (PR sau): C3 tải lại trang giữa lượt thì chip file quay lại; C2 lượt trùng lặp cần BE thêm kết quả vào 409.",
         "statusEn": "18:26: nguyên nhân: lượt dài đi đường job (trạng thái 'idle') nên không xóa; FE #188 sửa theo mã lượt (chỉ xóa phần đã gửi). QA vòng 1: GO-WITH-CONDITIONS (1 test đỏ, đã sửa, head 87add5bf); QA vòng 2 đang chạy. Còn lại (PR sau): C3 tải lại trang giữa lượt thì chip file quay lại; C2 lượt trùng lặp cần BE thêm kết quả vào 409.",
         "prs": "FE #188",
         "eta": "bản 21",
@@ -5209,7 +5209,7 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Chữ tiếng Việt bị hỏng khi tạo web ('??t v� c�ng t�c')",
         "titleEn": "TOP PRIORITY · Vietnamese text garbled in created webs",
-        "status": "18:29: đã merge dev, sẽ đi trong bản phát hành 20 (đầu dev hiện tại). | 18:26: nguyên nhân gốc: JSON cấu hình ứng dụng (tên ứng dụng, tên người dùng) ghi không khai báo bảng mã nên bị mã hóa Latin-1. BE #232 đã merge vào dev sau QA độc lập GO (head a450e3f5). CẦN BẢN PHÁT HÀNH BE (bản 21); chưa sửa trên PROD. Cách tạm: đặt tên dự án không dấu. Việc sau: 4 chỗ cùng mẫu + test tĩnh (P3).",
+        "status": "19:27: BE #232 đã MERGE và đi trong bản 20 (đang triển khai). | 18:29: đã merge dev, sẽ đi trong bản phát hành 20 (đầu dev hiện tại). | 18:26: nguyên nhân gốc: JSON cấu hình ứng dụng (tên ứng dụng, tên người dùng) ghi không khai báo bảng mã nên bị mã hóa Latin-1. BE #232 đã merge vào dev sau QA độc lập GO (head a450e3f5). CẦN BẢN PHÁT HÀNH BE (bản 21); chưa sửa trên PROD. Cách tạm: đặt tên dự án không dấu. Việc sau: 4 chỗ cùng mẫu + test tĩnh (P3).",
         "statusEn": "18:26: nguyên nhân gốc: JSON cấu hình ứng dụng (tên ứng dụng, tên người dùng) ghi không khai báo bảng mã nên bị mã hóa Latin-1. BE #232 đã merge vào dev sau QA độc lập GO (head a450e3f5). CẦN BẢN PHÁT HÀNH BE (bản 21); chưa sửa trên PROD. Cách tạm: đặt tên dự án không dấu. Việc sau: 4 chỗ cùng mẫu + test tĩnh (P3).",
         "prs": "BE #232",
         "eta": "bản 21",
@@ -5253,7 +5253,7 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Kế hoạch chia bước xong 5/5 vẫn ghim che phía trên ô nhập",
         "titleEn": "TOP PRIORITY · Finished step-plan card stays pinned above the composer",
-        "status": "18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
+        "status": "19:27: FE #189 QA vòng 1 GO-WITH-CONDITIONS (lỗi cướp tiêu điểm khi đang gõ); tác giả đang sửa. | 18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
         "statusEn": "18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
         "prs": "FE (PR chưa mở)",
         "eta": "bản 21 (~75 phút làm)",
@@ -5357,7 +5357,7 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Số liệu OpenRouter 'không chuẩn' (sổ nội bộ cao hơn)",
         "titleEn": "TOP PRIORITY · OpenRouter usage does not match the internal ledger",
-        "status": "18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu (1,2203 USD); tuần trước sổ nội bộ cao hơn khoảng 10 USD vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
+        "status": "19:27: ĐÃ ĐO: 12 lượt TIMEOUT/ERROR/CANCELLED (không mã generation, không token ra) bị sổ ghi 12,07 USD ở mức tối đa; khớp chênh ~10,45 USD với OpenRouter. Owner cho phép dùng API/tài liệu OpenRouter, nhưng sửa sổ tài chính cần Owner nói 'sửa sổ'. | 18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu (1,2203 USD); tuần trước sổ nội bộ cao hơn khoảng 10 USD vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
         "statusEn": "18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu (1,2203 USD); tuần trước sổ nội bộ cao hơn khoảng 10 USD vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
         "prs": "",
         "eta": "chờ Owner",
@@ -5393,7 +5393,7 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Rà các giới hạn còn chặn người dùng thật",
         "titleEn": "TOP PRIORITY · Audit of remaining limits blocking real users",
-        "status": "18:31: ĐÃ NÂNG giới hạn mềm theo thẻ NO-24 = A (VERIFIED đọc lại): lượt AI/người/ngày 500, build/người/ngày 200, build/dự án/ngày 300, build đồng thời/người 3. Còn chờ Owner: phần tiền. | 18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "status": "19:27: Owner: 'khoảng 5 người'. Đề xuất tiền: khóa OpenRouter 150 USD/tuần, trần cửa sổ 150 (cần đổi giá trị gốc cùng bản 21), 100 USD/người/tháng, 400 USD/workspace/tháng; chờ Owner xác nhận. | 18:31: ĐÃ NÂNG giới hạn mềm theo thẻ NO-24 = A (VERIFIED đọc lại): lượt AI/người/ngày 500, build/người/ngày 200, build/dự án/ngày 300, build đồng thời/người 3. Còn chờ Owner: phần tiền. | 18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
         "statusEn": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
         "prs": "cài đặt chạy nóng",
         "eta": "chờ Owner",
@@ -5830,7 +5830,7 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 34,
+            "value": 16,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
@@ -6094,6 +6094,13 @@
         "by": "C0",
         "id": "disk.free_now",
         "note": "Đĩa 25 GiB (mức 20–40): xóa thêm 1 snapshot Time Machine cũ (giữ 3) và node_modules của 4 worktree không còn dùng; tải cao do QA tích hợp + 3 tác giả FE/BE.",
+        "state": "verified"
+      },
+      {
+        "at": "2026-11-11T19:27:00+07:00",
+        "by": "C0",
+        "id": "disk.free_now",
+        "note": "Đĩa Mac 16 GiB: DƯỚI ngưỡng báo động 20 GiB (QA báo 13 GiB lúc 19:24). Đã dọn: 1 snapshot Time Machine (giữ 3), node_modules/build của worktree không dùng, scratch kiểm tra kết hợp cũ. Chưa xóa được cache Gradle 21 GiB (còn tiến trình Gradle, gồm bootRun DEV).",
         "state": "verified"
       }
     ]
