@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T21:27:00+07:00",
+  "asOf": "2026-11-11T21:45:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T21:27:00+07:00",
+  "detailUpdatedAt": "2026-11-11T21:45:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4032,7 +4032,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T21:27:00+07:00",
+    "updatedAt": "2026-11-11T21:45:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4379,10 +4379,10 @@
       },
       {
         "id": "T24",
-        "group": "PLANNED",
+        "group": "IN_PROGRESS",
         "title": "Sửa file theo từng đoạn (patch theo vùng)",
         "titleEn": "Patch-by-range file edits",
-        "status": "Chưa bắt đầu",
+        "status": "21:45 11/11: T24-1/2 (bộ phân tích + bộ áp patch, BE #231) đã MERGE vào dev sau QA độc lập GO-WITH-CONDITIONS (VERIFIED: 59 test, 28 đột biến QA tự viết bắt 27, ~50 đường dẫn thù địch bị từ chối trước khi đọc kho). Chưa nối vào đường chính; cờ không có. Việc sau cho T24-3 (nối dây): chỉ dựng danh sách từ tệp thường, luôn gọi parse trước và bọc freshBlob, kiểm bản cũ bằng băm của nội dung đã hiển thị. | Chưa bắt đầu",
         "statusEn": "Not started",
         "prs": "",
         "eta": "Khoảng 1–2 tuần",
