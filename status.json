@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T13:47:00+07:00",
+  "asOf": "2026-11-11T14:13:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1798,7 +1798,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T13:47:00+07:00",
+  "detailUpdatedAt": "2026-11-11T14:13:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3623,6 +3623,30 @@
         ],
         "decided": "A",
         "decision": "Đóng Phase 3.3 = E2E độc lập PROD 19 mục + Owner UAT từng mục (Owner 13:36); khoảng 80 giờ công, 3–4 ngày."
+      },
+      {
+        "id": "NO-20",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T14:13:00+07:00",
+        "title": "T22-B (AI làm theo bước): cờ chỉ có mức toàn hệ thống, không bật riêng cho workspace QA được",
+        "detail": "Đã đo 3→2 lượt Haiku trên PROD (kế hoạch 2 bước, build thành công, finish_reason stop, 0 lỗi, ~0,011 USD) rồi TẮT lại cờ. Cờ ai.builder.steps.enabled là cài đặt toàn hệ thống nên lựa chọn A của NO-06 ('bật cho workspace QA trước') không làm được nguyên văn.",
+        "solution": "C0 khuyến nghị A (bật toàn hệ thống). C0 giữ cờ TẮT cho đến khi Owner chọn.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Bật toàn hệ thống",
+            "desc": "Trần chi phí 0,30 USD mỗi kế hoạch, Haiku, tắt lại bằng một lệnh. Nhanh nhất.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Làm công tắc theo workspace trước",
+            "desc": "Thêm nửa ngày đến một ngày (BE+FE+QA), rồi bật cho workspace QA."
+          }
+        ]
       }
     ]
   },
@@ -3860,7 +3884,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T13:47:00+07:00",
+    "updatedAt": "2026-11-11T14:13:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4498,12 +4522,12 @@
       },
       {
         "id": "D1.3",
-        "group": "IN_PROGRESS",
+        "group": "ON_PROD",
         "prio": "1",
         "title": "Đợt 1 · 1.3 ORG_SYNC: nhập/xuất cây đơn vị bằng CSV (không tạo tài khoản)",
         "titleEn": "Batch 1 · 1.3 ORG_SYNC",
-        "status": "Owner chọn A (13:36): bật sau E2E DEV. Agent đang chuẩn bị script máy chủ (khóa ký sinh trên máy chủ, không in) + kế hoạch E2E DEV. Cờ vẫn TẮT.",
-        "statusEn": "Owner chọn A (13:36): bật sau E2E DEV. Agent đang chuẩn bị script máy chủ (khóa ký sinh trên máy chủ, không in) + kế hoạch E2E DEV. Cờ vẫn TẮT.",
+        "status": "14:13 11/11: ĐÃ BẬT trên PROD 14:07–14:09 (đợt 19, không migration): chỉ nhập/xuất ĐƠN VỊ bằng CSV; thành viên và nguồn ngoài vẫn đóng. E2E DEV OS1–OS13 xanh (VERIFIED, C0 chạy lại), smoke PROD chỉ-đọc 10 PASS (VERIFIED). Chưa: menu (cần công tắc build FE_ENTERPRISE_UI), QA độc lập PR #225, Owner UAT. Chưa hoàn tất. | Owner chọn A (13:36): bật sau E2E DEV. Agent đang chuẩn bị script máy chủ (khóa ký sinh trên máy chủ, không in) + kế hoạch E2E DEV. Cờ vẫn TẮT.",
+        "statusEn": "14:13 11/11: ON PROD 14:07–14:09 (release 19, no migration): units CSV only; members and external source stay closed. DEV e2e OS1–OS13 green (VERIFIED), read-only PROD smoke 10 PASS (VERIFIED). Missing: menu (needs FE_ENTERPRISE_UI build switch), independent QA of PR #225, Owner UAT. Not closed. | Owner chọn A (13:36): bật sau E2E DEV. Agent đang chuẩn bị script máy chủ (khóa ký sinh trên máy chủ, không in) + kế hoạch E2E DEV. Cờ vẫn TẮT.",
         "prs": "",
         "eta": "12–13/11 (sau E2E DEV)",
         "etaFirst": "12–13/11 (sau E2E DEV)",
@@ -4525,8 +4549,8 @@
         "prio": "1",
         "title": "Đợt 1 · 1.4+1.5 ENTERPRISE_DATA + màn hình Công ty (FE #183)",
         "titleEn": "Batch 1 · 1.4+1.5 ENTERPRISE_DATA + Companies screen",
-        "status": "Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
-        "statusEn": "Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
+        "status": "14:13 11/11: FE #182 (hồ sơ) đã MERGE vào dev sau QA độc lập GO. FE #183 (công ty): QA GO trên 219036f2, đã gộp dev (head 6e258af9), QA độc lập đang kiểm phần chênh lệch. Agent đang làm công tắc build FE_ENTERPRISE_UI. Cờ ENTERPRISE_DATA vẫn TẮT. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
+        "statusEn": "14:13 11/11: FE #182 (profiles) MERGED into dev after independent QA GO. FE #183 (companies): QA GO on 219036f2, dev merged in (head 6e258af9), delta QA running. An agent is adding the FE_ENTERPRISE_UI build switch. ENTERPRISE_DATA flag still OFF. | Owner chọn A (13:36). FE #183 QA độc lập GO (VERIFIED, head 219036f2); FE #182 QA đang chạy; agent đang làm công tắc build FE_ENTERPRISE_UI (màn chưa hiện trên PROD nếu thiếu). Sau đó: merge #182→#183, QA delta, đợt 20 chỉ FE (cờ TẮT), bật ENTERPRISE_DATA sau 1 lượt DEV.",
         "prs": "",
         "eta": "Đợt 20 ~12/11; bật cờ ~12–13/11",
         "etaFirst": "Đợt 20 ~12/11; bật cờ ~12–13/11",
@@ -4548,8 +4572,8 @@
         "prio": "1",
         "title": "Đợt 1 · 1.6 T22-B: AI làm theo từng bước (3 lượt Haiku)",
         "titleEn": "Batch 1 · 1.6 T22-B AI by steps",
-        "status": "Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
-        "statusEn": "Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
+        "status": "14:13 11/11: 3 lượt Haiku đã đo trên PROD 13:51–13:53 (VERIFIED): kế hoạch 2 bước, cả hai build thành công, finish_reason stop, 0 lỗi nhà cung cấp, ~0,011 USD; cờ đã TẮT lại. Cờ chỉ có mức toàn hệ thống (không theo workspace): chờ Owner chọn (thẻ NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
+        "statusEn": "14:13 11/11: 3 Haiku turns measured on PROD 13:51–13:53 (VERIFIED): 2-step plan, both builds succeeded, finish_reason stop, 0 provider errors, ~0.011 USD; flag turned OFF again. The flag is global only: awaiting Owner choice (card NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
         "prs": "",
         "eta": "12/11",
         "etaFirst": "12/11",
@@ -4569,8 +4593,8 @@
         "prio": "1",
         "title": "Đợt 1 · 1.7 T10: chứng minh hàng đợi build (2 lượt Haiku; số chỗ vẫn 1)",
         "titleEn": "Batch 1 · 1.7 T10 queue proof",
-        "status": "Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
-        "statusEn": "Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
+        "status": "14:13 11/11: ĐÃ CHỨNG MINH trên PROD 13:56 (VERIFIED): 2 lượt Haiku đồng thời trên 2 dự án QA, build thứ hai đợi 25,1 s rồi chạy thành công, số chỗ = 1, ~0,0065 USD. slots=2 để Đợt 2 (cần runner thứ hai). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
+        "statusEn": "14:13 11/11: PROVEN on PROD 13:56 (VERIFIED): 2 simultaneous Haiku turns on 2 QA projects, the second build waited 25.1 s then succeeded, slots = 1, ~0.0065 USD. slots=2 is Batch 2 (needs a second runner). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
         "prs": "",
         "eta": "12/11",
         "etaFirst": "12/11",
