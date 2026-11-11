@@ -1,4 +1,4 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><script>try{let t=localStorage.getItem("xweb-theme")||"auto";document.documentElement.dataset.theme=t==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):t}catch(e){document.documentElement.dataset.theme="light"}</script><title>XWeb • Phase 3.3 Release Board</title><style>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><script>try{let t=localStorage.getItem("xweb-theme")||"auto";document.documentElement.dataset.theme=t==="auto"?(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"):t}catch(e){document.documentElement.dataset.theme="light"}</script><title>XWeb • Bảng điều hành</title><style>
 :root{color-scheme:light;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text",Inter,ui-sans-serif,system-ui,sans-serif;font-synthesis:none;--bg:#f5f5f7;--card:#fff;--fg:#1d1d1f;--muted:#6e6e73;--line:#e5e5ea;--soft:#f5f5f7;--accent:#0071e3;--shadow:0 8px 32px rgba(0,0,0,.045)}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased}a{color:var(--accent)}button,select,input{font:inherit}button{cursor:pointer}.page{max-width:1500px;margin:auto;padding:48px clamp(18px,4vw,64px) 72px}.top{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.eyebrow{font-size:11px;font-weight:700;letter-spacing:.13em;color:#86868b;text-transform:uppercase}.heading{font-size:clamp(32px,3.5vw,52px);font-weight:720;letter-spacing:-.05em;line-height:1.08;margin:11px 0 12px}.heading span{color:var(--accent)!important}.muted{color:var(--muted)}.sub{font-size:15px;margin:0;line-height:1.55}.updated{border:1px solid var(--line);background:rgba(255,255,255,.75);border-radius:100px;padding:12px 17px;font-size:12px;font-weight:520;color:var(--muted);max-width:380px;box-shadow:0 2px 10px rgba(0,0,0,.02)}
 .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:34px 0 22px}.stat,.filters,.panel{background:var(--card);border:1px solid #ececef;box-shadow:var(--shadow);border-radius:22px}.stat{padding:25px 25px 24px;min-height:148px}.stat-label{font-size:13px;font-weight:590;color:#86868b}.stat-num{font-size:31px;font-weight:730;letter-spacing:-.045em;margin:10px 0 8px;color:var(--fg);line-height:1.1}.stat-desc{font-size:12px;line-height:1.5;color:var(--muted)}.stat-num.ok{color:#16885b}.stat-num.warn{color:#b87a13}
@@ -108,14 +108,9 @@ html[data-theme="dark"] .legacy-p.p0{background:#432522;border-color:#70403a;col
 @media(max-width:800px){.legacy-grid{grid-template-columns:1fr}.legacy-panel{padding:17px;border-radius:18px}.legacy-top h2{font-size:19px}.legacy-actions{margin:16px 0}.legacy-card summary{padding:14px}}
 
 /* Separate dashboard workspaces */
-.board-nav{display:flex;gap:9px;align-items:center;margin:26px 0 20px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:13px}
-.board-tab{border:1px solid var(--line);border-radius:13px;padding:13px 20px;min-height:48px;background:var(--card);color:var(--fg);font-size:14px;font-weight:700;display:inline-flex;align-items:center;gap:10px}
-.board-tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:0 5px 18px rgba(0,113,227,.15)}
-.board-tab .board-count{font-size:11px;opacity:.8;border:1px solid currentColor;border-radius:9px;padding:2px 6px}
 .board-view[hidden]{display:none!important}
 .board-view>.stats{margin-top:0}
 #legacyBacklog{margin-top:0}
-@media(max-width:720px){.board-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.board-tab{justify-content:center;text-align:center;padding:11px 8px;font-size:12px}}
 
 /* Apple-inspired interface refinement: typography, hierarchy, segmented navigation */
 :root{--bg:#f5f5f7;--card:#ffffff;--soft:#f5f5f7;--fg:#1d1d1f;--muted:#6e6e73;--line:#e5e5ea;--accent:#0071e3;--shadow:0 8px 30px rgba(20,20,30,.035)}
@@ -123,17 +118,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",syste
 .page{max-width:1360px;padding-top:45px}
 .top{align-items:flex-end;padding-bottom:21px;gap:24px}
 .heading{font-size:clamp(34px,3.4vw,48px);font-weight:730;letter-spacing:-.049em;margin:8px 0 9px}
-.heading span{color:var(--fg)!important}
 .eyebrow{font-size:11px;letter-spacing:.11em;color:var(--accent)}
 .sub{max-width:640px}
 .updated{background:var(--card);border:1px solid var(--line);box-shadow:none;padding:10px 14px}
-.board-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;background:#e9e9ed;border:1px solid rgba(100,100,112,.07);padding:6px;margin:5px 0 27px;border-radius:20px;max-width:740px}
-.board-tab{min-height:62px;justify-content:center;gap:12px;font-size:15px;font-weight:650;letter-spacing:-.018em;border:1px solid transparent;border-radius:15px;background:transparent;box-shadow:none;color:#51515a;transition:background .18s ease,box-shadow .18s ease,color .18s ease,transform .18s ease}
-.board-tab:hover{background:rgba(255,255,255,.45)}
-.board-tab[aria-selected="true"]{background:var(--card);color:var(--fg);border-color:rgba(0,0,0,.05);box-shadow:0 2px 9px rgba(0,0,0,.10)}
-.board-tab .board-count{font-size:11px;font-weight:700;border:0;background:rgba(117,117,128,.13);color:inherit;padding:4px 9px;border-radius:9px;opacity:1;font-variant-numeric:tabular-nums}
-.board-tab[aria-selected="true"] .board-count{background:rgba(0,113,227,.09);color:var(--accent)}
-.board-tab:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .board-view{animation:board-enter .2s ease both}
 @keyframes board-enter{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .stat,.filters,.panel,.progress-panel,.legacy-panel{box-shadow:0 2px 16px rgba(20,20,30,.035)!important;border:1px solid var(--line)!important;border-radius:20px}
@@ -164,19 +151,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",syste
 .legacy-overview-item{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:16px 17px}
 .legacy-overview-num{font-weight:740;font-size:24px;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--fg)}
 .legacy-overview-label{font-size:11px;color:var(--muted);margin-top:5px}
-html[data-theme="dark"] .board-nav{background:#29292d;border-color:#3b3b41}
-html[data-theme="dark"] .board-tab{color:#b3b3bb}
-html[data-theme="dark"] .board-tab:hover{background:rgba(255,255,255,.055)}
-html[data-theme="dark"] .board-tab[aria-selected="true"]{color:#f5f5f7;background:#3b3b40;border-color:#505057;box-shadow:0 2px 10px rgba(0,0,0,.18)}
-html[data-theme="dark"] .board-tab[aria-selected="true"] .board-count{color:#8cc3ff;background:#263c56}
 html[data-theme="dark"] .legacy-filter[aria-pressed="true"]{background:#f5f5f7;border-color:#f5f5f7;color:#1d1d1f}
 html[data-theme="dark"] .stat,html[data-theme="dark"] .filters,html[data-theme="dark"] .panel,html[data-theme="dark"] .progress-panel,html[data-theme="dark"] .legacy-panel{border-color:#37373d!important}
-html[data-theme="dark"] .heading span{color:#f5f5f7!important}
 @media(max-width:720px){
 .page{padding:25px 15px 45px}.top{padding-bottom:13px;align-items:flex-start}.heading{font-size:36px}.topright{gap:10px}
-.board-nav{width:100%;max-width:none;margin:13px 0 20px;padding:5px;border-radius:16px;gap:5px}
-.board-tab{font-size:12px;min-height:55px;padding:9px 7px;gap:6px;border-radius:12px}
-.board-tab .board-count{font-size:10px;padding:3px 6px}
 .legacy-panel{padding:18px}.legacy-top h2{font-size:21px}
 .legacy-top .small{font-size:11px}.legacy-top{gap:12px}
 .legacy-overview{gap:8px}.legacy-overview-item{padding:12px}.legacy-overview-num{font-size:21px}
@@ -185,35 +163,6 @@ html[data-theme="dark"] .heading span{color:#f5f5f7!important}
 }
 @media(prefers-reduced-motion:reduce){.board-view{animation:none}.board-tab,.legacy-card{transition:none}}
 
-/* Adaptive segmented navigation: fit content on desktop, fill safe width on mobile */
-.board-nav{
- display:inline-grid;
- grid-template-columns:max-content max-content;
- width:max-content;
- max-width:100%;
- gap:5px;
- margin:6px 0 25px;
- padding:5px;
- border-radius:16px;
-}
-.board-tab{
- width:auto;
- min-width:clamp(148px,16vw,195px);
- min-height:48px;
- padding:10px clamp(12px,1.5vw,20px);
- gap:9px;
- font-size:clamp(12px,1vw,14px);
- border-radius:12px;
- white-space:nowrap;
-}
-.board-tab .board-count{flex-shrink:0}
-@media(max-width:620px){
- .board-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none;gap:5px;margin:9px 0 20px}
- .board-tab{min-width:0;width:100%;min-height:46px;padding:9px 7px;gap:5px;font-size:clamp(11px,2.9vw,13px);white-space:normal;line-height:1.24}
- .board-tab-name{min-width:0;overflow-wrap:normal}
- .board-tab .board-count{font-size:10px;padding:3px 6px}
-}
-@media(max-width:360px){.board-tab{font-size:11px;gap:4px;padding:8px 5px}}
 
 /* Explicit scope reconciliation; not a release status */
 .legacy-coverage{font-size:10px;font-weight:750;white-space:nowrap;padding:5px 7px;border-radius:8px;border:1px solid var(--line);color:var(--fg)}
@@ -252,16 +201,6 @@ html[data-theme="dark"] .legacy-coverage.partially_covered{color:#f7d391;backgro
 html[data-theme="dark"] .owner-action-priority.is-urgent{background:#46272b;color:#ff9fa5}
 @media(max-width:720px){.owner-action-list{padding:10px 12px 16px}.owner-action-summary{padding:12px 13px}.owner-action-title{font-size:12px}}
 
-/* Responsive 3-tab navigation: desktop auto-size, no two-column hardcode */
-@media(min-width:821px){
- .board-nav{display:inline-flex;flex-wrap:nowrap;align-items:stretch;gap:5px;width:max-content;max-width:100%;grid-template-columns:none}
- .board-tab{flex:0 0 auto;width:auto;min-width:0;padding:10px 18px;white-space:nowrap}
-}
-@media(max-width:820px){
- .board-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;max-width:none;gap:5px}
- .board-tab{min-width:0;width:100%;white-space:normal}
- .board-tab:last-child{grid-column:1/-1}
-}
 
 /* Compact icon-only preferences; native select remains keyboard/screen-reader accessible */
 .topright{align-items:center;gap:10px}
@@ -529,10 +468,127 @@ html[data-theme="dark"] #view-process .pc-sw[aria-checked="true"] .pc-sw-t{backg
 @media(min-width:721px){.pc-top{position:sticky}.pc-it :is(button,input,select,textarea,summary){scroll-margin-top:150px}}
 .pc-it :is(button,input,select,textarea,summary){scroll-margin-bottom:110px}
 @media(max-width:720px){.pc-top{position:static}.pc-g{scroll-margin-top:12px}}
-</style></head><body><main class="page"><header class="top"><div><div class="eyebrow" data-i18n="eyebrow">XWEB / BẢNG THEO DÕI PHÁT HÀNH</div><h1 class="heading" id="boardHeading">Phase 3.3 <span>Release Board</span></h1><p class="sub muted" id="boardSubtitle">Theo dõi triển khai, QA/SEC và nghiệm thu theo bằng chứng GitHub.</p></div><div class="topright"><div class="prefs"><button type="button" id="theme" class="icon-button" title="Giao diện" aria-label="Giao diện"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button><button type="button" id="lang" class="icon-button" title="Ngôn ngữ" aria-label="Ngôn ngữ"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></button></div><div class="updated icon-updated timestamp" id="update" role="status" title="Đang đọc dữ liệu…" aria-label="Đang đọc dữ liệu…"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><time id="updatedTime">--:--</time></div></div></header><nav class="board-nav" role="tablist" aria-label="Chọn nhóm theo dõi"><button type="button" class="board-tab" id="tab-p33" role="tab" aria-selected="true" aria-controls="view-p33" data-board-tab="p33"><span class="board-tab-name">Phase 3.3</span><span class="board-count">19</span></button><button type="button" class="board-tab owner-nav-tab" id="tab-owner" role="tab" aria-selected="false" aria-controls="view-owner" data-board-tab="owner"><span class="owner-alert-dot" aria-hidden="true"></span><span class="board-tab-name">Cần anh xử lý</span><span class="board-count" id="ownerTabCount">0</span></button><button type="button" class="board-tab" id="tab-today" role="tab" aria-selected="false" aria-controls="view-today" data-board-tab="today"><span class="board-tab-name">Việc hôm nay</span><span class="board-count" id="todayTabCount">0</span></button><button type="button" class="board-tab" id="tab-rest" role="tab" aria-selected="false" aria-controls="view-rest" data-board-tab="rest"><span class="board-tab-name">Các Phase còn lại</span><span class="board-count">23</span></button><button type="button" class="board-tab" id="tab-process" role="tab" aria-selected="false" aria-controls="view-process" data-board-tab="process"><span class="board-tab-name">Quy trình &amp; cấu hình</span></button></nav><div class="board-view" id="view-process" role="tabpanel" aria-labelledby="tab-process" hidden><section class="panel" id="processPanel" aria-label="Quy trình và cấu hình"><div class="tabletop"><strong>Quy trình &amp; cấu hình</strong><span class="small" id="processMeta"></span></div><div id="processBody" class="pc-wrap"></div></section></div><div class="board-view" id="view-owner" role="tabpanel" aria-labelledby="tab-owner" hidden><section class="panel" id="ownerActions" aria-label="Việc cần Owner" hidden><div class="tabletop"><strong>Việc cần Owner thao tác / quyết định</strong><span class="small" id="ownerActionsMeta"></span></div><div id="ownerActionsBody" class="owner-action-list"></div></section></div><div class="board-view" id="view-today" role="tabpanel" aria-labelledby="tab-today" hidden><section class="panel" id="todayPanel" aria-label="Việc giao hôm nay"><div class="tabletop"><strong id="todayTitle">Việc giao hôm nay</strong><span class="small" id="todayMeta"></span></div><div style="padding:14px 20px 20px"><p class="today-note" id="todayNote"></p><div class="today-sum" id="todaySum" role="group" aria-label="Lọc theo trạng thái"></div><div class="today-list" id="todayList"></div></div></section></div><div class="board-view" id="view-p33" role="tabpanel" aria-labelledby="tab-p33"><section class="stats" id="stats" aria-label="Tổng quan"></section><section class="progress-panel" aria-label="Tiến độ 19 hạng mục"><div class="progress-head"><div><h2 id="progressTitle">Tiến độ 19 hạng mục</h2><p id="progressDesc">Theo dõi nhóm đã bật PROD và nhóm còn phát triển; bấm từng mục để xem bằng chứng.</p></div><div class="progress-tabs" role="group" aria-label="Lọc tiến độ"><button type="button" class="progress-tab" data-progress-filter="all" aria-pressed="true">Tất cả 19</button><button type="button" class="progress-tab" data-progress-filter="on" aria-pressed="false">Đã ON (12)</button><button type="button" class="progress-tab" data-progress-filter="remaining" aria-pressed="false">Còn lại (7)</button></div></div><div id="progressItems" class="progress-items"></div><p id="progressLegend" class="progress-legend">100% ở mục ON = đã bật PROD, không có nghĩa QA hoàn tất. Các % còn lại là ước lượng Claude, không phải số đo.</p></section><section class="filters" aria-label="Bộ lọc" hidden><div class="filterbar"><label class="field"><span>Đợt phát hành</span><select id="batch"><option value="">Tất cả</option><option value="R1">R1</option><option value="R2">R2</option><option value="Unassigned">Chưa xếp</option></select></label><label class="field"><span>Tiến độ</span><select id="stage"><option value="">Tất cả</option><option value="PROD_ENABLED">PROD ENABLED</option><option value="PROD_VERIFIED">PROD VERIFIED</option><option value="PROD_DEPLOYED">PROD CODE</option><option value="DEV_INTEGRATED">DEV INTEGRATED</option><option value="MAIN_PROMOTED">MAIN PROMOTED</option><option value="INCOMPLETE">Chưa hoàn chỉnh</option></select></label><label class="field"><span>Cờ PROD</span><select id="flag"><option value="">Tất cả</option><option value="ON">ON</option><option value="OFF">OFF</option><option value="N/A">Không áp dụng</option></select></label><label class="field"><span>Rủi ro</span><select id="risk"><option value="">Tất cả</option><option value="HIGH">Cao</option><option value="MEDIUM">Trung bình</option><option value="LOW">Thấp</option></select></label><label class="field"><span>BE/FE tích hợp</span><select id="integrated"><option value="">Tất cả</option><option value="yes">Đã tích hợp</option><option value="no">Chưa đủ</option></select></label></div><div class="searchrow"><label class="sr" for="q">Tìm kiếm</label><input id="q" placeholder="Tìm tên tính năng, mã P0, PR, mô tả…"><button class="reset" id="reset">Xóa bộ lọc</button></div></section><section class="panel feature-table-panel" hidden><div class="tabletop"><strong data-i18n="featureList">Danh sách tính năng</strong><span id="count" class="small"></span></div><div class="tablewrap"><table><thead><tr><th scope="col" class="stt-col">STT</th><th>Tính năng</th><th>Trạng thái</th><th>Đợt</th><th>Feature flag</th><th>QA/SEC</th><th>Chi tiết / bước tiếp</th></tr></thead><tbody id="tbody"></tbody></table></div></section></div><div class="board-view" id="view-rest" role="tabpanel" aria-labelledby="tab-rest" hidden><section class="legacy-panel" id="legacyBacklog" aria-label="Backlog sau Phase 3.3"><div class="legacy-top"><div><h2 id="legacyTitle">Công việc còn lại sau Phase 3.3</h2><p id="legacyDesc">Backlog lịch sử Phase 0–3 và kế hoạch Phase 4. Mỗi mục cần bằng chứng PR, QA và nghiệm thu; không tính vào 19 hạng mục đang theo dõi.</p></div><span class="small" id="legacyMeta"></span></div><div class="legacy-overview" id="legacyOverview" aria-label="Tổng quan backlog"></div><div class="legacy-actions" role="group" aria-label="Lọc backlog"><button type="button" class="legacy-filter" data-legacy-filter="all" aria-pressed="true">Tất cả</button><button type="button" class="legacy-filter" data-legacy-filter="covered">Đã thuộc P3.3</button><button type="button" class="legacy-filter" data-legacy-filter="partial">Trùng một phần</button><button type="button" class="legacy-filter" data-legacy-filter="independent">Việc độc lập</button><button type="button" class="legacy-filter" data-legacy-filter="legacy">Kế thừa</button><button type="button" class="legacy-filter" data-legacy-filter="p4">Phase 4</button><button type="button" class="legacy-filter" data-legacy-filter="P0">P0</button><button type="button" class="legacy-filter" data-legacy-filter="P1">P1</button><button type="button" class="legacy-filter" data-legacy-filter="P2">P2</button></div><div class="legacy-grid" id="legacyItems"></div><p class="legacy-note" id="legacyNote"></p></section></div><footer id="footerNote"><strong>Nguồn:</strong> Snapshot từ GitHub và nhật ký phát hành đã kiểm tra. Phân biệt deploy, bật cờ và Owner UAT. Dữ liệu cập nhật theo lịch, không phải trạng thái thời gian thực. Không đăng thông tin bí mật.</footer></main><div id="detailShell" class="detail-shell" hidden><button class="detail-scrim" id="detailScrim" tabindex="-1" aria-label="Đóng chi tiết"></button><section id="detailDialog" class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-toolbar"><span class="detail-eyebrow" id="detailEyebrow"></span><button id="detailClose" class="detail-close" type="button" aria-label="Đóng">×</button></div><h2 class="detail-title" id="detailTitle"></h2><div id="detailBody"></div></section></div><script>
+
+/* ===== 2026-11-11 "Bảng điều hành / Delivery Control": 4 main tabs, sub-tabs, batch panels ===== */
+:root{--seg:#e9e9ed;--tabfg:#52525a;--ok:#14673a;--ok-bg:#e3f6ea;--warn:#7a4b00;--warn-bg:#fff4dc;--b1:#0071e3;--b2:#0f8f8f;--b3:#2f9d5f;--b4:#b7791f;--b5:#7c5cd6;--b6:#c2447a}
+html[data-theme="dark"]{--seg:#29292d;--tabfg:#b8b8c0;--ok:#7ee2a6;--ok-bg:#17392a;--warn:#ffd089;--warn-bg:#40331a;--b1:#2997ff;--b2:#35c2c2;--b3:#4cc783;--b4:#e0a23c;--b5:#a08cf0;--b6:#ec7aab}
+[data-b="1"]{--bc:var(--b1)}[data-b="2"]{--bc:var(--b2)}[data-b="3"]{--bc:var(--b3)}[data-b="4"]{--bc:var(--b4)}[data-b="5"]{--bc:var(--b5)}[data-b="6"]{--bc:var(--b6)}
+.board-view[hidden]{display:none!important}
+.board-view>.stats{margin-top:0}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-mark{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(140deg,#0071e3,#5e5ce6);color:#fff;flex:none;box-shadow:0 3px 10px rgba(0,113,227,.28)}
+.brand .eyebrow{margin:0;color:var(--muted)}
+.heading span{color:var(--accent)!important}
+.tabbar{margin:8px 0 22px}
+.board-nav{display:flex;gap:4px;padding:5px;background:var(--seg);border:1px solid var(--line);border-radius:18px;width:max-content;max-width:100%}
+.board-tab{position:relative;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:10px 18px;border:1px solid transparent;border-radius:13px;background:transparent;color:var(--tabfg);font-size:14px;font-weight:650;letter-spacing:-.012em;white-space:nowrap;transition:background .18s,color .18s,box-shadow .18s}
+.board-tab:hover{background:rgba(255,255,255,.5);color:var(--fg)}
+html[data-theme="dark"] .board-tab:hover{background:rgba(255,255,255,.06)}
+.board-tab[aria-selected="true"]{background:var(--card);color:var(--fg);border-color:var(--line);box-shadow:0 2px 9px rgba(0,0,0,.09)}
+.board-tab[aria-selected="true"] .tab-ico{color:var(--accent)}
+.board-tab:focus-visible,.sub-tab:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tab-ico{width:18px;height:18px;flex:none}
+.board-tab .board-count{font-size:11px;font-weight:700;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:2px 8px;border-radius:9px;font-variant-numeric:tabular-nums}
+.board-tab[aria-selected="true"] .board-count{background:var(--soft);color:var(--fg)}
+.board-tab.owner-nav-tab.has-owner-actions .board-count{background:#c92a31;color:#fff;border-color:#c92a31}
+.board-tab .board-count:empty{display:none}
+.sub-nav{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 16px}
+.sub-tab{position:relative;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:8px 16px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--muted);font-size:13px;font-weight:650;white-space:nowrap}
+.sub-tab:hover{color:var(--fg);background:var(--soft)}
+.sub-tab[aria-selected="true"]{color:var(--fg);border-color:var(--bc,var(--accent));box-shadow:inset 0 -3px 0 var(--bc,var(--accent));background:var(--card)}
+.sub-tab .sub-count{font-size:11px;font-weight:700;font-variant-numeric:tabular-nums;padding:2px 7px;border-radius:8px;background:var(--soft);color:var(--muted)}
+.sub-tab .sub-count:empty{display:none}
+.sub-tab .sub-dot{width:8px;height:8px;border-radius:50%;background:var(--bc);flex:none}
+.batch-head{position:relative;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 24px 20px 28px;box-shadow:0 2px 16px rgba(20,20,30,.035);overflow:hidden}
+.batch-head::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--bc,var(--accent))}
+.batch-kicker{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.batch-kicker .eta{letter-spacing:0;text-transform:none;font-weight:650;color:var(--fg);background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.batch-head h2{margin:8px 0 6px;font-size:clamp(20px,2.4vw,26px);letter-spacing:-.035em;line-height:1.2}
+.batch-goal{margin:0;font-size:14px;line-height:1.6;color:var(--muted);max-width:820px}
+.bp{display:flex;align-items:center;gap:14px;margin-top:16px;flex-wrap:wrap}
+.bp-track{flex:1 1 220px;height:9px;border-radius:99px;background:var(--soft);border:1px solid var(--line);overflow:hidden}
+.bp-fill{height:100%;border-radius:99px;background:var(--bc,var(--accent));min-width:0}
+.bp-num{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bp-note{flex-basis:100%;margin:0;font-size:12px;color:var(--muted);line-height:1.5}
+.found{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.found-item{background:var(--soft);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.found-num{font-size:22px;font-weight:740;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.found-label{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4}
+.found-note{grid-column:1/-1;margin:0;font-size:12px;line-height:1.6;color:var(--muted)}
+.linkbtn{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--pc-lnk,var(--accent));font-weight:650;font-size:13px}
+.linkbtn:hover{background:var(--soft)}
+.linkbtn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sect{margin-top:22px}
+.sect>h3{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:15px;font-weight:700;letter-spacing:-.02em}
+.sect>h3 .n{font-size:11px;font-weight:700;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:2px 8px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sect .legacy-grid,.sect .progress-items{margin:0}
+.plan-card{border:1px dashed var(--line);border-radius:16px;background:var(--card);margin-top:14px}
+.plan-card>summary{list-style:none;cursor:pointer;min-height:48px;padding:10px 16px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:650;border-radius:16px}
+.plan-card>summary::-webkit-details-marker{display:none}
+.plan-card>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s;flex:none}
+.plan-card[open]>summary::after{transform:rotate(-135deg)}
+.plan-card>summary:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.plan-body{padding:0 16px 16px;display:grid;gap:8px;font-size:13px;line-height:1.6}
+.plan-body ul{margin:0;padding-left:20px}
+.empty-state{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:40px 20px;border:1px dashed var(--line);border-radius:20px;background:var(--card);color:var(--muted)}
+.empty-state svg{width:34px;height:34px;color:var(--muted);margin-bottom:4px}
+.empty-state strong{font-size:16px;color:var(--fg);letter-spacing:-.02em}
+.empty-state p{margin:0;font-size:13px;line-height:1.6;max-width:520px}
+.callout{display:block;border:1px solid var(--line);border-left:4px solid #d58b24;border-radius:14px;background:var(--card);padding:13px 16px;font-size:13px;line-height:1.6;margin:0 0 16px}
+.callout svg{width:20px;height:20px;flex:none;margin-top:1px;color:#b87a13}
+.callout b{font-weight:700}
+.callout.ok{border-left-color:#2f9d5f}.callout.ok svg{color:#2f9d5f}
+.pill-closed{background:var(--ok-bg);color:var(--ok);display:inline-flex;align-items:center;gap:5px}
+.today-card.is-closed{border-color:color-mix(in srgb,#2f9d5f 55%,var(--line))}
+.today-card details.hist{font-size:12px;color:var(--muted)}
+.today-card details.hist>summary{cursor:pointer;min-height:36px;display:flex;align-items:center;font-weight:650;color:var(--pc-lnk,var(--accent))}
+.today-card details.hist>summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.today-card details.hist ol{margin:4px 0 4px;padding-left:20px;line-height:1.6;overflow-wrap:anywhere}
+.today-card details.today-meta ul{margin:6px 0 2px;padding-left:20px;line-height:1.6}
+.today-card details.today-meta>summary{cursor:pointer;min-height:36px;display:flex;align-items:center}
+.today-card details.today-meta>summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.part-chip{display:inline-block;margin-top:6px;font-size:11px;font-weight:700;border-radius:8px;padding:3px 8px;background:var(--warn-bg);color:var(--warn)}
+.off-roadmap{margin-top:26px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.off-roadmap>summary{list-style:none;cursor:pointer;min-height:52px;padding:0 18px;display:flex;align-items:center;gap:10px;font-size:14px;font-weight:700;border-radius:16px}
+.off-roadmap>summary::-webkit-details-marker{display:none}
+.off-roadmap>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
+.off-roadmap[open]>summary::after{transform:rotate(-135deg)}
+.off-roadmap>summary:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.off-roadmap .today-list{padding:0 16px 16px}
+.off-note{margin:0;padding:0 18px 12px;font-size:12px;color:var(--muted);line-height:1.6}
+.prod-list{padding:0 20px 20px}
+.legacy-part{margin-top:6px}
+.legacy-card .legacy-p{align-self:flex-start}
+@media(max-width:900px){.found{grid-template-columns:1fr}}
+@media(max-width:720px){
+ .tabbar{position:sticky;top:0;z-index:25;margin:8px -15px 16px;padding:8px 15px;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+ .board-nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));width:100%;gap:3px;padding:4px;border-radius:16px}
+ .board-tab{flex-direction:column;gap:4px;min-height:56px;padding:7px 3px;font-size:11px;line-height:1.2;white-space:normal;text-align:center;border-radius:12px}
+ .board-tab .tab-ico{width:19px;height:19px}
+ .board-tab .board-count{position:absolute;top:3px;right:4px;font-size:10px;padding:1px 6px;min-width:18px;text-align:center}
+ .board-tab-name{min-width:0;overflow-wrap:anywhere}
+ .sub-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ .sub-nav.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .sub-tab{justify-content:center;padding:8px 6px;white-space:normal;text-align:center;line-height:1.25;font-size:12px}
+ .batch-head{padding:18px 16px 16px 22px;border-radius:18px}
+ .prod-list{padding:0 12px 14px}
+ .empty-state{padding:30px 16px}
+}
+@media(max-width:380px){.board-tab{font-size:10.5px}}
+@media(prefers-reduced-motion:reduce){.board-tab,.sub-tab,.plan-card>summary::after,.off-roadmap>summary::after{transition:none}}
+/* contrast fixes (WCAG AA) for older rules */
+footer{color:var(--muted)}
+.progress-reopen{color:#8a5a12}
+.legacy-p.p1{color:#85580c}
+html[data-theme="dark"] .progress-reopen{color:#f0bf6d}
+html[data-theme="dark"] .legacy-p.p1{color:#f7d391}
+.stat-label{color:var(--muted)}
+.progress-val.on,.progress-state.on{color:#0c7449}
+html[data-theme="dark"] .progress-val.on,html[data-theme="dark"] .progress-state.on{color:#76e2a8}
+</style></head><body><main class="page"><header class="top"><div><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><div class="eyebrow" data-i18n="eyebrow">XWEB · LỘ TRÌNH · TRIỂN KHAI · NGHIỆM THU</div></div><h1 class="heading" id="boardHeading">XWeb <span>Bảng điều hành</span></h1><p class="sub muted" id="boardSubtitle" data-i18n="subtitle">Lộ trình, triển khai và nghiệm thu theo bằng chứng</p></div><div class="topright"><div class="prefs"><button type="button" id="theme" class="icon-button" title="Giao diện" aria-label="Giao diện"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button><button type="button" id="lang" class="icon-button" title="Ngôn ngữ" aria-label="Ngôn ngữ"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></button></div><div class="updated icon-updated timestamp" id="update" role="status" title="Đang đọc dữ liệu…" aria-label="Đang đọc dữ liệu…"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><time id="updatedTime">--:--</time></div></div></header></header><div class="tabbar"><nav class="board-nav" id="mainTabs" role="tablist" aria-label="Khu vực chính"><button type="button" class="board-tab" id="tab-roadmap" role="tab" aria-selected="true" aria-controls="view-roadmap" data-board-tab="roadmap"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg><span class="board-tab-name">Lộ trình</span><span class="board-count" id="roadmapTabCount"></span></button><button type="button" class="board-tab" id="tab-process" role="tab" aria-selected="false" aria-controls="view-process" data-board-tab="process" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span class="board-tab-name">Quy trình &amp; cấu hình</span></button><button type="button" class="board-tab" id="tab-prod" role="tab" aria-selected="false" aria-controls="view-prod" data-board-tab="prod" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.4 3 7.6 7.5 9 4.5-1.4 7.5-4.6 7.5-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span class="board-tab-name">Đã lên PROD</span><span class="board-count" id="prodTabCount"></span></button><button type="button" class="board-tab owner-nav-tab" id="tab-owner" role="tab" aria-selected="false" aria-controls="view-owner" data-board-tab="owner" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13 6 5h12l2 8v6H4z"/><path d="M4 13h5a3 3 0 0 0 6 0h5"/></svg><span class="owner-alert-dot" aria-hidden="true"></span><span class="board-tab-name">Chờ anh quyết</span><span class="board-count" id="ownerTabCount">0</span></button></nav></div><div class="board-view" id="view-roadmap" role="tabpanel" aria-labelledby="tab-roadmap"><div class="sub-nav" id="batchTabs" role="tablist" aria-label="Chọn đợt"><button type="button" class="sub-tab" id="rtab-1" role="tab" aria-selected="true" aria-controls="batchPanel" data-batch-tab="1" data-b="1" tabindex="0"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 1</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-2" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="2" data-b="2" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 2</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-3" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="3" data-b="3" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 3</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-4" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="4" data-b="4" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 4</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-5" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="5" data-b="5" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 5</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-6" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="6" data-b="6" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 6</span><span class="sub-count"></span></button></div><section id="batchPanel" role="tabpanel" aria-labelledby="rtab-1"></section><details class="off-roadmap" id="offRoadmap" hidden><summary><span class="off-title">Ngoài lộ trình</span><span class="sub-count off-count"></span></summary><p class="off-note"></p><div class="today-list"></div></details></div><div class="board-view" id="view-process" role="tabpanel" aria-labelledby="tab-process" hidden><section class="panel" id="processPanel" aria-label="Quy trình và cấu hình"><div class="tabletop"><strong>Quy trình &amp; cấu hình</strong><span class="small" id="processMeta"></span></div><div id="processBody" class="pc-wrap"></div></section></div><div class="board-view" id="view-prod" role="tabpanel" aria-labelledby="tab-prod" hidden><div class="sub-nav two" id="prodTabs" role="tablist" aria-label="Phân loại mục đã lên PROD"><button type="button" class="sub-tab" id="ptab-done" role="tab" aria-selected="false" aria-controls="prodDone" data-prod-tab="done" tabindex="-1"><span class="sub-name">Hoàn tất</span><span class="sub-count" id="prodDoneCount"></span></button><button type="button" class="sub-tab" id="ptab-on" role="tab" aria-selected="true" aria-controls="prodOn" data-prod-tab="on"><span class="sub-name">Đã bật, chưa hoàn tất</span><span class="sub-count" id="prodOnCount"></span></button></div><div id="prodDone" role="tabpanel" aria-labelledby="ptab-done" hidden><div id="prodDoneBody"></div></div><div id="prodOn" role="tabpanel" aria-labelledby="ptab-on"><p class="callout" id="prodOnNote"></p><section class="stats" id="stats" aria-label="Tổng quan"></section><section class="progress-panel" aria-label="Tiến độ 19 hạng mục nền tảng"><div class="progress-head"><div><h2 id="progressTitle">Tiến độ 19 hạng mục</h2><p id="progressDesc">Theo dõi nhóm đã bật PROD và nhóm còn phát triển; bấm từng mục để xem bằng chứng.</p></div><div class="progress-tabs" role="group" aria-label="Lọc tiến độ"><button type="button" class="progress-tab" data-progress-filter="all" aria-pressed="false">Tất cả 19</button><button type="button" class="progress-tab" data-progress-filter="on" aria-pressed="true">Đã ON (12)</button><button type="button" class="progress-tab" data-progress-filter="remaining" aria-pressed="false">Còn lại (7)</button></div></div><div id="progressItems" class="progress-items"></div><p id="progressLegend" class="progress-legend">100% ở mục ON = đã bật PROD, không có nghĩa QA hoàn tất. Các % còn lại là ước lượng Claude, không phải số đo.</p></section><section class="filters" aria-label="Bộ lọc" hidden><div class="filterbar"><label class="field"><span>Đợt phát hành</span><select id="batch"><option value="">Tất cả</option><option value="R1">R1</option><option value="R2">R2</option><option value="Unassigned">Chưa xếp</option></select></label><label class="field"><span>Tiến độ</span><select id="stage"><option value="">Tất cả</option><option value="PROD_ENABLED">PROD ENABLED</option><option value="PROD_VERIFIED">PROD VERIFIED</option><option value="PROD_DEPLOYED">PROD CODE</option><option value="DEV_INTEGRATED">DEV INTEGRATED</option><option value="MAIN_PROMOTED">MAIN PROMOTED</option><option value="INCOMPLETE">Chưa hoàn chỉnh</option></select></label><label class="field"><span>Cờ PROD</span><select id="flag"><option value="">Tất cả</option><option value="ON">ON</option><option value="OFF">OFF</option><option value="N/A">Không áp dụng</option></select></label><label class="field"><span>Rủi ro</span><select id="risk"><option value="">Tất cả</option><option value="HIGH">Cao</option><option value="MEDIUM">Trung bình</option><option value="LOW">Thấp</option></select></label><label class="field"><span>BE/FE tích hợp</span><select id="integrated"><option value="">Tất cả</option><option value="yes">Đã tích hợp</option><option value="no">Chưa đủ</option></select></label></div><div class="searchrow"><label class="sr" for="q">Tìm kiếm</label><input id="q" placeholder="Tìm tên tính năng, mã P0, PR, mô tả…"><button class="reset" id="reset">Xóa bộ lọc</button></div></section><section class="panel feature-table-panel" hidden><div class="tabletop"><strong data-i18n="featureList">Danh sách tính năng</strong><span id="count" class="small"></span></div><div class="tablewrap"><table><thead><tr><th scope="col" class="stt-col">STT</th><th>Tính năng</th><th>Trạng thái</th><th>Đợt</th><th>Feature flag</th><th>QA/SEC</th><th>Chi tiết / bước tiếp</th></tr></thead><tbody id="tbody"></tbody></table></div></section><section class="panel" id="prodOnPanel" style="margin-top:20px" aria-labelledby="prodOnWorkTitle"><div class="tabletop"><strong id="prodOnWorkTitle">Việc giao đã ON trên PROD</strong><span class="small" id="prodOnWorkMeta"></span></div><div class="prod-list"><div class="today-list" id="prodOnWork"></div></div></section></div></div><div class="board-view" id="view-owner" role="tabpanel" aria-labelledby="tab-owner" hidden><section class="panel" id="ownerActions" aria-label="Chờ anh quyết" hidden><div class="tabletop"><strong id="ownerTitle">Chờ anh quyết hoặc thao tác</strong><span class="small" id="ownerActionsMeta"></span></div><div id="ownerActionsBody" class="owner-action-list"></div></section></div><footer id="footerNote"><strong>Nguồn:</strong> Snapshot từ GitHub và nhật ký phát hành đã kiểm tra. Phân biệt deploy, bật cờ và Owner UAT. Dữ liệu cập nhật theo lịch, không phải trạng thái thời gian thực. Không đăng thông tin bí mật.</footer></main><div id="detailShell" class="detail-shell" hidden><button class="detail-scrim" id="detailScrim" tabindex="-1" aria-label="Đóng chi tiết"></button><section id="detailDialog" class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-toolbar"><span class="detail-eyebrow" id="detailEyebrow"></span><button id="detailClose" class="detail-close" type="button" aria-label="Đóng">×</button></div><h2 class="detail-title" id="detailTitle"></h2><div id="detailBody"></div></section></div><script>
 const ui={
-vi:{theme:'Giao diện',language:'Ngôn ngữ',eyebrow:'XWEB / BẢNG THEO DÕI PHÁT HÀNH',subtitle:'Tính năng · BE/FE · QA/SEC · Cờ PROD · Đợt phát hành',featureList:'Danh sách tính năng',labels:['Đợt phát hành','Tiến độ','Cờ PROD','Rủi ro','BE/FE tích hợp'],any:'Tất cả',unassigned:'Chưa xếp',notApplicable:'Không áp dụng',incomplete:'Chưa hoàn chỉnh',high:'Cao',medium:'Trung bình',low:'Thấp',integratedYes:'Đã tích hợp',integratedNo:'Chưa đủ',reset:'Xóa bộ lọc',search:'Tìm tên tính năng, mã P0, PR, mô tả…',heads:['STT','Tính năng','Trạng thái','Đợt','Feature flag','QA/SEC','Chi tiết / bước tiếp'],total:'tính năng',plan:'Kế hoạch',next:'Tiếp',details:'Chi tiết',test:'Kiểm thử',batch:'Đợt',flag:'Cờ',status:'Trạng thái',noResults:'Không có kết quả khớp bộ lọc',updated:'Cập nhật dữ liệu',readError:'Không tải được status.json',r1:'Đã deploy',r2Done:'Đã deploy',processing:'Đang xử lý',prodOn:'Tính năng PROD ON',features:'Tổng tính năng',released:'Đã ghi nhận phát hành',uat:'Theo log phát hành · UAT chưa hoàn tất',verified:'PROD đã kiểm tra · flags theo bảng',pending:'Chờ xác minh release',interactive:'Bộ lọc tương tác',error:'Lỗi dữ liệu',errorHint:'Hãy kiểm tra status.json',footer:'Nguồn: Snapshot tổng hợp từ GitHub và nhật ký phát hành. Trạng thái phát hành, cờ và Owner UAT được phân biệt. Dữ liệu không phải thời gian thực.',themeOptions:['Theo máy','Sáng','Tối'],stage:{PROD_ENABLED:'PROD ENABLED',PROD_VERIFIED:'PROD VERIFIED',PROD_DEPLOYED:'PROD CODE',DEV_INTEGRATED:'DEV MERGED',MAIN_PROMOTED:'MAIN PROMOTED',INCOMPLETE:'CHƯA HOÀN CHỈNH'}},
-en:{theme:'Appearance',language:'Language',eyebrow:'XWEB / RELEASE TRACKER',subtitle:'Features · Backend/Frontend · QA/SEC · PROD flags · Release batches',featureList:'Feature tracking',labels:['Release batch','Progress','PROD flag','Risk','BE/FE integration'],any:'All',unassigned:'Unassigned',notApplicable:'Not applicable',incomplete:'Incomplete',high:'High',medium:'Medium',low:'Low',integratedYes:'Integrated',integratedNo:'Not integrated',reset:'Clear filters',search:'Search features, P0 IDs, PRs, descriptions…',heads:['No.','Feature','Status','Batch','Feature flag','QA/SEC','Details / next step'],total:'features',plan:'Planned',next:'Next',details:'Details',test:'Testing',batch:'Batch',flag:'Flag',status:'Status',noResults:'No matching results',updated:'Data updated',readError:'Unable to load status.json',r1:'Deployed',r2Done:'Deployed',processing:'In progress',prodOn:'PROD features ON',features:'Total features',released:'Production release recorded',uat:'Release logs · Owner UAT pending',verified:'PROD verified · flags in table',pending:'Awaiting release verification',interactive:'Interactive filters',error:'Data error',errorHint:'Check status.json',footer:'Source: GitHub and verified release logs. Deployment, enabled flags, and Owner UAT are separate statuses. This is not live data.',themeOptions:['System','Light','Dark'],stage:{PROD_ENABLED:'PROD ENABLED',PROD_VERIFIED:'PROD VERIFIED',PROD_DEPLOYED:'PROD CODE',DEV_INTEGRATED:'DEV MERGED',MAIN_PROMOTED:'MAIN PROMOTED',INCOMPLETE:'INCOMPLETE'}}};
+vi:{theme:'Giao diện',language:'Ngôn ngữ',eyebrow:'XWEB · LỘ TRÌNH · TRIỂN KHAI · NGHIỆM THU',subtitle:'Lộ trình, triển khai và nghiệm thu theo bằng chứng',featureList:'Danh sách tính năng',labels:['Đợt phát hành','Tiến độ','Cờ PROD','Rủi ro','BE/FE tích hợp'],any:'Tất cả',unassigned:'Chưa xếp',notApplicable:'Không áp dụng',incomplete:'Chưa hoàn chỉnh',high:'Cao',medium:'Trung bình',low:'Thấp',integratedYes:'Đã tích hợp',integratedNo:'Chưa đủ',reset:'Xóa bộ lọc',search:'Tìm tên tính năng, mã P0, PR, mô tả…',heads:['STT','Tính năng','Trạng thái','Đợt','Feature flag','QA/SEC','Chi tiết / bước tiếp'],total:'tính năng',plan:'Kế hoạch',next:'Tiếp',details:'Chi tiết',test:'Kiểm thử',batch:'Đợt',flag:'Cờ',status:'Trạng thái',noResults:'Không có kết quả khớp bộ lọc',updated:'Cập nhật dữ liệu',readError:'Không tải được status.json',r1:'Đã deploy',r2Done:'Đã deploy',processing:'Đang xử lý',prodOn:'Tính năng PROD ON',features:'Tổng tính năng',released:'Đã ghi nhận phát hành',uat:'Theo log phát hành · UAT chưa hoàn tất',verified:'PROD đã kiểm tra · flags theo bảng',pending:'Chờ xác minh release',interactive:'Bộ lọc tương tác',error:'Lỗi dữ liệu',errorHint:'Hãy kiểm tra status.json',footer:'Nguồn: Snapshot tổng hợp từ GitHub và nhật ký phát hành. Trạng thái phát hành, cờ và Owner UAT được phân biệt. Dữ liệu không phải thời gian thực.',themeOptions:['Theo máy','Sáng','Tối'],stage:{PROD_ENABLED:'PROD ENABLED',PROD_VERIFIED:'PROD VERIFIED',PROD_DEPLOYED:'PROD CODE',DEV_INTEGRATED:'DEV MERGED',MAIN_PROMOTED:'MAIN PROMOTED',INCOMPLETE:'CHƯA HOÀN CHỈNH'}},
+en:{theme:'Appearance',language:'Language',eyebrow:'XWEB · ROADMAP · ROLLOUT · ACCEPTANCE',subtitle:'Roadmap, rollout and acceptance, evidence first',featureList:'Feature tracking',labels:['Release batch','Progress','PROD flag','Risk','BE/FE integration'],any:'All',unassigned:'Unassigned',notApplicable:'Not applicable',incomplete:'Incomplete',high:'High',medium:'Medium',low:'Low',integratedYes:'Integrated',integratedNo:'Not integrated',reset:'Clear filters',search:'Search features, P0 IDs, PRs, descriptions…',heads:['No.','Feature','Status','Batch','Feature flag','QA/SEC','Details / next step'],total:'features',plan:'Planned',next:'Next',details:'Details',test:'Testing',batch:'Batch',flag:'Flag',status:'Status',noResults:'No matching results',updated:'Data updated',readError:'Unable to load status.json',r1:'Deployed',r2Done:'Deployed',processing:'In progress',prodOn:'PROD features ON',features:'Total features',released:'Production release recorded',uat:'Release logs · Owner UAT pending',verified:'PROD verified · flags in table',pending:'Awaiting release verification',interactive:'Interactive filters',error:'Data error',errorHint:'Check status.json',footer:'Source: GitHub and verified release logs. Deployment, enabled flags, and Owner UAT are separate statuses. This is not live data.',themeOptions:['System','Light','Dark'],stage:{PROD_ENABLED:'PROD ENABLED',PROD_VERIFIED:'PROD VERIFIED',PROD_DEPLOYED:'PROD CODE',DEV_INTEGRATED:'DEV MERGED',MAIN_PROMOTED:'MAIN PROMOTED',INCOMPLETE:'INCOMPLETE'}}};
 const titlesEn={'E1/E2+F1':'AI entitlement administration','I1+F5':'Import existing projects','J1':'Durable AI jobs','P0-16 A/C/G':'AI Context Manifest / Selector','P0-05/06':'Prompt composer / draft saving','P0-14':'XApp user experience','X1+F6':'Field-level data policy','B1/B1-1':'AI budget ledger','B2+F2':'Platform budget administration','B3+F3':'Request budget in Studio','UX13':'Data source onboarding UX','X2':'System data source catalog','X3':'Viewer data access scope','X4':'REST data write operations','X5':'AI understanding of internal data','P0-16 B/E':'Project map / memory','P0-17':'AI data integrations + themes / languages','P0-18':'Screenshot annotation for error reports','P0-19':'Edit Studio workspace redesign'};
 let lang='vi',mode='auto';
 function txt(key){return ui[lang][key]}
@@ -540,7 +596,13 @@ function updateThemeToggle(){const b=document.getElementById('theme');if(!b)retu
 function resolveTheme(){const dark=mode==='dark'||(mode==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=dark?'dark':'light';document.querySelector('meta[name="color-scheme"]').content=dark?'dark':'light'}
 function savePref(key,value){try{localStorage.setItem('xweb-'+key,value)}catch(e){}}
 function restorePref(key,fallback){try{return localStorage.getItem('xweb-'+key)||fallback}catch(e){return fallback}}
-function syncLanguage(){document.documentElement.lang=lang;document.getElementById('lang').title=txt('language')+' · '+(lang==='vi'?'Tiếng Việt':'English')+' · '+(lang==='vi'?'Bấm chuyển sang English':'Switch to Tiếng Việt');document.getElementById('lang').setAttribute('aria-label',document.getElementById('lang').title);updateThemeToggle();for(const [key,val] of Object.entries({theme:txt('theme'),language:txt('language'),eyebrow:txt('eyebrow'),subtitle:txt('subtitle'),featureList:txt('featureList')})){const node=document.querySelector('[data-i18n="'+key+'"]');if(node)node.textContent=val}document.querySelectorAll('.filterbar .field>span').forEach((e,i)=>e.textContent=txt('labels')[i]);const options=(id,words)=>{const sel=document.getElementById(id);words.forEach((v,i)=>{if(sel.options[i])sel.options[i].textContent=v})};options('batch',[txt('any'),'R1','R2',txt('unassigned')]);options('stage',[txt('any'),'PROD ENABLED','PROD CODE','DEV INTEGRATED','MAIN PROMOTED',txt('incomplete')]);options('flag',[txt('any'),'ON','OFF',txt('notApplicable')]);options('risk',[txt('any'),txt('high'),txt('medium'),txt('low')]);options('integrated',[txt('any'),txt('integratedYes'),txt('integratedNo')]);document.getElementById('q').placeholder=txt('search');document.getElementById('reset').textContent=txt('reset');document.querySelectorAll('thead th').forEach((e,i)=>e.textContent=txt('heads')[i]);document.getElementById('footerNote').textContent=txt('footer')}
+function syncLanguage(){document.documentElement.lang=lang;document.getElementById('lang').title=txt('language')+' · '+(lang==='vi'?'Tiếng Việt':'English')+' · '+(lang==='vi'?'Bấm chuyển sang English':'Switch to Tiếng Việt');document.getElementById('lang').setAttribute('aria-label',document.getElementById('lang').title);updateThemeToggle();for(const [key,val] of Object.entries({theme:txt('theme'),language:txt('language'),eyebrow:txt('eyebrow'),subtitle:txt('subtitle'),featureList:txt('featureList')})){const node=document.querySelector('[data-i18n="'+key+'"]');if(node)node.textContent=val}document.querySelectorAll('.filterbar .field>span').forEach((e,i)=>e.textContent=txt('labels')[i]);const options=(id,words)=>{const sel=document.getElementById(id);words.forEach((v,i)=>{if(sel.options[i])sel.options[i].textContent=v})};options('batch',[txt('any'),'R1','R2',txt('unassigned')]);options('stage',[txt('any'),'PROD ENABLED','PROD CODE','DEV INTEGRATED','MAIN PROMOTED',txt('incomplete')]);options('flag',[txt('any'),'ON','OFF',txt('notApplicable')]);options('risk',[txt('any'),txt('high'),txt('medium'),txt('low')]);options('integrated',[txt('any'),txt('integratedYes'),txt('integratedNo')]);document.getElementById('q').placeholder=txt('search');document.getElementById('reset').textContent=txt('reset');document.querySelectorAll('thead th').forEach((e,i)=>e.textContent=txt('heads')[i]);document.getElementById('footerNote').textContent=txt('footer');syncShellText()}
+function syncShellText(){const X=xs();document.title=X.title;document.getElementById('boardHeading').innerHTML='XWeb <span></span>';document.querySelector('#boardHeading span').textContent=X.brand;
+ document.querySelector('#boardSubtitle').textContent=txt('subtitle');
+ document.querySelectorAll('[data-board-tab]').forEach(t=>{t.querySelector('.board-tab-name').textContent=X.tabs[t.dataset.boardTab]});
+ document.getElementById('mainTabs').setAttribute('aria-label',X.mainLabel);document.getElementById('batchTabs').setAttribute('aria-label',X.batchLabel);document.getElementById('prodTabs').setAttribute('aria-label',X.prodLabel);
+ document.querySelectorAll('[data-batch-tab]').forEach(b=>{b.querySelector('.sub-name').textContent=X.batch+' '+b.dataset.batchTab});
+ document.querySelectorAll('[data-prod-tab]').forEach(b=>{b.querySelector('.sub-name').textContent=X.prodTabs[b.dataset.prodTab]})}
 function translateRecord(x){if(lang==='vi')return x.name;return titlesEn[x.id]||x.name}
 
 const stageLabel={PROD_ENABLED:'PROD ENABLED',PROD_VERIFIED:'PROD VERIFIED',PROD_DEPLOYED:'PROD CODE',DEV_INTEGRATED:'DEV MERGED',MAIN_PROMOTED:'MAIN PROMOTED',INCOMPLETE:'CHƯA HOÀN CHỈNH'}, riskLabel={HIGH:'Cao',MEDIUM:'Trung bình',LOW:'Thấp'};
@@ -549,114 +611,243 @@ function el(tag,cl,text){const e=document.createElement(tag);if(cl)e.className=c
 function cell(tr,label){const td=el('td');td.setAttribute('data-label',label);tr.append(td);return td}
 function stat(title,value,caption,cls=''){const card=el('div','stat');card.append(el('div','stat-label',title),el('div','stat-num '+cls,String(value)),el('div','stat-desc',caption));return card}
 
-let legacyFilter='all';
-function renderLegacyBacklog(){
- const data=payload?.post33Backlog;const host=document.getElementById('legacyItems');if(!host)return;
- const tr=lang==='vi',items=Array.isArray(data?.items)?data.items:[];
- const coverage=(x)=>x.coverage||'INDEPENDENT';
- const count=(kind)=>items.filter(x=>coverage(x)===kind).length;
- const covered=count('COVERED_BY_P33'),partial=count('PARTIALLY_COVERED'),independent=count('INDEPENDENT');
- document.getElementById('legacyTitle').textContent=tr?'Đối chiếu Phase 3.3 và công việc kế thừa':'Phase 3.3 scope & remaining work';
- document.getElementById('legacyDesc').textContent=tr?'23 tiêu chí được đối chiếu với 19 mục Phase 3.3: mục đã có chủ sở hữu không giao lại; các nghiệm thu còn thiếu vẫn phải có bằng chứng. Không coi trùng phạm vi là DONE.':'23 legacy/Phase 4 criteria mapped to the 19 Phase 3.3 workstreams. Shared scope avoids duplicate dispatch, not independent acceptance.';
- document.getElementById('legacyMeta').textContent=(tr?'Tổng dòng kiểm kê: ':'Tracked rows: ')+items.length;
- const overview=document.getElementById('legacyOverview');overview.replaceChildren();
- [[covered,tr?'Đã thuộc Phase 3.3':'Covered by P3.3'],[partial,tr?'Trùng một phần':'Partially covered'],[independent,tr?'Giữ độc lập / gate':'Independent / gates']].forEach(([n,label])=>{const k=el('div','legacy-overview-item');k.append(el('div','legacy-overview-num',String(n)),el('div','legacy-overview-label',label));overview.append(k)});
- const filterNames=tr?{all:'Tất cả',covered:'Đã thuộc P3.3',partial:'Trùng một phần',independent:'Việc độc lập',legacy:'Phase cũ',p4:'Phase 4',P0:'Ưu tiên P0',P1:'Ưu tiên P1',P2:'Ưu tiên P2'}:{all:'All',covered:'Covered by P3.3',partial:'Partial overlap',independent:'Independent',legacy:'Legacy phases',p4:'Phase 4',P0:'Priority P0',P1:'Priority P1',P2:'Priority P2'};
- document.querySelectorAll('[data-legacy-filter]').forEach(b=>{b.textContent=filterNames[b.dataset.legacyFilter]||b.dataset.legacyFilter;b.setAttribute('aria-pressed',String(b.dataset.legacyFilter===legacyFilter))});
- const show=items.filter(x=>legacyFilter==='all'||(legacyFilter==='covered'?coverage(x)==='COVERED_BY_P33':legacyFilter==='partial'?coverage(x)==='PARTIALLY_COVERED':legacyFilter==='independent'?coverage(x)==='INDEPENDENT':legacyFilter==='legacy'?!x.id.startsWith('P4-'):legacyFilter==='p4'?x.id.startsWith('P4-'):x.priority===legacyFilter));
- host.replaceChildren();
- const badgeLabels=tr?{COVERED_BY_P33:'Đã thuộc P3.3',PARTIALLY_COVERED:'Trùng một phần',INDEPENDENT:'Giữ độc lập'}:{COVERED_BY_P33:'Covered',PARTIALLY_COVERED:'Partial overlap',INDEPENDENT:'Independent'};
- const stateLabels=tr?{VERIFY:'CẦN NGHIỆM THU',PARTIAL:'MỘT PHẦN / CHƯA ĐỦ BẰNG CHỨNG',BACKLOG:'BACKLOG CHƯA XÁC MINH ĐÓNG',PLANNED:'PHASE 4 — KẾ HOẠCH'}:{VERIFY:'ACCEPTANCE TO VERIFY',PARTIAL:'PARTIAL / UNVERIFIED',BACKLOG:'BACKLOG NOT CLOSED',PLANNED:'PHASE 4 — PLANNED'};
- show.forEach(x=>{
-  const card=el('details','legacy-card'),sum=el('summary'),id=el('span','legacy-id',x.id),group=el('div');group.style.flex='1';
-  group.append(el('div','legacy-name',tr?x.name:x.nameEn),el('div','legacy-phase',x.phase));
-  const c=coverage(x);
-  sum.append(id,group,el('span','legacy-coverage '+c.toLowerCase(),badgeLabels[c]||c),el('span','legacy-p '+x.priority.toLowerCase(),x.priority),el('span','legacy-chevron','⌄'));
-  const body=el('div','legacy-body');
-  body.append(el('div','legacy-state',stateLabels[x.status]||x.status),el('p','',tr?x.detail:x.detailEn));
-  if(x.coverageNote||x.coverageNoteEn){const note=el('p','legacy-overlap-note',tr?x.coverageNote:x.coverageNoteEn);body.append(note)}
-  if(Array.isArray(x.coveredBy)&&x.coveredBy.length){
-    const rel=el('div','legacy-links');rel.append(el('strong','',tr?'Liên kết với Phase 3.3: ':'Related Phase 3.3: '));
-    x.coveredBy.forEach(key=>{const feature=payload.features.find(f=>f.id===key);if(!feature)return;const a=el('a','legacy-link',key+' · '+(tr?feature.name:(titlesEn[key]||feature.name)));a.href='#phase33';a.addEventListener('click',e=>{e.preventDefault();setBoardView('p33');openFeature(key)});rel.append(a)});
-    body.append(rel);
-  }
-  if(x.sharedGate==='OPERATIONS_DR')body.append(el('p','legacy-shared-gate',tr?'Dùng chung chương trình DR/restore với '+(x.id==='LEG-14'?'P4-04':'LEG-14')+' — không phân công hoặc đếm nghiệm thu hai lần.':'Share the DR/restore evidence and owner with '+(x.id==='LEG-14'?'P4-04':'LEG-14')+'.'));
-  body.append(el('p','',((tr?'Bước tiếp: ':'Next: ')+(tr?x.next:x.nextEn))));
-  if(/^https:\/\/github\.com\/luan20495\//.test(x.source)){const link=el('a','',tr?'Xem issue / PR gốc ↗':'Open source issue / PR ↗');link.href=x.source;link.target='_blank';link.rel='noopener noreferrer';body.append(link)}
-  card.append(sum,body);host.append(card);
- });
- document.getElementById('legacyNote').textContent=(tr?'Đang hiển thị ':'Showing ')+show.length+'/'+items.length+(tr?' dòng. Phân loại phạm vi ≠ hoàn thành; PR/CI/QA/Owner UAT tiếp tục nghiệm thu độc lập.':' rows. Scope mapping is not completion; PR/CI/QA/Owner UAT still require separate evidence.');
+/* ===== Shell strings (vi/en) for the 4-tab layout ===== */
+const XS={
+vi:{title:'XWeb • Bảng điều hành',brand:'Bảng điều hành',mainLabel:'Khu vực chính',batchLabel:'Chọn đợt',prodLabel:'Phân loại mục đã lên PROD',tabs:{roadmap:'Lộ trình',process:'Quy trình & cấu hình',prod:'Đã lên PROD',owner:'Chờ anh quyết'},batch:'Đợt',prodTabs:{done:'Hoàn tất',on:'Đã bật, chưa hoàn tất'},
+ eta:'Dự kiến',doneOf:'đã hoàn tất',countsOnly:'Chỉ đếm số mục đã hoàn tất (QA/SEC độc lập + đã kiểm trên PROD + Owner chấp nhận); không có phần trăm ước lượng.',
+ plan:'Kế hoạch đợt',work:'Việc đang theo dõi',feats:'Hạng mục nền tảng chưa bật trên PROD',backlog:'Hạng mục kế thừa và kế hoạch dài hạn',
+ emptyBatchT:'Đợt này không còn mục mở',emptyBatchD:'Mọi mục thuộc đợt đã hoàn tất. Xem tab Đã lên PROD, mục Hoàn tất.',emptyBatchNoneT:'Chưa có mục nào gắn với đợt này',emptyBatchNoneD:'Khi có mục được gắn đợt trong status.json, chúng sẽ hiện ở đây.',
+ emptyDoneT:'Chưa có mục hoàn tất',emptyDoneD:'Một mục chỉ hoàn tất khi có QA/SEC độc lập, đã kiểm trên PROD và Owner chấp nhận. Bật công tắc trên PROD chưa đủ.',
+ doneNote:'Hoàn tất = QA/SEC độc lập đạt + đã kiểm trên PROD + Owner chấp nhận. Chỉ những mục như vậy nằm ở đây.',
+ onNote:'ON không có nghĩa là hoàn tất. Các mục dưới đây đã bật hoặc hiển thị trên PROD nhưng chưa đủ E2E độc lập và Owner chấp nhận.',
+ foundOn:'đã bật trên PROD',foundClosed:'đã hoàn tất (xong hẳn)',foundOpen:'chưa bật hoặc còn phát triển',foundPtr:'Xem các hạng mục đã bật',
+ offTitle:'Ngoài lộ trình',offNote:'Audit đã xong và việc tạm gác: không thuộc đợt nào, giữ lại để tra cứu.',
+ onWork:'Việc giao đã ON trên PROD',onFeats:'Tiến độ 19 hạng mục nền tảng',closedPill:'HOÀN TẤT',closedAt:'Hoàn tất lúc',hist:'Lịch sử cập nhật',
+ owner:{title:'Chờ anh quyết hoặc thao tác',pending:' việc đang chờ',aria:'Chờ anh quyết: ',empty:'Hiện không có mục nào chờ anh quyết.'},
+ part:'Phần của đợt này: ',related:'Liên kết với nhóm 19 hạng mục: ',cov:{COVERED_BY_P33:'Đã thuộc nhóm 19',PARTIALLY_COVERED:'Trùng một phần',INDEPENDENT:'Giữ độc lập'}},
+en:{title:'XWeb • Delivery Control',brand:'Delivery Control',mainLabel:'Main sections',batchLabel:'Choose batch',prodLabel:'Items live on PROD',tabs:{roadmap:'Roadmap',process:'Process & settings',prod:'Live on PROD',owner:'Awaiting you'},batch:'Batch',prodTabs:{done:'Closed',on:'Live, not closed'},
+ eta:'Target',doneOf:'closed',countsOnly:'Counts only closed items (independent QA/SEC + verified on PROD + Owner accepted); no estimated percentages.',
+ plan:'Batch plan',work:'Tracked work',feats:'Foundation items not yet live on PROD',backlog:'Inherited items and long-range plan',
+ emptyBatchT:'No open items in this batch',emptyBatchD:'Every item in this batch is closed. See Live on PROD, Closed.',emptyBatchNoneT:'Nothing is assigned to this batch yet',emptyBatchNoneD:'Items tagged with this batch in status.json will appear here.',
+ emptyDoneT:'Nothing closed yet',emptyDoneD:'An item is closed only with independent QA/SEC, PROD verification and Owner acceptance. A switch being ON is not enough.',
+ doneNote:'Closed = independent QA/SEC passed + verified on PROD + Owner accepted. Only such items live here.',
+ onNote:'ON does not mean closed. Items below are enabled or visible on PROD but still lack independent E2E and Owner acceptance.',
+ foundOn:'enabled on PROD',foundClosed:'closed (fully done)',foundOpen:'not live or still in development',foundPtr:'See the items already live',
+ offTitle:'Off the roadmap',offNote:'Finished audits and parked work: not part of any batch, kept for reference.',
+ onWork:'Assigned work that is ON in PROD',onFeats:'Progress of the 19 foundation items',closedPill:'CLOSED',closedAt:'Closed at',hist:'Update history',
+ owner:{title:'Awaiting your decision or action',pending:' pending',aria:'Awaiting you: ',empty:'Nothing is waiting for your decision.'},
+ part:'This batch covers: ',related:'Linked to the 19 foundation items: ',cov:{COVERED_BY_P33:'In the 19 items',PARTIALLY_COVERED:'Partial overlap',INDEPENDENT:'Independent'}}};
+const xs=()=>XS[lang];
+const stripTag=s=>String(s||'').replace(/^\[[^\]]*\]\s*/,'');
+const stripBatchPrefix=s=>String(s||'').replace(/^(Đợt|Batch) \d+ · /,'');
+const fmtIct=(v,opts)=>{const d=new Date(v);return isNaN(d)?String(v||''):d.toLocaleString(lang==='vi'?'vi-VN':'en-US',Object.assign({timeZone:'Asia/Ho_Chi_Minh'},opts||{dateStyle:'medium',timeStyle:'short'}))};
+const checkSvg=()=>{const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 24 24');s.setAttribute('width','12');s.setAttribute('height','12');s.setAttribute('fill','none');s.setAttribute('stroke','currentColor');s.setAttribute('stroke-width','3');s.setAttribute('stroke-linecap','round');s.setAttribute('stroke-linejoin','round');s.setAttribute('aria-hidden','true');s.innerHTML='<path d="m5 12 5 5L20 7"/>';return s};
+function emptyState(title,desc,iconPath){const d=el('div','empty-state');const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 24 24');s.setAttribute('fill','none');s.setAttribute('stroke','currentColor');s.setAttribute('stroke-width','1.6');s.setAttribute('stroke-linecap','round');s.setAttribute('stroke-linejoin','round');s.setAttribute('aria-hidden','true');s.innerHTML=iconPath||'<circle cx="12" cy="12" r="9"/><path d="m8.5 12.5 2.5 2.5 4.5-5"/>';d.append(s,el('strong','',title),el('p','',desc));return d}
+
+/* ===== Backlog card (inherited items), reused inside roadmap batches and the Closed list ===== */
+function legacyCard(x,batchNo){
+ const tr=lang==='vi',X=xs();
+ const card=el('details','legacy-card'),sum=el('summary'),id=el('span','legacy-id',x.id),group=el('div');group.style.flex='1';
+ group.append(el('div','legacy-name',tr?x.name:(x.nameEn||x.name)),el('div','legacy-phase',x.phase));
+ const part=x.batchPart&&batchNo!=null?x.batchPart[String(batchNo)]:null;
+ if(part)group.append(el('div','part-chip legacy-part',X.part+part));
+ const c=x.coverage||'INDEPENDENT';
+ sum.append(id,group,el('span','legacy-coverage '+c.toLowerCase(),X.cov[c]||c),el('span','legacy-p '+String(x.priority||'p2').toLowerCase(),x.priority||''),el('span','legacy-chevron','⌄'));
+ const stateLabels=tr?{VERIFY:'CẦN NGHIỆM THU',PARTIAL:'MỘT PHẦN / CHƯA ĐỦ BẰNG CHỨNG',BACKLOG:'BACKLOG CHƯA XÁC MINH ĐÓNG',PLANNED:'KẾ HOẠCH'}:{VERIFY:'ACCEPTANCE TO VERIFY',PARTIAL:'PARTIAL / UNVERIFIED',BACKLOG:'BACKLOG NOT CLOSED',PLANNED:'PLANNED'};
+ const body=el('div','legacy-body');
+ body.append(el('div','legacy-state',stateLabels[x.status]||x.status),el('p','',tr?x.detail:(x.detailEn||x.detail)));
+ if(x.coverageNote||x.coverageNoteEn){body.append(el('p','legacy-overlap-note',tr?x.coverageNote:(x.coverageNoteEn||x.coverageNote)))}
+ if(Array.isArray(x.coveredBy)&&x.coveredBy.length){
+  const rel=el('div','legacy-links');rel.append(el('strong','',X.related));
+  x.coveredBy.forEach(key=>{const feature=payload.features.find(f=>f.id===key);if(!feature)return;const a=el('a','legacy-link',key+' · '+(tr?feature.name:(titlesEn[key]||feature.name)));a.href='#prod/on';a.addEventListener('click',e=>{e.preventDefault();setBoardView('prod',true,'on');openFeature(key)});rel.append(a)});
+  body.append(rel);
+ }
+ if(x.sharedGate==='OPERATIONS_DR')body.append(el('p','legacy-shared-gate',tr?'Dùng chung chương trình DR/restore với '+(x.id==='LEG-14'?'P4-04':'LEG-14')+' — không phân công hoặc đếm nghiệm thu hai lần.':'Share the DR/restore evidence and owner with '+(x.id==='LEG-14'?'P4-04':'LEG-14')+'.'));
+ body.append(el('p','',(tr?'Bước tiếp: ':'Next: ')+stripTag(tr?x.next:(x.nextEn||x.next))));
+ if(/^https:\/\/github\.com\/luan20495\//.test(x.source||'')){const link=el('a','',tr?'Xem issue / PR gốc ↗':'Open source issue / PR ↗');link.href=x.source;link.target='_blank';link.rel='noopener noreferrer';body.append(link)}
+ card.append(sum,body);return card;
 }
-document.querySelectorAll('[data-legacy-filter]').forEach(b=>b.addEventListener('click',()=>{legacyFilter=b.dataset.legacyFilter;renderLegacyBacklog()}));
 
-
-/* 2026-11-09: tab "Việc hôm nay": renders payload.dailyWork (data only, no HTML injection: textContent) */
-let todayFilter='all';
+/* ===== Assigned-work card (dailyWork item): textContent only, no HTML injection ===== */
 const TODAY_GROUPS=[['ON_PROD','Đã ON trên PROD','ON in PROD'],['DEV_WAIT','Đã ở dev, chờ lên PROD','In dev, waiting for PROD'],['IN_PROGRESS','Đang làm','In progress'],['AUDIT_DONE','Audit/kiểm tra đã xong','Audits/checks done'],['PLANNED','Chưa bắt đầu / kế hoạch','Planned / not started'],['WAIT_OWNER','Chờ Owner','Waiting for Owner'],['PARKED','Tạm gác','Parked']];
-function renderToday(){
- const dw=payload&&payload.dailyWork;const tr=lang==='vi';const tab=document.getElementById('todayTabCount');
- if(!dw||!Array.isArray(dw.items)){if(tab)tab.textContent='0';return}
- tab.textContent=String(dw.items.length);
- const when=new Date(dw.updatedAt);
- document.getElementById('todayTitle').textContent=tr?dw.title:'Work assigned on 09/11: PROD progress';
- document.getElementById('todayMeta').textContent=(tr?'Cập nhật: ':'Updated: ')+(isNaN(when)?dw.updatedAt:when.toLocaleString(tr?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}));
- document.getElementById('todayNote').textContent=tr?dw.note:'Grouped by real status. ON = running in PROD and checked; it does not mean the Owner accepted it. No secrets or finance details.';
- const sum=document.getElementById('todaySum');sum.replaceChildren();
- const mk=(key,label,n)=>{const b=el('button','today-chip');b.type='button';b.setAttribute('aria-pressed',String(todayFilter===key));b.append(document.createTextNode(label));const c=document.createElement('b');c.textContent=String(n);b.append(c);b.addEventListener('click',()=>{todayFilter=key;renderToday()});sum.append(b)};
- mk('all',tr?'Tất cả':'All',dw.items.length);
- for(const [g,vi,en] of TODAY_GROUPS){const n=dw.items.filter(x=>x.group===g).length;if(n)mk(g,tr?vi:en,n)}
- const host=document.getElementById('todayList');host.replaceChildren();
- const order=TODAY_GROUPS.map(x=>x[0]);
- const show=dw.items.filter(x=>todayFilter==='all'||x.group===todayFilter).sort((a,b)=>order.indexOf(a.group)-order.indexOf(b.group));
- for(const x of show){
-  const card=el('article','today-card');const top=el('div','today-top');
-  top.append(el('div','today-title',(x.id+' · ')+(tr?x.title:(x.titleEn||x.title))));
-  const g=TODAY_GROUPS.find(y=>y[0]===x.group);top.append(el('span','today-pill today-g-'+x.group,g?(tr?g[1]:g[2]):x.group));
-  card.append(top);
-  card.append(el('div','today-status',tr?x.status:(x.statusEn||x.status)));
-  const meta=el('div','today-meta');
-  if(x.prs)meta.append(el('span','','PR: '+x.prs));
-  if(x.eta)meta.append(el('span','',(tr?'Dự kiến: ':'ETA: ')+x.eta));
-  if(x.evidence)meta.append(el('span','',(tr?'Bằng chứng: ':'Evidence: ')+x.evidence));
-  if(meta.childNodes.length)card.append(meta);
-  if(x.etaFirst||x.etaFull){const eta=el('div','today-meta');if(x.prio)eta.append(el('span','',(tr?'Ưu tiên ':'Priority ')+x.prio));if(x.etaFirst)eta.append(el('span','',x.etaFirst));if(x.etaFull)eta.append(el('span','',x.etaFull));if(x.etaFallback)eta.append(el('span','',x.etaFallback));card.append(eta)}
-  if(Array.isArray(x.accept)&&x.accept.length){const det=document.createElement('details');det.className='today-meta';const sm=document.createElement('summary');sm.textContent=(tr?'Tiêu chí nghiệm thu':'Acceptance criteria')+' ('+x.accept.length+')';det.append(sm);const ul=document.createElement('ul');for(const a of x.accept){const li=document.createElement('li');li.textContent=a;ul.append(li)}det.append(ul);card.append(det)}
-  host.append(card);
- }
+const GROUP_ORDER=['IN_PROGRESS','DEV_WAIT','WAIT_OWNER','PLANNED','ON_PROD','AUDIT_DONE','PARKED'];
+function workCard(x,o={}){
+ const tr=lang==='vi',X=xs();
+ const card=el('article','today-card');const closed=x.closed===true;if(closed)card.classList.add('is-closed');
+ const top=el('div','today-top');
+ const raw=tr?x.title:(x.titleEn||x.title);
+ const idPart=/^D\d/.test(x.id)?'':x.id+' · ';
+ top.append(el('div','today-title',idPart+(o.stripPrefix?stripBatchPrefix(raw):raw)));
+ if(closed){const p=el('span','today-pill pill-closed');p.append(checkSvg(),document.createTextNode(X.closedPill));top.append(p)}
+ else{const g=TODAY_GROUPS.find(y=>y[0]===x.group);top.append(el('span','today-pill today-g-'+x.group,g?(tr?g[1]:g[2]):x.group))}
+ card.append(top);
+ const st=String(tr?x.status:(x.statusEn||x.status)||'').split(' | ');
+ card.append(el('div','today-status',st[0]));
+ const meta=el('div','today-meta');
+ if(closed&&x.closedAt)meta.append(el('span','',X.closedAt+' '+fmtIct(x.closedAt)));
+ if(x.prs)meta.append(el('span','','PR: '+x.prs));
+ if(x.eta&&!closed)meta.append(el('span','',(tr?'Dự kiến: ':'ETA: ')+x.eta));
+ if(x.evidence)meta.append(el('span','',(tr?'Bằng chứng: ':'Evidence: ')+x.evidence));
+ if(meta.childNodes.length)card.append(meta);
+ if(!closed&&((x.etaFirst&&x.etaFirst!==x.eta)||x.etaFull)){const eta=el('div','today-meta');if(x.prio)eta.append(el('span','',(tr?'Ưu tiên ':'Priority ')+x.prio));if(x.etaFirst&&x.etaFirst!==x.eta)eta.append(el('span','',x.etaFirst));if(x.etaFull)eta.append(el('span','',x.etaFull));if(x.etaFallback)eta.append(el('span','',x.etaFallback));card.append(eta)}
+ if(st.length>1){const det=document.createElement('details');det.className='hist';const sm=document.createElement('summary');sm.textContent=X.hist+' ('+(st.length-1)+')';det.append(sm);const ol=document.createElement('ol');for(const s of st.slice(1)){const li=document.createElement('li');li.textContent=s;ol.append(li)}det.append(ol);card.append(det)}
+ if(Array.isArray(x.accept)&&x.accept.length){const det=document.createElement('details');det.className='today-meta';const sm=document.createElement('summary');sm.textContent=(tr?'Tiêu chí nghiệm thu':'Acceptance criteria')+' ('+x.accept.length+')';det.append(sm);const ul=document.createElement('ul');for(const a of x.accept){const li=document.createElement('li');li.textContent=a;ul.append(li)}det.append(ul);card.append(det)}
+ return card;
 }
 
-/* One dashboard URL, two independent views; no changes to status.json schema */
-let activeBoardView='p33';
-function setBoardView(view,updateHash=true){
- if(!['p33','owner','today','rest','process'].includes(view))view='p33';
- activeBoardView=view;
- for(const tab of document.querySelectorAll('[data-board-tab]')){
-  const chosen=tab.dataset.boardTab===view;
-  tab.setAttribute('aria-selected',String(chosen));
-  tab.tabIndex=chosen?0:-1;
- }
- document.getElementById('view-p33').hidden=view!=='p33';document.getElementById('view-owner').hidden=view!=='owner';
- document.getElementById('view-rest').hidden=view!=='rest';document.getElementById('view-today').hidden=view!=='today';document.getElementById('view-process').hidden=view!=='process';
- const names=lang==='vi'?['Phase 3.3','Cần anh xử lý','Việc hôm nay','Các Phase còn lại','Quy trình & cấu hình']:['Phase 3.3','Your actions','Today\'s work','Other phases','Process & settings'];
- document.getElementById('boardHeading').innerHTML=view==='process'?(lang==='vi'?'Quy trình <span>& cấu hình</span>':'Process <span>& settings</span>'):view==='p33'?'Phase 3.3 <span>Release Board</span>':view==='owner'?(lang==='vi'?'Việc cần <span>anh xử lý</span>':'Your <span>action items</span>'):view==='today'?(lang==='vi'?'Việc giao <span>hôm nay</span>':'Today\'s <span>work</span>'):(lang==='vi'?'XWeb <span>Lộ trình tiếp theo</span>':'XWeb <span>Remaining Roadmap</span>');
- document.getElementById('boardSubtitle').textContent=view==='process'?(lang==='vi'?'Mọi quy tắc đã chỉ đạo: Git, deploy, agent, báo cáo. Sửa rồi gửi để Claude áp dụng.':'All standing rules: Git, deploy, agents, reporting. Edit and send.'):view==='p33'?(lang==='vi'?'Tiến độ tổng quan · Bấm từng mục để xem chi tiết.':'At-a-glance progress · Select a card for details.'):view==='owner'?(lang==='vi'?'Chỉ các việc chưa xử lý. Bấm từng việc để xem đầy đủ.':'Only pending actions. Expand for details.'):view==='today'?(lang==='vi'?'Tiến độ lên PROD của các việc Owner giao ngày 09/11.':'PROD progress of the work assigned on 09/11.'):(lang==='vi'?'Công việc kế thừa và kế hoạch Phase 4.':'Legacy work and Phase 4.');
-
- document.querySelectorAll('[data-board-tab]').forEach((tab,i)=>{tab.querySelector('.board-tab-name').textContent=names[i]});
- const hash=view==='process'?'#process':view==='rest'?'#remaining':view==='owner'?'#owner':view==='today'?'#today':'#phase33';if(updateHash&&window.location.hash!==hash)history.replaceState(null,'',hash);
+/* ===== Roadmap: 6 batches. Data-driven by optional `batch` (1..6 or array) / `closed` / `batchPlan` fields; falls back gracefully ===== */
+const BATCH_NUMS=[1,2,3,4,5,6];
+const toBatches=b=>(Array.isArray(b)?b:(b===undefined||b===null||b===''?[]:[b])).map(Number).filter(n=>Number.isInteger(n)&&n>=1&&n<=6);
+const tagBatches=t=>{const m=/^\[(.*?)\]/.exec(String(t||''));return m?[...m[1].matchAll(/Đợt (\d)/g)].map(r=>Number(r[1])).filter(n=>n>=1&&n<=6):[]};
+const isPlanItem=x=>x.batchPlan===true||/^D[2-6]$/.test(String(x.id));
+function dwBatches(x){
+ if(Array.isArray(x.batch)&&!x.batch.length)return [];
+ const b=toBatches(x.batch);if(b.length)return b;
+ const m=/^D(\d)(?:\.\d+)?$/.exec(String(x.id));if(m&&+m[1]>=1&&+m[1]<=6)return [+m[1]];
+ return ['IN_PROGRESS','PLANNED','DEV_WAIT','WAIT_OWNER'].includes(x.group)?[2]:[];
 }
-document.querySelectorAll('[data-board-tab]').forEach(tab=>{
- tab.addEventListener('click',()=>setBoardView(tab.dataset.boardTab));
- tab.addEventListener('keydown',e=>{
-  if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
-  e.preventDefault();
-  const all=['p33','owner','today','rest','process'];const i=all.indexOf(activeBoardView);
-  const next=e.key==='Home'?'p33':e.key==='End'?'rest':all[(i+(e.key==='ArrowRight'?1:-1)+all.length)%all.length];
-  setBoardView(next);document.querySelector('[data-board-tab="'+next+'"]').focus();
+const blBatches=x=>{const b=toBatches(x.batch);return b.length?b:tagBatches(x.next)};
+const natCmp=(a,b)=>String(a).localeCompare(String(b),'en',{numeric:true});
+function collectRoadmap(){
+ const B={};for(const n of BATCH_NUMS)B[n]={n,plan:null,work:[],feats:[],backlog:[],total:0,done:0};
+ const off=[],open=new Set();
+ for(const x of (payload?.dailyWork?.items||[])){
+  const bs=dwBatches(x);
+  if(isPlanItem(x)){for(const n of (bs.length?bs:[])) B[n].plan=x;continue}
+  if(!bs.length){if(['AUDIT_DONE','PARKED'].includes(x.group)&&x.closed!==true)off.push(x);continue}
+  for(const n of bs){const b=B[n];b.total++;if(x.closed===true)b.done++;else{b.work.push(x);open.add('W:'+x.id)}}
+ }
+ for(const f of (payload?.features||[])){
+  const b=B[3];b.total++;
+  if(f.closed===true)b.done++;
+  else if(!isFeatureOn(f)){open.add('F:'+f.id);b.feats.push(f)}
+ }
+ for(const x of (payload?.post33Backlog?.items||[])){
+  for(const n of blBatches(x)){const b=B[n];b.total++;if(x.closed===true)b.done++;else{b.backlog.push(x);open.add('L:'+x.id)}}
+ }
+ for(const n of BATCH_NUMS){const b=B[n];b.work.sort((p,q)=>(GROUP_ORDER.indexOf(p.group)-GROUP_ORDER.indexOf(q.group))||natCmp(p.id,q.id));b.backlog.sort((p,q)=>natCmp(p.id,q.id))}
+ return {B,off,open};
+}
+function batchMeta(n){const a=payload?.roadmap?.batches;const m=Array.isArray(a)?a.find(b=>Number(b.n)===n):null;return m||{n}}
+function section(title,count){const s=el('section','sect');const h=el('h3','',title);h.append(el('span','n',String(count)));s.append(h);return s}
+function renderRoadmap(){
+ const host=document.getElementById('batchPanel');if(!host)return;const X=xs(),tr=lang==='vi';
+ const R=payload?collectRoadmap():null;
+ const nOpen=R?R.open.size:0;const rc=document.getElementById('roadmapTabCount');if(rc)rc.textContent=payload?String(nOpen):'';
+ document.querySelectorAll('[data-batch-tab]').forEach(b=>{
+  const n=+b.dataset.batchTab;const c=b.querySelector('.sub-count');b.querySelector('.sub-name').textContent=X.batch+' '+n;
+  if(R){const left=R.B[n].total-R.B[n].done;c.textContent=R.B[n].total?String(left):'';b.setAttribute('aria-label',X.batch+' '+n+(R.B[n].total?', '+R.B[n].done+'/'+R.B[n].total+' '+X.doneOf:''))}
  });
-});
-window.addEventListener('hashchange',()=>setBoardView(window.location.hash==='#process'?'process':window.location.hash==='#remaining'?'rest':window.location.hash==='#owner'?'owner':window.location.hash==='#today'?'today':'p33',false));
+ host.replaceChildren();
+ const n=roadmapBatch;host.dataset.b=String(n);
+ if(!R){host.append(el('p','owner-empty',tr?'Đang đọc dữ liệu…':'Loading…'));return}
+ const b=R.B[n],meta=batchMeta(n);
+ const head=el('header','batch-head');head.dataset.b=String(n);
+ const kick=el('div','batch-kicker');kick.append(el('span','',X.batch+' '+n));
+ const eta=tr?meta.eta:(meta.etaEn||meta.eta);if(eta)kick.append(el('span','eta',X.eta+': '+eta));
+ head.append(kick,el('h2','',(tr?meta.title:(meta.titleEn||meta.title))||X.batch+' '+n));
+ const goal=tr?meta.goal:(meta.goalEn||meta.goal);if(goal)head.append(el('p','batch-goal',goal));
+ const bp=el('div','bp');const track=el('div','bp-track');track.setAttribute('role','progressbar');track.setAttribute('aria-valuemin','0');track.setAttribute('aria-valuemax',String(b.total));track.setAttribute('aria-valuenow',String(b.done));track.setAttribute('aria-label',X.batch+' '+n+': '+b.done+'/'+b.total+' '+X.doneOf);
+ const fill=el('div','bp-fill');fill.style.width=(b.total?Math.round(b.done/b.total*100):0)+'%';track.append(fill);
+ bp.append(track,el('span','bp-num',b.done+'/'+b.total+' '+X.doneOf),el('p','bp-note',X.countsOnly));head.append(bp);
+ if(n===3){
+  const feats=payload.features,on=feats.filter(isFeatureOn).length,closed=feats.filter(f=>f.closed===true).length;
+  const f=el('div','found');
+  [[on+'/'+feats.length,X.foundOn],[closed+'/'+feats.length,X.foundClosed],[String(feats.length-on),X.foundOpen]].forEach(([v,l])=>{const k=el('div','found-item');k.append(el('div','found-num',v),el('div','found-label',l));f.append(k)});
+  const d3=(payload.dailyWork?.items||[]).find(x=>x.id==='D3');
+  if(d3&&d3.status)f.append(el('p','found-note',String(d3.status).split(' | ')[0]));
+  const ptr=el('button','linkbtn',X.foundPtr+' ›');ptr.type='button';ptr.addEventListener('click',()=>setBoardView('prod',true,'on'));f.append(ptr);
+  head.append(f);
+ }
+ host.append(head);
+ if(b.plan){const pd=document.createElement('details');pd.className='plan-card';const sm=document.createElement('summary');sm.textContent=X.plan+' · '+stripBatchPrefix(tr?b.plan.title:(b.plan.titleEn||b.plan.title));pd.append(sm);const pb=el('div','plan-body');pb.append(el('div','',String((tr?b.plan.status:(b.plan.statusEn||b.plan.status))||'').split(' | ')[0]));if(b.plan.eta)pb.append(el('div','today-meta',(tr?'Dự kiến: ':'ETA: ')+b.plan.eta));if(Array.isArray(b.plan.accept)&&b.plan.accept.length){const ul=document.createElement('ul');for(const a of b.plan.accept){const li=document.createElement('li');li.textContent=a;ul.append(li)}pb.append(ul)}pd.append(pb);host.append(pd)}
+ let shown=0;
+ if(b.work.length){const s=section(X.work,b.work.length);const l=el('div','today-list');b.work.forEach(x=>l.append(workCard(x,{stripPrefix:true})));s.append(l);host.append(s);shown+=b.work.length}
+ if(b.feats.length){const s=section(X.feats,b.feats.length);const l=el('div','progress-items');b.feats.forEach(x=>l.append(progressCard(x)));s.append(l);host.append(s);shown+=b.feats.length}
+ if(b.backlog.length){const s=section(X.backlog,b.backlog.length);const l=el('div','legacy-grid');b.backlog.forEach(x=>l.append(legacyCard(x,n)));s.append(l);host.append(s);shown+=b.backlog.length}
+ if(!shown){const sec=el('section','sect');sec.append(b.total?emptyState(X.emptyBatchT,X.emptyBatchD):emptyState(X.emptyBatchNoneT,X.emptyBatchNoneD,'<rect x="4" y="5" width="16" height="14" rx="3"/><path d="M8 10h8M8 14h5"/>'));host.append(sec)}
+ const off=document.getElementById('offRoadmap');
+ if(off){off.hidden=!R.off.length;if(R.off.length){off.querySelector('.off-count').textContent=String(R.off.length);off.querySelector('.off-title').textContent=X.offTitle;off.querySelector('.off-note').textContent=X.offNote;const l=off.querySelector('.today-list');l.replaceChildren();R.off.forEach(x=>l.append(workCard(x)))}}
+}
 
-let progressFilter='all';
+/* ===== PROD: Closed / Live but not closed ===== */
+function featureClosedCard(x){
+ const X=xs(),tr=lang==='vi';const card=el('article','today-card is-closed');const top=el('div','today-top');
+ top.append(el('div','today-title',x.id+' · '+translateRecord(x)));const p=el('span','today-pill pill-closed');p.append(checkSvg(),document.createTextNode(X.closedPill));top.append(p);
+ card.append(top,el('div','today-status',tr?x.summary:(x.summary||'')));
+ const b=el('button','linkbtn',tr?'Xem chi tiết ›':'View details ›');b.type='button';b.addEventListener('click',()=>openFeature(x.id));card.append(b);return card;
+}
+function renderProd(){
+ if(!payload)return;const X=xs(),tr=lang==='vi';
+ const dwAll=payload.dailyWork?.items||[],feats=payload.features,bl=payload.post33Backlog?.items||[];
+ const doneDw=dwAll.filter(x=>x.closed===true),doneF=feats.filter(f=>f.closed===true),doneB=bl.filter(x=>x.closed===true);
+ const nDone=doneDw.length+doneF.length+doneB.length;
+ const onDw=dwAll.filter(x=>x.group==='ON_PROD'&&x.closed!==true).sort((a,b)=>natCmp(a.id,b.id));
+ const nOn=feats.filter(f=>isFeatureOn(f)&&f.closed!==true).length+onDw.length;
+ document.getElementById('prodDoneCount').textContent=String(nDone);document.getElementById('prodOnCount').textContent=String(nOn);
+ const pc=document.getElementById('prodTabCount');if(pc)pc.textContent=String(nOn);
+ document.querySelectorAll('[data-prod-tab]').forEach(b=>{b.querySelector('.sub-name').textContent=X.prodTabs[b.dataset.prodTab]});
+ /* Closed */
+ const dh=document.getElementById('prodDoneBody');dh.replaceChildren();
+ dh.append(el('p','callout ok',X.doneNote));
+ if(!nDone)dh.append(emptyState(X.emptyDoneT,X.emptyDoneD));
+ else{const l=el('div','today-list');doneDw.forEach(x=>l.append(workCard(x,{stripPrefix:true})));doneF.forEach(x=>l.append(featureClosedCard(x)));doneB.forEach(x=>l.append(legacyCard(x)));dh.append(l)}
+ /* Live, not closed */
+ const note=document.getElementById('prodOnNote');note.replaceChildren();
+ const m=/E2E\D{0,40}(\d+)\/(\d+)\D{0,20}UAT\D{0,5}(\d+)\/(\d+)/i.exec(String((dwAll.find(x=>x.id==='D3')||{}).status||''));
+ const closedF=feats.filter(f=>f.closed===true).length;
+ note.append(el('b','',X.onNote.split('.')[0]+'. '),document.createTextNode(X.onNote.split('.').slice(1).join('.').trim()+' '+(m?(tr?'Hiện: E2E độc lập PROD '+m[1]+'/'+m[2]+', UAT '+m[3]+'/'+m[4]+'; ':'Now: independent PROD E2E '+m[1]+'/'+m[2]+', UAT '+m[3]+'/'+m[4]+'; '):'')+(tr?'hoàn tất '+closedF+'/'+feats.length+' hạng mục nền tảng.':'closed '+closedF+'/'+feats.length+' foundation items.')));
+ document.getElementById('prodOnWorkTitle').textContent=X.onWork;
+ const wl=document.getElementById('prodOnWork');wl.replaceChildren();
+ document.getElementById('prodOnWorkMeta').textContent=String(onDw.length);
+ onDw.forEach(x=>wl.append(workCard(x,{stripPrefix:true})));
+ if(!onDw.length)wl.append(emptyState(tr?'Chưa có việc giao nào đang ON':'No assigned work is ON yet',tr?'Khi một việc giao đã bật trên PROD mà chưa hoàn tất, nó sẽ hiện ở đây.':'Assigned work that is live on PROD but not closed will appear here.'));
+}
+
+/* ===== Router: #roadmap[/1..6]  #process  #prod[/done|on]  #owner ; legacy #phase33 #remaining #today are redirected ===== */
+const VIEWS=['roadmap','process','prod','owner'];
+let activeBoardView='roadmap',roadmapBatch=1,prodSub='on';
+function parseRoute(){
+ const raw=String(location.hash||'').replace(/^#\/?/,'').toLowerCase();const [a,b]=raw.split('/');
+ if(a==='roadmap')return {view:'roadmap',sub:/^[1-6]$/.test(b||'')?+b:null};
+ if(a==='process')return {view:'process',sub:null};
+ if(a==='owner')return {view:'owner',sub:null};
+ if(a==='prod')return {view:'prod',sub:(b==='done'||b==='on')?b:null};
+ if(a==='phase33')return {view:'prod',sub:'on',redirect:true};
+ if(a==='remaining'||a==='today')return {view:'roadmap',sub:null,redirect:true};
+ return {view:'roadmap',sub:null};
+}
+function routeHash(view){return view==='roadmap'?'#roadmap/'+roadmapBatch:view==='prod'?'#prod/'+prodSub:'#'+view}
+function syncSubTabs(){
+ document.querySelectorAll('[data-batch-tab]').forEach(b=>{const on=+b.dataset.batchTab===roadmapBatch;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1});
+ const bp=document.getElementById('batchPanel');if(bp)bp.setAttribute('aria-labelledby','rtab-'+roadmapBatch);
+ document.querySelectorAll('[data-prod-tab]').forEach(b=>{const on=b.dataset.prodTab===prodSub;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1});
+ document.getElementById('prodDone').hidden=prodSub!=='done';document.getElementById('prodOn').hidden=prodSub!=='on';
+}
+function setBoardView(view,updateHash=true,sub=null){
+ if(!VIEWS.includes(view))view='roadmap';
+ activeBoardView=view;
+ if(view==='roadmap'&&sub)roadmapBatch=sub;
+ if(view==='prod'&&(sub==='done'||sub==='on'))prodSub=sub;
+ for(const tab of document.querySelectorAll('[data-board-tab]')){const chosen=tab.dataset.boardTab===view;tab.setAttribute('aria-selected',String(chosen));tab.tabIndex=chosen?0:-1}
+ for(const v of VIEWS)document.getElementById('view-'+v).hidden=v!==view;
+ syncSubTabs();
+ if(view==='roadmap')renderRoadmap();
+ const hash=routeHash(view);if(updateHash&&window.location.hash!==hash)history.replaceState(null,'',hash);
+ if(window.__odRefresh)window.__odRefresh();
+}
+function bindTablist(list){list.addEventListener('keydown',e=>{
+ if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;
+ const tabs=[...list.querySelectorAll('[role="tab"]')],i=tabs.indexOf(document.activeElement);if(i<0)return;
+ e.preventDefault();const n=e.key==='Home'?0:e.key==='End'?tabs.length-1:(i+(e.key==='ArrowRight'?1:-1)+tabs.length)%tabs.length;tabs[n].click();tabs[n].focus()})}
+document.querySelectorAll('[data-board-tab]').forEach(tab=>tab.addEventListener('click',()=>setBoardView(tab.dataset.boardTab)));
+document.querySelectorAll('[data-batch-tab]').forEach(tab=>tab.addEventListener('click',()=>setBoardView('roadmap',true,+tab.dataset.batchTab)));
+document.querySelectorAll('[data-prod-tab]').forEach(tab=>tab.addEventListener('click',()=>setBoardView('prod',true,tab.dataset.prodTab)));
+['mainTabs','batchTabs','prodTabs'].forEach(id=>bindTablist(document.getElementById(id)));
+function applyRoute(){const r=parseRoute();setBoardView(r.view,false,r.sub);if(r.redirect)history.replaceState(null,'',routeHash(r.view))}
+window.addEventListener('hashchange',()=>applyRoute());
+
+let progressFilter='on';
 // Enabled on PROD includes feature groups without a dedicated flag; partial groups stay outside the ON count.
 function isFeaturePartial(x){
  return (x.id==='B2+F2'&&x.extension?.status==='REOPEN_IN_PROGRESS')||(x.id==='P0-16 B/E'&&x.flag.includes('Memory TẮT'));
@@ -665,30 +856,32 @@ function isFeatureOn(x){
  if(isFeaturePartial(x))return false;
  return ((x.stage==='PROD_ENABLED'||x.stage==='PROD_VERIFIED')&&x.flag.startsWith('ON'))||(['UX13','P0-18'].includes(x.id)&&x.stage==='PROD_DEPLOYED'&&x.flag.includes('đã hiện'));
 }
+function progressCard(x){
+ const tr=lang==='vi',isOn=isFeatureOn;
+ const on=isOn(x),partial=isFeaturePartial(x),pr=x.progress||{},v=on?100:Math.min(100,Math.max(0,Number(pr.percent)||0));
+ const card=el('button','progress-card');card.type='button';card.setAttribute('aria-label',(tr?'Xem chi tiết ':'View details ')+translateRecord(x));card.addEventListener('click',()=>openFeature(x.id));
+ const top=el('div','progress-card-top');top.append(el('span','progress-no',String(payload.features.indexOf(x)+1).padStart(2,'0')),el('span','progress-name',translateRecord(x)),el('span','progress-val'+(on?' on':''),partial?(tr?'MỘT PHẦN':'PARTIAL'):v+'%'));
+ const track=el('div','progress-track');if(partial)track.hidden=true;track.setAttribute('role','progressbar');track.setAttribute('aria-valuemin','0');track.setAttribute('aria-valuemax','100');track.setAttribute('aria-valuenow',String(v));track.setAttribute('aria-label',translateRecord(x));const fill=el('div','progress-fill'+(on?' on':v<30?' low':''));fill.style.width=v+'%';track.append(fill);
+ const row=el('div','progress-bottom');
+ row.append(el('span','progress-state'+(on?' on':''),x.closed===true?(tr?'HOÀN TẤT':'CLOSED'):partial?(tr?'ON MỘT PHẦN · ĐANG PHÁT TRIỂN':'PARTIAL ON · IN DEVELOPMENT'):on?'ON':x.stage==='PROD_DEPLOYED'?(tr?'CODE PROD · OFF':'PROD CODE · OFF'):(tr?'ĐANG PHÁT TRIỂN':'IN DEVELOPMENT')));
+ const hint=on?(tr?'Đã chạy PROD; xem chi tiết để biết bài QA chưa kiểm.':'Enabled in PROD; see untested QA cases in details.'):(pr.note||x.summary);
+ row.append(el('span','progress-note',x.extension?.status==='REOPEN_IN_PROGRESS'?(tr?'REOPEN · Nâng cấp cấu hình AI qua web chưa hoàn thành; 100% chỉ là phần cũ đã ON.':'REOPEN · Web AI configuration extension unfinished; 100% refers to existing PROD feature only.'):hint));
+ if(x.extension?.status==='REOPEN_IN_PROGRESS'){card.classList.add('progress-reopened');row.insertBefore(el('span','progress-reopen','REOPEN'),row.firstChild)}
+ card.append(top,track,row);return card;
+}
 function renderProgress(){
  if(!payload)return;
  const isOn=isFeatureOn;
  const onCount=payload.features.filter(isOn).length;
  const tr=lang==='vi';
- document.getElementById('progressTitle').textContent=tr?'Tiến độ 19 hạng mục':'Progress across 19 workstreams';
+ document.getElementById('progressTitle').textContent=tr?'Tiến độ 19 hạng mục nền tảng':'Progress across the 19 foundation items';
  document.getElementById('progressDesc').textContent=tr?'Đếm cả mục bật qua cờ và mục đã hiển thị không có cờ; B2 và Map/Memory bật một phần chưa tính ON. Chọn từng mục để xem bằng chứng.':'Count enabled flags and deployed features with no dedicated flag; partial B2 and Map/Memory are not ON. Select items for evidence.';
  document.getElementById('progressLegend').textContent=tr?'Đã ON = nhóm bật/hiển thị PROD không còn phần đang phát triển trong chính mục đó. B2 cấu hình AI web và Map/Memory mới BẬT MỘT PHẦN nên chưa tính ON; UX13 và P0-18 không có cờ riêng vẫn được tính. ON KHÔNG đồng nghĩa QA/E2E hoàn tất. % khác là ước lượng Claude.':'ON includes no-flag features UX13 and P0-18. B2 AI web configuration and Map/Memory are PARTIAL, not fully ON. ON does NOT mean QA/E2E complete. Other percentages are estimates.';
  const labels=tr?['Tất cả','Đã ON','Còn lại']:['All','PROD ON','Remaining'];
  const keys=['all','on','remaining'];const counts=[payload.features.length,onCount,payload.features.length-onCount];
  document.querySelectorAll('[data-progress-filter]').forEach(b=>{const i=keys.indexOf(b.dataset.progressFilter);b.textContent=labels[i]+' ('+counts[i]+')';b.setAttribute('aria-pressed',String(b.dataset.progressFilter===progressFilter))});
  const host=document.getElementById('progressItems');host.replaceChildren();
- const show=payload.features.filter(x=>progressFilter==='all'||(progressFilter==='on'?isOn(x):!isOn(x)));
- show.forEach((x,i)=>{
-  const on=isOn(x),partial=isFeaturePartial(x),pr=x.progress||{},v=on?100:Math.min(100,Math.max(0,Number(pr.percent)||0));
-  const card=el('button','progress-card');card.type='button';card.setAttribute('aria-label',(tr?'Xem chi tiết ':'View details ')+translateRecord(x));card.addEventListener('click',()=>openFeature(x.id));
-  const top=el('div','progress-card-top');top.append(el('span','progress-no',String(payload.features.indexOf(x)+1).padStart(2,'0')),el('span','progress-name',translateRecord(x)),el('span','progress-val'+(on?' on':''),partial?(tr?'MỘT PHẦN':'PARTIAL'):v+'%'));
-  const track=el('div','progress-track');if(partial)track.hidden=true;track.setAttribute('role','progressbar');track.setAttribute('aria-valuemin','0');track.setAttribute('aria-valuemax','100');track.setAttribute('aria-valuenow',String(v));track.setAttribute('aria-label',translateRecord(x));const fill=el('div','progress-fill'+(on?' on':v<30?' low':''));fill.style.width=v+'%';track.append(fill);
-  const row=el('div','progress-bottom');
-  row.append(el('span','progress-state'+(on?' on':''),partial?(tr?'ON MỘT PHẦN · ĐANG PHÁT TRIỂN':'PARTIAL ON · IN DEVELOPMENT'):on?'ON':x.stage==='PROD_DEPLOYED'?(tr?'CODE PROD · OFF':'PROD CODE · OFF'):(tr?'ĐANG PHÁT TRIỂN':'IN DEVELOPMENT')));
-  const hint=on?(tr?'Đã chạy PROD; xem chi tiết để biết bài QA chưa kiểm.':'Enabled in PROD; see untested QA cases in details.'):(pr.note||x.summary);
-  row.append(el('span','progress-note',x.extension?.status==='REOPEN_IN_PROGRESS'?(tr?'REOPEN · Nâng cấp cấu hình AI qua web chưa hoàn thành; 100% chỉ là phần cũ đã ON.':'REOPEN · Web AI configuration extension unfinished; 100% refers to existing PROD feature only.'):hint));
-  if(x.extension?.status==='REOPEN_IN_PROGRESS'){card.classList.add('progress-reopened');row.insertBefore(el('span','progress-reopen',tr?'REOPEN':'REOPEN'),row.firstChild)}card.append(top,track,row);host.append(card)
- });
+ payload.features.filter(x=>progressFilter==='all'||(progressFilter==='on'?isOn(x):!isOn(x))).forEach(x=>host.append(progressCard(x)));
 }
 document.querySelectorAll('[data-progress-filter]').forEach(b=>b.addEventListener('click',()=>{progressFilter=b.dataset.progressFilter;renderProgress()}));
 function render(){if(!payload)return;const f=payload.features.filter(x=>(!els.batch.value||x.batch===els.batch.value)&&(!els.stage.value||x.stage===els.stage.value)&&(!els.flag.value||x.flag===els.flag.value)&&(!els.risk.value||x.risk===els.risk.value)&&(!els.integrated.value||String(x.integrated)===(els.integrated.value==='yes'?'true':'false'))&&[x.name,x.id,x.prs,x.summary,x.next].join(' ').toLocaleLowerCase('vi').includes(els.q.value.toLocaleLowerCase('vi')));els.count.textContent=`${f.length}/${payload.features.length} ${txt('total')}`;els.tbody.replaceChildren();for(const [i,x] of f.entries()){const tr=el('tr');tr.dataset.feature=x.id;tr.tabIndex=0;tr.setAttribute('role','button');tr.setAttribute('aria-label',(lang==='vi'?'Xem chi tiết: ':'View details: ')+translateRecord(x));tr.addEventListener('click',()=>openFeature(x.id));tr.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openFeature(x.id)}});const stt=cell(tr,'STT');stt.className='stt-col';stt.append(el('span','stt-num',String(i+1)));const a=cell(tr,txt('heads')[1]);a.append(el('div','feature',translateRecord(x)),el('div','id',x.id),el('div','open-indicator',lang==='vi'?'Xem chi tiết · công việc ›':'View details · tasks ›'));const b=cell(tr,txt('status'));b.append(el('span','pill '+((x.stage==='PROD_ENABLED'||x.stage==='PROD_VERIFIED')?'on':x.stage==='INCOMPLETE'?'wait':'dev'),txt('stage')[x.stage]||x.stage));const c=cell(tr,txt('batch'));c.append(el('strong','',x.batch==='Unassigned'?txt('unassigned'):x.batch));if(x.batch==='R2'&&x.stage!=='PROD_ENABLED'&&x.stage!=='PROD_DEPLOYED')c.append(el('div','hint',txt('plan')));const d=cell(tr,txt('flag'));d.append(el('span','pill '+(x.flag==='ON'?'on':''),x.flag.startsWith('N/A')?(lang==='vi'?'KHÔNG CẦN CỜ':'NO FLAG'):x.flag));const e=cell(tr,txt('test'));e.append(el('div','hint qa-preview',x.qa));const g=cell(tr,txt('details'));g.className='details';g.append(el('div','',x.summary),el('div','hint','PR: '+x.prs),el('div','hint',txt('next')+': '+x.next));els.tbody.append(tr)}if(!f.length){const tr=el('tr'),td=el('td','empty',txt('noResults'));td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
@@ -950,9 +1143,9 @@ function renderOwnerActions(){
  if(!box||!host||!tab||!count)return;host.replaceChildren();
  const closed=['DONE','CLOSED','RESOLVED','COMPLETED','CANCELLED'];
  const items=(Array.isArray(o?.items)?o.items:[]).filter(it=>!closed.includes(String(it.status||it.state||'').toUpperCase()));
- const n=items.length;count.textContent=String(n);tab.classList.toggle('has-owner-actions',n>0);tab.setAttribute('aria-label',(lang==='vi'?'Cần anh xử lý: ':'Your pending actions: ')+n);
- box.hidden=false;const m=document.getElementById('ownerActionsMeta');if(m)m.textContent=n+(lang==='vi'?' việc đang chờ':' pending');
- if(!n){host.append(el('p','owner-empty',lang==='vi'?'Hiện không có việc cần anh xử lý.':'No pending actions.'));return}
+ const n=items.length;count.textContent=String(n);tab.classList.toggle('has-owner-actions',n>0);tab.setAttribute('aria-label',xs().owner.aria+n);const ot=document.getElementById('ownerTitle');if(ot)ot.textContent=xs().owner.title;
+ box.hidden=false;const m=document.getElementById('ownerActionsMeta');if(m)m.textContent=n+xs().owner.pending;
+ if(!n){host.append(el('p','owner-empty',xs().owner.empty));return}
  const rank={P0:0,P1:1,P2:2,P3:3,P4:4};items.sort((a,b)=>((Array.isArray(b.options)&&b.options.length?1:0)-(Array.isArray(a.options)&&a.options.length?1:0))||((rank[a.priority]??9)-(rank[b.priority]??9)));const decItems=items.filter(x=>Array.isArray(x.options)&&x.options.length);const bar=decItems.length?odBar(decItems):null;if(bar)host.append(bar);
  for(const it of items){const row=document.createElement('details');row.className='owner-action-card';
  const summary=document.createElement('summary');summary.className='owner-action-summary';
@@ -961,9 +1154,9 @@ function renderOwnerActions(){
  row.append(summary);const body=el('div','owner-action-content');body.append(el('p','',String(it.detail||'Chưa có mô tả chi tiết.')));
  if(it.since){const dt=new Date(it.since);if(!isNaN(dt))body.append(el('p','owner-action-date',(lang==='vi'?'Ghi nhận: ':'Reported: ')+dt.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'})))}
  if(typeof it.link==='string'&&/^https:\/\/github\.com\//.test(it.link)){const a=el('a','detail-link',lang==='vi'?'Mở trên GitHub ↗':'Open on GitHub ↗');a.href=it.link;a.rel='noopener noreferrer';a.target='_blank';body.append(a)}
- if(bar&&Array.isArray(it.options)&&it.options.length){row.open=true;body.append(odOptions(it,bar));const chip=el('span','od-chosen','');chip.dataset.odChip=it.id;summary.insertBefore(chip,summary.querySelector('.owner-action-chevron'))}row.append(body);host.append(row)}if(bar)bar.refresh();
+ if(bar&&Array.isArray(it.options)&&it.options.length){row.open=true;body.append(odOptions(it,bar));const chip=el('span','od-chosen','');chip.dataset.odChip=it.id;summary.insertBefore(chip,summary.querySelector('.owner-action-chevron'))}row.append(body);host.append(row)}if(bar)bar.refresh();window.__odRefresh=bar?bar.refresh:null;
 }
-async function load(){try{const r=await fetch('status.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);payload=await r.json();if(!Array.isArray(payload.features)||!Array.isArray(payload.releases))throw Error('Sai định dạng dữ liệu');let d=new Date(payload.asOf);const updatedLabel=txt('updated')+': '+(isNaN(d)?payload.asOf:d.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}))+' · Asia/Ho_Chi_Minh';els.update.title=updatedLabel;els.update.setAttribute('aria-label',updatedLabel);document.getElementById('updatedTime').textContent=isNaN(d)?'--:--':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);els.stats.replaceChildren(stat('R1',txt('r1'),txt('released'),'ok'),stat(txt('prodOn'),payload.features.filter(isFeatureOn).length,txt('uat'),'ok'),stat('R2',payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('r2Done'):txt('processing'),payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('verified'):txt('pending'),'ok'),stat(txt('features'),payload.features.length,txt('interactive')));render();renderProgress();renderToday();renderLegacyBacklog();renderOwnerActions();renderProcess();if(!window.__odTab&&(payload.ownerActions?.items||[]).some(x=>Array.isArray(x.options)&&x.options.length&&!['DONE','CLOSED'].includes(String(x.status||'').toUpperCase()))&&!location.hash){window.__odTab=1;document.getElementById('tab-owner')?.click()}}catch(e){els.update.title=txt('readError');els.update.setAttribute('aria-label',txt('readError'));document.getElementById('updatedTime').textContent='--:--';els.update.classList.add('has-error');els.stats.replaceChildren(stat(txt('error'),'—',txt('errorHint')));els.tbody.replaceChildren();const tr=el('tr'),td=el('td','empty','Không đọc được status.json. Nếu đang mở file://, hãy chạy local web server hoặc host nội bộ. '+e.message);td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
+async function load(){try{const r=await fetch('status.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);payload=await r.json();if(!Array.isArray(payload.features)||!Array.isArray(payload.releases))throw Error('Sai định dạng dữ liệu');let d=new Date(payload.asOf);const updatedLabel=txt('updated')+': '+(isNaN(d)?payload.asOf:d.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}))+' · Asia/Ho_Chi_Minh';els.update.title=updatedLabel;els.update.setAttribute('aria-label',updatedLabel);document.getElementById('updatedTime').textContent=isNaN(d)?'--:--':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);els.stats.replaceChildren(stat('R1',txt('r1'),txt('released'),'ok'),stat(txt('prodOn'),payload.features.filter(isFeatureOn).length,txt('uat'),'ok'),stat('R2',payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('r2Done'):txt('processing'),payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('verified'):txt('pending'),'ok'),stat(txt('features'),payload.features.length,txt('interactive')));render();renderProgress();renderRoadmap();renderProd();renderOwnerActions();renderProcess();if(!window.__odTab&&(payload.ownerActions?.items||[]).some(x=>Array.isArray(x.options)&&x.options.length&&!['DONE','CLOSED'].includes(String(x.status||'').toUpperCase()))&&!location.hash){window.__odTab=1;document.getElementById('tab-owner')?.click()}}catch(e){els.update.title=txt('readError');els.update.setAttribute('aria-label',txt('readError'));document.getElementById('updatedTime').textContent='--:--';els.update.classList.add('has-error');els.stats.replaceChildren(stat(txt('error'),'—',txt('errorHint')));els.tbody.replaceChildren();const tr=el('tr'),td=el('td','empty','Không đọc được status.json. Nếu đang mở file://, hãy chạy local web server hoặc host nội bộ. '+e.message);td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
 
 const detailLabels={
 vi:{heading:'Hồ sơ hạng mục',close:'Đóng',problem:'Vấn đề / chưa đạt',fix:'Hướng xử lý',done:'Đã xong — có bằng chứng',doing:'Đang làm',todo:'Công việc cần làm / xác minh',proof:'Bằng chứng và QA',source:'Nguồn công việc',deployment:'Triển khai',flag:'Cờ',integrated:'BE/FE đã tích hợp theo snapshot',deployed:'Đã triển khai mã lên PROD',enabled:'Cờ chức năng đang ON',noneDone:'Chưa có công việc được xác nhận hoàn tất ở mức này',noCurrent:'Chưa có bằng chứng đáng tin cậy về agent đang xử lý; không suy đoán trạng thái Claude Code.',needVerify:'Cần xác minh',notStarted:'Chưa xác nhận bắt đầu',inProgress:'Đang làm (có bằng chứng)',completed:'Hoàn thành (có bằng chứng)',labelEvidence:'QA / SEC',original:'Ghi chú nguồn (tiếng Việt)',next:'Bước tiếp theo',master:'Mở Master #88',scope:'Mở issue Data/IAM #86',actual:'Đã ghi nhận',planned:'Chưa xếp đợt',disclaimer:'Trạng thái task dựa trên snapshot GitHub; không phải giám sát tiến trình Claude Code trực tiếp.'},
@@ -994,5 +1187,5 @@ document.getElementById('detailClose').addEventListener('click',closeFeature);
 document.getElementById('detailScrim').addEventListener('click',closeFeature);
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&activeFeatureId){e.preventDefault();closeFeature()}if(e.key==='Tab'&&activeFeatureId){const shell=document.getElementById('detailShell');const nodes=[...shell.querySelectorAll('button:not([tabindex="-1"]),a[href]')];if(!nodes.length)return;const first=nodes[0],last=nodes[nodes.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 
-for(const key of ['batch','stage','flag','risk','integrated','q'])els[key].addEventListener('input',render);mode=restorePref('theme','auto');lang=restorePref('lang','vi');if(!['auto','light','dark'].includes(mode))mode='auto';if(!['vi','en'].includes(lang))lang='vi';resolveTheme();syncLanguage();setBoardView(window.location.hash==='#process'?'process':window.location.hash==='#remaining'?'rest':window.location.hash==='#owner'?'owner':window.location.hash==='#today'?'today':'p33',false);document.getElementById('theme').addEventListener('click',()=>{const modes=['light','dark','auto'];mode=modes[(modes.indexOf(mode)+1)%modes.length];savePref('theme',mode);resolveTheme();updateThemeToggle()});document.getElementById('lang').addEventListener('click',()=>{lang=lang==='vi'?'en':'vi';savePref('lang',lang);syncLanguage();if(activeFeatureId&&payload){const current=payload.features.find(x=>x.id===activeFeatureId);if(current)renderFeatureDetail(current)}renderProgress();setBoardView(activeBoardView,false);load()});window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{if(mode==='auto')resolveTheme()});document.getElementById('reset').addEventListener('click',()=>{for(const key of ['batch','stage','flag','risk','integrated','q'])els[key].value='';render()});load();
+for(const key of ['batch','stage','flag','risk','integrated','q'])els[key].addEventListener('input',render);mode=restorePref('theme','auto');lang=restorePref('lang','vi');if(!['auto','light','dark'].includes(mode))mode='auto';if(!['vi','en'].includes(lang))lang='vi';resolveTheme();syncLanguage();applyRoute();document.getElementById('theme').addEventListener('click',()=>{const modes=['light','dark','auto'];mode=modes[(modes.indexOf(mode)+1)%modes.length];savePref('theme',mode);resolveTheme();updateThemeToggle()});document.getElementById('lang').addEventListener('click',()=>{lang=lang==='vi'?'en':'vi';savePref('lang',lang);syncLanguage();if(activeFeatureId&&payload){const current=payload.features.find(x=>x.id===activeFeatureId);if(current)renderFeatureDetail(current)}renderProgress();setBoardView(activeBoardView,false);load()});window.matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{if(mode==='auto')resolveTheme()});document.getElementById('reset').addEventListener('click',()=>{for(const key of ['batch','stage','flag','risk','integrated','q'])els[key].value='';render()});load();
 </script></body></html>
