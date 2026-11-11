@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T18:29:00+07:00",
+  "asOf": "2026-11-11T18:31:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1798,7 +1798,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T18:29:00+07:00",
+  "detailUpdatedAt": "2026-11-11T18:31:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3732,7 +3732,7 @@
         "id": "NO-24",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-11T18:26:00+07:00",
         "title": "Giới hạn cho người dùng thật: nâng giới hạn mềm và chốt phần tiền",
         "detail": "Danh sách giới hạn đã rà (U9). Giới hạn mềm C0 đề xuất nâng: lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3 (không phải tiền, lùi bằng một lệnh). Phần tiền do Owner quyết: trần cửa sổ AI 50 USD (còn ~21), hạn mức tuần của khóa nhà cung cấp, 50 USD/người/tháng và 50 USD/workspace/tháng.",
@@ -3750,7 +3750,9 @@
             "label": "Giữ nguyên",
             "desc": "Chỉ giữ trần chi phí kế hoạch 8 USD đã nâng."
           }
-        ]
+        ],
+        "decided": "A",
+        "decision": "Nâng giới hạn mềm theo đề xuất (Owner 18:30): lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3. C0 đã đặt lúc 18:31 (VERIFIED đọc lại). Phần tiền (trần cửa sổ 50 USD, 50 USD/người/tháng, 50 USD/workspace/tháng, hạn mức tuần của khóa) CHƯA đổi: chờ Owner nhập con số."
       }
     ]
   },
@@ -3988,7 +3990,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T18:29:00+07:00",
+    "updatedAt": "2026-11-11T18:31:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -5391,7 +5393,7 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Rà các giới hạn còn chặn người dùng thật",
         "titleEn": "TOP PRIORITY · Audit of remaining limits blocking real users",
-        "status": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "status": "18:31: ĐÃ NÂNG giới hạn mềm theo thẻ NO-24 = A (VERIFIED đọc lại): lượt AI/người/ngày 500, build/người/ngày 200, build/dự án/ngày 300, build đồng thời/người 3. Còn chờ Owner: phần tiền. | 18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
         "statusEn": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
         "prs": "cài đặt chạy nóng",
         "eta": "chờ Owner",
@@ -5407,7 +5409,7 @@
           },
           {
             "label": "Owner chọn A (nâng giới hạn mềm)",
-            "state": "todo"
+            "state": "done"
           },
           {
             "label": "Owner quyết con số tiền",
