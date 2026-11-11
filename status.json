@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T15:31:00+07:00",
+  "asOf": "2026-11-11T15:38:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1798,7 +1798,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T15:31:00+07:00",
+  "detailUpdatedAt": "2026-11-11T15:38:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3675,6 +3675,54 @@
         ],
         "decided": "A",
         "decision": "Cho phép (Owner 15:29): C0 chuẩn bị dự án QA có thay đổi AI chờ cho T14 và dùng lượt Haiku nhẹ cho T15; P0-18 được gửi 1 báo cáo UAT thật; UX13 chỉ đọc."
+      },
+      {
+        "id": "NO-22",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T15:38:00+07:00",
+        "title": "T23 tool loop: duyệt chi phí 12 lượt Haiku và cách bật cho workspace QA",
+        "detail": "Spec T23 đã xong (cục bộ: ~/xweb-handoff/p37-studio/batch2/T23-SPEC.md, có số tiền; không đưa lên repo công khai). Phát hiện: cờ tool loop chỉ có mức toàn hệ thống nên 'bật cho workspace QA trước' cần thêm khoảng 7 giờ mã (danh sách cho phép theo workspace); lỗi 'STOP thay vì FINAL' vẫn còn trong dev (cần sửa trước khi bật); FE #114 mới chỉ có nhãn, màn hình bảng cuộn còn thiếu. Lát đầu 'QA-ON' ~51 giờ-agent (ước lượng ±35%), toàn bộ ~86 giờ.",
+        "solution": "C0 khuyến nghị A cho cả bốn ý. Chi phí 12 lượt Haiku rất thấp so với trần (chi tiết trong file cục bộ). Bắt đầu sau bản phát hành 20 và sau T22-B.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo khuyến nghị",
+            "desc": "12 lượt Haiku (10 bật + 2 đối chứng), dừng khi chi phí cộng dồn chạm ngưỡng nhỏ đã đặt; bật chỉ cho workspace QA bằng danh sách cho phép (+7 giờ), giữ giới hạn 4 vòng/200 KB/120 s; màn hình FE + hướng dẫn bắt buộc trước khi mở rộng nhưng không chặn QA-ON.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Phương án nhanh hơn",
+            "desc": "16 lượt Haiku và ngưỡng cao gấp đôi; bật toàn hệ thống trong một cửa sổ QA ngắn (lộ ra 5 tài khoản dùng thử); 3 vòng trong tuần đầu."
+          }
+        ]
+      },
+      {
+        "id": "NO-23",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T15:38:00+07:00",
+        "title": "T24 (sửa file theo đoạn) và T25 (gói công thức): duyệt các chọn lựa thiết kế",
+        "detail": "Spec đã xong (cục bộ: ~/xweb-handoff/p37-studio/batch2/T24-T25-SPEC.md). T24 ~89 giờ-agent, T25 ~66 giờ-agent (ước lượng ±35%), cần ~20 lượt Haiku thật cho pha 1 + 4 lượt pha 2 (pha 2 cần T23). 10 câu A/B trong file; tất cả khuyến nghị A trừ câu về lượt tự sửa lỗi build (khuyến nghị: chỉ dùng khối <file>).",
+        "solution": "C0 khuyến nghị: chọn A để C0 làm theo toàn bộ khuyến nghị của spec (T24 chỉ pha 1 cho file ≤ 24.000 B, khớp chính xác; lượt tự sửa lỗi build chỉ <file>; chọn gói tất định bằng từ khóa; gói lưu trong mã; cờ chạy nóng như T22-B; cấp riêng 20 lượt Haiku; đo pha 1 trên DEV).",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo khuyến nghị của spec",
+            "desc": "Làm sau T23 QA-ON theo thứ tự ghi trong spec; mỗi tính năng một bản phát hành riêng, cờ TẮT.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Anh muốn đổi một số câu",
+            "desc": "Ghi số câu và lựa chọn vào ô ghi chú; C0 làm theo."
+          }
+        ]
       }
     ]
   },
@@ -3912,7 +3960,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T15:31:00+07:00",
+    "updatedAt": "2026-11-11T15:38:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4903,7 +4951,7 @@
         "prio": "3",
         "title": "Đợt 2 · Các T còn lại: T23 tool loop (~66 giờ công + 12 lượt Haiku, cần Owner duyệt chi phí), T24, T25, T30, T31, T26, T10 slots=2, S5–S9",
         "titleEn": "Batch 2 · Remaining T items",
-        "status": "Chưa bắt đầu (sau Đợt 1). Mỗi mục một bản phát hành, bật cờ sau QA độc lập.",
+        "status": "15:38 11/11: spec T23 và T24/T25 đã soạn xong (cục bộ, đọc mã; chưa viết mã). Chờ Owner duyệt thẻ NO-22 (T23) và NO-23 (T24/T25). Bắt đầu sau bản phát hành 20 và sau T22-B. | Chưa bắt đầu (sau Đợt 1). Mỗi mục một bản phát hành, bật cờ sau QA độc lập.",
         "statusEn": "Chưa bắt đầu (sau Đợt 1). Mỗi mục một bản phát hành, bật cờ sau QA độc lập.",
         "prs": "",
         "eta": "~19/11",
