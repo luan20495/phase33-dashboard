@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T17:27:00+07:00",
+  "asOf": "2026-11-11T18:26:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1798,7 +1798,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T17:27:00+07:00",
+  "detailUpdatedAt": "2026-11-11T18:26:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3727,6 +3727,30 @@
         ],
         "decided": "A",
         "decision": "Theo khuyến nghị của spec (Owner 15:46): T24 pha 1 (file ≤ 24.000 B), khớp patch chính xác, lượt tự sửa lỗi build chỉ <file>, gói T25 chọn tất định bằng từ khóa và lưu trong mã, cờ chạy nóng như T22-B, cấp riêng 20 lượt Haiku, đo pha 1 trên DEV."
+      },
+      {
+        "id": "NO-24",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-11T18:26:00+07:00",
+        "title": "Giới hạn cho người dùng thật: nâng giới hạn mềm và chốt phần tiền",
+        "detail": "Danh sách giới hạn đã rà (U9). Giới hạn mềm C0 đề xuất nâng: lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3 (không phải tiền, lùi bằng một lệnh). Phần tiền do Owner quyết: trần cửa sổ AI 50 USD (còn ~21), hạn mức tuần của khóa nhà cung cấp, 50 USD/người/tháng và 50 USD/workspace/tháng.",
+        "solution": "C0 khuyến nghị A cho giới hạn mềm. Với phần tiền, Owner nhập con số mong muốn (ví dụ tổng mỗi tuần) trong ô ghi chú; C0 đối chiếu với khóa nhà cung cấp rồi báo mức đề xuất.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Nâng giới hạn mềm theo đề xuất",
+            "desc": "C0 đặt 4 giá trị trên, ghi vào dashboard và #88.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Giữ nguyên",
+            "desc": "Chỉ giữ trần chi phí kế hoạch 8 USD đã nâng."
+          }
+        ]
       }
     ]
   },
@@ -3964,7 +3988,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T17:27:00+07:00",
+    "updatedAt": "2026-11-11T18:26:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -5058,6 +5082,338 @@
         "batch": 6,
         "batchPlan": true,
         "closed": false
+      },
+      {
+        "id": "U1",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO (Owner 11/11) · Giới hạn chữ của tệp đính kèm (bị cắt ở 120.000 ký tự)",
+        "titleEn": "TOP PRIORITY · Attachment text limit (cut at 120,000 chars)",
+        "status": "18:26: ĐÃ NÂNG TRÊN PROD (không cần phát hành): 240.000 ký tự mỗi tài liệu (mức tối đa của mã), tổng thực tế 318.000; đọc lại cấu hình VERIFIED. Muốn cao hơn phải sửa mã (hằng số 240k/480k) và nâng giới hạn 300.000 byte của yêu cầu.",
+        "statusEn": "18:26: ĐÃ NÂNG TRÊN PROD (không cần phát hành): 240.000 ký tự mỗi tài liệu (mức tối đa của mã), tổng thực tế 318.000; đọc lại cấu hình VERIFIED. Muốn cao hơn phải sửa mã (hằng số 240k/480k) và nâng giới hạn 300.000 byte của yêu cầu.",
+        "prs": "cài đặt chạy nóng",
+        "eta": "17:02",
+        "etaFirst": "17:02",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Nâng cài đặt trên PROD",
+            "state": "done"
+          },
+          {
+            "label": "Owner thử lại với file 188.135 ký tự",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U2",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · SVG không được đính kèm ('chỉ nhận PNG, JPG, WebP')",
+        "titleEn": "TOP PRIORITY · SVG attachments refused",
+        "status": "18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
+        "statusEn": "18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
+        "prs": "FE #187",
+        "eta": "bản 21",
+        "etaFirst": "bản 21",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Mã + test + 16 đột biến",
+            "state": "done"
+          },
+          {
+            "label": "QA vòng 1 (bảo mật, 140 ca thù địch)",
+            "state": "done"
+          },
+          {
+            "label": "Sửa C1 (quét tuyến tính) + C2",
+            "state": "done"
+          },
+          {
+            "label": "QA vòng 2 (phần chênh, tỉ lệ từ chối nhầm)",
+            "state": "doing"
+          },
+          {
+            "label": "Merge dev + phát hành 21",
+            "state": "todo"
+          },
+          {
+            "label": "Owner thử trên PROD",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U3",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · Gửi prompt kèm file xong, Studio không xóa file khỏi ô nhập",
+        "titleEn": "TOP PRIORITY · Attachments not cleared after a successful send",
+        "status": "18:26: nguyên nhân: lượt dài đi đường job (trạng thái 'idle') nên không xóa; FE #188 sửa theo mã lượt (chỉ xóa phần đã gửi). QA vòng 1: GO-WITH-CONDITIONS (1 test đỏ, đã sửa, head 87add5bf); QA vòng 2 đang chạy. Còn lại (PR sau): C3 tải lại trang giữa lượt thì chip file quay lại; C2 lượt trùng lặp cần BE thêm kết quả vào 409.",
+        "statusEn": "18:26: nguyên nhân: lượt dài đi đường job (trạng thái 'idle') nên không xóa; FE #188 sửa theo mã lượt (chỉ xóa phần đã gửi). QA vòng 1: GO-WITH-CONDITIONS (1 test đỏ, đã sửa, head 87add5bf); QA vòng 2 đang chạy. Còn lại (PR sau): C3 tải lại trang giữa lượt thì chip file quay lại; C2 lượt trùng lặp cần BE thêm kết quả vào 409.",
+        "prs": "FE #188",
+        "eta": "bản 21",
+        "etaFirst": "bản 21",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Tái hiện + sửa + 24 đột biến",
+            "state": "done"
+          },
+          {
+            "label": "QA vòng 1",
+            "state": "done"
+          },
+          {
+            "label": "Sửa test đỏ",
+            "state": "done"
+          },
+          {
+            "label": "QA vòng 2",
+            "state": "doing"
+          },
+          {
+            "label": "Merge dev + phát hành 21",
+            "state": "todo"
+          },
+          {
+            "label": "PR sau: C3 (tải lại trang) và C2 (lượt trùng)",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U4",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · Chữ tiếng Việt bị hỏng khi tạo web ('??t v� c�ng t�c')",
+        "titleEn": "TOP PRIORITY · Vietnamese text garbled in created webs",
+        "status": "18:26: nguyên nhân gốc: JSON cấu hình ứng dụng (tên ứng dụng, tên người dùng) ghi không khai báo bảng mã nên bị mã hóa Latin-1. BE #232 đã merge vào dev sau QA độc lập GO (head a450e3f5). CẦN BẢN PHÁT HÀNH BE (bản 21); chưa sửa trên PROD. Cách tạm: đặt tên dự án không dấu. Việc sau: 4 chỗ cùng mẫu + test tĩnh (P3).",
+        "statusEn": "18:26: nguyên nhân gốc: JSON cấu hình ứng dụng (tên ứng dụng, tên người dùng) ghi không khai báo bảng mã nên bị mã hóa Latin-1. BE #232 đã merge vào dev sau QA độc lập GO (head a450e3f5). CẦN BẢN PHÁT HÀNH BE (bản 21); chưa sửa trên PROD. Cách tạm: đặt tên dự án không dấu. Việc sau: 4 chỗ cùng mẫu + test tĩnh (P3).",
+        "prs": "BE #232",
+        "eta": "bản 21",
+        "etaFirst": "bản 21",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Tìm nguyên nhân + tái hiện (Tomcat)",
+            "state": "done"
+          },
+          {
+            "label": "Sửa + test hồi quy",
+            "state": "done"
+          },
+          {
+            "label": "QA độc lập GO",
+            "state": "done"
+          },
+          {
+            "label": "Merge dev",
+            "state": "done"
+          },
+          {
+            "label": "Phát hành BE 21 lên PROD",
+            "state": "todo"
+          },
+          {
+            "label": "PR P3: 4 chỗ còn lại + test tĩnh",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U5",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · Kế hoạch chia bước xong 5/5 vẫn ghim che phía trên ô nhập",
+        "titleEn": "TOP PRIORITY · Finished step-plan card stays pinned above the composer",
+        "status": "18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
+        "statusEn": "18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
+        "prs": "FE (PR chưa mở)",
+        "eta": "bản 21 (~75 phút làm)",
+        "etaFirst": "bản 21 (~75 phút làm)",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Giao agent + yêu cầu chi tiết",
+            "state": "done"
+          },
+          {
+            "label": "Mã + test + đột biến",
+            "state": "doing"
+          },
+          {
+            "label": "PR + QA độc lập",
+            "state": "todo"
+          },
+          {
+            "label": "Merge dev + phát hành 21",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U6",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · Kế hoạch bước 2 treo (chạm trần chi phí 0,30 USD mỗi kế hoạch)",
+        "titleEn": "TOP PRIORITY · Step 2 stuck: per-plan cost cap 0.30 USD reached",
+        "status": "18:26: ĐÃ XỬ LÝ: nâng ai.builder.steps.cost-cap-usd lên 8,00 USD (Owner chọn A, dùng cho người dùng thật). Kế hoạch KOI 5/5 xong, chi phí 2,46 USD. Nguyên nhân: trần 0,30 chưa từng đo chi phí thật; bước 1 (đọc cả tài liệu, Opus) tốn 0,79. Việc sau: trần theo mô hình/bước, đưa cài đặt lên màn quản trị (hiện chỉ chỉnh bằng API).",
+        "statusEn": "18:26: ĐÃ XỬ LÝ: nâng ai.builder.steps.cost-cap-usd lên 8,00 USD (Owner chọn A, dùng cho người dùng thật). Kế hoạch KOI 5/5 xong, chi phí 2,46 USD. Nguyên nhân: trần 0,30 chưa từng đo chi phí thật; bước 1 (đọc cả tài liệu, Opus) tốn 0,79. Việc sau: trần theo mô hình/bước, đưa cài đặt lên màn quản trị (hiện chỉ chỉnh bằng API).",
+        "prs": "cài đặt chạy nóng",
+        "eta": "đã xong phần chính",
+        "etaFirst": "đã xong phần chính",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Nâng trần lên 8 USD",
+            "state": "done"
+          },
+          {
+            "label": "Kế hoạch KOI chạy xong 5/5",
+            "state": "done"
+          },
+          {
+            "label": "Trần theo mô hình/bước",
+            "state": "todo"
+          },
+          {
+            "label": "Màn quản trị hiện cài đặt AI",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U7",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · AI chỉ dựng được 'phần lõi' (câu trả lời tối đa 16.000 token, tệp bị cắt)",
+        "titleEn": "TOP PRIORITY · AI rebuilds only a core (answer cap 16,000 tokens)",
+        "status": "18:26: giải thích: không phải giới hạn đọc file (đã nới) mà là trần độ dài câu trả lời 16.000 token (hằng số mã); ứng dụng lớn phải chia bước. Hướng sửa lâu dài: T24 (sửa theo đoạn) đang tạm dừng sau khi PR #231 QA tạm GO-WITH-CONDITIONS; nâng trần 16.000 cần sửa mã + đo chi phí.",
+        "statusEn": "18:26: giải thích: không phải giới hạn đọc file (đã nới) mà là trần độ dài câu trả lời 16.000 token (hằng số mã); ứng dụng lớn phải chia bước. Hướng sửa lâu dài: T24 (sửa theo đoạn) đang tạm dừng sau khi PR #231 QA tạm GO-WITH-CONDITIONS; nâng trần 16.000 cần sửa mã + đo chi phí.",
+        "prs": "BE #231 (T24)",
+        "eta": "Đợt 2",
+        "etaFirst": "Đợt 2",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Giải thích nguyên nhân cho Owner",
+            "state": "done"
+          },
+          {
+            "label": "T24 nối dây (sau T31/T23)",
+            "state": "todo"
+          },
+          {
+            "label": "Đánh giá nâng trần 16.000 token",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U8",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · Số liệu OpenRouter 'không chuẩn' (sổ nội bộ cao hơn)",
+        "titleEn": "TOP PRIORITY · OpenRouter usage does not match the internal ledger",
+        "status": "18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu (1,2203 USD); tuần trước sổ nội bộ cao hơn khoảng 10 USD vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
+        "statusEn": "18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu (1,2203 USD); tuần trước sổ nội bộ cao hơn khoảng 10 USD vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
+        "prs": "",
+        "eta": "chờ Owner",
+        "etaFirst": "chờ Owner",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Đối chiếu tổng quan (VERIFIED)",
+            "state": "done"
+          },
+          {
+            "label": "Bảng đối chiếu 26 lượt không thành công",
+            "state": "todo"
+          },
+          {
+            "label": "Cột 'cơ sở chi phí' trên trang quản trị",
+            "state": "todo"
+          },
+          {
+            "label": "Sửa sổ cho lượt cũ (cần Owner duyệt)",
+            "state": "todo"
+          }
+        ]
+      },
+      {
+        "id": "U9",
+        "group": "IN_PROGRESS",
+        "prio": "0",
+        "batch": 1,
+        "closed": false,
+        "title": "ƯU TIÊN CAO · Rà các giới hạn còn chặn người dùng thật",
+        "titleEn": "TOP PRIORITY · Audit of remaining limits blocking real users",
+        "status": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "statusEn": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "prs": "cài đặt chạy nóng",
+        "eta": "chờ Owner",
+        "etaFirst": "chờ Owner",
+        "etaFull": "",
+        "etaFallback": "Ước lượng Claude (±35%)",
+        "evidence": "Owner báo 11/11 từ 17:00 ICT; chi tiết trong #88 và checkpoint ~/xweb-handoff/agents/",
+        "accept": [],
+        "steps": [
+          {
+            "label": "Liệt kê giới hạn (VERIFIED)",
+            "state": "done"
+          },
+          {
+            "label": "Owner chọn A (nâng giới hạn mềm)",
+            "state": "todo"
+          },
+          {
+            "label": "Owner quyết con số tiền",
+            "state": "todo"
+          }
+        ]
       }
     ]
   },
