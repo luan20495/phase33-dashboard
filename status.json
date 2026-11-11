@@ -185,7 +185,8 @@
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
         "reportedAt": "2026-11-07T08:02:05+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "I1+F5",
@@ -267,7 +268,8 @@
         "basis": "prod_on",
         "note": "Hardening #157 (hạn tổng upload, giảm thiểu DoS) đã deploy PROD đợt 3. IMPORT40 PASS (VERIFIED). Chưa nghiệm thu.",
         "reportedAt": "2026-11-07T21:30:36+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "J1",
@@ -374,7 +376,8 @@
         "basis": "prod_on",
         "note": "BE #150 (V96) đã deploy PROD đợt 3 21:02 ICT. Đợt 3 đã deploy PROD 07/11 21:02 ICT (release a5d6237d3049); smoke sau deploy đạt (VERIFIED); PROD_TESTING.",
         "reportedAt": "2026-11-08T14:15:54+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "P0-16 A/C/G",
@@ -462,7 +465,8 @@
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
         "reportedAt": "2026-11-07T08:02:05+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "P0-05/06",
@@ -547,7 +551,8 @@
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
         "reportedAt": "2026-11-09T14:47:32+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "P0-14",
@@ -629,7 +634,8 @@
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
         "reportedAt": "2026-11-07T08:30:08+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "X1+F6",
@@ -710,7 +716,8 @@
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
         "reportedAt": "2026-11-07T08:30:08+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "B1/B1-1",
@@ -785,7 +792,8 @@
         "basis": "prod_on",
         "note": "Đã bật trên PROD; chưa đồng nghĩa nghiệm thu toàn bộ kịch bản. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
         "reportedAt": "2026-11-07T08:30:08+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "B2+F2",
@@ -918,7 +926,8 @@
           "B2-WEB-07: UI tổng quan/cảnh báo/audit/hướng dẫn",
           "B2-WEB-08: QA/SEC/E2E và phát hành liên tục"
         ]
-      }
+      },
+      "closed": false
     },
     {
       "id": "B3+F3",
@@ -1011,7 +1020,8 @@
         "note": "Đã bật PROD, smoke một phần PASS; luồng đầy đủ chưa E2E thật. · 07/11 08:00: QA đóng việc đang chạy (CQA).",
         "reportedAt": "2026-11-07T08:30:08+07:00",
         "codeStatus": "CODE_COMPLETE_QA_PENDING"
-      }
+      },
+      "closed": false
     },
     {
       "id": "UX13",
@@ -1090,7 +1100,8 @@
         "basis": "estimate",
         "note": "Đã deploy PROD 07/11 17:22 ICT (release f3c354b74861); smoke sau deploy bằng tài khoản QA đạt (VERIFIED), PROD_TESTING; chưa Owner UAT.",
         "reportedAt": "2026-11-07T17:26:56+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "X2",
@@ -1176,7 +1187,8 @@
         "basis": "prod_on",
         "note": "PROD ON 08/11 08:35 ICT; không đồng nghĩa QA hoàn tất (chưa E2E thật).",
         "reportedAt": "2026-11-08T08:42:11+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "X3",
@@ -1265,7 +1277,8 @@
         "basis": "prod_on",
         "note": "Đã ON trên PROD 08/11 15:44; không đồng nghĩa E2E đầy đủ.",
         "reportedAt": "2026-11-08T15:46:55+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "X4",
@@ -1370,7 +1383,8 @@
         "basis": "estimate",
         "note": "X4 COMPLETE (BE #159 + FE #110) đã deploy PROD đợt 3 với cờ TẮT, sàn mã giữ; API mới trả 404 khi TẮT (VERIFIED).",
         "reportedAt": "2026-11-08T23:29:48+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "X5",
@@ -1451,7 +1465,8 @@
         "basis": "prod_on",
         "note": "Đã ON trên PROD 08/11 15:07; không đồng nghĩa QA/E2E đầy đủ.",
         "reportedAt": "2026-11-08T15:22:02+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "P0-16 B/E",
@@ -1530,7 +1545,8 @@
         "basis": "prod_on",
         "note": "Đã ON trên PROD 08/11 14:12; không đồng nghĩa QA/E2E thật hoàn tất.",
         "reportedAt": "2026-11-08T15:22:02+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "P0-17",
@@ -1614,7 +1630,8 @@
         "basis": "estimate",
         "note": "Theme + ngôn ngữ + XApp hub ON; phủ tiếng Anh còn thiếu nhiều (khoảng 3.100 dòng mã còn chữ Việt cứng, đo trên FE dev 09/11), đang sửa. Ước lượng, chưa phải số đo.",
         "reportedAt": "2026-11-09T13:29:43+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "P0-18",
@@ -1698,7 +1715,8 @@
         "basis": "estimate",
         "note": "Đã deploy PROD 07/11 17:22 ICT (release f3c354b74861); smoke sau deploy bằng tài khoản QA đạt (VERIFIED), PROD_TESTING; chưa Owner UAT.",
         "reportedAt": "2026-11-07T17:26:56+07:00"
-      }
+      },
+      "closed": false
     },
     {
       "id": "P0-19",
@@ -1776,7 +1794,8 @@
         "basis": "estimate",
         "note": "Home + khung kéo thả + bố cục Edit gọn ON (đợt 7 12:32, QA độc lập GO có điều kiện). Còn: 2 P2 (FE #148), cảm ứng thật, Owner nghiệm thu. Ước lượng, chưa phải số đo.",
         "reportedAt": "2026-11-09T14:47:32+07:00"
-      }
+      },
+      "closed": false
     }
   ],
   "detailUpdatedAt": "2026-11-11T13:47:00+07:00",
@@ -1804,7 +1823,9 @@
           "P0-14"
         ],
         "coverageNote": "APP_USE nhiều chủ thể và URL trực tiếp vượt ngoài quyền AI của P3.3; dùng chung các test SSO/IAM, giữ acceptance riêng.",
-        "coverageNoteEn": "Cross-subject APP_USE remains broader than P3.3 AI access."
+        "coverageNoteEn": "Cross-subject APP_USE remains broader than P3.3 AI access.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-02",
@@ -1824,7 +1845,9 @@
           "X3"
         ],
         "coverageNote": "Thời hạn quyền AI và IAM người xem liên quan; picker Org và expiry của cấp quyền APP_USE phải nghiệm thu riêng.",
-        "coverageNoteEn": "Grant expiry and org picker require separate acceptance."
+        "coverageNoteEn": "Grant expiry and org picker require separate acceptance.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-03",
@@ -1845,7 +1868,9 @@
           "X4"
         ],
         "coverageNote": "Trường/record/operation có phần giao nhau; app-local versioned roles và Page/Form/Workflow còn phạm vi riêng.",
-        "coverageNoteEn": "App-local Page/Form/Workflow permissions remain separate."
+        "coverageNoteEn": "App-local Page/Form/Workflow permissions remain separate.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-04",
@@ -1864,7 +1889,9 @@
           "X3"
         ],
         "coverageNote": "Vòng đời nhân sự, chuyển công tác và ủy quyền quản trị có gate nghiệp vụ riêng; dùng IAM X3 làm dependency.",
-        "coverageNoteEn": "Delegated administration and identity lifecycle are separate."
+        "coverageNoteEn": "Delegated administration and identity lifecycle are separate.",
+        "batch": 4,
+        "closed": false
       },
       {
         "id": "LEG-05",
@@ -1885,7 +1912,9 @@
           "UX13"
         ],
         "coverageNote": "Company/Org nhiều tầng, phân cấp, kế thừa và kiểm tra âm tính đã thuộc phạm vi X2/X3/UX13; không giao lập trình lặp, giữ tiêu chí nghiệm thu LEG.",
-        "coverageNoteEn": "Company/Org hierarchy is already in X2/X3/UX13; retain legacy acceptance evidence."
+        "coverageNoteEn": "Company/Org hierarchy is already in X2/X3/UX13; retain legacy acceptance evidence.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-06",
@@ -1908,7 +1937,9 @@
           "X4"
         ],
         "coverageNote": "E2E ứng dụng thật là bài test xuyên suốt P3.3; không mở một engine AI Studio thứ hai. Phần thương mại/ph thanh toán ngoài scope cần đánh dấu gap.",
-        "coverageNoteEn": "Real-app E2E is a cross-cutting P3.3 acceptance suite, not a second Studio implementation."
+        "coverageNoteEn": "Real-app E2E is a cross-cutting P3.3 acceptance suite, not a second Studio implementation.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-07",
@@ -1927,7 +1958,9 @@
           "J1"
         ],
         "coverageNote": "Runner, sandbox, DNS, network isolation và disaster recovery là gate hạ tầng riêng; phụ thuộc job/build của Studio.",
-        "coverageNoteEn": "Runner isolation is a separate infrastructure gate."
+        "coverageNoteEn": "Runner isolation is a separate infrastructure gate.",
+        "batch": 4,
+        "closed": false
       },
       {
         "id": "LEG-08",
@@ -1948,7 +1981,9 @@
           "P0-19"
         ],
         "coverageNote": "Sửa AI đúng file và Studio UX nằm trong P3.3; trình kéo thả, inspector và undo/redo thủ công là acceptance riêng.",
-        "coverageNoteEn": "AI edits overlap; drag-drop inspector/undo remain separate."
+        "coverageNoteEn": "AI edits overlap; drag-drop inspector/undo remain separate.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-09",
@@ -1972,7 +2007,9 @@
           "P0-17"
         ],
         "coverageNote": "REST CRUD được duyệt, wizard, nguồn dữ liệu, quyền từng người đã thuộc P3.3. Giữ LEG làm tham chiếu, không làm lại connector.",
-        "coverageNoteEn": "Data connector and approved CRUD are in existing P3.3 scope."
+        "coverageNoteEn": "Data connector and approved CRUD are in existing P3.3 scope.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-10",
@@ -1989,7 +2026,9 @@
         "coverage": "INDEPENDENT",
         "coveredBy": [],
         "coverageNote": "Phân phối template/license giữa tenant là chức năng độc lập, chờ IAM/gate dữ liệu.",
-        "coverageNoteEn": "Cross-tenant template licensing is independent."
+        "coverageNoteEn": "Cross-tenant template licensing is independent.",
+        "batch": 6,
+        "closed": false
       },
       {
         "id": "LEG-11",
@@ -2008,7 +2047,9 @@
           "X3"
         ],
         "coverageNote": "Tenant DB/router/storage độc lập với quyền dữ liệu ở cấp ứng dụng.",
-        "coverageNoteEn": "Hybrid tenant storage remains distinct."
+        "coverageNoteEn": "Hybrid tenant storage remains distinct.",
+        "batch": 6,
+        "closed": false
       },
       {
         "id": "LEG-12",
@@ -2029,7 +2070,9 @@
           "UX13"
         ],
         "coverageNote": "Import Excel/CSV và API sync Org/Company đã được thêm vào X2/UX13; không chia công việc hai nơi.",
-        "coverageNoteEn": "Org sync/Excel/API mapping already belongs to X2/UX13."
+        "coverageNoteEn": "Org sync/Excel/API mapping already belongs to X2/UX13.",
+        "batch": 3,
+        "closed": false
       },
       {
         "id": "LEG-13",
@@ -2048,7 +2091,9 @@
           "P0-14"
         ],
         "coverageNote": "External App Hub/provisioning khác XApp/SSO nội bộ; kiểm chứng tích hợp ngoài riêng.",
-        "coverageNoteEn": "External app provisioning is separate from XApp."
+        "coverageNoteEn": "External app provisioning is separate from XApp.",
+        "batch": 4,
+        "closed": false
       },
       {
         "id": "LEG-14",
@@ -2066,7 +2111,9 @@
         "coveredBy": [],
         "coverageNote": "Giữ gate vận hành riêng nhưng dùng chung một bộ evidence DR/restore với P4-04; không chạy hai chương trình backup độc lập.",
         "coverageNoteEn": "Share operational DR evidence with P4-04.",
-        "sharedGate": "OPERATIONS_DR"
+        "sharedGate": "OPERATIONS_DR",
+        "batch": 4,
+        "closed": false
       },
       {
         "id": "LEG-15",
@@ -2085,7 +2132,9 @@
           "UX13"
         ],
         "coverageNote": "Benchmark 10K–10M dòng là kiểm thử hiệu năng độc lập; không suy ra từ UX bảng dữ liệu.",
-        "coverageNoteEn": "Large-table performance remains an independent benchmark."
+        "coverageNoteEn": "Large-table performance remains an independent benchmark.",
+        "batch": 6,
+        "closed": false
       },
       {
         "id": "LEG-16",
@@ -2104,7 +2153,9 @@
           "E1/E2+F1"
         ],
         "coverageNote": "1k–10k tài khoản đủ quyền khác với 1k/10k/100k yêu cầu đồng thời; cần benchmark HA độc lập.",
-        "coverageNoteEn": "Account entitlement scale is not concurrent load capacity."
+        "coverageNoteEn": "Account entitlement scale is not concurrent load capacity.",
+        "batch": 6,
+        "closed": false
       },
       {
         "id": "LEG-17",
@@ -2121,7 +2172,9 @@
         "coverage": "INDEPENDENT",
         "coveredBy": [],
         "coverageNote": "Đây là gate đối soát acceptance lịch sử, không phải hạng mục code để đếm trùng.",
-        "coverageNoteEn": "Historical acceptance reconciliation is its own audit gate."
+        "coverageNoteEn": "Historical acceptance reconciliation is its own audit gate.",
+        "batch": 4,
+        "closed": false
       },
       {
         "id": "P4-01",
@@ -2141,7 +2194,9 @@
           "X4"
         ],
         "coverageNote": "Pentest/ASVS SaaS tổng thể là gate mở bán; tái sử dụng kết quả SEC P3.3 nhưng không tự coi đã đạt.",
-        "coverageNoteEn": "Commercial ASVS/pentest is separate."
+        "coverageNoteEn": "Commercial ASVS/pentest is separate.",
+        "batch": 5,
+        "closed": false
       },
       {
         "id": "P4-02",
@@ -2161,7 +2216,16 @@
           "P0-16 B/E"
         ],
         "coverageNote": "Skill đọc nhiều lượt, Map/Memory và Browser QA đã thuộc P0-16; chỉ giữ ở Phase 4 năng lực mở rộng agent/reviewer và benchmark thương mại vượt scope.",
-        "coverageNoteEn": "Source tools/Map/Memory/QA overlap; agent extensibility remains Phase 4."
+        "coverageNoteEn": "Source tools/Map/Memory/QA overlap; agent extensibility remains Phase 4.",
+        "batch": [
+          3,
+          5
+        ],
+        "batchPart": {
+          "3": "phần trùng với nhóm 19 hạng mục",
+          "5": "phần riêng (~3/12)"
+        },
+        "closed": false
       },
       {
         "id": "P4-03",
@@ -2182,7 +2246,16 @@
           "UX13"
         ],
         "coverageNote": "Theme/VI-EN và UX Studio/Data đã nằm trong P3.3; giữ audit WCAG 2.2 AA độc lập cho 5 portal và generated apps.",
-        "coverageNoteEn": "Theme/i18n overlap; formal 5-portal accessibility audit remains."
+        "coverageNoteEn": "Theme/i18n overlap; formal 5-portal accessibility audit remains.",
+        "batch": [
+          3,
+          5
+        ],
+        "batchPart": {
+          "3": "phần trùng với nhóm 19 hạng mục",
+          "5": "phần riêng (~3/12)"
+        },
+        "closed": false
       },
       {
         "id": "P4-04",
@@ -2200,7 +2273,9 @@
         "coveredBy": [],
         "coverageNote": "Chung nhóm gate với LEG-14; dùng chung bảng DR/SLO/rollback/restore evidence và một owner, không nhân đôi agent.",
         "coverageNoteEn": "Share one operations/recovery workstream with LEG-14.",
-        "sharedGate": "OPERATIONS_DR"
+        "sharedGate": "OPERATIONS_DR",
+        "batch": 5,
+        "closed": false
       },
       {
         "id": "P4-05",
@@ -2219,7 +2294,9 @@
           "B1/B1-1"
         ],
         "coverageNote": "Subscription/trial/billing SaaS không đồng nghĩa ledger chi phí AI nội bộ; giữ riêng.",
-        "coverageNoteEn": "Commercial subscription billing is separate from AI spend ledger."
+        "coverageNoteEn": "Commercial subscription billing is separate from AI spend ledger.",
+        "batch": 6,
+        "closed": false
       },
       {
         "id": "P4-06",
@@ -2236,7 +2313,9 @@
         "coverage": "INDEPENDENT",
         "coveredBy": [],
         "coverageNote": "GO/NO-GO thương mại dựa trên toàn bộ gate, không phải chức năng trùng Phase 3.3.",
-        "coverageNoteEn": "Commercial GO/NO-GO remains separate."
+        "coverageNoteEn": "Commercial GO/NO-GO remains separate.",
+        "batch": 6,
+        "closed": false
       }
     ],
     "coverageReviewedAt": "2026-11-06",
@@ -3799,7 +3878,9 @@
         "etaFull": "~477 giờ agent (±35%), lịch thực tế 3–4 tuần: ước tính, chưa phải cam kết",
         "etaFallback": "Dự phòng: pha nhỏ nhất (CRUD + Import cơ cấu tổ chức, cờ TẮT) trước",
         "evidence": "cục bộ: ~/xweb-handoff/p37-studio/t37/slices/S10-PACKAGE.md",
-        "accept": "Người được cấp quyền tạo Web App bằng Studio, Preview và Published PRIVATE thấy dữ liệu nội bộ thật của đúng công ty; người không được cấp quyền không đọc được; thu hồi có hiệu lực; có bằng chứng E2E thật trên PROD."
+        "accept": "Người được cấp quyền tạo Web App bằng Studio, Preview và Published PRIVATE thấy dữ liệu nội bộ thật của đúng công ty; người không được cấp quyền không đọc được; thu hồi có hiệu lực; có bằng chứng E2E thật trên PROD.",
+        "batch": 1,
+        "closed": false
       },
       {
         "group": "IN_PROGRESS",
@@ -3821,7 +3902,9 @@
           "Mọi thay đổi có Audit Log và lịch sử phiên Import, khôi phục khi an toàn",
           "Web App từ Studio dùng dữ liệu thực qua nguồn được cấp quyền trên PROD; thu hồi quyền có hiệu lực",
           "QA/SEC độc lập trên đúng SHA; cờ mới mặc định TẮT, fail-closed"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "T01",
@@ -3832,7 +3915,8 @@
         "statusEn": "ON in PROD (09/11 01:52–02:14), smoke passed",
         "prs": "",
         "eta": "",
-        "evidence": "Smoke s154/s135/s146 đạt"
+        "evidence": "Smoke s154/s135/s146 đạt",
+        "closed": false
       },
       {
         "id": "T02",
@@ -3843,7 +3927,8 @@
         "statusEn": "ON (Admin setting, 07:39); verified with real AI turns",
         "prs": "",
         "eta": "",
-        "evidence": "Auto trỏ Haiku 5.5, danh sách chọn tay giữ nguyên"
+        "evidence": "Auto trỏ Haiku 5.5, danh sách chọn tay giữ nguyên",
+        "closed": false
       },
       {
         "id": "T03",
@@ -3854,7 +3939,8 @@
         "statusEn": "ON (Admin setting, 07:51)",
         "prs": "",
         "eta": "",
-        "evidence": "Đọc lại cài đặt = 10; vượt giới hạn vẫn bị từ chối 429 (chưa xếp hàng)"
+        "evidence": "Đọc lại cài đặt = 10; vượt giới hạn vẫn bị từ chối 429 (chưa xếp hàng)",
+        "closed": false
       },
       {
         "id": "T04",
@@ -3865,7 +3951,8 @@
         "statusEn": "ON (10:04), server announces 300,000 bytes",
         "prs": "",
         "eta": "",
-        "evidence": "Builder config công bố promptMaxBytes = 300000"
+        "evidence": "Builder config công bố promptMaxBytes = 300000",
+        "closed": false
       },
       {
         "id": "T05",
@@ -3876,7 +3963,8 @@
         "statusEn": "ON (release 7, 12:32); real Haiku turn with a 98,290-char file, not cut",
         "prs": "BE #190, FE #146",
         "eta": "",
-        "evidence": "QA độc lập GO có điều kiện / GO"
+        "evidence": "QA độc lập GO có điều kiện / GO",
+        "closed": false
       },
       {
         "id": "T06",
@@ -3887,7 +3975,8 @@
         "statusEn": "ON (release 7, 12:32); per-browser storage (Owner accepted)",
         "prs": "FE #143, BE #188",
         "eta": "",
-        "evidence": "QA độc lập GO có điều kiện; smoke 4 cổng, đăng xuất tại XApp kết thúc phiên"
+        "evidence": "QA độc lập GO có điều kiện; smoke 4 cổng, đăng xuất tại XApp kết thúc phiên",
+        "closed": false
       },
       {
         "id": "T07",
@@ -3898,7 +3987,8 @@
         "statusEn": "ON (release 7, 12:32)",
         "prs": "FE #144, BE #189",
         "eta": "",
-        "evidence": "QA độc lập GO có điều kiện; còn 2 lỗi P2 đang sửa (FE #148)"
+        "evidence": "QA độc lập GO có điều kiện; còn 2 lỗi P2 đang sửa (FE #148)",
+        "closed": false
       },
       {
         "id": "T08",
@@ -3909,7 +3999,8 @@
         "statusEn": "ON (release 7, 12:32)",
         "prs": "FE #145",
         "eta": "",
-        "evidence": "QA độc lập GO"
+        "evidence": "QA độc lập GO",
+        "closed": false
       },
       {
         "id": "T09",
@@ -3920,7 +4011,8 @@
         "statusEn": "ON (release 8, 14:39); real Haiku turn: 12,610-char answer shown whole and kept after reload",
         "prs": "BE #192 (migration V98)",
         "eta": "",
-        "evidence": "QA độc lập GO có điều kiện; Flyway 98|86|0"
+        "evidence": "QA độc lập GO có điều kiện; Flyway 98|86|0",
+        "closed": false
       },
       {
         "id": "T10",
@@ -3931,7 +4023,9 @@
         "statusEn": "19:10: queue switch ENABLED (slots=1, max-per-workspace=0, on the Owner's 'enable now'); rollback = set enabled=false. One real build through the queue passed (QUEUED → RUNNING → READY, ~40 s). Multi-job queueing NOT proven yet: the import path allows only 1 per day for the test account (429), needs Haiku AI turns or a higher import limit. Machine: the runner is a single process so effectively 1 build at a time; each build up to 2 GB; 4 vCPU/16 GB supports at most 2 parallel builds (CPU), 4 (memory) if more runner processes are added",
         "prs": "BE #193 #195, FE #150 #153",
         "eta": "",
-        "evidence": "QA độc lập GO có điều kiện / GO; điều kiện: max-per-workspace = 0 khi thử một workspace"
+        "evidence": "QA độc lập GO có điều kiện / GO; điều kiện: max-per-workspace = 0 khi thử một workspace",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T11",
@@ -3942,7 +4036,8 @@
         "statusEn": "Deployed 17:35; PROD English scan: Studio 0 Vietnamese strings (before: 36 and 4)",
         "prs": "FE #151",
         "eta": "",
-        "evidence": "QA độc lập GO (delta)"
+        "evidence": "QA độc lập GO (delta)",
+        "closed": false
       },
       {
         "id": "T12",
@@ -3953,7 +4048,8 @@
         "statusEn": "In release 9 (test fix, nothing changes on PROD)",
         "prs": "FE #152",
         "eta": "",
-        "evidence": "Không có lỗi sản phẩm; studio-lovable 348/348"
+        "evidence": "Không có lỗi sản phẩm; studio-lovable 348/348",
+        "closed": false
       },
       {
         "id": "T13",
@@ -3964,7 +4060,8 @@
         "statusEn": "Deployed 17:35; PROD English scan: Studio 0 Vietnamese strings on 3 screens; independent QA GO",
         "prs": "FE #154, BE #194 (đồng bộ)",
         "eta": "",
-        "evidence": "Người dùng tiếng Việt không hồi quy (1.873 giá trị khớp byte)"
+        "evidence": "Người dùng tiếng Việt không hồi quy (1.873 giá trị khớp byte)",
+        "closed": false
       },
       {
         "id": "T14",
@@ -3975,7 +4072,9 @@
         "statusEn": "Deployed 17:35 (mutants + gate green); no dedicated PROD smoke yet for the edit layout",
         "prs": "FE #148",
         "eta": "",
-        "evidence": "Đã có mã và test"
+        "evidence": "Đã có mã và test",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T15",
@@ -3986,7 +4085,9 @@
         "statusEn": "Deployed 17:35, S1 switch ON by default, independent QA GO. NOT yet checked with a real model: T26 round 1 about to run",
         "prs": "BE #196",
         "eta": "",
-        "evidence": "Căn cứ: audit lượt Smart IQC"
+        "evidence": "Căn cứ: audit lượt Smart IQC",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T16",
@@ -3997,7 +4098,8 @@
         "statusEn": "Done: reachable on PROD, never used, highest P3, no P0/P1",
         "prs": "",
         "eta": "",
-        "evidence": "Nghi: không dùng chính sách đọc, không che bí mật; chưa xác minh trên PROD"
+        "evidence": "Nghi: không dùng chính sách đọc, không che bí mật; chưa xác minh trên PROD",
+        "closed": false
       },
       {
         "id": "T17",
@@ -4008,7 +4110,8 @@
         "statusEn": "Done. Per-app tables, CRUD, BE-enforced; AI cannot create/bind; Smart IQC cannot be ported as-is",
         "prs": "",
         "eta": "",
-        "evidence": "Báo cáo audit-data-backend.md"
+        "evidence": "Báo cáo audit-data-backend.md",
+        "closed": false
       },
       {
         "id": "T18",
@@ -4019,7 +4122,8 @@
         "statusEn": "Done. System prompt text, empty data blocks (0 tables/0 sources), soft-cap bug, Haiku answered in words",
         "prs": "",
         "eta": "",
-        "evidence": "Báo cáo audit-smartiqc-turn.md"
+        "evidence": "Báo cáo audit-smartiqc-turn.md",
+        "closed": false
       },
       {
         "id": "T19",
@@ -4030,7 +4134,8 @@
         "statusEn": "Done. 0 tools, tool loop OFF and never run with a real model, no skill loading",
         "prs": "",
         "eta": "",
-        "evidence": "Báo cáo audit-agent-tools-skills.md"
+        "evidence": "Báo cáo audit-agent-tools-skills.md",
+        "closed": false
       },
       {
         "id": "T20",
@@ -4041,7 +4146,8 @@
         "statusEn": "Done 134 pass / 1 minor fail / 1 blocked; throwaway project removed",
         "prs": "",
         "eta": "",
-        "evidence": "Chưa chứng minh vai trò theo hàng ở LIVE (cần gán vai trò cho tài khoản QA)"
+        "evidence": "Chưa chứng minh vai trò theo hàng ở LIVE (cần gán vai trò cho tài khoản QA)",
+        "closed": false
       },
       {
         "id": "T21",
@@ -4052,7 +4158,8 @@
         "statusEn": "Recorded on issue #88 (15:00)",
         "prs": "",
         "eta": "",
-        "evidence": ""
+        "evidence": "",
+        "closed": false
       },
       {
         "id": "T22",
@@ -4073,7 +4180,8 @@
           "Công tắc tắt = hành vi cũ từng byte; QA độc lập GO trên SHA"
         ],
         "prio": 3,
-        "etaFallback": "Dự phòng: T22-A 10/11 ~19:00 hoặc 11/11 sáng; T22-B 16–18/11"
+        "etaFallback": "Dự phòng: T22-A 10/11 ~19:00 hoặc 11/11 sáng; T22-B 16–18/11",
+        "closed": false
       },
       {
         "id": "T23",
@@ -4093,7 +4201,9 @@
           "Chỉ bật sau QA độc lập GO; công tắc có đường tắt khẩn cấp"
         ],
         "prio": null,
-        "etaFallback": "Dự phòng: P1 quyền/nội dung → dừng bật cờ, +1–2 ngày: mọi user 18–21/11. Giờ công BE 25 / QA 41 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong"
+        "etaFallback": "Dự phòng: P1 quyền/nội dung → dừng bật cờ, +1–2 ngày: mọi user 18–21/11. Giờ công BE 25 / QA 41 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T24",
@@ -4114,7 +4224,9 @@
           "Test phá mã và QA độc lập GO"
         ],
         "prio": null,
-        "etaFallback": "Dự phòng: 23–27/11. Giờ công BE 62 / FE 6 / QA 16 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong"
+        "etaFallback": "Dự phòng: 23–27/11. Giờ công BE 62 / FE 6 / QA 16 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T25",
@@ -4135,7 +4247,9 @@
           "QA độc lập GO"
         ],
         "prio": null,
-        "etaFallback": "Dự phòng: 23–27/11. Giờ công BE 32 / FE 4 / QA 30 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong"
+        "etaFallback": "Dự phòng: 23–27/11. Giờ công BE 32 / FE 4 / QA 30 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T26",
@@ -4150,7 +4264,9 @@
         "etaFirst": "Dự án QA: vòng 1 xong 17:53 09/11; vòng 2 sau đợt 10 (10/11 ~13:00); vòng 3 sau T22-B (11/11 ~18:00)",
         "etaFull": "Là mốc đo, kết thúc khi S1–S4 đạt trong bộ kịch bản",
         "prio": null,
-        "etaFallback": "Dự phòng: mỗi vòng chờ bản đã deploy; thiếu lượt Haiku thì dừng (còn 15, sẽ xin thêm ~30) | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong"
+        "etaFallback": "Dự phòng: mỗi vòng chờ bản đã deploy; thiếu lượt Haiku thì dừng (còn 15, sẽ xin thêm ~30) | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T27",
@@ -4161,7 +4277,8 @@
         "statusEn": "Done 16:19: 40/45 steps passed; the 5 mismatches are only 404 instead of 403 (still correctly denied). SELF/TENANT scopes, default deny and instant revoke proven on PROD; all roles revoked and the throwaway project removed",
         "prs": "",
         "eta": "",
-        "evidence": "live-smoke-report.md mục 9"
+        "evidence": "live-smoke-report.md mục 9",
+        "closed": false
       },
       {
         "id": "T28",
@@ -4172,7 +4289,8 @@
         "statusEn": "Parked",
         "prs": "",
         "eta": "",
-        "evidence": ""
+        "evidence": "",
+        "closed": false
       },
       {
         "id": "T29",
@@ -4187,7 +4305,8 @@
         "etaFirst": "Ưu tiên 3. PR có (19:25); QA độc lập ~20:15; đợt 10",
         "etaFull": "Ổn định ngay (đường chưa từng được dùng)",
         "etaFallback": "Dự phòng: đợt 11 (11/11)",
-        "prio": 4
+        "prio": 4,
+        "closed": false
       },
       {
         "id": "T30",
@@ -4210,7 +4329,9 @@
           "Nghiệm thu Smart IQC trên DEV và PROD: thấy vai trò đã chọn, tài liệu BA, bố cục UX, rồi mã bước đầu, build chạy"
         ],
         "prio": null,
-        "etaFallback": "Dự phòng: 1–6/12; phụ thuộc runner T22-B. Giờ công BE 62 / FE 24 / QA 24 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong"
+        "etaFallback": "Dự phòng: 1–6/12; phụ thuộc runner T22-B. Giờ công BE 62 / FE 24 / QA 24 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T31",
@@ -4231,7 +4352,9 @@
         "etaFirst": "QA project: PR 12/11 ~20:00, lên PROD đợt 12 (13/11 ~12:00), bật QA 13/11",
         "etaFull": "Mọi user: 18–20/11 (khối prompt); biến thể tool +2 ngày sau T23",
         "prio": null,
-        "etaFallback": "Dự phòng: 21–24/11. Giờ công BE 36 / FE 24 / QA 20 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong"
+        "etaFallback": "Dự phòng: 21–24/11. Giờ công BE 36 / FE 24 / QA 20 | TẠM DỪNG theo lệnh Owner 18:35 (chỉ chạy T32, T33, T22-A, T29); mốc sẽ tính lại khi 4 mục xong",
+        "batch": 2,
+        "closed": false
       },
       {
         "id": "T32",
@@ -4255,7 +4378,8 @@
           "Báo rõ phần giống, phần khác, phần không so sánh được; không tuyên bố tương đương khi chưa đo",
           "QA độc lập GO trên SHA; công tắc TẮT mặc định cho tới khi đạt"
         ],
-        "etaFallback": "Dự phòng: QA bảo mật tìm P1/P2 → đợt 11 (11/11 ~15:00), ON ~11/11 17:00; nếu phải thiết kế lại: 12/11"
+        "etaFallback": "Dự phòng: QA bảo mật tìm P1/P2 → đợt 11 (11/11 ~15:00), ON ~11/11 17:00; nếu phải thiết kế lại: 12/11",
+        "closed": false
       },
       {
         "id": "T33",
@@ -4277,7 +4401,8 @@
           "Test thất bại khi bỏ bản sửa; QA độc lập GO"
         ],
         "etaFallback": "Dự phòng: QA lỗi → 10/11 ~19:00",
-        "prio": 2
+        "prio": 2,
+        "closed": false
       },
       {
         "id": "T34",
@@ -4299,7 +4424,8 @@
           "Preview và Publish hiển thị đúng, tài nguyên bên cạnh tải được, tài nguyên ngoài bị chặn được báo",
           "Không nhập .env/bí mật; giới hạn kích thước và số file vẫn áp dụng",
           "Kiểm bằng trình duyệt thật trên PROD; QA độc lập GO; chỉ ON sau khi kiểm thật"
-        ]
+        ],
+        "closed": false
       },
       {
         "id": "T35",
@@ -4322,7 +4448,9 @@
           "Mọi mục menu cũ vào đúng route/panel thật; quick actions chạy luồng thật (mặc định Mở tab mới, Duyệt, Xuất bản; tối đa 4)",
           "Giữ quyền, no-self-approval, read-only, dữ liệu TEST, publish, phiên bản, AI, undo/redo",
           "E2E 5 cỡ × 4 vai trò; QA/SEC độc lập đúng SHA"
-        ]
+        ],
+        "closed": true,
+        "closedAt": "2026-11-11T13:36:00+07:00"
       },
       {
         "id": "T36",
@@ -4344,7 +4472,9 @@
           "Chỉ quản trị hệ thống bật/tắt; bật cần RAISE + N; có nhật ký và cảnh báo",
           "Quay về TIMED là đường lùi, gia hạn thường khôi phục dịch vụ",
           "Giao diện super admin có biểu ngữ và công tắc; QA độc lập + SEC GO"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D1.2",
@@ -4362,7 +4492,9 @@
         "evidence": "Kế hoạch ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md; thứ tự Owner 11/11 11:58 và 13:36",
         "accept": [
           "QA độc lập ghi lại hành vi ALWAYS_OPEN 600/ngày; không đổi cờ/ngân sách"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D1.3",
@@ -4383,7 +4515,9 @@
           "Khóa ký sinh trên máy chủ, không in/gửi chat",
           "Smoke tenant QA; members/xuất thành viên vẫn đóng",
           "Lùi = tắt cờ"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D1.4",
@@ -4404,7 +4538,9 @@
           "1 lượt DEV với cờ BẬT (định dạng thời gian, 404 khi tắt)",
           "Bật cờ + smoke tenant QA; người duyệt thứ hai tạm bằng tài khoản QA",
           "Lùi = tắt cờ"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D1.6",
@@ -4423,7 +4559,9 @@
         "accept": [
           "3 lượt Haiku: số bước, token, finish_reason, lỗi nhà cung cấp",
           "Bật cho workspace QA; mọi người sau do Owner quyết"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D1.7",
@@ -4441,7 +4579,9 @@
         "evidence": "Kế hoạch ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md; thứ tự Owner 11/11 11:58 và 13:36",
         "accept": [
           "2 lượt gần đồng thời; ghi vị trí hàng đợi/thời gian chờ"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D1.8",
@@ -4461,7 +4601,9 @@
           "Màn Hồ sơ trên PROD",
           "Bật API sau màn; chỉ dữ liệu tổng hợp",
           "Lùi = tắt cờ"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D1.10",
@@ -4479,7 +4621,9 @@
         "evidence": "Kế hoạch ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md; thứ tự Owner 11/11 11:58 và 13:36",
         "accept": [
           "Gói UAT từng mục; Owner ký từng mục"
-        ]
+        ],
+        "batch": 1,
+        "closed": false
       },
       {
         "id": "D2",
@@ -4497,14 +4641,17 @@
         "evidence": "Kế hoạch ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md; thứ tự Owner 11/11 11:58 và 13:36",
         "accept": [
           "Từng mục: QA/SEC độc lập → phát hành → cờ theo quyết định Owner"
-        ]
+        ],
+        "batch": 2,
+        "batchPlan": true,
+        "closed": false
       },
       {
         "id": "D3",
         "group": "PLANNED",
         "prio": "3",
-        "title": "Đợt 3 · Đóng Phase 3.3: E2E độc lập PROD 19 mục + Owner UAT từng mục (NO-14=A) + khoảng trống chức năng (X4, P0-17 N-2/N-3, gói 03b 05–08, B3 revoke, E1, X1 STRICT)",
-        "titleEn": "Batch 3 · Close Phase 3.3",
+        "title": "Đợt 3 · Đóng nhóm 19 hạng mục nền tảng: E2E độc lập PROD 19 mục + Owner UAT từng mục (NO-14=A) + khoảng trống chức năng (X4, P0-17 N-2/N-3, gói 03b 05–08, B3 revoke, E1, X1 STRICT)",
+        "titleEn": "Batch 3 · Close the 19 foundation items: independent PROD E2E + Owner UAT per item, plus remaining functional gaps",
         "status": "Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "statusEn": "Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "prs": "",
@@ -4517,7 +4664,10 @@
           "19/19 E2E độc lập trên PROD",
           "19/19 Owner UAT",
           "Cờ ON không tính là xong"
-        ]
+        ],
+        "batch": 3,
+        "batchPlan": true,
+        "closed": false
       },
       {
         "id": "D4",
@@ -4536,7 +4686,10 @@
         "accept": [
           "Ma trận nghiệm thu Phase 0–3.2 (DONE/QA_ONLY/DEV_ONLY/BACKLOG)",
           "Backup/restore chứng minh khôi phục được"
-        ]
+        ],
+        "batch": 4,
+        "batchPlan": true,
+        "closed": false
       },
       {
         "id": "D5",
@@ -4554,7 +4707,10 @@
         "evidence": "Kế hoạch ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md; thứ tự Owner 11/11 11:58 và 13:36",
         "accept": [
           "Từng mục có bằng chứng PR + QA độc lập"
-        ]
+        ],
+        "batch": 5,
+        "batchPlan": true,
+        "closed": false
       },
       {
         "id": "D6",
@@ -4573,7 +4729,10 @@
         "accept": [
           "ADR được Owner duyệt",
           "Kiểm toán độc lập hoàn tất"
-        ]
+        ],
+        "batch": 6,
+        "batchPlan": true,
+        "closed": false
       }
     ]
   },
@@ -5225,6 +5384,66 @@
         "id": "agents.max",
         "note": "Owner cấu hình lại từ dashboard: agents.max 6→8, agents.max_extra 7→10 (agents.min giữ 4). Đã áp dụng; một việc nặng một lúc vẫn giữ; tải máy >~20 thì không thêm.",
         "state": "applied"
+      }
+    ]
+  },
+  "roadmap": {
+    "note": "Ngày dự kiến là ước lượng, không phải số đo. Đợt chỉ tính xong khi từng mục đạt QA/SEC độc lập + đã kiểm trên PROD + Owner chấp nhận.",
+    "noteEn": "Dates are estimates, not measurements. An item counts as closed only after independent QA/SEC, PROD verification and Owner acceptance.",
+    "batches": [
+      {
+        "n": 1,
+        "title": "Dữ liệu doanh nghiệp & chứng minh vận hành",
+        "titleEn": "Enterprise data & operational proof",
+        "goal": "Đưa dữ liệu công ty, tổ chức, hồ sơ nhân viên và các bằng chứng vận hành đang dở lên PROD có kiểm soát.",
+        "goalEn": "Ship company, org and staff-profile data plus the open operational proofs to PROD under control.",
+        "eta": "~12–14/11",
+        "etaEn": "~12–14 Nov"
+      },
+      {
+        "n": 2,
+        "title": "Hoàn thiện công cụ AI",
+        "titleEn": "AI tooling completion",
+        "goal": "Hoàn tất các hạng mục AI còn lại (tool loop, sửa theo đoạn, agent đa vai trò) và nghiệm thu độc lập từng mục.",
+        "goalEn": "Finish the remaining AI items (tool loop, patch edits, multi-role agent) with independent acceptance per item.",
+        "eta": "~19/11",
+        "etaEn": "~19 Nov"
+      },
+      {
+        "n": 3,
+        "title": "Đóng nhóm 19 hạng mục nền tảng",
+        "titleEn": "Close the 19 foundation items",
+        "goal": "E2E độc lập trên PROD và Owner UAT cho từng hạng mục trong nhóm 19, cùng các khoảng trống chức năng còn lại.",
+        "goalEn": "Independent PROD E2E and Owner UAT for every one of the 19 items, plus the remaining functional gaps.",
+        "eta": "~23/11",
+        "etaEn": "~23 Nov"
+      },
+      {
+        "n": 4,
+        "title": "Rà soát & xác minh chỉ đọc",
+        "titleEn": "Read-only review & verification",
+        "goal": "Rà soát và xác minh các hạng mục kế thừa mà không tạo dữ liệu hay tenant mới.",
+        "goalEn": "Review and verify the inherited items without creating new data or tenants.",
+        "eta": "~26/11",
+        "etaEn": "~26 Nov"
+      },
+      {
+        "n": 5,
+        "title": "Kỹ thuật cho thương mại hóa",
+        "titleEn": "Engineering for commercialisation",
+        "goal": "Bảo mật, CI/CD, khôi phục thảm họa, khả năng tiếp cận và pilot agent trước khi mở rộng người dùng.",
+        "goalEn": "Security, CI/CD, disaster recovery, accessibility and an agent pilot before widening the user base.",
+        "eta": "~3/12",
+        "etaEn": "~3 Dec"
+      },
+      {
+        "n": 6,
+        "title": "Cần Owner hoặc bên ngoài",
+        "titleEn": "Needs Owner or external parties",
+        "goal": "Các mục phụ thuộc quyết định của Owner hoặc kiểm toán viên độc lập: kiến trúc dữ liệu, thử tải, gói và thanh toán, quyết định mở bán.",
+        "goalEn": "Items that depend on an Owner decision or an independent auditor: data architecture, load testing, plans and billing, go-to-market decision.",
+        "eta": "từ giữa tháng 12 (chưa có ngày chắc)",
+        "etaEn": "from mid-December (no firm date)"
       }
     ]
   }
