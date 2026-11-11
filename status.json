@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T12:04:00+07:00",
+  "asOf": "2026-11-11T12:16:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1779,7 +1779,7 @@
       }
     }
   ],
-  "detailUpdatedAt": "2026-11-11T12:04:00+07:00",
+  "detailUpdatedAt": "2026-11-11T12:16:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3336,6 +3336,198 @@
         ],
         "decided": "A",
         "decision": "Tenant thử với dữ liệu tổng hợp cho bước chứng minh cuối trên PROD (Owner 22:04). Anh sẽ cấp admin thứ hai cho tenant thử trước đợt 21; mọi e2e khác trên DEV. Không dùng dữ liệu nhân sự thật."
+      },
+      {
+        "id": "NO-01",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "T35: xác nhận bằng mắt trên PROD",
+        "detail": "QA độc lập trên PROD đã PASS (286 PASS/0 FAIL mỗi vai, 5 độ rộng). Chỉ còn Owner nhìn: header một hàng, ☰ ghim, không còn logo X/⋯/Mở bằng IDE, 390px không tràn, hộp Tùy chỉnh thao tác nhanh.",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Đạt, đóng T35",
+            "desc": "C0 đánh dấu T35 ON/DONE.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Còn lỗi",
+            "desc": "Ghi điểm lỗi vào ô ghi chú."
+          }
+        ]
+      },
+      {
+        "id": "NO-02",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "Bật ORG_SYNC (nhập/xuất cây đơn vị bằng CSV, không tạo tài khoản)",
+        "detail": "FE wizard đã có. C0 tự sinh khóa ký ngẫu nhiên ngay trên máy chủ (không in, không gửi chat), ghi vào cấu hình, bật + ack theo SHA, smoke trên tenant QA; kèm E2E DEV trước. Members/xuất thành viên vẫn đóng. Lùi: tắt cờ.",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Bật sau E2E DEV",
+            "desc": "Sau khi E2E DEV đạt.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chờ XLSX",
+            "desc": "Đợi thư viện XLSX (S4W) rồi mới bật."
+          }
+        ]
+      },
+      {
+        "id": "NO-03",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "Bật ENTERPRISE_DATA (API Công ty + danh mục COMPANIES) cùng lúc làm màn hình Công ty",
+        "detail": "Không có dữ liệu cá nhân, lùi bằng tắt cờ. Cần người duyệt thứ hai cho chính sách COMPANIES (C0 dùng tài khoản QA tạm như đợt trước). FE màn Công ty (FE-S2) làm song song.",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Bật API ngay + làm màn hình song song",
+            "desc": "Smoke trên tenant QA.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chỉ bật khi màn hình đã lên PROD",
+            "desc": "Chậm hơn ~1 ngày."
+          }
+        ]
+      },
+      {
+        "id": "NO-05",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "Bật ENTERPRISE_PROFILES: chính sách dữ liệu cá nhân của hồ sơ nhân viên (F2/F5)",
+        "detail": "Chưa có route xóa/ẩn danh. Mã nhân viên có phải dữ liệu cá nhân? Khuyến nghị: chỉ vô hiệu hóa (không xóa), chỉ dữ liệu tổng hợp trên PROD, audit ≥12 tháng không tên (đã duyệt OD-T37-I).",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Chấp nhận ‘chỉ vô hiệu hóa, không xóa’ + dữ liệu tổng hợp",
+            "desc": "Bật API sau khi có màn hình hồ sơ.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Làm route xóa/ẩn danh trước",
+            "desc": "Thêm khoảng 8–10 giờ BE."
+          }
+        ]
+      },
+      {
+        "id": "NO-06",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "T22-B (AI làm theo từng bước) sau 3 lượt Haiku",
+        "detail": "Cờ steps còn TẮT; 3 lượt Haiku đã duyệt. C0 chạy 3 lượt trên dự án QA, báo số bước/token/lỗi, rồi Owner quyết bật.",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Chạy 3 lượt rồi bật cho workspace QA trước",
+            "desc": "Mọi người sau.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Bật toàn cục khi đạt",
+            "desc": "Không thử trước theo workspace."
+          }
+        ]
+      },
+      {
+        "id": "NO-10",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "reviewRequired cho project dùng Preview thật (merge cần người thứ hai duyệt)",
+        "detail": "Mặc định hiện tại TẮT: người có quyền merge tự merge được thay đổi chưa duyệt và nó thành ‘tin cậy’ cho Preview thật.",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Bắt buộc duyệt cho project có nguồn nội bộ",
+            "desc": "An toàn hơn, thêm một bước duyệt.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Giữ mặc định",
+            "desc": "Nhanh hơn, rủi ro như QA đã nêu."
+          }
+        ]
+      },
+      {
+        "id": "NO-13",
+        "kind": "DECISION",
+        "priority": "P3",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "Thứ tự T37 sau S10",
+        "detail": "Hai cờ ON mà chưa có màn hình thì Owner không thấy giá trị.",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Màn hình trước: Công ty, Hồ sơ, audit, XLSX; rồi S5–S9",
+            "desc": "Khuyến nghị.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Theo ORDER.md cũ: S6, S5, S7, S9",
+            "desc": "Ít thấy giá trị sớm."
+          }
+        ]
+      },
+      {
+        "id": "NO-14",
+        "kind": "DECISION",
+        "priority": "P3",
+        "status": "OPEN",
+        "since": "2026-11-11T12:16:00+07:00",
+        "title": "Định nghĩa ‘đóng Phase 3.3’",
+        "detail": "Hiện E2E độc lập PROD 0/19 và Owner UAT 0/19; cờ ON chưa đồng nghĩa xong.",
+        "solution": "C0 làm theo phương án A (khuyến nghị) trong lúc chờ, trừ khi Owner chọn B. Kế hoạch đầy đủ cục bộ: ~/xweb-handoff/p37-studio/t37/slices/NEXT-ON-PLAN-20261111.md",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "E2E độc lập PROD 19 mục + Owner UAT từng mục",
+            "desc": "Khoảng 80 giờ công, 3–4 ngày.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chỉ cờ ON + smoke",
+            "desc": "Nhanh nhưng không đạt quy tắc nghiệm thu."
+          }
+        ]
       }
     ]
   },
