@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-11T23:27:00+07:00",
+  "asOf": "2026-11-11T23:44:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-11T23:27:00+07:00",
+  "detailUpdatedAt": "2026-11-11T23:44:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3795,6 +3795,30 @@
             "desc": "Chỉ dùng dữ liệu tổng hợp/giả; C0 đếm hàng sau mỗi lần smoke. Hồ sơ đã tạo không xóa được."
           }
         ]
+      },
+      {
+        "id": "NO-26",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T23:44:00+07:00",
+        "title": "Đợt 3 (đóng nhóm 19 hạng mục): duyệt kế hoạch E2E độc lập trên PROD (12 câu)",
+        "detail": "Kế hoạch đầy đủ (cục bộ, có số tiền): ~/xweb-handoff/p37-studio/batch3/E2E-PROD-PLAN.md, mục 2 là 12 câu Q1–Q12, mục 1 là bảng một trang. Tóm tắt các điểm cần Owner (không gồm số tiền): Q1 'độc lập' = QA agent riêng chạy lại bằng tay; Q2 cho THĂNG TẠM tài khoản QA người duyệt lên TENANT_ADMIN để kiểm bốn mắt (X1/X2/X3/X5), thu hồi sau mỗi đợt (lệnh 'không thăng quyền' ngày 10/11 23:00 đang chặn bước này: cần Owner cho phép lại rõ ràng); Q3 duyệt 30 lượt Haiku (20 lõi + 10 chuỗi sửa liên tiếp); Q4 cấp phát thử rất nhỏ cho B1/B2/B3 (con số do Owner sửa, thu hồi hết khi xong); Q5 cấp tạm quyền AI cho tài khoản người duyệt (30 phút, phạm vi dự án); Q6 X4 đang TẮT: nghiệm thu = TẮT an toàn trên PROD + E2E BẬT trên DEV; Q7 tách phần chưa có mã khỏi hàng (ghi NOT_IMPLEMENTED); Q8 chạy một đêm kiểm hết phiên thật; Q9 tối đa 3 dự án QA + 1 phiếu báo lỗi UAT- + 1 nguồn REST thử; Q10 chấp nhận nhãn BLOCKED cho thứ không có và không được tạo (tenant thứ hai, tài khoản Apps-only, SSO người thứ hai, dữ liệu khách thật, PowerShell/Windows, tải hàng nghìn tài khoản); Q11 nghiệm thu trần prompt theo giá trị đang cấu hình; Q12 lỗi đã biết sẽ FAIL: đo ngay để có bằng chứng, riêng J1, P0-05/06 và X1 nên sửa nhỏ trước.",
+        "solution": "C0 khuyến nghị A (theo khuyến nghị của kế hoạch cho Q1–Q11; Q12: đo ngay trừ J1, P0-05/06, X1 sửa nhỏ trước). Nếu Owner từ chối Q2 và Q4 thì tối đa 12/19 mục đóng được. Không có gì bắt đầu trước khi Owner trả lời.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo khuyến nghị của kế hoạch",
+            "desc": "Q1–Q11 = A; Q12 đo ngay trừ J1, P0-05/06, X1 sửa trước. Chạy G0→G5, ~3 ngày + 1 đêm.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Anh muốn đổi một số câu",
+            "desc": "Ghi số câu và lựa chọn vào ô ghi chú (ví dụ Q2 = B không thăng quyền: các mục 7, 12, 13, 15 giữ NOT_RUN)."
+          }
+        ]
       }
     ]
   },
@@ -4032,7 +4056,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-11T23:27:00+07:00",
+    "updatedAt": "2026-11-11T23:44:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -5044,7 +5068,7 @@
         "prio": "3",
         "title": "Đợt 3 · Đóng nhóm 19 hạng mục nền tảng: E2E độc lập PROD 19 mục + Owner UAT từng mục (NO-14=A) + khoảng trống chức năng (X4, P0-17 N-2/N-3, gói 03b 05–08, B3 revoke, E1, X1 STRICT)",
         "titleEn": "Batch 3 · Close the 19 foundation items: independent PROD E2E + Owner UAT per item, plus remaining functional gaps",
-        "status": "Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
+        "status": "23:44 11/11: ĐÃ LẬP KẾ HOẠCH E2E độc lập trên PROD cho 19 mục (cục bộ: ~/xweb-handoff/p37-studio/batch3/E2E-PROD-PLAN.md, có số tiền nên không đưa lên repo công khai). Hôm nay 0/19 đạt chuẩn NO-14. Bằng chứng độc lập trên PROD hiện có cho 10 mục (biên bản QA đóng việc 07/11, chạy trên bản cũ nên phải đo lại); X2, X3, X5, P0-16 B/E, P0-19 chỉ có QA dev + C0 tự báo; UX13, P0-18, P0-17 chỉ smoke; X4 chỉ chứng minh được trạng thái TẮT. Ước lượng ≈140 giờ-agent (90–190), ~3 ngày làm việc + 1 đêm sau khi Owner trả lời 12 câu (thẻ NO-26). Lỗi đã biết sẽ FAIL nếu chưa sửa: J1-04 (hủy giữa lượt tính cả khoản giữ chỗ), P0-05/06 D-1/D-2, CQB-1 (X1), ENT-12. Nếu Owner không cho thăng tạm quyền người duyệt (bốn mắt) và cấp phát thử, tối đa 12/19 đóng được. | Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "statusEn": "Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "prs": "",
         "eta": "~23/11",
@@ -5059,7 +5083,33 @@
         ],
         "batch": 3,
         "batchPlan": true,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "Lập kế hoạch E2E 19 mục + 12 câu hỏi Owner",
+            "state": "done"
+          },
+          {
+            "label": "Owner duyệt thẻ NO-26",
+            "state": "todo"
+          },
+          {
+            "label": "Tiền kiểm chỉ đọc (G0) + nhóm chỉ đọc (G1)",
+            "state": "todo"
+          },
+          {
+            "label": "Nhóm AI + bốn mắt + cấp phát thử (G2–G4)",
+            "state": "todo"
+          },
+          {
+            "label": "Phiên hết hạn qua đêm (G5)",
+            "state": "todo"
+          },
+          {
+            "label": "Biên bản độc lập 19 mục + Owner UAT 4 buổi",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D4",
