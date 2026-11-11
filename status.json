@@ -3649,6 +3649,30 @@
         ],
         "decided": "A",
         "decision": "Bật toàn hệ thống (Owner 14:17). C0 đã bật ai.builder.steps.enabled lúc 14:19; lùi = tắt cờ bằng một lệnh."
+      },
+      {
+        "id": "NO-21",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-11T15:09:00+07:00",
+        "title": "Gói UAT (mục 1.10): cho C0 chuẩn bị dữ liệu thử và dùng vài lượt AI nhẹ?",
+        "detail": "Gói UAT đã soạn (UX13, P0-18, T14, T15, P0-19 + hồi quy T35). Để Owner tự bấm thử được, C0 cần: (1) chuẩn bị 1 dự án QA có sẵn thay đổi AI đang chờ cho T14; (2) T15 dùng 3 lượt Haiku nhẹ (+1 tùy chọn); (3) P0-18 có thể gửi 1 báo cáo thật 'UAT-' (tạo phiếu thật); (4) thử luồng ghi thật của UX13 cần quản trị viên thứ hai (luật bốn mắt) nên mặc định chỉ đọc. Các tài khoản QA hiện có, không tạo mới.",
+        "solution": "C0 khuyến nghị A. File: ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md (9 điểm cần nói rõ nằm cuối file).",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Cho phép",
+            "desc": "C0 chuẩn bị dự án QA có thay đổi chờ + 3–4 lượt Haiku nhẹ; P0-18 gửi 1 báo cáo UAT thật; UX13 chỉ đọc (không thử luồng ghi).",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chỉ đọc, không dùng AI",
+            "desc": "Bỏ T14/T15 khỏi UAT lần này (chờ T26 vòng 2); P0-18 không gửi báo cáo thật."
+          }
+        ]
       }
     ]
   },
@@ -4845,7 +4869,7 @@
         "prio": "2",
         "title": "Đợt 1 · 1.10 Gói UAT cho Owner: UX13, P0-18, T14, T15, P0-19",
         "titleEn": "Batch 1 · 1.10 UAT pack",
-        "status": "Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
+        "status": "15:09 11/11: ĐÃ SOẠN gói UAT (chỉ tài liệu, ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md): UX13 14 bước, P0-18 16 bước, T14 8 bước, T15 7 bước, P0-19 16 bước, T35 hồi quy 8 bước; mỗi bước có kết quả mong đợi và ô Đạt/Lỗi; không có mật khẩu/email/IP. Còn 9 điểm cần Owner nói rõ (thẻ NO-21). Chưa có Owner UAT. | Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "statusEn": "Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "prs": "",
         "eta": "~14/11",
@@ -4862,7 +4886,7 @@
           {
             "label": "Soạn gói UAT UX13/P0-18/T14/T15/P0-19",
             "labelEn": "Prepare UAT pack UX13/P0-18/T14/T15/P0-19",
-            "state": "todo"
+            "state": "done"
           },
           {
             "label": "Owner UAT từng mục",
