@@ -54,6 +54,7 @@ const variant = {
     for (const x of d.features) delete x.closed; return d;
   },
   nothingClosed: () => { const d = JSON.parse(REAL); for (const x of d.dailyWork.items) x.closed = false; return d; },
+  blockedSteps: () => { const d = JSON.parse(REAL); const x = d.dailyWork.items.find(i => i.id === 'D1.7'); x.steps = [{label: 'Mã', labelEn: 'Code', state: 'done'}, {label: 'Chờ khóa', labelEn: 'Waiting for key', state: 'blocked', note: 'ghi chú chặn'}, {label: 'Bước lạ', state: 'weird'}]; return d; },
   withDecision: () => {
     const d = JSON.parse(REAL);
     d.ownerActions.items.unshift({id: 'TEST-OD-1', kind: 'DECISION', priority: 'P1', status: 'OPEN', since: '2026-11-11T14:00:00+07:00', title: 'Thẻ quyết định thử nghiệm', detail: 'Chỉ dùng trong test.', options: [{key: 'A', label: 'Đồng ý', recommended: true, desc: 'Phương án A'}, {key: 'B', label: 'Từ chối', desc: 'Phương án B'}]});
@@ -268,6 +269,45 @@ for (const theme of ['light', 'dark']) {
     ok(!bad.length, bad.join(' | ')); await p._ctx.close();
   });
 }
+
+/* ---------- per-task steps ---------- */
+await T('16 steps: stepper on cards with `steps` (x/y bar, current step, list semantics, aria-labels); no stepper/invented data without steps', async () => {
+  const p = await open({hash: '#roadmap/1'});
+  const r = await p.evaluate(() => {
+    const cards = [...document.querySelectorAll('#batchPanel .today-card')];
+    const c = cards.find(e => /1\.4\+1\.5/.test(e.textContent));
+    const lis = [...c.querySelectorAll('ol.steps > li')];
+    return {n: lis.length, done: lis.filter(l => l.classList.contains('s-done')).length, doing: lis.filter(l => l.classList.contains('s-doing')).length,
+      num: c.querySelector('.steps-num').textContent, now: c.querySelector('.steps-now').textContent,
+      bar: ['aria-valuenow', 'aria-valuemax', 'role'].map(a => c.querySelector('.steps-bar').getAttribute(a)), olTag: c.querySelector('.steps').tagName, olLabel: c.querySelector('.steps').getAttribute('aria-label'),
+      third: lis[2].getAttribute('aria-label'), first: lis[0].getAttribute('aria-label'), last: lis[8].getAttribute('aria-label'),
+      fill: c.querySelector('.steps-fill').style.width,
+      head: document.querySelector('#batchPanel .bp-steps')?.textContent, allLi: document.querySelectorAll('#batchPanel ol.steps > li').length, allDone: document.querySelectorAll('#batchPanel ol.steps > li.s-done').length};
+  });
+  eq([r.n, r.done, r.doing, r.num], [9, 2, 2, '2/9 bước']); ok(/^Đang ở bước: QA độc lập FE #183/.test(r.now) && /Công tắc build/.test(r.now), r.now);
+  eq(r.bar, ['2', '9', 'progressbar']); eq([r.olTag, r.olLabel], ['OL', 'Các bước']);
+  ok(/^Bước 3\/9: QA độc lập FE #183.*, đang làm$/.test(r.third), r.third); ok(/^Bước 1\/9: .*, đã xong$/.test(r.first), r.first); ok(/^Bước 9\/9: Owner UAT, chưa làm$/.test(r.last), r.last);
+  eq(r.fill, '22%');
+  ok(new RegExp('^Bước đã xong: ' + r.allDone + '/' + r.allLi + ' \\(').test(r.head), r.head + ' vs ' + r.allDone + '/' + r.allLi);
+  await p.locator('#rtab-2').click();
+  const b2 = await p.evaluate(() => { const cards = [...document.querySelectorAll('#batchPanel .today-card')]; const t23 = cards.find(e => /^T23 ·/.test(e.querySelector('.today-title').textContent)); return {steps: !!t23.querySelector('.steps'), none: t23.querySelector('.steps-none')?.textContent, bp: document.querySelector('#batchPanel .bp-steps')?.textContent}; });
+  eq(b2.steps, false); eq(b2.none, 'Chưa bắt đầu'); eq(b2.bp, undefined, 'no steps line in a batch without steps');
+  await p._ctx.close();
+});
+await T('17 steps: blocked + unknown state handled, English labels, note title', async () => {
+  const p = await open({data: 'blockedSteps', hash: '#roadmap/1'});
+  const get = () => p.evaluate(() => { const c = [...document.querySelectorAll('#batchPanel .today-card')].find(e => /1\.7 T10/.test(e.textContent)); return {now: c.querySelector('.steps-now').textContent, cls: c.querySelector('.steps-now').className, num: c.querySelector('.steps-num').textContent, states: [...c.querySelectorAll('li.step')].map(l => l.className.replace('step ', '')), title: c.querySelector('li.s-blocked').title, labels: [...c.querySelectorAll('.step-t')].map(e => e.textContent)}; });
+  const vi = await get(); eq(vi.states, ['s-done', 's-blocked', 's-todo']); ok(/^Đang bị chặn ở bước: Chờ khóa/.test(vi.now) && /is-blocked/.test(vi.cls), vi.now); eq(vi.title, 'ghi chú chặn'); eq(vi.num, '1/3 bước');
+  await p.locator('#lang').click(); await p.waitForFunction(() => document.documentElement.lang === 'en'); await p.waitForTimeout(300);
+  const en = await get(); eq(en.labels, ['Code', 'Waiting for key', 'Bước lạ']); ok(/^Blocked at: Waiting for key/.test(en.now) && en.num === '1/3 steps', en.now + en.num);
+  await p._ctx.close();
+});
+await T('18 steps: pulse animation on the doing step, disabled under reduced motion', async () => {
+  const p = await open({hash: '#roadmap/1'});
+  const a = await p.evaluate(() => getComputedStyle(document.querySelector('li.s-doing .step-ico')).animationName); ok(a === 'step-pulse', a); await p._ctx.close();
+  const ctx = await browser.newContext({reducedMotion: 'reduce', viewport: {width: 1280, height: 800}}); const q = await ctx.newPage(); await q.goto(BASE + '#roadmap/1'); await q.waitForSelector('li.s-doing');
+  const b = await q.evaluate(() => getComputedStyle(document.querySelector('li.s-doing .step-ico')).animationName); eq(b, 'none'); await ctx.close();
+});
 await T('15 no console errors during the whole run', async () => { ok(!consoleErrors.length, consoleErrors.slice(0, 3).join(' | ')); });
 
 await browser.close(); server.close();
