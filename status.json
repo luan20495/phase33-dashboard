@@ -4520,7 +4520,34 @@
           "QA độc lập ghi lại hành vi ALWAYS_OPEN 600/ngày; không đổi cờ/ngân sách"
         ],
         "batch": 1,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "Mã",
+            "labelEn": "Code",
+            "state": "done"
+          },
+          {
+            "label": "Phát hành PROD",
+            "labelEn": "Released to PROD",
+            "state": "done"
+          },
+          {
+            "label": "Bật cờ (600/ngày)",
+            "labelEn": "Flag ON (600/day)",
+            "state": "done"
+          },
+          {
+            "label": "QA độc lập ghi nhận (chỉ đọc)",
+            "labelEn": "Independent QA record (read-only)",
+            "state": "todo"
+          },
+          {
+            "label": "Owner UAT",
+            "labelEn": "Owner UAT",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D1.3",
@@ -4543,7 +4570,44 @@
           "Lùi = tắt cờ"
         ],
         "batch": 1,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "Mã trên PROD",
+            "labelEn": "Code on PROD",
+            "state": "done"
+          },
+          {
+            "label": "E2E DEV OS1–OS13",
+            "labelEn": "DEV E2E OS1–OS13",
+            "state": "done"
+          },
+          {
+            "label": "Bật cờ trên PROD",
+            "labelEn": "Flag ON in PROD",
+            "state": "done"
+          },
+          {
+            "label": "Smoke PROD chỉ-đọc",
+            "labelEn": "Read-only PROD smoke",
+            "state": "done"
+          },
+          {
+            "label": "QA độc lập PR #225",
+            "labelEn": "Independent QA PR #225",
+            "state": "doing"
+          },
+          {
+            "label": "Menu quản trị (công tắc build FE_ENTERPRISE_UI)",
+            "labelEn": "Admin menu (build switch FE_ENTERPRISE_UI)",
+            "state": "doing"
+          },
+          {
+            "label": "Owner UAT",
+            "labelEn": "Owner UAT",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D1.4",
@@ -4566,7 +4630,54 @@
           "Lùi = tắt cờ"
         ],
         "batch": 1,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "API trên PROD (V99, cờ tắt)",
+            "labelEn": "API on PROD (V99, flag off)",
+            "state": "done"
+          },
+          {
+            "label": "Màn hình Công ty FE #183 viết xong",
+            "labelEn": "Companies screen FE #183 built",
+            "state": "done"
+          },
+          {
+            "label": "QA độc lập FE #183 (phần chênh lệch sau gộp dev)",
+            "labelEn": "Independent QA FE #183 (delta after dev merge)",
+            "state": "doing"
+          },
+          {
+            "label": "Công tắc build FE_ENTERPRISE_UI",
+            "labelEn": "Build switch FE_ENTERPRISE_UI",
+            "state": "doing"
+          },
+          {
+            "label": "Merge + mirror BE + QA tích hợp",
+            "labelEn": "Merge + BE mirror + integration QA",
+            "state": "todo"
+          },
+          {
+            "label": "Phát hành 20 (chỉ FE, cờ tắt)",
+            "labelEn": "Release 20 (FE only, flag off)",
+            "state": "todo"
+          },
+          {
+            "label": "Lượt DEV với cờ bật",
+            "labelEn": "DEV run with flag ON",
+            "state": "todo"
+          },
+          {
+            "label": "Bật cờ + smoke PROD tenant QA",
+            "labelEn": "Flag ON + PROD smoke on QA tenant",
+            "state": "todo"
+          },
+          {
+            "label": "Owner UAT",
+            "labelEn": "Owner UAT",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D1.6",
@@ -4587,7 +4698,44 @@
           "Bật cho workspace QA; mọi người sau do Owner quyết"
         ],
         "batch": 1,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "Mã trên PROD",
+            "labelEn": "Code on PROD",
+            "state": "done"
+          },
+          {
+            "label": "Đo 2 lượt Haiku trên PROD",
+            "labelEn": "Measured 2 Haiku runs on PROD",
+            "state": "done"
+          },
+          {
+            "label": "Owner chọn bật toàn hệ thống (NO-20 = A)",
+            "labelEn": "Owner chose system-wide ON (NO-20 = A)",
+            "state": "done"
+          },
+          {
+            "label": "Bật cờ toàn hệ thống",
+            "labelEn": "System-wide flag ON",
+            "state": "done"
+          },
+          {
+            "label": "QA độc lập",
+            "labelEn": "Independent QA",
+            "state": "todo"
+          },
+          {
+            "label": "Cập nhật tài liệu (AGENTSXWeb 5.7c, hợp đồng)",
+            "labelEn": "Update docs (AGENTSXWeb 5.7c, contract)",
+            "state": "todo"
+          },
+          {
+            "label": "Owner UAT",
+            "labelEn": "Owner UAT",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D1.7",
@@ -4607,7 +4755,29 @@
           "2 lượt gần đồng thời; ghi vị trí hàng đợi/thời gian chờ"
         ],
         "batch": 1,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "Mã + bật hàng đợi",
+            "labelEn": "Code + queue enabled",
+            "state": "done"
+          },
+          {
+            "label": "Chứng minh 2 lượt Haiku trên PROD",
+            "labelEn": "Proved with 2 Haiku runs on PROD",
+            "state": "done"
+          },
+          {
+            "label": "QA độc lập",
+            "labelEn": "Independent QA",
+            "state": "todo"
+          },
+          {
+            "label": "Owner UAT",
+            "labelEn": "Owner UAT",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D1.8",
@@ -4629,7 +4799,44 @@
           "Lùi = tắt cờ"
         ],
         "batch": 1,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "API trên PROD (V100, cờ tắt)",
+            "labelEn": "API on PROD (V100, flag off)",
+            "state": "done"
+          },
+          {
+            "label": "FE #182 merge dev",
+            "labelEn": "FE #182 merged to dev",
+            "state": "done"
+          },
+          {
+            "label": "QA độc lập FE #182",
+            "labelEn": "Independent QA FE #182",
+            "state": "done"
+          },
+          {
+            "label": "Nhãn audit EMPLOYEE_PROFILE_* (FE)",
+            "labelEn": "Audit labels EMPLOYEE_PROFILE_* (FE)",
+            "state": "todo"
+          },
+          {
+            "label": "Phát hành 20",
+            "labelEn": "Release 20",
+            "state": "todo"
+          },
+          {
+            "label": "Bật cờ + smoke PROD (chỉ vô hiệu hóa, dữ liệu tổng hợp)",
+            "labelEn": "Flag ON + PROD smoke (disable-only, synthetic data)",
+            "state": "todo"
+          },
+          {
+            "label": "Owner UAT",
+            "labelEn": "Owner UAT",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D1.10",
@@ -4649,7 +4856,19 @@
           "Gói UAT từng mục; Owner ký từng mục"
         ],
         "batch": 1,
-        "closed": false
+        "closed": false,
+        "steps": [
+          {
+            "label": "Soạn gói UAT UX13/P0-18/T14/T15/P0-19",
+            "labelEn": "Prepare UAT pack UX13/P0-18/T14/T15/P0-19",
+            "state": "todo"
+          },
+          {
+            "label": "Owner UAT từng mục",
+            "labelEn": "Owner UAT per item",
+            "state": "todo"
+          }
+        ]
       },
       {
         "id": "D2",
