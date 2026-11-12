@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T18:53:27+07:00",
+  "asOf": "2026-11-12T19:07:04+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T18:53:27+07:00",
+  "detailUpdatedAt": "2026-11-12T19:07:04+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6816,7 +6816,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T18:53:27+07:00",
+    "updatedAt": "2026-11-12T19:07:04+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6827,11 +6827,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T08:27:00+07:00",
-            "result": "ok",
-            "summary": "Không có comment mới"
-          },
           {
             "at": "2026-11-12T09:38:00+07:00",
             "result": "ok",
@@ -6876,6 +6871,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "ok",
             "summary": "Không có comment [OWNER]/[CHATGPT] mới ngoài lệnh GO tách luồng review sang #257; #257 chưa có review nào"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "ok",
+            "summary": "Không có comment [OWNER]/[CHATGPT] mới ngoài #6822154890 và #6822259976 (đã trả lời ở #257)"
           }
         ]
       },
@@ -6887,11 +6887,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T08:27:00+07:00",
-            "result": "changed",
-            "summary": "Cập nhật giá trị đĩa còn 13 GiB (dưới ngưỡng khẩn 20)"
-          },
           {
             "at": "2026-11-12T09:38:00+07:00",
             "result": "changed",
@@ -6936,6 +6931,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
             "summary": "Đồng bộ #process (nhóm Quản trị AI/USD) và quy tắc mới: #257 là luồng review, đọc mỗi giờ"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "changed",
+            "summary": "#process: quy tắc QA sau tích hợp, nhóm Quản trị AI/USD; nhãn Việt cho ETA"
           }
         ]
       },
@@ -6947,11 +6947,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T08:27:00+07:00",
-            "result": "changed",
-            "summary": "#192 và #243 đã merge; #193 chờ QA; G1-A xong"
-          },
           {
             "at": "2026-11-12T09:38:00+07:00",
             "result": "changed",
@@ -6996,6 +6991,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
             "summary": "PR #258 (runner, 71fe0055) mở, QA/SEC độc lập bắt đầu; #252 vẫn chờ QA; 10 agent RUNNING (ListAgents 17:42)"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "changed",
+            "summary": "ListAgents 19:07: 8 đang chạy; #258 QA GO có điều kiện (đang sửa vòng 2); #259, #252 merge dev; #260, #261 mở; agent ước lượng 07/12 và chuẩn bị 12 xong"
           }
         ]
       },
@@ -7007,11 +7007,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T08:27:00+07:00",
-            "result": "changed",
-            "summary": "Đăng lần 120 (comment 6811653844); sửa giờ tiêu đề cho đúng giờ thật"
-          },
           {
             "at": "2026-11-12T09:38:00+07:00",
             "result": "changed",
@@ -7056,6 +7051,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "skipped",
             "summary": "Không đăng báo cáo 19 dòng: thay đổi nhỏ từ 17:05; bảng 12 hạng mục ở #88 vẫn còn hiệu lực"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "skipped",
+            "summary": "Không đăng báo cáo 19 dòng: dùng bảng 12 hạng mục ở #88 và phản hồi ở #257"
           }
         ]
       },
@@ -7067,11 +7067,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T08:27:00+07:00",
-            "result": "changed",
-            "summary": "Đĩa 13 GiB (commit edceaf9)"
-          },
           {
             "at": "2026-11-12T09:38:00+07:00",
             "result": "changed",
@@ -7116,6 +7111,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
             "summary": "Cập nhật hạng mục 08 (PR #258) và tóm tắt hằng giờ"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "changed",
+            "summary": "Dashboard: ETA 24/7, thống kê agent, ước lượng 07/12, chuẩn bị mục 12"
           }
         ]
       },
@@ -7127,11 +7127,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "ok",
-            "summary": "22 GiB, trên ngưỡng khẩn 20; không còn snapshot để xóa, không cần dọn"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "failed",
@@ -7176,6 +7171,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
             "summary": "Đĩa 20 GiB trống (sát ngưỡng khẩn 20): đã xóa 10 worktree sạch đã merge và 3 bản sao scratch cũ; không đụng cache Gradle/Docker đang dùng"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "changed",
+            "summary": "Đĩa 15 GiB trống (dưới ngưỡng khẩn 20); đã xóa 15 worktree sạch đã merge; lệnh xóa volume Docker bị chặn, chờ Owner"
           }
         ]
       },
@@ -7231,6 +7231,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "ok",
             "summary": "Khóa SSH nạp 24 giờ lúc ~16:40, hết ~16:40 ngày 13/11 (REPORTED, chưa thử đăng nhập)"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH 24 giờ nạp lúc ~16:40, hết ~16:40 ngày 13/11 (REPORTED); đã dùng thật lúc 17:46 để đọc PROD"
           }
         ]
       },
@@ -7242,11 +7247,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T08:27:00+07:00",
-            "result": "ok",
-            "summary": "3 agent đang chạy; việc còn lại chờ QA hoặc Owner, tải máy ~5"
-          },
           {
             "at": "2026-11-12T09:38:00+07:00",
             "result": "ok",
@@ -7291,6 +7291,11 @@
             "at": "2026-11-12T17:42:20+07:00",
             "result": "ok",
             "summary": "10 agent RUNNING (tối đa 10); không giao thêm"
+          },
+          {
+            "at": "2026-11-12T19:07:04+07:00",
+            "result": "ok",
+            "summary": "8 agent đang chạy, tối đa 10; giao PAYC-1 và 2 agent ước lượng/chuẩn bị"
           }
         ]
       }
@@ -7338,7 +7343,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T18:53:27+07:00",
+      "checkedAt": "2026-11-12T19:07:04+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7385,9 +7390,9 @@
         "Ca hủy-sau-chữ-đầu vẫn tính cả khoản giữ chỗ trên PROD đến khi #252 được deploy và bật"
       ],
       "risks": [
-        "Đĩa Mac ~13 GiB trống (dưới ngưỡng khẩn 20): dọn Docker/Time Machine cần Owner cho phép",
-        "Tải máy 19–20 và 3 chỗ Gradle cho 9 agent kéo dài ETA",
-        "ETA 06, 07, 09, 12 chưa hiệu chuẩn"
+        "Đĩa Mac ~15 GiB trống (dưới ngưỡng khẩn 20): xóa volume Docker ẩn danh/snapshot Time Machine cần Owner cho phép",
+        "Tải máy 19–20 và 3 chỗ Gradle kéo dài ETA",
+        "ETA 06, 09, 10, 11 chưa hiệu chuẩn"
       ],
       "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chỉ có kế hoạch, chưa phát sinh chi phí; đĩa Mac 20 GiB trống (sát ngưỡng khẩn 20)",
       "ownerNeeds": [
@@ -7407,22 +7412,22 @@
         "tests": "hourly-ui 27 PASS, process-ui 63 PASS, limits-ui 51 PASS, shell-ui 20 PASS + 2 lỗi cũ",
         "open": "QA browser độc lập; chưa kiểm contrast AA bằng công cụ, zoom 200% và chữ chồng bằng ảnh đủ ma trận"
       },
-      "agentCensus": "9 đang chạy (6 làm việc, 3 chờ Gradle/test), 6 đã xong, 0 nghi treo; tối đa 10"
+      "agentCensus": "8 đang chạy (5 làm việc, 3 chờ), 9 đã xong, 0 nghi treo; tối đa 10"
     },
     "agents": {
-      "checkedAt": "2026-11-12T18:42:24+07:00",
+      "checkedAt": "2026-11-12T19:07:04+07:00",
       "source": "ListAgents + thời điểm ghi cuối của log từng agent (chỉ đọc)",
       "cap": 10,
       "counts": {
-        "RUNNING_TOTAL": 9,
-        "WORKING": 6,
+        "RUNNING_TOTAL": 8,
+        "WORKING": 5,
         "WAITING": 3,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 6
+        "FINISHED": 9
       },
-      "resources": "Tải máy 19–20, 3 tiến trình Gradle, 3 chỗ Gradle nặng toàn máy; đĩa trống ~13 GiB (DƯỚI ngưỡng khẩn 20)",
+      "resources": "Tải máy 19–20, 3 chỗ Gradle nặng toàn máy; đĩa ~15 GiB trống (dưới ngưỡng khẩn 20)",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; shell và monitor của Operator không phải agent (không tính 7 shell = 7 agent).",
         "Agent lâu nhất của phiên này chạy ~7 giờ (hồ sơ B0/B1), đang WAITING chỗ Gradle, log vẫn ghi trong vòng 2 phút: không HUNG_SUSPECTED. Các session 32 giờ và 37 giờ 35 phút trong log Operator không phải sub-agent của phiên này: C0 chưa thấy chúng trong ListAgents; phiên ngang hàng duy nhất là một shell dự án khác đang nhàn rỗi ~1 ngày.",
@@ -15681,7 +15686,7 @@
     "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-12T18:53:27+07:00",
+    "updatedAt": "2026-11-12T19:07:04+07:00",
     "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 27/11–07/12/2026 (tin cậy thấp)",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
@@ -16189,14 +16194,14 @@
         "id": "12",
         "name": "QA/E2E/nghiệm thu",
         "pr": "Đợt 3: 0/19",
-        "done": "Smoke/E2E từng mảnh trên PROD",
+        "done": "Chuẩn bị song song bắt đầu (REPORTED, chưa độc lập): kho prompt (tiny/small/medium/đầy đủ VI+EN, 10 sửa tiếp theo, 8 đầu vào xấu, 9 mức đính kèm), tiêu chí 91 kiểm tra (73 cứng, 18 mềm) + ma trận quyền 132 ô, ma trận persona dạng mẫu, kịch bản lỗi F1–F6 (48 bước), mẫu báo cáo chi phí (chỉ trường); chưa có PASS/FAIL nào; T30-lite, BROWSER-TEST, RECIPES-ENT, E1-b ghi NOT_IMPLEMENTED",
         "todo": "Chuẩn bị song song ngay: kho prompt, rubric, persona, bộ trình duyệt, app mẫu, gói API/DB, kịch bản lỗi, đồng hồ chi phí (chưa giao); chạy đầy đủ chỉ sau mục 06 và 01–11; khoảng hở: T30-lite, BROWSER-TEST, RECIPES-ENT, E1-b ngoài mục 01–11",
         "code": "✗",
         "qa": "✗",
         "deploy": "✗",
         "on": "✗",
         "verified": "✗",
-        "agent": "agent ước lượng 07/12 RUNNING (chuẩn bị song song chưa giao)",
+        "agent": "agent chuẩn bị mục 12 đã xong phần nhẹ (P1–P3, P7, P8); phần nặng P4–P11 chưa giao (chờ đĩa, chỗ Gradle/trình duyệt, DEV)",
         "eta": "~24–28/11 (thấp)",
         "etaInfo": {
           "etaAt": null,
@@ -16207,7 +16212,7 @@
           "remainingEffortHours": 230,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T18:53:27+07:00",
+          "updatedAt": "2026-11-12T19:07:04+07:00",
           "basis": "ESTIMATE-07-12.md: chuẩn bị song song ngay (11 lát P1–P11: kho prompt, rubric, persona, bộ trình duyệt, app mẫu có mutant, gói API+DB, kịch bản lỗi F1–F6, đồng hồ chi phí, báo cáo) ~125 giờ công, 30–45 giờ thực tế; chạy đầy đủ (bậc A mechanism, B app nhỏ, C app đầy đủ + lỗi, bảo mật, PROD) ~80–130 giờ công gồm 2–3 vòng sửa (mỗi vòng 8–12 giờ), ~100–120 giờ thực tế SAU khi mục 06 sẵn sàng trên DEV",
           "blockers": [
             "mục 06 chưa có ETA",
@@ -16218,7 +16223,11 @@
           ],
           "milestones": [
             {
-              "label": "Hạ tầng nghiệm thu chuẩn bị song song xong (P1–P11)",
+              "label": "P1–P3, P7, P8 (phần nhẹ) xong, chưa có người đọc độc lập",
+              "etaAt": "2026-11-12T19:07:04+07:00"
+            },
+            {
+              "label": "Hạ tầng nghiệm thu P4–P11 xong",
               "etaAt": "2026-11-14T08:00:00+07:00"
             }
           ],
