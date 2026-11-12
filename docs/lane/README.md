@@ -2,7 +2,7 @@
 
 Tài liệu để thêm một máy mới làm làn build/test XWeb và dùng được ngay khi làm theo. Cập nhật 2026-11-13 00:40 ICT.
 
-**Trạng thái trung thực (13/11/2026 00:40 ICT): ĐANG KIỂM CHỨNG, chưa tuyên bố "sẵn sàng".** Máy phụ đầu tiên đã chạy xong thẻ cài đặt và thẻ 3 phần A+B: nạp Gradle có mạng rồi chứng minh offline, smoke BE 3/3 test, FE `npm ci`, `guard:static`, `guard:test`, `typecheck` đều PASS, kết quả được kéo về bằng SSH chỉ-đọc và đối chiếu sha256 (MEASURED). Checklist nghiệm thu: 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc. Chưa có: việc QA thật đầu tiên (thẻ 4 vừa đăng), `test:unit` đầy đủ qua script, Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner. Nhãn: `MEASURED` là số đo thật, `ESTIMATE` là ước lượng.
+**Trạng thái trung thực (13/11/2026 01:07 ICT): ĐANG KIỂM CHỨNG, chưa tuyên bố "sẵn sàng".** Máy phụ đầu tiên đã chạy xong thẻ cài đặt và thẻ 3 phần A+B: nạp Gradle có mạng rồi chứng minh offline, smoke BE 3/3 test, FE `npm ci`, `guard:static`, `guard:test`, `typecheck` đều PASS, kết quả được kéo về bằng SSH chỉ-đọc và đối chiếu sha256 (MEASURED). Checklist nghiệm thu: 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc. Chưa có: việc QA thật đầu tiên (thẻ 4 vừa đăng), `test:unit` đầy đủ qua script, Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner. Nhãn: `MEASURED` là số đo thật, `ESTIMATE` là ước lượng.
 
 | Tệp | Nội dung |
 |---|---|

@@ -179,3 +179,18 @@ Docker Desktop đã cài nhưng chưa mở, nên chưa chạy test cần contain
 
 #### 5. Năm điều sẽ làm khác
 1) Đọc hết bổ sung của thẻ trước khi bắt đầu việc dài. 2) Nạp bằng một lệnh `test` có mạng, bỏ bước chỉ biên dịch. 3) Tách `GRADLE_USER_HOME` ngay từ đầu. 4) Phân loại nặng/nhẹ bằng cờ tường minh, không đoán theo chữ. 5) Lấy mẫu tải từ việc đầu tiên và kiểm tải **trong** job, không chỉ lúc bắt đầu.
+
+### 7. Thẻ 4 và thẻ 5: việc QA thật đầu tiên (13/11/2026, cập nhật 01:07 ICT)
+
+Trên đỉnh dev: FE `3a4ba863d0db`, BE `82ff4e732d33`. Kết quả máy chính kéo về bằng rsync chỉ-đọc; `shasum -c SHA256SUMS` OK cả 6 thư mục mới, 12/12 băm khớp comment.
+
+| Việc | Kết quả | Số đo |
+|---|---|---|
+| `fe-unit-full` (script gốc, thẻ 4) | ABORTED_LOAD, rc 143, KHÔNG phải PASS/FAIL | đỉnh tải 10,63 lúc `node --test` bắt đầu; hủy sau 2 phút tải > 8 |
+| `fe-guards-tip` | PASS | 9/7/0, 15 giây, đỉnh tải 3,59 |
+| `fe-guard-tests-tip` | PASS | 278 test: 168 pass / 0 fail / 110 skipped, 15 giây |
+| `be-smoke-tip` (offline, 4 lớp, không Docker) | PASS | BUILD SUCCESSFUL 5 phút 22 giây, 21 test (đọc từ XML), 0 lỗi, đỉnh tải 4,92 |
+| `fe-tsc-build` (thẻ 5) | PASS | 3 phút 16 giây, đỉnh tải 2,45 |
+| `fe-unit-full-c3` (thẻ 5, `--test-concurrency=3`, 587 tệp) | PASS | 6108 test / 6100 pass / 0 fail / 0 cancelled / 8 skipped; 4 phút 46 giây; đỉnh tải 4,44; RAM khả dụng thấp nhất 7613 MB |
+
+Hub (launchd) không đổi, `locks` rỗng, không sudo, không sửa repo XWeb. Chưa chạy: lớp BE cần Docker/Testcontainers (Docker do Owner mở), spec trình duyệt, cô lập (quyết định Owner). Kết luận: làn chạy được FE đầy đủ, guard, typecheck và BE lớp thuần dưới tải ≤ 4,5; chưa đủ để gọi là "sẵn sàng" theo checklist mục 16.

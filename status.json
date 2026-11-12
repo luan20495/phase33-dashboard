@@ -16071,9 +16071,9 @@
   },
   "lane": {
     "title": "Máy phụ (làn build/test)",
-    "updatedAt": "2026-11-13T00:40:00+07:00",
+    "updatedAt": "2026-11-13T01:07:37+07:00",
     "status": "IN_VERIFICATION",
-    "summary": "Đang kiểm chứng, CHƯA tuyên bố sẵn sàng. Máy phụ đầu tiên đã chạy xong thẻ cài đặt và thẻ 3 phần A+B (đo thật, kết quả được máy chính kéo về bằng SSH chỉ-đọc, 12/12 sha256 khớp): nạp Gradle có mạng 23 phút 38 giây rồi offline PASS, smoke BE 3/3 test, FE npm ci 74 giây, guard:static 9/7/0, guard:test 168/110/0, typecheck 2 phút 49 giây. Chốt tải từ chối đúng 1 lần (5,42 lớn hơn 4,0); tải đỉnh 10,35 khi npm ci. Checklist nghiệm thu: 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc. Chưa có: việc QA thật đầu tiên (thẻ 4 vừa đăng), Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner.",
+    "summary": "Đang kiểm chứng, CHƯA tuyên bố sẵn sàng. Việc QA thật đầu tiên đã chạy trên đỉnh dev (thẻ 4 và 5, kết quả kéo bằng SSH chỉ-đọc, sha256 khớp): guard 9/7/0 và 168/0/110 khớp máy chính; BE lớp thuần 21 test, 0 lỗi (5 phút 22 giây); FE unit đầy đủ 6108 test, 6100 pass, 0 fail, 8 bỏ qua (4 phút 46 giây, đỉnh tải 4,44). Chạy script gốc test:unit bị hủy vì tải (đỉnh 10,63), nên dùng lệnh tương đương giới hạn song song 3. Checklist: 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc (dòng 14 chưa tính PASS vì chạy bằng lệnh tương đương). Chưa có: Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner; chưa tăng số agent ở máy phụ.",
     "links": [
       {
         "label": "Runbook thêm máy mới",

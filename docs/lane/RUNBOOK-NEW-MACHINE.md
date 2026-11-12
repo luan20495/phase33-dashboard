@@ -2,7 +2,7 @@
 
 Phiên bản 1, viết lúc 2026-11-13 00:05 ICT. Phạm vi: macOS Apple silicon 16 GB, máy phụ đứng cạnh một "hub" đang chạy việc khác.
 
-> **Trạng thái trung thực của tài liệu này (cập nhật 2026-11-13 00:40 ICT): làn ĐANG KIỂM CHỨNG, CHƯA tuyên bố "sẵn sàng".** Runbook được rút ra từ máy phụ đầu tiên. Máy đó đã chạy xong thẻ cài đặt (thẻ 2) và thẻ 3 phần A+B với kết quả thật: nạp Gradle có mạng rồi chứng minh offline, smoke BE 3/3 test, FE `npm ci`, `guard:static`, `guard:test`, `typecheck` đều PASS, kết quả đã được máy chính kéo về bằng SSH chỉ-đọc và đối chiếu sha256. **Chưa có:** việc QA thật đầu tiên (thẻ 4 vừa đăng), `test:unit` đầy đủ qua script slot, Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner. Nhãn: `MEASURED` là số đo thật, `ESTIMATE` là ước lượng cần đo lại, `NOT_RUN` là chưa chạy. Cập nhật cột "Máy phụ #1" ở mục 16 và `LANE-FIRST-MACHINE-LOG.md` khi có kết quả mới. **Không ai được ghi "làn sẵn sàng" khi mục 16 chưa PASS hết các dòng bắt buộc.**
+> **Trạng thái trung thực của tài liệu này (cập nhật 2026-11-13 00:40 ICT): làn ĐANG KIỂM CHỨNG, CHƯA tuyên bố "sẵn sàng".** Runbook được rút ra từ máy phụ đầu tiên. Máy đó đã chạy xong thẻ cài đặt (thẻ 2) và thẻ 3 phần A+B với kết quả thật: nạp Gradle có mạng rồi chứng minh offline, smoke BE 3/3 test, FE `npm ci`, `guard:static`, `guard:test`, `typecheck` đều PASS, kết quả đã được máy chính kéo về bằng SSH chỉ-đọc và đối chiếu sha256. **Chưa có:** thẻ 4 và 5 (việc QA thật đầu tiên) đã chạy: guard, BE không Docker, typecheck và FE unit đầy đủ (qua lệnh tương đương có giới hạn song song) đều PASS, nhưng `test:unit` qua script gốc vẫn NOT_RUN; Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner. Nhãn: `MEASURED` là số đo thật, `ESTIMATE` là ước lượng cần đo lại, `NOT_RUN` là chưa chạy. Cập nhật cột "Máy phụ #1" ở mục 16 và `LANE-FIRST-MACHINE-LOG.md` khi có kết quả mới. **Không ai được ghi "làn sẵn sàng" khi mục 16 chưa PASS hết các dòng bắt buộc.**
 
 Mục lục: 1 Mục đích và vai trò · 2 Điều kiện tiên quyết · 3 Việc chỉ Owner / việc agent máy phụ được làm · 4 Kênh và giao thức thẻ việc · 5 Bố cục thư mục · 6 Toolchain · 7 Script slot và ngưỡng chốt · 8 Nạp cache Gradle · 9 FE: cài và smoke · 10 Kéo kết quả · 11 Quy tắc tải, RAM, đĩa · 12 Khởi động lại · 13 Cô lập và bảo mật · 14 Hoàn nguyên · 15 Xử lý sự cố · 16 Checklist nghiệm thu.
 
@@ -366,12 +366,12 @@ Mỗi dòng phải có lệnh, mã thoát và đầu ra thật; `NOT_RUN` không
 | 11 | FE `guard:static` | 9 đạt / 7 bỏ qua / 0 lỗi hoặc có giải thích | lệch không giải thích | PASS (9/7/0, 14 giây) |
 | 12 | FE `guard:test` | 168 đạt / 110 bỏ qua / 0 lỗi hoặc có giải thích | lệch không giải thích | PASS (278 test: 168/0/110, 13 giây) |
 | 13 | FE `typecheck` | rc 0, sạch | lỗi kiểu | PASS (2 phút 49 giây, rc 0) |
-| 14 | FE `test:unit` hiệu chuẩn qua script | khớp 6070 / 6062 / 0 / 8 hoặc liệt kê khác biệt | lệch không giải thích | NOT_RUN qua script slot (chạy chẩn đoán trước đó MEASURED, khớp; thẻ 4 việc 1 sẽ chạy trên đỉnh dev, chưa có kết quả) |
+| 14 | FE `test:unit` hiệu chuẩn qua script | khớp 6070 / 6062 / 0 / 8 hoặc liệt kê khác biệt | lệch không giải thích | NOT_RUN qua script gốc: thẻ 4 (13/11 00:34) ABORTED_LOAD vì `scripts/test-unit.mjs` chạy `node --test` không giới hạn song song (đỉnh tải 10,63). Thẻ 5 (01:00) chạy lệnh tương đương `--test-concurrency=3` (587 tệp, bỏ 6 tệp cần backend như script): **6108 test / 6100 pass / 0 fail / 0 cancelled / 8 skipped**, đỉnh tải 4,44, 4 phút 46 giây, MEASURED. Chênh +38 test so với mốc 6070 cũ: dev đã đi tiếp từ lúc hiệu chuẩn, CHƯA đối chiếu từng tệp nên không tính PASS |
 | 15 | Số đo tài nguyên đã có | mỗi việc có thời gian, RSS lớn nhất, RAM trống thấp nhất, tải cao nhất, đĩa sau | thiếu số | NOT_RUN (có thời gian, tải, đĩa; thiếu RSS lớn nhất và RAM trống thấp nhất trong lúc chạy; `be-seed` không có mẫu tải) |
 | 16 | Hub không bị ảnh hưởng | `launchctl` của hub không đổi trước/sau (heartbeat listener `ok:true` suốt: nếu đo được) | dịch vụ hub đổi hoặc chết | PASS (6 dịch vụ cùng PID trước/sau ở thẻ 2 và thẻ 3; chốt từ chối đúng 1 lần là đúng; heartbeat suốt chưa báo) |
 | 17 | `locks` rỗng khi xong | `ls ~/xweb-lane/locks` rỗng | còn khóa của pid sống không việc | PASS (rỗng sau thẻ 2 và thẻ 3) |
 | 18 | Quét bí mật kết quả | chỉ còn hằng số test đã liệt kê | có thứ giống thật (không công bố) | NOT_RUN (máy phụ chưa báo bước quét) |
-| 19 | Kéo kết quả bằng SSH chỉ-đọc | sha256 của `job.log` và `meta.txt` khớp comment; `shasum -c SHA256SUMS` đạt | lệch | PASS (13/11 00:30 ICT: 9 thư mục, 12/12 sha256 khớp comment theo máy chính; `shasum -c` OK trong cả 9 thư mục) |
+| 19 | Kéo kết quả bằng SSH chỉ-đọc | sha256 của `job.log` và `meta.txt` khớp comment; `shasum -c SHA256SUMS` đạt | lệch | PASS (13/11 đến 01:10 ICT: 15 thư mục, 24/24 sha256 khớp comment theo máy chính; `shasum -c` OK trong cả 15 thư mục) |
 | 20 | Thẻ đóng bằng một comment | đủ bảng PASS/FAIL/NOT_RUN, giờ ICT, SHA, phiên bản Node/JDK, không token | thiếu mục | NOT_RUN (một comment mỗi thẻ, có bảng, giờ, SHA, Node; chưa thấy `java -version` trong báo cáo) |
 | 21 | Quyết định chỉ-Owner đã ghi | cô lập (mục 13), tiến trình lớn của việc khác, Docker, giờ chạy cho phép | chưa có quyết định | NOT_RUN (chưa có quyết định của Owner) |
 | 22 | Tài liệu do máy phụ tự ghi | máy phụ tự viết runbook của mình (thứ tự làm, bất ngờ, số đo, việc chưa làm, điều sẽ làm khác) và được đưa vào nhật ký | chưa có | PASS (13/11 00:30 ICT: máy phụ đăng runbook 5 phần; đã đưa nguyên văn vào `LANE-FIRST-MACHINE-LOG.md` mục 6.3 và đối chiếu từng mục bất ngờ với bảng sự cố) |
@@ -380,7 +380,15 @@ Mỗi dòng phải có lệnh, mã thoát và đầu ra thật; `NOT_RUN` không
 
 **Tính đến 00:40 ICT 13/11/2026 (máy phụ #1): 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc (1-22); 2 dòng mở rộng (23-24) NOT_RUN.** PASS: dòng 2, 4, 6, 7, 10, 11, 12, 13, 16, 17, 19, 22.
 
-**Điều kiện để tuyên bố "làn sẵn sàng" cho FE + BE lớp thuần:** dòng 1 đến 22 đều PASS. Dòng 23-24 là mở rộng và tách bạch: chưa PASS thì làn chỉ được ghi "sẵn sàng cho FE + BE lớp thuần", không cho Testcontainers hay trình duyệt. Trạng thái hiện tại: **ĐANG KIỂM CHỨNG**; việc QA thật đầu tiên (thẻ 4) chưa có kết quả.
+**Cập nhật 01:07 ICT 13/11: thẻ 4 và 5 chạy trên đỉnh dev (FE `3a4ba863d0db`, BE `82ff4e732d33`): guard 9/7/0 và 168/0/110 khớp máy chính; BE không Docker 21 test 0 lỗi (BUILD SUCCESSFUL 5 phút 22 giây); FE unit 6108/6100/0/0/8. Số dòng 1-22 vẫn 12 PASS / 10 NOT_RUN vì dòng 14 chưa tính PASS (xem dòng 14).**
+
+**Điều kiện để tuyên bố "làn sẵn sàng" cho FE + BE lớp thuần:** dòng 1 đến 22 đều PASS. Dòng 23-24 là mở rộng và tách bạch: chưa PASS thì làn chỉ được ghi "sẵn sàng cho FE + BE lớp thuần", không cho Testcontainers hay trình duyệt. Trạng thái hiện tại: **ĐANG KIỂM CHỨNG**; việc QA thật đầu tiên đã có kết quả một phần (xem dòng 14), Docker và quyết định cô lập của Owner chưa có.
+
+### Bài học thẻ 4-5 (MEASURED)
+
+- `npm run test:unit` không giới hạn song song: trên máy 8 lõi tải tự lên khoảng 10,6 và bị người canh `ABORTED_LOAD` hủy sau 2 phút. Chạy `node --test --test-concurrency=3` với cùng danh sách tệp: đỉnh tải 4,44, chạy hết. Danh sách tệp phải lọc đúng quy tắc của script (bỏ tệp cần repo backend khi thiếu), không dùng `find` thuần (593 tệp thay vì 587).
+- Việc bị hủy vì tải KHÔNG được ghi PASS hay FAIL; dòng tổng của lần chạy bị ngắt (có `cancelled`) không dùng làm kết quả.
+- Đề xuất cho repo FE (chưa làm, cần PR + QA): để `scripts/test-unit.mjs` nhận biến `TEST_CONCURRENCY`.
 
 ### Việc tiếp theo đã biết (đề xuất, chưa làm)
 
