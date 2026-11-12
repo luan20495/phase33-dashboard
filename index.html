@@ -562,8 +562,9 @@ html[data-theme="dark"] .board-tab:hover{background:rgba(255,255,255,.06)}
 @media(max-width:900px){.found{grid-template-columns:1fr}}
 @media(max-width:720px){
  .tabbar{position:sticky;top:0;z-index:25;margin:8px -15px 16px;padding:8px 15px;background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
- .board-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%;gap:3px;padding:4px;border-radius:16px}
- .board-tab{flex-direction:column;gap:4px;min-height:56px;padding:7px 3px;font-size:11px;line-height:1.2;white-space:normal;text-align:center;border-radius:12px}
+ .board-nav{display:flex;flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch;width:100%;gap:3px;padding:4px;border-radius:16px}
+ .board-nav::-webkit-scrollbar{display:none}
+ .board-tab{flex:0 0 auto;min-width:88px;scroll-snap-align:center;flex-direction:column;gap:4px;min-height:56px;padding:7px 8px;font-size:11px;line-height:1.2;white-space:normal;text-align:center;border-radius:12px}
  .board-tab .tab-ico{width:19px;height:19px}
  .board-tab .board-count{position:absolute;top:3px;right:4px;font-size:10px;padding:1px 6px;min-width:18px;text-align:center}
  .board-tab-name{min-width:0;overflow-wrap:anywhere}
@@ -708,17 +709,23 @@ html[data-theme="dark"] .hr-btn.hr-prim,html[data-theme="dark"] .hr-btn.hr-prim:
 /* ===== Giới hạn AI Studio (#view-limits) ===== */
 #view-limits{--al-ok-bg:#e3f4e9;--al-ok-fg:#14673a;--al-ok-bd:#9fd3b2;--al-ch-bg:#e6f0ff;--al-ch-fg:#0a58b8;--al-ch-bd:#a6c8f5;--al-sk-bg:#eeeef1;--al-sk-fg:#47474c;--al-sk-bd:#c9c9d0;--al-fl-bg:#fdecea;--al-fl-fg:#a1261b;--al-fl-bd:#f0a9a2;--al-pd-bg:#fff4dc;--al-pd-fg:#7a4b00;--al-pd-bd:#e8c477;--al-lnk:#0063c7;--al-sel:#f3f8ff}
 html[data-theme="dark"] #view-limits{--al-ok-bg:#16301f;--al-ok-fg:#7ee2a6;--al-ok-bd:#2d6b45;--al-ch-bg:#17314f;--al-ch-fg:#a6cfff;--al-ch-bd:#2d5a8f;--al-sk-bg:#2c2c2e;--al-sk-fg:#c7c7cc;--al-sk-bd:#48484d;--al-fl-bg:#4a2321;--al-fl-fg:#ffb4aa;--al-fl-bd:#7a403b;--al-pd-bg:#40331a;--al-pd-fg:#ffd089;--al-pd-bd:#6b542d;--al-lnk:#7cb8ff;--al-sel:#17314f}
+#limitsPanel{overflow:visible}
+@supports(overflow:clip){#limitsPanel{overflow:clip}}
 .al-wrap{padding:14px clamp(12px,2vw,22px) 24px;display:flex;flex-direction:column;gap:14px;min-width:0}
 .al-wrap button,.al-wrap input,.al-wrap select,.al-wrap textarea{font:inherit}
 .al-wrap :is(button,input,select,textarea,summary,a):focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .al-notice{margin:0;border:1px solid var(--al-pd-bd);border-left:4px solid #d58b24;border-radius:14px;background:var(--al-pd-bg);color:var(--al-pd-fg);padding:12px 16px;font-size:13px;line-height:1.6;font-weight:600;overflow-wrap:anywhere}
+.al-pendnote{margin:0;border:1px dashed var(--al-ch-bd);border-radius:12px;background:var(--al-ch-bg);color:var(--al-ch-fg);padding:9px 14px;font-size:13px;line-height:1.55;font-weight:650;overflow-wrap:anywhere}
 .al-datanote{margin:0;font-size:12px;color:var(--muted);line-height:1.55;overflow-wrap:anywhere}
 .al-callout{border:1px solid var(--al-fl-bd);border-left:4px solid #c92a31;border-radius:16px;background:var(--card);padding:14px 16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px 22px;min-width:0}
 .al-callout h3{margin:0 0 6px;font-size:14px;font-weight:700;letter-spacing:-.012em}
 .al-callout ul,.al-callout ol{margin:0;padding-left:20px;display:grid;gap:5px;font-size:13px;line-height:1.55;overflow-wrap:anywhere}
-.al-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:10px 18px;border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
-.al-counts h3{margin:0 0 6px;font-size:13px;font-weight:700}
+.al-counts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px 18px;border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 14px}
+.al-counts h3,.al-legend h3,.al-selbox h3{margin:0 0 6px;font-size:13px;font-weight:700}
 .al-counts ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.al-legend{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:10px 14px;display:grid;gap:6px}
+.al-legend ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:8px 16px}
+.al-legend li{display:grid;gap:3px;font-size:12px;line-height:1.5;color:var(--muted);justify-items:start}
 .al-chip{display:inline-flex;align-items:center;gap:5px;flex:none;font-size:11px;font-weight:700;line-height:1.3;border-radius:10px;padding:3px 9px;border:1px solid var(--line);background:var(--card);color:var(--fg);max-width:100%;overflow-wrap:anywhere}
 .al-chip .al-ci{font-size:12px;line-height:1;font-weight:800}
 .al-chip b{font-variant-numeric:tabular-nums}
@@ -742,10 +749,20 @@ html[data-theme="dark"] .al-btn.al-prim,html[data-theme="dark"] .al-btn.al-prim:
 .al-link:hover{background:var(--soft)}
 .al-msg{width:100%;box-sizing:border-box;font:12px/1.5 ui-monospace,Menlo,monospace;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--soft);color:inherit;resize:vertical;min-height:96px}
 .al-hint{font-size:12px;color:var(--muted);line-height:1.6;margin:0;overflow-wrap:anywhere}
-.al-bulk{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px;display:grid;gap:8px}
-.al-bulk h3{margin:0;font-size:14px;font-weight:700}
-.al-bulk-row{display:flex;flex-wrap:wrap;gap:8px}
-.al-filters{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:10px 12px;align-items:end}
+.al-selbox{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px;display:grid;gap:8px}
+.al-bulk-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.al-filters{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:12px 14px;display:grid;gap:10px}
+.al-ftop{display:flex;gap:10px;align-items:end}
+.al-ftop .al-fq{flex:1 1 auto}
+.al-ftog{display:none;flex:none}
+.al-fpanel{display:grid;gap:10px}
+.al-fsels{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px 12px}
+.al-frow{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.al-gchips{display:flex;flex-wrap:wrap;gap:6px}
+.al-gchip{min-height:44px;padding:0 14px;border-radius:22px;border:1px solid var(--line);background:var(--soft);color:var(--fg);font-weight:650;font-size:13px;cursor:pointer;line-height:1.25}
+.al-gchip:hover{background:var(--line)}
+.al-gchip[aria-pressed="true"]{background:var(--al-sel);border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);color:var(--al-ch-fg);font-weight:750}
+.al-gchip[aria-pressed="true"]::before{content:"✓ "}
 .al-field{display:grid;gap:4px;font-size:12px;font-weight:650;color:var(--muted);min-width:0}
 .al-field select,.al-field input[type=search]{width:100%;min-width:0;min-height:44px;border:1px solid var(--line);border-radius:11px;background:var(--soft);color:var(--fg);padding:0 12px;font-size:15px}
 .al-check{display:flex;align-items:center;gap:8px;min-height:44px;font-size:13px;font-weight:650;color:var(--fg);cursor:pointer}
@@ -759,21 +776,30 @@ html[data-theme="dark"] .al-btn.al-prim,html[data-theme="dark"] .al-btn.al-prim:
 .al-list{list-style:none;margin:0;padding:0 10px 10px;display:grid;gap:10px;min-width:0}
 .al-row{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 12px;display:grid;gap:8px;min-width:0}
 .al-row[data-choice]{border-color:var(--accent);background:var(--card)}
-.al-row[data-money="1"]{border-style:dashed}
-.al-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:start}
-.al-id{font-size:11px;font-weight:750;font-variant-numeric:tabular-nums;border:1px solid var(--line);border-radius:9px;padding:2px 8px;color:var(--muted);background:var(--card);margin-top:2px}
+.al-row[data-locked="1"]{border-style:dashed}
+.al-top{display:grid;grid-template-columns:44px auto minmax(0,1fr);gap:0 8px;align-items:center}
+.al-selw{display:flex;align-items:center;justify-content:center;width:44px;height:44px;cursor:pointer;margin:-4px 0 -4px -8px}
+.al-selw input{width:22px;height:22px;accent-color:var(--accent);cursor:pointer}
+.al-id{font-size:11px;font-weight:750;font-variant-numeric:tabular-nums;border:1px solid var(--line);border-radius:9px;padding:2px 8px;color:var(--muted);background:var(--card)}
 .al-title{margin:0;font-size:14px;font-weight:700;line-height:1.4;letter-spacing:-.012em;overflow-wrap:anywhere}
-.al-cur{margin:0;font-size:13px;line-height:1.5;color:var(--fg);overflow-wrap:anywhere;grid-column:1/-1}
+.al-cur{margin:0;font-size:13px;line-height:1.5;color:var(--fg);overflow-wrap:anywhere}
 .al-cur span{color:var(--muted);font-weight:600}
+.al-vals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 12px;min-width:0}
+.al-v{display:grid;align-content:start;gap:2px;min-width:0;border-left:3px solid var(--line);padding-left:8px}
+.al-vl{font-size:11px;font-weight:700;color:var(--muted);line-height:1.35}
+.al-vv{font-size:13px;line-height:1.45;color:var(--fg);overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.al-vv.al-unk,.al-vv.al-na{color:var(--muted);font-style:italic}
 .al-meta{display:flex;flex-wrap:wrap;gap:6px}
-.al-lock{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--al-fl-fg);background:var(--al-fl-bg);border:1px solid var(--al-fl-bd);border-radius:11px;padding:8px 12px;overflow-wrap:anywhere}
-.al-lock svg{flex:none}
+.al-lock{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--al-fl-fg);background:var(--al-fl-bg);border:1px solid var(--al-fl-bd);border-radius:11px;padding:8px 12px;overflow-wrap:anywhere}
+.al-lock svg{flex:none;margin-top:2px}
+.al-lock b{display:block;font-weight:750}
+.al-lock small{display:block;font-size:11px;font-weight:600;margin-top:2px}
 .al-choice{border:0;margin:0;padding:0;min-width:0;display:grid;gap:6px}
 .al-lg{font-size:12px;font-weight:650;color:var(--muted);padding:0;margin-bottom:2px}
 .al-opts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
 .al-opt{position:relative;display:flex;min-width:0}
 .al-opt input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
-.al-opt>span{display:flex;gap:8px;align-items:flex-start;width:100%;min-height:44px;padding:8px 10px;border:1px solid var(--line);border-radius:11px;background:var(--card);font-size:13px;font-weight:650;line-height:1.35;overflow-wrap:anywhere}
+.al-opt>span{display:flex;gap:8px;align-items:flex-start;width:100%;min-height:48px;padding:8px 10px;border:1px solid var(--line);border-radius:11px;background:var(--card);font-size:13px;font-weight:650;line-height:1.35;overflow-wrap:anywhere}
 .al-dot{flex:none;width:16px;height:16px;margin-top:1px;border-radius:50%;border:2px solid var(--muted);display:inline-block;box-sizing:border-box}
 .al-opt input:checked+span{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--al-sel)}
 .al-opt input:checked+span .al-dot{border-color:var(--accent);background:radial-gradient(circle,var(--accent) 0 38%,transparent 42%)}
@@ -790,9 +816,18 @@ html[data-theme="dark"] .al-btn.al-prim,html[data-theme="dark"] .al-btn.al-prim:
 .al-unit{flex:none;font-size:12px;font-weight:700;color:var(--fg);max-width:40%;overflow-wrap:anywhere}
 .al-err{margin:0;font-size:12px;font-weight:650;color:var(--al-fl-fg)}
 .al-err:empty{display:none}
-.al-pend{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:700;border-radius:10px;padding:3px 9px;background:var(--al-pd-bg);color:var(--al-pd-fg);border:1px solid var(--al-pd-bd)}
+.al-pend{display:inline-flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:700;border-radius:10px;padding:3px 9px;background:var(--al-pd-bg);color:var(--al-pd-fg);border:1px dashed var(--al-pd-bd)}
 .al-act{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
-.al-exp{min-height:44px;padding:0 10px 0 0;border:0;background:transparent;color:var(--al-lnk);font-weight:650;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.al-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+.al-statenote{margin:0;font-size:12px;line-height:1.5;color:var(--muted);border-left:3px solid var(--al-pd-bd);padding-left:8px;overflow-wrap:anywhere}
+.al-step{display:flex;flex-direction:column;gap:2px;align-items:flex-start;border-top:4px solid var(--line);padding-top:3px;font-size:11px;line-height:1.25;color:var(--muted);min-width:0}
+.al-step .al-sn{font-weight:800;font-variant-numeric:tabular-nums}
+.al-step .al-sl{overflow-wrap:anywhere}
+.al-step[data-st="done"]{border-top-color:var(--al-ok-bd);color:var(--al-ok-fg)}
+.al-step[data-st="cur"]{border-top-color:var(--accent);color:var(--fg);font-weight:750}
+.al-step[data-st="cur"] .al-sn{color:var(--al-ch-fg)}
+.al-step[data-st="todo"]{border-top-style:dashed}
+.al-exp{min-height:44px;padding:0 10px 0 0;border:0;background:transparent;color:var(--al-lnk);font-weight:650;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;justify-self:start}
 .al-detail{border-top:1px dashed var(--line);padding-top:8px;display:grid;gap:8px}
 .al-detail[hidden]{display:none}
 .al-detail dl{margin:0;display:grid;gap:8px}
@@ -800,9 +835,37 @@ html[data-theme="dark"] .al-btn.al-prim,html[data-theme="dark"] .al-btn.al-prim:
 .al-detail dd{margin:2px 0 0;font-size:13px;line-height:1.55;overflow-wrap:anywhere}
 .al-empty{font-size:13px;color:var(--muted);margin:0;padding:10px 4px}
 .al-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.al-dock{position:sticky;bottom:8px;z-index:30;display:grid;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:15px;padding:10px 12px;box-shadow:0 8px 28px rgba(0,0,0,.2)}
+.al-dock[hidden],.al-dock [hidden]{display:none}
+.al-dock.has-pending{border-color:var(--accent)}
+.al-dock-a,.al-dock-b{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.al-dock-info,.al-dock-sel{font-size:14px;margin-right:auto;overflow-wrap:anywhere}
+.al-dlg{max-width:min(520px,calc(100vw - 32px));width:100%;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--fg);padding:18px 18px 14px;box-sizing:border-box}
+.al-dlg::backdrop{background:rgba(0,0,0,.5)}
+.al-dlg h3{margin:0 0 8px;font-size:16px;line-height:1.4}
+.al-cf-body{display:grid;gap:6px;font-size:14px;line-height:1.55}
+.al-cf-body p,.al-cf-body ul{margin:0}
+.al-cf-body ul{padding-left:20px;font-size:13px}
+.al-cf-touch{font-weight:750}
+.al-cf-skip{font-weight:650}
+.al-cf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 @media(max-width:900px){.al-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:720px){.al-btn{flex:1 1 100%}.al-row{padding:10px}.al-list{padding:0 6px 8px}.al-act .al-btn{flex:0 1 auto}}
-</style></head><body><main class="page"><header class="top"><div><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><div class="eyebrow" data-i18n="eyebrow">XWEB · LỘ TRÌNH · TRIỂN KHAI · NGHIỆM THU</div></div><h1 class="heading" id="boardHeading">XWeb <span>Bảng điều hành</span></h1><p class="sub muted" id="boardSubtitle" data-i18n="subtitle">Lộ trình, triển khai và nghiệm thu theo bằng chứng</p></div><div class="topright"><div class="prefs"><button type="button" id="theme" class="icon-button" title="Giao diện" aria-label="Giao diện"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button><button type="button" id="lang" class="icon-button" title="Ngôn ngữ" aria-label="Ngôn ngữ"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></button></div><div class="updated icon-updated timestamp" id="update" role="status" title="Đang đọc dữ liệu…" aria-label="Đang đọc dữ liệu…"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><time id="updatedTime">--:--</time></div></div></header></header><div class="tabbar"><nav class="board-nav" id="mainTabs" role="tablist" aria-label="Khu vực chính"><button type="button" class="board-tab" id="tab-roadmap" role="tab" aria-selected="true" aria-controls="view-roadmap" data-board-tab="roadmap"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg><span class="board-tab-name">Lộ trình</span><span class="board-count" id="roadmapTabCount"></span></button><button type="button" class="board-tab" id="tab-process" role="tab" aria-selected="false" aria-controls="view-process" data-board-tab="process" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span class="board-tab-name">Quy trình &amp; cấu hình</span></button><button type="button" class="board-tab" id="tab-hourly" role="tab" aria-selected="false" aria-controls="view-hourly" data-board-tab="hourly" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 3h6"/></svg><span class="board-tab-name">Việc chạy mỗi giờ</span><span class="board-count" id="hourlyTabCount" hidden></span></button><button type="button" class="board-tab" id="tab-limits" role="tab" aria-selected="false" aria-controls="view-limits" data-board-tab="limits" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17a8 8 0 1 1 16 0"/><path d="m12 17 4-6"/><circle cx="12" cy="17" r="1"/></svg><span class="board-tab-name">Giới hạn AI Studio</span><span class="board-count" id="limitsTabCount" hidden></span></button><button type="button" class="board-tab" id="tab-prod" role="tab" aria-selected="false" aria-controls="view-prod" data-board-tab="prod" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.4 3 7.6 7.5 9 4.5-1.4 7.5-4.6 7.5-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span class="board-tab-name">Đã lên PROD</span><span class="board-count" id="prodTabCount"></span></button><button type="button" class="board-tab owner-nav-tab" id="tab-owner" role="tab" aria-selected="false" aria-controls="view-owner" data-board-tab="owner" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13 6 5h12l2 8v6H4z"/><path d="M4 13h5a3 3 0 0 0 6 0h5"/></svg><span class="owner-alert-dot" aria-hidden="true"></span><span class="board-tab-name">Chờ anh quyết</span><span class="board-count" id="ownerTabCount">0</span></button></nav></div><div class="board-view" id="view-roadmap" role="tabpanel" aria-labelledby="tab-roadmap"><div class="sub-nav" id="batchTabs" role="tablist" aria-label="Chọn đợt"><button type="button" class="sub-tab" id="rtab-1" role="tab" aria-selected="true" aria-controls="batchPanel" data-batch-tab="1" data-b="1" tabindex="0"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 1</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-2" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="2" data-b="2" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 2</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-3" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="3" data-b="3" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 3</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-4" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="4" data-b="4" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 4</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-5" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="5" data-b="5" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 5</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-6" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="6" data-b="6" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 6</span><span class="sub-count"></span></button></div><section id="batchPanel" role="tabpanel" aria-labelledby="rtab-1"></section><details class="off-roadmap" id="offRoadmap" hidden><summary><span class="off-title">Ngoài lộ trình</span><span class="sub-count off-count"></span></summary><p class="off-note"></p><div class="today-list"></div></details></div><div class="board-view" id="view-process" role="tabpanel" aria-labelledby="tab-process" hidden><section class="panel" id="processPanel" aria-label="Quy trình và cấu hình"><div class="tabletop"><strong>Quy trình &amp; cấu hình</strong><span class="small" id="processMeta"></span></div><div id="processBody" class="pc-wrap"></div></section></div><div class="board-view" id="view-hourly" role="tabpanel" aria-labelledby="tab-hourly" hidden><section class="panel" id="hourlyPanel" aria-labelledby="hourlyTitle"><div class="tabletop"><strong id="hourlyTitle">Việc chạy mỗi giờ</strong></div><div id="hourlyBody" class="hr-wrap"></div></section></div><div class="board-view" id="view-limits" role="tabpanel" aria-labelledby="tab-limits" hidden><section class="panel" id="limitsPanel" aria-labelledby="limitsTitle"><div class="tabletop"><strong id="limitsTitle">Giới hạn AI Studio</strong></div><div id="limitsBody" class="al-wrap"></div></section></div><div class="board-view" id="view-prod" role="tabpanel" aria-labelledby="tab-prod" hidden><div class="sub-nav two" id="prodTabs" role="tablist" aria-label="Phân loại mục đã lên PROD"><button type="button" class="sub-tab" id="ptab-done" role="tab" aria-selected="false" aria-controls="prodDone" data-prod-tab="done" tabindex="-1"><span class="sub-name">Hoàn tất</span><span class="sub-count" id="prodDoneCount"></span></button><button type="button" class="sub-tab" id="ptab-on" role="tab" aria-selected="true" aria-controls="prodOn" data-prod-tab="on"><span class="sub-name">Đã bật, chưa hoàn tất</span><span class="sub-count" id="prodOnCount"></span></button></div><div id="prodDone" role="tabpanel" aria-labelledby="ptab-done" hidden><div id="prodDoneBody"></div></div><div id="prodOn" role="tabpanel" aria-labelledby="ptab-on"><p class="callout" id="prodOnNote"></p><section class="stats" id="stats" aria-label="Tổng quan"></section><section class="progress-panel" aria-label="Tiến độ 19 hạng mục nền tảng"><div class="progress-head"><div><h2 id="progressTitle">Tiến độ 19 hạng mục</h2><p id="progressDesc">Theo dõi nhóm đã bật PROD và nhóm còn phát triển; bấm từng mục để xem bằng chứng.</p></div><div class="progress-tabs" role="group" aria-label="Lọc tiến độ"><button type="button" class="progress-tab" data-progress-filter="all" aria-pressed="false">Tất cả 19</button><button type="button" class="progress-tab" data-progress-filter="on" aria-pressed="true">Đã ON (12)</button><button type="button" class="progress-tab" data-progress-filter="remaining" aria-pressed="false">Còn lại (7)</button></div></div><div id="progressItems" class="progress-items"></div><p id="progressLegend" class="progress-legend">100% ở mục ON = đã bật PROD, không có nghĩa QA hoàn tất. Các % còn lại là ước lượng Claude, không phải số đo.</p></section><section class="filters" aria-label="Bộ lọc" hidden><div class="filterbar"><label class="field"><span>Đợt phát hành</span><select id="batch"><option value="">Tất cả</option><option value="R1">R1</option><option value="R2">R2</option><option value="Unassigned">Chưa xếp</option></select></label><label class="field"><span>Tiến độ</span><select id="stage"><option value="">Tất cả</option><option value="PROD_ENABLED">PROD ENABLED</option><option value="PROD_VERIFIED">PROD VERIFIED</option><option value="PROD_DEPLOYED">PROD CODE</option><option value="DEV_INTEGRATED">DEV INTEGRATED</option><option value="MAIN_PROMOTED">MAIN PROMOTED</option><option value="INCOMPLETE">Chưa hoàn chỉnh</option></select></label><label class="field"><span>Cờ PROD</span><select id="flag"><option value="">Tất cả</option><option value="ON">ON</option><option value="OFF">OFF</option><option value="N/A">Không áp dụng</option></select></label><label class="field"><span>Rủi ro</span><select id="risk"><option value="">Tất cả</option><option value="HIGH">Cao</option><option value="MEDIUM">Trung bình</option><option value="LOW">Thấp</option></select></label><label class="field"><span>BE/FE tích hợp</span><select id="integrated"><option value="">Tất cả</option><option value="yes">Đã tích hợp</option><option value="no">Chưa đủ</option></select></label></div><div class="searchrow"><label class="sr" for="q">Tìm kiếm</label><input id="q" placeholder="Tìm tên tính năng, mã P0, PR, mô tả…"><button class="reset" id="reset">Xóa bộ lọc</button></div></section><section class="panel feature-table-panel" hidden><div class="tabletop"><strong data-i18n="featureList">Danh sách tính năng</strong><span id="count" class="small"></span></div><div class="tablewrap"><table><thead><tr><th scope="col" class="stt-col">STT</th><th>Tính năng</th><th>Trạng thái</th><th>Đợt</th><th>Feature flag</th><th>QA/SEC</th><th>Chi tiết / bước tiếp</th></tr></thead><tbody id="tbody"></tbody></table></div></section><section class="panel" id="prodOnPanel" style="margin-top:20px" aria-labelledby="prodOnWorkTitle"><div class="tabletop"><strong id="prodOnWorkTitle">Việc giao đã ON trên PROD</strong><span class="small" id="prodOnWorkMeta"></span></div><div class="prod-list"><div class="today-list" id="prodOnWork"></div></div></section></div></div><div class="board-view" id="view-owner" role="tabpanel" aria-labelledby="tab-owner" hidden><section class="panel" id="ownerActions" aria-label="Chờ anh quyết" hidden><div class="tabletop"><strong id="ownerTitle">Chờ anh quyết hoặc thao tác</strong><span class="small" id="ownerActionsMeta"></span></div><div id="ownerActionsBody" class="owner-action-list"></div></section></div><footer id="footerNote"><strong>Nguồn:</strong> Snapshot từ GitHub và nhật ký phát hành đã kiểm tra. Phân biệt deploy, bật cờ và Owner UAT. Dữ liệu cập nhật theo lịch, không phải trạng thái thời gian thực. Không đăng thông tin bí mật.</footer></main><div id="detailShell" class="detail-shell" hidden><button class="detail-scrim" id="detailScrim" tabindex="-1" aria-label="Đóng chi tiết"></button><section id="detailDialog" class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-toolbar"><span class="detail-eyebrow" id="detailEyebrow"></span><button id="detailClose" class="detail-close" type="button" aria-label="Đóng">×</button></div><h2 class="detail-title" id="detailTitle"></h2><div id="detailBody"></div></section></div><script>
+@media(max-width:720px){
+ .al-wrap{padding:10px 10px 18px;gap:12px}
+ .al-btn{flex:1 1 100%}.al-row{padding:10px}.al-list{padding:0 6px 8px}.al-act .al-btn{flex:0 1 auto}
+ .al-ftog{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:0 14px}
+ .al-fpanel{display:none}.al-fpanel.open{display:grid}
+ .al-vals{grid-template-columns:minmax(0,1fr)}
+ .al-steps{gap:3px}.al-step{font-size:10.5px}
+ .al-dock{bottom:6px;padding:8px 10px}
+ .al-dock .al-btn{flex:1 1 auto;padding:0 10px}
+ .al-dock-a .al-prim{flex:0 0 auto}
+ .al-dock-sel{flex:1 1 100%}
+ .al-dock-b .al-btn{flex:1 1 28%;padding:0 4px;font-size:12px}
+ .al-dlg{max-width:calc(100vw - 24px)}
+ .al-cf-btns .al-btn{flex:1 1 100%}
+}
+</style></head><body><main class="page"><header class="top"><div><div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg></span><div class="eyebrow" data-i18n="eyebrow">XWEB · LỘ TRÌNH · TRIỂN KHAI · NGHIỆM THU</div></div><h1 class="heading" id="boardHeading">XWeb <span>Bảng điều hành</span></h1><p class="sub muted" id="boardSubtitle" data-i18n="subtitle">Lộ trình, triển khai và nghiệm thu theo bằng chứng</p></div><div class="topright"><div class="prefs"><button type="button" id="theme" class="icon-button" title="Giao diện" aria-label="Giao diện"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg></button><button type="button" id="lang" class="icon-button" title="Ngôn ngữ" aria-label="Ngôn ngữ"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></button></div><div class="updated icon-updated timestamp" id="update" role="status" title="Đang đọc dữ liệu…" aria-label="Đang đọc dữ liệu…"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><time id="updatedTime">--:--</time></div></div></header></header><div class="tabbar"><nav class="board-nav" id="mainTabs" role="tablist" aria-label="Khu vực chính"><button type="button" class="board-tab" id="tab-roadmap" role="tab" aria-selected="true" aria-controls="view-roadmap" data-board-tab="roadmap"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg><span class="board-tab-name">Lộ trình</span><span class="board-count" id="roadmapTabCount"></span></button><button type="button" class="board-tab" id="tab-process" role="tab" aria-selected="false" aria-controls="view-process" data-board-tab="process" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span class="board-tab-name">Quy trình &amp; cấu hình</span></button><button type="button" class="board-tab" id="tab-limits" role="tab" aria-selected="false" aria-controls="view-limits" data-board-tab="limits" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17a8 8 0 1 1 16 0"/><path d="m12 17 4-6"/><circle cx="12" cy="17" r="1"/></svg><span class="board-tab-name">Giới hạn AI Studio</span><span class="board-count" id="limitsTabCount" hidden></span></button><button type="button" class="board-tab" id="tab-hourly" role="tab" aria-selected="false" aria-controls="view-hourly" data-board-tab="hourly" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 3h6"/></svg><span class="board-tab-name">Việc chạy mỗi giờ</span><span class="board-count" id="hourlyTabCount" hidden></span></button><button type="button" class="board-tab" id="tab-prod" role="tab" aria-selected="false" aria-controls="view-prod" data-board-tab="prod" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.5c0 4.4 3 7.6 7.5 9 4.5-1.4 7.5-4.6 7.5-9V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg><span class="board-tab-name">Đã lên PROD</span><span class="board-count" id="prodTabCount"></span></button><button type="button" class="board-tab owner-nav-tab" id="tab-owner" role="tab" aria-selected="false" aria-controls="view-owner" data-board-tab="owner" tabindex="-1"><svg class="tab-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 13 6 5h12l2 8v6H4z"/><path d="M4 13h5a3 3 0 0 0 6 0h5"/></svg><span class="owner-alert-dot" aria-hidden="true"></span><span class="board-tab-name">Chờ anh quyết</span><span class="board-count" id="ownerTabCount">0</span></button></nav></div><div class="board-view" id="view-roadmap" role="tabpanel" aria-labelledby="tab-roadmap"><div class="sub-nav" id="batchTabs" role="tablist" aria-label="Chọn đợt"><button type="button" class="sub-tab" id="rtab-1" role="tab" aria-selected="true" aria-controls="batchPanel" data-batch-tab="1" data-b="1" tabindex="0"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 1</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-2" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="2" data-b="2" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 2</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-3" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="3" data-b="3" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 3</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-4" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="4" data-b="4" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 4</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-5" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="5" data-b="5" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 5</span><span class="sub-count"></span></button><button type="button" class="sub-tab" id="rtab-6" role="tab" aria-selected="false" aria-controls="batchPanel" data-batch-tab="6" data-b="6" tabindex="-1"><span class="sub-dot" aria-hidden="true"></span><span class="sub-name">Đợt 6</span><span class="sub-count"></span></button></div><section id="batchPanel" role="tabpanel" aria-labelledby="rtab-1"></section><details class="off-roadmap" id="offRoadmap" hidden><summary><span class="off-title">Ngoài lộ trình</span><span class="sub-count off-count"></span></summary><p class="off-note"></p><div class="today-list"></div></details></div><div class="board-view" id="view-process" role="tabpanel" aria-labelledby="tab-process" hidden><section class="panel" id="processPanel" aria-label="Quy trình và cấu hình"><div class="tabletop"><strong>Quy trình &amp; cấu hình</strong><span class="small" id="processMeta"></span></div><div id="processBody" class="pc-wrap"></div></section></div><div class="board-view" id="view-limits" role="tabpanel" aria-labelledby="tab-limits" hidden><section class="panel" id="limitsPanel" aria-labelledby="limitsTitle"><div class="tabletop"><strong id="limitsTitle">Giới hạn AI Studio</strong></div><div id="limitsBody" class="al-wrap"></div></section></div><div class="board-view" id="view-hourly" role="tabpanel" aria-labelledby="tab-hourly" hidden><section class="panel" id="hourlyPanel" aria-labelledby="hourlyTitle"><div class="tabletop"><strong id="hourlyTitle">Việc chạy mỗi giờ</strong></div><div id="hourlyBody" class="hr-wrap"></div></section></div><div class="board-view" id="view-prod" role="tabpanel" aria-labelledby="tab-prod" hidden><div class="sub-nav two" id="prodTabs" role="tablist" aria-label="Phân loại mục đã lên PROD"><button type="button" class="sub-tab" id="ptab-done" role="tab" aria-selected="false" aria-controls="prodDone" data-prod-tab="done" tabindex="-1"><span class="sub-name">Hoàn tất</span><span class="sub-count" id="prodDoneCount"></span></button><button type="button" class="sub-tab" id="ptab-on" role="tab" aria-selected="true" aria-controls="prodOn" data-prod-tab="on"><span class="sub-name">Đã bật, chưa hoàn tất</span><span class="sub-count" id="prodOnCount"></span></button></div><div id="prodDone" role="tabpanel" aria-labelledby="ptab-done" hidden><div id="prodDoneBody"></div></div><div id="prodOn" role="tabpanel" aria-labelledby="ptab-on"><p class="callout" id="prodOnNote"></p><section class="stats" id="stats" aria-label="Tổng quan"></section><section class="progress-panel" aria-label="Tiến độ 19 hạng mục nền tảng"><div class="progress-head"><div><h2 id="progressTitle">Tiến độ 19 hạng mục</h2><p id="progressDesc">Theo dõi nhóm đã bật PROD và nhóm còn phát triển; bấm từng mục để xem bằng chứng.</p></div><div class="progress-tabs" role="group" aria-label="Lọc tiến độ"><button type="button" class="progress-tab" data-progress-filter="all" aria-pressed="false">Tất cả 19</button><button type="button" class="progress-tab" data-progress-filter="on" aria-pressed="true">Đã ON (12)</button><button type="button" class="progress-tab" data-progress-filter="remaining" aria-pressed="false">Còn lại (7)</button></div></div><div id="progressItems" class="progress-items"></div><p id="progressLegend" class="progress-legend">100% ở mục ON = đã bật PROD, không có nghĩa QA hoàn tất. Các % còn lại là ước lượng Claude, không phải số đo.</p></section><section class="filters" aria-label="Bộ lọc" hidden><div class="filterbar"><label class="field"><span>Đợt phát hành</span><select id="batch"><option value="">Tất cả</option><option value="R1">R1</option><option value="R2">R2</option><option value="Unassigned">Chưa xếp</option></select></label><label class="field"><span>Tiến độ</span><select id="stage"><option value="">Tất cả</option><option value="PROD_ENABLED">PROD ENABLED</option><option value="PROD_VERIFIED">PROD VERIFIED</option><option value="PROD_DEPLOYED">PROD CODE</option><option value="DEV_INTEGRATED">DEV INTEGRATED</option><option value="MAIN_PROMOTED">MAIN PROMOTED</option><option value="INCOMPLETE">Chưa hoàn chỉnh</option></select></label><label class="field"><span>Cờ PROD</span><select id="flag"><option value="">Tất cả</option><option value="ON">ON</option><option value="OFF">OFF</option><option value="N/A">Không áp dụng</option></select></label><label class="field"><span>Rủi ro</span><select id="risk"><option value="">Tất cả</option><option value="HIGH">Cao</option><option value="MEDIUM">Trung bình</option><option value="LOW">Thấp</option></select></label><label class="field"><span>BE/FE tích hợp</span><select id="integrated"><option value="">Tất cả</option><option value="yes">Đã tích hợp</option><option value="no">Chưa đủ</option></select></label></div><div class="searchrow"><label class="sr" for="q">Tìm kiếm</label><input id="q" placeholder="Tìm tên tính năng, mã P0, PR, mô tả…"><button class="reset" id="reset">Xóa bộ lọc</button></div></section><section class="panel feature-table-panel" hidden><div class="tabletop"><strong data-i18n="featureList">Danh sách tính năng</strong><span id="count" class="small"></span></div><div class="tablewrap"><table><thead><tr><th scope="col" class="stt-col">STT</th><th>Tính năng</th><th>Trạng thái</th><th>Đợt</th><th>Feature flag</th><th>QA/SEC</th><th>Chi tiết / bước tiếp</th></tr></thead><tbody id="tbody"></tbody></table></div></section><section class="panel" id="prodOnPanel" style="margin-top:20px" aria-labelledby="prodOnWorkTitle"><div class="tabletop"><strong id="prodOnWorkTitle">Việc giao đã ON trên PROD</strong><span class="small" id="prodOnWorkMeta"></span></div><div class="prod-list"><div class="today-list" id="prodOnWork"></div></div></section></div></div><div class="board-view" id="view-owner" role="tabpanel" aria-labelledby="tab-owner" hidden><section class="panel" id="ownerActions" aria-label="Chờ anh quyết" hidden><div class="tabletop"><strong id="ownerTitle">Chờ anh quyết hoặc thao tác</strong><span class="small" id="ownerActionsMeta"></span></div><div id="ownerActionsBody" class="owner-action-list"></div></section></div><footer id="footerNote"><strong>Nguồn:</strong> Snapshot từ GitHub và nhật ký phát hành đã kiểm tra. Phân biệt deploy, bật cờ và Owner UAT. Dữ liệu cập nhật theo lịch, không phải trạng thái thời gian thực. Không đăng thông tin bí mật.</footer></main><div id="detailShell" class="detail-shell" hidden><button class="detail-scrim" id="detailScrim" tabindex="-1" aria-label="Đóng chi tiết"></button><section id="detailDialog" class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle"><div class="detail-toolbar"><span class="detail-eyebrow" id="detailEyebrow"></span><button id="detailClose" class="detail-close" type="button" aria-label="Đóng">×</button></div><h2 class="detail-title" id="detailTitle"></h2><div id="detailBody"></div></section></div><script>
 const ui={
 vi:{theme:'Giao diện',language:'Ngôn ngữ',eyebrow:'XWEB · LỘ TRÌNH · TRIỂN KHAI · NGHIỆM THU',subtitle:'Lộ trình, triển khai và nghiệm thu theo bằng chứng',featureList:'Danh sách tính năng',labels:['Đợt phát hành','Tiến độ','Cờ PROD','Rủi ro','BE/FE tích hợp'],any:'Tất cả',unassigned:'Chưa xếp',notApplicable:'Không áp dụng',incomplete:'Chưa hoàn chỉnh',high:'Cao',medium:'Trung bình',low:'Thấp',integratedYes:'Đã tích hợp',integratedNo:'Chưa đủ',reset:'Xóa bộ lọc',search:'Tìm tên tính năng, mã P0, PR, mô tả…',heads:['STT','Tính năng','Trạng thái','Đợt','Feature flag','QA/SEC','Chi tiết / bước tiếp'],total:'tính năng',plan:'Kế hoạch',next:'Tiếp',details:'Chi tiết',test:'Kiểm thử',batch:'Đợt',flag:'Cờ',status:'Trạng thái',noResults:'Không có kết quả khớp bộ lọc',updated:'Cập nhật dữ liệu',readError:'Không tải được status.json',r1:'Đã deploy',r2Done:'Đã deploy',processing:'Đang xử lý',prodOn:'Tính năng PROD ON',features:'Tổng tính năng',released:'Đã ghi nhận phát hành',uat:'Theo log phát hành · UAT chưa hoàn tất',verified:'PROD đã kiểm tra · flags theo bảng',pending:'Chờ xác minh release',interactive:'Bộ lọc tương tác',error:'Lỗi dữ liệu',errorHint:'Hãy kiểm tra status.json',footer:'Nguồn: Snapshot tổng hợp từ GitHub và nhật ký phát hành. Trạng thái phát hành, cờ và Owner UAT được phân biệt. Dữ liệu không phải thời gian thực.',themeOptions:['Theo máy','Sáng','Tối'],stage:{PROD_ENABLED:'PROD ENABLED',PROD_VERIFIED:'PROD VERIFIED',PROD_DEPLOYED:'PROD CODE',DEV_INTEGRATED:'DEV MERGED',MAIN_PROMOTED:'MAIN PROMOTED',INCOMPLETE:'CHƯA HOÀN CHỈNH'}},
 en:{theme:'Appearance',language:'Language',eyebrow:'XWEB · ROADMAP · ROLLOUT · ACCEPTANCE',subtitle:'Roadmap, rollout and acceptance, evidence first',featureList:'Feature tracking',labels:['Release batch','Progress','PROD flag','Risk','BE/FE integration'],any:'All',unassigned:'Unassigned',notApplicable:'Not applicable',incomplete:'Incomplete',high:'High',medium:'Medium',low:'Low',integratedYes:'Integrated',integratedNo:'Not integrated',reset:'Clear filters',search:'Search features, P0 IDs, PRs, descriptions…',heads:['No.','Feature','Status','Batch','Feature flag','QA/SEC','Details / next step'],total:'features',plan:'Planned',next:'Next',details:'Details',test:'Testing',batch:'Batch',flag:'Flag',status:'Status',noResults:'No matching results',updated:'Data updated',readError:'Unable to load status.json',r1:'Deployed',r2Done:'Deployed',processing:'In progress',prodOn:'PROD features ON',features:'Total features',released:'Production release recorded',uat:'Release logs · Owner UAT pending',verified:'PROD verified · flags in table',pending:'Awaiting release verification',interactive:'Interactive filters',error:'Data error',errorHint:'Check status.json',footer:'Source: GitHub and verified release logs. Deployment, enabled flags, and Owner UAT are separate statuses. This is not live data.',themeOptions:['System','Light','Dark'],stage:{PROD_ENABLED:'PROD ENABLED',PROD_VERIFIED:'PROD VERIFIED',PROD_DEPLOYED:'PROD CODE',DEV_INTEGRATED:'DEV MERGED',MAIN_PROMOTED:'MAIN PROMOTED',INCOMPLETE:'INCOMPLETE'}}};
@@ -830,7 +893,7 @@ function stat(title,value,caption,cls=''){const card=el('div','stat');card.appen
 
 /* ===== Shell strings (vi/en) for the 4-tab layout ===== */
 const XS={
-vi:{title:'XWeb • Bảng điều hành',brand:'Bảng điều hành',mainLabel:'Khu vực chính',batchLabel:'Chọn đợt',prodLabel:'Phân loại mục đã lên PROD',tabs:{roadmap:'Lộ trình',process:'Quy trình & cấu hình',hourly:'Việc chạy mỗi giờ',limits:'Giới hạn AI Studio',prod:'Đã lên PROD',owner:'Chờ anh quyết'},batch:'Đợt',prodTabs:{done:'Hoàn tất',on:'Đã bật, chưa hoàn tất'},
+vi:{title:'XWeb • Bảng điều hành',brand:'Bảng điều hành',mainLabel:'Khu vực chính',batchLabel:'Chọn đợt',prodLabel:'Phân loại mục đã lên PROD',tabs:{roadmap:'Lộ trình',process:'Quy trình & cấu hình',limits:'Giới hạn AI Studio',hourly:'Việc chạy mỗi giờ',prod:'Đã lên PROD',owner:'Chờ anh quyết'},batch:'Đợt',prodTabs:{done:'Hoàn tất',on:'Đã bật, chưa hoàn tất'},
  eta:'Dự kiến',doneOf:'đã hoàn tất',countsOnly:'Chỉ đếm số mục đã hoàn tất (QA/SEC độc lập + đã kiểm trên PROD + Owner chấp nhận); không có phần trăm ước lượng.',
  plan:'Kế hoạch đợt',work:'Việc đang theo dõi',feats:'Hạng mục nền tảng chưa bật trên PROD',backlog:'Hạng mục kế thừa và kế hoạch dài hạn',
  emptyBatchT:'Đợt này không còn mục mở',emptyBatchD:'Mọi mục thuộc đợt đã hoàn tất. Xem tab Đã lên PROD, mục Hoàn tất.',emptyBatchNoneT:'Chưa có mục nào gắn với đợt này',emptyBatchNoneD:'Khi có mục được gắn đợt trong status.json, chúng sẽ hiện ở đây.',
@@ -842,7 +905,7 @@ vi:{title:'XWeb • Bảng điều hành',brand:'Bảng điều hành',mainLabel
  onWork:'Việc giao đã ON trên PROD',onFeats:'Tiến độ 19 hạng mục nền tảng',closedPill:'HOÀN TẤT',closedAt:'Hoàn tất lúc',hist:'Lịch sử cập nhật',stepsOf:' bước',nowAt:'Đang ở bước: ',blockedAt:'Đang bị chặn ở bước: ',nextAt:'Bước kế tiếp: ',allDone:'Mọi bước đã xong',notStarted:'Chưa bắt đầu',stepWord:'Bước',stepState:{done:'đã xong',doing:'đang làm',todo:'chưa làm',blocked:'bị chặn'},stepsList:'Các bước',
  owner:{title:'Chờ anh quyết hoặc thao tác',pending:' việc đang chờ',aria:'Chờ anh quyết: ',empty:'Hiện không có mục nào chờ anh quyết.'},
  part:'Phần của đợt này: ',related:'Liên kết với nhóm 19 hạng mục: ',cov:{COVERED_BY_P33:'Đã thuộc nhóm 19',PARTIALLY_COVERED:'Trùng một phần',INDEPENDENT:'Giữ độc lập'}},
-en:{title:'XWeb • Delivery Control',brand:'Delivery Control',mainLabel:'Main sections',batchLabel:'Choose batch',prodLabel:'Items live on PROD',tabs:{roadmap:'Roadmap',process:'Process & settings',hourly:'Hourly tasks',limits:'AI Studio limits',prod:'Live on PROD',owner:'Awaiting you'},batch:'Batch',prodTabs:{done:'Closed',on:'Live, not closed'},
+en:{title:'XWeb • Delivery Control',brand:'Delivery Control',mainLabel:'Main sections',batchLabel:'Choose batch',prodLabel:'Items live on PROD',tabs:{roadmap:'Roadmap',process:'Process & settings',limits:'AI Studio limits',hourly:'Hourly tasks',prod:'Live on PROD',owner:'Awaiting you'},batch:'Batch',prodTabs:{done:'Closed',on:'Live, not closed'},
  eta:'Target',doneOf:'closed',countsOnly:'Counts only closed items (independent QA/SEC + verified on PROD + Owner accepted); no estimated percentages.',
  plan:'Batch plan',work:'Tracked work',feats:'Foundation items not yet live on PROD',backlog:'Inherited items and long-range plan',
  emptyBatchT:'No open items in this batch',emptyBatchD:'Every item in this batch is closed. See Live on PROD, Closed.',emptyBatchNoneT:'Nothing is assigned to this batch yet',emptyBatchNoneD:'Items tagged with this batch in status.json will appear here.',
@@ -1052,7 +1115,7 @@ function renderProd(){
 }
 
 /* ===== Router: #roadmap[/1..6]  #process  #prod[/done|on]  #owner ; legacy #phase33 #remaining #today are redirected ===== */
-const VIEWS=['roadmap','process','hourly','limits','prod','owner'];
+const VIEWS=['roadmap','process','limits','hourly','prod','owner'];
 let activeBoardView='roadmap',roadmapBatch=1,prodSub='on';
 function parseRoute(){
  const raw=String(location.hash||'').replace(/^#\/?/,'').toLowerCase();const [a,b]=raw.split('/');
@@ -1080,6 +1143,7 @@ function setBoardView(view,updateHash=true,sub=null){
  if(view==='prod'&&(sub==='done'||sub==='on'))prodSub=sub;
  for(const tab of document.querySelectorAll('[data-board-tab]')){const chosen=tab.dataset.boardTab===view;tab.setAttribute('aria-selected',String(chosen));tab.tabIndex=chosen?0:-1}
  for(const v of VIEWS)document.getElementById('view-'+v).hidden=v!==view;
+ try{const nav=document.getElementById('mainTabs'),sel=nav&&nav.querySelector('[aria-selected="true"]');if(nav&&sel&&nav.scrollWidth>nav.clientWidth+1)nav.scrollTo({left:Math.max(0,sel.offsetLeft-(nav.clientWidth-sel.offsetWidth)/2),behavior:'auto'})}catch(e){}
  syncSubTabs();
  if(view==='roadmap')renderRoadmap();
  const hash=routeHash(view);if(updateHash&&window.location.hash!==hash)history.replaceState(null,'',hash);
@@ -1599,52 +1663,68 @@ function setHourlyBadge(n,T){const b=document.getElementById('hourlyTabCount'),t
 
 /* ===== Giới hạn AI Studio (#limits): chọn từng giới hạn, lưu nháp trong trình duyệt, Owner sao chép tin nhắn lên #88 ===== */
 const ALKEY='xw-al:',AL_MAX_NOTE=200,AL_MAX_VAL=80;
-let alMem=null;const alOpen=new Set(),alShut=new Set(),alF={kind:'',rec:'',q:'',todo:false};
-const AL_KINDS=['SETTING','CODE CONSTANT','BUILD-ENV','INFRA'],AL_RECS=['giữ','bỏ giới hạn','nâng','cần mã'];
+let alMem=null;const alOpen=new Set(),alShut=new Set(),alSel=new Set(),alF={kind:'',rec:'',group:'',state:'',mand:'',q:'',todo:false};
+const AL_KINDS=['SETTING','CODE CONSTANT','BUILD-ENV','INFRA'],AL_RECS=['giữ','bỏ giới hạn','nâng','cần mã'],AL_STATES=['proposed','approved','applied','verified'],AL_LV=['Cao','Trung bình','Thấp'];
 const AL_KI={'SETTING':'S','CODE CONSTANT':'C','BUILD-ENV':'B','INFRA':'I'},AL_RI={'giữ':'=','bỏ giới hạn':'∞','nâng':'▲','cần mã':'‹›'},AL_RT={'giữ':'keep','bỏ giới hạn':'off','nâng':'raise','cần mã':'code'};
+const AL_LVI={'Cao':'▲','Trung bình':'◆','Thấp':'▼'},AL_LVT={'Cao':'no','Trung bình':'code','Thấp':'off'},AL_LVE={'Cao':'High','Trung bình':'Medium','Thấp':'Low'};
+const AL_SI={proposed:'1',approved:'2',applied:'3',verified:'4'},AL_ST={proposed:'unk',approved:'raise',applied:'code',verified:'off'};
 const ALT={
 vi:{tab:'Giới hạn AI Studio',notice:'Anh chọn xong, bấm sao chép và dán lên #88; C0 áp dụng cài đặt đổi nóng ngay ở lần chạy kế tiếp, còn mục cần mã/bản phát hành sẽ thành PR và chờ QA độc lập rồi mới lên PROD.',
- askT:'Anh đã yêu cầu',riskT:'Rủi ro cần biết trước khi bỏ giới hạn',countsKind:'Theo loại',countsRec:'Theo khuyến nghị',total:(n,c)=>n+' giới hạn · '+c+' đã chọn',updated:'Dữ liệu cập nhật',tz:'giờ ICT (UTC+7)',
+ pendNote:'Lựa chọn anh bấm trên trang này chỉ là "chờ gửi" (lưu trong trình duyệt), chưa phải duyệt, cho đến khi anh dán tin nhắn lên #88.',
+ askT:'Anh đã yêu cầu',riskT:'Rủi ro cần biết trước khi bỏ giới hạn',countsKind:'Theo loại',countsRec:'Theo khuyến nghị',countsState:'Theo trạng thái',countsMand:'Theo bắt buộc',total:(n,c)=>n+' giới hạn · '+c+' đã chọn',updated:'Dữ liệu cập nhật',tz:'giờ ICT (UTC+7)',
  kinds:{'SETTING':'Cài đặt (đổi nóng)','CODE CONSTANT':'Hằng số trong mã','BUILD-ENV':'Biến môi trường khi build','INFRA':'Hạ tầng'},
  recs:{'giữ':'giữ','bỏ giới hạn':'bỏ giới hạn','nâng':'nâng','cần mã':'cần mã'},recW:'Khuyến nghị',
+ states:{proposed:'Đề xuất',approved:'Đã duyệt',applied:'Đã áp dụng',verified:'Đã kiểm chứng'},stateW:'Trạng thái',
+ stateD:{proposed:'Cấu hình đề xuất; chưa ai duyệt.',approved:'Owner đã chọn và dán lên #88 (hoặc đã duyệt); chưa áp dụng.',applied:'C0 đã áp dụng; mới ở mức BÁO CÁO (REPORTED), chưa được đọc lại độc lập.',verified:'Đã được kiểm chứng độc lập (đọc lại giá trị thật).'},
+ legendT:'Bốn trạng thái của một giới hạn',stepOf:(n,s)=>'Trạng thái: '+s+', bước '+n+' trên 4',stepsLbl:'Tiến trình trạng thái',
+ pendCount:n=>'Chờ gửi: '+n,
+ impactW:'Ảnh hưởng',riskW:'Rủi ro',lv:{'Cao':'Cao','Trung bình':'Trung bình','Thấp':'Thấp'},unkLv:'chưa rõ',mandW:'Bắt buộc giữ',optW:'Không bắt buộc',mandY:'Bắt buộc',mandN:'Không bắt buộc',
  off:{true:'Tắt được bằng cài đặt',false:'Không tắt được bằng cài đặt',unknown:'Chưa rõ có tắt được không'},
  rel:{true:'Cần bản phát hành',false:'Không cần bản phát hành',unknown:'Chưa rõ có cần bản phát hành'},
- cur:'Hiện tại',choose:id=>'Anh chọn cho '+id,keep:'Giữ nguyên',offO:'Bỏ giới hạn (tắt)',val:'Đặt giá trị…',rec:'Theo khuyến nghị',star:'★ khuyến nghị',
+ cur:'Hiện tại',vProd:'PROD (giá trị gần nhất đã biết)',vDev:'DEV: mặc định trong mã',devNote:'PROD là giá trị gần nhất đã biết. "Mặc định trong mã (DEV)" là giá trị mặc định đọc từ mã nguồn; giá trị ghi đè riêng của stack DEV chưa được đọc.',unk:'chưa rõ',choose:id=>'Anh chọn cho '+id,keep:'Giữ nguyên',offO:'Bỏ giới hạn (tắt)',val:'Đặt giá trị…',rec:'Theo khuyến nghị',star:'★ khuyến nghị',
  valL:'Giá trị mới',valPh:'giá trị',unitW:'Đơn vị',noteL:'Ghi chú (không bắt buộc)',errVal:'Nhập giá trị cho lựa chọn "Đặt giá trị".',
  offWarn:'Không tắt được bằng cài đặt: chọn này sẽ thành việc cần mã và bản phát hành.',
- lockT:'giữ (giới hạn tiền)',lockD:'Giới hạn tiền luôn giữ; không có lựa chọn cho hàng này.',
+ lockT:r=>'Bắt buộc giữ: '+r,lockMoney:'giới hạn tiền, luôn giữ',lockNone:'giới hạn bắt buộc',lockD:'Không có lựa chọn Bỏ giới hạn hay Đặt giá trị cho hàng này và mọi thao tác hàng loạt đều bỏ qua nó.',
  undo:'Hoàn tác',undoRow:id=>'Hoàn tác lựa chọn '+id,details:'Chi tiết',hide:'Ẩn chi tiết',
- what:'Là gì',where:'Nằm ở đâu',offHow:'Cách bỏ giới hạn',danger:'Rủi ro nếu bỏ/nâng',effort:'Công sức ước tính',hours:h=>h+' giờ',recVal:'Giá trị khuyến nghị',
+ what:'Là gì',curNote:'Ghi chú giá trị hiện tại (kiểm kê)',prodFull:'Giá trị PROD (gần nhất đã biết)',devFull:'Mặc định trong mã (DEV)',where:'Nằm ở đâu',offHow:'Cách bỏ giới hạn',danger:'Rủi ro nếu bỏ/nâng',impactNoteW:'Ảnh hưởng tới người dùng',riskNoteW:'Rủi ro (ghi chú)',stateNoteW:'Ghi chú trạng thái',effort:'Công sức ước tính',hours:h=>h+' giờ',recVal:'Giá trị khuyến nghị (đề xuất)',
  pending:n=>'Chờ gửi: '+n+' lựa chọn',none:'Chưa có lựa chọn nào chờ gửi',incomplete:n=>n+' hàng "Đặt giá trị" chưa nhập giá trị (chưa tính vào tin nhắn)',previewEmpty:'(Chưa có lựa chọn. Chọn ở các hàng bên dưới hoặc dùng thao tác hàng loạt.)',
  send:'Sao chép & mở #88',copy:'Sao chép',undoAll:'Hoàn tác tất cả',sent:'đã sao chép',
  hintPending:'Bấm "Sao chép & mở #88": nội dung được sao chép và GitHub #88 mở ở ô bình luận; dán (Ctrl/Cmd+V) rồi bấm Comment. Trang này không tự gửi vì không giữ khóa GitHub (an toàn). Lựa chọn chỉ có hiệu lực khi C0 áp dụng.',
  copied:'Đã sao chép. Dán vào ô bình luận GitHub #88 rồi bấm Comment. Lựa chọn vẫn hiện ở đây tới khi C0 áp dụng.',copyFail:'Không tự sao chép được: nội dung đã được bôi đen, bấm Ctrl/Cmd+C.',
- bulkT:'Thao tác hàng loạt',bulkRec:n=>'Áp dụng khuyến nghị cho tất cả hàng chưa chọn ('+n+')',bulkOff:n=>'Bỏ giới hạn cho các hàng đếm lượt/token (đã nêu trong ownerAsk) ('+n+')',
- bulkHint:(m,l)=>'Bỏ giới hạn hàng loạt chỉ áp dụng cho hàng có "tắt được bằng cài đặt" = có (lượt/token), không bao giờ cho hàng không tắt được hoặc chưa rõ. '+l+' hàng giới hạn tiền luôn bị khóa và nằm ngoài mọi thao tác hàng loạt.',
- filT:'Lọc và tìm',fKind:'Loại',fRec:'Khuyến nghị',fAll:'Tất cả',fQ:'Tìm (mã, tên, giá trị, vị trí)',fTodo:'Chỉ hàng chưa chọn',fReset:'Xóa bộ lọc',
- shown:(a,b)=>'Hiển thị '+a+'/'+b+' hàng',openAll:'Mở tất cả nhóm',closeAll:'Thu gọn tất cả nhóm',listT:'Danh sách giới hạn',grpN:(a,b,c)=>(a===b?b+' hàng':a+'/'+b+' hàng')+(c?' · '+c+' đã chọn':''),
+ selT:'Duyệt hàng loạt',selHint:'Tick các hàng (hoặc dùng nút chọn nhanh), rồi dùng thanh thao tác ở cuối màn hình. Hàng bắt buộc giữ luôn bị bỏ qua.',selAll:n=>'Chọn tất cả đang lọc ('+n+')',selTodo:n=>'Chọn hàng chưa chọn ('+n+')',selOffs:n=>'Chọn hàng lượt/token tắt được ('+n+')',selNone:'Bỏ chọn',selN:n=>'Đã chọn '+n+' hàng',selRow:id=>'Chọn '+id,
+ bRec:'Theo khuyến nghị',bKeep:'Giữ nguyên',bOff:'Bỏ giới hạn',bulkOnly:'Bỏ giới hạn chỉ áp dụng cho hàng "tắt được bằng cài đặt", không bắt buộc.',
+ cfT:(l,n)=>'Xác nhận "'+l+'" cho '+n+' hàng đã chọn',cfTouch:n=>'Sẽ đưa vào "chờ gửi": '+n+' hàng',cfSkip:n=>'Bỏ qua: '+n+' hàng',cfLocked:n=>n+' hàng bắt buộc giữ (tiền/an toàn)',cfNoOff:n=>n+' hàng không tắt được bằng cài đặt (Bỏ giới hạn chỉ cho hàng tắt được)',cfSame:n=>n+' hàng đã đúng lựa chọn này',cfOver:n=>'Ghi đè '+n+' lựa chọn đang chờ gửi',cfNote:'Đây mới là "chờ gửi", chưa phải duyệt. Anh còn phải dán tin nhắn lên #88.',cfOk:n=>'Đưa '+n+' hàng vào chờ gửi',cfNothing:'Không có hàng nào hợp lệ để áp dụng.',cfCancel:'Hủy',
+ filT:'Lọc và tìm',fKind:'Loại',fRec:'Khuyến nghị',fState:'Trạng thái',fMand:'Bắt buộc',fGroup:'Nhóm',fAllGroups:'Tất cả nhóm',fAll:'Tất cả',fQ:'Tìm (mã, tên, giá trị, nhóm, vị trí)',fTodo:'Chỉ hàng chưa chọn',fReset:'Xóa bộ lọc',fToggle:'Bộ lọc',fActive:n=>n?' ('+n+')':'',
+ shown:(a,b)=>'Hiển thị '+a+'/'+b+' hàng',openAll:'Mở tất cả nhóm',closeAll:'Thu gọn tất cả nhóm',listT:'Danh sách giới hạn',grpN:(a,b,c)=>(a===b?b+' hàng':a+'/'+b+' hàng')+(c?' · '+c+' đã chọn':''),noGroup:'Chưa phân nhóm',
  empty:'Chưa có dữ liệu giới hạn AI Studio.',noMatch:'Không có hàng nào khớp bộ lọc.',tabPend:n=>n+' lựa chọn chờ gửi',
  tk:{keep:'GIỮ',off:'BỎ',val:'GIÁ TRỊ',rec:'KHUYẾN NGHỊ'},pendChip:s=>'chờ gửi: '+s,note:'Ghi chú dữ liệu'},
 en:{tab:'AI Studio limits',notice:'Once you have chosen, copy and paste to #88; C0 applies hot-changeable settings on its next run, while items that need code or a release become a PR and wait for independent QA before PROD.',
- askT:'What you asked for',riskT:'Risks to know before removing limits',countsKind:'By kind',countsRec:'By recommendation',total:(n,c)=>n+' limits · '+c+' chosen',updated:'Data updated',tz:'ICT (UTC+7)',
+ pendNote:'A choice you click on this page is only "pending" (kept in your browser) and is not an approval until you paste the message on #88.',
+ askT:'What you asked for',riskT:'Risks to know before removing limits',countsKind:'By kind',countsRec:'By recommendation',countsState:'By state',countsMand:'By mandatory',total:(n,c)=>n+' limits · '+c+' chosen',updated:'Data updated',tz:'ICT (UTC+7)',
  kinds:{'SETTING':'Setting (hot-changeable)','CODE CONSTANT':'Code constant','BUILD-ENV':'Build-time environment','INFRA':'Infrastructure'},
  recs:{'giữ':'keep','bỏ giới hạn':'remove limit','nâng':'raise','cần mã':'needs code'},recW:'Recommendation',
+ states:{proposed:'Proposed',approved:'Approved',applied:'Applied',verified:'Verified'},stateW:'State',
+ stateD:{proposed:'Proposed configuration; nobody has approved it.',approved:'The Owner chose it and pasted it on #88 (or approved it); not applied yet.',applied:'C0 applied it; only REPORTED so far, not independently read back.',verified:'Independently verified (the real value was read back).'},
+ legendT:'The four states of a limit',stepOf:(n,s)=>'State: '+s+', step '+n+' of 4',stepsLbl:'State progress',
+ pendCount:n=>'Pending: '+n,
+ impactW:'Impact',riskW:'Risk',lv:{'Cao':'High','Trung bình':'Medium','Thấp':'Low'},unkLv:'unknown',mandW:'Must keep',optW:'Optional',mandY:'Mandatory',mandN:'Not mandatory',
  off:{true:'Can be turned off by setting',false:'Cannot be turned off by setting',unknown:'Unknown whether it can be turned off'},
  rel:{true:'Needs a release',false:'No release needed',unknown:'Unknown whether a release is needed'},
- cur:'Current',choose:id=>'Your choice for '+id,keep:'Keep as is',offO:'Remove limit (off)',val:'Set a value…',rec:'Follow recommendation',star:'★ recommended',
+ cur:'Current',vProd:'PROD (last known value)',vDev:'DEV: code default',devNote:'PROD is the last known value. "Code default (DEV)" is the default read from the source code; the DEV stack\'s own override values were not read.',unk:'unknown',choose:id=>'Your choice for '+id,keep:'Keep as is',offO:'Remove limit (off)',val:'Set a value…',rec:'Follow recommendation',star:'★ recommended',
  valL:'New value',valPh:'value',unitW:'Unit',noteL:'Note (optional)',errVal:'Enter a value for "Set a value".',
  offWarn:'Cannot be turned off by setting: this choice becomes code and release work.',
- lockT:'keep (money limit)',lockD:'Money limits are always kept; there is no choice for this row.',
+ lockT:r=>'Must keep: '+r,lockMoney:'money limit, always kept',lockNone:'mandatory limit',lockD:'No Remove-limit or Set-a-value choice for this row, and every bulk action skips it.',
  undo:'Undo',undoRow:id=>'Undo choice '+id,details:'Details',hide:'Hide details',
- what:'What it is',where:'Where it lives',offHow:'How to remove the limit',danger:'Risk if removed or raised',effort:'Estimated effort',hours:h=>h+' h',recVal:'Recommended value',
+ what:'What it is',curNote:'Current-value note (inventory)',prodFull:'PROD value (last known)',devFull:'Code default (DEV)',where:'Where it lives',offHow:'How to remove the limit',danger:'Risk if removed or raised',impactNoteW:'Impact on users',riskNoteW:'Risk (note)',stateNoteW:'State note',effort:'Estimated effort',hours:h=>h+' h',recVal:'Recommended value (proposed)',
  pending:n=>'Pending: '+n+' choice'+(n===1?'':'s'),none:'No choice pending',incomplete:n=>n+' "Set a value" row(s) have no value yet (not in the message)',previewEmpty:'(No choice yet. Choose in the rows below or use the bulk actions.)',
  send:'Copy & open #88',copy:'Copy',undoAll:'Undo all',sent:'copied',
  hintPending:'Press "Copy & open #88": the text is copied and GitHub #88 opens at the comment box; paste (Ctrl/Cmd+V) and press Comment. This page cannot post by itself because it holds no GitHub key (by design). Choices take effect only when C0 applies them.',
  copied:'Copied. Paste into the GitHub #88 comment box and press Comment. Choices stay here until C0 applies them.',copyFail:'Could not copy automatically: the text is selected, press Ctrl/Cmd+C.',
- bulkT:'Bulk actions',bulkRec:n=>'Apply the recommendation to every row not yet chosen ('+n+')',bulkOff:n=>'Remove the limit for run-count/token rows (named in ownerAsk) ('+n+')',
- bulkHint:(m,l)=>'Bulk removal only applies to rows where "can be turned off by setting" = yes (run-count/token), never to rows that cannot be turned off or are unknown. '+l+' money-limit row(s) are always locked and outside every bulk action.',
- filT:'Filter and search',fKind:'Kind',fRec:'Recommendation',fAll:'All',fQ:'Search (id, title, value, location)',fTodo:'Only rows not chosen yet',fReset:'Clear filters',
- shown:(a,b)=>'Showing '+a+'/'+b+' rows',openAll:'Open all groups',closeAll:'Collapse all groups',listT:'Limits',grpN:(a,b,c)=>(a===b?b+' rows':a+'/'+b+' rows')+(c?' · '+c+' chosen':''),
+ selT:'Bulk approval',selHint:'Tick rows (or use a quick-select button), then use the action bar at the bottom of the screen. Mandatory rows are always skipped.',selAll:n=>'Select all filtered ('+n+')',selTodo:n=>'Select rows not chosen yet ('+n+')',selOffs:n=>'Select run-count/token rows that can be turned off ('+n+')',selNone:'Clear selection',selN:n=>n+' row'+(n===1?'':'s')+' selected',selRow:id=>'Select '+id,
+ bRec:'Follow recommendation',bKeep:'Keep as is',bOff:'Remove limit',bulkOnly:'Remove limit only applies to rows that can be turned off by setting and are not mandatory.',
+ cfT:(l,n)=>'Confirm "'+l+'" for '+n+' selected row'+(n===1?'':'s'),cfTouch:n=>'Will be put in "pending": '+n+' row'+(n===1?'':'s'),cfSkip:n=>'Skipped: '+n+' row'+(n===1?'':'s'),cfLocked:n=>n+' mandatory row(s) (money/safety)',cfNoOff:n=>n+' row(s) that cannot be turned off by setting (Remove limit is only for rows that can)',cfSame:n=>n+' row(s) already have this choice',cfOver:n=>'Overwrites '+n+' pending choice(s)',cfNote:'This only makes them "pending", not an approval. You still have to paste the message on #88.',cfOk:n=>'Put '+n+' row'+(n===1?'':'s')+' in pending',cfNothing:'No valid row to apply.',cfCancel:'Cancel',
+ filT:'Filter and search',fKind:'Kind',fRec:'Recommendation',fState:'State',fMand:'Mandatory',fGroup:'Group',fAllGroups:'All groups',fAll:'All',fQ:'Search (id, title, value, group, location)',fTodo:'Only rows not chosen yet',fReset:'Clear filters',fToggle:'Filters',fActive:n=>n?' ('+n+')':'',
+ shown:(a,b)=>'Showing '+a+'/'+b+' rows',openAll:'Open all groups',closeAll:'Collapse all groups',listT:'Limits',grpN:(a,b,c)=>(a===b?b+' rows':a+'/'+b+' rows')+(c?' · '+c+' chosen':''),noGroup:'Ungrouped',
  empty:'No AI Studio limit data yet.',noMatch:'No row matches the filters.',tabPend:n=>n+' choice'+(n===1?'':'s')+' pending',
  tk:{keep:'KEEP',off:'OFF',val:'VALUE',rec:'RECOMMENDED'},pendChip:s=>'pending: '+s,note:'Data note'}};
 function alGet(){let v=null,raw=null;try{raw=localStorage.getItem(ALKEY)}catch(e){raw=null;v=alMem}
@@ -1654,19 +1734,33 @@ function alGet(){let v=null,raw=null;try{raw=localStorage.getItem(ALKEY)}catch(e
 function alSet(v){alMem=v;try{localStorage.setItem(ALKEY,JSON.stringify(v))}catch(e){}}
 const alFlat=s=>String(s==null?'':s).replace(/\s+/g,' ').trim();
 const alNorm=s=>alFlat(s).normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/đ/g,'d').replace(/Đ/g,'D').toLowerCase();
+/* tolerant readers for the enriched fields: a missing field never breaks a row */
+const alScalar=v=>{if(v&&typeof v==='object'&&!Array.isArray(v))v=v.value!=null?v.value:v.text;return alFlat(Array.isArray(v)?v.join(', '):v)};
+const alIsUnk=v=>/^(unknown|chưa rõ|chua ro|n\/a|\?)$/i.test(alFlat(v).normalize('NFC'));
+function alLevel(v){const s=alNorm(v);if(!s)return '';if(/^(cao|high|h$)/.test(s))return 'Cao';if(/^(trung|tb|med|m$)/.test(s))return 'Trung bình';if(/^(thap|low|l$)/.test(s))return 'Thấp';return ''}
+function alState(t){const s=alNorm(t.state),m={'de xuat':'proposed','da duyet':'approved','da ap dung':'applied','da kiem chung':'verified',reported:'applied'};
+ if(AL_STATES.includes(s))return s;if(m[s])return m[s];
+ const ap=t.applied&&typeof t.applied==='object'?alNorm(t.applied.state):'';if(ap==='verified')return 'verified';if(ap)return 'applied';return 'proposed'}
 function alItems(){const a=payload&&payload.aiLimits;if(!a||!Array.isArray(a.items))return [];
  return a.items.filter(t=>t&&typeof t==='object'&&t.id!=null&&String(t.id)).map(t=>{const ef=Number(t.effortHours);
   const tri=v=>v===true?'true':v===false?'false':'unknown';
+  const rk=alScalar(t.risk),rl=alLevel(rk);
   return {id:String(t.id),title:alFlat(t.title)||String(t.id),titleEn:alFlat(t.titleEn),what:alFlat(t.what),whatEn:alFlat(t.whatEn),current:alFlat(t.current),currentEn:alFlat(t.currentEn),where:alFlat(t.where),
    kind:alFlat(t.kind)||'SETTING',unit:alFlat(t.unit),off:tri(t.offPossible),offHow:alFlat(t.offHow),offHowEn:alFlat(t.offHowEn),danger:alFlat(t.danger),dangerEn:alFlat(t.dangerEn),
-   rec:alFlat(t.recommend),recVal:alFlat(t.recommendedValue),effort:t.effortHours!=null&&t.effortHours!==''&&Number.isFinite(ef)?ef:null,rel:tri(t.needsRelease)}})}
-/* money rows stay "giữ (giới hạn tiền)": unit money, or a title naming tiền / chi phí / ngân sách (a token "ngân sách ngữ cảnh" is not money) */
+   rec:alFlat(t.recommend),recVal:alFlat(t.recommendedValue),effort:t.effortHours!=null&&t.effortHours!==''&&Number.isFinite(ef)?ef:null,rel:tri(t.needsRelease),
+   group:alFlat(t.group),dev:alScalar(t.dev),prod:alScalar(t.prod),impact:alLevel(alScalar(t.impact)),impactNote:alFlat(t.impactNote),risk:rl,riskRaw:rl?'':rk.slice(0,40),riskNote:alFlat(t.riskNote),
+   mand:t.mandatory===true,mandReason:alFlat(t.mandatoryReason),state:alState(t),stateNote:alFlat(t.stateNote)||alFlat(t.applied&&typeof t.applied==='object'?t.applied.note:'')}})}
+/* money rows stay locked: unit money, or a title naming tiền / chi phí / ngân sách (a token "ngân sách ngữ cảnh" is not money). Kept as a safety net next to the data flag `mandatory` */
 function alMoney(it){const t=String(it.title||'').normalize('NFC');return it.unit==='money'||/tiền|chi phí/i.test(t)||/ngân sách(?!\s+ngữ cảnh)/i.test(t)}
-/* bulk "bỏ giới hạn": only rows that can really be switched off by a setting and count runs or tokens */
-function alBulkOff(it){return !alMoney(it)&&it.off==='true'&&(it.unit==='tokens'||(it.unit==='count'&&/^(lượt|token)/i.test(it.title.normalize('NFC'))))}
+const alLocked=it=>it.mand===true||alMoney(it);
+const alLockWhy=(it,T)=>it.mandReason||(alMoney(it)?T.lockMoney:T.lockNone);
+/* bulk "bỏ giới hạn": only rows that can really be switched off by a setting and are not mandatory */
+function alCanOff(it){return !alLocked(it)&&it.off==='true'}
+/* quick-select preset: run-count / token rows (what the Owner asked for) */
+function alBulkOff(it){return alCanOff(it)&&(it.unit==='tokens'||(it.unit==='count'&&/^(lượt|token)/i.test(it.title.normalize('NFC'))))}
 const AL_K=['keep','off','val','rec'];
 function alClean(items,st){const by=new Map(items.map(i=>[i.id,i])),c={};
- for(const id of Object.keys(st.c)){const it=by.get(id),e=st.c[id];if(!it||alMoney(it)||!e||typeof e!=='object'||!AL_K.includes(e.k))continue;
+ for(const id of Object.keys(st.c)){const it=by.get(id),e=st.c[id];if(!it||alLocked(it)||!e||typeof e!=='object'||!AL_K.includes(e.k))continue;
   c[id]={k:e.k,v:alFlat(e.v).slice(0,AL_MAX_VAL),n:alFlat(e.n).slice(0,AL_MAX_NOTE)}}
  return {c,sent:st.sent||''}}
 const alVal=v=>alFlat(v).replace(/\s*\/{2,}\s*/g,'/').trim();
@@ -1676,8 +1770,15 @@ function alLine(it,e){let s;
  return '- '+it.id+': '+s+(e.n?' // '+alFlat(e.n):'')}
 function alLines(items,st){const out=[];items.forEach(it=>{const e=st.c[it.id];if(!e)return;const l=alLine(it,e);if(l)out.push(l)});return out}
 function alMessage(items,st){const l=alLines(items,st);return l.length?'## [OWNER] '+odStamp()+': chọn giới hạn AI Studio\n'+l.join('\n'):''}
-const alMatch=(it,f)=>{if(f.kind&&it.kind!==f.kind)return false;if(f.rec&&it.rec!==f.rec)return false;
- if(f.q){const q=alNorm(f.q);if(!q.split(' ').every(w=>alNorm([it.id,it.title,it.titleEn,it.current,it.what,it.where,it.unit].join(' ')).includes(w)))return false}return true};
+const alMatch=(it,f)=>{if(f.kind&&it.kind!==f.kind)return false;if(f.rec&&it.rec!==f.rec)return false;if(f.group&&it.group!==f.group)return false;if(f.state&&it.state!==f.state)return false;
+ if(f.mand==='yes'&&!alLocked(it))return false;if(f.mand==='no'&&alLocked(it))return false;
+ if(f.q){const q=alNorm(f.q);const hay=alNorm([it.id,it.title,it.titleEn,it.current,it.what,it.where,it.unit,it.group,it.dev,it.prod,it.mandReason].join(' '));if(!q.split(' ').every(w=>hay.includes(w)))return false}return true};
+/* bulk plan: which selected rows a bulk action touches and why the others are skipped */
+function alPlan(k,ids,items,st){const by=new Map(items.map(i=>[i.id,i])),p={touch:[],locked:0,noOff:0,same:0,over:0};
+ ids.forEach(id=>{const it=by.get(id);if(!it)return;if(alLocked(it)){p.locked++;return}
+  if(k==='off'&&it.off!=='true'){p.noOff++;return}
+  const e=st.c[id];if(e&&e.k===k){p.same++;return}
+  if(e)p.over++;p.touch.push(id)});return p}
 function alTime(v){const d=new Date(v);if(isNaN(d))return String(v==null?'':v);return d.toLocaleString(lang==='vi'?'vi-VN':'en-GB',{timeZone:'Asia/Ho_Chi_Minh',year:'numeric',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false})}
 function alLockIcon(){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('viewBox','0 0 24 24');s.setAttribute('width','18');s.setAttribute('height','18');s.setAttribute('fill','none');s.setAttribute('stroke','currentColor');s.setAttribute('stroke-width','2');s.setAttribute('stroke-linecap','round');s.setAttribute('stroke-linejoin','round');s.setAttribute('aria-hidden','true');
  const r=document.createElementNS('http://www.w3.org/2000/svg','rect');r.setAttribute('x','5');r.setAttribute('y','11');r.setAttribute('width','14');r.setAttribute('height','9');r.setAttribute('rx','2');const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d','M8 11V8a4 4 0 0 1 8 0v3');s.append(r,p);return s}
@@ -1689,10 +1790,12 @@ function renderLimits(){
  host.replaceChildren();
  const items=alItems();
  if(!a||!Array.isArray(a.items)||!items.length){host.append(el('p','owner-empty',T.empty));setLimitsBadge(0,T);return}
- const pick=(x,y)=>!tr&&y?y:x;
- const money=items.filter(alMoney),idsMoney=new Set(money.map(i=>i.id));
+ const pick=(x,y)=>!tr&&y?y:x,byId=new Map(items.map(i=>[i.id,i]));
+ [...alSel].forEach(id=>{if(!byId.has(id)||alLocked(byId.get(id))&&false)alSel.delete(id)});
+ const lockedN=items.filter(alLocked).length;
  const live=el('div','al-live');live.setAttribute('role','status');live.setAttribute('aria-live','polite');
  const notice=el('p','al-notice',T.notice);notice.id='alNotice';
+ const pendNote=el('p','al-pendnote',T.pendNote);pendNote.id='alPendNote';
  const metaP=el('p','al-datanote','');metaP.id='alMeta';
  const dn=a.note?el('p','al-datanote',T.note+': '+alFlat(a.note)):null;
  /* callout: owner asks + risks */
@@ -1701,59 +1804,106 @@ function renderLimits(){
  const c1=document.createElement('div'),h1=el('h3','',T.askT);h1.id='alAskT';const u1=document.createElement('ul');u1.id='alAsk';listOf(a.ownerAsk,a.ownerAskEn).forEach(s=>u1.append(el('li','',s)));c1.append(h1,u1);
  const c2=document.createElement('div'),h2=el('h3','',T.riskT);h2.id='alRiskT';const u2=document.createElement('ol');u2.id='alRisks';u2.setAttribute('aria-labelledby','alRiskT');listOf(a.risks,a.risksEn).forEach(s=>u2.append(el('li','',s)));c2.append(h2,u2);
  call.append(c1,c2);
- /* counts */
- const cnt=document.createElement('section');cnt.className='al-counts';cnt.id='alCounts';cnt.setAttribute('aria-label',T.countsKind+' / '+T.countsRec);
+ /* counts: state, kind, recommendation, mandatory */
+ const cnt=document.createElement('section');cnt.className='al-counts';cnt.id='alCounts';cnt.setAttribute('aria-label',T.countsState+' / '+T.countsKind+' / '+T.countsRec);
+ const mkCol=(title,id)=>{const d=document.createElement('div'),h=el('h3','',title),u=document.createElement('ul');u.id=id;d.append(h,u);cnt.append(d);return u};
  const kinds=[...AL_KINDS];items.forEach(i=>{if(!kinds.includes(i.kind))kinds.push(i.kind)});
- const k1=document.createElement('div'),k1h=el('h3','',T.countsKind),k1u=document.createElement('ul');k1u.id='alCountKind';
- kinds.forEach(k=>{const n=items.filter(i=>i.kind===k).length;if(!n)return;const li=document.createElement('li');li.dataset.kind=k;const c=alChip('',k.toLowerCase().replace(/[^a-z]/g,''),AL_KI[k]||'?');c.dataset.t='unk';c.lastChild.textContent=(T.kinds[k]||k)+': ';c.append(el('b','',String(n)));li.append(c);k1u.append(li)});
- k1.append(k1h,k1u);
  const recs=[...AL_RECS];items.forEach(i=>{if(i.rec&&!recs.includes(i.rec))recs.push(i.rec)});
- const k2=document.createElement('div'),k2h=el('h3','',T.countsRec),k2u=document.createElement('ul');k2u.id='alCountRec';
- recs.forEach(r=>{const n=items.filter(i=>i.rec===r).length;if(!n)return;const li=document.createElement('li');li.dataset.rec=r;const c=alChip('',AL_RT[r]||'unk',AL_RI[r]||'?');c.lastChild.textContent=(T.recs[r]||r)+': ';c.append(el('b','',String(n)));li.append(c);k2u.append(li)});
- k2.append(k2h,k2u);cnt.append(k1,k2);
- /* pending bar */
+ const uS=mkCol(T.countsState,'alCountState'),uPend=document.createElement('li');
+ AL_STATES.forEach(s=>{const n=items.filter(i=>i.state===s).length;const li=document.createElement('li');li.dataset.state=s;const c=alChip('',AL_ST[s],AL_SI[s]);c.lastChild.textContent=T.states[s]+': ';c.append(el('b','',String(n)));li.append(c);uS.append(li)});
+ uPend.id='alCountPend';uS.append(uPend);
+ const uK=mkCol(T.countsKind,'alCountKind');
+ kinds.forEach(k=>{const n=items.filter(i=>i.kind===k).length;if(!n)return;const li=document.createElement('li');li.dataset.kind=k;const c=alChip('',k.toLowerCase().replace(/[^a-z]/g,''),AL_KI[k]||'?');c.dataset.t='unk';c.lastChild.textContent=(T.kinds[k]||k)+': ';c.append(el('b','',String(n)));li.append(c);uK.append(li)});
+ const uR=mkCol(T.countsRec,'alCountRec');
+ recs.forEach(r=>{const n=items.filter(i=>i.rec===r).length;if(!n)return;const li=document.createElement('li');li.dataset.rec=r;const c=alChip('',AL_RT[r]||'unk',AL_RI[r]||'?');c.lastChild.textContent=(T.recs[r]||r)+': ';c.append(el('b','',String(n)));li.append(c);uR.append(li)});
+ const uM=mkCol(T.countsMand,'alCountMand');
+ [['yes',lockedN,T.mandY,'no','🔒'],['no',items.length-lockedN,T.mandN,'unk','○']].forEach(([k,n,t,tone,ic])=>{const li=document.createElement('li');li.dataset.mand=k;const c=alChip('',tone,k==='yes'?'■':'○');c.lastChild.textContent=t+': ';c.append(el('b','',String(n)));li.append(c);uM.append(li)});
+ /* legend of the four states */
+ const leg=document.createElement('section');leg.className='al-legend';leg.id='alLegend';leg.setAttribute('aria-labelledby','alLegT');
+ const lh=el('h3','',T.legendT);lh.id='alLegT';const lo=document.createElement('ol');
+ AL_STATES.forEach((s,i)=>{const li=document.createElement('li');li.dataset.state=s;li.append(alChip(T.states[s],AL_ST[s],AL_SI[s]),el('span','',T.stateD[s]));lo.append(li)});
+ const ldn=el('p','al-hint',T.devNote);ldn.id='alDevNote';leg.append(lh,lo,ldn);
+ /* pending bar (full: preview + copy + undo) */
  const bar=el('section','al-bar');bar.id='alBar';
  const bt=el('div','al-bar-top'),info=el('strong','al-bar-info','');info.id='alBarInfo';info.setAttribute('role','status');
  const bSend=el('button','al-btn al-prim',T.send),bCopy=el('button','al-btn',T.copy),bUndo=el('button','al-btn',T.undoAll);for(const b of [bSend,bCopy,bUndo])b.type='button';
  bSend.id='alSend';bCopy.id='alCopy';bUndo.id='alUndoAll';bt.append(info,bSend,bCopy,bUndo);
  const ta=document.createElement('textarea');ta.className='al-msg';ta.readOnly=true;ta.id='alMsg';ta.setAttribute('aria-label',tr?'Nội dung sẽ gửi lên #88':'Text to post on #88');
  const hint=el('p','al-hint','');hint.id='alHint';bar.append(bt,ta,hint);
- /* bulk */
- const bulk=document.createElement('section');bulk.className='al-bulk';bulk.id='alBulk';bulk.setAttribute('aria-labelledby','alBulkT');
- const bh=el('h3','',T.bulkT);bh.id='alBulkT';const br=el('div','al-bulk-row');
- const bRec=el('button','al-btn',''),bOff=el('button','al-btn','');bRec.type=bOff.type='button';bRec.id='alBulkRec';bOff.id='alBulkOff';br.append(bRec,bOff);
- const bhint=el('p','al-hint',T.bulkHint(items.filter(alBulkOff).length,money.length));bulk.append(bh,br,bhint);
- /* filters */
+ /* filters: search always visible, the rest in a panel that collapses on phones */
+ const gNames=[];items.forEach(i=>{if(i.group&&!gNames.includes(i.group))gNames.push(i.group)});
  const fil=document.createElement('form');fil.className='al-filters';fil.id='alFilters';fil.setAttribute('role','search');fil.setAttribute('aria-label',T.filT);fil.addEventListener('submit',e=>e.preventDefault());
  const mkSel=(id,label,opts)=>{const l=el('label','al-field');l.append(el('span','',label));const s=document.createElement('select');s.id=id;opts.forEach(([v,t])=>{const o=document.createElement('option');o.value=v;o.textContent=t;s.append(o)});l.append(s);return [l,s]};
+ const lQ=el('label','al-field al-fq');lQ.append(el('span','',T.fQ));const iQ=document.createElement('input');iQ.type='search';iQ.id='alFQ';iQ.autocomplete='off';iQ.maxLength=80;lQ.append(iQ);
+ const bTog=el('button','al-btn al-ftog','');bTog.type='button';bTog.id='alFToggle';bTog.setAttribute('aria-controls','alFPanel');bTog.setAttribute('aria-expanded','false');
+ const top1=el('div','al-ftop');top1.append(lQ,bTog);
+ const panel=el('div','al-fpanel');panel.id='alFPanel';
+ const chipsBox=el('div','al-gchips');chipsBox.id='alGroupChips';chipsBox.setAttribute('role','group');chipsBox.setAttribute('aria-label',T.fGroup);
+ const chipBtns=[];
+ if(gNames.length){[['',T.fAllGroups,items.length],...gNames.map(g=>[g,g,items.filter(i=>i.group===g).length])].forEach(([g,t,n])=>{const b=el('button','al-gchip',t+' ('+n+')');b.type='button';b.dataset.group=g;b.setAttribute('aria-pressed','false');chipBtns.push(b);chipsBox.append(b)})}
  const [lK,sK]=mkSel('alFKind',T.fKind,[['',T.fAll],...kinds.map(k=>[k,T.kinds[k]||k])]);
  const [lR,sR]=mkSel('alFRec',T.fRec,[['',T.fAll],...recs.map(r=>[r,T.recs[r]||r])]);
- const lQ=el('label','al-field');lQ.append(el('span','',T.fQ));const iQ=document.createElement('input');iQ.type='search';iQ.id='alFQ';iQ.autocomplete='off';iQ.maxLength=80;lQ.append(iQ);
+ const [lS,sS]=mkSel('alFState',T.fState,[['',T.fAll],...AL_STATES.map(s=>[s,T.states[s]])]);
+ const [lM,sM]=mkSel('alFMand',T.fMand,[['',T.fAll],['yes',T.mandY],['no',T.mandN]]);
  const lT=el('label','al-check');const cT=document.createElement('input');cT.type='checkbox';cT.id='alFTodo';lT.append(cT,el('span','',T.fTodo));
  const bReset=el('button','al-btn',T.fReset);bReset.type='button';bReset.id='alFReset';
- sK.value=alF.kind;sR.value=alF.rec;iQ.value=alF.q;cT.checked=alF.todo;
- fil.append(lK,lR,lQ,lT,bReset);
- /* groups */
+ const sels=el('div','al-fsels');sels.append(lK,lR,lS,lM);const frow=el('div','al-frow');frow.append(lT,bReset);
+ if(gNames.length)panel.append(chipsBox);panel.append(sels,frow);
+ iQ.value=alF.q;sK.value=alF.kind;sR.value=alF.rec;sS.value=alF.state;sM.value=alF.mand;cT.checked=alF.todo;
+ fil.append(top1,panel);
+ /* list toolbar: counts, group toggle, selection helpers */
  const toolbar=el('div','al-toolbar'),lt=el('h3','',T.listT),shownEl=el('span','al-hint','');shownEl.id='alShown';shownEl.setAttribute('role','status');
  const bAll=el('button','al-link','');bAll.type='button';bAll.id='alToggleAll';toolbar.append(lt,shownEl,bAll);
+ const selBox=el('section','al-selbox');selBox.id='alSelBox';selBox.setAttribute('aria-labelledby','alSelT');
+ const sh=el('h3','',T.selT);sh.id='alSelT';const sHint=el('p','al-hint',T.selHint);
+ const lAll=el('label','al-check');const cAll=document.createElement('input');cAll.type='checkbox';cAll.id='alSelAll';const tAll=el('span','','');lAll.append(cAll,tAll);
+ const bSTodo=el('button','al-btn','');bSTodo.type='button';bSTodo.id='alSelTodo';
+ const bSOff=el('button','al-btn','');bSOff.type='button';bSOff.id='alSelOff';
+ const bSNone=el('button','al-btn',T.selNone);bSNone.type='button';bSNone.id='alSelNone';
+ const selRow=el('div','al-bulk-row');selRow.append(lAll,bSTodo,bSOff,bSNone);
+ selBox.append(sh,sHint,selRow);
  const groups=el('div','al-groups');groups.id='alGroups';
- host.append(live,notice,metaP);if(dn)host.append(dn);host.append(call,cnt,bar,bulk,fil,toolbar,groups);
+ /* sticky dock: pending + send, and bulk actions once rows are selected */
+ const dock=el('section','al-dock');dock.id='alDock';dock.hidden=true;dock.setAttribute('aria-label',T.selT);
+ const dA=el('div','al-dock-a'),dInfo=el('strong','al-dock-info','');dInfo.id='alDockInfo';
+ const dSend=el('button','al-btn al-prim',T.send);dSend.type='button';dSend.id='alDockSend';dA.append(dInfo,dSend);
+ const dB=el('div','al-dock-b');dB.id='alDockBulk';const dSel=el('strong','al-dock-sel','');dSel.id='alSelInfo';
+ const bRec=el('button','al-btn',T.bRec),bKeep=el('button','al-btn',T.bKeep),bOff=el('button','al-btn',T.bOff);for(const b of [bRec,bKeep,bOff])b.type='button';
+ bRec.id='alBulkRec';bKeep.id='alBulkKeep';bOff.id='alBulkOff';dB.append(dSel,bRec,bKeep,bOff);dock.append(dA,dB);
+ /* confirm dialog */
+ const dlg=document.createElement('dialog');dlg.id='alConfirm';dlg.className='al-dlg';dlg.setAttribute('aria-labelledby','alCfT');
+ const dT=el('h3','',''),dBody=el('div','al-cf-body');dT.id='alCfT';dBody.id='alCfBody';
+ const dBtns=el('div','al-cf-btns'),dOk=el('button','al-btn al-prim','');dOk.type='button';dOk.id='alCfOk';const dNo=el('button','al-btn',T.cfCancel);dNo.type='button';dNo.id='alCfCancel';dBtns.append(dOk,dNo);
+ dlg.append(dT,dBody,dBtns);
+ host.append(live,notice,pendNote,metaP);if(dn)host.append(dn);host.append(call,cnt,leg,bar,fil,selBox,toolbar,groups,dock,dlg);
 
  const say=m=>{live.textContent='';setTimeout(()=>{live.textContent=m},30)};
  const stNow=()=>{const raw=alGet(),st=alClean(items,raw);if(JSON.stringify(st)!==JSON.stringify({c:raw.c,sent:raw.sent||''}))alSet(st);return st};
  const chosen=st=>items.filter(i=>st.c[i.id]).length;
  const lbl=k=>({keep:T.keep,off:T.offO,val:T.val,rec:T.rec})[k];
  const tag=(it,e)=>T.tk[e.k]+(e.k==='val'&&alVal(e.v)?' '+alVal(e.v)+(it.unit?' '+it.unit:''):'');
- function chip4(it){const t=AL_RT[it.rec]||'unk';return alChip(T.recW+': '+(T.recs[it.rec]||it.rec||'—'),t,AL_RI[it.rec]||'?')}
+ const lvChip=(w,lv,raw)=>alChip(w+': '+(lv?T.lv[lv]:raw||T.unkLv),lv?AL_LVT[lv]:'unk',lv?AL_LVI[lv]:'?');
+ const stateChip=s=>alChip(T.states[s]+' ('+AL_SI[s]+'/4)',AL_ST[s],AL_SI[s]);
+ function vcell(label,v){const c=el('div','al-v');c.append(el('span','al-vl',label));const x=el('span','al-vv',!v?'—':alIsUnk(v)?T.unk:v);if(!v)x.classList.add('al-na');else if(alIsUnk(v))x.classList.add('al-unk');c.append(x);return c}
+ function steps(it){const ol=el('ol','al-steps'),idx=AL_STATES.indexOf(it.state);ol.setAttribute('aria-label',T.stepOf(idx+1,T.states[it.state]));
+  AL_STATES.forEach((s,i)=>{const li=el('li','al-step');li.dataset.s=s;li.dataset.st=i<idx?'done':i===idx?'cur':'todo';if(i===idx)li.setAttribute('aria-current','step');
+   const n=el('span','al-sn',i<idx?'✓':String(i+1));n.setAttribute('aria-hidden','true');li.append(n,el('span','al-sl',T.states[s]));ol.append(li)});return ol}
  function row(it,st){
-  const e=st.c[it.id],isM=idsMoney.has(it.id),title=pick(it.title,it.titleEn);
-  const li=document.createElement('li');li.className='al-row';li.dataset.al=it.id;li.dataset.kind=it.kind;li.dataset.off=it.off;li.dataset.rec=it.rec;
-  if(isM)li.dataset.money='1';if(e&&!isM){li.dataset.choice=e.k}
-  const head=el('div','al-head');head.append(el('span','al-id',it.id));const h4=el('h4','al-title',title);h4.id='al-t-'+it.id;head.append(h4);
-  const cur=el('p','al-cur','');cur.append(el('span','',T.cur+': '),document.createTextNode(pick(it.current,it.currentEn)||'—'));head.append(cur);
-  const meta=el('div','al-meta');meta.append(alChip(T.kinds[it.kind]||it.kind,'unk',AL_KI[it.kind]||'?'),chip4(it),alChip(T.off[it.off],it.off==='true'?'off':it.off==='false'?'no':'unk',it.off==='true'?'✓':it.off==='false'?'✕':'?'));
-  li.append(head,meta);
-  if(isM){const lk=el('div','al-lock');lk.append(alLockIcon(),el('span','',T.lockT+' · '+T.lockD));li.append(lk)}
+  const e=st.c[it.id],lk=alLocked(it),title=pick(it.title,it.titleEn);
+  const li=document.createElement('li');li.className='al-row';li.dataset.al=it.id;li.dataset.kind=it.kind;li.dataset.off=it.off;li.dataset.rec=it.rec;li.dataset.state=it.state;li.dataset.group=it.group;
+  if(it.impact)li.dataset.impact=it.impact;if(it.risk)li.dataset.risk=it.risk;
+  if(lk)li.dataset.locked='1';if(alMoney(it))li.dataset.money='1';if(e&&!lk){li.dataset.choice=e.k}
+  const topr=el('div','al-top');
+  const sw=el('label','al-selw');const cb=document.createElement('input');cb.type='checkbox';cb.className='al-sel';cb.checked=alSel.has(it.id);cb.dataset.alf='sel:'+it.id;cb.setAttribute('aria-label',T.selRow(it.id));
+  cb.addEventListener('change',()=>{if(cb.checked)alSel.add(it.id);else alSel.delete(it.id);refreshSel()});sw.append(cb);
+  const h4=el('h4','al-title',title);h4.id='al-t-'+it.id;topr.append(sw,el('span','al-id',it.id),h4);
+  li.append(topr);
+  if(it.prod||it.dev){const vs=el('div','al-vals');vs.append(vcell(T.vProd,it.prod),vcell(T.vDev,it.dev));li.append(vs)}
+  else{const cur=el('p','al-cur','');cur.append(el('span','',T.cur+': '),document.createTextNode(pick(it.current,it.currentEn)||'—'));li.append(cur)}
+  const meta=el('div','al-meta');meta.append(stateChip(it.state),lvChip(T.impactW,it.impact,''),lvChip(T.riskW,it.risk,it.riskRaw),alChip(T.recW+': '+(T.recs[it.rec]||it.rec||'—'),AL_RT[it.rec]||'unk',AL_RI[it.rec]||'?'),
+   alChip(T.kinds[it.kind]||it.kind,'unk',AL_KI[it.kind]||'?'),alChip(T.off[it.off],it.off==='true'?'off':it.off==='false'?'no':'unk',it.off==='true'?'✓':it.off==='false'?'✕':'?'));
+  li.append(meta);
+  if(lk){const lc=el('div','al-lock');const tx=el('span','');tx.append(el('b','',T.lockT(alLockWhy(it,T))),el('small','',T.lockD));lc.append(alLockIcon(),tx);li.append(lc)}
   else{
    const fs=document.createElement('fieldset');fs.className='al-choice';const lg=document.createElement('legend');lg.className='al-lg';lg.textContent=T.choose(it.id);fs.append(lg);
    const opts=el('div','al-opts');const nm='al-r-'+it.id;
@@ -1782,13 +1932,15 @@ function renderLimits(){
     u.addEventListener('click',()=>{const s=stNow();delete s.c[it.id];s.sent='';alSet(s);rowRefresh(it,it.id+':keep');refreshBar();say(T.undoRow(it.id))});
     p.append(u);act.append(p);fs.append(act)}
    li.append(fs)}
+  li.append(steps(it));if(it.stateNote&&it.state!=='proposed'){const sn=el('p','al-statenote',it.stateNote);li.append(sn)}
   /* details */
   const open=alOpen.has(it.id),did='al-d-'+it.id;
   const xb=el('button','al-exp','');xb.type='button';xb.setAttribute('aria-expanded',String(open));xb.setAttribute('aria-controls',did);xb.dataset.alf='exp:'+it.id;xb.textContent=(open?'▾ ':'▸ ')+(open?T.hide:T.details);
   const det=el('div','al-detail');det.id=did;det.hidden=!open;
   const dl=document.createElement('dl');
   const addD=(t,v)=>{if(!v)return;const g=document.createElement('div');const dt=document.createElement('dt');dt.textContent=t;const dd=document.createElement('dd');dd.textContent=v;g.append(dt,dd);dl.append(g)};
-  addD(T.what,pick(it.what,it.whatEn));addD(T.where,it.where);addD(T.offHow,pick(it.offHow,it.offHowEn));addD(T.danger,pick(it.danger,it.dangerEn));
+  addD(T.prodFull,it.prod&&!alIsUnk(it.prod)?it.prod:'');if(it.prod||it.dev)addD(T.curNote,pick(it.current,it.currentEn));addD(T.devFull,it.dev&&!alIsUnk(it.dev)?it.dev:'');addD(T.what,pick(it.what,it.whatEn));addD(T.where,it.where);addD(T.offHow,pick(it.offHow,it.offHowEn));addD(T.danger,pick(it.danger,it.dangerEn));
+  addD(T.impactNoteW,it.impactNote);addD(T.riskNoteW,it.riskNote);addD(T.stateNoteW,it.stateNote);
   addD(T.recVal,it.recVal&&it.recVal!=='-'?it.recVal:'');addD(T.effort,it.effort!=null?T.hours(it.effort):'');
   const g=document.createElement('div');const dt=document.createElement('dt');dt.textContent=tr?'Bản phát hành':'Release';const dd=document.createElement('dd');dd.append(alChip(T.rel[it.rel],it.rel==='true'?'code':it.rel==='false'?'off':'unk',it.rel==='true'?'⚑':it.rel==='false'?'✓':'?'));g.append(dt,dd);dl.append(g);
   det.append(dl);
@@ -1797,39 +1949,78 @@ function renderLimits(){
   return li}
  function focusKey(k){if(!k)return;const n=[...host.querySelectorAll('[data-alf]')].find(x=>x.dataset.alf===k);if(n)n.focus()}
  function rowRefresh(it,fk){const old=host.querySelector('[data-al="'+it.id+'"]');if(!old)return;old.replaceWith(row(it,stNow()));focusKey(fk);updateGroups()}
- function updateGroups(){const st=stNow();groups.querySelectorAll('details.al-group').forEach(d=>{const k=d.dataset.kind,all=items.filter(i=>i.kind===k),vis=all.filter(i=>alMatch(i,alF)),c=all.filter(i=>st.c[i.id]).length;d.querySelector('.al-g-n').textContent=T.grpN(vis.length,all.length,c)})}
+ const gKeys=[...gNames,...(items.some(i=>!i.group)?['']:[])],gLab=g=>g||T.noGroup;
+ const visible=st=>items.filter(i=>alMatch(i,alF)&&!(alF.todo&&(alLocked(i)||st.c[i.id])));
+ function updateGroups(){const st=stNow();groups.querySelectorAll('details.al-group').forEach(d=>{const k=d.dataset.group,all=items.filter(i=>i.group===k),vis=all.filter(i=>alMatch(i,alF)),c=all.filter(i=>st.c[i.id]).length;d.querySelector('.al-g-n').textContent=T.grpN(vis.length,all.length,c)})}
+ function syncFilterUi(){const n=['kind','rec','group','state','mand'].filter(k=>alF[k]).length+(alF.todo?1:0);
+  bTog.textContent=T.fToggle+T.fActive(n);chipBtns.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.group===alF.group)))}
  function renderGroups(){
-  const st=stNow();groups.replaceChildren();let total=0;
-  kinds.forEach(k=>{const all=items.filter(i=>i.kind===k);if(!all.length)return;const vis=all.filter(i=>alMatch(i,alF)&&!(alF.todo&&st.c[i.id]&&!idsMoney.has(i.id))&&!(alF.todo&&idsMoney.has(i.id)));total+=vis.length;if(!vis.length)return;
-   const d=document.createElement('details');d.className='al-group';d.dataset.kind=k;d.open=!alShut.has(k);
-   const sm=document.createElement('summary');sm.append(alChip(T.kinds[k]||k,'unk',AL_KI[k]||'?'),el('span','al-g-n',''));d.append(sm);
-   const ul=el('ul','al-list');vis.forEach(i=>ul.append(row(i,st)));d.append(ul);
+  const st=stNow(),vis=visible(st),vset=new Set(vis.map(i=>i.id));groups.replaceChildren();
+  gKeys.forEach(k=>{const all=items.filter(i=>i.group===k),v=all.filter(i=>vset.has(i.id));if(!v.length)return;
+   const d=document.createElement('details');d.className='al-group';d.dataset.group=k;d.open=!alShut.has(k);
+   const sm=document.createElement('summary');sm.append(el('span','al-g-t',gLab(k)),el('span','al-g-n',''));d.append(sm);
+   const ul=el('ul','al-list');v.forEach(i=>ul.append(row(i,st)));d.append(ul);
    d.addEventListener('toggle',()=>{if(d.open)alShut.delete(k);else alShut.add(k);syncAll()});groups.append(d)});
-  if(!total)groups.append(el('p','al-empty',T.noMatch));
-  shownEl.textContent=T.shown(total,items.length);updateGroups();syncAll()}
+  if(!vis.length)groups.append(el('p','al-empty',T.noMatch));
+  shownEl.textContent=T.shown(vis.length,items.length);updateGroups();syncAll();syncFilterUi();refreshSel()}
  const allOpen=()=>{const ds=[...groups.querySelectorAll('details.al-group')];return ds.length>0&&ds.every(d=>d.open)};
  const syncAll=()=>{bAll.textContent=allOpen()?T.closeAll:T.openAll};
+ /* selection + dock */
+ function refreshSel(){
+  const st=stNow(),vis=visible(st),ids=vis.map(i=>i.id),selN=[...alSel].filter(id=>byId.has(id)).length,allSel=ids.length>0&&ids.every(id=>alSel.has(id));
+  groups.querySelectorAll('input.al-sel').forEach(c=>{c.checked=alSel.has(c.dataset.alf.slice(4))});
+  tAll.textContent=T.selAll(ids.length);cAll.checked=allSel;cAll.indeterminate=!allSel&&ids.some(id=>alSel.has(id));cAll.disabled=!ids.length;
+  const todoN=items.filter(i=>!alLocked(i)&&!st.c[i.id]).length,offN=items.filter(alBulkOff).length;
+  bSTodo.textContent=T.selTodo(todoN);bSOff.textContent=T.selOffs(offN);bSTodo.disabled=!todoN;bSOff.disabled=!offN;bSNone.disabled=!selN;
+  dSel.textContent=T.selN(selN);bRec.disabled=bKeep.disabled=bOff.disabled=!selN;
+  dB.hidden=!selN;syncDock()}
+ function syncDock(){const n=alLines(items,stNow()).length,selN=[...alSel].filter(id=>byId.has(id)).length;
+  dInfo.textContent=n?T.pending(n):T.none;dSend.disabled=!n;dA.hidden=!n&&!selN&&false;dock.hidden=!n&&!selN;dock.classList.toggle('has-pending',n>0)}
  function refreshBar(){
   const st=stNow(),lines=alLines(items,st),n=lines.length,msg=alMessage(items,st),body=lines.join('\n'),sentNow=!!st.sent&&st.sent===body;
   const inc=items.filter(i=>st.c[i.id]&&st.c[i.id].k==='val'&&!alVal(st.c[i.id].v)).length;
   info.textContent=(n?T.pending(n)+(sentNow?' · '+T.sent:''):T.none)+(inc?' · '+T.incomplete(inc):'');bar.classList.toggle('has-pending',n>0);bar.setAttribute('aria-label',info.textContent);
   ta.value=msg||T.previewEmpty;bSend.disabled=bCopy.disabled=!n;bUndo.disabled=!Object.keys(st.c).length;hint.textContent=n?(sentNow?T.copied:T.hintPending):'';
-  const unchosen=items.filter(i=>!idsMoney.has(i.id)&&!st.c[i.id]).length,offN=items.filter(alBulkOff).length;
-  bRec.textContent=T.bulkRec(unchosen);bOff.textContent=T.bulkOff(offN);bRec.disabled=!unchosen;bOff.disabled=!offN;
+  const pc=document.getElementById('alCountPend');if(pc){pc.replaceChildren();const c=alChip(T.pendCount(n),'unk','…');c.lastChild.textContent=T.pendCount(n);pc.append(c)}
   metaP.textContent=T.total(items.length,chosen(st))+(a.updatedAt?' · '+T.updated+': '+alTime(a.updatedAt)+' '+T.tz:'');
-  updateGroups();setLimitsBadge(n,T)}
+  updateGroups();syncDock();setLimitsBadge(n,T)}
  const copy=async()=>{const st=stNow(),m=alMessage(items,st);if(!m)return false;
   try{await navigator.clipboard.writeText(m);const s=stNow();s.sent=alLines(items,s).join('\n');alSet(s);const aid=document.activeElement?.id;refreshBar();hint.textContent=T.copied;if(aid&&document.getElementById(aid))document.getElementById(aid).focus();return true}
   catch(e){ta.focus();ta.select();hint.textContent=T.copyFail;return false}};
- bSend.addEventListener('click',()=>{window.open(ODREPO,'_blank','noopener');copy()});
+ const doSend=()=>{window.open(ODREPO,'_blank','noopener');copy()};
+ bSend.addEventListener('click',doSend);dSend.addEventListener('click',doSend);
  bCopy.addEventListener('click',()=>{copy()});
  bUndo.addEventListener('click',()=>{alSet({c:{},sent:''});renderGroups();refreshBar();say(T.undoAll)});
- bRec.addEventListener('click',()=>{const s=stNow();let n=0;items.forEach(i=>{if(idsMoney.has(i.id)||s.c[i.id])return;s.c[i.id]={k:'rec',v:'',n:''};n++});if(!n)return;s.sent='';alSet(s);renderGroups();refreshBar();say(n+' → '+T.tk.rec);bRec.focus()});
- bOff.addEventListener('click',()=>{const s=stNow();let n=0;items.forEach(i=>{if(!alBulkOff(i))return;const p=s.c[i.id];s.c[i.id]={k:'off',v:'',n:p?p.n:''};n++});if(!n)return;s.sent='';alSet(s);renderGroups();refreshBar();say(n+' → '+T.tk.off);bOff.focus()});
- bAll.addEventListener('click',()=>{if(allOpen())kinds.forEach(k=>alShut.add(k));else alShut.clear();renderGroups();bAll.focus()});
+ /* bulk: confirm first, then stage */
+ let cfK=null,cfP=null,cfOpener=null;
+ function askBulk(k,opener){const st=stNow(),ids=[...alSel].filter(id=>byId.has(id));if(!ids.length)return;
+  cfK=k;cfP=alPlan(k,ids,items,st);cfOpener=opener;const p=cfP,nm={rec:T.bRec,keep:T.bKeep,off:T.bOff}[k],skip=p.locked+p.noOff+p.same;
+  dT.textContent=T.cfT(nm,ids.length);dBody.replaceChildren();
+  const tl=el('p','al-cf-touch',T.cfTouch(p.touch.length));tl.id='alCfTouch';dBody.append(tl);
+  const sk=el('p','al-cf-skip',T.cfSkip(skip));sk.id='alCfSkip';dBody.append(sk);
+  if(skip){const ul=document.createElement('ul');ul.id='alCfWhy';if(p.locked)ul.append(el('li','',T.cfLocked(p.locked)));if(p.noOff)ul.append(el('li','',T.cfNoOff(p.noOff)));if(p.same)ul.append(el('li','',T.cfSame(p.same)));dBody.append(ul)}
+  if(p.over){const o=el('p','al-cf-over',T.cfOver(p.over));o.id='alCfOver';dBody.append(o)}
+  dBody.append(el('p','al-hint',p.touch.length?T.cfNote:T.cfNothing));
+  dOk.textContent=T.cfOk(p.touch.length);dOk.disabled=!p.touch.length;
+  if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','');
+  (p.touch.length?dOk:dNo).focus()}
+ const closeDlg=()=>{if(dlg.close&&dlg.open)dlg.close();else dlg.removeAttribute('open')};
+ dlg.addEventListener('close',()=>{const o=cfOpener;cfOpener=null;const t=(o&&o.isConnected&&!o.closest('[hidden]')&&!o.disabled)?o:cAll;if(t)t.focus()});
+ dNo.addEventListener('click',closeDlg);
+ dOk.addEventListener('click',()=>{if(!cfP||!cfK)return;const s=stNow(),k=cfK,n=cfP.touch.length;cfP.touch.forEach(id=>{const it=byId.get(id);if(!it||alLocked(it)||(k==='off'&&it.off!=='true'))return;const prev=s.c[id];s.c[id]={k,v:prev?prev.v:'',n:prev?prev.n:''}});
+  if(n){s.sent='';alSet(s);alSel.clear()}cfP=null;cfOpener=null;closeDlg();renderGroups();refreshBar();say(n+' → '+T.tk[k]);cAll.focus()});
+ bRec.addEventListener('click',()=>askBulk('rec',bRec));bKeep.addEventListener('click',()=>askBulk('keep',bKeep));bOff.addEventListener('click',()=>askBulk('off',bOff));
+ cAll.addEventListener('change',()=>{const ids=visible(stNow()).map(i=>i.id);if(cAll.checked)ids.forEach(id=>alSel.add(id));else ids.forEach(id=>alSel.delete(id));refreshSel()});
+ bSTodo.addEventListener('click',()=>{const st=stNow();alSel.clear();items.forEach(i=>{if(!alLocked(i)&&!st.c[i.id])alSel.add(i.id)});refreshSel()});
+ bSOff.addEventListener('click',()=>{alSel.clear();items.filter(alBulkOff).forEach(i=>alSel.add(i.id));refreshSel()});
+ bSNone.addEventListener('click',()=>{alSel.clear();refreshSel()});
+ bAll.addEventListener('click',()=>{if(allOpen())gKeys.forEach(k=>alShut.add(k));else alShut.clear();renderGroups();bAll.focus()});
+ chipBtns.forEach(b=>b.addEventListener('click',()=>{alF.group=b.dataset.group;renderGroups()}));
  sK.addEventListener('change',()=>{alF.kind=sK.value;renderGroups()});sR.addEventListener('change',()=>{alF.rec=sR.value;renderGroups()});
+ sS.addEventListener('change',()=>{alF.state=sS.value;renderGroups()});sM.addEventListener('change',()=>{alF.mand=sM.value;renderGroups()});
  iQ.addEventListener('input',()=>{alF.q=iQ.value;renderGroups()});cT.addEventListener('change',()=>{alF.todo=cT.checked;renderGroups()});
- bReset.addEventListener('click',()=>{alF.kind=alF.rec=alF.q='';alF.todo=false;sK.value=sR.value=iQ.value='';cT.checked=false;renderGroups();iQ.focus()});
+ bTog.addEventListener('click',()=>{const o=!panel.classList.contains('open');panel.classList.toggle('open',o);bTog.setAttribute('aria-expanded',String(o))});
+ bReset.addEventListener('click',()=>{alF.kind=alF.rec=alF.group=alF.state=alF.mand=alF.q='';alF.todo=false;sK.value=sR.value=sS.value=sM.value=iQ.value='';cT.checked=false;renderGroups();iQ.focus()});
  renderGroups();refreshBar()}
 function setLimitsBadge(n,T){const b=document.getElementById('limitsTabCount'),t=document.getElementById('tab-limits');if(!b||!t)return;b.hidden=!n;b.textContent=n?String(n):'';t.setAttribute('aria-label',n?T.tab+': '+T.tabPend(n):T.tab)}
 async function load(){try{const r=await fetch('status.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);payload=await r.json();if(!Array.isArray(payload.features)||!Array.isArray(payload.releases))throw Error('Sai định dạng dữ liệu');let d=new Date(payload.asOf);const updatedLabel=txt('updated')+': '+(isNaN(d)?payload.asOf:d.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}))+' · Asia/Ho_Chi_Minh';els.update.title=updatedLabel;els.update.setAttribute('aria-label',updatedLabel);document.getElementById('updatedTime').textContent=isNaN(d)?'--:--':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);els.stats.replaceChildren(stat('R1',txt('r1'),txt('released'),'ok'),stat(txt('prodOn'),payload.features.filter(isFeatureOn).length,txt('uat'),'ok'),stat('R2',payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('r2Done'):txt('processing'),payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('verified'):txt('pending'),'ok'),stat(txt('features'),payload.features.length,txt('interactive')));render();renderProgress();renderRoadmap();renderProd();renderOwnerActions();renderProcess();renderHourly();renderLimits();if(!window.__odTab&&(payload.ownerActions?.items||[]).some(x=>Array.isArray(x.options)&&x.options.length&&!['DONE','CLOSED'].includes(String(x.status||'').toUpperCase()))&&!location.hash){window.__odTab=1;document.getElementById('tab-owner')?.click()}}catch(e){els.update.title=txt('readError');els.update.setAttribute('aria-label',txt('readError'));document.getElementById('updatedTime').textContent='--:--';els.update.classList.add('has-error');els.stats.replaceChildren(stat(txt('error'),'—',txt('errorHint')));els.tbody.replaceChildren();const tr=el('tr'),td=el('td','empty','Không đọc được status.json. Nếu đang mở file://, hãy chạy local web server hoặc host nội bộ. '+e.message);td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
