@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T10:41:00+07:00",
+  "asOf": "2026-11-12T10:53:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T10:41:00+07:00",
+  "detailUpdatedAt": "2026-11-12T10:53:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4188,7 +4188,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T10:41:00+07:00",
+    "updatedAt": "2026-11-12T10:53:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -4275,24 +4275,26 @@
         "group": "ON_PROD",
         "title": "Gõ chữ trong ô nhập tăng 5 lần (60.000 → 300.000 byte)",
         "titleEn": "Typed prompt limit x5 (60,000 → 300,000 bytes)",
-        "status": "Đã ON (10:04), server công bố 300.000 byte",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Tiêu chí của mục chỉ là trần 300.000 byte hiệu lực; đã được QA độc lập kiểm trên PROD. | Đã ON (10:04), server công bố 300.000 byte",
         "statusEn": "ON (10:04), server announces 300,000 bytes",
         "prs": "",
         "eta": "",
         "evidence": "Builder config công bố promptMaxBytes = 300000",
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T05",
         "group": "ON_PROD",
         "title": "Tệp đính kèm văn bản tăng 5 lần (24.000 → 120.000 ký tự/tệp, 240.000 tổng)",
         "titleEn": "Attachment text x5 (24,000 → 120,000 chars/file, 240,000 total)",
-        "status": "Đã ON (đợt 7, 12:32); thử Haiku thật với tệp 98.290 ký tự, không cắt",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Mã+QA+deploy đủ, có xác nhận thực của Owner. | Đã ON (đợt 7, 12:32); thử Haiku thật với tệp 98.290 ký tự, không cắt",
         "statusEn": "ON (release 7, 12:32); real Haiku turn with a 98,290-char file, not cut",
         "prs": "BE #190, FE #146",
         "eta": "",
         "evidence": "QA độc lập GO có điều kiện / GO",
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T06",
@@ -4323,24 +4325,26 @@
         "group": "ON_PROD",
         "title": "Sửa menu “Cài đặt” bị che ở màn Edit",
         "titleEn": "Fix: Settings menu hidden under the work area",
-        "status": "Đã ON (đợt 7, 12:32)",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Sửa CSS nhỏ, có QA độc lập và quan sát PROD độc lập. | Đã ON (đợt 7, 12:32)",
         "statusEn": "ON (release 7, 12:32)",
         "prs": "FE #145",
         "eta": "",
         "evidence": "QA độc lập GO",
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T09",
         "group": "ON_PROD",
         "title": "AI trả lời tối đa 48.000 ký tự (trước đó bị cắt ở 500)",
         "titleEn": "AI answers up to 48,000 chars (was cut at 500)",
-        "status": "Đã ON (đợt 8, 14:39); thử Haiku thật: câu trả lời 12.610 ký tự hiện trọn, giữ nguyên sau tải lại",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Mã+QA độc lập+deploy xác minh+lượt thật; chỉ thiếu bản quan sát riêng của QA độc lập trên PROD. | Đã ON (đợt 8, 14:39); thử Haiku thật: câu trả lời 12.610 ký tự hiện trọn, giữ nguyên sau tải lại",
         "statusEn": "ON (release 8, 14:39); real Haiku turn: 12,610-char answer shown whole and kept after reload",
         "prs": "BE #192 (migration V98)",
         "eta": "",
         "evidence": "QA độc lập GO có điều kiện; Flyway 98|86|0",
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T10",
@@ -4372,24 +4376,26 @@
         "group": "ON_PROD",
         "title": "Sửa bộ test Studio (13 lỗi cũ là test lỗi thời)",
         "titleEn": "Studio test debt (13 old failures were stale tests)",
-        "status": "Đã vào đợt 9 (sửa test, không đổi gì trên PROD)",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Chỉ sửa test; không có gì để xác minh trên PROD. | Đã vào đợt 9 (sửa test, không đổi gì trên PROD)",
         "statusEn": "In release 9 (test fix, nothing changes on PROD)",
         "prs": "FE #152",
         "eta": "",
         "evidence": "Không có lỗi sản phẩm; studio-lovable 348/348",
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T13",
         "group": "ON_PROD",
         "title": "Tiếng Anh/Việt trang chủ, builder, thư viện Studio (2.272 → 21 chuỗi Việt cứng)",
         "titleEn": "English/Vietnamese: Studio home, builder, library",
-        "status": "Đã deploy 17:35; quét tiếng Anh trên PROD: Studio 0 chuỗi Việt ở 3 màn; QA độc lập GO",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Mục đã đạt mục tiêu ghi trong tiêu đề. | Đã deploy 17:35; quét tiếng Anh trên PROD: Studio 0 chuỗi Việt ở 3 màn; QA độc lập GO",
         "statusEn": "Deployed 17:35; PROD English scan: Studio 0 Vietnamese strings on 3 screens; independent QA GO",
         "prs": "FE #154, BE #194 (đồng bộ)",
         "eta": "",
         "evidence": "Người dùng tiếng Việt không hồi quy (1.873 giá trị khớp byte)",
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T14",
@@ -4491,10 +4497,10 @@
       },
       {
         "id": "T22",
-        "group": "ON_PROD",
+        "group": "IN_PROGRESS",
         "title": "S4: yêu cầu lớn chia bước có thể tiếp tục, tạo file bước đầu thay vì NO_CHANGE",
         "titleEn": "S4: split large requests into resumable steps",
-        "status": "T22-A: ON TRÊN PROD (nhận theo lời Owner 'chọn a', 09/11): mã đã chạy từ 21:41, 3 lượt Haiku thật: lượt thường hoàn tất (finish=stop), lượt rất lớn dùng đủ 16.000 token (finish_reason=length, token suy luận 12.238 ≈ 76% trần) vẫn trả file hợp lệ. NHÃN: đường trả lời RỖNG (mã OUTPUT_LIMIT_REACHED + thẻ lỗi) chỉ kiểm bằng test + QA độc lập, chưa tái hiện thật. T22-B (chia bước): BE #203 QA GO-WITH-CONDITIONS (không P1/P2), cờ TẮT, chưa merge; FE đang làm | 23:40: FE #162 (9cf3ed35) mở, QA độc lập đang chạy; BE #203 đang sửa điều kiện QA | 00:30: FE #162 QA GO-WITH-CONDITIONS (cần PR đồng bộ BE cho lovable.ts); BE #203 be9e6580 QA delta đang chạy; cờ TẮT, chỉ vào đợt 12 nếu kịp | 00:36: BE #203 (be9e6580) QA delta GO (263 test, 12/13 phá mã, 0 P1/P2) ĐÃ MERGE dev (BE dev a3ce5d87); FE #162 (9cf3ed35) QA GO-WITH-CONDITIONS ĐÃ MERGE dev (FE dev 07eb681e); PR đồng bộ BE cho lovable.ts đang làm. Cờ `ai.builder.steps.enabled` TẮT; chưa lên PROD; bật cần QA cặp + lời duyệt Owner + 3 lượt Haiku (cần cửa sổ AI)",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển ON_PROD → IN_PROGRESS; Tiêu chí 'yêu cầu lớn không còn NO_CHANGE' đang FAIL trên PROD với prompt dài; chữ trạng thái dừng ở 10/11 00:36. | T22-A: ON TRÊN PROD (nhận theo lời Owner 'chọn a', 09/11): mã đã chạy từ 21:41, 3 lượt Haiku thật: lượt thường hoàn tất (finish=stop), lượt rất lớn dùng đủ 16.000 token (finish_reason=length, token suy luận 12.238 ≈ 76% trần) vẫn trả file hợp lệ. NHÃN: đường trả lời RỖNG (mã OUTPUT_LIMIT_REACHED + thẻ lỗi) chỉ kiểm bằng test + QA độc lập, chưa tái hiện thật. T22-B (chia bước): BE #203 QA GO-WITH-CONDITIONS (không P1/P2), cờ TẮT, chưa merge; FE đang làm | 23:40: FE #162 (9cf3ed35) mở, QA độc lập đang chạy; BE #203 đang sửa điều kiện QA | 00:30: FE #162 QA GO-WITH-CONDITIONS (cần PR đồng bộ BE cho lovable.ts); BE #203 be9e6580 QA delta đang chạy; cờ TẮT, chỉ vào đợt 12 nếu kịp | 00:36: BE #203 (be9e6580) QA delta GO (263 test, 12/13 phá mã, 0 P1/P2) ĐÃ MERGE dev (BE dev a3ce5d87); FE #162 (9cf3ed35) QA GO-WITH-CONDITIONS ĐÃ MERGE dev (FE dev 07eb681e); PR đồng bộ BE cho lovable.ts đang làm. Cờ `ai.builder.steps.enabled` TẮT; chưa lên PROD; bật cần QA cặp + lời duyệt Owner + 3 lượt Haiku (cần cửa sổ AI)",
         "statusEn": "T22-A: ON PROD (accepted on the Owner's 'choose a', 09/11): code live since 21:41, 3 real Haiku turns: normal turn finished (finish=stop), a very large turn used all 16,000 tokens (finish_reason=length, 12,238 reasoning tokens ≈ 76% of the cap) yet returned valid files. LABEL: the EMPTY-answer path (OUTPUT_LIMIT_REACHED + error card) verified by tests + independent QA only, not reproduced for real. T22-B (steps): BE #203 QA GO-WITH-CONDITIONS (no P1/P2), flag OFF, not merged; FE in progress",
         "prs": "T22-A: BE #197 + FE #158 (trên PROD); T22-B: BE #203 (451725fb)",
         "eta": "PR sáng 10/11, lên PROD ~trưa",
@@ -4509,7 +4515,8 @@
         ],
         "prio": 3,
         "etaFallback": "Dự phòng: T22-A 10/11 ~19:00 hoặc 11/11 sáng; T22-B 16–18/11",
-        "closed": false
+        "closed": false,
+        "batch": 1
       },
       {
         "id": "T23",
@@ -4625,7 +4632,7 @@
         "group": "ON_PROD",
         "title": "Tắt đường Code mode cũ (/code/ai) bằng công tắc mặc định TẮT; đọc tệp qua chính sách đọc, che bí mật",
         "titleEn": "Disable the legacy Code mode path behind a default-OFF switch; route file reads through ReadPolicy and mask secrets",
-        "status": "ĐÃ LÊN PROD 21:41 (đợt 10) và KIỂM TRÊN PROD: 15 PASS, 1 NOT_RUN (dòng thông báo ở khung Code mode cũ cần dự án không phải builder). /code/ai và /code/ai/stream → 404 LEGACY_AI_DISABLED sau kiểm quyền, GET /code/ai 200, dự án builder không gọi /code/ai; 0 lượt dùng cũ trước deploy. PROD luôn TẮT đường cũ (compose không truyền biến)",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Công tắc mặc định TẮT chứng minh bằng test và PROD; QA do C0 (không phải tác giả). | ĐÃ LÊN PROD 21:41 (đợt 10) và KIỂM TRÊN PROD: 15 PASS, 1 NOT_RUN (dòng thông báo ở khung Code mode cũ cần dự án không phải builder). /code/ai và /code/ai/stream → 404 LEGACY_AI_DISABLED sau kiểm quyền, GET /code/ai 200, dự án builder không gọi /code/ai; 0 lượt dùng cũ trước deploy. PROD luôn TẮT đường cũ (compose không truyền biến)",
         "statusEn": "ON PROD 21:41 (release 10) and checked on PROD: 15 PASS, 1 NOT_RUN (the 'switched off' note in the old Code-mode composer needs a non-builder project). /code/ai and /code/ai/stream → 404 LEGACY_AI_DISABLED after the access check, GET /code/ai 200, builder projects do not call /code/ai; 0 legacy runs before deploy. PROD always has the old path OFF (compose does not pass the variable)",
         "prs": "BE #200 (b5f76252)",
         "eta": "",
@@ -4634,7 +4641,8 @@
         "etaFull": "Ổn định ngay (đường chưa từng được dùng)",
         "etaFallback": "Dự phòng: đợt 11 (11/11)",
         "prio": 4,
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T30",
@@ -4714,7 +4722,7 @@
         "group": "ON_PROD",
         "title": "Lỗi đính kèm: sau khi xóa bớt file, file bị từ chối vì “tối đa 3” vẫn nằm lại cùng cảnh báo",
         "titleEn": "Attachment bug: after deleting a file, the file rejected for the max-3 rule stays rejected and the warning stays",
-        "status": "ĐÃ LÊN PROD 21:41 (đợt 10) và ĐÃ KIỂM THẬT: 15/15 PASS trên PROD (3 file + file 4 bị từ chối → xóa 1 → file 4 tự sẵn sàng, cảnh báo biến mất, có thông báo trạng thái; file quá lớn/tên nhạy cảm vẫn bị từ chối; chỉ một file quay lại khi một chỗ trống). Nâng trên 3 file là việc riêng",
+        "status": "10:53 12/11 (rà soát lộ trình): XONG theo bằng chứng đã có (mã đã merge + QA độc lập + triển khai đã xác minh): Có QA độc lập và chuỗi PROD; ATT-b1 là việc khác. | ĐÃ LÊN PROD 21:41 (đợt 10) và ĐÃ KIỂM THẬT: 15/15 PASS trên PROD (3 file + file 4 bị từ chối → xóa 1 → file 4 tự sẵn sàng, cảnh báo biến mất, có thông báo trạng thái; file quá lớn/tên nhạy cảm vẫn bị từ chối; chỉ một file quay lại khi một chỗ trống). Nâng trên 3 file là việc riêng",
         "statusEn": "ON PROD 21:41 (release 10) and VERIFIED: 15/15 PASS on PROD (3 files + 4th refused → remove one → 4th becomes ready, warning gone, status announced; too-large/secret-named files stay refused; exactly one file returns for one free place). Raising above 3 files is a separate request",
         "prs": "",
         "eta": "",
@@ -4730,7 +4738,8 @@
         ],
         "etaFallback": "Dự phòng: QA lỗi → 10/11 ~19:00",
         "prio": 2,
-        "closed": false
+        "closed": true,
+        "closedAt": "2026-11-12T10:53:00+07:00"
       },
       {
         "id": "T34",
@@ -4988,7 +4997,7 @@
         "prio": "1",
         "title": "Đợt 1 · 1.6 T22-B: AI làm theo từng bước (3 lượt Haiku)",
         "titleEn": "Batch 1 · 1.6 T22-B AI by steps",
-        "status": "14:19 11/11: ĐÃ BẬT toàn hệ thống theo Owner (NO-20 = A); cờ ai.builder.steps.enabled = true, 0 lỗi 5xx sau khi bật. Chưa: QA độc lập, tài liệu, Owner UAT. | 14:13 11/11: 3 lượt Haiku đã đo trên PROD 13:51–13:53 (VERIFIED): kế hoạch 2 bước, cả hai build thành công, finish_reason stop, 0 lỗi nhà cung cấp, ~0,011 USD; cờ đã TẮT lại. Cờ chỉ có mức toàn hệ thống (không theo workspace): chờ Owner chọn (thẻ NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển IN_PROGRESS → IN_PROGRESS; Cờ bật chưa phải xong và có lỗi độc lập đang mở. | 14:19 11/11: ĐÃ BẬT toàn hệ thống theo Owner (NO-20 = A); cờ ai.builder.steps.enabled = true, 0 lỗi 5xx sau khi bật. Chưa: QA độc lập, tài liệu, Owner UAT. | 14:13 11/11: 3 lượt Haiku đã đo trên PROD 13:51–13:53 (VERIFIED): kế hoạch 2 bước, cả hai build thành công, finish_reason stop, 0 lỗi nhà cung cấp, ~0,011 USD; cờ đã TẮT lại. Cờ chỉ có mức toàn hệ thống (không theo workspace): chờ Owner chọn (thẻ NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
         "statusEn": "14:19 11/11: TURNED ON globally per Owner (NO-20 = A); 0 5xx after the switch. Missing: independent QA, docs, Owner UAT. | 14:13 11/11: 3 Haiku turns measured on PROD 13:51–13:53 (VERIFIED): 2-step plan, both builds succeeded, finish_reason stop, 0 provider errors, ~0.011 USD; flag turned OFF again. The flag is global only: awaiting Owner choice (card NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
         "prs": "",
         "eta": "12/11",
@@ -5042,11 +5051,11 @@
       },
       {
         "id": "D1.7",
-        "group": "PLANNED",
+        "group": "ON_PROD",
         "prio": "1",
         "title": "Đợt 1 · 1.7 T10: chứng minh hàng đợi build (2 lượt Haiku; số chỗ vẫn 1)",
         "titleEn": "Batch 1 · 1.7 T10 queue proof",
-        "status": "14:13 11/11: ĐÃ CHỨNG MINH trên PROD 13:56 (VERIFIED): 2 lượt Haiku đồng thời trên 2 dự án QA, build thứ hai đợi 25,1 s rồi chạy thành công, số chỗ = 1, ~0,0065 USD. slots=2 để Đợt 2 (cần runner thứ hai). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → ON_PROD; Mục đang PLANNED nhưng việc đã làm xong. | 14:13 11/11: ĐÃ CHỨNG MINH trên PROD 13:56 (VERIFIED): 2 lượt Haiku đồng thời trên 2 dự án QA, build thứ hai đợi 25,1 s rồi chạy thành công, số chỗ = 1, ~0,0065 USD. slots=2 để Đợt 2 (cần runner thứ hai). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
         "statusEn": "14:13 11/11: PROVEN on PROD 13:56 (VERIFIED): 2 simultaneous Haiku turns on 2 QA projects, the second build waited 25.1 s then succeeded, slots = 1, ~0.0065 USD. slots=2 is Batch 2 (needs a second runner). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
         "prs": "",
         "eta": "12/11",
@@ -5143,11 +5152,11 @@
       },
       {
         "id": "D1.10",
-        "group": "PLANNED",
+        "group": "IN_PROGRESS",
         "prio": "2",
         "title": "Đợt 1 · 1.10 Gói UAT cho Owner: UX13, P0-18, T14, T15, P0-19",
         "titleEn": "Batch 1 · 1.10 UAT pack",
-        "status": "15:31 11/11: Owner chọn A (NO-21). C0 đã chuẩn bị T14: dự án QA chính có 1 thay đổi AI READY chưa merge (1 lượt Haiku, build thành công, ~0,003 USD); Owner KHÔNG bấm 'Đưa vào' thay đổi đó khi thử. Còn: Owner thử UAT từng mục. | 15:09 11/11: ĐÃ SOẠN gói UAT (chỉ tài liệu, ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md): UX13 14 bước, P0-18 16 bước, T14 8 bước, T15 7 bước, P0-19 16 bước, T35 hồi quy 8 bước; mỗi bước có kết quả mong đợi và ô Đạt/Lỗi; không có mật khẩu/email/IP. Còn 9 điểm cần Owner nói rõ (thẻ NO-21). Chưa có Owner UAT. | Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → IN_PROGRESS; Gói đã soạn; còn lại là việc của Owner. | 15:31 11/11: Owner chọn A (NO-21). C0 đã chuẩn bị T14: dự án QA chính có 1 thay đổi AI READY chưa merge (1 lượt Haiku, build thành công, ~0,003 USD); Owner KHÔNG bấm 'Đưa vào' thay đổi đó khi thử. Còn: Owner thử UAT từng mục. | 15:09 11/11: ĐÃ SOẠN gói UAT (chỉ tài liệu, ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md): UX13 14 bước, P0-18 16 bước, T14 8 bước, T15 7 bước, P0-19 16 bước, T35 hồi quy 8 bước; mỗi bước có kết quả mong đợi và ô Đạt/Lỗi; không có mật khẩu/email/IP. Còn 9 điểm cần Owner nói rõ (thẻ NO-21). Chưa có Owner UAT. | Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "statusEn": "Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "prs": "",
         "eta": "~14/11",
@@ -5175,11 +5184,11 @@
       },
       {
         "id": "D2",
-        "group": "PLANNED",
+        "group": "IN_PROGRESS",
         "prio": "3",
         "title": "Đợt 2 · Các T còn lại: T23 tool loop (~66 giờ công + 12 lượt Haiku, cần Owner duyệt chi phí), T24, T25, T30, T31, T26, T10 slots=2, S5–S9",
         "titleEn": "Batch 2 · Remaining T items",
-        "status": "15:46 11/11: Owner duyệt NO-22 và NO-23 = A. Bắt đầu các lát thuần (tệp mới, không xung đột): T24-1/T24-2 (bộ phân tích + bộ áp patch), T25-1/T25-2/T25-7 (bộ nạp gói, bộ chọn, 3 gói); nối dây vào prompt sau khi T31/T23 vá vào dev. Mọi cờ TẮT. | 15:38 11/11: spec T23 và T24/T25 đã soạn xong (cục bộ, đọc mã; chưa viết mã). Chờ Owner duyệt thẻ NO-22 (T23) và NO-23 (T24/T25). Bắt đầu sau bản phát hành 20 và sau T22-B. | Chưa bắt đầu (sau Đợt 1). Mỗi mục một bản phát hành, bật cờ sau QA độc lập.",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → IN_PROGRESS; Chữ 'Chưa bắt đầu' đã cũ. | 15:46 11/11: Owner duyệt NO-22 và NO-23 = A. Bắt đầu các lát thuần (tệp mới, không xung đột): T24-1/T24-2 (bộ phân tích + bộ áp patch), T25-1/T25-2/T25-7 (bộ nạp gói, bộ chọn, 3 gói); nối dây vào prompt sau khi T31/T23 vá vào dev. Mọi cờ TẮT. | 15:38 11/11: spec T23 và T24/T25 đã soạn xong (cục bộ, đọc mã; chưa viết mã). Chờ Owner duyệt thẻ NO-22 (T23) và NO-23 (T24/T25). Bắt đầu sau bản phát hành 20 và sau T22-B. | Chưa bắt đầu (sau Đợt 1). Mỗi mục một bản phát hành, bật cờ sau QA độc lập.",
         "statusEn": "Chưa bắt đầu (sau Đợt 1). Mỗi mục một bản phát hành, bật cờ sau QA độc lập.",
         "prs": "",
         "eta": "~19/11",
@@ -5196,11 +5205,11 @@
       },
       {
         "id": "D3",
-        "group": "PLANNED",
+        "group": "IN_PROGRESS",
         "prio": "3",
         "title": "Đợt 3 · Đóng nhóm 19 hạng mục nền tảng: E2E độc lập PROD 19 mục + Owner UAT từng mục (NO-14=A) + khoảng trống chức năng (X4, P0-17 N-2/N-3, gói 03b 05–08, B3 revoke, E1, X1 STRICT)",
         "titleEn": "Batch 3 · Close the 19 foundation items: independent PROD E2E + Owner UAT per item, plus remaining functional gaps",
-        "status": "10:03 12/11: G2-A (QA độc lập, 8 lượt Haiku thật trên PROD, VERIFIED): PASS nhập dự án có sẵn (I1), phía máy chủ của Prompt Composer (413 tại giới hạn+1, rỗng, 3 byte), lượt kèm csv+png, Workspace Edit Studio (một dự án khi bấm đúp), P0-16 chọn đúng file (T2/T3) và giao diện 360/768/1280; FAIL: 2 lượt prompt dài (17 nghìn ký tự và 100 KB) trả BAD_OUTPUT plan_missing sau khoảng 7 nghìn token, không đổi gì, tin nhắn đã lưu nguyên vẹn; 0 lượt bị tính mức tối đa trong 8 lượt (sổ cái REPORTED). Đã dùng 8/30 lượt; còn tồn: 2 dự án QA mới, 1 bản nhập đã gộp, 4 thay đổi AI để READY, 19 dòng audit dry-run; không đổi quyền/cấp phát/cài đặt. Đang tìm nguyên nhân plan_missing (chỉ đọc). Chưa mục nào đạt chuẩn đóng. | 08:53 12/11: Owner duyệt NO-27 = A và NO-28 = A (08:52). J1-04 sẽ đo lại ở G2; CQB-1 chờ Owner xác nhận tài khoản admin thứ hai chưa từng sửa; quyền đọc hồ sơ nhân viên làm theo cách A (cờ vẫn TẮT). | 08:39 12/11: G1-B (QA độc lập, giao diện, mọi yêu cầu ghi bị chặn, không lượt AI, không gửi báo lỗi): PASS cho P0-14 (4 vai, SSO, hết phiên mô phỏng), UX13 (Admin 11/11, Studio PASS trừ bước xem trước dữ liệu thật NOT_RUN vì là POST), P0-17 theme 32/33, P0-18 chụp/đánh dấu ảnh 5/5 cổng (chưa gửi thật), P0-19 kéo/chặn/khôi phục, P0-05/06 phía giao diện. FAIL: composer tràn khung chat ở 1280 px và 1024 px (nút Gửi nằm ngoài, P2/P3, agent FE đang sửa), thiếu số byte gần giới hạn (P3), 2 chuỗi tiếng Anh chưa dịch (P3), đầu dự án Studio chưa có liên kết XApp (P3, có thể là thiết kế T35), 1 màn 'Đang tải…' khó đọc ở nền sáng (P3). NOT_RUN/BLOCKED: hàng đợi có mục (D-1/D-2/J1-04 chờ G2), bước thật (gửi báo lỗi, xem trước dữ liệu thật, cổng riêng tư), thiết bị thật/cảm ứng (Owner), người dùng thứ hai trong dự án QA (không phải thành viên). Theo dõi hết phiên X-10 đã BẮT ĐẦU 08:37; kiểm lại ~16:42 và ~18:42. Còn 0/19 đạt chuẩn đóng. | 07:46 12/11: G1-A (QA độc lập, chỉ đọc, 137+155 lượt GET, 0 ghi): 8 mục chạy; PASS phần đọc cho 1, 9, 10, 12, 14 (X4 TẮT), 16-BE-6; FAIL 7 (CQB-1) và 8 (J1-04/B1-11). Phân tích gốc (REPORTED): cả hai không phải lỗi mã nhỏ (J1-04 trước bản sửa #150 chưa đo lại; CQB-1 là trạng thái dữ liệu chặn bởi luật bốn mắt) nên không mở PR sửa; thẻ NO-28 chờ Owner. PR đã merge vào dev hôm nay: BE #242 (runbook T23), FE #192 (màn hoạt động công cụ T23, cờ TẮT), BE #243 (đồng bộ lõi) — đều sau QA độc lập, CHƯA lên PROD. | 07:30 12/11: G1 (chỉ đọc) đang chạy bằng 2 agent QA độc lập (API và giao diện), chưa có kết quả. | 07:17 12/11: G0 (tiền kiểm chỉ đọc PROD) XONG, QA độc lập: 5/6 mục PASS (VERIFIED), mục 6 (khóa SSH) chỉ REPORTED, không ghi gì lên PROD. 17 phép thử cờ khớp #88. Khác với kế hoạch: (1) 3 nguồn dữ liệu nhân viên/đơn vị/vị trí-cấp bậc đã BẬT và được duyệt bởi MỘT người; (2) chỉ có 1 TENANT_ADMIN nên điều kiện bốn mắt (Q2) chưa đạt, sẽ thăng tạm theo NO-26; (3) cửa sổ AI có sẵn 1 khoản giữ chỗ không giải thích được (J1-04), ghi làm mốc; (4) một số API (yêu cầu quyền, danh sách môi trường) trả 404 nên E1 chỉ kiểm cấp/thu hồi/hiệu lực. Báo cáo: ~/xweb-handoff/agents/QA-B3-G0.md. G1 (chỉ đọc) đã giao 2 agent QA độc lập. | 07:06 12/11: Owner duyệt NO-26 = A lúc 07:04. Bắt đầu G0 (tiền kiểm chỉ đọc) và chuẩn bị sửa nhỏ J1/P0-05/06/X1; chưa chạy bước ghi nào. | 23:44 11/11: ĐÃ LẬP KẾ HOẠCH E2E độc lập trên PROD cho 19 mục (cục bộ: ~/xweb-handoff/p37-studio/batch3/E2E-PROD-PLAN.md, có số tiền nên không đưa lên repo công khai). Hôm nay 0/19 đạt chuẩn NO-14. Bằng chứng độc lập trên PROD hiện có cho 10 mục (biên bản QA đóng việc 07/11, chạy trên bản cũ nên phải đo lại); X2, X3, X5, P0-16 B/E, P0-19 chỉ có QA dev + C0 tự báo; UX13, P0-18, P0-17 chỉ smoke; X4 chỉ chứng minh được trạng thái TẮT. Ước lượng ≈140 giờ-agent (90–190), ~3 ngày làm việc + 1 đêm sau khi Owner trả lời 12 câu (thẻ NO-26). Lỗi đã biết sẽ FAIL nếu chưa sửa: J1-04 (hủy giữa lượt tính cả khoản giữ chỗ), P0-05/06 D-1/D-2, CQB-1 (X1), ENT-12. Nếu Owner không cho thăng tạm quyền người duyệt (bốn mắt) và cấp phát thử, tối đa 12/19 đóng được. | Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → IN_PROGRESS; Đợt 3 đã chạy được 3 giai đoạn. | 10:03 12/11: G2-A (QA độc lập, 8 lượt Haiku thật trên PROD, VERIFIED): PASS nhập dự án có sẵn (I1), phía máy chủ của Prompt Composer (413 tại giới hạn+1, rỗng, 3 byte), lượt kèm csv+png, Workspace Edit Studio (một dự án khi bấm đúp), P0-16 chọn đúng file (T2/T3) và giao diện 360/768/1280; FAIL: 2 lượt prompt dài (17 nghìn ký tự và 100 KB) trả BAD_OUTPUT plan_missing sau khoảng 7 nghìn token, không đổi gì, tin nhắn đã lưu nguyên vẹn; 0 lượt bị tính mức tối đa trong 8 lượt (sổ cái REPORTED). Đã dùng 8/30 lượt; còn tồn: 2 dự án QA mới, 1 bản nhập đã gộp, 4 thay đổi AI để READY, 19 dòng audit dry-run; không đổi quyền/cấp phát/cài đặt. Đang tìm nguyên nhân plan_missing (chỉ đọc). Chưa mục nào đạt chuẩn đóng. | 08:53 12/11: Owner duyệt NO-27 = A và NO-28 = A (08:52). J1-04 sẽ đo lại ở G2; CQB-1 chờ Owner xác nhận tài khoản admin thứ hai chưa từng sửa; quyền đọc hồ sơ nhân viên làm theo cách A (cờ vẫn TẮT). | 08:39 12/11: G1-B (QA độc lập, giao diện, mọi yêu cầu ghi bị chặn, không lượt AI, không gửi báo lỗi): PASS cho P0-14 (4 vai, SSO, hết phiên mô phỏng), UX13 (Admin 11/11, Studio PASS trừ bước xem trước dữ liệu thật NOT_RUN vì là POST), P0-17 theme 32/33, P0-18 chụp/đánh dấu ảnh 5/5 cổng (chưa gửi thật), P0-19 kéo/chặn/khôi phục, P0-05/06 phía giao diện. FAIL: composer tràn khung chat ở 1280 px và 1024 px (nút Gửi nằm ngoài, P2/P3, agent FE đang sửa), thiếu số byte gần giới hạn (P3), 2 chuỗi tiếng Anh chưa dịch (P3), đầu dự án Studio chưa có liên kết XApp (P3, có thể là thiết kế T35), 1 màn 'Đang tải…' khó đọc ở nền sáng (P3). NOT_RUN/BLOCKED: hàng đợi có mục (D-1/D-2/J1-04 chờ G2), bước thật (gửi báo lỗi, xem trước dữ liệu thật, cổng riêng tư), thiết bị thật/cảm ứng (Owner), người dùng thứ hai trong dự án QA (không phải thành viên). Theo dõi hết phiên X-10 đã BẮT ĐẦU 08:37; kiểm lại ~16:42 và ~18:42. Còn 0/19 đạt chuẩn đóng. | 07:46 12/11: G1-A (QA độc lập, chỉ đọc, 137+155 lượt GET, 0 ghi): 8 mục chạy; PASS phần đọc cho 1, 9, 10, 12, 14 (X4 TẮT), 16-BE-6; FAIL 7 (CQB-1) và 8 (J1-04/B1-11). Phân tích gốc (REPORTED): cả hai không phải lỗi mã nhỏ (J1-04 trước bản sửa #150 chưa đo lại; CQB-1 là trạng thái dữ liệu chặn bởi luật bốn mắt) nên không mở PR sửa; thẻ NO-28 chờ Owner. PR đã merge vào dev hôm nay: BE #242 (runbook T23), FE #192 (màn hoạt động công cụ T23, cờ TẮT), BE #243 (đồng bộ lõi) — đều sau QA độc lập, CHƯA lên PROD. | 07:30 12/11: G1 (chỉ đọc) đang chạy bằng 2 agent QA độc lập (API và giao diện), chưa có kết quả. | 07:17 12/11: G0 (tiền kiểm chỉ đọc PROD) XONG, QA độc lập: 5/6 mục PASS (VERIFIED), mục 6 (khóa SSH) chỉ REPORTED, không ghi gì lên PROD. 17 phép thử cờ khớp #88. Khác với kế hoạch: (1) 3 nguồn dữ liệu nhân viên/đơn vị/vị trí-cấp bậc đã BẬT và được duyệt bởi MỘT người; (2) chỉ có 1 TENANT_ADMIN nên điều kiện bốn mắt (Q2) chưa đạt, sẽ thăng tạm theo NO-26; (3) cửa sổ AI có sẵn 1 khoản giữ chỗ không giải thích được (J1-04), ghi làm mốc; (4) một số API (yêu cầu quyền, danh sách môi trường) trả 404 nên E1 chỉ kiểm cấp/thu hồi/hiệu lực. Báo cáo: ~/xweb-handoff/agents/QA-B3-G0.md. G1 (chỉ đọc) đã giao 2 agent QA độc lập. | 07:06 12/11: Owner duyệt NO-26 = A lúc 07:04. Bắt đầu G0 (tiền kiểm chỉ đọc) và chuẩn bị sửa nhỏ J1/P0-05/06/X1; chưa chạy bước ghi nào. | 23:44 11/11: ĐÃ LẬP KẾ HOẠCH E2E độc lập trên PROD cho 19 mục (cục bộ: ~/xweb-handoff/p37-studio/batch3/E2E-PROD-PLAN.md, có số tiền nên không đưa lên repo công khai). Hôm nay 0/19 đạt chuẩn NO-14. Bằng chứng độc lập trên PROD hiện có cho 10 mục (biên bản QA đóng việc 07/11, chạy trên bản cũ nên phải đo lại); X2, X3, X5, P0-16 B/E, P0-19 chỉ có QA dev + C0 tự báo; UX13, P0-18, P0-17 chỉ smoke; X4 chỉ chứng minh được trạng thái TẮT. Ước lượng ≈140 giờ-agent (90–190), ~3 ngày làm việc + 1 đêm sau khi Owner trả lời 12 câu (thẻ NO-26). Lỗi đã biết sẽ FAIL nếu chưa sửa: J1-04 (hủy giữa lượt tính cả khoản giữ chỗ), P0-05/06 D-1/D-2, CQB-1 (X1), ENT-12. Nếu Owner không cho thăng tạm quyền người duyệt (bốn mắt) và cấp phát thử, tối đa 12/19 đóng được. | Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "statusEn": "Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "prs": "",
         "eta": "~23/11",
@@ -5338,13 +5347,13 @@
       },
       {
         "id": "U2",
-        "group": "IN_PROGRESS",
+        "group": "ON_PROD",
         "prio": "0",
         "batch": 1,
         "closed": false,
         "title": "ƯU TIÊN CAO · SVG không được đính kèm ('chỉ nhận PNG, JPG, WebP')",
         "titleEn": "TOP PRIORITY · SVG attachments refused",
-        "status": "07:06 12/11: Owner đã thử trên PROD, ổn (không có phản hồi lỗi). | 20:54: ĐÃ LÊN PROD trong bản 21 (20:51). Chuỗi SVG có trong ảnh Studio (VERIFIED). Chưa thử bằng file thật trên PROD: Owner gắn .svg. | 20:27: FE #187 đã MERGE vào dev (FE dev 449621de); đang QA tích hợp bản 21. | 19:27: QA vòng 2 = GO (VERIFIED, head ea08e5ed, 527 SVG thật chỉ từ chối nhầm 1 file Chrome cũng không vẽ được). Chờ bản 21. | 18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển IN_PROGRESS → ON_PROD; Đã lên PROD, không còn mã chờ. | 07:06 12/11: Owner đã thử trên PROD, ổn (không có phản hồi lỗi). | 20:54: ĐÃ LÊN PROD trong bản 21 (20:51). Chuỗi SVG có trong ảnh Studio (VERIFIED). Chưa thử bằng file thật trên PROD: Owner gắn .svg. | 20:27: FE #187 đã MERGE vào dev (FE dev 449621de); đang QA tích hợp bản 21. | 19:27: QA vòng 2 = GO (VERIFIED, head ea08e5ed, 527 SVG thật chỉ từ chối nhầm 1 file Chrome cũng không vẽ được). Chờ bản 21. | 18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
         "statusEn": "18:26: FE #187 chuyển SVG sang PNG trong trình duyệt (máy chủ không bao giờ thấy SVG). QA độc lập vòng 1: GO-WITH-CONDITIONS (lỗi treo regex bậc hai, đã sửa tuyến tính, head ea08e5ed); QA vòng 2 đang chạy. Sơ đồ luồng của Owner chuyển được (900x1270 PNG).",
         "prs": "FE #187",
         "eta": "bản 21",
@@ -5470,13 +5479,13 @@
       },
       {
         "id": "U5",
-        "group": "IN_PROGRESS",
+        "group": "ON_PROD",
         "prio": "0",
         "batch": 1,
         "closed": false,
         "title": "ƯU TIÊN CAO · Kế hoạch chia bước xong 5/5 vẫn ghim che phía trên ô nhập",
         "titleEn": "TOP PRIORITY · Finished step-plan card stays pinned above the composer",
-        "status": "07:06 12/11: Owner đã thử trên PROD, ổn (không có phản hồi lỗi). | 20:54: ĐÃ LÊN PROD trong bản 21 (20:51). Chưa thử bằng kế hoạch thật trên PROD: Owner làm 1 kế hoạch nhiều bước rồi xem thẻ. | 20:27: FE #189 QA delta = GO (VERIFIED, C1 tiêu điểm đã sửa), đã MERGE vào dev; đang QA tích hợp bản 21. | 19:27: FE #189 QA vòng 1 GO-WITH-CONDITIONS (lỗi cướp tiêu điểm khi đang gõ); tác giả đang sửa. | 18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển IN_PROGRESS → ON_PROD; Đã lên PROD, không còn mã chờ. | 07:06 12/11: Owner đã thử trên PROD, ổn (không có phản hồi lỗi). | 20:54: ĐÃ LÊN PROD trong bản 21 (20:51). Chưa thử bằng kế hoạch thật trên PROD: Owner làm 1 kế hoạch nhiều bước rồi xem thẻ. | 20:27: FE #189 QA delta = GO (VERIFIED, C1 tiêu điểm đã sửa), đã MERGE vào dev; đang QA tích hợp bản 21. | 19:27: FE #189 QA vòng 1 GO-WITH-CONDITIONS (lỗi cướp tiêu điểm khi đang gõ); tác giả đang sửa. | 18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
         "statusEn": "18:26: agent đang làm: kế hoạch xong rời vùng trên ô nhập và thành thẻ tóm tắt trong luồng chat; đang chạy/bị chặn thì thu gọn một dòng. Chưa có PR.",
         "prs": "FE (PR chưa mở)",
         "eta": "bản 21 (~75 phút làm)",
@@ -6374,11 +6383,18 @@
         "id": "agents.min",
         "note": "Owner 08:54 đổi số agent tối thiểu khi còn việc 4 → 6. C0 áp dụng: giữ ít nhất 6 agent bận khi còn việc được duyệt hoặc không cần duyệt (tối đa 8; một việc nặng một lúc, tải máy cao thì ưu tiên việc nhẹ). Hiện 5 đang chạy, đang giao thêm.",
         "state": "applied"
+      },
+      {
+        "at": "2026-11-12T10:53:00+07:00",
+        "by": "C0",
+        "id": "dash.roadmap",
+        "note": "Rà soát lộ trình theo yêu cầu Owner: đóng T04, T05, T08, T09, T12, T13, T29, T33; đổi nhóm T22, D1.6, D1.7, U2, U5, D1.10, D2, D3. Giữ nguyên T36, D1.2 (chờ Owner quyết có cần UAT) và T11 (quét PROD do C0, chưa có bản quét độc lập).",
+        "state": "applied"
       }
     ]
   },
   "roadmap": {
-    "note": "Ngày dự kiến là ước lượng, không phải số đo. Đợt chỉ tính xong khi từng mục đạt QA/SEC độc lập + đã kiểm trên PROD + Owner chấp nhận.",
+    "note": "Ngày dự kiến là ước lượng, không phải số đo. Đợt chỉ tính xong khi từng mục đạt QA/SEC độc lập + đã kiểm trên PROD + Owner chấp nhận. | Rà soát 2026-11-12 10:53: 8 mục chuyển sang xong, 8 mục đổi nhóm theo bằng chứng (ROADMAP-AUDIT cục bộ). T36/D1.2 và T11 giữ nguyên chờ Owner/QA độc lập; 19 hạng mục nền tảng vẫn 0/19 đóng.",
     "noteEn": "Dates are estimates, not measurements. An item counts as closed only after independent QA/SEC, PROD verification and Owner acceptance.",
     "batches": [
       {
