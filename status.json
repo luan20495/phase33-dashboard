@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T19:07:04+07:00",
+  "asOf": "2026-11-12T19:31:26+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T19:07:04+07:00",
+  "detailUpdatedAt": "2026-11-12T19:31:26+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6816,7 +6816,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T19:07:04+07:00",
+    "updatedAt": "2026-11-12T19:31:26+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7340,10 +7340,15 @@
         "at": "2026-11-12T18:53:27+07:00",
         "by": "C0",
         "note": "Ước lượng mục 07 và 12 (agent chỉ-đọc, ESTIMATE-07-12.md): 07 ~232 giờ công (phát hiện thêm ATT-f), 12 ~230 giờ công; toàn AI Agent đổi từ 24/11–02/12 sang 27/11–07/12, vẫn chưa xác định giờ"
+      },
+      {
+        "at": "2026-11-12T19:31:26+07:00",
+        "by": "C0",
+        "note": "Hiệu chuẩn thật PAYC-1 (#262): 14 giờ công thiết kế → ~1 giờ 05 phút thực tế; mục 06 có ETA 14/11 12:00 (13/11 18:00–15/11 18:00, tin cậy thấp); toàn AI Agent đổi sang 20/11–27/11; giao PAYC-3 chồng trên #262"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T19:07:04+07:00",
+      "checkedAt": "2026-11-12T19:31:26+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7400,10 +7405,10 @@
         "Tài khoản admin thứ hai (DEV) cho kiểm thử cách ly nếu cần mức đầy đủ"
       ],
       "eta": {
-        "value": "Chưa xác định giờ. Khoảng ESTIMATE: 27/11–07/12/2026 (tin cậy thấp)",
+        "value": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
         "label": "ESTIMATE",
         "confidence": "thấp",
-        "change": "Từ 24/11–02/12 sang 27/11–07/12 sau khi có ước lượng thật cho mục 07 (~232 giờ công) và 12 (~230 giờ công); mục 06 chưa hiệu chuẩn"
+        "change": "Từ 27/11–07/12 sang 20/11–27/11: PAYC-1 thật chỉ ~1 giờ 05 phút so với 14 giờ công thiết kế nên mục 06 ngắn hơn nhiều; đường găng chuyển sang mục 07 và 12"
       },
       "uiux": {
         "checkedAt": "2026-11-12T17:32:32+07:00",
@@ -15686,8 +15691,8 @@
     "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-12T19:07:04+07:00",
-    "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 27/11–07/12/2026 (tin cậy thấp)",
+    "updatedAt": "2026-11-12T19:31:26+07:00",
+    "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
       {
@@ -15940,39 +15945,55 @@
       {
         "id": "06",
         "name": "T22-C / J1 tự tiếp tục",
-        "pr": "T22-B BE #203 (PROD); #252 360dd9b5",
-        "done": "T22-B ON; thiết kế PAYC/T22-C xong (REPORTED)",
-        "todo": "Checkpoint + tiếp tục, tạm dừng khi hết USD, TTL hàng đợi không mất việc, không DONE khi chưa đủ",
+        "pr": "BE #262 6b32491b (PAYC-1, mở, status:qa); PAYC-3 đang làm trên nhánh #262",
+        "done": "Thiết kế PAYC/T22-C xong; PAYC-1 (bộ cấp phát đầu ra, cờ TẮT) có PR #262: 62 test đạt, 14 mutant bị diệt (REPORTED, chưa QA độc lập); T22-B ON",
+        "todo": "PAYC-2 (sau T24/T25), PAYC-3 (đang làm), PAYC-4, PAYC-5; hằng số ước lượng của PAYC-1 cần hiệu chuẩn bằng lượt AI thật trước khi bật cờ; chưa có FE",
         "code": "✗",
         "qa": "✗",
         "deploy": "~",
         "on": "~",
         "verified": "✗",
-        "agent": "agent PAYC-1 RUNNING từ 18:50 (Sonnet 5.5)",
+        "agent": "agent PAYC-3 RUNNING từ ~19:50 (Sonnet 5.5); PAYC-1 đã xong",
         "eta": "~20–26/11 (thấp)",
         "etaInfo": {
-          "etaAt": null,
+          "etaAt": "2026-11-14T12:00:00+07:00",
           "etaRange": [
-            "2026-11-14T00:00:00+07:00",
-            "2026-11-16T23:00:00+07:00"
+            "2026-11-13T18:00:00+07:00",
+            "2026-11-15T18:00:00+07:00"
           ],
-          "remainingEffortHours": 130,
+          "remainingEffortHours": 16,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T18:42:24+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
+          "updatedAt": "2026-11-12T19:31:26+07:00",
+          "basis": "Hiệu chuẩn thật: PAYC-1 thiết kế 14 giờ công nhưng agent làm xong trong ~1 giờ 05 phút (gồm ~25 phút chờ chỗ Gradle). Giờ công còn lại ~16 là ESTIMATE hiệu chuẩn (thiết kế còn ~116 giờ cho PAYC-2..5 + FE/E2E, hệ số thực tế ~0,08–0,15); chỉ một điểm hiệu chuẩn nên tin cậy thấp; mốc nghiệm thu = PAYC-1..5 xong, QA một lần, deploy, bật cờ, thử Haiku thật, VERIFIED",
           "blockers": [
-            "PAYC-2 sau T24/T25",
-            "PAYC-3 sau PAYC-1",
-            "PAYC-4 sau PAYC-3 và #252",
-            "chỗ Gradle"
+            "PAYC-2 chờ tích hợp T24/T25 (đổi prompt)",
+            "PAYC-4 chờ PAYC-3",
+            "QA một lần sau khi BE+FE+tích hợp xong (~3–4 giờ)",
+            "deploy bản sau và 12 lượt Haiku thật"
           ],
-          "milestones": [],
-          "unknownReason": "Chưa xác định giờ: chờ PAYC-1 hoàn tất (dự kiến ~13/11 00:00–03:00) để hiệu chuẩn giờ công thật so với giờ thiết kế; khoảng ngày chỉ là ESTIMATE",
-          "startAt": "2026-11-12T18:50:00+07:00",
+          "milestones": [
+            {
+              "label": "PAYC-1 PR mở (mốc PR)",
+              "etaAt": "2026-11-12T19:45:00+07:00"
+            },
+            {
+              "label": "PAYC-3/4 mã xong, chồng nhánh (mốc mã, chưa QA)",
+              "etaAt": "2026-11-13T08:00:00+07:00"
+            }
+          ],
+          "unknownReason": null,
+          "startAt": "2026-11-12T18:41:00+07:00",
           "prevEta": "Chưa xác định giờ (17–20/11)",
-          "waits": [],
-          "removedWait": "Đã giao PAYC-1 lúc 18:50 (trước đó chưa giao); giờ công 130 là ước lượng thiết kế, chưa hiệu chuẩn"
+          "waits": [
+            {
+              "from": "2026-11-13T08:00:00+07:00",
+              "to": "2026-11-13T12:00:00+07:00",
+              "hours": 4,
+              "reason": "QA độc lập một lần trên bản tích hợp PAYC-1..5"
+            }
+          ],
+          "removedWait": "Từ 'chưa xác định giờ' sang có giờ nhờ hiệu chuẩn PAYC-1 thật"
         }
       },
       {
@@ -16242,13 +16263,13 @@
     "overallEtaInfo": {
       "etaAt": null,
       "etaRange": [
-        "2026-11-27",
-        "2026-12-07"
+        "2026-11-20",
+        "2026-11-27"
       ],
       "remainingEffortHours": 680,
       "remainingElapsedHours": null,
       "confidence": "low",
-      "updatedAt": "2026-11-12T18:53:27+07:00",
+      "updatedAt": "2026-11-12T19:31:26+07:00",
       "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
       "blockers": [
         "mục 06 chưa hiệu chuẩn",
@@ -16256,8 +16277,8 @@
         "Owner: ngân sách B1/B3 và giải phóng giữ chỗ"
       ],
       "milestones": [],
-      "unknownReason": "Chưa xác định giờ: đường găng qua mục 06 (130 giờ công chưa hiệu chuẩn) rồi mục 12 chạy đầy đủ (~100–120 giờ thực tế); khoảng ESTIMATE lên PROD 27/11–07/12 (tin cậy thấp); giờ công ≈ 680 (600–850) gồm mục 07 ~232 và mục 12 ~230",
-      "criticalPath": "deploy bản gộp (~13/11 03:30) → 06 PAYC-1..5 → 12 chạy đầy đủ; song song: 07 (upload wave 85–125 giờ), 03/04/05 thử thật, chuẩn bị 12"
+      "unknownReason": "Chưa xác định giờ: mục 06 đã có hiệu chuẩn (một điểm) nên không còn là đường găng chính; đường găng mới là mục 07 (upload wave 85–125 giờ liên tục, PROD ON ~19–24/11) và mục 12 chạy đầy đủ (~100–120 giờ thực tế sau khi 06 sẵn sàng trên DEV ~14/11); khoảng ESTIMATE lên PROD 20/11–27/11 (tin cậy thấp)",
+      "criticalPath": "deploy bản gộp (~13/11 03:30) → 06 sẵn sàng DEV (~14/11 12:00) → 12 chạy đầy đủ (~100–120 giờ); song song: 07 upload wave (85–125 giờ), 03/04/05 thử thật"
     }
   }
 }
