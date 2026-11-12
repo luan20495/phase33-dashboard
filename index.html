@@ -849,9 +849,46 @@ html[data-theme="dark"] .al-btn.al-prim,html[data-theme="dark"] .al-btn.al-prim:
 .al-cf-touch{font-weight:750}
 .al-cf-skip{font-weight:650}
 .al-cf-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+/* two sub-tabs: Anh đã duyệt / Anh chưa duyệt */
+.al-movenote{margin:0;font-size:12.5px;line-height:1.6;color:var(--muted);overflow-wrap:anywhere}
+.al-subnav{position:sticky;top:var(--al-tb,0px);z-index:24;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:8px 0;background:var(--bg);border-bottom:1px solid var(--line)}
+.al-stab{min-height:48px;padding:6px 12px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:14px;font-weight:700;line-height:1.3;text-align:center;cursor:pointer;overflow-wrap:anywhere}
+.al-stab:hover{color:var(--fg);background:var(--soft)}
+.al-stab[aria-selected="true"]{color:var(--fg);border-color:var(--accent);box-shadow:inset 0 -3px 0 var(--accent)}
+.al-subpanel{display:flex;flex-direction:column;gap:14px;min-width:0}
+.al-subpanel[hidden]{display:none}
+.al-apprbox{display:flex;flex-direction:column;gap:14px;min-width:0}
+.al-apprhead h3,.al-asec>h3,.al-askbox h3{margin:0 0 4px;font-size:15px;font-weight:700;letter-spacing:-.015em}
+.al-clscounts{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.al-clsbtn b{font-variant-numeric:tabular-nums}
+.al-clsbtn.al-clsask{border-color:var(--al-fl-bd);color:var(--al-fl-fg);background:var(--al-fl-bg)}
+.al-clsbtn.al-clsask[aria-pressed="true"]{border-color:#c92a31;box-shadow:inset 0 0 0 1px #c92a31}
+.al-askbox{border:2px solid #c92a31;border-radius:16px;background:var(--al-fl-bg);color:var(--fg);padding:12px 14px;display:grid;gap:8px}
+.al-askbox h3{color:var(--al-fl-fg)}
+.al-askbox p{margin:0;font-size:13px;line-height:1.55}
+.al-askids{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.al-askids .al-btn{flex:0 0 auto;min-width:64px;padding:0 12px}
+.al-asec{display:grid;gap:8px;min-width:0}
+.al-asec .al-list{padding:0}
+.al-asec[data-cls="clarify"]>h3{color:var(--al-fl-fg)}
+.al-top-n{display:grid;grid-template-columns:auto minmax(0,1fr);gap:0 8px;align-items:center}
+.al-appr.al-ask{border:2px solid #c92a31;background:var(--al-fl-bg)}
+.al-appr.al-ask .al-id{border-color:#c92a31}
+.al-appr.al-ask{--muted:#48484d}
+html[data-theme="dark"] .al-appr.al-ask{--muted:#d0d0d5}
+.al-askrow{margin:0;font-size:13px;font-weight:750;color:var(--al-fl-fg);line-height:1.5}
+.al-dec{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center}
+.al-when{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.al-disp{display:grid;gap:4px;justify-items:start}
+.al-dispnote{margin:0;font-size:13px;line-height:1.55;overflow-wrap:anywhere}
+.al-stages{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 6px}
+.al-staged{align-self:start;justify-self:start;display:inline-flex;font-size:11px;font-weight:700;border-radius:10px;padding:3px 9px;background:var(--al-ch-bg);color:var(--al-ch-fg);border:1px solid var(--al-ch-bd)}
+.al-chg{justify-self:start;flex:0 0 auto}
+.al-chbox{border-top:1px dashed var(--line);padding-top:8px}
 @media(max-width:900px){.al-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){
  .al-wrap{padding:10px 10px 18px;gap:12px}
+ .al-stab{font-size:13px}.al-askids .al-btn{flex:0 0 auto}.al-chg{flex:0 0 auto}
  .al-btn{flex:1 1 100%}.al-row{padding:10px}.al-list{padding:0 6px 8px}.al-act .al-btn{flex:0 1 auto}
  .al-ftog{display:inline-flex;align-items:center;justify-content:center;flex:none;padding:0 14px}
  .al-fpanel{display:none}.al-fpanel.open{display:grid}
@@ -1117,30 +1154,42 @@ function renderProd(){
 /* ===== Router: #roadmap[/1..6]  #process  #prod[/done|on]  #owner ; legacy #phase33 #remaining #today are redirected ===== */
 const VIEWS=['roadmap','process','limits','hourly','prod','owner'];
 let activeBoardView='roadmap',roadmapBatch=1,prodSub='on';
+const LIMSUBKEY='xw-al-sub';let limitsSub='pending',alOnSub=null;
+try{const v=sessionStorage.getItem(LIMSUBKEY);if(v==='approved'||v==='pending')limitsSub=v}catch(e){}
 function parseRoute(){
  const raw=String(location.hash||'').replace(/^#\/?/,'').toLowerCase();const [a,b]=raw.split('/');
  if(a==='roadmap')return {view:'roadmap',sub:/^[1-6]$/.test(b||'')?+b:null};
  if(a==='process')return {view:'process',sub:null};
  if(a==='hourly')return {view:'hourly',sub:null};
- if(a==='limits')return {view:'limits',sub:null};
+ if(a==='limits')return {view:'limits',sub:(b==='approved'||b==='pending')?b:null};
  if(a==='owner')return {view:'owner',sub:null};
  if(a==='prod')return {view:'prod',sub:(b==='done'||b==='on')?b:null};
  if(a==='phase33')return {view:'prod',sub:'on',redirect:true};
  if(a==='remaining'||a==='today')return {view:'roadmap',sub:null,redirect:true};
  return {view:'roadmap',sub:null};
 }
-function routeHash(view){return view==='roadmap'?'#roadmap/'+roadmapBatch:view==='prod'?'#prod/'+prodSub:'#'+view}
+function routeHash(view){return view==='roadmap'?'#roadmap/'+roadmapBatch:view==='prod'?'#prod/'+prodSub:view==='limits'?'#limits/'+limitsSub:'#'+view}
 function syncSubTabs(){
  document.querySelectorAll('[data-batch-tab]').forEach(b=>{const on=+b.dataset.batchTab===roadmapBatch;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1});
  const bp=document.getElementById('batchPanel');if(bp)bp.setAttribute('aria-labelledby','rtab-'+roadmapBatch);
  document.querySelectorAll('[data-prod-tab]').forEach(b=>{const on=b.dataset.prodTab===prodSub;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1});
  document.getElementById('prodDone').hidden=prodSub!=='done';document.getElementById('prodOn').hidden=prodSub!=='on';
+ syncLimitsSub();
+}
+function limitsStick(){const v=document.getElementById('view-limits'),tb=document.querySelector('.tabbar');if(v)v.style.setProperty('--al-tb',tb&&getComputedStyle(tb).position==='sticky'?tb.offsetHeight+'px':'0px')}
+window.addEventListener('resize',limitsStick);
+function syncLimitsSub(){
+ limitsStick();
+ document.querySelectorAll('[data-limits-sub]').forEach(b=>{const on=b.dataset.limitsSub===limitsSub;b.setAttribute('aria-selected',String(on));b.tabIndex=on?0:-1});
+ for(const k of ['approved','pending']){const pn=document.getElementById('alPanel-'+k);if(pn)pn.hidden=k!==limitsSub}
+ if(alOnSub)alOnSub()
 }
 function setBoardView(view,updateHash=true,sub=null){
  if(!VIEWS.includes(view))view='roadmap';
  activeBoardView=view;
  if(view==='roadmap'&&sub)roadmapBatch=sub;
  if(view==='prod'&&(sub==='done'||sub==='on'))prodSub=sub;
+ if(view==='limits'&&(sub==='approved'||sub==='pending')){limitsSub=sub;try{sessionStorage.setItem(LIMSUBKEY,sub)}catch(e){}}
  for(const tab of document.querySelectorAll('[data-board-tab]')){const chosen=tab.dataset.boardTab===view;tab.setAttribute('aria-selected',String(chosen));tab.tabIndex=chosen?0:-1}
  for(const v of VIEWS)document.getElementById('view-'+v).hidden=v!==view;
  try{const nav=document.getElementById('mainTabs'),sel=nav&&nav.querySelector('[aria-selected="true"]');if(nav&&sel&&nav.scrollWidth>nav.clientWidth+1)nav.scrollTo({left:Math.max(0,sel.offsetLeft-(nav.clientWidth-sel.offsetWidth)/2),behavior:'auto'})}catch(e){}
@@ -1157,7 +1206,7 @@ document.querySelectorAll('[data-board-tab]').forEach(tab=>tab.addEventListener(
 document.querySelectorAll('[data-batch-tab]').forEach(tab=>tab.addEventListener('click',()=>setBoardView('roadmap',true,+tab.dataset.batchTab)));
 document.querySelectorAll('[data-prod-tab]').forEach(tab=>tab.addEventListener('click',()=>setBoardView('prod',true,tab.dataset.prodTab)));
 ['mainTabs','batchTabs','prodTabs'].forEach(id=>bindTablist(document.getElementById(id)));
-function applyRoute(){const r=parseRoute();setBoardView(r.view,false,r.sub);if(r.redirect)history.replaceState(null,'',routeHash(r.view))}
+function applyRoute(){const r=parseRoute();setBoardView(r.view,false,r.sub);if(r.redirect||(r.view==='limits'&&!r.sub))history.replaceState(null,'',routeHash(r.view))}
 window.addEventListener('hashchange',()=>applyRoute());
 
 let progressFilter='on';
@@ -1663,7 +1712,7 @@ function setHourlyBadge(n,T){const b=document.getElementById('hourlyTabCount'),t
 
 /* ===== Giới hạn AI Studio (#limits): chọn từng giới hạn, lưu nháp trong trình duyệt, Owner sao chép tin nhắn lên #88 ===== */
 const ALKEY='xw-al:',AL_MAX_NOTE=200,AL_MAX_VAL=80;
-let alMem=null;const alOpen=new Set(),alShut=new Set(),alSel=new Set(),alF={kind:'',rec:'',group:'',state:'',mand:'',q:'',todo:false};
+let alMem=null;const alOpen=new Set(),alShut=new Set(),alSel=new Set(),alChg=new Set(),alF={kind:'',rec:'',group:'',state:'',mand:'',q:'',todo:false};
 const AL_KINDS=['SETTING','CODE CONSTANT','BUILD-ENV','INFRA'],AL_RECS=['giữ','bỏ giới hạn','nâng','cần mã'],AL_STATES=['proposed','approved','applied','verified'],AL_LV=['Cao','Trung bình','Thấp'];
 const AL_KI={'SETTING':'S','CODE CONSTANT':'C','BUILD-ENV':'B','INFRA':'I'},AL_RI={'giữ':'=','bỏ giới hạn':'∞','nâng':'▲','cần mã':'‹›'},AL_RT={'giữ':'keep','bỏ giới hạn':'off','nâng':'raise','cần mã':'code'};
 const AL_LVI={'Cao':'▲','Trung bình':'◆','Thấp':'▼'},AL_LVT={'Cao':'no','Trung bình':'code','Thấp':'off'},AL_LVE={'Cao':'High','Trung bình':'Medium','Thấp':'Low'};
@@ -1697,6 +1746,20 @@ vi:{tab:'Giới hạn AI Studio',notice:'Anh chọn xong, bấm sao chép và d�
  filT:'Lọc và tìm',fKind:'Loại',fRec:'Khuyến nghị',fState:'Trạng thái',fMand:'Bắt buộc',fGroup:'Nhóm',fAllGroups:'Tất cả nhóm',fAll:'Tất cả',fQ:'Tìm (mã, tên, giá trị, nhóm, vị trí)',fTodo:'Chỉ hàng chưa chọn',fReset:'Xóa bộ lọc',fToggle:'Bộ lọc',fActive:n=>n?' ('+n+')':'',
  shown:(a,b)=>'Hiển thị '+a+'/'+b+' hàng',openAll:'Mở tất cả nhóm',closeAll:'Thu gọn tất cả nhóm',listT:'Danh sách giới hạn',grpN:(a,b,c)=>(a===b?b+' hàng':a+'/'+b+' hàng')+(c?' · '+c+' đã chọn':''),noGroup:'Chưa phân nhóm',
  empty:'Chưa có dữ liệu giới hạn AI Studio.',noMatch:'Không có hàng nào khớp bộ lọc.',tabPend:n=>n+' lựa chọn chờ gửi',
+ subA:n=>'Anh đã duyệt ('+n+')',subP:n=>'Anh chưa duyệt ('+n+')',subLbl:'Hai phần của tab Giới hạn AI Studio',
+ moveNote:'Một hàng chỉ chuyển sang "Anh đã duyệt" khi dữ liệu có ownerChoice (C0 ghi sau khi anh dán tin nhắn lên #88); lựa chọn anh vừa bấm vẫn nằm ở "Anh chưa duyệt" với dấu "đã chọn, chờ gửi".',
+ apprN:n=>n+' anh đã duyệt',pendN:n=>n+' chưa duyệt',
+ apprT:'Anh đã duyệt',apprD:'Các giới hạn anh đã quyết, kèm việc C0 đã làm hoặc đang làm cho từng giới hạn.',
+ clsFilter:'Lọc theo tình trạng xử lý',clsAll:'Tất cả',
+ cls:{clarify:'Cần Owner làm rõ / chờ xác nhận',code:'Cần mã / bản phát hành',done:'Đã áp dụng / đã xong',design:'Giữ theo thiết kế',other:'Khác'},
+ clsD:{clarify:'C0 chưa đổi gì và đang chờ anh trả lời. Anh xác nhận bằng cách chọn lại ở hàng đó rồi gửi lên #88.',code:'Cần viết mã hoặc ra bản phát hành; thành PR, chờ QA độc lập rồi mới lên PROD.',done:'C0 đã áp dụng (xem bước trạng thái bên dưới để biết đã kiểm chứng độc lập chưa).',design:'Giữ nguyên theo thiết kế, không cần làm thêm.',other:'Chưa có ghi chú xử lý hoặc chưa phân loại được.'},
+ clsI:{clarify:'?',code:'‹›',done:'✓',design:'=',other:'…'},
+ waitT:n=>'Cần anh trả lời ('+n+')',askB:'Các hàng này C0 chưa đổi gì. Anh xác nhận bằng cách bấm "Đổi quyết định" ở hàng đó, chọn lại, rồi gửi lên #88.',askGo:id=>'Tới '+id,askRow:'Cần anh trả lời: chọn lại bên dưới để xác nhận.',
+ ownW:'Anh chọn',whenW:'lúc',reW:'xác nhận lại',dispW:'Xử lý',stagesW:'Tiến độ thực hiện',
+ chg:'Đổi quyết định',chgHide:'Đóng đổi quyết định',stagedMark:'đã chọn, chờ gửi',
+ apprStaged:n=>n+' lựa chọn đang chờ gửi (kể cả đổi quyết định). Bấm "Sao chép & mở #88" ở thanh cuối màn hình.',
+ apprEmpty:'Chưa có giới hạn nào anh đã duyệt.',pendEmpty:'Anh đã quyết hết các giới hạn.',apprShown:(a,b)=>'Hiển thị '+a+'/'+b+' hàng',
+ ownChoice:{'BỎ':'BỎ','GIỮ':'GIỮ'},
  tk:{keep:'GIỮ',off:'BỎ',val:'GIÁ TRỊ',rec:'KHUYẾN NGHỊ'},pendChip:s=>'chờ gửi: '+s,note:'Ghi chú dữ liệu'},
 en:{tab:'AI Studio limits',notice:'Once you have chosen, copy and paste to #88; C0 applies hot-changeable settings on its next run, while items that need code or a release become a PR and wait for independent QA before PROD.',
  pendNote:'A choice you click on this page is only "pending" (kept in your browser) and is not an approval until you paste the message on #88.',
@@ -1726,6 +1789,20 @@ en:{tab:'AI Studio limits',notice:'Once you have chosen, copy and paste to #88; 
  filT:'Filter and search',fKind:'Kind',fRec:'Recommendation',fState:'State',fMand:'Mandatory',fGroup:'Group',fAllGroups:'All groups',fAll:'All',fQ:'Search (id, title, value, group, location)',fTodo:'Only rows not chosen yet',fReset:'Clear filters',fToggle:'Filters',fActive:n=>n?' ('+n+')':'',
  shown:(a,b)=>'Showing '+a+'/'+b+' rows',openAll:'Open all groups',closeAll:'Collapse all groups',listT:'Limits',grpN:(a,b,c)=>(a===b?b+' rows':a+'/'+b+' rows')+(c?' · '+c+' chosen':''),noGroup:'Ungrouped',
  empty:'No AI Studio limit data yet.',noMatch:'No row matches the filters.',tabPend:n=>n+' choice'+(n===1?'':'s')+' pending',
+ subA:n=>'Approved by Owner ('+n+')',subP:n=>'Not yet decided ('+n+')',subLbl:'Two parts of the AI Studio limits tab',
+ moveNote:'A row moves to "Approved by Owner" only when the data has ownerChoice (C0 writes it after you paste the message on #88); a choice you just clicked stays in "Not yet decided" with a "chosen, pending" mark.',
+ apprN:n=>n+' approved',pendN:n=>n+' not decided',
+ apprT:'Approved by Owner',apprD:'Limits you have decided, with what C0 has done or is doing for each.',
+ clsFilter:'Filter by handling status',clsAll:'All',
+ cls:{clarify:'Needs Owner clarification / awaiting confirmation',code:'Needs code / a release',done:'Applied / done',design:'Kept by design',other:'Other'},
+ clsD:{clarify:'C0 changed nothing and is waiting for your answer. Confirm by choosing again on that row and sending it to #88.',code:'Needs code or a release; becomes a PR and waits for independent QA before PROD.',done:'C0 applied it (see the state steps below for whether it was independently verified).',design:'Kept as is by design; nothing more to do.',other:'No handling note yet or could not be classified.'},
+ clsI:{clarify:'?',code:'‹›',done:'✓',design:'=',other:'…'},
+ waitT:n=>'Waiting for your answer ('+n+')',askB:'C0 has changed nothing for these rows. Confirm by pressing "Change decision" on the row, choosing again, then sending it to #88.',askGo:id=>'Go to '+id,askRow:'Your answer needed: choose again below to confirm.',
+ ownW:'You chose',whenW:'at',reW:'reconfirmed',dispW:'Handling',stagesW:'Delivery progress',
+ chg:'Change decision',chgHide:'Close change decision',stagedMark:'chosen, pending',
+ apprStaged:n=>n+' choice'+(n===1?'':'s')+' pending (including changed decisions). Press "Copy & open #88" on the bar at the bottom of the screen.',
+ apprEmpty:'No limit has been approved by you yet.',pendEmpty:'You have decided every limit.',apprShown:(a,b)=>'Showing '+a+'/'+b+' rows',
+ ownChoice:{'BỎ':'OFF','GIỮ':'KEEP'},
  tk:{keep:'KEEP',off:'OFF',val:'VALUE',rec:'RECOMMENDED'},pendChip:s=>'pending: '+s,note:'Data note'}};
 function alGet(){let v=null,raw=null;try{raw=localStorage.getItem(ALKEY)}catch(e){raw=null;v=alMem}
  if(raw!==null&&raw!==undefined){try{v=JSON.parse(raw)}catch(e){v=null}}else if(v===null)v=alMem;
@@ -1741,6 +1818,20 @@ function alLevel(v){const s=alNorm(v);if(!s)return '';if(/^(cao|high|h$)/.test(s
 function alState(t){const s=alNorm(t.state),m={'de xuat':'proposed','da duyet':'approved','da ap dung':'applied','da kiem chung':'verified',reported:'applied'};
  if(AL_STATES.includes(s))return s;if(m[s])return m[s];
  const ap=t.applied&&typeof t.applied==='object'?alNorm(t.applied.state):'';if(ap==='verified')return 'verified';if(ap)return 'applied';return 'proposed'}
+/* a row the Owner has decided carries `ownerChoice`; rows without it are not decided yet */
+function alOwner(o){if(!o||typeof o!=='object'||Array.isArray(o))return null;
+ return {at:alFlat(o.at),choice:alFlat(o.choice),disp:alFlat(o.disposition),note:alFlat(o.dispositionNote),re:alFlat(o.reconfirmedAt)}}
+const AL_STG=['code','qa','deploy','on','verified'];
+function alStages(o){if(!o||typeof o!=='object'||Array.isArray(o))return [];return AL_STG.filter(k=>o[k]!=null&&alFlat(o[k])).map(k=>[k.toUpperCase(),alFlat(o[k])])}
+/* disposition text -> class (tolerant). Order matters: a clarification beats a code need. Missing text: applied/verified rows count as done, others fall to "other" */
+const AL_CLS=['clarify','code','done','design','other'];
+function alClass(it){const o=it.owner;if(!o)return '';const d=alNorm(o.disp);
+ if(!d)return it.state==='applied'||it.state==='verified'?'done':'other';
+ if(/lam ro|chua ro|cho owner|cho anh|xac nhan|clarif|confirm/.test(d))return 'clarify';
+ if(/theo thiet ke|by design/.test(d))return 'design';
+ if(/\bma\b|ban phat hanh|\benv\b|release|\bqa\b|\bsec\b|\bpr\b|can code/.test(d))return 'code';
+ if(/da ap dung|da o muc|da xong|hoan tat|da kiem chung|da dat|applied|done/.test(d))return 'done';
+ return 'other'}
 function alItems(){const a=payload&&payload.aiLimits;if(!a||!Array.isArray(a.items))return [];
  return a.items.filter(t=>t&&typeof t==='object'&&t.id!=null&&String(t.id)).map(t=>{const ef=Number(t.effortHours);
   const tri=v=>v===true?'true':v===false?'false':'unknown';
@@ -1749,7 +1840,8 @@ function alItems(){const a=payload&&payload.aiLimits;if(!a||!Array.isArray(a.ite
    kind:alFlat(t.kind)||'SETTING',unit:alFlat(t.unit),off:tri(t.offPossible),offHow:alFlat(t.offHow),offHowEn:alFlat(t.offHowEn),danger:alFlat(t.danger),dangerEn:alFlat(t.dangerEn),
    rec:alFlat(t.recommend),recVal:alFlat(t.recommendedValue),effort:t.effortHours!=null&&t.effortHours!==''&&Number.isFinite(ef)?ef:null,rel:tri(t.needsRelease),
    group:alFlat(t.group),dev:alScalar(t.dev),prod:alScalar(t.prod),impact:alLevel(alScalar(t.impact)),impactNote:alFlat(t.impactNote),risk:rl,riskRaw:rl?'':rk.slice(0,40),riskNote:alFlat(t.riskNote),
-   mand:t.mandatory===true,mandReason:alFlat(t.mandatoryReason),state:alState(t),stateNote:alFlat(t.stateNote)||alFlat(t.applied&&typeof t.applied==='object'?t.applied.note:'')}})}
+   mand:t.mandatory===true,mandReason:alFlat(t.mandatoryReason),state:alState(t),stateNote:alFlat(t.stateNote)||alFlat(t.applied&&typeof t.applied==='object'?t.applied.note:''),
+   owner:alOwner(t.ownerChoice),stages:alStages(t.stages)}})}
 /* money rows stay locked: unit money, or a title naming tiền / chi phí / ngân sách (a token "ngân sách ngữ cảnh" is not money). Kept as a safety net next to the data flag `mandatory` */
 function alMoney(it){const t=String(it.title||'').normalize('NFC');return it.unit==='money'||/tiền|chi phí/i.test(t)||/ngân sách(?!\s+ngữ cảnh)/i.test(t)}
 const alLocked=it=>it.mand===true||alMoney(it);
@@ -1788,11 +1880,11 @@ function renderLimits(){
  const T=ALT[lang]||ALT.vi,tr=lang==='vi',a=payload&&payload.aiLimits;
  document.getElementById('limitsTitle').textContent=T.tab;
  host.replaceChildren();
- const items=alItems();
- if(!a||!Array.isArray(a.items)||!items.length){host.append(el('p','owner-empty',T.empty));setLimitsBadge(0,T);return}
- const pick=(x,y)=>!tr&&y?y:x,byId=new Map(items.map(i=>[i.id,i]));
+ const all=alItems(),items=all.filter(i=>!i.owner),appr=all.filter(i=>i.owner);
+ if(!a||!Array.isArray(a.items)||!all.length){host.append(el('p','owner-empty',T.empty));setLimitsBadge(0,T);return}
+ const pick=(x,y)=>!tr&&y?y:x,byId=new Map(all.map(i=>[i.id,i]));
  [...alSel].forEach(id=>{if(!byId.has(id)||alLocked(byId.get(id))&&false)alSel.delete(id)});
- const lockedN=items.filter(alLocked).length;
+ const lockedN=all.filter(alLocked).length;
  const live=el('div','al-live');live.setAttribute('role','status');live.setAttribute('aria-live','polite');
  const notice=el('p','al-notice',T.notice);notice.id='alNotice';
  const pendNote=el('p','al-pendnote',T.pendNote);pendNote.id='alPendNote';
@@ -1807,17 +1899,17 @@ function renderLimits(){
  /* counts: state, kind, recommendation, mandatory */
  const cnt=document.createElement('section');cnt.className='al-counts';cnt.id='alCounts';cnt.setAttribute('aria-label',T.countsState+' / '+T.countsKind+' / '+T.countsRec);
  const mkCol=(title,id)=>{const d=document.createElement('div'),h=el('h3','',title),u=document.createElement('ul');u.id=id;d.append(h,u);cnt.append(d);return u};
- const kinds=[...AL_KINDS];items.forEach(i=>{if(!kinds.includes(i.kind))kinds.push(i.kind)});
- const recs=[...AL_RECS];items.forEach(i=>{if(i.rec&&!recs.includes(i.rec))recs.push(i.rec)});
+ const kinds=[...AL_KINDS];all.forEach(i=>{if(!kinds.includes(i.kind))kinds.push(i.kind)});
+ const recs=[...AL_RECS];all.forEach(i=>{if(i.rec&&!recs.includes(i.rec))recs.push(i.rec)});
  const uS=mkCol(T.countsState,'alCountState'),uPend=document.createElement('li');
- AL_STATES.forEach(s=>{const n=items.filter(i=>i.state===s).length;const li=document.createElement('li');li.dataset.state=s;const c=alChip('',AL_ST[s],AL_SI[s]);c.lastChild.textContent=T.states[s]+': ';c.append(el('b','',String(n)));li.append(c);uS.append(li)});
+ AL_STATES.forEach(s=>{const n=all.filter(i=>i.state===s).length;const li=document.createElement('li');li.dataset.state=s;const c=alChip('',AL_ST[s],AL_SI[s]);c.lastChild.textContent=T.states[s]+': ';c.append(el('b','',String(n)));li.append(c);uS.append(li)});
  uPend.id='alCountPend';uS.append(uPend);
  const uK=mkCol(T.countsKind,'alCountKind');
- kinds.forEach(k=>{const n=items.filter(i=>i.kind===k).length;if(!n)return;const li=document.createElement('li');li.dataset.kind=k;const c=alChip('',k.toLowerCase().replace(/[^a-z]/g,''),AL_KI[k]||'?');c.dataset.t='unk';c.lastChild.textContent=(T.kinds[k]||k)+': ';c.append(el('b','',String(n)));li.append(c);uK.append(li)});
+ kinds.forEach(k=>{const n=all.filter(i=>i.kind===k).length;if(!n)return;const li=document.createElement('li');li.dataset.kind=k;const c=alChip('',k.toLowerCase().replace(/[^a-z]/g,''),AL_KI[k]||'?');c.dataset.t='unk';c.lastChild.textContent=(T.kinds[k]||k)+': ';c.append(el('b','',String(n)));li.append(c);uK.append(li)});
  const uR=mkCol(T.countsRec,'alCountRec');
- recs.forEach(r=>{const n=items.filter(i=>i.rec===r).length;if(!n)return;const li=document.createElement('li');li.dataset.rec=r;const c=alChip('',AL_RT[r]||'unk',AL_RI[r]||'?');c.lastChild.textContent=(T.recs[r]||r)+': ';c.append(el('b','',String(n)));li.append(c);uR.append(li)});
+ recs.forEach(r=>{const n=all.filter(i=>i.rec===r).length;if(!n)return;const li=document.createElement('li');li.dataset.rec=r;const c=alChip('',AL_RT[r]||'unk',AL_RI[r]||'?');c.lastChild.textContent=(T.recs[r]||r)+': ';c.append(el('b','',String(n)));li.append(c);uR.append(li)});
  const uM=mkCol(T.countsMand,'alCountMand');
- [['yes',lockedN,T.mandY,'no','🔒'],['no',items.length-lockedN,T.mandN,'unk','○']].forEach(([k,n,t,tone,ic])=>{const li=document.createElement('li');li.dataset.mand=k;const c=alChip('',tone,k==='yes'?'■':'○');c.lastChild.textContent=t+': ';c.append(el('b','',String(n)));li.append(c);uM.append(li)});
+ [['yes',lockedN,T.mandY,'no','🔒'],['no',all.length-lockedN,T.mandN,'unk','○']].forEach(([k,n,t,tone,ic])=>{const li=document.createElement('li');li.dataset.mand=k;const c=alChip('',tone,k==='yes'?'■':'○');c.lastChild.textContent=t+': ';c.append(el('b','',String(n)));li.append(c);uM.append(li)});
  /* legend of the four states */
  const leg=document.createElement('section');leg.className='al-legend';leg.id='alLegend';leg.setAttribute('aria-labelledby','alLegT');
  const lh=el('h3','',T.legendT);lh.id='alLegT';const lo=document.createElement('ol');
@@ -1875,11 +1967,21 @@ function renderLimits(){
  const dT=el('h3','',''),dBody=el('div','al-cf-body');dT.id='alCfT';dBody.id='alCfBody';
  const dBtns=el('div','al-cf-btns'),dOk=el('button','al-btn al-prim','');dOk.type='button';dOk.id='alCfOk';const dNo=el('button','al-btn',T.cfCancel);dNo.type='button';dNo.id='alCfCancel';dBtns.append(dOk,dNo);
  dlg.append(dT,dBody,dBtns);
- host.append(live,notice,pendNote,metaP);if(dn)host.append(dn);host.append(call,cnt,leg,bar,fil,selBox,toolbar,groups,dock,dlg);
+ const aprBox=el('div','al-apprbox');
+ let alAF='';
+ const mvNote=el('p','al-movenote',T.moveNote);mvNote.id='alMoveNote';
+ const tl=el('div','al-subnav');tl.id='alSubTabs';tl.setAttribute('role','tablist');tl.setAttribute('aria-label',T.subLbl);
+ const mkSub=(k,t)=>{const b=el('button','al-stab',t);b.type='button';b.id='alsub-'+k;b.dataset.limitsSub=k;b.setAttribute('role','tab');b.setAttribute('aria-controls','alPanel-'+k);b.setAttribute('aria-selected','false');b.tabIndex=-1;
+  b.addEventListener('click',()=>setBoardView('limits',true,k));return b};
+ tl.append(mkSub('approved',T.subA(appr.length)),mkSub('pending',T.subP(items.length)));bindTablist(tl);
+ const mkPanel=k=>{const d=el('div','al-subpanel');d.id='alPanel-'+k;d.setAttribute('role','tabpanel');d.setAttribute('aria-labelledby','alsub-'+k);d.hidden=true;return d};
+ const pApr=mkPanel('approved'),pPen=mkPanel('pending');
+ pApr.append(aprBox);pPen.append(call,cnt,leg,bar,fil,selBox,toolbar,groups);
+ host.append(live,notice,pendNote,metaP);if(dn)host.append(dn);host.append(mvNote,tl,pApr,pPen,dock,dlg);
 
  const say=m=>{live.textContent='';setTimeout(()=>{live.textContent=m},30)};
- const stNow=()=>{const raw=alGet(),st=alClean(items,raw);if(JSON.stringify(st)!==JSON.stringify({c:raw.c,sent:raw.sent||''}))alSet(st);return st};
- const chosen=st=>items.filter(i=>st.c[i.id]).length;
+ const stNow=()=>{const raw=alGet(),st=alClean(all,raw);if(JSON.stringify(st)!==JSON.stringify({c:raw.c,sent:raw.sent||''}))alSet(st);return st};
+ const chosen=st=>all.filter(i=>st.c[i.id]).length;
  const lbl=k=>({keep:T.keep,off:T.offO,val:T.val,rec:T.rec})[k];
  const tag=(it,e)=>T.tk[e.k]+(e.k==='val'&&alVal(e.v)?' '+alVal(e.v)+(it.unit?' '+it.unit:''):'');
  const lvChip=(w,lv,raw)=>alChip(w+': '+(lv?T.lv[lv]:raw||T.unkLv),lv?AL_LVT[lv]:'unk',lv?AL_LVI[lv]:'?');
@@ -1888,22 +1990,9 @@ function renderLimits(){
  function steps(it){const ol=el('ol','al-steps'),idx=AL_STATES.indexOf(it.state);ol.setAttribute('aria-label',T.stepOf(idx+1,T.states[it.state]));
   AL_STATES.forEach((s,i)=>{const li=el('li','al-step');li.dataset.s=s;li.dataset.st=i<idx?'done':i===idx?'cur':'todo';if(i===idx)li.setAttribute('aria-current','step');
    const n=el('span','al-sn',i<idx?'✓':String(i+1));n.setAttribute('aria-hidden','true');li.append(n,el('span','al-sl',T.states[s]));ol.append(li)});return ol}
- function row(it,st){
-  const e=st.c[it.id],lk=alLocked(it),title=pick(it.title,it.titleEn);
-  const li=document.createElement('li');li.className='al-row';li.dataset.al=it.id;li.dataset.kind=it.kind;li.dataset.off=it.off;li.dataset.rec=it.rec;li.dataset.state=it.state;li.dataset.group=it.group;
-  if(it.impact)li.dataset.impact=it.impact;if(it.risk)li.dataset.risk=it.risk;
-  if(lk)li.dataset.locked='1';if(alMoney(it))li.dataset.money='1';if(e&&!lk){li.dataset.choice=e.k}
-  const topr=el('div','al-top');
-  const sw=el('label','al-selw');const cb=document.createElement('input');cb.type='checkbox';cb.className='al-sel';cb.checked=alSel.has(it.id);cb.dataset.alf='sel:'+it.id;cb.setAttribute('aria-label',T.selRow(it.id));
-  cb.addEventListener('change',()=>{if(cb.checked)alSel.add(it.id);else alSel.delete(it.id);refreshSel()});sw.append(cb);
-  const h4=el('h4','al-title',title);h4.id='al-t-'+it.id;topr.append(sw,el('span','al-id',it.id),h4);
-  li.append(topr);
-  if(it.prod||it.dev){const vs=el('div','al-vals');vs.append(vcell(T.vProd,it.prod),vcell(T.vDev,it.dev));li.append(vs)}
-  else{const cur=el('p','al-cur','');cur.append(el('span','',T.cur+': '),document.createTextNode(pick(it.current,it.currentEn)||'—'));li.append(cur)}
-  const meta=el('div','al-meta');meta.append(stateChip(it.state),lvChip(T.impactW,it.impact,''),lvChip(T.riskW,it.risk,it.riskRaw),alChip(T.recW+': '+(T.recs[it.rec]||it.rec||'—'),AL_RT[it.rec]||'unk',AL_RI[it.rec]||'?'),
-   alChip(T.kinds[it.kind]||it.kind,'unk',AL_KI[it.kind]||'?'),alChip(T.off[it.off],it.off==='true'?'off':it.off==='false'?'no':'unk',it.off==='true'?'✓':it.off==='false'?'✕':'?'));
-  li.append(meta);
-  if(lk){const lc=el('div','al-lock');const tx=el('span','');tx.append(el('b','',T.lockT(alLockWhy(it,T))),el('small','',T.lockD));lc.append(alLockIcon(),tx);li.append(lc)}
+ function choiceUi(it,st){
+  const e=st.c[it.id],lk=alLocked(it);let out;
+  if(lk){const lc=el('div','al-lock');const tx=el('span','');tx.append(el('b','',T.lockT(alLockWhy(it,T))),el('small','',T.lockD));lc.append(alLockIcon(),tx);out=lc}
   else{
    const fs=document.createElement('fieldset');fs.className='al-choice';const lg=document.createElement('legend');lg.className='al-lg';lg.textContent=T.choose(it.id);fs.append(lg);
    const opts=el('div','al-opts');const nm='al-r-'+it.id;
@@ -1931,8 +2020,9 @@ function renderLimits(){
     const u=el('button','al-link',T.undo);u.type='button';u.dataset.alf='undo:'+it.id;u.setAttribute('aria-label',T.undoRow(it.id));
     u.addEventListener('click',()=>{const s=stNow();delete s.c[it.id];s.sent='';alSet(s);rowRefresh(it,it.id+':keep');refreshBar();say(T.undoRow(it.id))});
     p.append(u);act.append(p);fs.append(act)}
-   li.append(fs)}
-  li.append(steps(it));if(it.stateNote&&it.state!=='proposed'){const sn=el('p','al-statenote',it.stateNote);li.append(sn)}
+   out=fs}
+  return out}
+ function detailUi(it){
   /* details */
   const open=alOpen.has(it.id),did='al-d-'+it.id;
   const xb=el('button','al-exp','');xb.type='button';xb.setAttribute('aria-expanded',String(open));xb.setAttribute('aria-controls',did);xb.dataset.alf='exp:'+it.id;xb.textContent=(open?'▾ ':'▸ ')+(open?T.hide:T.details);
@@ -1945,10 +2035,78 @@ function renderLimits(){
   const g=document.createElement('div');const dt=document.createElement('dt');dt.textContent=tr?'Bản phát hành':'Release';const dd=document.createElement('dd');dd.append(alChip(T.rel[it.rel],it.rel==='true'?'code':it.rel==='false'?'off':'unk',it.rel==='true'?'⚑':it.rel==='false'?'✓':'?'));g.append(dt,dd);dl.append(g);
   det.append(dl);
   xb.addEventListener('click',()=>{const o=!alOpen.has(it.id);if(o)alOpen.add(it.id);else alOpen.delete(it.id);xb.setAttribute('aria-expanded',String(o));xb.textContent=(o?'▾ ':'▸ ')+(o?T.hide:T.details);det.hidden=!o});
-  li.append(xb,det);
+  return [xb,det]}
+ function row(it,st){
+  const e=st.c[it.id],lk=alLocked(it),title=pick(it.title,it.titleEn);
+  const li=document.createElement('li');li.className='al-row';li.dataset.al=it.id;li.dataset.kind=it.kind;li.dataset.off=it.off;li.dataset.rec=it.rec;li.dataset.state=it.state;li.dataset.group=it.group;
+  if(it.impact)li.dataset.impact=it.impact;if(it.risk)li.dataset.risk=it.risk;
+  if(lk)li.dataset.locked='1';if(alMoney(it))li.dataset.money='1';if(e&&!lk){li.dataset.choice=e.k}
+  const topr=el('div','al-top');
+  const sw=el('label','al-selw');const cb=document.createElement('input');cb.type='checkbox';cb.className='al-sel';cb.checked=alSel.has(it.id);cb.dataset.alf='sel:'+it.id;cb.setAttribute('aria-label',T.selRow(it.id));
+  cb.addEventListener('change',()=>{if(cb.checked)alSel.add(it.id);else alSel.delete(it.id);refreshSel()});sw.append(cb);
+  const h4=el('h4','al-title',title);h4.id='al-t-'+it.id;topr.append(sw,el('span','al-id',it.id),h4);
+  li.append(topr);
+  if(it.prod||it.dev){const vs=el('div','al-vals');vs.append(vcell(T.vProd,it.prod),vcell(T.vDev,it.dev));li.append(vs)}
+  else{const cur=el('p','al-cur','');cur.append(el('span','',T.cur+': '),document.createTextNode(pick(it.current,it.currentEn)||'—'));li.append(cur)}
+  const meta=el('div','al-meta');meta.append(stateChip(it.state),lvChip(T.impactW,it.impact,''),lvChip(T.riskW,it.risk,it.riskRaw),alChip(T.recW+': '+(T.recs[it.rec]||it.rec||'—'),AL_RT[it.rec]||'unk',AL_RI[it.rec]||'?'),
+   alChip(T.kinds[it.kind]||it.kind,'unk',AL_KI[it.kind]||'?'),alChip(T.off[it.off],it.off==='true'?'off':it.off==='false'?'no':'unk',it.off==='true'?'✓':it.off==='false'?'✕':'?'));
+  li.append(meta);
+  if(e&&!lk){const sm=el('span','al-staged','✎ '+T.stagedMark);sm.dataset.staged='1';li.append(sm)}
+  li.append(choiceUi(it,st));
+  li.append(steps(it));if(it.stateNote&&it.state!=='proposed'){const sn=el('p','al-statenote',it.stateNote);li.append(sn)}
+  li.append(...detailUi(it));
   return li}
+ /* ===== sub-tab 1: rows the Owner has already decided (status + optional "Đổi quyết định") ===== */
+ const CLS_T={clarify:'no',code:'code',done:'off',design:'keep',other:'unk'};
+ const STG_T=v=>{const n=alNorm(v);return /khong ap dung|n\/a|not applicable/.test(n)?'keep':/mot phan|partial/.test(n)?'code':/^(chua|no|not)/.test(n)?'unk':/^(roi|xong|co|da|done|yes|ok)/.test(n)?'off':'unk'};
+ const choiceChip=o=>{const c=alNorm(o.choice),tone=c==='bo'?'off':c==='giu'?'keep':'raise';return alChip(T.ownW+': '+(T.ownChoice[o.choice]||o.choice||'—'),tone,c==='bo'?'∞':c==='giu'?'=':'●')};
+ function card(it,st){
+  const o=it.owner,e=st.c[it.id],lk=alLocked(it),cls=alClass(it),title=pick(it.title,it.titleEn);
+  const li=document.createElement('li');li.className='al-row al-appr';li.dataset.al=it.id;li.dataset.cls=cls;li.dataset.state=it.state;li.dataset.kind=it.kind;li.dataset.group=it.group;
+  if(cls==='clarify')li.classList.add('al-ask');if(lk)li.dataset.locked='1';if(e&&!lk)li.dataset.choice=e.k;
+  const topr=el('div','al-top al-top-n'),h4=el('h4','al-title',title);h4.id='al-t-'+it.id;topr.append(el('span','al-id',it.id),h4);li.append(topr);
+  const dec=el('div','al-dec');dec.append(choiceChip(o));
+  dec.append(el('span','al-when',T.whenW+' '+alTime(o.at)+' ICT'+(o.re?' · '+T.reW+' '+alTime(o.re)+' ICT':'')));li.append(dec);
+  if(o.disp||o.note){const dp=el('div','al-disp');
+   if(o.disp)dp.append(alChip(T.dispW+': '+o.disp,CLS_T[cls],T.clsI[cls]));
+   if(o.note)dp.append(el('p','al-dispnote',o.note));li.append(dp)}
+  if(cls==='clarify')li.append(el('p','al-askrow','? '+T.askRow));
+  if(it.prod||it.dev){const vs=el('div','al-vals');vs.append(vcell(T.vProd,it.prod),vcell(T.vDev,it.dev));li.append(vs)}
+  li.append(steps(it));
+  if(it.stages.length){const ul=el('ul','al-stages');ul.setAttribute('aria-label',T.stagesW);it.stages.forEach(([k,v])=>{const x=document.createElement('li');x.dataset.stage=k.toLowerCase();x.append(alChip(k+': '+v,STG_T(v),''));ul.append(x)});li.append(ul)}
+  if(e&&!lk){const sm=el('span','al-staged','✎ '+T.stagedMark);sm.dataset.staged='1';li.append(sm)}
+  const cid='al-c-'+it.id,open=!!e||alChg.has(it.id);
+  if(!e){const b=el('button','al-btn al-chg',open?T.chgHide:T.chg);b.type='button';b.dataset.alf='chg:'+it.id;b.setAttribute('aria-expanded',String(open));b.setAttribute('aria-controls',cid);
+   b.addEventListener('click',()=>{if(alChg.has(it.id))alChg.delete(it.id);else alChg.add(it.id);rowRefresh(it,alChg.has(it.id)?it.id+':keep':'chg:'+it.id)});li.append(b)}
+  if(open){const bx=el('div','al-chbox');bx.id=cid;bx.append(choiceUi(it,st));li.append(bx)}
+  li.append(...detailUi(it));
+  return li}
+ function renderAppr(){
+  const st=stNow();aprBox.replaceChildren();
+  const head=el('div','al-apprhead');head.append(el('h3','',T.apprT+' ('+appr.length+')'),el('p','al-hint',T.apprD));aprBox.append(head);
+  if(!appr.length){aprBox.append(el('p','al-empty',T.apprEmpty));return}
+  const byC=Object.fromEntries(AL_CLS.map(c=>[c,appr.filter(i=>alClass(i)===c)])),present=AL_CLS.filter(c=>byC[c].length);
+  if(alAF&&!byC[alAF].length)alAF='';
+  const fl=el('ul','al-clscounts');fl.id='alApprCounts';fl.setAttribute('aria-label',T.clsFilter);
+  [['',T.clsAll,appr.length],...present.map(c=>[c,T.cls[c],byC[c].length])].forEach(([c,t,n])=>{const li=document.createElement('li');li.dataset.cls=c||'all';
+   const b=el('button','al-gchip al-clsbtn','');b.type='button';b.dataset.cls=c;b.setAttribute('aria-pressed',String(alAF===c));b.append(el('span','',t+' '),el('b','',String(n)));
+   if(c==='clarify')b.classList.add('al-clsask');
+   b.addEventListener('click',()=>{alAF=c;renderAppr();const nb=aprBox.querySelector('.al-clsbtn[data-cls="'+c+'"]');if(nb)nb.focus()});li.append(b);fl.append(li)});
+  aprBox.append(fl);
+  const cn=byC.clarify.length;
+  if(cn){const ask=document.createElement('section');ask.className='al-askbox';ask.id='alApprAsk';ask.setAttribute('aria-labelledby','alApprAskT');
+   const h=el('h3','',T.waitT(cn));h.id='alApprAskT';const ul=el('ul','al-askids');
+   byC.clarify.forEach(i=>{const li=document.createElement('li'),b=el('button','al-btn',i.id);b.type='button';b.setAttribute('aria-label',T.askGo(i.id)+': '+pick(i.title,i.titleEn));
+    b.addEventListener('click',()=>{if(alAF&&alAF!=='clarify'){alAF='';renderAppr()}const r=host.querySelector('.al-appr[data-al="'+i.id+'"]');if(!r)return;r.scrollIntoView({block:'center'});const t=r.querySelector('[data-alf="chg:'+i.id+'"],[data-alf="'+i.id+':keep"]');if(t)t.focus()});li.append(b);ul.append(li)});
+   ask.append(h,el('p','',T.askB),ul);aprBox.append(ask)}
+  const stg=el('p','al-hint al-apprstaged','');stg.id='alApprStaged';aprBox.append(stg);
+  present.filter(c=>!alAF||alAF===c).forEach(c=>{const sec=document.createElement('section');sec.className='al-asec';sec.dataset.cls=c;sec.setAttribute('aria-labelledby','alAs-'+c);
+   const h=el('h3','',T.cls[c]+' ('+byC[c].length+')');h.id='alAs-'+c;sec.append(h,el('p','al-hint',T.clsD[c]));
+   const ul=el('ul','al-list');byC[c].forEach(i=>ul.append(card(i,st)));sec.append(ul);aprBox.append(sec)});
+  refreshApprStaged()}
+ function refreshApprStaged(){const n=alLines(all,stNow()).length,p=aprBox.querySelector('#alApprStaged');if(p)p.textContent=n?T.apprStaged(n):''}
  function focusKey(k){if(!k)return;const n=[...host.querySelectorAll('[data-alf]')].find(x=>x.dataset.alf===k);if(n)n.focus()}
- function rowRefresh(it,fk){const old=host.querySelector('[data-al="'+it.id+'"]');if(!old)return;old.replaceWith(row(it,stNow()));focusKey(fk);updateGroups()}
+ function rowRefresh(it,fk){const old=host.querySelector('[data-al="'+it.id+'"]');if(!old)return;old.replaceWith(it.owner?card(it,stNow()):row(it,stNow()));focusKey(fk);updateGroups()}
  const gKeys=[...gNames,...(items.some(i=>!i.group)?['']:[])],gLab=g=>g||T.noGroup;
  const visible=st=>items.filter(i=>alMatch(i,alF)&&!(alF.todo&&(alLocked(i)||st.c[i.id])));
  function updateGroups(){const st=stNow();groups.querySelectorAll('details.al-group').forEach(d=>{const k=d.dataset.group,all=items.filter(i=>i.group===k),vis=all.filter(i=>alMatch(i,alF)),c=all.filter(i=>st.c[i.id]).length;d.querySelector('.al-g-n').textContent=T.grpN(vis.length,all.length,c)})}
@@ -1961,7 +2119,7 @@ function renderLimits(){
    const sm=document.createElement('summary');sm.append(el('span','al-g-t',gLab(k)),el('span','al-g-n',''));d.append(sm);
    const ul=el('ul','al-list');v.forEach(i=>ul.append(row(i,st)));d.append(ul);
    d.addEventListener('toggle',()=>{if(d.open)alShut.delete(k);else alShut.add(k);syncAll()});groups.append(d)});
-  if(!vis.length)groups.append(el('p','al-empty',T.noMatch));
+  if(!vis.length)groups.append(el('p','al-empty',items.length?T.noMatch:T.pendEmpty));
   shownEl.textContent=T.shown(vis.length,items.length);updateGroups();syncAll();syncFilterUi();refreshSel()}
  const allOpen=()=>{const ds=[...groups.querySelectorAll('details.al-group')];return ds.length>0&&ds.every(d=>d.open)};
  const syncAll=()=>{bAll.textContent=allOpen()?T.closeAll:T.openAll};
@@ -1973,19 +2131,19 @@ function renderLimits(){
   const todoN=items.filter(i=>!alLocked(i)&&!st.c[i.id]).length,offN=items.filter(alBulkOff).length;
   bSTodo.textContent=T.selTodo(todoN);bSOff.textContent=T.selOffs(offN);bSTodo.disabled=!todoN;bSOff.disabled=!offN;bSNone.disabled=!selN;
   dSel.textContent=T.selN(selN);bRec.disabled=bKeep.disabled=bOff.disabled=!selN;
-  dB.hidden=!selN;syncDock()}
- function syncDock(){const n=alLines(items,stNow()).length,selN=[...alSel].filter(id=>byId.has(id)).length;
-  dInfo.textContent=n?T.pending(n):T.none;dSend.disabled=!n;dA.hidden=!n&&!selN&&false;dock.hidden=!n&&!selN;dock.classList.toggle('has-pending',n>0)}
+  dB.hidden=!selN||limitsSub!=='pending';syncDock()}
+ function syncDock(){const n=alLines(all,stNow()).length,selN=[...alSel].filter(id=>byId.has(id)).length;
+  dInfo.textContent=n?T.pending(n):T.none;dSend.disabled=!n;dA.hidden=!n&&!selN&&false;dock.hidden=!n&&!(selN&&limitsSub==='pending');dock.classList.toggle('has-pending',n>0)}
  function refreshBar(){
-  const st=stNow(),lines=alLines(items,st),n=lines.length,msg=alMessage(items,st),body=lines.join('\n'),sentNow=!!st.sent&&st.sent===body;
-  const inc=items.filter(i=>st.c[i.id]&&st.c[i.id].k==='val'&&!alVal(st.c[i.id].v)).length;
+  const st=stNow(),lines=alLines(all,st),n=lines.length,msg=alMessage(all,st),body=lines.join('\n'),sentNow=!!st.sent&&st.sent===body;
+  const inc=all.filter(i=>st.c[i.id]&&st.c[i.id].k==='val'&&!alVal(st.c[i.id].v)).length;
   info.textContent=(n?T.pending(n)+(sentNow?' · '+T.sent:''):T.none)+(inc?' · '+T.incomplete(inc):'');bar.classList.toggle('has-pending',n>0);bar.setAttribute('aria-label',info.textContent);
   ta.value=msg||T.previewEmpty;bSend.disabled=bCopy.disabled=!n;bUndo.disabled=!Object.keys(st.c).length;hint.textContent=n?(sentNow?T.copied:T.hintPending):'';
   const pc=document.getElementById('alCountPend');if(pc){pc.replaceChildren();const c=alChip(T.pendCount(n),'unk','…');c.lastChild.textContent=T.pendCount(n);pc.append(c)}
-  metaP.textContent=T.total(items.length,chosen(st))+(a.updatedAt?' · '+T.updated+': '+alTime(a.updatedAt)+' '+T.tz:'');
-  updateGroups();syncDock();setLimitsBadge(n,T)}
- const copy=async()=>{const st=stNow(),m=alMessage(items,st);if(!m)return false;
-  try{await navigator.clipboard.writeText(m);const s=stNow();s.sent=alLines(items,s).join('\n');alSet(s);const aid=document.activeElement?.id;refreshBar();hint.textContent=T.copied;if(aid&&document.getElementById(aid))document.getElementById(aid).focus();return true}
+  metaP.textContent=T.total(all.length,chosen(st))+(appr.length?' · '+T.apprN(appr.length)+' · '+T.pendN(items.length):'')+(a.updatedAt?' · '+T.updated+': '+alTime(a.updatedAt)+' '+T.tz:'');
+  updateGroups();syncDock();refreshApprStaged();setLimitsBadge(n,T)}
+ const copy=async()=>{const st=stNow(),m=alMessage(all,st);if(!m)return false;
+  try{await navigator.clipboard.writeText(m);const s=stNow();s.sent=alLines(all,s).join('\n');alSet(s);const aid=document.activeElement?.id;refreshBar();hint.textContent=T.copied;if(aid&&document.getElementById(aid))document.getElementById(aid).focus();return true}
   catch(e){ta.focus();ta.select();hint.textContent=T.copyFail;return false}};
  const doSend=()=>{window.open(ODREPO,'_blank','noopener');copy()};
  bSend.addEventListener('click',doSend);dSend.addEventListener('click',doSend);
@@ -2021,7 +2179,7 @@ function renderLimits(){
  iQ.addEventListener('input',()=>{alF.q=iQ.value;renderGroups()});cT.addEventListener('change',()=>{alF.todo=cT.checked;renderGroups()});
  bTog.addEventListener('click',()=>{const o=!panel.classList.contains('open');panel.classList.toggle('open',o);bTog.setAttribute('aria-expanded',String(o))});
  bReset.addEventListener('click',()=>{alF.kind=alF.rec=alF.group=alF.state=alF.mand=alF.q='';alF.todo=false;sK.value=sR.value=sS.value=sM.value=iQ.value='';cT.checked=false;renderGroups();iQ.focus()});
- renderGroups();refreshBar()}
+ renderAppr();renderGroups();refreshBar();alOnSub=()=>refreshSel();syncLimitsSub()}
 function setLimitsBadge(n,T){const b=document.getElementById('limitsTabCount'),t=document.getElementById('tab-limits');if(!b||!t)return;b.hidden=!n;b.textContent=n?String(n):'';t.setAttribute('aria-label',n?T.tab+': '+T.tabPend(n):T.tab)}
 async function load(){try{const r=await fetch('status.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);payload=await r.json();if(!Array.isArray(payload.features)||!Array.isArray(payload.releases))throw Error('Sai định dạng dữ liệu');let d=new Date(payload.asOf);const updatedLabel=txt('updated')+': '+(isNaN(d)?payload.asOf:d.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}))+' · Asia/Ho_Chi_Minh';els.update.title=updatedLabel;els.update.setAttribute('aria-label',updatedLabel);document.getElementById('updatedTime').textContent=isNaN(d)?'--:--':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);els.stats.replaceChildren(stat('R1',txt('r1'),txt('released'),'ok'),stat(txt('prodOn'),payload.features.filter(isFeatureOn).length,txt('uat'),'ok'),stat('R2',payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('r2Done'):txt('processing'),payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('verified'):txt('pending'),'ok'),stat(txt('features'),payload.features.length,txt('interactive')));render();renderProgress();renderRoadmap();renderProd();renderOwnerActions();renderProcess();renderHourly();renderLimits();if(!window.__odTab&&(payload.ownerActions?.items||[]).some(x=>Array.isArray(x.options)&&x.options.length&&!['DONE','CLOSED'].includes(String(x.status||'').toUpperCase()))&&!location.hash){window.__odTab=1;document.getElementById('tab-owner')?.click()}}catch(e){els.update.title=txt('readError');els.update.setAttribute('aria-label',txt('readError'));document.getElementById('updatedTime').textContent='--:--';els.update.classList.add('has-error');els.stats.replaceChildren(stat(txt('error'),'—',txt('errorHint')));els.tbody.replaceChildren();const tr=el('tr'),td=el('td','empty','Không đọc được status.json. Nếu đang mở file://, hãy chạy local web server hoặc host nội bộ. '+e.message);td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
 

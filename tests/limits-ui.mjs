@@ -411,24 +411,37 @@ await T('29 existing tabs still switch correctly in the new order (6 panels, one
   await p.evaluate(() => { location.hash = '#limits'; }); await p.waitForFunction(() => !document.getElementById('view-limits').hidden);
   await p._ctx.close();
 });
-await T('30 real status.json aiLimits: all rows render (69 once enriched), every mandatory/money row locked, group chips, bulk never touches locked or non-offPossible rows, counts consistent', async () => {
-  current = JSON.stringify(Object.assign({}, base, {aiLimits: REAL})); const p = await open();
-  const n = REAL.items.length; eq(await p.locator('.al-row').count(), n); ok(n === 69, 'expected 69 rows, got ' + n);
-  const locked = await p.locator('.al-row[data-locked="1"]').evaluateAll(l => l.map(e => e.dataset.al));
-  const mand = REAL.items.filter(i => i.mandatory === true).map(i => i.id);
-  for (const id of mand) ok(locked.includes(id), 'mandatory row locked ' + id);
-  for (const id of locked) ok(mand.includes(id) || /tiền|chi phí|ngân sách/i.test(REAL.items.find(i => i.id === id).title) || REAL.items.find(i => i.id === id).unit === 'money', 'unexpected lock ' + id);
-  const enriched = REAL.items.every(i => i.group && i.state && 'prod' in i && 'dev' in i && i.impact && i.risk && typeof i.mandatory === 'boolean');
-  if (enriched) {
-    eq(await p.locator('#alGroupChips .al-gchip').count(), 11, '10 groups + all'); eq(await p.locator('details.al-group').count(), 10);
-    eq(await p.locator('#alCountState li[data-state] b').allInnerTexts(), ['proposed', 'approved', 'applied', 'verified'].map(s => String(REAL.items.filter(i => i.state === s).length)));
-    for (const id of ['L01', 'L02', 'L09', 'L10', 'L11']) { eq(await row(p, id).getAttribute('data-state'), 'applied', id); ok(/REPORTED|báo/i.test(await row(p, id).innerText() + (await row(p, id).locator('.al-detail').textContent())), 'stateNote ' + id); }
-  }
-  await p.locator('#alSelAll').check(); await p.locator('#alBulkOff').click(); await p.locator('#alCfOk').click(); const l = await lines(p);
-  for (const x of l) { const id = x.slice(2, 5); const it = REAL.items.find(i => i.id === id); ok(it.offPossible === true && !locked.includes(id), 'bulk off included ' + id); }
-  eq(l.length, REAL.items.filter(i => i.offPossible === true && !locked.includes(i.id)).length);
-  await p.locator('#alUndoAll').click(); await p.locator('#alSelAll').check(); await p.locator('#alBulkRec').click(); await p.locator('#alCfOk').click(); eq((await lines(p)).length, n - locked.length);
-  await shot(p, 'limits-real-1280'); await p._ctx.close(); current = withLimits;
+await T('30 real status.json aiLimits: 69 rows split into decided (ownerChoice) and not-yet cards, every mandatory/money row locked, group chips, bulk never touches locked or non-offPossible rows, counts consistent', async () => {
+  current = JSON.stringify(Object.assign({}, base, {aiLimits: REAL}));
+  try {
+    const p = await open();
+    const n = REAL.items.length, dec = REAL.items.filter(i => i.ownerChoice), pend = REAL.items.filter(i => !i.ownerChoice);
+    ok(n === 69, 'expected 69 rows, got ' + n);
+    eq(await p.locator('#alGroups .al-row').count(), pend.length); eq(await p.locator('.al-appr').count(), dec.length);
+    eq((await p.locator('#alsub-approved').innerText()).trim(), `Anh đã duyệt (${dec.length})`); eq((await p.locator('#alsub-pending').innerText()).trim(), `Anh chưa duyệt (${pend.length})`);
+    const locked = await p.locator('#alGroups .al-row[data-locked="1"]').evaluateAll(l => l.map(e => e.dataset.al));
+    const mand = pend.filter(i => i.mandatory === true).map(i => i.id);
+    for (const id of mand) ok(locked.includes(id), 'mandatory row locked ' + id);
+    for (const id of locked) ok(mand.includes(id) || /tiền|chi phí|ngân sách/i.test(REAL.items.find(i => i.id === id).title) || REAL.items.find(i => i.id === id).unit === 'money', 'unexpected lock ' + id);
+    const enriched = REAL.items.every(i => i.group && i.state && 'prod' in i && 'dev' in i && i.impact && i.risk && typeof i.mandatory === 'boolean');
+    if (enriched) {
+      const groups = [...new Set(pend.map(i => i.group))];
+      eq(await p.locator('#alGroupChips .al-gchip').count(), groups.length + 1, 'groups of the not-yet rows + all'); eq(await p.locator('details.al-group').count(), groups.length);
+      eq(await p.locator('#alCountState li[data-state] b').allInnerTexts(), ['proposed', 'approved', 'applied', 'verified'].map(s => String(REAL.items.filter(i => i.state === s).length)));
+    }
+    // every decided row of the real data lands in exactly one class bucket and the class counts add up
+    const cls = await p.locator('#alApprCounts li:not([data-cls="all"]) b').allInnerTexts(); eq(cls.reduce((a, b) => a + Number(b), 0), dec.length);
+    // bulk actions: only undecided, non-locked rows; when every undecided row is locked the dialog says there is nothing valid and OK is disabled
+    const offable = pend.filter(i => i.offPossible === true && !locked.includes(i.id)), recable = pend.filter(i => !locked.includes(i.id));
+    await p.locator('#alSelAll').check(); await p.locator('#alBulkOff').click();
+    if (offable.length) {
+      await p.locator('#alCfOk').click(); const l = await lines(p);
+      for (const x of l) { const id = x.slice(2, 5); const it = REAL.items.find(i => i.id === id); ok(it.offPossible === true && !locked.includes(id) && !it.ownerChoice, 'bulk off included ' + id); }
+      eq(l.length, offable.length); await p.locator('#alUndoAll').click(); await p.locator('#alSelAll').check(); await p.locator('#alBulkRec').click();
+    } else { eq(await p.locator('#alCfOk').isDisabled(), true, 'nothing valid to bulk-off'); await p.locator('#alCfCancel').click(); await p.locator('#alBulkRec').click(); }
+    if (recable.length) { await p.locator('#alCfOk').click(); eq((await lines(p)).length, recable.length); } else { eq(await p.locator('#alCfOk').isDisabled(), true, 'nothing valid to bulk-rec'); await p.locator('#alCfCancel').click(); eq(await p.locator('#alDockInfo').innerText(), 'Chưa có lựa chọn nào chờ gửi'); }
+    await shot(p, 'limits-real-1280'); await p._ctx.close();
+  } finally { current = withLimits; }
 });
 await T('31 [390] mobile: tab strip is ONE scrollable row with all 6 tabs reachable and >= 44px; filters collapsed in a panel (search stays visible); rows are cards with >= 44px targets', async () => {
   const p = await open({w: 390, h: 844});
@@ -497,7 +510,153 @@ await T('35 [light/dark x desktop/390] axe-core: 0 serious/critical on the limit
   }
   ok(!out.length, out.join(' | '));
 });
-await T('36 no console errors during the whole run', async () => { eq(consoleErrors, []); });
+// ---------------------------------------------------------------------------------------------
+// Two sub-tabs: "Anh đã duyệt" (rows with ownerChoice) / "Anh chưa duyệt" (the decision UI above)
+// Fixture: tests/fixtures/limits.json (14 undecided rows) + tests/fixtures/limits-decided.json (9 rows with ownerChoice:
+// applied x3 incl. one without a disposition, needs-code x2, needs-clarification x2, by-design x1 (mandatory), unknown text x1).
+const DEC = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/limits-decided.json'), 'utf8'));
+const withMixed = JSON.stringify(Object.assign({}, base, {aiLimits: Object.assign({}, AL, {items: [...AL.items, ...DEC.items]})}));
+const withAllDecided = JSON.stringify(Object.assign({}, base, {aiLimits: Object.assign({}, AL, {items: DEC.items})}));
+const TM = (name, fn, data = withMixed) => T(name, async () => { current = data; try { return await fn(); } finally { current = withLimits; } });
+const sub = p => p.evaluate(() => document.querySelector('#alSubTabs [aria-selected="true"]').dataset.limitsSub);
+const pids = p => p.locator('#alGroups .al-row').evaluateAll(l => l.map(e => e.dataset.al));
+const apprIds = p => p.locator('.al-appr').evaluateAll(l => l.map(e => e.dataset.al));
+const CARD = (p, id) => p.locator(`.al-appr[data-al="${id}"]`);
+const small = (p, scope) => p.evaluate(s => [...document.querySelectorAll(`${s} button,${s} input:not([type=checkbox]),${s} select,${s} textarea,${s} summary`)].filter(e => { const r = e.getBoundingClientRect(); return r.width && e.offsetParent !== null && !e.closest('.al-opt') && (r.height < 43.5); }).map(e => (e.id || e.className || e.tagName) + ':' + Math.round(e.getBoundingClientRect().height)), scope);
+
+await TM('37 sub-tabs: tablist/tab/tabpanel roles, counts in labels (VI + EN), default = not-yet list, hash routes #limits/approved and #limits/pending, bad sub falls back, remembered in sessionStorage', async () => {
+  let p = await open({hash: '#limits/approved'});
+  const i = await p.evaluate(() => ({list: document.getElementById('alSubTabs').getAttribute('role'), tabs: [...document.querySelectorAll('#alSubTabs [role=tab]')].map(t => [t.dataset.limitsSub, t.textContent.trim(), t.getAttribute('aria-selected'), t.tabIndex, t.getAttribute('aria-controls')]),
+    panels: ['approved', 'pending'].map(k => { const e = document.getElementById('alPanel-' + k); return [e.getAttribute('role'), e.hidden, e.getAttribute('aria-labelledby')]; })}));
+  eq(i.list, 'tablist'); eq(i.tabs, [['approved', 'Anh đã duyệt (9)', 'true', 0, 'alPanel-approved'], ['pending', 'Anh chưa duyệt (14)', 'false', -1, 'alPanel-pending']]);
+  eq(i.panels, [['tabpanel', false, 'alsub-approved'], ['tabpanel', true, 'alsub-pending']]);
+  eq(await p.evaluate(() => location.hash), '#limits/approved'); eq(await p.evaluate(() => sessionStorage.getItem('xw-al-sub')), 'approved');
+  ok(await p.locator('#alMoveNote').innerText().then(t => /ownerChoice/.test(t) && /chờ gửi/.test(t)), 'one sentence about when a row moves');
+  await p.locator('#lang').click();
+  eq(await p.locator('#alsub-approved').innerText(), 'Approved by Owner (9)'); eq(await p.locator('#alsub-pending').innerText(), 'Not yet decided (14)'); await p.locator('#lang').click();
+  await p.evaluate(() => { location.hash = '#limits/pending'; }); await p.waitForFunction(() => document.getElementById('alPanel-approved').hidden);
+  eq(await sub(p), 'pending'); eq(await p.locator('#alPanel-pending').isVisible(), true); await p._ctx.close();
+  p = await open({hash: '#limits'}); eq(await sub(p), 'pending'); ok((await p.evaluate(() => location.hash)).startsWith('#limits'), 'hash'); await p._ctx.close();
+  p = await open({hash: '#limits/zzz'}); eq(await sub(p), 'pending'); await p._ctx.close();
+  p = await open({hash: '#limits/approved'}); await p.evaluate(() => { location.hash = '#roadmap/1'; }); await p.evaluate(() => { location.hash = '#limits'; }); await p.waitForFunction(() => !document.getElementById('view-limits').hidden);
+  eq(await sub(p), 'approved', 'remembered after leaving the tab'); eq(await p.evaluate(() => location.hash), '#limits/approved');
+  await p.reload(); await p.waitForSelector('#alSubTabs'); eq(await sub(p), 'approved', 'remembered after reload (sessionStorage)'); await p._ctx.close();
+});
+await TM('38 sub-tab keyboard: Arrow/Home/End move selection + focus (roving tabindex); click updates hash; sessionStorage failure does not break routing', async () => {
+  const p = await open({hash: '#limits/pending'}); await p.locator('#alsub-pending').focus();
+  await p.keyboard.press('ArrowLeft'); eq(await sub(p), 'approved'); eq(await p.evaluate(() => document.activeElement.id), 'alsub-approved'); eq(await p.evaluate(() => location.hash), '#limits/approved');
+  await p.keyboard.press('ArrowRight'); eq(await sub(p), 'pending'); await p.keyboard.press('Home'); eq(await sub(p), 'approved'); await p.keyboard.press('End'); eq(await sub(p), 'pending');
+  await p.locator('#alsub-approved').click(); eq(await p.evaluate(() => location.hash), '#limits/approved');
+  eq(await p.evaluate(() => [...document.querySelectorAll('#alSubTabs [role=tab]')].map(t => t.tabIndex)), [0, -1]); await p._ctx.close();
+  const q = await open({hash: '#limits'}); await q.evaluate(() => { Storage.prototype.getItem = () => { throw new Error('x'); }; Storage.prototype.setItem = function () { throw new Error('x'); }; });
+  await q.locator('#alsub-approved').click(); eq(await sub(q), 'approved'); eq(await q.locator('#alPanel-approved').isVisible(), true); await q._ctx.close();
+});
+await TM('39 class mapping is tolerant: real wording maps to the 4 classes, unknown text and missing text fall back (Khác / done by state)', async () => {
+  const p = await open({hash: '#limits/approved'});
+  const m = await p.evaluate(() => { const c = (d, state = 'proposed') => alClass({owner: {disp: d}, state}); return {
+    done: ['Đã áp dụng (mức tối đa)', 'Đã áp dụng ở mức tối đa hữu hạn', 'Đã ở mức tối đa', 'ĐÃ ÁP DỤNG'].map(x => c(x)),
+    code: ['Cần mã', 'Cần mã/bản phát hành', 'Cần mã (ATT-b1/b2)', 'Cần mã (T22-C)', 'Cần mã (đường ATT-e)', 'Cần mã + QA/SEC', 'Cần env/bản phát hành'].map(x => c(x)),
+    clarify: ['Cần làm rõ — chưa đổi', 'GIỮ — chờ Owner xác nhận', 'Chưa rõ — chờ Owner xác nhận'].map(x => c(x)),
+    design: ['Giữ theo thiết kế', 'giu theo thiet ke'].map(x => c(x)), other: [c('Đang xem xét lại'), c('', 'proposed'), c(undefined, 'approved')], byState: [c('', 'applied'), c('', 'verified')], none: alClass({owner: null, state: 'applied'})}; });
+  eq(m.done, Array(4).fill('done')); eq(m.code, Array(7).fill('code')); eq(m.clarify, Array(3).fill('clarify')); eq(m.design, ['design', 'design']); eq(m.other, ['other', 'other', 'other']); eq(m.byState, ['done', 'done']); eq(m.none, '');
+  const cls = await p.locator('.al-appr').evaluateAll(l => Object.fromEntries(l.map(e => [e.dataset.al, e.dataset.cls])));
+  eq(Object.entries(cls).sort(), Object.entries({L15: 'done', L16: 'done', L22: 'done', L17: 'code', L18: 'code', L19: 'clarify', L20: 'clarify', L21: 'design', L23: 'other'}).sort());
+  eq(await p.locator('#alApprCounts li').evaluateAll(l => l.map(e => e.dataset.cls + '=' + e.querySelector('b').textContent)), ['all=9', 'clarify=2', 'code=2', 'done=3', 'design=1', 'other=1']);
+  eq(await p.locator('.al-asec h3').allInnerTexts(), ['Cần Owner làm rõ / chờ xác nhận (2)', 'Cần mã / bản phát hành (2)', 'Đã áp dụng / đã xong (3)', 'Giữ theo thiết kế (1)', 'Khác (1)']);
+  await p.locator('#alApprCounts button[data-cls="code"]').click(); eq(await apprIds(p), ['L17', 'L18']); eq(await p.locator('#alApprCounts button[data-cls="code"]').getAttribute('aria-pressed'), 'true');
+  await p.locator('#alApprCounts button[data-cls="done"]').click(); eq(await apprIds(p), ['L15', 'L16', 'L22']);
+  await p.locator('#alApprCounts button[data-cls=""]').click(); eq((await apprIds(p)).length, 9); await p._ctx.close();
+});
+await TM('40 approved card shows id, title, the Owner choice + date (+reconfirm), DISPOSITION chip + note, 4-step state, stages line, PROD value and DEV code default; all data as text', async () => {
+  const p = await open({hash: '#limits/approved'}); const c = CARD(p, 'L15');
+  eq(await c.locator('.al-id').innerText(), 'L15'); eq(await c.locator('.al-title').innerText(), 'Hàng đã áp dụng A');
+  const dec = await c.locator('.al-dec').innerText(); ok(/Anh chọn: BỎ/.test(dec) && /12\/11\/2026/.test(dec) && /11:29/.test(dec) && /xác nhận lại/.test(dec) && /13:17/.test(dec), dec);
+  const dp = await c.locator('.al-disp').innerText(); ok(/Xử lý: Đã áp dụng \(mức tối đa\)/.test(dp) && /Đặt 0 bằng cài đặt nóng/.test(dp), dp);
+  eq(await c.locator('.al-step').evaluateAll(l => l.map(e => e.dataset.st)), ['done', 'done', 'cur', 'todo']);
+  eq(await c.locator('.al-stages li').allInnerTexts(), ['CODE: không áp dụng', 'QA: chưa', 'DEPLOY: đã xong', 'ON: đã bật', 'VERIFIED: chưa']);
+  const v = await c.locator('.al-vals').innerText(); ok(/Giá trị PROD L15: 500/.test(v) && /Mặc định trong mã L15: 50/.test(v), v);
+  eq(await CARD(p, 'L22').locator('.al-disp').count(), 0, 'no disposition -> no chip'); eq(await CARD(p, 'L22').locator('.al-stages').count(), 0, 'no stages -> no line');
+  ok(/<b>x<\/b>/.test(await CARD(p, 'L18').innerText()) && !(await CARD(p, 'L18').locator('.al-dispnote b').count()), 'note is text, not HTML');
+  await c.locator('.al-exp').click(); ok(/Ghi chú trạng thái L15/.test(await c.locator('.al-detail').innerText()), 'details open'); await p._ctx.close();
+});
+await TM('41 "Cần Owner làm rõ / chờ xác nhận" is visually prominent and calls for an answer: red banner with the ids, bordered cards, "Cần anh trả lời" line; the id button jumps to the row', async () => {
+  const p = await open({hash: '#limits/approved'});
+  const t = await p.locator('#alApprAsk').innerText(); ok(/Cần anh trả lời \(2\)/.test(t) && /chọn lại/.test(t) && /#88/.test(t) && /L19/.test(t) && /L20/.test(t), t);
+  const b = await p.evaluate(() => ({ask: getComputedStyle(document.querySelector('.al-appr[data-cls=clarify]')).borderTopWidth, other: getComputedStyle(document.querySelector('.al-appr[data-cls=code]')).borderTopWidth, box: getComputedStyle(document.getElementById('alApprAsk')).borderTopWidth}));
+  eq([b.ask, b.other, b.box], ['2px', '1px', '2px']);
+  eq(await p.locator('.al-appr[data-cls=clarify] .al-askrow').count(), 2); eq(await p.locator('.al-appr[data-cls=code] .al-askrow').count(), 0);
+  await p.locator('#alApprAsk button', {hasText: 'L20'}).click(); eq(await p.evaluate(() => document.activeElement.dataset.alf), 'chg:L20');
+  eq(await p.locator('.al-appr').first().getAttribute('data-cls'), 'clarify', 'clarify rows come first'); await p._ctx.close();
+}, withMixed);
+await TM('42 changing a decision from the approved list reuses the staging: "Đổi quyết định" opens the 4 choices, a staged choice shows "đã chọn, chờ gửi", the dock + message use the same format, the row stays approved, counts do not move', async () => {
+  const p = await open({hash: '#limits/approved'}); const c = CARD(p, 'L15');
+  eq(await c.locator('.al-chbox').count(), 0); await c.locator('.al-chg').click(); eq(await c.locator('.al-chg').getAttribute('aria-expanded'), 'true'); eq(await c.locator('input[type=radio]').count(), 4);
+  await pick(p, 'L15', 'keep');
+  eq(await c.locator('.al-staged').innerText(), '✎ đã chọn, chờ gửi'); eq(await c.getAttribute('data-choice'), 'keep');
+  ok(/Chờ gửi: 1 lựa chọn/.test(await p.locator('#alDockInfo').innerText()), 'dock'); ok(/1 lựa chọn đang chờ gửi/.test(await p.locator('#alApprStaged').innerText()), 'approved note');
+  eq(await lines(p), ['- L15: GIỮ']); eq((await p.locator('#tab-limits').getAttribute('aria-label')), 'Giới hạn AI Studio: 1 lựa chọn chờ gửi');
+  await pick(p, 'L15', 'val'); await row(p, 'L15').locator('#al-v-L15').fill('7'); await row(p, 'L15').locator('#al-n-L15').fill('lý do'); eq(await lines(p), ['- L15: GIÁ TRỊ 7 count // lý do']);
+  await pick(p, 'L15', 'off'); eq(await lines(p), ['- L15: BỎ // lý do']); await pick(p, 'L15', 'rec'); eq(await lines(p), ['- L15: KHUYẾN NGHỊ // lý do']);
+  eq(await apprIds(p), ['L19', 'L20', 'L17', 'L18', 'L15', 'L16', 'L22', 'L21', 'L23']); eq((await pids(p)).sort(), AL.items.map(i => i.id).sort(), 'not-yet list unchanged');
+  eq((await p.locator('#alsub-approved').innerText()).trim(), 'Anh đã duyệt (9)'); eq((await p.locator('#alsub-pending').innerText()).trim(), 'Anh chưa duyệt (14)');
+  await p.locator('#alDockSend').click(); eq(await p.evaluate(() => window.__clip.at(-1)), (await msg(p)));
+  // same staged row is not listed in the not-yet list and the not-yet bar carries it
+  await p.locator('#alsub-pending').click(); eq(await p.locator('#alGroups [data-al="L15"]').count(), 0); ok(/^## \[OWNER\]/.test(await msg(p)), 'message on the not-yet tab');
+  await p.locator('#alsub-approved').click(); await c.locator('.al-link').click(); eq(await c.locator('.al-staged').count(), 0); eq(await msg(p), 'x'.length ? await msg(p) : '');
+  ok(/Chưa có lựa chọn nào chờ gửi/.test(await p.locator('#alDockInfo').innerText()) || await p.locator('#alDock').isHidden(), 'undo clears the dock'); eq(await p.locator('#alSend').isDisabled(), true); await p._ctx.close();
+});
+await TM('43 a mandatory approved row (L21) offers no Bỏ/Đặt giá trị: lock text instead of choices; staged choice from the draft survives a reload of the page state', async () => {
+  const p = await open({hash: '#limits/approved'}); const c = CARD(p, 'L21');
+  eq(await c.getAttribute('data-locked'), '1'); await c.locator('.al-chg').click(); eq(await c.locator('input[type=radio]').count(), 0); ok(/Bắt buộc giữ: Giữ vì an toàn/.test(await c.locator('.al-lock').innerText()), 'lock');
+  await p._ctx.close();
+  const q = await open({hash: '#limits/approved', seed: {c: {L16: {k: 'off', v: '', n: ''}, L21: {k: 'off', v: '', n: ''}, L05: {k: 'keep', v: '', n: ''}}, sent: ''}});
+  eq(await CARD(q, 'L16').getAttribute('data-choice'), 'off'); eq(await CARD(q, 'L16').locator('input[type=radio]:checked').getAttribute('value'), 'off', 'open because staged');
+  eq(await CARD(q, 'L21').getAttribute('data-choice'), null, 'locked row ignores a stored choice'); eq(await lines(q), ['- L05: GIỮ', '- L16: BỎ']); await q._ctx.close();
+});
+await TM('44 not-yet sub-tab keeps today\'s behaviour: only the 14 undecided rows, staged choice shows "đã chọn, chờ gửi", message exactly `- Lnn: ...`, bulk selection never touches decided rows, locks intact', async () => {
+  const p = await open({hash: '#limits/pending'});
+  eq((await pids(p)).sort(), AL.items.map(i => i.id).sort()); eq(await p.locator('#alGroups .al-staged').count(), 0);
+  await pick(p, 'L01', 'off'); eq(await row(p, 'L01').locator('.al-staged').innerText(), '✎ đã chọn, chờ gửi'); eq(await lines(p), ['- L01: BỎ']);
+  await p.locator('#alSelAll').check(); await p.locator('#alBulkRec').click(); await p.locator('#alCfOk').click();
+  const l = await lines(p); eq(l.length, 14 - LOCKED.length); for (const x of l) ok(Number(x.slice(3, 5)) <= 14, 'decided row in bulk: ' + x);
+  ok(/14 giới hạn · 0 đã chọn|23 giới hạn/.test(await p.locator('#alMeta').innerText()), await p.locator('#alMeta').innerText());
+  await p.locator('#alsub-approved').click(); eq(await p.locator('#alDockBulk').isHidden(), true, 'bulk bar hidden while on the approved tab'); await p._ctx.close();
+});
+await TM('45 empty halves: all rows decided -> not-yet tab says so (0); no decided rows (original fixture) -> approved tab says so (0)', async () => {
+  let p = await open({hash: '#limits/pending'}); eq((await p.locator('#alsub-pending').innerText()).trim(), 'Anh chưa duyệt (0)'); ok(/Anh đã quyết hết/.test(await p.locator('#alGroups').innerText()), 'pending empty'); await p._ctx.close();
+  current = withLimits; p = await open({hash: '#limits/approved'}); eq((await p.locator('#alsub-approved').innerText()).trim(), 'Anh đã duyệt (0)'); ok(/Chưa có giới hạn nào anh đã duyệt/.test(await p.locator('#alApprBox, .al-apprbox').innerText()), 'approved empty'); await p._ctx.close();
+}, withAllDecided);
+for (const [theme, w] of [['light', 1280], ['dark', 1280], ['light', 390], ['dark', 390]]) {
+  await TM(`46 [${theme}-${w}] both sub-tabs: no horizontal scroll, nothing wider than the viewport, targets >= 44px, sub-tab bar sticky (>= 44px) while scrolling the approved list; screenshots`, async () => {
+    const p = await open({w, h: w > 500 ? 900 : 844, theme, scheme: theme, hash: '#limits/approved'});
+    await CARD(p, 'L19').locator('.al-chg').click(); await CARD(p, 'L15').locator('.al-exp').click();
+    const m = await p.evaluate(() => ({sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, wide: [...document.querySelectorAll('#view-limits *')].filter(e => e.getBoundingClientRect().right > innerWidth + 0.5 && getComputedStyle(e).position !== 'fixed' && !e.closest('.al-live')).map(e => e.className || e.tagName).slice(0, 5)}));
+    eq(m.sw, m.cw, 'horizontal scroll (approved)'); eq(m.wide, [], 'overflowing (approved)');
+    eq(await small(p, '#alPanel-approved'), [], 'small targets (approved)'); eq(await small(p, '#alSubTabs'), [], 'small sub-tabs');
+    await shot(p, `limits-approved-${w}-${theme}`);
+    await p.evaluate(() => window.scrollTo(0, document.body.scrollHeight * 0.6));
+    const st = await p.evaluate(() => { const r = document.getElementById('alSubTabs').getBoundingClientRect(); return {top: Math.round(r.top), h: Math.round(r.height), bottom: Math.round(r.bottom)}; });
+    ok(st.top >= 0 && st.top < 130 && st.h >= 44, 'sticky sub-tab bar: ' + JSON.stringify(st));
+    if (w < 500) { const tb = await p.evaluate(() => Math.round(document.querySelector('.tabbar').getBoundingClientRect().bottom)); ok(st.top >= tb - 1, 'sub-tab bar sits under the main tab strip ' + JSON.stringify({st, tb})); }
+    await p.locator('#alsub-pending').click(); await p.evaluate(() => window.scrollTo(0, 0)); if (w < 721) await p.locator('#alFToggle').click();
+    const n = await p.evaluate(() => ({sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth}));
+    eq(n.sw, n.cw, 'horizontal scroll (not-yet)'); await shot(p, `limits-pending-${w}-${theme}`); await p._ctx.close();
+  });
+}
+await TM('47 axe-core: 0 serious/critical on the approved sub-tab (light/dark x desktop/390), with a change-decision box open and a staged choice, and on the sub-tab strip', async () => {
+  if (!axeSrc) return 'NOT_RUN';
+  const out = [];
+  for (const [theme, w] of [['light', 1280], ['dark', 1280], ['light', 390], ['dark', 390]]) {
+    const p = await open({theme, scheme: theme, w, h: w > 500 ? 900 : 844, hash: '#limits/approved'});
+    await CARD(p, 'L19').locator('.al-chg').click(); await CARD(p, 'L15').locator('.al-chg').click(); await pick(p, 'L15', 'val'); await CARD(p, 'L17').locator('.al-exp').click();
+    await p.addScriptTag({content: axeSrc});
+    const r = await p.evaluate(async () => (await axe.run(['#view-limits', '#mainTabs'], {runOnly: ['wcag2a', 'wcag2aa']})).violations.filter(v => ['serious', 'critical'].includes(v.impact)).map(v => v.id + '[' + v.nodes.slice(0, 2).map(n => n.target.join(' ')).join(';') + ']'));
+    if (r.length) out.push(theme + w + ' ' + r.join(','));
+    await p._ctx.close();
+  }
+  ok(!out.length, out.join(' | '));
+});
+await T('48 no console errors during the whole run', async () => { eq(consoleErrors, []); });
 
 await browser.close(); server.close();
 const w = Math.max(...results.map(r => r[0].length));
