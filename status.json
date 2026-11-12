@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T11:39:00+07:00",
+  "asOf": "2026-11-12T11:49:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T11:39:00+07:00",
+  "detailUpdatedAt": "2026-11-12T11:49:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3957,6 +3957,35 @@
         "decided": "A",
         "decidedAt": "2026-11-12T11:05:00+07:00",
         "decision": "Owner 11:05: 'mở hết giới hạn cho AI; lượt Haiku thì em test thoải mái, không cần limit gì cả, miễn sao AI Agent chạy tốt nhất'. C0 hiểu: theo mặc định đề xuất cả 9 chỗ (DIR-1..9) và bỏ trần số lượt Haiku thử trên PROD (trước là 30 lượt, đã dùng 8). Vẫn giữ: giới hạn tiền, IAM, ZDR, SSRF/DoS/path traversal, concurrency/queue/timeout/lock dự án, thao tác rủi ro cần phê duyệt (chỉ thị 12/11 mục 4). Mỗi thay đổi mã đi qua PR + QA/SEC độc lập + phát hành; cờ bật theo từng đợt, không bật mọi thứ một lúc; báo cáo tách CODE/QA/DEPLOY/ON/VERIFIED."
+      },
+      {
+        "id": "NO-31",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-12T11:49:00+07:00",
+        "title": "Cài đặt AI chỉ còn 2 việc: 'Ai được dùng' + 'Ngân sách' — thiết kế và 6 câu để chốt (≈118 giờ)",
+        "detail": "Kiểm kê (REPORTED, đọc mã, chưa QA) ~/xweb-handoff/p37-studio/batch3/SIMPLE-AI-SETTINGS.md: hôm nay có 14 màn cài đặt AI với khoảng 186 ô nhập (≈165 ô khác nhau): Platform > AI có 8 tab (nhà cung cấp 10 ô, mô hình và giá 4, giới hạn 12, quyền AI 28, chi tiêu 23, yêu cầu 5, cấu hình 35 khóa), cộng 'Quản trị AI' ở Admin 16, thẻ AI của người dùng 5, trang Cài đặt 31 khóa AI và build, BYOK 9, hai hộp ngân sách trong Studio 4+4. 16 khóa sửa được ở hai nơi; có 4 cơ chế tiền song song (chính sách chi tiêu và cửa sổ, cấp phát, ngân sách tháng theo người/workspace, ai_budgets); chỉ SYSTEM_ADMIN ghi được quyền AI; luồng bốn mắt xin thêm tiền có ở BE (cờ TẮT) nhưng chưa có màn FE; chưa có báo cáo giới hạn hiệu lực. THIẾT KẾ: một trang 'Cài đặt AI' (cờ mới AI_SIMPLE_SETTINGS, mặc định TẮT; màn cũ giữ làm trang 'chuyên gia' chỉ đọc, không xóa gì) với 2 thẻ: (A) 'Ai được dùng AI': chọn người/nhóm/workspace/cả công ty + một công tắc (ghi vào quyền AI hiện có trong một giao dịch, ghi đè theo dự án nếu cần, công tắc ngắt khẩn ở đầu trang); (B) 'Ngân sách': một khoản theo workspace và kỳ (ghi vào cấp phát B1), kèm ai được xin thêm (luồng B3 hiện có); trần tiền cứng chỉ đọc. Thêm khối chỉ đọc 'Giới hạn hiệu lực' và mục 'Nâng cao' thu gọn có nút 'Khôi phục mặc định an toàn'. 14 màn/186 ô → 1 trang chính/6 ô + 1 vùng chuyên gia chỉ đọc. GIỚI HẠN VẪN CHẶN AI LÀM VIỆC (xếp theo mức chặn): 1) trần chung 600 lượt/ngày cho mọi người; 2) 16.000 token đầu ra mỗi lần gọi và lời nhắc hệ thống bảo model giữ quanh 7.000 (site) hoặc 11.000 (shop); 3) chế độ chia bước bắt buộc: 6 bước, mỗi bước tối đa 6 tệp và ~6.000 token, kích hoạt khi ≥15 dòng liệt kê hoặc ≥10 từ trang/vai trò/module, phải bấm 'tiếp tục' thủ công; 4) T24 sửa theo đoạn chưa nối + tối đa 10 tệp mỗi câu trả lời; 5) ngân sách ngữ cảnh mặc định 64.000 byte tổng và 24.000 byte mỗi tệp (giá trị PROD chưa rõ), tool loop TẮT; 6) trần prompt 300.000 byte; 7) giới hạn đính kèm; 8) 2 luồng/người, 1 lượt/dự án, 30 lời nhắc/phút; 9) hàng đợi build 1 chỗ, 600 giây; 10) thời gian chờ 120 s đã ở mức tối đa (có đủ cho câu trả lời 16.000 token trên model chậm hay không cần đo). 3 VIỆC MỞ KHÓA NHANH NHẤT: (1) T36-b bỏ trần 600 (~7 giờ; cần đổi biến môi trường + xác nhận của Windows; chờ xử lý 8 khoản giữ chỗ chưa giải thích); (2) nâng ngân sách ngữ cảnh bằng biến môi trường (~1 giờ, không cần PR) rồi CTX-b (12 giờ) — cần đọc giá trị PROD trước; (3) PAY-b: trần đầu ra theo mô hình + sửa hằng 'answerBudget' (~13 giờ). Lớn hơn nhưng sau: T24-3 + FILES-b (~61 giờ) và tự tiếp tục T22-C (~31 giờ). CÔNG SỨC: phần cài đặt đơn giản mới ≈118 giờ (77–159): 2 lát BE 26, 5 lát FE 54, kiểm di chuyển 6, tài liệu 4, QA 12, SEC 10, smoke PROD 6; cộng ~30 giờ nếu Admin (không chỉ Super-admin) cũng được ghi quyền AI. Các lát mở khóa nằm trong MAXCAP (≈332 giờ) và không tính lại.",
+        "solution": "Khuyến nghị A = theo mặc định cả 6 câu. Mặc định: (1) chỉ Super-admin ghi quyền AI trước, Admin được ghi ở đợt hai sau SEC; (2) 'mặc định an toàn' = hồ sơ MAXCAP, không phải mặc định thấp cũ của mã; (3) thẻ Ngân sách chỉ ghi vào cấp phát B1, ba cơ chế tiền còn lại vẫn được thi hành nhưng chỉ đọc; (4) giữ luồng xin thêm tiền B3 hiện có; (5) người mới: AI TẮT theo từng người cộng nút 'bật cả công ty'; (6) màn cũ: giữ làm trang chuyên gia chỉ đọc, không xóa.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo mặc định cả 6 câu",
+            "desc": "Bắt đầu 2 lát BE trước (cờ TẮT), FE sau khi hợp đồng đóng băng; ≈118 giờ.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Cho cả Admin ghi quyền AI ngay (câu 1 = Admin)",
+            "desc": "Thêm ≈30 giờ và một vòng SEC về nâng quyền; còn lại như A."
+          },
+          {
+            "key": "C",
+            "label": "Anh đổi một số câu",
+            "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
+          }
+        ]
       }
     ]
   },
@@ -4194,7 +4223,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T11:39:00+07:00",
+    "updatedAt": "2026-11-12T11:49:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
