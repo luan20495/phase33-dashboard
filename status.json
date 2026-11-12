@@ -7457,6 +7457,57 @@
             "FE": "chỉ hiển thị còn lại (MeController), không chặn"
           },
           "source": "settings/Settings.kt:36 (ai.daily-requests-per-user, 0..100000); ai/AiGovernance.kt:437-442 limiter.hit(\"ai:<user>\", perDay, 86400) -> 429 AI_DAILY_LIMIT; ai/AiLimits.kt:32 effective()"
+        },
+        "exec": {
+          "effective": {
+            "value": "0 = không giới hạn",
+            "layers": [
+              "BE"
+            ],
+            "next": "L06"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng, không cần mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã để QA"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Đặt 0 lúc 09:43–09:46 ICT 12/11 (REPORTED bởi agent vận hành, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "C0 đọc lại 11:10 bằng agent khác + 8 lượt Haiku thật không bị chặn bởi hàng này (giá trị cấu hình; hiệu lực tổng còn bị L06)"
+          },
+          "blocker": "Hàng này đã gỡ; hiệu lực tổng còn bị L06 (trần chung 600/ngày chưa deploy).",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
+            "xweb-handoff/agents/QA-B3-G2B.md"
+          ]
         }
       },
       {
@@ -7528,6 +7579,57 @@
             "API": "PUT /admin/ai/limits/overrides"
           },
           "source": "ai/AiLimits.kt:34-41 (pick USER > WORKSPACE > default); admin/AdminAiLimits.kt:126 PUT overrides, :151 DELETE; bảng ai_limit_overrides"
+        },
+        "exec": {
+          "effective": {
+            "value": "0 cho 5 người; người thứ 6 theo mặc định (0)",
+            "layers": [
+              "BE"
+            ],
+            "next": "L06"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng, không cần mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã để QA"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Đặt 0 lúc 09:43–09:46 ICT 12/11 (REPORTED bởi agent vận hành, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "C0 đọc lại 11:10 bằng agent khác + 8 lượt Haiku thật không bị chặn bởi hàng này (giá trị cấu hình; hiệu lực tổng còn bị L06)"
+          },
+          "blocker": "Hàng này đã gỡ; hiệu lực tổng còn bị L06 (trần chung 600/ngày chưa deploy).",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
+            "xweb-handoff/agents/QA-B3-G2B.md"
+          ]
         }
       },
       {
@@ -7592,6 +7694,56 @@
             "BE": "AiGovernance.kt:437"
           },
           "source": "ai/AiLimits.kt:34-41; admin/AdminAiLimits.kt:126 (allowedFields WORKSPACE rpd,tpd,tpm,budget)"
+        },
+        "exec": {
+          "effective": {
+            "value": "không giới hạn (không có hàng)",
+            "layers": [
+              "BE"
+            ],
+            "next": "L06"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (không có gì để đặt)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không có ngoại lệ cấp workspace/dự án để đặt 0"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "Bảng ngoại lệ đọc lại độc lập 11:08: chỉ có dòng cấp người dùng"
+          },
+          "blocker": "Không có; hiệu lực tổng còn bị L06 (trần chung).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
+            "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md"
+          ]
         }
       },
       {
@@ -7656,6 +7808,56 @@
             "BE": "AiGovernance.kt:444"
           },
           "source": "ai/AiGovernance.kt:444-449 limiter.hit(\"ai-app:<project>\"); admin/AdminAiLimits.kt:126 (PROJECT rpd,tpm)"
+        },
+        "exec": {
+          "effective": {
+            "value": "không giới hạn (không có hàng)",
+            "layers": [
+              "BE"
+            ],
+            "next": "L06"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (không có gì để đặt)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không có ngoại lệ cấp workspace/dự án để đặt 0"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "Bảng ngoại lệ đọc lại độc lập 11:08: chỉ có dòng cấp người dùng"
+          },
+          "blocker": "Không có; hiệu lực tổng còn bị L06 (trần chung).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
+            "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md"
+          ]
         }
       },
       {
@@ -7718,6 +7920,55 @@
             "Budget": "phân bổ TIỀN theo tenant (AllocationLedger) là giới hạn tiền, không phải lượt"
           },
           "source": "ai/AiLimits.kt (EffectiveLimits chỉ có USER/WORKSPACE/PROJECT/mặc định, không có scope TENANT)"
+        },
+        "exec": {
+          "effective": {
+            "value": "không giới hạn",
+            "layers": [
+              "BE"
+            ],
+            "next": "L06 (rồi L63 tiền)"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Không có giới hạn để sửa"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (không có giới hạn theo tenant trong mã)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không có gì để gỡ"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "Đọc mã ở 53da22c5: mã không có phạm vi tenant cho lượt AI"
+          },
+          "blocker": "Không có; hiệu lực tổng còn bị L06 rồi L63 (tiền).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -7782,6 +8033,66 @@
             "IAM": "SYSTEM_ADMIN"
           },
           "source": "ai/PaidCodeEdit.kt:40 (MAX_REQUESTS = 100000 trên dev sau #250), :87 start guard; integration/llm/PaidAi.kt:306 MAX_DAILY, :349 alwaysOpenEnvelope(), :499-503 windowMode() (N > envelope => TIMED), :571 tryReserve(ao), :602-617 cảnh báo 80/100%; ai/PaidAiWeb.kt:271 PUT window-mode (400 AI_SPEND_LIMIT"
+        },
+        "exec": {
+          "effective": {
+            "value": "600/ngày toàn hệ thống (envelope = min(100000, env 600, web 600))",
+            "layers": [
+              "BE",
+              "budget"
+            ],
+            "next": "L07, rồi L24 (30/phút/người), L26 (2 luồng/người; 16 luồng cả máy), L27 (1 lượt/dự án), L63 (tiền)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (NO-DIR-1: thay thế trần lượt bằng gì)",
+          "code": {
+            "s": "~",
+            "note": "BE #250 nâng trần trong mã 600 → 100.000/ngày, đã merge dev; PR \"trần lượt\" khác của agent đang viết, chưa có số (phạm vi CHƯA XÁC MINH)"
+          },
+          "pr": {
+            "kind": "refs",
+            "text": "BE #250 16dad77f · merge 53da22c5 (đã merge dev, CHƯA lên PROD)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 250,
+                "sha8": "16dad77f",
+                "state": "merged-dev",
+                "merge": "53da22c5"
+              }
+            ]
+          },
+          "qa": {
+            "s": "✓",
+            "note": "QA GO + SEC GO ở head 16dad77f (QA-PR250)"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD vẫn 600/ngày (đọc 12/11 07:14 ICT); cần bước env PROD + PUT window-mode"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có gì để kiểm trên PROD"
+          },
+          "blocker": "Deploy bản 22 chứa #250, rồi bước env PROD (Windows/Owner, ack SHA) và PUT window-mode; sau đó chặn kế: L24, L26, L27, L63.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "PR ~13/11, bản gộp ~15/11 (trung bình; #01)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/agents/QA-PR250.md",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "gh:luan20495/xweb01#250"
+          ]
         }
       },
       {
@@ -7846,6 +8157,65 @@
             "IAM": "SYSTEM_ADMIN"
           },
           "source": "ai/PaidCodeEdit.kt:40 MAX_REQUESTS; compose.prod.yml:369 APP_AI_PAID_MAX_REQUESTS; ai/config/AiConfigRegistry.kt:51 (ai.window.max-requests 10..100000, web chỉ hạ); integration/llm/PaidAi.kt:248 (optionalInt max-requests 1..100000)"
+        },
+        "exec": {
+          "effective": {
+            "value": "600",
+            "layers": [
+              "BE"
+            ],
+            "next": "L06 -> L24/L26/L27 -> L63"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (chung NO-DIR-1)",
+          "code": {
+            "s": "~",
+            "note": "BE #250 nâng trần trong mã 600 → 100.000/ngày, đã merge dev; PR \"trần lượt\" khác của agent đang viết, chưa có số (phạm vi CHƯA XÁC MINH)"
+          },
+          "pr": {
+            "kind": "refs",
+            "text": "BE #250 16dad77f · merge 53da22c5 (đã merge dev, CHƯA lên PROD)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 250,
+                "sha8": "16dad77f",
+                "state": "merged-dev",
+                "merge": "53da22c5"
+              }
+            ]
+          },
+          "qa": {
+            "s": "✓",
+            "note": "QA GO + SEC GO ở head 16dad77f (QA-PR250)"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD vẫn 600/ngày (đọc 12/11 07:14 ICT); cần bước env PROD + PUT window-mode"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có gì để kiểm trên PROD"
+          },
+          "blocker": "Deploy bản 22 chứa #250, rồi bước env PROD (Windows/Owner, ack SHA) và PUT window-mode; sau đó chặn kế: L24, L26, L27, L63.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "PR ~13/11, bản gộp ~15/11 (trung bình; #01)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/agents/QA-PR250.md",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "gh:luan20495/xweb01#250"
+          ]
         }
       },
       {
@@ -7904,6 +8274,55 @@
             "DB": "-"
           },
           "source": "ai/config/AiConfigRegistry.kt:49-50 (ai.window.ttl-minutes/renew-minutes 10..43200); ai/PaidCodeEdit.kt:38 MAX_TTL_MINUTES; integration/llm/PaidAi.kt:499 windowMode() (ALWAYS_OPEN không có hạn cuối)"
+        },
+        "exec": {
+          "effective": {
+            "value": "chế độ ALWAYS_OPEN: không áp dụng; fallback TIMED 1440 phút",
+            "layers": [
+              "BE"
+            ],
+            "next": "L63"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ, không có thay đổi để kiểm"
+          },
+          "blocker": "Không chặn: chế độ ALWAYS_OPEN không dùng TTL; chặn kế là L63 (tiền).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -7975,6 +8394,57 @@
             "Budget": "đếm sau khi gọi nên có thể vượt một câu"
           },
           "source": "settings/Settings.kt:37 (ai.daily-tokens-per-user, 0..1e9); ai/AiUsageService.kt:84-89 requireBudget -> 429 AI_TOKEN_LIMIT; ai/AiGovernance.kt:434"
+        },
+        "exec": {
+          "effective": {
+            "value": "0 = tắt",
+            "layers": [
+              "BE"
+            ],
+            "next": "L12 (token/lượt gọi) và L63"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng, không cần mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã để QA"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Đặt 0 lúc 09:43–09:46 ICT 12/11 (REPORTED bởi agent vận hành, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "C0 đọc lại 11:10 bằng agent khác + 8 lượt Haiku thật không bị chặn bởi hàng này (giá trị cấu hình; hiệu lực tổng còn bị L12 và L63)"
+          },
+          "blocker": "Hàng này đã gỡ; hiệu lực tổng còn bị L12 và L63 (trần chung 600/ngày chưa deploy).",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
+            "xweb-handoff/agents/QA-B3-G2B.md"
+          ]
         }
       },
       {
@@ -8045,6 +8515,57 @@
             "DB": "ai_calls"
           },
           "source": "settings/Settings.kt:38 (ai.monthly-tokens-per-workspace); ai/AiUsageService.kt:90-95"
+        },
+        "exec": {
+          "effective": {
+            "value": "0 = tắt",
+            "layers": [
+              "BE"
+            ],
+            "next": "L12, L63"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng, không cần mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã để QA"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Đặt 0 lúc 09:43–09:46 ICT 12/11 (REPORTED bởi agent vận hành, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "C0 đọc lại 11:10 bằng agent khác + 8 lượt Haiku thật không bị chặn bởi hàng này (giá trị cấu hình; hiệu lực tổng còn bị L12 và L63)"
+          },
+          "blocker": "Hàng này đã gỡ; hiệu lực tổng còn bị L12 và L63 (trần chung 600/ngày chưa deploy).",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
+            "xweb-handoff/agents/QA-B3-G2B.md"
+          ]
         }
       },
       {
@@ -8115,6 +8636,57 @@
             "BE": "AiUsageService.requireBudget"
           },
           "source": "ai/AiLimits.kt:34-41; ai/AiUsageService.kt:84-101 (tokensPerDay USER/WORKSPACE, tokensPerMonth WORKSPACE/PROJECT); admin/AdminAiLimits.kt:126"
+        },
+        "exec": {
+          "effective": {
+            "value": "0",
+            "layers": [
+              "BE"
+            ],
+            "next": "L12, L63"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:29 12/11"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng, không cần mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã để QA"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Đặt 0 lúc 09:43–09:46 ICT 12/11 (REPORTED bởi agent vận hành, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "C0 đọc lại 11:10 bằng agent khác + 8 lượt Haiku thật không bị chặn bởi hàng này (giá trị cấu hình; hiệu lực tổng còn bị L12 và L63)"
+          },
+          "blocker": "Hàng này đã gỡ; hiệu lực tổng còn bị L12 và L63 (trần chung 600/ngày chưa deploy).",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
+            "xweb-handoff/agents/QA-B3-G2B.md"
+          ]
         }
       },
       {
@@ -8180,6 +8752,67 @@
             "Runner": "-"
           },
           "source": "ai/PaidCodeEdit.kt:42 CODE_EDIT_MAX_TOKENS=16000; integration/llm/PaidAi.kt:242-243 (max-tokens-per-call 16..32768, mặc định 8192 khi rỗng); ai/config/AiConfigRegistry.kt:53; code/OpenLovableBuilder.kt:1376 answerBudget (7000 site / 11000 shop token); PR #254: PaidAiPolicy.effectiveMaxTokens, PAID_O"
+        },
+        "exec": {
+          "effective": {
+            "value": "16000 (lời nhắc khiến câu trả lời thực chỉ ~7000-11000)",
+            "layers": [
+              "BE",
+              "model",
+              "budget"
+            ],
+            "next": "L29 (6 bước ~6000 token/bước), L59 (10 tệp/trả lời), L58 (luồng 900 s), L63 (giữ chỗ tiền)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (NO-DIR-4: mức output tối đa theo mô hình)",
+          "code": {
+            "s": "✓",
+            "note": "BE #254: trần mỗi lượt theo model đến 128.000 trong mã, đã merge dev (FE phản chiếu chưa kiểm)"
+          },
+          "pr": {
+            "kind": "refs",
+            "text": "BE #254 3d8e6d81 · merge d430a3e6 (đã merge dev, CHƯA lên PROD)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 254,
+                "sha8": "3d8e6d81",
+                "state": "merged-dev",
+                "merge": "d430a3e6"
+              }
+            ]
+          },
+          "qa": {
+            "s": "✓",
+            "note": "QA GO; SEC GO-WITH-CONDITIONS ở head 3d8e6d81 (QA-PR254)"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD vẫn 16.000; env 32.768 → 64.000 → 128.000 từng bước, mỗi bước Owner duyệt riêng"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa kiểm trên PROD"
+          },
+          "blocker": "Deploy bản 22 + từng bước env (128.000 chỉ sau khi #252 bật và có cảnh báo mềm theo người). Chặn kế: L29, L59, L58, L63.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "Sau deploy ~15/11; 128.000 sau #252 bật (trung bình; #02)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/agents/QA-PR254.md",
+            "gh:luan20495/xweb01#254",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -8251,6 +8884,57 @@
             "Proxy": "compose.prod.yml không truyền biến CONTEXT_* nên PROD dùng mặc định mã"
           },
           "source": "code/context/ContextBudget.kt:51-57 (DEFAULT_TOTAL 64000, DEFAULT_PER_FILE 24000, DEFAULT_MAX_TOKENS 32000); code/context/ContextSelector.kt:134 (size > perFile => DropWhy.TOO_LARGE); ContextSettings.kt:20-23 (env); ContextNotice.kt:17 (thông báo khi bỏ)"
+        },
+        "exec": {
+          "effective": {
+            "value": "64.000 B tổng, 24.000 B mỗi tệp (suy ra)",
+            "layers": [
+              "BE",
+              "model"
+            ],
+            "next": "L14 (vòng đọc TẮT) rồi L32/L33"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã/bản phát hành"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "CTX-b chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (CTX-b)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa có mã"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa có mã"
+          },
+          "on": {
+            "s": "✗",
+            "note": "AI chỉ thấy ≤64 KB nguồn, ≤24 KB mỗi tệp"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "CTX-b chưa có PR; vòng đọc T23 còn TẮT (L14).",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
+          ]
         }
       },
       {
@@ -8315,6 +8999,79 @@
             "Model": "-"
           },
           "source": "code/toolloop/ToolLoopSettings.kt:58-68 (4 vòng, 40.000 B/kết quả, 200.000 B tổng, 120 s, 300.000 token, tệp 1 MiB); settings/Settings.kt:57 ai.builder.tool-loop.workspaces; compose.prod.yml:245 APP_BUILDER_CONTEXT_TOOL_LOOP_ENABLED"
+        },
+        "exec": {
+          "effective": {
+            "value": "TẮT: AI không tự đọc thêm tệp",
+            "layers": [
+              "BE",
+              "FE"
+            ],
+            "next": "L13"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (bật tool loop vẫn là duyệt riêng của Owner theo dashboard T23)",
+          "code": {
+            "s": "✓",
+            "note": "Vòng đọc #165 (cờ TẮT) + sửa #236 #238 #239 #241 #242 #248 và FE #192 #196, đã merge dev"
+          },
+          "pr": {
+            "kind": "refs",
+            "text": "BE #165 723c1b79 · merge c43ff0cc (đã lên PROD (release 21)); BE #248 bffba588 · merge b70d6d3e (đã merge dev, CHƯA lên PROD); FE #196 3cbeeb53 (đã merge dev, CHƯA lên PROD)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 165,
+                "sha8": "723c1b79",
+                "state": "prod",
+                "merge": "c43ff0cc"
+              },
+              {
+                "repo": "BE",
+                "n": 248,
+                "sha8": "bffba588",
+                "state": "merged-dev",
+                "merge": "b70d6d3e"
+              },
+              {
+                "repo": "FE",
+                "n": 196,
+                "sha8": "3cbeeb53",
+                "state": "merged-dev"
+              }
+            ]
+          },
+          "qa": {
+            "s": "~",
+            "note": "QA-ON trên DEV có báo cáo (A1 GO-WITH-CONDITIONS, #241 GO, #248); 12 lượt Haiku thật chưa chạy"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Bản có sửa lỗi chưa deploy (#165 gốc ở release 21, cờ TẮT)"
+          },
+          "on": {
+            "s": "✗",
+            "note": "Cờ TẮT; bật cần cờ + ack + allow-list workspace"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "12 lượt Haiku thật (chờ Owner GO) + deploy bản 22 + bật theo allow-list QA.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "~18–19/11 (thấp–trung bình; #03)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/agents/QA-T23-QAON.md",
+            "xweb-handoff/agents/QA-PR248.md",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -8388,6 +9145,55 @@
             "Runner": "-"
           },
           "source": "settings/Settings.kt:72 (build.max-per-user-per-day, catalog tối đa 100000; 0 = CHẶN TẤT CẢ); code/BuildPolicy.kt:41-57 (n >= limit => 429 BUILD_QUOTA_*); ai/config/AiConfigRegistry.kt:23-27 (sàn 1)"
+        },
+        "exec": {
+          "effective": {
+            "value": "100000 (tối đa catalog, hữu hạn)",
+            "layers": [
+              "runner"
+            ],
+            "next": "L19 (đồng thời), L20 (hàng đợi 1 chỗ + 10 chờ), L21"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã áp dụng ở mức tối đa hữu hạn"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Nâng tối đa danh mục lúc 11:09 (REPORTED, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có đọc lại độc lập"
+          },
+          "blocker": "Là mức tối đa hữu hạn (100.000/ngày), không phải vô hạn thật; chặn kế: L19, L20, L21.",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
+          ]
         }
       },
       {
@@ -8461,6 +9267,55 @@
             "Runner": "-"
           },
           "source": "settings/Settings.kt:75 (build.max-per-project-per-day, catalog tối đa 100000; 0 = CHẶN TẤT CẢ); code/BuildPolicy.kt:41-57 (n >= limit => 429 BUILD_QUOTA_*); ai/config/AiConfigRegistry.kt:23-27 (sàn 1)"
+        },
+        "exec": {
+          "effective": {
+            "value": "100000 (tối đa catalog, hữu hạn)",
+            "layers": [
+              "runner"
+            ],
+            "next": "L19 (đồng thời), L20 (hàng đợi 1 chỗ + 10 chờ), L21"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã áp dụng ở mức tối đa hữu hạn"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Nâng tối đa danh mục lúc 11:09 (REPORTED, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có đọc lại độc lập"
+          },
+          "blocker": "Là mức tối đa hữu hạn (100.000/ngày), không phải vô hạn thật; chặn kế: L19, L20, L21.",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
+          ]
         }
       },
       {
@@ -8534,6 +9389,55 @@
             "Runner": "-"
           },
           "source": "settings/Settings.kt:71 (build.max-per-workspace-per-day, catalog tối đa 100000; 0 = CHẶN TẤT CẢ); code/BuildPolicy.kt:41-57 (n >= limit => 429 BUILD_QUOTA_*); ai/config/AiConfigRegistry.kt:23-27 (sàn 1)"
+        },
+        "exec": {
+          "effective": {
+            "value": "100000 (tối đa catalog, hữu hạn)",
+            "layers": [
+              "runner"
+            ],
+            "next": "L19 (đồng thời), L20 (hàng đợi 1 chỗ + 10 chờ), L21"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã áp dụng ở mức tối đa hữu hạn"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Nâng tối đa danh mục lúc 11:09 (REPORTED, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có đọc lại độc lập"
+          },
+          "blocker": "Là mức tối đa hữu hạn (100.000/ngày), không phải vô hạn thật; chặn kế: L19, L20, L21.",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
+          ]
         }
       },
       {
@@ -8606,6 +9510,55 @@
             "DB": "build_jobs"
           },
           "source": "settings/Settings.kt:70 (org/ngày) và :73 (tenant/ngày); code/BuildPolicy.kt:44-47"
+        },
+        "exec": {
+          "effective": {
+            "value": "1.000.000 (tối đa catalog)",
+            "layers": [
+              "runner"
+            ],
+            "next": "L19, L20"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã áp dụng ở mức tối đa hữu hạn"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "Nâng tối đa danh mục lúc 11:09 (REPORTED, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có đọc lại độc lập"
+          },
+          "blocker": "Là mức tối đa hữu hạn (100.000/ngày), không phải vô hạn thật; chặn kế: L19, L20, L21.",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
+          ]
         }
       },
       {
@@ -8664,6 +9617,55 @@
             "Runner": "máy build 4 vCPU"
           },
           "source": "settings/Settings.kt:74,76,77; code/BuildPolicy.kt:50-55 (USER/TENANT_CONCURRENT; WORKSPACE bỏ qua khi hàng đợi bật :52)"
+        },
+        "exec": {
+          "effective": {
+            "value": "người 3, tenant 1000; workspace không áp dụng",
+            "layers": [
+              "runner"
+            ],
+            "next": "L20"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Giữ làm bảo vệ song song; chặn kế là L20 (1 chỗ chạy).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -8733,6 +9735,56 @@
             "FE": "hiển thị vị trí chờ"
           },
           "source": "settings/Settings.kt:79-82 (build.queue.enabled/slots/max-waiting-per-slot/max-per-workspace); code/BuildQueue.kt:37 MAX_SLOTS 64, :75 limits(); code/BuildPolicy.kt:60-74 (429 BUILD_QUEUE_FULL)"
+        },
+        "exec": {
+          "effective": {
+            "value": "1 build chạy + 10 chờ = 11 chỗ",
+            "layers": [
+              "runner"
+            ],
+            "next": "L21 và runner thứ hai (T10 slots 2: kế hoạch p32/REL17-ENV-PLAN.md, chưa làm)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã ở mức tối đa; KHÔNG tắt hàng đợi"
+          },
+          "needsOwner": "Có (hạ tầng runner thứ hai)",
+          "code": {
+            "s": "✗",
+            "note": "Runner thứ hai mới có kế hoạch (T10 slots 2), chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (runner thứ hai mới có kế hoạch)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa có mã"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "~",
+            "note": "Chỗ chờ đã tối đa 10, giới hạn theo workspace = 0; runner vẫn 1 chỗ chạy (REPORTED 14:10)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Chỉ có 1 chỗ chạy + 10 chờ; cần runner thứ hai (Owner duyệt chủ trương, chi phí/triển khai phải đo).",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "PR runner ~14/11; runner 2 ~20–24/11 (thấp; #08)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -8783,8 +9835,8 @@
         "ownerChoice": {
           "at": "2026-11-12T13:29:00+07:00",
           "choice": "NÂNG",
-          "disposition": "Đã áp dụng (cấu hình 3.600 giây; hiệu lực chờ sửa runner)",
-          "dispositionNote": "Chỉ khóa thời gian build; kích thước build giữ nguyên (bảo vệ đĩa)."
+          "disposition": "Cần mã (PR runner); cấu hình 3.600 giây đã đặt, hiệu lực chưa đo",
+          "dispositionNote": "Chỉ khóa thời gian build; kích thước giữ. Chưa gọi là \"đã nới\" cho tới khi runner nâng 900 s + gia hạn lease và đo một build dài."
         },
         "audit": {
           "class": "GIOI_HAN_TAI_NGUYEN",
@@ -8798,6 +9850,58 @@
             "DB": "build_jobs.claimed_until"
           },
           "source": "settings/Settings.kt:83-85 (build.max-duration-seconds 60..3600, artifact 100 MiB, repo 50 MiB); code/BuildJobs.kt:146 (claimed_until = now()+25 phút, KHÔNG có đường gia hạn: chỉ :146 và :218); :149 limits.buildSeconds; code/BuildPolicy.kt:84,77; code/BuildResilience.kt:39 (reclaim-backoff 120 s, ma"
+        },
+        "exec": {
+          "effective": {
+            "value": "<= 900 s nếu runner là chr/buildd (UNKNOWN); build > 25 phút bị giao lại sau lease+120 s; lần giao thứ 2 hết lease => RUNNER_LOST",
+            "layers": [
+              "runner",
+              "BE"
+            ],
+            "next": "chính runner (cần PR runner: nâng 900 + gia hạn lease)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "NÂNG lúc 13:29 12/11; xử lý: Cần mã (PR runner); cấu hình 3.600 giây đã đặt, hiệu lực chưa đo"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "PR runner chưa có số"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (PR runner: nâng 900 s + gia hạn lease, đang viết)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa có mã"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "~",
+            "note": "Mới là cài đặt: build.max-duration 3.600 s đặt 13:31 (REPORTED); runner kẹp 900 s/bước, lease 25 phút"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Hiệu lực chưa đo: chưa có build dài"
+          },
+          "blocker": "PR runner (kẹp 900 s + gia hạn lease) rồi đo một build dài; chưa được gọi là \"đã nới\".",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "PR runner ~14/11; runner 2 ~20–24/11 (thấp; #08)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/BUILD-TIME/LOG.md",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "gh:luan20495/xweb01 issue #88 (comment #6816550998, 13:32 ICT)"
+          ]
         }
       },
       {
@@ -8865,6 +9969,56 @@
             "API": "PUT /admin/ai/config/{key}"
           },
           "source": "ai/config/AiConfigRegistry.kt:37-39 (queue.max-per-user 1..100, per-project 1..500, item-ttl-hours 1..72); code/queue/QueueStore.kt:14-16; code/queue/QueueDispatcher.kt:123 (EXPIRED khi quá hạn)"
+        },
+        "exec": {
+          "effective": {
+            "value": "100 / 500 / 72 giờ (tối đa catalog)",
+            "layers": [
+              "BE",
+              "budget"
+            ],
+            "next": "L06 (lượt chung), L27 (1 lượt/dự án), TTL 72 giờ < hiệu lực yêu cầu ngân sách 7 ngày (xem Q5)"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã áp dụng (mức tối đa)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "10→100, 30→500, TTL 8→72 giờ lúc 11:35 (REPORTED, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có đọc lại độc lập"
+          },
+          "blocker": "Mức tối đa danh mục; TTL 72 giờ ngắn hơn hiệu lực yêu cầu ngân sách 7 ngày (T22-C).",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/QUEUE-TIMEOUT/LOG.md"
+          ]
         }
       },
       {
@@ -8932,6 +10086,56 @@
             "Proxy": "20m/18 MiB không phải nút thắt"
           },
           "source": "code/queue/QueueController.kt:39 WRITES_PER_MINUTE=120, PROMPT_BODY 1 MiB; code/queue/QueueService.kt:65 (QUEUE_ATTACHMENTS_UNSUPPORTED); common/RequestFilters.kt:21 (1 MiB JSON)"
+        },
+        "exec": {
+          "effective": {
+            "value": "120 ghi/phút/người; 1 MiB; hàng đợi không nhận tệp đính kèm",
+            "layers": [
+              "BE",
+              "API"
+            ],
+            "next": "L32 (prompt byte)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "ATT chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa có mã"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "120 ghi/phút/người; 1 MiB; hàng đợi không nhận tệp"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT chưa có PR (hàng đợi không nhận tệp đính kèm).",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -8997,6 +10201,56 @@
             "DB": "web key rate.prompt-per-minute"
           },
           "source": "ai/config/AiConfigRegistry.kt:33 rate.prompt-per-minute 5..600; ai/config/AiConfigConfiguration.kt:81; common/RateLimiter.kt:13 hit()"
+        },
+        "exec": {
+          "effective": {
+            "value": "30 lượt/phút/người",
+            "layers": [
+              "BE",
+              "API"
+            ],
+            "next": "L26"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần env/bản phát hành"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có PR; C0: cần env + bản phát hành"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (chưa chọn giá trị/PR)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD vẫn 30 lượt/phút/người (tối đa cấu hình 600)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Cần env + bản phát hành (disposition C0 11:32); chặn kế sau L06.",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH ngày"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9061,6 +10315,55 @@
             "DB": "web key"
           },
           "source": "ai/config/AiConfigRegistry.kt:34-35 (rate.publish-per-minute 2..120, rate.upload-per-minute 5..600)"
+        },
+        "exec": {
+          "effective": {
+            "value": "UNKNOWN",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần env/bản phát hành"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có PR; C0: cần env + bản phát hành"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (chưa rõ nguồn)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "Giá trị hiệu lực CHƯA XÁC MINH"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "CHƯA XÁC MINH giá trị hiệu lực nhịp tải tệp/xuất bản.",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9125,6 +10428,56 @@
             "Proxy": "Tomcat 64 luồng (L68)"
           },
           "source": "ai/AiStreams.kt:33 MAX_PER_USER=2 (:67-68 429 AI_STREAMS_PER_USER); :28 ThreadPoolExecutor(2,16,SynchronousQueue) (:106-108 503 AI_BUSY: tối đa 16 luồng AI cả máy)"
+        },
+        "exec": {
+          "effective": {
+            "value": "2 / người; 16 cả máy chủ API",
+            "layers": [
+              "BE"
+            ],
+            "next": "L27"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã (có đo tải)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "Hằng số 2 luồng/người; chưa có PR (cần đo tải)"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (sửa hằng số, ước lượng ~3 giờ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD vẫn 2 luồng/người, 16 luồng cả máy"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "PR sửa hằng số + đo tải; nên thay \"từ chối 503\" bằng xếp hàng.",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH ngày (chỉ có ước lượng công ~3 giờ)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9182,6 +10535,55 @@
             "Runner": "-"
           },
           "source": "code/OlProjectLocks.kt:23 holder(); code/OpenLovableBuilder.kt:538,562 (streams.start trong khóa dự án; lượt thứ hai chờ hoặc 409 BUSY)"
+        },
+        "exec": {
+          "effective": {
+            "value": "1 lượt người đang chạy trên mỗi dự án",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "Owner chưa chọn riêng hàng này (quota nghiệp vụ còn chặn)",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có task/PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (chưa có task)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "1 lượt người đang chạy trên mỗi dự án"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Hàng quota nghiệp vụ còn chặn nhưng Owner chưa chọn riêng; thiết kế: xếp hàng thay vì từ chối.",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9248,6 +10650,93 @@
             "DB": "system_settings"
           },
           "source": "settings/Settings.kt:50 (ai.builder.steps.enabled, BOOL, Risk.HIGH); code/steps/Steps.kt:13; code/OpenLovableBuilder.kt:589-591 (lượt PLAN đòi src/PLAN.md); BE #245 (dung sai thiếu PLAN.md)"
+        },
+        "exec": {
+          "effective": {
+            "value": "true",
+            "layers": [
+              "BE",
+              "model"
+            ],
+            "next": "TẮT chia bước KHÔNG có nghĩa là không giới hạn bước: mỗi lượt chỉ còn 1 câu trả lời <= L12/L59"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Đã áp dụng (khôi phục BẬT chia bước)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "~",
+            "note": "T22-B #203 ở release 21; sửa plan_missing #245 #246 #249 + FE #197 đã merge dev; T22-C (bỏ giới hạn số bước) chưa có PR"
+          },
+          "pr": {
+            "kind": "refs",
+            "text": "BE #203 be9e6580 · merge a3ce5d87 (đã lên PROD (release 21)); BE #245 af8e4ca5 · merge 1170f55f (đã merge dev, CHƯA lên PROD); BE #246 c142ed8d · merge 873e4cd7 (đã merge dev, CHƯA lên PROD); BE #249 36badf2a · merge 8068a4b6 (đã merge dev, CHƯA lên PROD); FE #197 d5c998e7 (đã merge dev, CHƯA lên PROD)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 203,
+                "sha8": "be9e6580",
+                "state": "prod",
+                "merge": "a3ce5d87"
+              },
+              {
+                "repo": "BE",
+                "n": 245,
+                "sha8": "af8e4ca5",
+                "state": "merged-dev",
+                "merge": "1170f55f"
+              },
+              {
+                "repo": "BE",
+                "n": 246,
+                "sha8": "c142ed8d",
+                "state": "merged-dev",
+                "merge": "873e4cd7"
+              },
+              {
+                "repo": "BE",
+                "n": 249,
+                "sha8": "36badf2a",
+                "state": "merged-dev",
+                "merge": "8068a4b6"
+              },
+              {
+                "repo": "FE",
+                "n": 197,
+                "sha8": "d5c998e7",
+                "state": "merged-dev"
+              }
+            ]
+          },
+          "qa": {
+            "s": "✓",
+            "note": "QA GO ở #245 af8e4ca5 và #249 36badf2a, #246 GO-WITH-CONDITIONS (cần Haiku PROD sau deploy)"
+          },
+          "deploy": {
+            "s": "~",
+            "note": "T22-B ở PROD; #245/#246/#249 chưa deploy (bản 22 chưa lên)"
+          },
+          "on": {
+            "s": "✓",
+            "note": "steps.enabled = true lúc 15:19 ICT (REPORTED, đọc lại khớp; tối đa 6 bước, ngưỡng 300.000)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa: cần lượt Haiku PROD sau deploy bản sửa plan_missing"
+          },
+          "blocker": "Deploy bản 22 (sửa plan_missing) + T22-C chưa có PR. Tắt chia bước KHÔNG phải bỏ giới hạn số bước.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "T22-C ~20–26/11 (thấp; #06); ngày deploy bản 22 CHƯA XÁC MINH"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/agents/QA-PR245-246.md",
+            "xweb-handoff/p37-studio/batch3/evidence/L28-RESTORE/LOG.md",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9317,6 +10806,58 @@
             "FE": "thẻ kế hoạch"
           },
           "source": "code/steps/Steps.kt:23 HARD_MAX_STEPS=8, :20 MAX_ATTEMPTS_PER_STEP=3, :22 EXTRA_TURNS=4, :24 MAX_FILES_PER_STEP=8, :199 'about 6000 tokens'; settings/Settings.kt:51 (max-steps 2..8)"
+        },
+        "exec": {
+          "effective": {
+            "value": "6 bước, mỗi bước ~6000 token",
+            "layers": [
+              "BE",
+              "model",
+              "budget"
+            ],
+            "next": "L12"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã (T22-C)"
+          },
+          "needsOwner": "Có (NO-DIR-6: mức tự chủ ban đầu)",
+          "code": {
+            "s": "✗",
+            "note": "T22-C chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (T22-C chỉ là thiết kế PAYC-T22C-DESIGN.md)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 6 bước, mỗi bước ~6.000 token"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "T22-C: lưu kết quả một phần + tự tiếp tục; bước bị cắt vẫn bị đánh DONE.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "T22-C ~20–26/11 (thấp; #06)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/PAYC-T22C-DESIGN.md",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9382,6 +10923,71 @@
             "DB": "system_settings"
           },
           "source": "settings/Settings.kt:53 (ai.builder.steps.large-prompt-bytes 1000..300000; BE #249: 0 = tắt trigger theo kích thước); code/steps/OlSteps.kt:27 largeBytes(); code/steps/Steps.kt:123-124 ITEM_LINES=15, PAGE_WORDS=10"
+        },
+        "exec": {
+          "effective": {
+            "value": "300000 (trigger kích thước không còn); còn MANY_ITEMS (15 dòng) và MANY_PAGES (10 từ)",
+            "layers": [
+              "model"
+            ],
+            "next": "L12 (ca G2B: OUTPUT_LIMIT_REACHED)"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã áp dụng (mức tối đa)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✓",
+            "note": "Giá trị 0 (tắt hẳn kích hoạt theo kích thước): BE #249 + FE #197 đã merge dev"
+          },
+          "pr": {
+            "kind": "refs",
+            "text": "BE #249 36badf2a · merge 8068a4b6 (đã merge dev, CHƯA lên PROD); FE #197 d5c998e7 (đã merge dev, CHƯA lên PROD)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 249,
+                "sha8": "36badf2a",
+                "state": "merged-dev",
+                "merge": "8068a4b6"
+              },
+              {
+                "repo": "FE",
+                "n": 197,
+                "sha8": "d5c998e7",
+                "state": "merged-dev"
+              }
+            ]
+          },
+          "qa": {
+            "s": "✓",
+            "note": "QA GO ở head 36badf2a (QA-PR245-246)"
+          },
+          "deploy": {
+            "s": "~",
+            "note": "Mức 300.000 là cài đặt nóng, không cần phát hành; mã cho giá trị 0 chưa deploy"
+          },
+          "on": {
+            "s": "✓",
+            "note": "large-prompt-bytes = 300.000 từ 11:36:56 ICT (REPORTED, đọc lại khớp)"
+          },
+          "verified": {
+            "s": "✓",
+            "note": "QA-B3-G2B ca 3: không còn vào plan mode theo kích thước"
+          },
+          "blocker": "Chặn kế: L12 (OUTPUT_LIMIT_REACHED); còn MANY_ITEMS (15 dòng) và MANY_PAGES (10 từ).",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH ngày deploy mã giá trị 0"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/L30/LOG.md",
+            "xweb-handoff/agents/QA-B3-G2B.md",
+            "xweb-handoff/agents/QA-PR245-246.md"
+          ]
         }
       },
       {
@@ -9439,6 +11045,55 @@
             "Budget": "tiền của kế hoạch"
           },
           "source": "settings/Settings.kt:52 (ai.builder.steps.cost-cap-usd); code/steps/Steps.kt:111 Block STEPS_COST_CAP (409 không thử lại)"
+        },
+        "exec": {
+          "effective": {
+            "value": "đặt",
+            "layers": [
+              "budget"
+            ],
+            "next": "L63"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: giới hạn tiền)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Giới hạn tiền luôn giữ"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Không chặn; chính sách tiền.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9510,6 +11165,58 @@
             "Model": "cửa sổ ngữ cảnh"
           },
           "source": "code/PromptLimits.kt:20-46 (DEFAULT 262144, MAX_BYTES 327680, PAID_HEADROOM 60000), :23 maxBytes() = min(cài đặt, trần trả phí - 60000); settings/Settings.kt:86; code/queue/QueueService.kt:69"
+        },
+        "exec": {
+          "effective": {
+            "value": "300.000 B",
+            "layers": [
+              "BE",
+              "FE",
+              "model"
+            ],
+            "next": "L33 rồi cửa sổ ngữ cảnh mô hình (L62)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã/bản phát hành"
+          },
+          "needsOwner": "Có (NO-DIR-2: hành vi khi vượt cửa sổ)",
+          "code": {
+            "s": "✗",
+            "note": "ATT-c1/c2 chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-c1/c2 ước lượng 18 giờ BE + 12 FE)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 300.000 byte mỗi lời nhắc"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-c chưa có PR; sau đó chặn bởi cửa sổ ngữ cảnh mô hình (L62).",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
+          ]
         }
       },
       {
@@ -9573,6 +11280,57 @@
             "Model": "-"
           },
           "source": "integration/llm/PaidAi.kt:252-253 (max-prompt-bytes 1000..1000000, mặc định 150000), :345; ai/config/AiConfigRegistry.kt:54; env APP_AI_PAID_MAX_PROMPT_BYTES"
+        },
+        "exec": {
+          "effective": {
+            "value": "360.000 B",
+            "layers": [
+              "BE",
+              "model",
+              "budget"
+            ],
+            "next": "cửa sổ ngữ cảnh mô hình (L62)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (chung NO-DIR-2)",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (chưa có task)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 360.000 B thân yêu cầu tới AI trả phí"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Đặt theo cửa sổ ngữ cảnh mô hình; cần NO-DIR-2 (hành vi khi vượt cửa sổ).",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9630,6 +11388,55 @@
             "Proxy": "-"
           },
           "source": "common/RequestFilters.kt:21 (app.limits.max-request-bytes 1 MiB); application.yml (MAX_REQUEST_BYTES)"
+        },
+        "exec": {
+          "effective": {
+            "value": "1 MiB",
+            "layers": [
+              "API"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ cỡ thân JSON 1 MiB; không chặn AI.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9688,6 +11495,56 @@
             "BE": "base64 trong heap"
           },
           "source": "code/OlTurnBodies.kt:25-26 (max-turn-bytes mặc định 16 MiB, kẹp 1..24 MiB); common/RequestFilters.kt:24-33 (turnRoute POST .../builder/turns)"
+        },
+        "exec": {
+          "effective": {
+            "value": "<= 16 MiB (min chuỗi: BE 16, Next 18, nginx 20)",
+            "layers": [
+              "BE",
+              "proxy"
+            ],
+            "next": "L66/L65"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ thân base64 ≤16 MiB (BE 16, Next 18, nginx 20); chặn kế L66/L65.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -9758,6 +11615,59 @@
             "Proxy": "thân 16/18/20 MiB"
           },
           "source": "code/OlAttachments.kt:48 MAX_COUNT=8, :109 plan() (TOO_MANY_ATTACHMENTS 400); code/OlDocuments.kt:126 tooMany (câu 8/6/3); ai/config/AiConfigRegistry.kt:43; FE features/studio/lovable/core/attachments.ts:19 ATT_LIMITS.total=8"
+        },
+        "exec": {
+          "effective": {
+            "value": "8",
+            "layers": [
+              "FE",
+              "API",
+              "BE",
+              "proxy"
+            ],
+            "next": "L37/L38, L40 (8 MiB ảnh), L42 (3 MiB tài liệu), L35"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Cần mã (ATT-b1/b2)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "ATT-b1/b2 chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-b1/b2 ~14 giờ ước lượng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 8 tệp tổng / 6 ảnh / 3 tài liệu"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-b chưa có PR; giới hạn nằm ở 4 lớp FE, API, BE, proxy.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
+          ]
         }
       },
       {
@@ -9824,6 +11734,59 @@
             "BE": "OlAttachments"
           },
           "source": "code/OlAttachments.kt:49 MAX_IMAGES=6; FE attachments.ts:19"
+        },
+        "exec": {
+          "effective": {
+            "value": "6",
+            "layers": [
+              "FE",
+              "API",
+              "BE",
+              "proxy"
+            ],
+            "next": "L36, L39/L40"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Cần mã (ATT-b1/b2)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "ATT-b1/b2 chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-b1/b2 ~14 giờ ước lượng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 8 tệp tổng / 6 ảnh / 3 tài liệu"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-b chưa có PR; giới hạn nằm ở 4 lớp FE, API, BE, proxy.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
+          ]
         }
       },
       {
@@ -9890,6 +11853,59 @@
             "BE": "OlAttachments"
           },
           "source": "code/OlAttachments.kt:50 MAX_DOCUMENTS=3; code/OlDocuments.kt:99 PROMPT_FRAME_BYTES (tính cho 3 khung); FE attachments.ts:19"
+        },
+        "exec": {
+          "effective": {
+            "value": "3",
+            "layers": [
+              "FE",
+              "API",
+              "BE",
+              "proxy"
+            ],
+            "next": "L36, L42, L44"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Cần mã (ATT-b1/b2)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "ATT-b1/b2 chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-b1/b2 ~14 giờ ước lượng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 8 tệp tổng / 6 ảnh / 3 tài liệu"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-b chưa có PR; giới hạn nằm ở 4 lớp FE, API, BE, proxy.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
+          ]
         }
       },
       {
@@ -9951,6 +11967,56 @@
             "BE": "plan() trước khi giải mã"
           },
           "source": "code/OlAttachments.kt:51 MAX_EACH_BYTES=4 MiB, :109 plan(); FE attachments.ts:20"
+        },
+        "exec": {
+          "effective": {
+            "value": "4 MiB",
+            "layers": [
+              "FE",
+              "BE"
+            ],
+            "next": "L40"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ giữ nguyên; tải thẳng lên kho lưu trữ (ATT-e) là đường cho tệp lớn.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10009,6 +12075,55 @@
             "Proxy": "giữ thân < 16 MiB"
           },
           "source": "code/OlAttachments.kt:52 MAX_TOTAL_BYTES=8 MiB; FE attachments.ts:20"
+        },
+        "exec": {
+          "effective": {
+            "value": "8 MiB",
+            "layers": [
+              "BE"
+            ],
+            "next": "L35"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ giữ nguyên; tải thẳng lên kho lưu trữ (ATT-e) là đường cho tệp lớn.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10066,6 +12181,55 @@
             "Runner": "-"
           },
           "source": "code/OlAttachments.kt:53,67,71-72 (cạnh 4096, 12.582.912 điểm ảnh, JPEG 64 lượt quét, 2 luồng giải mã, 10 s)"
+        },
+        "exec": {
+          "effective": {
+            "value": "như mô tả",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ giữ nguyên; tải thẳng lên kho lưu trữ (ATT-e) là đường cho tệp lớn.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10132,6 +12296,57 @@
             "BE": "OlDocuments"
           },
           "source": "code/OlDocuments.kt:61-62 (1,5 MiB / 3 MiB); FE attachments.ts:20 documentBytes/documentTotal"
+        },
+        "exec": {
+          "effective": {
+            "value": "1,5 MiB mỗi tài liệu; 3 MiB tổng",
+            "layers": [
+              "FE",
+              "BE",
+              "proxy"
+            ],
+            "next": "L43/L44"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Cần mã (đường ATT-e)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "ATT-e chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-e đường tải thẳng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 1,5 MiB mỗi tài liệu, 3 MiB tổng"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-e (tải thẳng lên kho lưu trữ) chưa có PR.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10201,6 +12416,56 @@
             "FE": "đọc charsEach từ builder/config"
           },
           "source": "settings/Settings.kt:88 (build.attach-doc-chars-each 4.000..240.000); code/OlDocuments.kt:708-735 DocumentLimits.effective(); :554 marker '[đã cắt: n/m ký tự]'"
+        },
+        "exec": {
+          "effective": {
+            "value": "240.000 ký tự (cắt có thông báo)",
+            "layers": [
+              "BE",
+              "model"
+            ],
+            "next": "L44"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã/bản phát hành"
+          },
+          "needsOwner": "Có (chung NO-DIR-2)",
+          "code": {
+            "s": "✗",
+            "note": "Mức 240.000 ký tự là P36-ATTACH (release 21); chưa có PR đặt theo cửa sổ mô hình"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (theo cửa sổ mô hình)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 240.000 ký tự (cắt có thông báo)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Cần PR theo cửa sổ mô hình + NO-DIR-2.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10268,6 +12533,56 @@
             "FE": "charsTotal"
           },
           "source": "settings/Settings.kt:89 (build.attach-doc-chars-total 8.000..480.000); code/OlDocuments.kt:97 PROMPT_FLOOR_BYTES, :716 room = trần trả phí - sàn - khung"
+        },
+        "exec": {
+          "effective": {
+            "value": "318.000 ký tự",
+            "layers": [
+              "BE",
+              "model"
+            ],
+            "next": "L33"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã/bản phát hành"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (theo cửa sổ mô hình)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 318.000 ký tự tổng"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Cần PR theo cửa sổ mô hình.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10327,6 +12642,55 @@
             "Runner": "-"
           },
           "source": "code/OlDocuments.kt:79 TEXT_READ_CAP=1.000.000 ký tự"
+        },
+        "exec": {
+          "effective": {
+            "value": "1.000.000 ký tự",
+            "layers": [
+              "BE"
+            ],
+            "next": "L43"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có PR (được phép NÂNG qua PR)"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (chưa có task)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 1.000.000 ký tự đọc tối đa"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Không phải chốt kế tiếp (chặn kế: L43); nâng chỉ khi có PR + QA/SEC.",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10387,6 +12751,55 @@
             "BE": "sniff byte đầu"
           },
           "source": "code/OlAttachments.kt:76 MIMES (PNG, JPEG, WebP); :109 plan() (415 cho GIF/BMP/TIFF/ICO/SVG/HEIC); FE attachments.ts:50-76 (ARCHIVE_EXT/VIDEO_EXT...), SVG đổi PNG trong trình duyệt"
+        },
+        "exec": {
+          "effective": {
+            "value": "PNG, JPEG, WebP",
+            "layers": [
+              "FE"
+            ],
+            "next": "L47"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có PR (FE)"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (FE)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: chỉ PNG, JPEG, WebP (SVG qua FE #187 đã ở PROD)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Mở thêm định dạng ảnh cần PR FE + QA/SEC.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10453,6 +12866,56 @@
             "Proxy": "env pdf-enabled"
           },
           "source": "code/OlDocuments.kt:149-163 knownUnsupported (GIF/BMP/OLE/RTF/nén/thực thi/âm thanh -> 415), :186 pdfEnabled, :195-201 detect; compose.prod.yml:349 APP_BUILDER_OPEN_LOVABLE_DOCUMENTS_PDF_ENABLED (mặc định false)"
+        },
+        "exec": {
+          "effective": {
+            "value": "văn bản UTF-8, DOCX, XLSX; PDF UNKNOWN",
+            "layers": [
+              "BE",
+              "FE"
+            ],
+            "next": "L48 (bảo vệ bộ phân tích)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (NO-DIR-3: chính sách 'mọi định dạng')",
+          "code": {
+            "s": "✗",
+            "note": "ATT-d chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-d)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: văn bản UTF-8, DOCX, XLSX (PDF CHƯA XÁC MINH)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-d chưa có PR; chờ NO-DIR-3 (chính sách \"mọi định dạng\").",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10510,6 +12973,55 @@
             "Runner": "-"
           },
           "source": "code/OlDocuments.kt:67-95 (ZIP 1000 mục/24 MiB/8 MiB/tỉ lệ 100; XML sâu 100/3.000.000 sự kiện; XLSX 10 sheet/1000 hàng/50 cột/50.000 ô; PDF 30 trang/2.000.000 toán tử; 10 s; 2 luồng)"
+        },
+        "exec": {
+          "effective": {
+            "value": "như mô tả",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ giữ nguyên.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10568,6 +13080,55 @@
             "Model": "ZDR: dữ liệu ra ngoài"
           },
           "source": "code/OlDocuments.kt:265 sensitiveName + quét nội dung (ATTACHMENT_SENSITIVE 422); FE attachments.ts looksSensitiveName"
+        },
+        "exec": {
+          "effective": {
+            "value": "bật",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ giữ nguyên.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10636,6 +13197,58 @@
             "Proxy": "thân 16-20 MiB không đủ cho 1 GB"
           },
           "source": "code/OlDocuments.kt:157 (Rar!/7z/gz/xz/bz2 -> 415; zip không phải docx/xlsx -> 415); FE attachments.ts:69,171 (ARCHIVE_EXT => 'archive'); đã có code/importing/ArchiveReader.kt (nhập dự án, 10 MiB, zip-slip/symlink)"
+        },
+        "exec": {
+          "effective": {
+            "value": "không nhận tệp nén",
+            "layers": [
+              "BE",
+              "proxy",
+              "FE"
+            ],
+            "next": "L64-L66, L69 (đường 1 GB)"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (NO-DIR-5: phạm vi 1 GB, thư viện, RAR, ClamAV, đĩa)",
+          "code": {
+            "s": "✗",
+            "note": "ATT-e chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-e ~98 giờ ước lượng, đợt D)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: không nhận tệp nén"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-e + hạ tầng; chờ NO-DIR-5 (phạm vi 1 GB, thư viện, RAR, quét virus).",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
+          ]
         }
       },
       {
@@ -10702,6 +13315,55 @@
             "Model": "không có văn bản để đọc"
           },
           "source": "FE attachments.ts:73,7 (VIDEO_EXT, quyết định Owner 30/10); code/OlDocuments.kt:160 (MEDIA/âm thanh -> 415)"
+        },
+        "exec": {
+          "effective": {
+            "value": "không nhận",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Giữ theo thiết kế"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ theo thiết kế"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ theo thiết kế)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Video không nhận, giữ theo thiết kế (Owner 13:17).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10759,6 +13421,55 @@
             "Proxy": "env"
           },
           "source": "code/OlAssets.kt:18-21 (6 ảnh, 4 MiB, 20 MiB mỗi dự án); APP_BUILDER_OPEN_LOVABLE_ASSETS_ENABLED"
+        },
+        "exec": {
+          "effective": {
+            "value": "tắt",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Tính năng đang tắt, giữ.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10823,6 +13534,55 @@
             "FE": "ATT_LIMITS mã cứng + DRAFT_MAX_CHARS"
           },
           "source": "FE features/studio/lovable/core/attachments.ts:19-22 ATT_LIMITS (8/6/3, 4/8/1,5/3 MiB; textChars 24.000 / textTotalChars 48.000 chỉ khi máy chủ không công bố); core/composerDraft.ts:23 DRAFT_MAX_CHARS 500.000, :63,84"
+        },
+        "exec": {
+          "effective": {
+            "value": "trùng BE: 8/6/3",
+            "layers": [
+              "FE"
+            ],
+            "next": "L36-L38"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Cần mã (ATT-b1)"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "✗",
+            "note": "ATT-b1 chưa có PR (FE phản chiếu 8/6/3)"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-b1)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: FE mã cứng 8/6/3"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "FE mã cứng, không đọc từ máy chủ; đổi cùng ATT-b.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10890,6 +13650,55 @@
             "Runner": "-"
           },
           "source": "code/OlReferences.kt:37-38 (MAX_URLS=3, 2000 ký tự); cờ APP_BUILDER_OPEN_LOVABLE_REFERENCE_ENABLED"
+        },
+        "exec": {
+          "effective": {
+            "value": "tắt",
+            "layers": [
+              "BE"
+            ],
+            "next": "L55, L56"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 13:17 12/11; xử lý: Cần mã + QA/SEC"
+          },
+          "needsOwner": "Có (NO-DIR-7: bật tham chiếu cho ai, khi nào)",
+          "code": {
+            "s": "✗",
+            "note": "ATT-c chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-c cần QA/SEC)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "Tính năng tham chiếu đang TẮT trên PROD"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-c cần mã + QA/SEC; chờ NO-DIR-7 (bật cho ai, khi nào).",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -10949,6 +13758,55 @@
             "Proxy": "-"
           },
           "source": "code/ReferenceFetcher.kt:165,178 (512 KiB, 3 chuyển hướng, 8 s, PRIVATE_ADDRESS :23, chỉ HTTPS); code/ReferenceReader.kt:46"
+        },
+        "exec": {
+          "effective": {
+            "value": "tắt",
+            "layers": [
+              "BE"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Tính năng đang tắt"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Tính năng tắt, giữ (bảo vệ SSRF/DoS).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11009,6 +13867,55 @@
             "DB": "web key"
           },
           "source": "ai/config/AiConfigRegistry.kt:61 (reference.reader.daily-cap 1..100000); application.yml (mặc định 50)"
+        },
+        "exec": {
+          "effective": {
+            "value": "tắt",
+            "layers": [
+              "BE"
+            ],
+            "next": "L55"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Tính năng đang tắt"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Tính năng tắt, giữ (bảo vệ SSRF/DoS).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11069,6 +13976,55 @@
             "DB": "web key"
           },
           "source": "ai/config/AiConfigRegistry.kt:60 (search.daily-cap 1..100000); code/OpenLovableBuilder.kt:324 SEARCH_PER_USER_MINUTE=5; code/WebSearchClient.kt"
+        },
+        "exec": {
+          "effective": {
+            "value": "tắt",
+            "layers": [
+              "BE"
+            ],
+            "next": "L55"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Tính năng đang tắt"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Tính năng tắt, giữ (bảo vệ SSRF/DoS).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11137,6 +14093,56 @@
             "DB": "system_settings"
           },
           "source": "ai/config/AiConfigRegistry.kt:41 provider.timeout-seconds 5..120; settings/Settings.kt:60 ai.stream-timeout-seconds 10..900; ai/AiStreams.kt (hạn chót luồng)"
+        },
+        "exec": {
+          "effective": {
+            "value": "120 s mỗi lượt gọi; 900 s mỗi luồng",
+            "layers": [
+              "model",
+              "BE"
+            ],
+            "next": "L12 (câu rất dài có thể chạm 900 s trước trần token: TIMEOUT)"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã ở mức tối đa"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không cần phát hành"
+          },
+          "on": {
+            "s": "✓",
+            "note": "120 s mỗi lượt gọi và 900 s mỗi luồng đã ở mức tối đa từ 08/11 (REPORTED)"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có đọc lại độc lập"
+          },
+          "blocker": "Câu trả lời rất dài có thể chạm 900 s trước trần token (TIMEOUT); chặn kế L12.",
+          "eta": {
+            "label": "N/A",
+            "text": "Phần cài đặt đã xong"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/QUEUE-TIMEOUT/LOG.md"
+          ]
         }
       },
       {
@@ -11205,6 +14211,65 @@
             "Model": "-"
           },
           "source": "code/CodeProjects.kt:27-29 (CodeChangePolicy: 50 tệp, 200.000 B/tệp, 1.000.000 B/thay đổi); code/OpenLovableBuilder.kt:242 FILES_MAX=10 (answer); code/OlPatch*.kt (T24 chưa nối dây)"
+        },
+        "exec": {
+          "effective": {
+            "value": "10 tệp mỗi câu trả lời",
+            "layers": [
+              "BE",
+              "model"
+            ],
+            "next": "L12"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần mã"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "~",
+            "note": "Bộ vá nhiều tệp #231 (T24-1/2) đã merge dev nhưng chưa nối dây; T24-3..8 chưa có PR"
+          },
+          "pr": {
+            "kind": "refs",
+            "text": "BE #231 63fb388d · merge e8a1f096 (đã merge dev, CHƯA lên PROD)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 231,
+                "sha8": "63fb388d",
+                "state": "merged-dev",
+                "merge": "e8a1f096"
+              }
+            ]
+          },
+          "qa": {
+            "s": "~",
+            "note": "Thư viện thuần; phần nối dây chưa có để QA"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: 10 tệp mỗi câu trả lời"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "T24-3 (nối vá vào Agent) chưa xong; không nâng 10 tệp mà thay bằng vá theo vùng.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "PR ~14/11, merge ~16/11 (trung bình; #04)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "gh:luan20495/xweb01#231",
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11269,6 +14334,55 @@
             "DB": "-"
           },
           "source": "application.yml:173-174 (max-projects-per-workspace 1000, max-assets-per-project 200; env MAX_PROJECTS_PER_WORKSPACE/MAX_ASSETS_PER_PROJECT); settings/Settings.kt:93-94 (storage MiB)"
+        },
+        "exec": {
+          "effective": {
+            "value": "1000 dự án / workspace",
+            "layers": [
+              "BE"
+            ],
+            "next": "L61"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Cần env + bản phát hành"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Biến môi trường, không đổi mã"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (đổi env + bản phát hành)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Cần khởi động lại cùng bản phát hành"
+          },
+          "on": {
+            "s": "✗",
+            "note": "1000 dự án/workspace và 200 tài nguyên/dự án chưa đổi"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Đổi env + khởi động lại cùng bản phát hành; trần dung lượng giữ để bảo vệ đĩa.",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH ngày"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)"
+          ]
         }
       },
       {
@@ -11333,6 +14447,56 @@
             "DB": "-"
           },
           "source": "settings/Settings.kt:99-101 (retention.*-days); retention.failed-build-days: maintenance/ArtifactRetention.kt:85; retention.preview-days không có nơi dùng (BE preview thật: code/BuildJobs.kt:99 app.build.preview-days 7)"
+        },
+        "exec": {
+          "effective": {
+            "value": "365 ngày build lỗi; xem trước 7 ngày (env)",
+            "layers": [
+              "runner"
+            ],
+            "next": "đĩa runner ~81%"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✓",
+            "note": "BỎ lúc 11:31 12/11; xử lý: Đã áp dụng một phần"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Cài đặt nóng/env"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (cài đặt nóng + env)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không có mã"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Phần cài đặt không cần phát hành"
+          },
+          "on": {
+            "s": "~",
+            "note": "failed-build-days 14 → 365 lúc 14:08–14:10 (REPORTED); preview-days là env, chưa đổi"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa có đọc lại độc lập"
+          },
+          "blocker": "Đĩa máy runner ~81% khi build dài hơn và lưu giữ lâu hơn; preview-days cần env.",
+          "eta": {
+            "label": "UNKNOWN",
+            "text": "CHƯA XÁC MINH (preview-days)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/evidence/L28-L60-L61/LOG.md",
+            "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)"
+          ]
         }
       },
       {
@@ -11392,6 +14556,55 @@
             "Budget": "-"
           },
           "source": "integration/llm/PaidAi.kt:240-241 (require-zdr bắt buộc true, reasoning-off); ai/PaidCodeEdit.kt:44 MAX_ALLOWED_USERS=15, :46 MAX_WINDOW_MODELS=12; ai/RealAiDataPolicyGuard.kt"
+        },
+        "exec": {
+          "effective": {
+            "value": "ZDR + 4 mô hình",
+            "layers": [
+              "model"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: ZDR/mô hình)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Ràng buộc nhà cung cấp, giữ (bảo mật).",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11449,6 +14662,55 @@
             "IAM": "SYSTEM_ADMIN/WORKSPACE_ADMIN duyệt"
           },
           "source": "settings/Settings.kt:58-59; ai/PaidCodeEdit.kt:37 CAP_CEILING (trần cứng của cửa sổ); ai/config/AiConfigRegistry.kt:56,62-64; integration/llm/PaidAi.kt (sổ cái); ai/budget/*"
+        },
+        "exec": {
+          "effective": {
+            "value": "đã đặt",
+            "layers": [
+              "budget"
+            ],
+            "next": "-"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: giới hạn tiền)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Giới hạn tiền luôn giữ"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Không chặn; chính sách tiền.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11508,6 +14770,55 @@
             "Proxy": "Caddy 120 s toàn thân"
           },
           "source": "infra/prod/sites.caddy:16-24 (request_body read_timeout 120s cho POST/PUT/PATCH)"
+        },
+        "exec": {
+          "effective": {
+            "value": "120 s",
+            "layers": [
+              "proxy"
+            ],
+            "next": "L65, L66"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (hostname/DNS/TLS cho tải trực tiếp)",
+          "code": {
+            "s": "✗",
+            "note": "Chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (hostname/DNS/TLS cho tải trực tiếp)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "PROD: hạn đọc thân 120 s"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "Cần hạ tầng cho tải thẳng (hostname/DNS/TLS) + mã.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11564,6 +14875,55 @@
             "Proxy": "nginx cổng portal"
           },
           "source": "infra/portal-gateway/default.conf.template:34,49,64 (client_max_body_size 20m, proxy_read/send_timeout 120s)"
+        },
+        "exec": {
+          "effective": {
+            "value": "20m",
+            "layers": [
+              "proxy"
+            ],
+            "next": "L66"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ proxy/máy chủ giữ nguyên.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11620,6 +14980,56 @@
             "Proxy": "Next.js rewrite /api"
           },
           "source": "FE apps/studio/next.config.ts:14 (experimental.proxyClientMaxBodySize '18mb'); packages/auth/src/server/nextConfig.ts:84 (proxyTimeout)"
+        },
+        "exec": {
+          "effective": {
+            "value": "18 MiB",
+            "layers": [
+              "proxy",
+              "FE"
+            ],
+            "next": "L35"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ proxy/máy chủ giữ nguyên.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11679,6 +15089,55 @@
             "Proxy": "mẫu"
           },
           "source": "infra/nginx/conf.d/studio.conf:52 (client_max_body_size 12m); infra/nginx/docker-compose.prod.example.yml"
+        },
+        "exec": {
+          "effective": {
+            "value": "UNKNOWN",
+            "layers": [
+              "proxy"
+            ],
+            "next": "L66"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ; giá trị hiệu lực CHƯA XÁC MINH"
+          },
+          "blocker": "Bảo vệ proxy/máy chủ giữ nguyên.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11735,6 +15194,55 @@
             "Proxy": "Tomcat"
           },
           "source": "application.yml:60-76 (Tomcat threads 64, accept-count 100, max-connections 2048, header 16KB, connection-timeout 10s, max-swallow-size 0B)"
+        },
+        "exec": {
+          "effective": {
+            "value": "64 luồng (mặc định)",
+            "layers": [
+              "BE"
+            ],
+            "next": "L26"
+          },
+          "blocksAI": false,
+          "ownerDecision": {
+            "s": "✗",
+            "note": "Owner chưa chọn riêng hàng này; mặc định GIỮ theo chính sách"
+          },
+          "needsOwner": "",
+          "code": {
+            "s": "–",
+            "note": "Giữ"
+          },
+          "pr": {
+            "kind": "none-needed",
+            "text": "không cần PR (giữ: bảo vệ)",
+            "refs": []
+          },
+          "qa": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "deploy": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "on": {
+            "s": "–",
+            "note": "Không áp dụng"
+          },
+          "verified": {
+            "s": "–",
+            "note": "Hàng giữ"
+          },
+          "blocker": "Bảo vệ proxy/máy chủ giữ nguyên.",
+          "eta": {
+            "label": "N/A",
+            "text": "Không còn việc cho hàng này"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       },
       {
@@ -11796,6 +15304,56 @@
             "BE": "AssetController"
           },
           "source": "application.yml:788-795 (MinIO buckets studio-assets/studio-artifacts); asset/AssetController.kt:82-90 (STORAGE_QUOTA); presigned PUT"
+        },
+        "exec": {
+          "effective": {
+            "value": "tệp đính kèm lượt builder không đi qua MinIO",
+            "layers": [
+              "BE",
+              "proxy"
+            ],
+            "next": "L50"
+          },
+          "blocksAI": true,
+          "ownerDecision": {
+            "s": "~",
+            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+          },
+          "needsOwner": "Có (chung NO-DIR-5)",
+          "code": {
+            "s": "✗",
+            "note": "ATT-e chưa có PR"
+          },
+          "pr": {
+            "kind": "missing",
+            "text": "chưa có PR (ATT-e)",
+            "refs": []
+          },
+          "qa": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "deploy": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "on": {
+            "s": "✗",
+            "note": "Tệp đính kèm lượt builder không đi qua kho lưu trữ"
+          },
+          "verified": {
+            "s": "✗",
+            "note": "Chưa"
+          },
+          "blocker": "ATT-e (đường 1 GB) chưa có PR; chờ NO-DIR-5.",
+          "eta": {
+            "label": "ESTIMATE",
+            "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
+          },
+          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "evidence": [
+            "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
+          ]
         }
       }
     ],
@@ -11879,6 +15437,11 @@
         "at": "2026-11-12T16:15:00+07:00",
         "by": "C0",
         "note": "Nạp kết quả kiểm toán 69/69 (REPORTED); sửa phân loại L21/L28; Q1: 19+17+1+32 = 69."
+      },
+      {
+        "at": "2026-11-12T17:31:00+07:00",
+        "by": "C0/dashboard-limits",
+        "note": "Tái cấu trúc tab Anh đã duyệt (theo chỉ thị Owner #88, mục B): mỗi hàng L01–L69 có thêm exec{hiệu lực + lớp chặn còn lại, quyết định Owner, mã, PR/SHA, QA, deploy PROD, cờ/cấu hình ON, VERIFIED, blocker, ETA, checkedAt, bằng chứng}; bảy trạng thái tách riêng, không coi \"đã nâng cài đặt web\" là \"đã nới xong\". Số liệu đối chiếu gh PR + QA + #88 lúc 17:31 ICT 12/11; chip cộng đủ 69. Sửa nhóm L21 (Cần mã/PR runner) và L28 (Đã áp dụng) để nhóm Anh đã duyệt cộng đủ 37 và nhóm chưa duyệt 32."
       }
     ],
     "audit": {
@@ -11901,7 +15464,9 @@
         "Mô hình của nhà cung cấp do vận hành bỏ qua chính sách trả phí và sổ cái",
         "BYOK và đường cũ/miễn phí"
       ]
-    }
+    },
+    "execUpdatedAt": "2026-11-12T17:31:00+07:00",
+    "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {
     "updatedAt": "2026-11-12T17:42:20+07:00",
