@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T11:34:00+07:00",
+  "asOf": "2026-11-12T11:35:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T11:34:00+07:00",
+  "detailUpdatedAt": "2026-11-12T11:35:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4194,7 +4194,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T11:34:00+07:00",
+    "updatedAt": "2026-11-12T11:35:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -6780,7 +6780,7 @@
     ]
   },
   "aiLimits": {
-    "updatedAt": "2026-11-12T11:34:00+07:00",
+    "updatedAt": "2026-11-12T11:35:00+07:00",
     "note": "Toàn bộ giới hạn liên quan đến AI Studio (kiểm kê từ mã và cấu hình, REPORTED, chưa QA độc lập). Owner 12/11: muốn không giới hạn AI, chỉ giới hạn tiền; lượt chạy/ngày/tháng và token/ngày/tháng tắt cho tới khi Owner bật lại; hỗ trợ mọi định dạng file; tối đa 10 file + ảnh; text không giới hạn; file nén tới 1 GB. Giới hạn tiền luôn giữ. | Cập nhật 2026-11-12 10:37: khuyến nghị 69 hàng theo chỉ thị 'nới tối đa năng lực AI' (kế hoạch MAXCAP); thêm trạng thái 5 bước CODE/QA/DEPLOY/ON/VERIFIED trong trường stages (chưa hàng nào đạt đủ). Hàng tiền và an toàn bắt buộc vẫn khóa. | 11:34 12/11: Owner nhấn mạnh 'all user' và 'chỉ còn Admin duyệt ai dùng + bao nhiêu tiền'. Hai cổng đó đã có trong hệ thống (quyền AI theo workspace/dự án; cấp phát và yêu cầu ngân sách). Phần còn lại là bảo vệ kỹ thuật không thể gỡ mà không làm hỏng hệ thống: xem các hàng L20, L26, L60, L61 và nhóm bắt buộc.",
     "ownerAsk": [
       "Lượt chạy theo ngày/tháng: tắt cho tới khi Owner yêu cầu bật lại",
@@ -7960,8 +7960,8 @@
         "riskNote": "Nâng làm hàng đợi phình và có thể kích hoạt nhiều lượt AI liên tiếp tốn lượt.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "Đã nâng lên mức tối đa của danh mục (mục/người 10→100, mục/dự án 30→500, TTL 8→72 giờ), đọc lại khớp (REPORTED, chưa kiểm chứng độc lập). Không có giá trị vô hạn.",
         "recommendBefore": "nâng",
         "directiveGroup": 2,
         "existingWork": [
@@ -7986,7 +7986,7 @@
         "ownerChoice": {
           "at": "2026-11-12T11:31:00+07:00",
           "choice": "BỎ",
-          "disposition": "Đang áp dụng (hot)",
+          "disposition": "Đã áp dụng (mức tối đa)",
           "dispositionNote": "Nâng kích thước hàng đợi lời nhắc và TTL lên mức tối đa của danh mục; không có giá trị vô hạn."
         }
       },
@@ -9739,15 +9739,15 @@
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
         "dev": "Nhà cung cấp AI 45 giây; luồng AI 120 giây (mặc định code)",
-        "prod": "UNKNOWN",
+        "prod": "120 s (nhà cung cấp) và 900 s (luồng AI): mức tối đa của danh mục",
         "impact": "Trung bình",
         "impactNote": "Gọi AI quá lâu thì bị cắt; ảnh hưởng ứng dụng lớn cần nhiều thời gian sinh.",
         "risk": "Trung bình",
         "riskNote": "Nâng làm giữ kết nối và luồng lâu hơn; hạ làm nhiều lượt bị cắt oan và tốn tiền vô ích.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "Hai khóa thời gian chờ đã ở mức tối đa của danh mục (120 s và 900 s) từ 08/11, nên không cần ghi (REPORTED). 'UNKNOWN' trước đây là số liệu cũ.",
         "recommendBefore": "nâng",
         "directiveGroup": 2,
         "existingWork": [
@@ -9772,7 +9772,7 @@
         "ownerChoice": {
           "at": "2026-11-12T11:31:00+07:00",
           "choice": "BỎ",
-          "disposition": "Đang áp dụng (hot)",
+          "disposition": "Đã ở mức tối đa",
           "dispositionNote": "Nâng thời gian chờ nhà cung cấp AI/luồng AI lên mức tối đa của danh mục (120 s và 900 s); timeout từng thao tác vẫn còn."
         }
       },
@@ -10354,6 +10354,11 @@
         "at": "2026-11-12T11:34:00+07:00",
         "by": "C0",
         "note": "Owner làm rõ: áp dụng cho tất cả người dùng; chỉ còn cổng Admin duyệt người dùng + ngân sách. C0 xác nhận L02 (và mọi mức mặc định lượt/token) đã = 0 cho mọi người; chưa gỡ các bảo vệ kỹ thuật (song song, hàng đợi build, storage guard, SSRF/DoS...) và hỏi lại Owner."
+      },
+      {
+        "at": "2026-11-12T11:35:00+07:00",
+        "by": "C0",
+        "note": "L22 nâng tối đa (queue 100/500/72h); L58 đã ở tối đa. Báo cáo REPORTED."
       }
     ]
   }
