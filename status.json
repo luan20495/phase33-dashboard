@@ -7502,7 +7502,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
@@ -7624,7 +7624,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
@@ -7739,7 +7739,7 @@
             "label": "N/A",
             "text": "Không còn việc"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
             "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md"
@@ -7853,7 +7853,7 @@
             "label": "N/A",
             "text": "Không còn việc"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
             "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md"
@@ -7965,7 +7965,7 @@
             "label": "N/A",
             "text": "Không còn việc"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -8072,7 +8072,7 @@
           },
           "deploy": {
             "s": "✗",
-            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy, QA tích hợp bản 22 còn PENDING; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
           },
           "on": {
             "s": "✗",
@@ -8087,7 +8087,7 @@
             "label": "ESTIMATE",
             "text": "PR ~13/11, bản gộp ~15/11 (trung bình; #01)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/agents/QA-PR250.md",
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
@@ -8195,7 +8195,7 @@
           },
           "deploy": {
             "s": "✗",
-            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy, QA tích hợp bản 22 còn PENDING; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
           },
           "on": {
             "s": "✗",
@@ -8210,7 +8210,7 @@
             "label": "ESTIMATE",
             "text": "PR ~13/11, bản gộp ~15/11 (trung bình; #01)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/agents/QA-PR250.md",
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
@@ -8319,7 +8319,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -8439,7 +8439,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
@@ -8560,7 +8560,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
@@ -8681,7 +8681,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/LIMITS-OFF/LOG.md",
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md",
@@ -8792,7 +8792,7 @@
           },
           "deploy": {
             "s": "✗",
-            "note": "bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+            "note": "bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy, QA tích hợp bản 22 còn PENDING; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
           },
           "on": {
             "s": "✗",
@@ -8807,7 +8807,7 @@
             "label": "ESTIMATE",
             "text": "Sau deploy ~15/11; 128.000 sau #252 bật (trung bình; #02)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/agents/QA-PR254.md",
             "gh:luan20495/xweb01#254",
@@ -8930,7 +8930,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
             "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
@@ -9066,7 +9066,7 @@
             "label": "ESTIMATE",
             "text": "~18–19/11 (thấp–trung bình; #03)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/agents/QA-T23-QAON.md",
             "xweb-handoff/agents/QA-PR248.md",
@@ -9190,7 +9190,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
           ]
@@ -9312,7 +9312,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
           ]
@@ -9434,7 +9434,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
           ]
@@ -9555,7 +9555,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-QUOTA/LOG.md"
           ]
@@ -9662,7 +9662,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -9780,7 +9780,7 @@
             "label": "ESTIMATE",
             "text": "PR runner ~14/11; runner 2 ~20–24/11 (thấp; #08)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)",
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
@@ -9867,21 +9867,28 @@
           },
           "needsOwner": "",
           "code": {
-            "s": "✗",
-            "note": "PR runner chưa có số"
+            "s": "~",
+            "note": "BE #258 (kẹp runner cấu hình được + gia hạn lease theo heartbeat) đang MỞ, chưa merge; mặc định kẹp vẫn 900 s"
           },
           "pr": {
-            "kind": "missing",
-            "text": "chưa có PR (PR runner: nâng 900 s + gia hạn lease, đang viết)",
-            "refs": []
+            "kind": "refs",
+            "text": "BE #258 71fe0055 (đang mở)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 258,
+                "sha8": "71fe0055",
+                "state": "open"
+              }
+            ]
           },
           "qa": {
             "s": "✗",
-            "note": "Chưa có mã"
+            "note": "Chờ QA độc lập (nhãn status:qa), chưa có báo cáo; số test trong thân PR là REPORTED"
           },
           "deploy": {
             "s": "✗",
-            "note": "Chưa"
+            "note": "Chưa merge, chưa deploy"
           },
           "on": {
             "s": "~",
@@ -9891,15 +9898,16 @@
             "s": "✗",
             "note": "Hiệu lực chưa đo: chưa có build dài"
           },
-          "blocker": "PR runner (kẹp 900 s + gia hạn lease) rồi đo một build dài; chưa được gọi là \"đã nới\".",
+          "blocker": "QA và merge #258, deploy runner + helper, đặt giới hạn kẹp ở cả hai phía rồi đo một build dài; chưa được gọi là \"đã nới\".",
           "eta": {
             "label": "ESTIMATE",
-            "text": "PR runner ~14/11; runner 2 ~20–24/11 (thấp; #08)"
+            "text": "PR ~14/11 (trung bình; #08)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/BUILD-TIME/LOG.md",
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
+            "gh:luan20495/xweb01#258",
             "gh:luan20495/xweb01 issue #88 (comment #6816550998, 13:32 ICT)"
           ]
         }
@@ -10015,7 +10023,7 @@
             "label": "N/A",
             "text": "Phần cài đặt đã xong"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/QUEUE-TIMEOUT/LOG.md"
           ]
@@ -10132,7 +10140,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -10247,7 +10255,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH ngày"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -10360,7 +10368,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -10473,7 +10481,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH ngày (chỉ có ước lượng công ~3 giờ)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)",
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
@@ -10580,7 +10588,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -10731,7 +10739,7 @@
             "label": "ESTIMATE",
             "text": "T22-C ~20–26/11 (thấp; #06); ngày deploy bản 22 CHƯA XÁC MINH"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/agents/QA-PR245-246.md",
             "xweb-handoff/p37-studio/batch3/evidence/L28-RESTORE/LOG.md",
@@ -10853,7 +10861,7 @@
             "label": "ESTIMATE",
             "text": "T22-C ~20–26/11 (thấp; #06)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/PAYC-T22C-DESIGN.md",
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
@@ -10982,7 +10990,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH ngày deploy mã giá trị 0"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/L30/LOG.md",
             "xweb-handoff/agents/QA-B3-G2B.md",
@@ -11090,7 +11098,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -11212,7 +11220,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
             "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
@@ -11327,7 +11335,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -11433,7 +11441,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -11541,7 +11549,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -11663,7 +11671,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
             "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
@@ -11782,7 +11790,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
             "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
@@ -11901,7 +11909,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
             "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
@@ -12013,7 +12021,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12120,7 +12128,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12226,7 +12234,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12343,7 +12351,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12462,7 +12470,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12579,7 +12587,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12687,7 +12695,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12796,7 +12804,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -12912,7 +12920,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13018,7 +13026,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13125,7 +13133,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13244,7 +13252,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md",
             "xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md"
@@ -13360,7 +13368,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13466,7 +13474,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13579,7 +13587,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13695,7 +13703,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13803,7 +13811,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -13912,7 +13920,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -14021,7 +14029,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -14110,21 +14118,28 @@
           },
           "needsOwner": "",
           "code": {
-            "s": "–",
-            "note": "Cài đặt nóng"
+            "s": "~",
+            "note": "Mức 120 s / 900 s là cài đặt nóng; nâng luồng AI trên 900 s cần BE #258 (đang MỞ, mặc định giữ 900)"
           },
           "pr": {
-            "kind": "none-needed",
-            "text": "không cần PR (cài đặt nóng)",
-            "refs": []
+            "kind": "refs",
+            "text": "BE #258 71fe0055 (đang mở)",
+            "refs": [
+              {
+                "repo": "BE",
+                "n": 258,
+                "sha8": "71fe0055",
+                "state": "open"
+              }
+            ]
           },
           "qa": {
-            "s": "–",
-            "note": "Không có mã"
+            "s": "✗",
+            "note": "Phần #258 chờ QA (status:qa)"
           },
           "deploy": {
-            "s": "–",
-            "note": "Không cần phát hành"
+            "s": "~",
+            "note": "Cài đặt nóng không cần phát hành; phần trên 900 s cần #258 merge + deploy"
           },
           "on": {
             "s": "✓",
@@ -14134,14 +14149,15 @@
             "s": "✗",
             "note": "Chưa có đọc lại độc lập"
           },
-          "blocker": "Câu trả lời rất dài có thể chạm 900 s trước trần token (TIMEOUT); chặn kế L12.",
+          "blocker": "Câu trả lời rất dài có thể chạm 900 s trước trần token (TIMEOUT); trên 900 s cần #258; chặn kế L12.",
           "eta": {
-            "label": "N/A",
-            "text": "Phần cài đặt đã xong"
+            "label": "ESTIMATE",
+            "text": "PR ~14/11 (trung bình; #08)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
-            "xweb-handoff/p37-studio/batch3/evidence/QUEUE-TIMEOUT/LOG.md"
+            "xweb-handoff/p37-studio/batch3/evidence/QUEUE-TIMEOUT/LOG.md",
+            "gh:luan20495/xweb01#258"
           ]
         }
       },
@@ -14250,7 +14266,7 @@
           },
           "deploy": {
             "s": "✗",
-            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
+            "note": "Không có trong release 21; bản 22 mới đóng băng ở dev (BE d430a3e6 / FE 29c2f075), CHƯA deploy, QA tích hợp bản 22 còn PENDING; PROD = release 21 (BE 4a400ed0cc75 / FE 449621de3b4a)"
           },
           "on": {
             "s": "✗",
@@ -14265,7 +14281,7 @@
             "label": "ESTIMATE",
             "text": "PR ~14/11, merge ~16/11 (trung bình; #04)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "gh:luan20495/xweb01#231",
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
@@ -14379,7 +14395,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH ngày"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)"
           ]
@@ -14492,7 +14508,7 @@
             "label": "UNKNOWN",
             "text": "CHƯA XÁC MINH (preview-days)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/evidence/L28-L60-L61/LOG.md",
             "gh:luan20495/xweb01 issue #88 (comment #6817234386, 14:10 ICT)"
@@ -14601,7 +14617,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -14707,7 +14723,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -14815,7 +14831,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -14920,7 +14936,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -15026,7 +15042,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -15134,7 +15150,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -15239,7 +15255,7 @@
             "label": "N/A",
             "text": "Không còn việc cho hàng này"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -15350,7 +15366,7 @@
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
           },
-          "checkedAt": "2026-11-12T17:31:00+07:00",
+          "checkedAt": "2026-11-12T17:47:00+07:00",
           "evidence": [
             "xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md"
           ]
@@ -15439,9 +15455,9 @@
         "note": "Nạp kết quả kiểm toán 69/69 (REPORTED); sửa phân loại L21/L28; Q1: 19+17+1+32 = 69."
       },
       {
-        "at": "2026-11-12T17:31:00+07:00",
+        "at": "2026-11-12T17:47:00+07:00",
         "by": "C0/dashboard-limits",
-        "note": "Tái cấu trúc tab Anh đã duyệt (theo chỉ thị Owner #88, mục B): mỗi hàng L01–L69 có thêm exec{hiệu lực + lớp chặn còn lại, quyết định Owner, mã, PR/SHA, QA, deploy PROD, cờ/cấu hình ON, VERIFIED, blocker, ETA, checkedAt, bằng chứng}; bảy trạng thái tách riêng, không coi \"đã nâng cài đặt web\" là \"đã nới xong\". Số liệu đối chiếu gh PR + QA + #88 lúc 17:31 ICT 12/11; chip cộng đủ 69. Sửa nhóm L21 (Cần mã/PR runner) và L28 (Đã áp dụng) để nhóm Anh đã duyệt cộng đủ 37 và nhóm chưa duyệt 32."
+        "note": "Tái cấu trúc tab Anh đã duyệt (theo chỉ thị Owner #88, mục B): mỗi hàng L01–L69 có thêm exec{hiệu lực + lớp chặn còn lại, quyết định Owner, mã, PR/SHA, QA, deploy PROD, cờ/cấu hình ON, VERIFIED, blocker, ETA, checkedAt, bằng chứng}; bảy trạng thái tách riêng, không coi \"đã nâng cài đặt web\" là \"đã nới xong\". Số liệu đối chiếu gh PR + QA + #88 lúc 17:47 ICT 12/11; chip cộng đủ 69. Sửa nhóm L21 (Cần mã/PR runner) và L28 (Đã áp dụng) để nhóm Anh đã duyệt cộng đủ 37 và nhóm chưa duyệt 32."
       }
     ],
     "audit": {
@@ -15465,7 +15481,7 @@
         "BYOK và đường cũ/miễn phí"
       ]
     },
-    "execUpdatedAt": "2026-11-12T17:31:00+07:00",
+    "execUpdatedAt": "2026-11-12T17:47:00+07:00",
     "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {

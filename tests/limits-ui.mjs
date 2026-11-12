@@ -710,7 +710,7 @@ await T('50 real data: honesty rules - nothing is PROD/ON/VERIFIED on the streng
   eq(bad, []);
   const g = id => REAL.items.find(i => i.id === id).exec;
   // the named examples of the Owner directive
-  eq([g('L21').on.s, g('L21').verified.s, g('L21').code.s, g('L21').pr.kind], ['~', '✗', '✗', 'missing']); ok(/900/.test(g('L21').effective.value), 'L21 effective carries the 900 s clamp');
+  eq([g('L21').on.s, g('L21').verified.s, g('L21').code.s, g('L21').qa.s, g('L21').deploy.s], ['~', '✗', '~', '✗', '✗']); ok(g('L21').pr.refs.some(r => r.n === 258 && r.state === 'open'), 'L21 -> open BE #258 (not merged, so no deploy/ON claim)'); ok(/900/.test(g('L21').effective.value), 'L21 effective carries the 900 s clamp');
   eq([g('L12').code.s, g('L12').qa.s, g('L12').deploy.s, g('L12').on.s, g('L12').verified.s], ['✓', '✓', '✗', '✗', '✗']); ok(g('L12').pr.refs.some(r => r.n === 254 && r.sha8 === '3d8e6d81'), 'L12 -> #254 3d8e6d81'); ok(/16\.?000/.test(g('L12').effective.value), 'L12 PROD still 16000');
   for (const id of ['L06', 'L07']) { eq([g(id).deploy.s, g(id).on.s, g(id).verified.s], ['✗', '✗', '✗'], id); ok(/600/.test(g(id).effective.value), id + ' PROD still 600'); ok(g(id).pr.refs.some(r => r.n === 250), id + ' -> #250'); }
   // public repo: no secrets, e-mail, IP, money amounts or env-var assignments in the new data
@@ -729,9 +729,9 @@ await T('51 #limits/approved shows the execution board: 69 cards, six-state stri
     const labels = (await p.locator('#alXChips button').allInnerTexts()).map(t => t.replace(/\s+\d+$/, '').trim());
     for (const l of ['Tất cả', 'Còn chặn AI', 'Cần Owner quyết', 'Đang chờ QA', 'Đã duyệt / chưa thực thi']) ok(labels.includes(l), 'chip ' + l + ' in ' + labels);
     const c = p.locator('.al-xc[data-xid="L21"]'); const t = await c.innerText();
-    eq(await c.locator('.al-xstrip li').count(), 6); eq(await c.locator('.al-xstrip li').evaluateAll(l => l.map(e => e.dataset.k + ':' + e.dataset.s)), ['od:✓', 'code:✗', 'qa:✗', 'deploy:✗', 'on:~', 'verified:✗']);
-    for (const w of ['Owner duyệt', 'Mã xong', 'QA đạt', 'Lên PROD', 'Cờ/cấu hình ON', 'VERIFIED', 'Hiệu lực cuối', 'Lớp còn chặn', 'PR / SHA', 'chưa có PR', 'Blocker', 'ETA', 'ESTIMATE', 'Kiểm lúc', 'ICT', 'Bằng chứng']) ok(t.includes(w), 'L21 card shows ' + w);
-    ok(/900 s/.test(t), 'L21 effective shows the clamp'); eq(await c.locator('.al-xlay [data-layer]').evaluateAll(l => l.map(e => e.dataset.layer)), ['runner', 'BE']);
+    eq(await c.locator('.al-xstrip li').count(), 6); eq(await c.locator('.al-xstrip li').evaluateAll(l => l.map(e => e.dataset.k + ':' + e.dataset.s)), ['od:✓', 'code:~', 'qa:✗', 'deploy:✗', 'on:~', 'verified:✗']);
+    for (const w of ['Owner duyệt', 'Mã xong', 'QA đạt', 'Lên PROD', 'Cờ/cấu hình ON', 'VERIFIED', 'Hiệu lực cuối', 'Lớp còn chặn', 'PR / SHA', 'BE #258 71fe0055', 'Blocker', 'ETA', 'ESTIMATE', 'Kiểm lúc', 'ICT', 'Bằng chứng']) ok(t.includes(w), 'L21 card shows ' + w);
+    ok(/900 s/.test(t), 'L21 effective shows the clamp'); ok(/chưa có PR/.test(await p.locator('.al-xc[data-xid="L13"] .al-xpr').innerText()), 'a row without a PR says so'); eq(await c.locator('.al-xlay [data-layer]').evaluateAll(l => l.map(e => e.dataset.layer)), ['runner', 'BE']);
     const c12 = p.locator('.al-xc[data-xid="L12"]'); ok(/BE #254 3d8e6d81/.test(await c12.locator('.al-xpr').innerText()), 'L12 PR/SHA');
     // filters: every bucket chip narrows to exactly its count; the cross chip "Còn chặn AI" combines; "Tất cả" resets
     for (const b of BUCKETS) { await p.locator(`#alXChips button[data-xf="${b}"]`).click(); eq(await p.locator('#alXList .al-xc').count(), want[b], b); eq(await p.locator('#alXList .al-xc').evaluateAll(l => [...new Set(l.map(e => e.dataset.bucket))]), [b]); eq(await p.locator(`#alXChips button[data-xf="${b}"]`).getAttribute('aria-pressed'), 'true'); }
