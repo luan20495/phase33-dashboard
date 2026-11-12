@@ -1672,9 +1672,9 @@ function a12Dt(s){const m=/^(\d{4})-(\d\d)-(\d\d)(?:T(\d\d):(\d\d))?/.exec(Strin
 function a12Hours(h){return (h==null||isNaN(h))?null:(Math.round(h*10)/10).toString().replace('.',',')}
 function a12EtaText(i){if(!i)return 'Chưa xác định giờ — chờ ước lượng';
  const c='tin cậy '+(A12CONF[i.confidence]||'chưa rõ');
- if(i.etaAt){const e=[a12Dt(i.etaAt)];const w=a12Hours(i.remainingEffortHours),l=a12Hours(i.remainingElapsedHours);if(w)e.push(w+' giờ công');if(l)e.push(l+' giờ theo lịch');e.push(c);return 'Dự kiến: '+e.join(' · ')+(i.etaRange&&i.etaRange.length===2?' (khoảng '+a12Dt(i.etaRange[0])+' – '+a12Dt(i.etaRange[1])+')':'')}
- let s=i.unknownReason||'Chưa xác định giờ — chờ ước lượng';if(i.etaRange&&i.etaRange.length===2)s+='. Khoảng ngày ESTIMATE: '+a12Dt(i.etaRange[0])+' – '+a12Dt(i.etaRange[1]);const w=a12Hours(i.remainingEffortHours);if(w)s+=' · '+w+' giờ công đã biết';return s+' · '+c}
-function a12EtaDetail(i){if(!i)return '';const p=[];if(i.basis)p.push('Căn cứ: '+i.basis);if(i.blockers&&i.blockers.length)p.push('Vướng: '+i.blockers.join('; '));if(i.milestones&&i.milestones.length)p.push('Mốc phụ (không phải nghiệm thu): '+i.milestones.map(m=>m.label+' '+(a12Dt(m.etaAt)||String(m.etaAt))).join('; '));if(i.updatedAt)p.push('Cập nhật '+a12Dt(i.updatedAt));return p.join(' · ')}
+ if(i.etaAt){const e=[a12Dt(i.etaAt)];const w=a12Hours(i.remainingEffortHours),l=a12Hours(i.remainingElapsedHours);if(w)e.push(w+' giờ công còn lại');if(l)e.push(l+' giờ thực tế cần chờ');e.push(c);return 'Dự kiến xong lúc (ICT): '+e.join(' · ')+(i.etaRange&&i.etaRange.length===2?' (khoảng '+a12Dt(i.etaRange[0])+' – '+a12Dt(i.etaRange[1])+')':'')}
+ let s=i.unknownReason||'Chưa xác định giờ — chờ ước lượng';if(i.etaRange&&i.etaRange.length===2)s+='. Khoảng ngày ESTIMATE: '+a12Dt(i.etaRange[0])+' – '+a12Dt(i.etaRange[1]);const w=a12Hours(i.remainingEffortHours);if(w)s+=' · '+w+' giờ công còn lại đã biết';return s+' · '+c}
+function a12EtaDetail(i){if(!i)return '';const p=[];if(i.startAt)p.push('Bắt đầu '+a12Dt(i.startAt));if(i.prevEta)p.push('Lần trước: '+i.prevEta);if(i.removedWait)p.push('Thay đổi/giờ chờ: '+i.removedWait);if(i.waits&&i.waits.length)p.push('Giờ chờ: '+i.waits.map(w=>a12Dt(w.from)+'→'+a12Dt(w.to)+' ('+w.hours+' giờ) '+w.reason).join('; '));if(i.note)p.push(i.note);if(i.criticalPath)p.push('Đường găng: '+i.criticalPath);if(i.basis)p.push('Căn cứ: '+i.basis);if(i.blockers&&i.blockers.length)p.push('Vướng: '+i.blockers.join('; '));if(i.milestones&&i.milestones.length)p.push('Mốc phụ (không phải nghiệm thu): '+i.milestones.map(m=>m.label+' '+(a12Dt(m.etaAt)||String(m.etaAt))).join('; '));if(i.updatedAt)p.push('Cập nhật '+a12Dt(i.updatedAt));return p.join(' · ')}
 function renderAgent12(){
  const host=document.getElementById('agent12Body');if(!host)return;host.replaceChildren();
  const a=payload&&payload.aiAgent12;
@@ -1688,7 +1688,7 @@ function renderAgent12(){
  host.append(el('p','a12-hint a12-hint-d','Kéo ngang trong khung để xem cột Agent và ETA.'));const sc=el('div','a12-scroll');sc.setAttribute('role','region');sc.setAttribute('aria-label','Bảng 12 hạng mục AI Agent (cuộn ngang)');sc.tabIndex=0;
  const tb=document.createElement('table');tb.className='a12-table';
  const hd=document.createElement('tr');
- for(const h of ['#','Hạng mục','Task/PR + SHA','Đã làm','Chưa làm / vướng','CODE','QA','DEPLOY','ON','VERIFIED','Agent','ETA (tin cậy)']){const c=document.createElement('th');c.scope='col';c.textContent=h;if(G.map(x=>GN[x]).includes(h))c.className='a12-c';hd.append(c)}
+ for(const h of ['#','Hạng mục','Task/PR + SHA','Đã làm','Chưa làm / vướng','CODE','QA','DEPLOY','ON','VERIFIED','Agent','Dự kiến xong lúc (ICT)']){const c=document.createElement('th');c.scope='col';c.textContent=h;if(G.map(x=>GN[x]).includes(h))c.className='a12-c';hd.append(c)}
  const th=document.createElement('thead');th.append(hd);tb.append(th);
  const tbd=document.createElement('tbody');
  for(const r of a.items){const tr=document.createElement('tr');
@@ -1701,7 +1701,7 @@ function renderAgent12(){
   const h=el('div','a12-card-h');h.append(el('span','a12-card-id',r.id),el('span','',r.name));sm.append(h);
   const gs=el('div','a12-gates');for(const k of G){const s=document.createElement('span');s.append(document.createTextNode(GN[k]+' '),gate(k,String(r[k]==null?'':r[k])));gs.append(s)}sm.append(gs);
   const bl=el('div','a12-line a12-clamp');bl.append(el('b','','Vướng: '),document.createTextNode(String(r.todo||'')));sm.append(bl);
-  const et=el('div','a12-line');et.append(el('b','','ETA: '),document.createTextNode(r.etaInfo?a12EtaText(r.etaInfo):String(r.eta||'')));sm.append(et);
+  const et=el('div','a12-line');et.append(el('b','','Dự kiến xong lúc (ICT): '),document.createTextNode(r.etaInfo?a12EtaText(r.etaInfo):String(r.eta||'')));sm.append(et);
   d.append(sm);
   const bd=el('div','a12-card-b');
   if(r.etaInfo){const p=el('div','a12-line');p.append(el('b','','Căn cứ ETA: '),document.createTextNode(a12EtaDetail(r.etaInfo)));bd.append(p)}
@@ -1724,6 +1724,7 @@ function renderHourlySummary(host){
  box.append(lst('Blocker',s.blockers));box.append(lst('Rủi ro',s.risks));box.append(lst('Cần Owner quyết',s.ownerNeeds));
  const e=s.eta||{};box.append(row('ETA toàn bộ AI Agent',(e.value||'UNKNOWN')+' ['+(e.label||'UNKNOWN')+(e.confidence?', tin cậy '+e.confidence:'')+']'+(e.change?' — thay đổi: '+e.change:'')));
  const ai=payload&&payload.aiAgent12&&payload.aiAgent12.items;if(ai){const ul=document.createElement('ul');for(const r of ai){if(!r.etaInfo)continue;const li=document.createElement('li');li.textContent=r.id+' '+r.name+': '+a12EtaText(r.etaInfo);ul.append(li)}const p=el('p','hr-sum-row');p.append(el('b','','ETA từng hạng mục (giờ ICT): '),ul);box.append(p)}
+ const ag=payload&&payload.hourly&&payload.hourly.agents;if(ag){const c=ag.counts||{};box.append(row('Agent (ListAgents '+a12Dt(ag.checkedAt)+')',(c.RUNNING_TOTAL!=null?c.RUNNING_TOTAL:'UNKNOWN')+' đang chạy · '+(c.WORKING||0)+' làm việc · '+(c.WAITING||0)+' chờ · '+(c.BLOCKED||0)+' bị chặn · '+(c.IDLE||0)+' nhàn rỗi · '+(c.HUNG_SUSPECTED||0)+' nghi treo · '+(c.FINISHED||0)+' đã xong · tối đa '+(ag.cap||'?')));if(ag.resources)box.append(row('Tài nguyên',ag.resources));const ul=document.createElement('ul');ul.className='hr-agents';for(const a of (ag.items||[])){const li=document.createElement('li');li.textContent=a.alias+' ('+a.id+', '+a.model+') · '+a.task+' · '+a.state+' · bắt đầu '+a12Dt(a.startAt)+' · ghi cuối '+(a.lastProgressAgoSec!=null?(a.lastProgressAgoSec<120?a.lastProgressAgoSec+' giây':Math.round(a.lastProgressAgoSec/60)+' phút'):'UNKNOWN')+' trước · '+(a.etaAt?'dự kiến xong lúc (ICT) '+a12Dt(a.etaAt):'dự kiến xong: chưa xác định')+(a.waitReason?' · chờ: '+a.waitReason:'');ul.append(li)}const p=el('p','hr-sum-row');p.append(el('b','','Từng agent: '),ul);box.append(p);for(const n of (ag.notes||[]))box.append(el('p','hr-sum-row',n))}
  host.append(box);
 }
 function renderHourly(){
