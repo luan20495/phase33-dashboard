@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T08:39:00+07:00",
+  "asOf": "2026-11-12T08:51:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T08:39:00+07:00",
+  "detailUpdatedAt": "2026-11-12T08:51:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6356,6 +6356,238 @@
         "goalEn": "Items that depend on an Owner decision or an independent auditor: data architecture, load testing, plans and billing, go-to-market decision.",
         "eta": "từ giữa tháng 12 (chưa có ngày chắc)",
         "etaEn": "from mid-December (no firm date)"
+      }
+    ]
+  },
+  "hourly": {
+    "updatedAt": "2026-11-12T08:51:00+07:00",
+    "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
+    "tasks": [
+      {
+        "id": "H1",
+        "title": "Đọc comment mới của Owner/ChatGPT trên #88 và xử lý",
+        "detail": "Đọc các comment [OWNER]/[CHATGPT] mới kể từ lần trước; áp dụng quyết định, đóng thẻ khi có tin nhắn của Owner.",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": [
+          {
+            "at": "2026-11-12T04:28:00+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới"
+          },
+          {
+            "at": "2026-11-12T05:26:00+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới"
+          },
+          {
+            "at": "2026-11-12T06:26:00+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới"
+          },
+          {
+            "at": "2026-11-12T07:04:00+07:00",
+            "result": "changed",
+            "summary": "Owner duyệt NO-25 = A, NO-26 = A; đã đóng thẻ và cập nhật U2/U4/U5"
+          },
+          {
+            "at": "2026-11-12T08:27:00+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới"
+          }
+        ]
+      },
+      {
+        "id": "H2",
+        "title": "Áp dụng cấu hình tab Quy trình và đối chiếu với thực tế",
+        "detail": "Áp dụng mọi tin nhắn cấu hình của Owner vào process.groups; so từng mục với thực tế (số agent, ổ đĩa, khóa SSH, báo cáo giờ).",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": [
+          {
+            "at": "2026-11-12T07:04:00+07:00",
+            "result": "changed",
+            "summary": "Ghi lịch sử quyết định NO-25/NO-26 vào tab Quy trình"
+          },
+          {
+            "at": "2026-11-12T08:27:00+07:00",
+            "result": "changed",
+            "summary": "Cập nhật giá trị đĩa còn 13 GiB (dưới ngưỡng khẩn 20)"
+          }
+        ]
+      },
+      {
+        "id": "H3",
+        "title": "Kiểm tra agent, PR đang mở, báo cáo QA/SEC",
+        "detail": "ListAgents, danh sách PR mở và đã merge của hai repo, báo cáo QA/SEC mới trong ~/xweb-handoff/agents.",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": [
+          {
+            "at": "2026-11-12T04:28:00+07:00",
+            "result": "ok",
+            "summary": "0 agent, không PR mới"
+          },
+          {
+            "at": "2026-11-12T05:26:00+07:00",
+            "result": "ok",
+            "summary": "0 agent, không PR mới"
+          },
+          {
+            "at": "2026-11-12T06:26:00+07:00",
+            "result": "ok",
+            "summary": "0 agent, không PR mới"
+          },
+          {
+            "at": "2026-11-12T07:30:00+07:00",
+            "result": "changed",
+            "summary": "G0 xong; #242 merge; PR FE #192 mở"
+          },
+          {
+            "at": "2026-11-12T08:27:00+07:00",
+            "result": "changed",
+            "summary": "#192 và #243 đã merge; #193 chờ QA; G1-A xong"
+          }
+        ]
+      },
+      {
+        "id": "H4",
+        "title": "Đăng báo cáo 19 dòng lên #88 (chỉ khi có thay đổi)",
+        "detail": "Dựng từ báo cáo giờ trước; đúng 19 dòng; nhãn REPORTED/VERIFIED; không có bí mật hay số tiền.",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": [
+          {
+            "at": "2026-11-12T04:28:00+07:00",
+            "result": "skipped",
+            "summary": "Không có thay đổi, không đăng"
+          },
+          {
+            "at": "2026-11-12T05:26:00+07:00",
+            "result": "skipped",
+            "summary": "Không có thay đổi, không đăng"
+          },
+          {
+            "at": "2026-11-12T06:26:00+07:00",
+            "result": "skipped",
+            "summary": "Không có thay đổi, không đăng"
+          },
+          {
+            "at": "2026-11-12T07:30:00+07:00",
+            "result": "changed",
+            "summary": "Đăng lần 119 (comment 6810717606)"
+          },
+          {
+            "at": "2026-11-12T08:27:00+07:00",
+            "result": "changed",
+            "summary": "Đăng lần 120 (comment 6811653844); sửa giờ tiêu đề cho đúng giờ thật"
+          }
+        ]
+      },
+      {
+        "id": "H5",
+        "title": "Đồng bộ dashboard (status.json)",
+        "detail": "git pull --rebase, chỉ cập nhật mục có sự kiện thay đổi, asOf là giờ thật, push main.",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": [
+          {
+            "at": "2026-11-12T04:28:00+07:00",
+            "result": "changed",
+            "summary": "Đĩa 25 GiB sau khi dọn snapshot (commit fbba1cc)"
+          },
+          {
+            "at": "2026-11-12T05:26:00+07:00",
+            "result": "skipped",
+            "summary": "Không có thay đổi"
+          },
+          {
+            "at": "2026-11-12T06:26:00+07:00",
+            "result": "skipped",
+            "summary": "Không có thay đổi"
+          },
+          {
+            "at": "2026-11-12T07:30:00+07:00",
+            "result": "changed",
+            "summary": "Đĩa 14 GiB, G1 bắt đầu (commit 7a419e2)"
+          },
+          {
+            "at": "2026-11-12T08:27:00+07:00",
+            "result": "changed",
+            "summary": "Đĩa 13 GiB (commit edceaf9)"
+          }
+        ]
+      },
+      {
+        "id": "H6",
+        "title": "Kiểm ổ đĩa và dọn phần an toàn",
+        "detail": "Đọc df; nếu dưới ngưỡng thì xóa snapshot Time Machine cũ (giữ 3 bản mới nhất) và thư mục build của worktree đã sạch và đã đẩy; không đụng cache Gradle hay volume Docker khi chưa có lệnh của Owner.",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": [
+          {
+            "at": "2026-11-12T04:28:00+07:00",
+            "result": "changed",
+            "summary": "Xóa 4 snapshot, đĩa 15→25 GiB"
+          },
+          {
+            "at": "2026-11-12T05:26:00+07:00",
+            "result": "ok",
+            "summary": "24 GiB, không cần dọn"
+          },
+          {
+            "at": "2026-11-12T06:26:00+07:00",
+            "result": "changed",
+            "summary": "Xóa 2 snapshot, 23→25 GiB"
+          },
+          {
+            "at": "2026-11-12T07:30:00+07:00",
+            "result": "changed",
+            "summary": "Xóa 1 snapshot và 1.3 GiB thư mục build cũ; đĩa 14 GiB"
+          },
+          {
+            "at": "2026-11-12T08:27:00+07:00",
+            "result": "ok",
+            "summary": "13 GiB, không còn gì dọn an toàn; chờ Owner chọn A/B cho cache Gradle"
+          }
+        ]
+      },
+      {
+        "id": "H7",
+        "title": "Kiểm khóa SSH tới máy chủ còn hạn",
+        "detail": "Khóa SSH hiện còn hạn đến khoảng 21:21 ngày 12/11; báo Owner nạp lại (ssh-add -t 24h) trước giờ đó và trước các phép đọc cơ sở dữ liệu.",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": []
+      },
+      {
+        "id": "H8",
+        "title": "Giữ tối thiểu 4 agent: giao việc không cần Owner duyệt khi rảnh",
+        "detail": "Nếu số agent đang chạy dưới 4 và tải máy cho phép, giao việc đã được duyệt hoặc không cần duyệt (QA, sửa lỗi nhỏ, tài liệu); không giao quá một việc nặng một lúc.",
+        "enabled": true,
+        "createdAt": "2026-11-12T08:50:00+07:00",
+        "createdBy": "C0",
+        "runs": [
+          {
+            "at": "2026-11-12T08:27:00+07:00",
+            "result": "ok",
+            "summary": "3 agent đang chạy; việc còn lại chờ QA hoặc Owner, tải máy ~5"
+          }
+        ]
+      }
+    ],
+    "history": [
+      {
+        "at": "2026-11-12T08:51:00+07:00",
+        "by": "C0",
+        "note": "Tạo danh sách 8 việc chạy mỗi giờ từ các việc đang làm; kết quả các lần chạy từ 04:28 đến 08:27 lấy từ báo cáo giờ thật, việc chưa chạy riêng (H7) để trống"
       }
     ]
   }
