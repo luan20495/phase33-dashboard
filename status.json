@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T10:53:00+07:00",
+  "asOf": "2026-11-12T11:06:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T10:53:00+07:00",
+  "detailUpdatedAt": "2026-11-12T11:06:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3898,7 +3898,7 @@
         "id": "NO-29",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-12T09:16:00+07:00",
         "title": "Hồ sơ nhân viên (NO-27 = A): công sức thật ~83 giờ, không phải ~20 giờ; 7 câu hỏi để chốt",
         "detail": "ĐÍNH CHÍNH: em đã báo 'khoảng 20 giờ' cho cách A; kế hoạch chi tiết (đọc mã, REPORTED, chưa QA) cho ~83 giờ (58–108, ước lượng ±30%) vì cách A cần thêm một đường dữ liệu mới: hiện prompt của AI không bao giờ chứa dòng dữ liệu nào, nên 'dữ liệu mẫu giả cho AI' là phần BE mới (B3). Các lát cắt (mỗi lát ≤300 dòng, mặc định TẮT): B0 test ghim (7h, bắt đầu được ngay), B1 trang tóm tắt cho admin công ty chỉ-đọc (14h, ngay), B2 thu hồi toàn công ty (8h), B3 dữ liệu mẫu giả vào prompt + 1 cờ mới (14h), FE 20h, tài liệu 4h, QA/SEC độc lập 16h. Có điều kiện: tắt tạo tay (9h), thêm loại 'profiles' vào ORG_SYNC (28h), xóa/lưu giữ (10h), gắn pháp nhân (20h). Trang tóm tắt mở rộng tab Dữ liệu doanh nghiệp > Nhân viên > Truy cập, không hiện tên hay email. Kiểm thực tế: hiện admin tạo tay được hồ sơ (POST + giao diện), chưa có nhập/đồng bộ, chưa có thu hồi toàn công ty, chưa có xóa, hồ sơ chưa gắn pháp nhân.",
@@ -3921,13 +3921,16 @@
             "label": "Anh đổi một số câu",
             "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
           }
-        ]
+        ],
+        "decided": "A",
+        "decidedAt": "2026-11-12T11:05:00+07:00",
+        "decision": "Owner 11:05 chọn A: theo mặc định đề xuất cả 7 câu, bắt đầu B0/B1/B2/B3 (hồ sơ nhân viên cách A: AI thấy cấu trúc + dữ liệu mẫu, ứng dụng đọc dòng thật theo quyền người xem, trang tóm tắt cho admin công ty). Cờ ENTERPRISE_PROFILES giữ TẮT cho tới khi QA/SEC độc lập xong; mỗi lát đi qua PR + QA độc lập. Xóa/lưu giữ dữ liệu cá nhân phải chốt trước khi bật thật trên PROD."
       },
       {
         "id": "NO-30",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-12T10:12:00+07:00",
         "title": "Chỉ thị 'nới tối đa năng lực AI': 9 chỗ không thể làm đúng nghĩa đen, chọn mặc định (≈332 giờ việc mới)",
         "detail": "Kế hoạch (REPORTED, đọc mã, chưa QA): ~/xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md + ai-limits-maxcap.json. Sau khi tái dùng mã đã có (T36, T22-A/B, T23/T24/T25, J1, T10, P36-ATTACH, ArchiveReader…), việc MỚI ≈ 332 giờ (216–448, ±35%): 276 giờ theo hàng + 56 giờ xuyên suốt (báo cáo giới hạn hiệu lực, E2E PROD, phát hành); riêng file nén 1 GB ≈ 98 giờ; việc đã có phải hoàn tất ≈ 129 giờ (T23 39, T24 55, T25 31, T10 4). Chưa hàng nào đạt đủ 5 bước CODE/QA/DEPLOY/ON/VERIFIED. Kiểm 'số 0': 0 = không giới hạn ĐÚNG cho L01–L04, L09–L11 (đã đặt); SAI cho build/ngày L15–L18 (0 chặn mọi build; chỉ đặt được mức tối đa hữu hạn 100.000/ngày, tenant và toàn hệ thống 1.000.000) và L06/L07 (không có vô hạn; hằng số 600, mã cho tối đa 100.000/ngày, cần PR + đổi env + khởi động lại). Hiện chặn thực tế đầu tiên là trần chung 600 lượt/ngày, rồi 30 lời nhắc/phút, 2 luồng song song, 16.000 token mỗi câu trả lời. 'Đã đặt 0' chưa có nghĩa hết bị chặn theo lượt. 9 chỗ cần Owner quyết (mặc định đề xuất): DIR-1 trần 600 lượt (L06/L07): nâng hằng số và env lên 100.000/ngày + cảnh báo không chặn, để trần tiền giữ chi phí; điều kiện trước: xử lý 8 khoản giữ chỗ chưa giải thích; chỉ thị này thay quyết định cũ N=5.000 và PR #217 đã đóng. DIR-2 'không cắt âm thầm' vs cửa sổ ngữ cảnh hữu hạn: chữ người gõ KHÔNG tự cắt, từ chối rõ (413) kèm gợi ý đổi mô hình ngữ cảnh lớn; tài liệu cắt CÓ thông báo và đọc tiếp qua tool loop; không bật tóm tắt nhiều tầng mặc định. DIR-3 'mọi định dạng': nhận mọi loại đọc được (mã hóa mới, PPTX/ODF/EPUB/RTF, PDF sau QA), tệp không đọc được ghi dòng siêu dữ liệu 'đính kèm nhưng không đọc được'; KHÔNG làm OLE cũ, KHÔNG video. DIR-4 đầu ra theo mô hình (L12): bước đầu nâng tới 32.000 cho mô hình hỗ trợ sau 3 lượt Haiku có bảng token. DIR-5 file nén 1 GB: tải multipart thẳng lên kho lưu trữ, trích xuất cô lập không mạng, trần sau giải nén 3 GiB và 20.000 mục, ZIP/TAR/TGZ/7z trước (thư viện cần duyệt chuỗi cung ứng), RAR không làm ở đợt đầu (giấy phép), ClamAV để sau; hạ tầng do Windows làm; chỉ thử 1 GB trên máy rảnh có phê duyệt. DIR-6 tự tiếp tục nhiều bước: cờ TẮT, bật cho workspace QA trước, tối đa 12 bước, dừng ở trần tiền của kế hoạch, thao tác rủi ro vẫn chờ phê duyệt. DIR-7 tham chiếu URL và tìm kiếm: bật tham chiếu URL (miễn phí) cho workspace QA sau SEC; giữ trần ngày của dịch vụ trả phí. DIR-8 thêm khoảng 30 lượt Haiku thật trên PROD theo từng đợt (ngoài 12 lượt T23 và Đợt 3). DIR-9 build: chấp nhận 'bỏ quota' = mức tối đa hữu hạn 100.000/ngày; chỉ làm PR nhỏ '0 = vô hạn' nếu Owner muốn con số 0 thật. Chuỗi biên: 10 tệp × dung lượng tối đa vượt thân JSON 16 MiB; giữ tổng 8 MiB ảnh + 3 MiB tài liệu trong JSON, vượt thì đi đường file nén/ATT-e; KHÔNG nâng Caddy/nginx/Next/Tomcat.",
@@ -3950,7 +3953,10 @@
             "label": "Chỉ làm bước H0 và T36-b trước, chờ anh duyệt các đợt sau",
             "desc": "Giữ phạm vi nhỏ: đọc lại 5 hàng đã đặt, bỏ trần 600, báo cáo giới hạn hiệu lực."
           }
-        ]
+        ],
+        "decided": "A",
+        "decidedAt": "2026-11-12T11:05:00+07:00",
+        "decision": "Owner 11:05: 'mở hết giới hạn cho AI; lượt Haiku thì em test thoải mái, không cần limit gì cả, miễn sao AI Agent chạy tốt nhất'. C0 hiểu: theo mặc định đề xuất cả 9 chỗ (DIR-1..9) và bỏ trần số lượt Haiku thử trên PROD (trước là 30 lượt, đã dùng 8). Vẫn giữ: giới hạn tiền, IAM, ZDR, SSRF/DoS/path traversal, concurrency/queue/timeout/lock dự án, thao tác rủi ro cần phê duyệt (chỉ thị 12/11 mục 4). Mỗi thay đổi mã đi qua PR + QA/SEC độc lập + phát hành; cờ bật theo từng đợt, không bật mọi thứ một lúc; báo cáo tách CODE/QA/DEPLOY/ON/VERIFIED."
       }
     ]
   },
@@ -4188,7 +4194,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T10:53:00+07:00",
+    "updatedAt": "2026-11-12T11:06:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -5209,7 +5215,7 @@
         "prio": "3",
         "title": "Đợt 3 · Đóng nhóm 19 hạng mục nền tảng: E2E độc lập PROD 19 mục + Owner UAT từng mục (NO-14=A) + khoảng trống chức năng (X4, P0-17 N-2/N-3, gói 03b 05–08, B3 revoke, E1, X1 STRICT)",
         "titleEn": "Batch 3 · Close the 19 foundation items: independent PROD E2E + Owner UAT per item, plus remaining functional gaps",
-        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → IN_PROGRESS; Đợt 3 đã chạy được 3 giai đoạn. | 10:03 12/11: G2-A (QA độc lập, 8 lượt Haiku thật trên PROD, VERIFIED): PASS nhập dự án có sẵn (I1), phía máy chủ của Prompt Composer (413 tại giới hạn+1, rỗng, 3 byte), lượt kèm csv+png, Workspace Edit Studio (một dự án khi bấm đúp), P0-16 chọn đúng file (T2/T3) và giao diện 360/768/1280; FAIL: 2 lượt prompt dài (17 nghìn ký tự và 100 KB) trả BAD_OUTPUT plan_missing sau khoảng 7 nghìn token, không đổi gì, tin nhắn đã lưu nguyên vẹn; 0 lượt bị tính mức tối đa trong 8 lượt (sổ cái REPORTED). Đã dùng 8/30 lượt; còn tồn: 2 dự án QA mới, 1 bản nhập đã gộp, 4 thay đổi AI để READY, 19 dòng audit dry-run; không đổi quyền/cấp phát/cài đặt. Đang tìm nguyên nhân plan_missing (chỉ đọc). Chưa mục nào đạt chuẩn đóng. | 08:53 12/11: Owner duyệt NO-27 = A và NO-28 = A (08:52). J1-04 sẽ đo lại ở G2; CQB-1 chờ Owner xác nhận tài khoản admin thứ hai chưa từng sửa; quyền đọc hồ sơ nhân viên làm theo cách A (cờ vẫn TẮT). | 08:39 12/11: G1-B (QA độc lập, giao diện, mọi yêu cầu ghi bị chặn, không lượt AI, không gửi báo lỗi): PASS cho P0-14 (4 vai, SSO, hết phiên mô phỏng), UX13 (Admin 11/11, Studio PASS trừ bước xem trước dữ liệu thật NOT_RUN vì là POST), P0-17 theme 32/33, P0-18 chụp/đánh dấu ảnh 5/5 cổng (chưa gửi thật), P0-19 kéo/chặn/khôi phục, P0-05/06 phía giao diện. FAIL: composer tràn khung chat ở 1280 px và 1024 px (nút Gửi nằm ngoài, P2/P3, agent FE đang sửa), thiếu số byte gần giới hạn (P3), 2 chuỗi tiếng Anh chưa dịch (P3), đầu dự án Studio chưa có liên kết XApp (P3, có thể là thiết kế T35), 1 màn 'Đang tải…' khó đọc ở nền sáng (P3). NOT_RUN/BLOCKED: hàng đợi có mục (D-1/D-2/J1-04 chờ G2), bước thật (gửi báo lỗi, xem trước dữ liệu thật, cổng riêng tư), thiết bị thật/cảm ứng (Owner), người dùng thứ hai trong dự án QA (không phải thành viên). Theo dõi hết phiên X-10 đã BẮT ĐẦU 08:37; kiểm lại ~16:42 và ~18:42. Còn 0/19 đạt chuẩn đóng. | 07:46 12/11: G1-A (QA độc lập, chỉ đọc, 137+155 lượt GET, 0 ghi): 8 mục chạy; PASS phần đọc cho 1, 9, 10, 12, 14 (X4 TẮT), 16-BE-6; FAIL 7 (CQB-1) và 8 (J1-04/B1-11). Phân tích gốc (REPORTED): cả hai không phải lỗi mã nhỏ (J1-04 trước bản sửa #150 chưa đo lại; CQB-1 là trạng thái dữ liệu chặn bởi luật bốn mắt) nên không mở PR sửa; thẻ NO-28 chờ Owner. PR đã merge vào dev hôm nay: BE #242 (runbook T23), FE #192 (màn hoạt động công cụ T23, cờ TẮT), BE #243 (đồng bộ lõi) — đều sau QA độc lập, CHƯA lên PROD. | 07:30 12/11: G1 (chỉ đọc) đang chạy bằng 2 agent QA độc lập (API và giao diện), chưa có kết quả. | 07:17 12/11: G0 (tiền kiểm chỉ đọc PROD) XONG, QA độc lập: 5/6 mục PASS (VERIFIED), mục 6 (khóa SSH) chỉ REPORTED, không ghi gì lên PROD. 17 phép thử cờ khớp #88. Khác với kế hoạch: (1) 3 nguồn dữ liệu nhân viên/đơn vị/vị trí-cấp bậc đã BẬT và được duyệt bởi MỘT người; (2) chỉ có 1 TENANT_ADMIN nên điều kiện bốn mắt (Q2) chưa đạt, sẽ thăng tạm theo NO-26; (3) cửa sổ AI có sẵn 1 khoản giữ chỗ không giải thích được (J1-04), ghi làm mốc; (4) một số API (yêu cầu quyền, danh sách môi trường) trả 404 nên E1 chỉ kiểm cấp/thu hồi/hiệu lực. Báo cáo: ~/xweb-handoff/agents/QA-B3-G0.md. G1 (chỉ đọc) đã giao 2 agent QA độc lập. | 07:06 12/11: Owner duyệt NO-26 = A lúc 07:04. Bắt đầu G0 (tiền kiểm chỉ đọc) và chuẩn bị sửa nhỏ J1/P0-05/06/X1; chưa chạy bước ghi nào. | 23:44 11/11: ĐÃ LẬP KẾ HOẠCH E2E độc lập trên PROD cho 19 mục (cục bộ: ~/xweb-handoff/p37-studio/batch3/E2E-PROD-PLAN.md, có số tiền nên không đưa lên repo công khai). Hôm nay 0/19 đạt chuẩn NO-14. Bằng chứng độc lập trên PROD hiện có cho 10 mục (biên bản QA đóng việc 07/11, chạy trên bản cũ nên phải đo lại); X2, X3, X5, P0-16 B/E, P0-19 chỉ có QA dev + C0 tự báo; UX13, P0-18, P0-17 chỉ smoke; X4 chỉ chứng minh được trạng thái TẮT. Ước lượng ≈140 giờ-agent (90–190), ~3 ngày làm việc + 1 đêm sau khi Owner trả lời 12 câu (thẻ NO-26). Lỗi đã biết sẽ FAIL nếu chưa sửa: J1-04 (hủy giữa lượt tính cả khoản giữ chỗ), P0-05/06 D-1/D-2, CQB-1 (X1), ENT-12. Nếu Owner không cho thăng tạm quyền người duyệt (bốn mắt) và cấp phát thử, tối đa 12/19 đóng được. | Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
+        "status": "11:06 12/11: Owner bỏ trần số lượt Haiku thử trên PROD (NO-30): các ca FAIL do thiếu lượt (ví dụ thử lại prompt dài sau khi sửa plan_missing) được chạy tự do; vẫn ghi sổ nhật ký ghi (WRITELOG) và hoàn tác. | 10:53 12/11 (rà soát lộ trình): chuyển PLANNED → IN_PROGRESS; Đợt 3 đã chạy được 3 giai đoạn. | 10:03 12/11: G2-A (QA độc lập, 8 lượt Haiku thật trên PROD, VERIFIED): PASS nhập dự án có sẵn (I1), phía máy chủ của Prompt Composer (413 tại giới hạn+1, rỗng, 3 byte), lượt kèm csv+png, Workspace Edit Studio (một dự án khi bấm đúp), P0-16 chọn đúng file (T2/T3) và giao diện 360/768/1280; FAIL: 2 lượt prompt dài (17 nghìn ký tự và 100 KB) trả BAD_OUTPUT plan_missing sau khoảng 7 nghìn token, không đổi gì, tin nhắn đã lưu nguyên vẹn; 0 lượt bị tính mức tối đa trong 8 lượt (sổ cái REPORTED). Đã dùng 8/30 lượt; còn tồn: 2 dự án QA mới, 1 bản nhập đã gộp, 4 thay đổi AI để READY, 19 dòng audit dry-run; không đổi quyền/cấp phát/cài đặt. Đang tìm nguyên nhân plan_missing (chỉ đọc). Chưa mục nào đạt chuẩn đóng. | 08:53 12/11: Owner duyệt NO-27 = A và NO-28 = A (08:52). J1-04 sẽ đo lại ở G2; CQB-1 chờ Owner xác nhận tài khoản admin thứ hai chưa từng sửa; quyền đọc hồ sơ nhân viên làm theo cách A (cờ vẫn TẮT). | 08:39 12/11: G1-B (QA độc lập, giao diện, mọi yêu cầu ghi bị chặn, không lượt AI, không gửi báo lỗi): PASS cho P0-14 (4 vai, SSO, hết phiên mô phỏng), UX13 (Admin 11/11, Studio PASS trừ bước xem trước dữ liệu thật NOT_RUN vì là POST), P0-17 theme 32/33, P0-18 chụp/đánh dấu ảnh 5/5 cổng (chưa gửi thật), P0-19 kéo/chặn/khôi phục, P0-05/06 phía giao diện. FAIL: composer tràn khung chat ở 1280 px và 1024 px (nút Gửi nằm ngoài, P2/P3, agent FE đang sửa), thiếu số byte gần giới hạn (P3), 2 chuỗi tiếng Anh chưa dịch (P3), đầu dự án Studio chưa có liên kết XApp (P3, có thể là thiết kế T35), 1 màn 'Đang tải…' khó đọc ở nền sáng (P3). NOT_RUN/BLOCKED: hàng đợi có mục (D-1/D-2/J1-04 chờ G2), bước thật (gửi báo lỗi, xem trước dữ liệu thật, cổng riêng tư), thiết bị thật/cảm ứng (Owner), người dùng thứ hai trong dự án QA (không phải thành viên). Theo dõi hết phiên X-10 đã BẮT ĐẦU 08:37; kiểm lại ~16:42 và ~18:42. Còn 0/19 đạt chuẩn đóng. | 07:46 12/11: G1-A (QA độc lập, chỉ đọc, 137+155 lượt GET, 0 ghi): 8 mục chạy; PASS phần đọc cho 1, 9, 10, 12, 14 (X4 TẮT), 16-BE-6; FAIL 7 (CQB-1) và 8 (J1-04/B1-11). Phân tích gốc (REPORTED): cả hai không phải lỗi mã nhỏ (J1-04 trước bản sửa #150 chưa đo lại; CQB-1 là trạng thái dữ liệu chặn bởi luật bốn mắt) nên không mở PR sửa; thẻ NO-28 chờ Owner. PR đã merge vào dev hôm nay: BE #242 (runbook T23), FE #192 (màn hoạt động công cụ T23, cờ TẮT), BE #243 (đồng bộ lõi) — đều sau QA độc lập, CHƯA lên PROD. | 07:30 12/11: G1 (chỉ đọc) đang chạy bằng 2 agent QA độc lập (API và giao diện), chưa có kết quả. | 07:17 12/11: G0 (tiền kiểm chỉ đọc PROD) XONG, QA độc lập: 5/6 mục PASS (VERIFIED), mục 6 (khóa SSH) chỉ REPORTED, không ghi gì lên PROD. 17 phép thử cờ khớp #88. Khác với kế hoạch: (1) 3 nguồn dữ liệu nhân viên/đơn vị/vị trí-cấp bậc đã BẬT và được duyệt bởi MỘT người; (2) chỉ có 1 TENANT_ADMIN nên điều kiện bốn mắt (Q2) chưa đạt, sẽ thăng tạm theo NO-26; (3) cửa sổ AI có sẵn 1 khoản giữ chỗ không giải thích được (J1-04), ghi làm mốc; (4) một số API (yêu cầu quyền, danh sách môi trường) trả 404 nên E1 chỉ kiểm cấp/thu hồi/hiệu lực. Báo cáo: ~/xweb-handoff/agents/QA-B3-G0.md. G1 (chỉ đọc) đã giao 2 agent QA độc lập. | 07:06 12/11: Owner duyệt NO-26 = A lúc 07:04. Bắt đầu G0 (tiền kiểm chỉ đọc) và chuẩn bị sửa nhỏ J1/P0-05/06/X1; chưa chạy bước ghi nào. | 23:44 11/11: ĐÃ LẬP KẾ HOẠCH E2E độc lập trên PROD cho 19 mục (cục bộ: ~/xweb-handoff/p37-studio/batch3/E2E-PROD-PLAN.md, có số tiền nên không đưa lên repo công khai). Hôm nay 0/19 đạt chuẩn NO-14. Bằng chứng độc lập trên PROD hiện có cho 10 mục (biên bản QA đóng việc 07/11, chạy trên bản cũ nên phải đo lại); X2, X3, X5, P0-16 B/E, P0-19 chỉ có QA dev + C0 tự báo; UX13, P0-18, P0-17 chỉ smoke; X4 chỉ chứng minh được trạng thái TẮT. Ước lượng ≈140 giờ-agent (90–190), ~3 ngày làm việc + 1 đêm sau khi Owner trả lời 12 câu (thẻ NO-26). Lỗi đã biết sẽ FAIL nếu chưa sửa: J1-04 (hủy giữa lượt tính cả khoản giữ chỗ), P0-05/06 D-1/D-2, CQB-1 (X1), ENT-12. Nếu Owner không cho thăng tạm quyền người duyệt (bốn mắt) và cấp phát thử, tối đa 12/19 đóng được. | Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "statusEn": "Hiện E2E độc lập PROD 0/19, UAT 0/19. Ước ~80 giờ công, 3–4 ngày.",
         "prs": "",
         "eta": "~23/11",
@@ -6390,6 +6396,13 @@
         "id": "dash.roadmap",
         "note": "Rà soát lộ trình theo yêu cầu Owner: đóng T04, T05, T08, T09, T12, T13, T29, T33; đổi nhóm T22, D1.6, D1.7, U2, U5, D1.10, D2, D3. Giữ nguyên T36, D1.2 (chờ Owner quyết có cần UAT) và T11 (quét PROD do C0, chưa có bản quét độc lập).",
         "state": "applied"
+      },
+      {
+        "at": "2026-11-12T11:06:00+07:00",
+        "by": "C0",
+        "id": "decide.NO-29/NO-30",
+        "note": "Owner 11:05 duyệt NO-29 = A và NO-30 (mở hết giới hạn AI, lượt Haiku test không giới hạn); thẻ đóng DONE theo tin nhắn của Owner",
+        "state": "verified"
       }
     ]
   },
