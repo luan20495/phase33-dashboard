@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T11:10:00+07:00",
+  "asOf": "2026-11-12T11:28:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T11:10:00+07:00",
+  "detailUpdatedAt": "2026-11-12T11:28:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4194,7 +4194,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T11:10:00+07:00",
+    "updatedAt": "2026-11-12T11:28:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -6780,7 +6780,7 @@
     ]
   },
   "aiLimits": {
-    "updatedAt": "2026-11-12T11:10:00+07:00",
+    "updatedAt": "2026-11-12T11:28:00+07:00",
     "note": "Toàn bộ giới hạn liên quan đến AI Studio (kiểm kê từ mã và cấu hình, REPORTED, chưa QA độc lập). Owner 12/11: muốn không giới hạn AI, chỉ giới hạn tiền; lượt chạy/ngày/tháng và token/ngày/tháng tắt cho tới khi Owner bật lại; hỗ trợ mọi định dạng file; tối đa 10 file + ảnh; text không giới hạn; file nén tới 1 GB. Giới hạn tiền luôn giữ. | Cập nhật 2026-11-12 10:37: khuyến nghị 69 hàng theo chỉ thị 'nới tối đa năng lực AI' (kế hoạch MAXCAP); thêm trạng thái 5 bước CODE/QA/DEPLOY/ON/VERIFIED trong trường stages (chưa hàng nào đạt đủ). Hàng tiền và an toàn bắt buộc vẫn khóa.",
     "ownerAsk": [
       "Lượt chạy theo ngày/tháng: tắt cho tới khi Owner yêu cầu bật lại",
@@ -7074,7 +7074,7 @@
         "mandatory": true,
         "mandatoryReason": "Trần lượt/ngày của cửa sổ AI trả phí là phanh chi phí; không có giá trị không giới hạn. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": "",
+        "stateNote": " [11:28 12/11] PR bỏ trần 600 lượt (T36-b) đang được viết, chưa có PR.",
         "recommendBefore": "nâng",
         "directiveGroup": 1,
         "existingWork": [
@@ -7124,7 +7124,7 @@
         "mandatory": true,
         "mandatoryReason": "Phong bì lượt của cửa sổ AI trả phí ngăn gõ nhầm mở cửa sổ không giới hạn; mỗi lượt vẫn đặt chỗ chi phí xấu nhất. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": "",
+        "stateNote": " [11:28 12/11] PR bỏ trần 600 lượt (T36-b) đang được viết, chưa có PR.",
         "recommendBefore": "nâng",
         "directiveGroup": 1,
         "existingWork": [
@@ -8360,7 +8360,7 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": "",
+        "stateNote": " [11:28 12/11] Lỗi plan_missing (prompt dài bị từ chối) đang có 2 PR sửa: BE #245 (dung sai thiếu PLAN.md) và #246 (nhắc ở cuối prompt), chờ QA độc lập.",
         "recommendBefore": "cần mã",
         "directiveGroup": 2,
         "existingWork": [
@@ -10181,6 +10181,11 @@
         "at": "2026-11-12T11:10:00+07:00",
         "by": "C0",
         "note": "Nâng quota build/ngày L15–L18 lên mức tối đa hữu hạn (NO-30). Kiểm chứng độc lập giá trị cấu hình L01/L02/L09/L10/L11 = 0 (đọc lại bởi agent khác). Tiền không đổi."
+      },
+      {
+        "at": "2026-11-12T11:28:00+07:00",
+        "by": "C0",
+        "note": "Cập nhật tiến độ: BE #245/#246 (plan_missing) chờ QA; T36-b đang viết."
       }
     ]
   }
