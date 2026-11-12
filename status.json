@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T17:05:08+07:00",
+  "asOf": "2026-11-12T17:20:06+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T17:05:08+07:00",
+  "detailUpdatedAt": "2026-11-12T17:20:06+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -5818,7 +5818,7 @@
     ]
   },
   "process": {
-    "updatedAt": "2026-11-12T14:48:00+07:00",
+    "updatedAt": "2026-11-12T17:20:06+07:00",
     "note": "Bộ tiêu chuẩn vận hành XWeb do Owner chốt 10/11. Sửa một mục rồi “Gửi” để Claude áp dụng. Trạng thái: Đề xuất (chưa làm) / Chờ áp dụng (đã quyết, chưa chạy) / Đã áp dụng (Claude đang làm theo) / Đã xác minh (có bằng chứng đo thật).",
     "groups": [
       {
@@ -5936,6 +5936,28 @@
             "explain": "Số tác giả báo gắn REPORTED, số QA đo gắn VERIFIED.",
             "impact": "Tắt: mất lớp kiểm độc lập, không khuyến nghị.",
             "state": "applied"
+          },
+          {
+            "id": "agents.no_burn",
+            "label": "Không đốt máy: tối đa 3 Gradle nặng, mỗi agent một việc nặng; không chạy suite trùng",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Phân bổ theo CPU/RAM/SSD qua gradle-slot.sh; dọn worktree/cache an toàn.",
+            "impact": "Chạy trùng làm đầy ổ và chậm mọi QA.",
+            "state": "applied",
+            "evidence": "ListAgents 17:20: 9 RUNNING (tối đa 10)"
+          },
+          {
+            "id": "agents.evidence_keep",
+            "label": "Không xóa bằng chứng QA chỉ vì quá 48 giờ; lưu theo PR/SHA/bản phát hành",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Chỉ đạo Owner 12/11: bằng chứng QA được lưu có kiểm soát.",
+            "impact": "Xóa bằng chứng làm mất khả năng truy vết nghiệm thu.",
+            "state": "applied",
+            "evidence": "Dọn chỉ chạm worktree/build; ~/xweb-handoff/agents giữ nguyên"
           }
         ]
       },
@@ -5948,7 +5970,7 @@
           {
             "id": "git.flow",
             "label": "Luồng",
-            "value": "Tính năng → PR vào dev → QA/SEC độc lập trên đúng SHA → merge",
+            "value": "Tính năng → PR vào dev → QA/SEC độc lập trên đúng head → merge dev → promote bằng script (chỉ đỉnh dev hiện tại) → main → PROD sau đủ cổng và có rollback → kiểm thử PROD tiếp theo",
             "type": "text",
             "editable": true,
             "explain": "Mỗi thay đổi đi qua PR và QA độc lập.",
@@ -6034,6 +6056,17 @@
             "explain": "Mọi thứ đẩy lên GitHub là công khai.",
             "impact": "Tắt: nguy cơ lộ thông tin.",
             "state": "applied"
+          },
+          {
+            "id": "git.ai_flags_controlled",
+            "label": "Cờ AI mới không bật rộng khi chưa nghiệm thu tổng thể",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Owner 12/11: tính năng AI mới giữ TẮT / kiểm thử có kiểm soát đến khi QA/SEC và E2E tổng thể đạt.",
+            "impact": "Bật sớm làm lộ rủi ro chưa kiểm.",
+            "state": "applied",
+            "evidence": "Chỉ đạo Owner 12/11 (#88); mọi cờ AI mới hiện TẮT trên PROD (đọc ở lần cấu hình trước, REPORTED)"
           }
         ]
       },
@@ -6108,13 +6141,24 @@
           {
             "id": "deploy.ssh",
             "label": "Khóa SSH vào máy chủ",
-            "value": "Owner nạp lại ssh-add 24 giờ lúc 21:21 ICT 11/11; hiện hết ~21:21 ICT 12/11",
+            "value": "Owner nạp lại khóa máy chủ 24 giờ lúc ~16:40 ICT 12/11, hết ~16:40 ICT 13/11",
             "type": "text",
             "editable": false,
             "explain": "Em nhắc trước khi hết.",
             "impact": "Hết khóa: không deploy được.",
-            "state": "verified",
-            "evidence": "ssh-add -l 18:10"
+            "state": "applied",
+            "evidence": "ssh-add -l 17:20: khóa có trong danh sách; CHƯA thử đăng nhập máy chủ (nên chưa Đã xác minh)"
+          },
+          {
+            "id": "deploy.hold22",
+            "label": "Bản 22 chưa deploy: làm xong giới hạn AI rồi mới deploy",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Owner 12/11 16:50: không vội; gộp công việc giới hạn AI vào bản deploy lớn hơn.",
+            "impact": "Deploy sớm bản 22 riêng không cần thiết.",
+            "state": "applied",
+            "evidence": "Dev đóng băng BE d430a3e6 / FE 29c2f075 từ 16:25; QA tích hợp đang chạy (ListAgents 17:20)"
           }
         ]
       },
@@ -6228,13 +6272,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 18,
+            "value": 23,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "df 15:45 ICT 12/11: 18 GiB trống, DƯỚI ngưỡng khẩn 20; đã xóa 111 worktree sạch đã đẩy (~10,9 GiB) nhưng 3 snapshot Time Machine giữ dung lượng; chờ Owner cho xóa snapshot"
+            "evidence": "df 17:20 ICT 12/11: 23 GiB trống, trên ngưỡng khẩn 20; đã xóa 3 snapshot Time Machine theo lệnh Owner và worktree sạch đã đẩy; chỉ dọn worktree/build, giữ nguyên thư mục bằng chứng QA"
           },
           {
             "id": "disk.t_monitor",
@@ -6421,6 +6465,91 @@
             "state": "proposed"
           }
         ]
+      },
+      {
+        "id": "ai",
+        "title": "Quản trị AI và ngân sách USD",
+        "common": false,
+        "summary": "Quyền, USD, tạm dừng, đối soát và kiểm thử AI Agent",
+        "items": [
+          {
+            "id": "ai.no_quota",
+            "label": "Không quota nghiệp vụ AI; vẫn giữ IAM, hard cap USD, ledger, rate limit chống DoS, queue, sandbox, bảo vệ dữ liệu tenant/app",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Chính sách Owner đã duyệt; mã chưa xong: trần lượt trong mã và trần runner 900 s còn là PR đang viết (CHƯA áp dụng).",
+            "impact": "Chưa coi là bỏ quota cho đến khi PR + QA + deploy.",
+            "state": "pending",
+            "evidence": "12 hạng mục AI Agent #88 (hạng mục 01, 08)"
+          },
+          {
+            "id": "ai.entitlement",
+            "label": "Admin/Super Admin có thẩm quyền cấp entitlement và USD; quy tắc bốn mắt",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Quyền ghi entitlement AI chỉ SYSTEM_ADMIN; ngân sách theo IAM và bốn mắt.",
+            "impact": "Không ai tự tăng ngân sách ngoài quy trình.",
+            "state": "applied",
+            "evidence": "Đọc từ QA/SEC trước đó; chưa kiểm lại trên PROD ở kỳ này"
+          },
+          {
+            "id": "ai.usd_pause",
+            "label": "Hết USD: dừng an toàn có checkpoint, cấp thêm thì tiếp tục từ checkpoint",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Cần T22-C/J1 (chưa có mã).",
+            "impact": "Hiện chưa tự tiếp tục được; không ghi Đã áp dụng.",
+            "state": "pending",
+            "evidence": "Hạng mục 06 #88: ETA ~20–26/11 (ESTIMATE)"
+          },
+          {
+            "id": "ai.no28",
+            "label": "Đối soát NO-28: 8 khoản giữ chỗ chưa giải thích; không xóa khoản giữ chỗ để che sai lệch",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Owner GO đối soát; việc đọc-chỉ PROD đang chờ xác nhận trực tiếp của Owner.",
+            "impact": "Không nâng N trước khi đối soát xong.",
+            "state": "pending",
+            "evidence": "Agent đọc PROD bị hệ thống phân quyền chặn lúc 17:20"
+          },
+          {
+            "id": "ai.t23_haiku",
+            "label": "Kiểm thử T23 (tool loop) bằng 12 lượt Haiku đã được duyệt",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "GO của Owner; chưa chạy; cờ T23 TẮT.",
+            "impact": "Chạy sau khi triển khai mã; phát sinh chi phí USD nhỏ trong cửa sổ đã duyệt.",
+            "state": "pending",
+            "evidence": "Hạng mục 03 #88"
+          },
+          {
+            "id": "ai.runner2",
+            "label": "Runner thứ hai: duyệt chủ trương; chi phí và triển khai thực tế phải đo trước, không tự đổi hard cap hay đặc quyền",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Cần đo CPU/RAM/SSD và chi phí máy.",
+            "impact": "Không phát sinh chi phí trước khi có số liệu.",
+            "state": "proposed",
+            "evidence": "Hạng mục 08 #88; kế hoạch REL17-ENV-PLAN"
+          },
+          {
+            "id": "ai.dash_send",
+            "label": "Nút Gửi trên dashboard chỉ gửi quyết định lên #88; PROD chỉ đổi khi C0 áp dụng và đọc lại",
+            "value": true,
+            "type": "bool",
+            "editable": false,
+            "explain": "Dashboard không được gợi ý đã sửa PROD khi chỉ gửi quyết định. Chưa kiểm riêng luồng audit của Sửa/Gửi (kiểm bằng test process-ui ở kỳ sau).",
+            "impact": "Tránh hiểu nhầm là PROD đã đổi.",
+            "state": "proposed",
+            "evidence": "Test process-ui 63 PASS trước khi sửa (không đồng nghĩa đã kiểm audit)"
+          }
+        ]
       }
     ],
     "history": [
@@ -6598,6 +6727,13 @@
         "id": "decide.NO-34/NO-35",
         "note": "Owner 15:17 duyệt NO-34 = A và NO-35 = A; thẻ đóng DONE. Bật lại chia bước; bản 22 không có V101/#253; env token 32.768 ở bước riêng; cửa sổ 17:30/19:30/21:21.",
         "state": "verified"
+      },
+      {
+        "at": "2026-11-12T17:20:06+07:00",
+        "by": "C0",
+        "id": "process.sync",
+        "note": "Đồng bộ theo chỉ đạo Owner 17:17: thêm nhóm Quản trị AI và ngân sách USD (PENDING cho phần chưa có mã), bản 22 giữ lại, bằng chứng QA giữ nguyên, cờ AI mới không bật rộng, khóa SSH chưa thử đăng nhập nên chỉ Đã áp dụng",
+        "state": "applied"
       }
     ]
   },
@@ -6662,7 +6798,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T16:42:23+07:00",
+    "updatedAt": "2026-11-12T17:20:06+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7136,8 +7272,74 @@
         "at": "2026-11-12T08:51:00+07:00",
         "by": "C0",
         "note": "Tạo danh sách 8 việc chạy mỗi giờ từ các việc đang làm; kết quả các lần chạy từ 04:28 đến 08:27 lấy từ báo cáo giờ thật, việc chưa chạy riêng (H7) để trống"
+      },
+      {
+        "at": "2026-11-12T17:20:06+07:00",
+        "by": "C0",
+        "note": "Thêm tóm tắt hằng giờ (DONE VERIFIED /12, nhóm CODE/QA/DEPLOY/ON/VERIFIED, bản PROD, blocker, ETA gắn nhãn) theo chỉ đạo Owner 17:17"
       }
-    ]
+    ],
+    "summary": {
+      "checkedAt": "2026-11-12T17:20:06+07:00",
+      "sources": [
+        "GitHub PR BE/FE (gh)",
+        "QA/SEC trong ~/xweb-handoff/agents",
+        "ListAgents",
+        "df",
+        "Master #88",
+        "status.json aiAgent12"
+      ],
+      "changeSincePrev": "Có thay đổi: #250, #254 merge dev; dev đóng băng 16:25; 8 agent mới cho 12 hạng mục; bảng 12 hạng mục; đồng bộ 3 tab",
+      "doneVerified": "0/12",
+      "groups": {
+        "CODE": {
+          "yes": 2,
+          "partial": 7,
+          "no": 3
+        },
+        "QA": {
+          "yes": 1,
+          "partial": 5,
+          "no": 6
+        },
+        "DEPLOY": {
+          "yes": 0,
+          "partial": 3,
+          "no": 8
+        },
+        "ON": {
+          "yes": 0,
+          "partial": 5,
+          "no": 6
+        },
+        "VERIFIED": {
+          "yes": 0,
+          "partial": 1,
+          "no": 11
+        }
+      },
+      "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
+      "blockers": [
+        "P1: agent đọc-chỉ PROD (RealAiMode, quyền, NO-28) bị chặn, cần Owner xác nhận trực tiếp",
+        "QA tích hợp bản 22 chưa có kết luận",
+        "QA #252 chưa có kết luận",
+        "Chưa có test cross-app / cross-company thật (agent DEV đang chạy)"
+      ],
+      "risks": [
+        "Hàng đợi Gradle 3 chỗ cho 9 agent có thể kéo dài ETA",
+        "ETA mục 07, 08, 12 chưa có dữ liệu thật"
+      ],
+      "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chỉ có kế hoạch, chưa phát sinh chi phí; đĩa Mac 23 GiB trống",
+      "ownerNeeds": [
+        "Xác nhận trực tiếp: đồng ý đọc-chỉ PROD (RealAiMode, cấu hình quyền, NO-28)",
+        "Tài khoản admin thứ hai (DEV) cho kiểm thử cách ly nếu cần mức đầy đủ"
+      ],
+      "eta": {
+        "value": "~28/11/2026 (± 4 ngày)",
+        "label": "ESTIMATE",
+        "confidence": "thấp–trung bình"
+      }
+    }
   },
   "aiLimits": {
     "updatedAt": "2026-11-12T16:15:00+07:00",
