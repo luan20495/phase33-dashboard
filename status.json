@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T02:08:32+07:00",
+  "asOf": "2026-11-13T02:10:39+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T02:08:32+07:00",
+  "detailUpdatedAt": "2026-11-13T02:10:39+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4176,6 +4176,38 @@
             "key": "C",
             "label": "Chỉ cho OPENAI_COMPATIBLE địa chỉ công khai được tính phí",
             "desc": "Chặn tự khai miễn phí cho loại này; xung đột D-003 (máy chủ local), cần anh quyết lại."
+          }
+        ],
+        "decided": false,
+        "decidedAt": null,
+        "decision": null
+      },
+      {
+        "id": "NO-38",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-13T02:10:39+07:00",
+        "title": "Repo dashboard công khai: lịch sử git cũ còn tên tài khoản máy và tệp log trình duyệt đã gỡ khỏi bản hiện tại",
+        "detail": "Nguồn: QA UI độc lập vòng 4 (P3 vệ sinh). Bản hiện tại đã gỡ số tiền USD, tên tài khoản máy trong status.json và thư mục log trình duyệt khỏi git. Lịch sử commit cũ vẫn chứa danh tính tác giả mặc định của máy, các tệp log và các con số cũ. Không có token, khóa, mật khẩu hay IP ngoài (QA r4 quét: 0 lần trúng). Viết lại lịch sử cần force-push lên repo công khai nên là quyết định của Owner.",
+        "solution": "Khuyến nghị A: giữ lịch sử, đặt danh tính tác giả ẩn danh cho commit mới (không rủi ro).",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Giữ lịch sử, đổi danh tính tác giả cho commit mới",
+            "desc": "Không force-push; commit từ nay dùng danh tính trung tính. Thông tin cũ còn trong lịch sử.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Viết lại lịch sử và force-push",
+            "desc": "Xóa thông tin cũ khỏi lịch sử; phá các liên kết commit cũ trong issue; cần Owner thực hiện hoặc cho phép rõ."
+          },
+          {
+            "key": "C",
+            "label": "Chuyển sang repo công khai mới sạch",
+            "desc": "Tạo repo mới từ bản hiện tại, đổi liên kết; tốn công hơn."
           }
         ],
         "decided": false,
@@ -6880,7 +6912,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T02:08:32+07:00",
+    "updatedAt": "2026-11-13T02:10:39+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
