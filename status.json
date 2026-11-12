@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T22:41:16+07:00",
+  "asOf": "2026-11-12T23:38:50+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T22:41:16+07:00",
+  "detailUpdatedAt": "2026-11-12T23:38:50+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6315,13 +6315,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 42,
+            "value": 36,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "df 22:38 ICT 12/11: 42 GiB trống, trên ngưỡng khẩn 20 (đĩa hồi sau khi hệ thống giải phóng snapshot/dọn worktree); không xóa volume Docker"
+            "evidence": "df 23:38 ICT 12/11: 36 GiB trống (trên ngưỡng 20); nguồn duy nhất, trường khác chỉ là bản chụp cũ"
           },
           {
             "id": "disk.t_monitor",
@@ -6848,7 +6848,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T22:41:16+07:00",
+    "updatedAt": "2026-11-12T23:38:50+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6859,11 +6859,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "ok",
-            "summary": "Không có comment mới của Owner/ChatGPT; quyết định 13:24–13:29 đã áp dụng"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "ok",
@@ -6908,6 +6903,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "ok",
             "summary": "Không có comment [OWNER]/[CHATGPT] mới ở #88 và #257 từ phản hồi #6826653073"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "changed",
+            "summary": "Đọc review ChatGPT #6828332761 (22:46); trả lời ở #257; comment mới ở #123 (Oxy trả lời thẻ 1)"
           }
         ]
       },
@@ -6919,11 +6919,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "ok",
-            "summary": "Tab Quy trình khớp thực tế; đĩa 31 GiB trên ngưỡng khẩn 20; quy tắc đổi nóng mới ghi vào lịch sử"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "ok",
@@ -6968,6 +6963,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "ok",
             "summary": "#process khớp thực tế; đĩa 42 GiB"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "ok",
+            "summary": "#process khớp thực tế"
           }
         ]
       },
@@ -6979,11 +6979,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "changed",
-            "summary": "BE #248 merge; PR #245/#246/#249/#250/#251 và FE #196 chờ QA; 9 agent chạy"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "changed",
@@ -7028,6 +7023,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "changed",
             "summary": "ListAgents 22:38: 5 đang chạy; merge dev sau QA độc lập: BE #261, FE #202 (+#201, #260 đã nằm trong); PR mở: BE #262, #263, #265, #266, #267; FE #204"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "changed",
+            "summary": "ListAgents 23:38: 4 đang chạy (QA #269/#205, #270, #268/#206, kế hoạch Oxy); PR mở #262–#271, FE #204–#206 chờ QA"
           }
         ]
       },
@@ -7039,11 +7039,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "changed",
-            "summary": "Đăng lần 125 (kèm 6 comment cấu hình PROD riêng trong ngày)"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "changed",
@@ -7088,6 +7083,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "skipped",
             "summary": "Không đăng báo cáo 19 dòng lên #88 (không có thay đổi vượt phạm vi #257)"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "skipped",
+            "summary": "Không đăng báo cáo 19 dòng lên #88; phản hồi ở #257"
           }
         ]
       },
@@ -7099,11 +7099,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "changed",
-            "summary": "Dashboard: NO-31/32/33 đóng, lựa chọn 36/69 hàng, L21, ghi kết quả chạy giờ"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "changed",
@@ -7148,6 +7143,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "changed",
             "summary": "Dashboard: mục 04/05 (QA+merge), 06 (PR #267/#204), 07, 10 (kiểm toán nhà cung cấp), roster 5 agent"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "changed",
+            "summary": "Dashboard: đồng bộ release22/blockers/providerAudit/oxyLane/uiux/đĩa một nguồn"
           }
         ]
       },
@@ -7159,11 +7159,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "ok",
-            "summary": "Đĩa 31 GiB trên ngưỡng khẩn 20, không cần dọn; không xóa cache Gradle thêm vì đang dựng lại sau sự cố LockOutOfDate"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "ok",
@@ -7208,6 +7203,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "ok",
             "summary": "df 22:38: 42 GiB trống (đã hồi); dừng 5 agent nhàn rỗi; không xóa Docker/snapshot"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "ok",
+            "summary": "df 23:38: 36 GiB; không dọn thêm"
           }
         ]
       },
@@ -7219,11 +7219,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH còn hạn đến ~21:21 12/11 (REPORTED); nhắc Owner nạp lại trước 21:00 nếu cần đọc CSDL"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "ok",
@@ -7268,6 +7263,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); cần ≥30 phút biên khi deploy"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); đã dùng thật 17:46 và 23:31 (Oxy, chỉ đọc)"
           }
         ]
       },
@@ -7279,11 +7279,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T13:38:00+07:00",
-            "result": "ok",
-            "summary": "9 agent chạy (trên tối thiểu 6, gần trần 10); tải máy 29–32 nên không giao thêm"
-          },
           {
             "at": "2026-11-12T14:38:00+07:00",
             "result": "ok",
@@ -7328,6 +7323,11 @@
             "at": "2026-11-12T22:38:44+07:00",
             "result": "ok",
             "summary": "5 agent đang chạy (đĩa đã hồi): ATT-b1, ATT-e0, bảo mật nhà cung cấp, sửa BE/FE theo QA; PAYC-2 và ATT-b2 chờ giao"
+          },
+          {
+            "at": "2026-11-12T23:38:50+07:00",
+            "result": "ok",
+            "summary": "4 agent đang chạy; thêm QA UI vòng 3 sau khi đồng bộ dashboard"
           }
         ]
       }
@@ -7412,10 +7412,15 @@
         "at": "2026-11-12T22:41:16+07:00",
         "by": "C0",
         "note": "Thêm thẻ Owner NO-36 (6 quyết định NO-DIR-5 cho mục 07) từ ADR của agent ATT-e0"
+      },
+      {
+        "at": "2026-11-12T23:38:50+07:00",
+        "by": "C0",
+        "note": "Theo review #257 6828332761: đồng bộ release22/blockers (QA T24+T25 đã xong và merge), thêm providerAudit (đường gọi, phơi nhiễm, sửa, chưa SEC GO), đĩa một nguồn có thời điểm, SHA đã QA UI tách khỏi SHA sau QA, làn Oxy"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T22:38:44+07:00",
+      "checkedAt": "2026-11-12T23:38:50+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7424,7 +7429,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "QA độc lập T24+T25: GO có điều kiện, đã merge dev (BE #261 + FE #202, cờ TẮT); PAYC-6 #267 và FE #204 có PR; kiểm toán nhà cung cấp xong (0 P0, 1 P1 tiềm ẩn); giao ATT-b1, ATT-e0, PR bảo mật nhà cung cấp, 2 PR sửa điều kiện QA; đĩa hồi 42 GiB",
+      "changeSincePrev": "Đã merge dev sau QA độc lập: FE #200, #202, #203; BE #251, #253, #258, #259, #261, #264 (QA T24+T25: GO có điều kiện đã xong và đã merge); PR mới: #262–#271, FE #204–#206; kiểm toán nhà cung cấp xong và PR bảo mật #270 đang QA độc lập; mở làn Oxy (đo xong, thẻ cài đặt đã đăng); đĩa 36 GiB (df 23:38)",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7455,17 +7460,17 @@
       },
       "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
       "blockers": [
-        "Bản 22: NO-GO nguyên trạng, cần đóng băng lại + QA delta (#252 V101, #259, 2 test đỏ)",
-        "QA delta #258, QA FE #200, QA #251/#253 đang chạy",
-        "QA một lần cho cụm T24+T25 chờ tích hợp",
-        "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt"
+        "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, hai test đỏ trên dev, bản sao tài liệu FE) + rollback; mọi PR chờ QA (#262,#263,#265,#266,#267,#268,#269,#270,#271; FE #204,#205,#206) chưa vào dev",
+        "QA delta #269/#205, QA #270 (bảo mật nhà cung cấp), QA cặp #268/#206 đang chạy",
+        "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
+        "Đường nhà cung cấp thứ hai: PR #270 đang QA, chưa bật gì"
       ],
       "risks": [
-        "Tải máy 21; 3 chỗ Gradle cho 5 agent kéo dài ETA",
-        "Bản 22 vẫn NO-GO nguyên trạng; ETA mục 01/02/03/08 phụ thuộc QA delta trên cặp SHA cuối",
-        "Hai snapshot Time Machine cục bộ còn trong danh sách (đĩa đã hồi, không cần xóa lúc này)"
+        "Tải Mac hoangluan 13.80 16.48 19.17 (uptime 23:38); đĩa 36 GiB (df 23:38); nguồn hồi: hệ thống giải phóng bớt snapshot cục bộ sau khi C0 xóa worktree sạch (không xóa Docker, không xóa bằng chứng QA)",
+        "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
+        "Làn Oxy (máy thứ hai) mới đo, chưa chạy việc: Docker Desktop chưa khởi động, bước sudo/Docker chờ Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chỉ có kế hoạch, chưa phát sinh chi phí; đĩa Mac 14 GiB trống đo bằng df lúc 21:39 ICT (nguồn duy nhất; dưới ngưỡng khẩn 20, đang xấu đi: 18→13)",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chưa phát sinh chi phí; đĩa Mac hoangluan 36 GiB trống (df 23:38 ICT, nguồn duy nhất, trên ngưỡng khẩn 20); đĩa và tải đo lúc 23:38: mọi số đĩa ở các trường khác là bản chụp cũ nếu khác",
       "ownerNeeds": [
         "Xác nhận trực tiếp: đồng ý đọc-chỉ PROD (RealAiMode, cấu hình quyền, NO-28)",
         "Tài khoản admin thứ hai (DEV) cho kiểm thử cách ly nếu cần mức đầy đủ"
@@ -7477,22 +7482,21 @@
         "change": "Từ 27/11–07/12 sang 20/11–27/11: PAYC-1 thật chỉ ~1 giờ 05 phút so với 14 giờ công thiết kế nên mục 06 ngắn hơn nhiều; đường găng chuyển sang mục 07 và 12"
       },
       "uiux": {
-        "checkedAt": "2026-11-12T20:39:04+07:00",
-        "status": "QA_INDEPENDENT_PARTIAL",
-        "qaSha": "1c3f4d2",
-        "qaVerdict": "GO có điều kiện (P3), ma trận 160 ô, QA độc lập 17:57",
+        "checkedAt": "2026-11-12T23:38:50+07:00",
+        "status": "QA_INDEPENDENT_STALE",
+        "qaSha": "4a3e9b7",
+        "qaVerdict": "GO có điều kiện (QA vòng 2: 192 ô local + 96 ô live)",
         "afterQaShas": [
-          "e132209 (4 sửa P3 + ETA theo giờ)",
-          "4bd52f2 (ETA 24/7 + census)",
-          "65b3023",
-          "37169fd",
-          "024c083",
-          "13ba799 (và các commit hourly sau đó)"
+          "047c896",
+          "7c88e73",
+          "74d589c",
+          "85a7c2f",
+          "a5e0fd0 và các commit hourly sau đó"
         ],
-        "proof": "C0 tự chạy lại ma trận 8 cỡ × 2 theme (80 ô) ở e132209 và 4bd52f2: 0 cuộn ngang trang; test hourly-ui 27, process-ui 63, limits-ui 58 PASS, shell-ui 20 PASS + 2 lỗi cũ; hourly-ui bài 02 lúc có lúc không",
-        "open": "QA độc lập cho các SHA sau 1c3f4d2 và cho trang GitHub Pages đang chạy: agent QA UI mới giao lúc 20:39"
+        "proof": "Chỉ C0 tự chạy lại ma trận sau 4a3e9b7; chưa QA độc lập; QA vòng 3 trên đúng HEAD và trang live giao lúc 23:38",
+        "open": "QA vòng 3: 8 cỡ × 2 theme, deep link, zoom 200%, tương phản, bàn phím"
       },
-      "agentCensus": "5 đang chạy (5 làm việc), 25 đã xong, 0 nghi treo; tối đa 10; đĩa 42 GiB đã hồi (trên ngưỡng 20)",
+      "agentCensus": "4 đang chạy (4 làm việc), 32 đã xong, 0 nghi treo; tối đa 10; đĩa 36 GiB, tải 13.80 16.48 19.17",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7501,31 +7505,55 @@
           "at": "2026-11-12T16:22:00+07:00"
         },
         "movingDev": {
-          "be": "a69909b3 (đỉnh dev đo lúc 20:3x, sau #251/#253/#258/#259/#252)",
-          "fe": "f5eef75d (sau FE #200)"
+          "be": "cdd91002 (đo 23:38)",
+          "fe": "943889f7 (đo 23:38)"
         },
         "redTests": [
-          "OlReferenceTurnWiringTests: #254 làm lời nhắc nói số token theo trần đầu ra, test vẫn chờ 7000; sửa đang làm trong tích hợp BE",
-          "tests/lib/census.test.mjs: mã patch_stale viết thường (BE #231); sửa đang làm trong tích hợp BE"
+          "Hai test đỏ chỉ có trên dev (OlReferenceTurnWiringTests, census patch_stale) đã sửa và merge trong #261 sau QA độc lập",
+          "Hai test đỏ khác do merge trước để lại (PaidCodeEditProdAckTests do #259; AiGateSourceGuardTests do #261): sửa nằm trong #270 đang QA"
         ],
-        "needs": "đóng băng lại; QA delta trên cặp SHA cuối (Flyway kỳ vọng 101|89|0, cho phép migration 101); sao tài liệu bản sao sang FE; không promote/deploy trước khi GO",
-        "fullSuite": "10595 test, 10 đỏ (6 baseline, 3 flake, 1 chỉ dev), 3 giờ 15 phút, trên d430a3e6"
+        "needs": "đóng băng lại; QA delta độc lập trên cặp SHA cuối (Flyway kỳ vọng 101|89|0, cho phép migration 101; bản sao tài liệu FE khớp BE; lõi FE vendored đồng bộ); không promote/deploy trước GO",
+        "fullSuite": "10595 test, 10 đỏ (6 baseline, 3 flake, 1 chỉ dev), 3 giờ 15 phút, trên d430a3e6; lần đo sau: các tập con theo từng QA"
+      },
+      "providerAudit": {
+        "checkedAt": "2026-11-12T23:38:50+07:00",
+        "source": "AUDIT-PROVIDER-PATHS.md (đọc mã, không truy cập PROD) + QA #270 đang chạy",
+        "answer": "Không phải mọi đường tới model đều ghi vào sổ cái trả phí trước PR #270: chỉ đường OpenRouter (hàm đo `metered()`) có giữ chỗ, hard cap và chặn ZDR; nhà cung cấp trả phí khác (dòng cấu hình anthropic trên PROD, nhà cung cấp openai/anthropic/gemini từ biến môi trường, BYOK của tenant) không qua sổ cái.",
+        "exposure": "Hiện bị chặn ở PROD bởi danh sách nhà cung cấp chấp nhận (đọc chỉ-đọc 17:46: khóa không có trong tệp cấu hình ⇒ trống ⇒ HTTP 451). Nếu danh sách bị đặt, người dùng có quyền AI thật có thể gọi nhà cung cấp đó không qua hard cap (P1 tiềm ẩn, chưa thể khai thác trên PROD hôm nay).",
+        "fix": "PR #270 (đầu 4595ae12, status:qa): từ chối nhà cung cấp trả phí không đo trước khi dựng yêu cầu (mã AI_PROVIDER_UNMETERED), audit ghi kind/paid, khóa việc lật paid, siết base_url; chưa QA độc lập; không bật đường nhà cung cấp thứ hai; hard cap/sổ cái/giữ chỗ OpenRouter không đổi",
+        "residual": [
+          "ghim IP chống DNS rebinding cần tường lửa chặn ra ngoài",
+          "OPENAI_COMPATIBLE chỉ công khai cần Owner quyết (D-003)",
+          "ack nhóm trong script Windows",
+          "duyệt hai người cho lật paid"
+        ],
+        "verdict": "CHƯA SEC GO: chờ QA+SEC độc lập #270"
+      },
+      "oxyLane": {
+        "checkedAt": "2026-11-12T23:38:50+07:00",
+        "status": "Đo xong (thẻ 1, Oxy trả lời 23:35); thẻ 2 cài đặt đã đăng 23:37; chưa có việc nào chạy",
+        "facts": "Oxy: 16 GiB RAM, SSD 228 GB (88 GiB trống), JDK 21 có, Node 24 có, Docker Desktop đã cài nhưng chưa chạy, cache Gradle hiện tại là của dự án khác",
+        "ownerNeeded": [
+          "mở Docker Desktop một lần và đặt giới hạn",
+          "quyết tắt giả lập Android khi chạy việc nặng",
+          "cô lập (user riêng/VM) nếu muốn"
+        ]
       }
     },
     "agents": {
-      "checkedAt": "2026-11-12T22:38:44+07:00",
-      "source": "ListAgents lúc 22:38 ICT (chụp trực tiếp)",
+      "checkedAt": "2026-11-12T23:38:50+07:00",
+      "source": "ListAgents lúc 23:38 ICT (chụp trực tiếp)",
       "cap": 10,
       "counts": {
-        "RUNNING_TOTAL": 5,
-        "WORKING": 5,
+        "RUNNING_TOTAL": 4,
+        "WORKING": 4,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 25
+        "FINISHED": 32
       },
-      "resources": "Tải máy 21 (uptime 22:38); đĩa 42 GiB trống (df 22:38); 3 chỗ Gradle",
+      "resources": "Tải 13.80 16.48 19.17 (uptime 23:38); đĩa 36 GiB (df 23:38); 3 chỗ Gradle",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
         "Phiên ngang hàng hoangluan-e4 (tương tác) không phải agent của C0, không tính.",
@@ -7533,65 +7561,52 @@
       ],
       "items": [
         {
-          "alias": "att-b1",
-          "id": "a88703c8",
-          "task": "ATT-b1 phong bì đính kèm 10 tệp (BE)",
+          "alias": "qa-269-205",
+          "id": "ade0df95",
+          "task": "QA delta độc lập BE #269 + FE #205",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T22:20:00+07:00",
+          "startAt": "2026-11-12T23:06:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
           "etaAt": "2026-11-13T00:30:00+07:00",
           "waitReason": null
         },
         {
-          "alias": "att-e0",
-          "id": "a224998c",
-          "task": "ATT-e0 ADR + gói quyết định NO-DIR-5 (nghiên cứu)",
+          "alias": "qa-270",
+          "id": "a45b052b",
+          "task": "QA+SEC độc lập bảo mật nhà cung cấp #270",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T22:20:00+07:00",
+          "startAt": "2026-11-12T23:27:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
-          "etaAt": "2026-11-13T00:30:00+07:00",
+          "etaAt": "2026-11-13T01:00:00+07:00",
           "waitReason": null
         },
         {
-          "alias": "provider-sec",
-          "id": "ae912a73",
-          "task": "PR bảo mật nhà cung cấp G-01/G-05/G-06 (BE)",
+          "alias": "qa-268-206",
+          "id": "a0ded69c",
+          "task": "QA độc lập cặp BE #268 + FE #206 (đính kèm)",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T22:30:00+07:00",
+          "startAt": "2026-11-12T23:29:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
-          "etaAt": "2026-11-13T00:30:00+07:00",
+          "etaAt": "2026-11-13T01:00:00+07:00",
           "waitReason": null
         },
         {
-          "alias": "t24t25-be-fix",
-          "id": "ad2d5ce5",
-          "task": "PR sửa BE theo điều kiện QA T24/T25",
+          "alias": "oxy-lane-planner",
+          "id": "a7626ae2",
+          "task": "Lập kế hoạch làn Oxy (thiết kế + thẻ)",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T22:31:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": "2026-11-13T00:30:00+07:00",
-          "waitReason": null
-        },
-        {
-          "alias": "fe-protofix",
-          "id": "ad7739e8",
-          "task": "PR sửa FE khóa nguyên mẫu/proxy",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-12T22:31:00+07:00",
+          "startAt": "2026-11-12T23:30:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
           "etaAt": "2026-11-13T00:00:00+07:00",
@@ -15731,7 +15746,7 @@
     "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-12T22:38:44+07:00",
+    "updatedAt": "2026-11-12T23:38:50+07:00",
     "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
