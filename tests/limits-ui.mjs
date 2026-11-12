@@ -532,8 +532,10 @@ await TM('37 sub-tabs: tablist/tab/tabpanel roles, counts in labels (VI + EN), d
   eq(i.panels, [['tabpanel', false, 'alsub-approved'], ['tabpanel', true, 'alsub-pending']]);
   eq(await p.evaluate(() => location.hash), '#limits/approved'); eq(await p.evaluate(() => sessionStorage.getItem('xw-al-sub')), 'approved');
   ok(await p.locator('#alMoveNote').innerText().then(t => /ownerChoice/.test(t) && /chờ gửi/.test(t)), 'one sentence about when a row moves');
-  await p.locator('#lang').click();
+  await p.locator('#lang').click(); // the language switch re-fetches status.json and re-renders asynchronously: wait for it instead of racing it
+  await p.waitForFunction(() => document.getElementById('alsub-approved')?.textContent.trim() === 'Approved by Owner (9)');
   eq(await p.locator('#alsub-approved').innerText(), 'Approved by Owner (9)'); eq(await p.locator('#alsub-pending').innerText(), 'Not yet decided (14)'); await p.locator('#lang').click();
+  await p.waitForFunction(() => document.getElementById('alsub-approved')?.textContent.trim() === 'Anh đã duyệt (9)');
   await p.evaluate(() => { location.hash = '#limits/pending'; }); await p.waitForFunction(() => document.getElementById('alPanel-approved').hidden);
   eq(await sub(p), 'pending'); eq(await p.locator('#alPanel-pending').isVisible(), true); await p._ctx.close();
   p = await open({hash: '#limits'}); eq(await sub(p), 'pending'); ok((await p.evaluate(() => location.hash)).startsWith('#limits'), 'hash'); await p._ctx.close();
@@ -656,6 +658,134 @@ await TM('47 axe-core: 0 serious/critical on the approved sub-tab (light/dark x 
   }
   ok(!out.length, out.join(' | '));
 });
+// ---- execution board (#limits/approved): data truth + UI (real status.json aiLimits, read only) ----
+const withReal = () => JSON.stringify(Object.assign({}, base, {aiLimits: REAL}));
+const SYM = ['✓', '~', '✗', '–'], BUCKETS = ['owner', 'qa', 'approved', 'ship', 'clear'], LAYERS = ['FE', 'BE', 'API', 'model', 'runner', 'proxy', 'budget'];
+const bucketOf = x => {
+  if (x.needsOwner || (x.ownerDecision.s === '✗' && x.blocksAI)) return 'owner';
+  if (['✓', '~'].includes(x.code.s) && ['~', '✗'].includes(x.qa.s) && x.pr.kind === 'refs') return 'qa';
+  if (['✓', '~'].includes(x.ownerDecision.s) && (x.code.s === '✗' || x.on.s === '✗')) return 'approved';
+  if (['deploy', 'on', 'verified'].some(k => ['✗', '~'].includes(x[k].s))) return 'ship';
+  return 'clear';
+};
+await T('49 real data: 69/69 rows L01-L69, each with a complete exec{} (effective + layer, owner decision, code, PR/SHA, QA, deploy, ON, VERIFIED, blocker, ETA label, ICT checkedAt, evidence); chip buckets add up to exactly 69', async () => {
+  const it = REAL.items; eq(it.length, 69); eq(it.map(i => i.id), Array.from({length: 69}, (_, i) => 'L' + String(i + 1).padStart(2, '0')));
+  eq(new Set(it.map(i => i.id)).size, 69);
+  const bad = [];
+  for (const i of it) {
+    const x = i.exec; if (!x) { bad.push(i.id + ' no exec'); continue; }
+    if (!x.effective || !x.effective.value || !Array.isArray(x.effective.layers) || !x.effective.layers.length || !x.effective.layers.every(l => LAYERS.includes(l)) || !x.effective.next) bad.push(i.id + ' effective');
+    for (const k of ['ownerDecision', 'code', 'qa', 'deploy', 'on', 'verified']) if (!x[k] || !SYM.includes(x[k].s) || !x[k].note) bad.push(i.id + ' ' + k);
+    if (!['refs', 'none-needed', 'missing'].includes(x.pr && x.pr.kind) || !x.pr.text) bad.push(i.id + ' pr');
+    if (x.pr.kind === 'refs' && !(x.pr.refs.length && x.pr.refs.every(r => r.n && /^[0-9a-f]{8}$/.test(r.sha8) && ['BE', 'FE'].includes(r.repo)))) bad.push(i.id + ' pr refs');
+    if (x.pr.kind === 'missing' && !/^chưa có PR/.test(x.pr.text)) bad.push(i.id + ' pr text');
+    if (typeof x.blocksAI !== 'boolean' || !x.blocker) bad.push(i.id + ' blocker');
+    if (!x.eta || !['ESTIMATE', 'UNKNOWN', 'N/A'].includes(x.eta.label) || !x.eta.text) bad.push(i.id + ' eta');
+    if (!/^2026-\d\d-\d\dT\d\d:\d\d:\d\d\+07:00$/.test(x.checkedAt || '')) bad.push(i.id + ' checkedAt');
+    if (!Array.isArray(x.evidence) || !x.evidence.length || x.evidence.some(e => /\/Users\/|~\/|[A-Z]:\\/.test(e))) bad.push(i.id + ' evidence');
+  }
+  eq(bad, []);
+  const cnt = Object.fromEntries(BUCKETS.map(b => [b, it.filter(i => bucketOf(i.exec) === b).length]));
+  eq(Object.values(cnt).reduce((a, b) => a + b, 0), 69, 'chip buckets ' + JSON.stringify(cnt));
+  ok(it.filter(i => i.exec.blocksAI).length > 0 && it.filter(i => !i.exec.blocksAI).length > 0, 'both blocking and non-blocking rows exist');
+  // classes of the policy: 21 + 17 + 13 + 13 + 5 = 69
+  eq(['QUOTA_NGHIEP_VU', 'GIOI_HAN_TAI_NGUYEN', 'GIOI_HAN_MODEL', 'BAO_MAT', 'GIOI_HAN_TIEN'].map(c => it.filter(i => i.audit.class === c).length), [21, 17, 13, 13, 5]);
+  // the old Owner-choice buckets: decided + undecided = 69, L21 is "cần mã" (runner PR), L28 is "đã áp dụng"
+  eq(it.filter(i => i.ownerChoice).length + it.filter(i => !i.ownerChoice).length, 69);
+});
+await T('50 real data: honesty rules - nothing is PROD/ON/VERIFIED on the strength of a dev merge, a missing PR or a raised web setting', async () => {
+  const it = REAL.items, DEVONLY = /chỉ.{0,20}dev|dev-only|merge.{0,12}dev|chưa (deploy|triển khai|lên PROD)|chưa có PR/i;
+  const bad = [];
+  for (const i of it) {
+    const x = i.exec;
+    for (const k of ['deploy', 'on', 'verified']) {
+      if (x[k].s !== '✓') continue;
+      if (x.pr.kind === 'missing') bad.push(i.id + ' ' + k + ' ✓ without PR');
+      if (DEVONLY.test(x[k].note)) bad.push(i.id + ' ' + k + ' ✓ note is dev-only: ' + x[k].note);
+    }
+    if (x.deploy.s === '✓' && x.pr.kind === 'refs' && !x.pr.refs.every(r => r.state === 'prod')) bad.push(i.id + ' deploy ✓ but a PR is not on PROD');
+    if (x.verified.s === '✓' && x.on.s === '✗' && x.deploy.s === '✗') bad.push(i.id + ' verified ✓ with nothing on/deployed');
+    if (x.pr.kind === 'refs' && x.pr.refs.some(r => r.state === 'merged-dev') && x.deploy.s === '✓') bad.push(i.id + ' merged-dev PR counted as deployed');
+  }
+  eq(bad, []);
+  const g = id => REAL.items.find(i => i.id === id).exec;
+  // the named examples of the Owner directive
+  eq([g('L21').on.s, g('L21').verified.s, g('L21').code.s, g('L21').pr.kind], ['~', '✗', '✗', 'missing']); ok(/900/.test(g('L21').effective.value), 'L21 effective carries the 900 s clamp');
+  eq([g('L12').code.s, g('L12').qa.s, g('L12').deploy.s, g('L12').on.s, g('L12').verified.s], ['✓', '✓', '✗', '✗', '✗']); ok(g('L12').pr.refs.some(r => r.n === 254 && r.sha8 === '3d8e6d81'), 'L12 -> #254 3d8e6d81'); ok(/16\.?000/.test(g('L12').effective.value), 'L12 PROD still 16000');
+  for (const id of ['L06', 'L07']) { eq([g(id).deploy.s, g(id).on.s, g(id).verified.s], ['✗', '✗', '✗'], id); ok(/600/.test(g(id).effective.value), id + ' PROD still 600'); ok(g(id).pr.refs.some(r => r.n === 250), id + ' -> #250'); }
+  // public repo: no secrets, e-mail, IP, money amounts or env-var assignments in the new data
+  const txt = JSON.stringify(REAL.items.map(i => i.exec)) + JSON.stringify(REAL.history);
+  eq([/[\w.+-]+@[\w-]+\.[\w.]+/, /\b\d{1,3}(\.\d{1,3}){3}\b/, /\bUSD\b|\$\s?\d|\d\s?\$/, /\b[A-Z][A-Z0-9_]{5,}=/, /(sk|ghp|gho|xox[bp])[-_][A-Za-z0-9]{12,}/].map(r => r.test(txt)), [false, false, false, false, false]);
+});
+await T('51 #limits/approved shows the execution board: 69 cards, six-state strip, effective + layers, PR/SHA, blocker, ETA, checked time, evidence; chip counts come from the data and reconcile to 69', async () => {
+  current = withReal();
+  try {
+    const p = await open({hash: '#limits/approved'}); const it = REAL.items;
+    eq(await p.locator('#alExec').isVisible(), true); eq(await p.locator('#alXList .al-xc').count(), 69);
+    const want = Object.fromEntries(BUCKETS.map(b => [b, it.filter(i => bucketOf(i.exec) === b).length])), blk = it.filter(i => i.exec.blocksAI).length;
+    const chips = await p.locator('#alXChips button').evaluateAll(l => Object.fromEntries(l.map(b => [b.dataset.xf, Number(b.querySelector('b').textContent)])));
+    eq(chips, Object.assign({all: 69, blk}, want)); eq(BUCKETS.reduce((a, b) => a + chips[b], 0), 69);
+    ok(/= 69 ✓/.test(await p.locator('#alXRecon').innerText()), await p.locator('#alXRecon').innerText()); eq(await p.locator('#alXRecon').getAttribute('data-ok'), '1');
+    const labels = (await p.locator('#alXChips button').allInnerTexts()).map(t => t.replace(/\s+\d+$/, '').trim());
+    for (const l of ['Tất cả', 'Còn chặn AI', 'Cần Owner quyết', 'Đang chờ QA', 'Đã duyệt / chưa thực thi']) ok(labels.includes(l), 'chip ' + l + ' in ' + labels);
+    const c = p.locator('.al-xc[data-xid="L21"]'); const t = await c.innerText();
+    eq(await c.locator('.al-xstrip li').count(), 6); eq(await c.locator('.al-xstrip li').evaluateAll(l => l.map(e => e.dataset.k + ':' + e.dataset.s)), ['od:✓', 'code:✗', 'qa:✗', 'deploy:✗', 'on:~', 'verified:✗']);
+    for (const w of ['Owner duyệt', 'Mã xong', 'QA đạt', 'Lên PROD', 'Cờ/cấu hình ON', 'VERIFIED', 'Hiệu lực cuối', 'Lớp còn chặn', 'PR / SHA', 'chưa có PR', 'Blocker', 'ETA', 'ESTIMATE', 'Kiểm lúc', 'ICT', 'Bằng chứng']) ok(t.includes(w), 'L21 card shows ' + w);
+    ok(/900 s/.test(t), 'L21 effective shows the clamp'); eq(await c.locator('.al-xlay [data-layer]').evaluateAll(l => l.map(e => e.dataset.layer)), ['runner', 'BE']);
+    const c12 = p.locator('.al-xc[data-xid="L12"]'); ok(/BE #254 3d8e6d81/.test(await c12.locator('.al-xpr').innerText()), 'L12 PR/SHA');
+    // filters: every bucket chip narrows to exactly its count; the cross chip "Còn chặn AI" combines; "Tất cả" resets
+    for (const b of BUCKETS) { await p.locator(`#alXChips button[data-xf="${b}"]`).click(); eq(await p.locator('#alXList .al-xc').count(), want[b], b); eq(await p.locator('#alXList .al-xc').evaluateAll(l => [...new Set(l.map(e => e.dataset.bucket))]), [b]); eq(await p.locator(`#alXChips button[data-xf="${b}"]`).getAttribute('aria-pressed'), 'true'); }
+    await p.locator('#alXChips button[data-xf="blk"]').click(); eq(await p.locator('#alXList .al-xc').count(), it.filter(i => i.exec.blocksAI && bucketOf(i.exec) === BUCKETS[BUCKETS.length - 1]).length, 'last bucket AND blocks');
+    await p.locator('#alXChips button[data-xf="all"]').click(); eq(await p.locator('#alXList .al-xc').count(), 69);
+    await p.locator('#alXChips button[data-xf="blk"]').click(); eq(await p.locator('#alXList .al-xc').count(), blk); eq(await p.locator('#alXList .al-xc').evaluateAll(l => [...new Set(l.map(e => e.dataset.blocks))]), ['1']);
+    await p.locator('#alXChips button[data-xf="all"]').click();
+    await p.locator('#alXQ').fill('runner'); ok((await p.locator('#alXList .al-xc').count()) >= 2, 'search finds runner rows'); await p.locator('#alXQ').fill('zzzzzz'); eq(await p.locator('#alXList .al-xc').count(), 0); ok(/Không có hàng nào/.test(await p.locator('#alXList').innerText()), 'empty text');
+    await p.locator('#alXQ').fill(''); eq(await p.locator('#alXList .al-xc').count(), 69);
+    // old sections still reconcile: decided classes add up to the decided rows (L21 = needs code, L28 = applied), undecided = the rest; 37 + 32 = 69
+    const dec = it.filter(i => i.ownerChoice).length;
+    eq(await p.locator('#alApprCounts li:not([data-cls="all"]) b').evaluateAll(l => l.reduce((x, e) => x + Number(e.textContent), 0)), dec);
+    eq(await p.locator('.al-appr').evaluateAll(l => Object.fromEntries(l.filter(e => ['L21', 'L28'].includes(e.dataset.al)).map(e => [e.dataset.al, e.dataset.cls]))), {L21: 'code', L28: 'done'});
+    eq(dec + it.filter(i => !i.ownerChoice).length, 69); eq(await p.locator('#alOwnDet').count(), 1);
+    await shot(p, 'limits-exec-1280'); await p._ctx.close();
+  } finally { current = withLimits; }
+});
+await T('52 history is visible (newest first, with the restructure entry); deep links #limits/approved and #limits/pending keep working; English twin of the board', async () => {
+  current = withReal();
+  try {
+    const p = await open({hash: '#limits/approved'}); const h = REAL.history;
+    eq(await p.locator('#alHist').isVisible(), true); ok(new RegExp('^Lịch sử thay đổi \\(' + h.length + '\\)').test((await p.locator('#alHist > summary').innerText()).trim()), 'history count');
+    const first = await p.locator('#alHist .al-hlist').first().locator('li').first().innerText(); ok(/Tái cấu trúc tab Anh đã duyệt/.test(first) && /12\/11\/2026/.test(first) && /ICT/.test(first), first);
+    ok(h.some(e => /Tái cấu trúc tab Anh đã duyệt/.test(e.note) && /^2026-11-12T/.test(e.at)), 'data has the entry');
+    eq(await p.locator('#alHist .al-hold').count(), h.length > 6 ? 1 : 0);
+    eq(await p.evaluate(() => document.querySelector('#alSubTabs [aria-selected="true"]').dataset.limitsSub), 'approved'); eq(await p.evaluate(() => location.hash), '#limits/approved');
+    await p.evaluate(() => { location.hash = '#limits/pending'; }); await p.waitForFunction(() => document.getElementById('alPanel-approved').hidden);
+    eq(await p.locator('#alPanel-pending').isVisible(), true); eq(await p.locator('#alExec').isVisible(), false);
+    await p.evaluate(() => { location.hash = '#limits/approved'; }); await p.waitForFunction(() => !document.getElementById('alPanel-approved').hidden);
+    await p.locator('#lang').click(); await p.waitForFunction(() => document.querySelector('#alXChips button')?.textContent.includes('All'));
+    const en = (await p.locator('#alXChips button').allInnerTexts()).map(t => t.replace(/\s+\d+$/, '').trim());
+    for (const l of ['All', 'Still blocks AI', 'Needs Owner decision', 'Waiting for QA', 'Approved / not executed']) ok(en.includes(l), 'EN chip ' + l + ' in ' + en);
+    const t = await p.locator('.al-xc[data-xid="L21"]').innerText(); for (const w of ['Owner approved', 'Code done', 'QA passed', 'On PROD', 'Flag/config ON', 'VERIFIED', 'Final effective value', 'Layers still blocking', 'PR / SHA', 'Blocker', 'ETA', 'Checked', 'Evidence']) ok(t.includes(w), 'EN L21 card ' + w);
+    ok(/^Change history/.test((await p.locator('#alHist > summary').innerText()).trim()), 'EN history');
+    await p._ctx.close();
+  } finally { current = withLimits; }
+});
+for (const [theme, w] of [['light', 390], ['dark', 390], ['dark', 1280]]) {
+  await T(`53 [${theme}-${w}] execution board: no horizontal scroll, nothing wider than the viewport, chips/search/summaries >= 44px, state strip readable (text, not colour only); screenshot`, async () => {
+    current = withReal();
+    try {
+      const p = await open({w, h: w > 500 ? 900 : 844, theme, scheme: theme, hash: '#limits/approved'});
+      await p.locator('.al-xc[data-xid="L12"] .al-xdet > summary').click();
+      const m = await p.evaluate(() => ({sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, wide: [...document.querySelectorAll('#alExec *')].filter(e => e.getBoundingClientRect().right > innerWidth + 0.5 && getComputedStyle(e).position !== 'fixed').map(e => e.className || e.tagName).slice(0, 5)}));
+      eq(m.sw, m.cw, 'horizontal scroll'); eq(m.wide, [], 'overflowing');
+      eq(await small(p, '#alExec'), [], 'small targets');
+      const cells = await p.locator('.al-xc[data-xid="L06"] .al-xstrip li').evaluateAll(l => l.map(e => e.innerText.replace(/\s+/g, ' ').trim()));
+      eq(cells.length, 6); ok(cells.every(c => /(có|một phần|chưa|không áp dụng)$/.test(c)), 'each cell ends with a word, not only a colour: ' + JSON.stringify(cells));
+      const bg = await p.evaluate(() => getComputedStyle(document.querySelector('.al-xc')).backgroundColor); const lum = bg.match(/\d+/g).slice(0, 3).map(Number).reduce((a, b) => a + b, 0);
+      ok(theme === 'dark' ? lum < 300 : lum > 600, 'surface follows the theme ' + bg);
+      await shot(p, `limits-exec-${w}-${theme}`); await p._ctx.close();
+    } finally { current = withLimits; }
+  });
+}
 await T('48 no console errors during the whole run', async () => { eq(consoleErrors, []); });
 
 await browser.close(); server.close();

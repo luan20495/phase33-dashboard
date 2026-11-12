@@ -906,6 +906,65 @@ html[data-theme="dark"] .al-appr.al-ask{--muted:#d0d0d5}
 .al-staged{align-self:start;justify-self:start;display:inline-flex;font-size:11px;font-weight:700;border-radius:10px;padding:3px 9px;background:var(--al-ch-bg);color:var(--al-ch-fg);border:1px solid var(--al-ch-bd)}
 .al-chg{justify-self:start;flex:0 0 auto}
 .al-chbox{border-top:1px dashed var(--line);padding-top:8px}
+/* execution board (#limits/approved): one compact card per row */
+.al-exec{border:1px solid var(--line);border-radius:16px;background:var(--card);padding:12px 14px;display:grid;gap:10px;min-width:0}
+.al-exec>h3{margin:0;font-size:16px;font-weight:700;letter-spacing:-.015em}
+.al-xlegend{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 14px;font-size:12px;color:var(--muted)}
+.al-xlegend li{display:inline-flex;align-items:center;gap:6px}
+.al-xg{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:7px;font-size:13px;font-weight:800;line-height:1;border:1px solid var(--line);background:var(--soft);flex:none}
+.al-xchips{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.al-xchips li{display:flex}
+.al-xchip b{font-variant-numeric:tabular-nums}
+.al-xchip[data-kind="cross"]{border-style:dashed}
+.al-xrecon{font-variant-numeric:tabular-nums}
+.al-xrecon[data-ok="0"]{color:var(--al-fl-fg);font-weight:700}
+.al-xlist{list-style:none;margin:0;padding:0;display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr));min-width:0}
+.al-xc{border:1px solid var(--line);border-radius:14px;background:var(--soft);padding:10px 12px;display:grid;gap:8px;align-content:start;min-width:0}
+.al-xc[data-blocks="1"]{border-left:4px solid #c92a31}
+.al-xc[data-blocks="0"]{border-left:4px solid var(--al-ok-bd)}
+.al-xtop{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 8px;align-items:start}
+.al-xtop .al-id{align-self:center}
+.al-xtags{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.al-xstrip{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+.al-xstrip li{display:grid;justify-items:start;align-content:start;gap:1px;border:1px solid var(--line);border-top-width:4px;border-radius:9px;background:var(--card);padding:4px 6px;min-width:0;font-size:11px;line-height:1.25}
+.al-xstrip .al-xg{width:20px;height:20px;border:0;background:transparent;font-size:15px}
+.al-xstrip .al-xl{font-weight:700;overflow-wrap:anywhere}
+.al-xstrip .al-xw{color:var(--muted);overflow-wrap:anywhere}
+.al-xstrip li[data-s="✓"]{border-top-color:var(--al-ok-bd);background:var(--al-ok-bg);color:var(--al-ok-fg)}
+.al-xstrip li[data-s="✓"] .al-xw{color:var(--al-ok-fg)}
+.al-xstrip li[data-s="~"]{border-top-color:var(--al-pd-bd);background:var(--al-pd-bg);color:var(--al-pd-fg)}
+.al-xstrip li[data-s="~"] .al-xw{color:var(--al-pd-fg)}
+.al-xstrip li[data-s="✗"]{border-top-color:var(--al-fl-bd);background:var(--al-fl-bg);color:var(--al-fl-fg)}
+.al-xstrip li[data-s="✗"] .al-xw{color:var(--al-fl-fg)}
+.al-xstrip li[data-s="–"],.al-xstrip li[data-s="?"]{border-top-style:dashed;color:var(--muted)}
+.al-xeff{display:grid;gap:4px;min-width:0}
+.al-xrow{display:grid;grid-template-columns:minmax(0,92px) minmax(0,1fr);gap:2px 8px;align-items:start;min-width:0}
+.al-xrow .al-vl{padding-top:2px}
+.al-xv{font-size:13px;line-height:1.45;overflow-wrap:anywhere;min-width:0}
+.al-xv.al-xs{font-size:12px;color:var(--muted)}
+.al-xlay{display:flex;flex-wrap:wrap;gap:4px}
+.al-xline{margin:0;font-size:13px;line-height:1.5;overflow-wrap:anywhere;min-width:0}
+.al-xline b{font-weight:700;color:var(--muted)}
+.al-xline.al-xno{color:var(--al-fl-fg)}
+.al-xline.al-xchk{font-size:12px;color:var(--muted)}
+.al-xev{font-size:12px;line-height:1.5;color:var(--muted);min-width:0}
+.al-xev ul{margin:2px 0 0;padding-left:16px;display:grid;gap:2px}
+.al-xev li{font-family:ui-monospace,Menlo,monospace;font-size:11px;overflow-wrap:anywhere;word-break:break-word}
+.al-xdet>summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-size:13px;font-weight:650;color:var(--al-lnk)}
+.al-xdet dl{margin:0;display:grid;gap:6px}
+.al-xdet dt{font-size:11px;font-weight:700;color:var(--muted)}
+.al-xdet dd{margin:0;font-size:12px;line-height:1.5;overflow-wrap:anywhere}
+.al-owndet,.al-hist{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:0 12px;min-width:0}
+.al-owndet>summary,.al-hist>summary,.al-hold>summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-size:14px;font-weight:700}
+.al-owndet[open]>summary{border-bottom:1px dashed var(--line);margin-bottom:10px}
+.al-owndet[open]{padding-bottom:12px}
+.al-hlist{list-style:none;margin:0;padding:0 0 10px;display:grid;gap:8px}
+.al-hlist li{display:grid;gap:2px;border-left:3px solid var(--al-ch-bd);padding-left:9px;min-width:0}
+.al-hat{font-size:11px;font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums}
+.al-hby{font-size:11px;color:var(--muted)}
+.al-hby:empty{display:none}
+.al-hnote{font-size:13px;line-height:1.5;overflow-wrap:anywhere}
+@media(max-width:720px){.al-xstrip{grid-template-columns:repeat(3,minmax(0,1fr))}.al-xlist{grid-template-columns:minmax(0,1fr)}.al-exec{padding:10px}.al-xrow{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:900px){.al-opts{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){
  .al-wrap{padding:10px 10px 18px;gap:12px}
@@ -1831,6 +1890,17 @@ vi:{tab:'Giới hạn AI Studio',notice:'Anh chọn xong, bấm sao chép và d�
  apprStaged:n=>n+' lựa chọn đang chờ gửi (kể cả đổi quyết định). Bấm "Sao chép & mở #88" ở thanh cuối màn hình.',
  apprEmpty:'Chưa có giới hạn nào anh đã duyệt.',pendEmpty:'Anh đã quyết hết các giới hạn.',apprShown:(a,b)=>'Hiển thị '+a+'/'+b+' hàng',
  ownChoice:{'BỎ':'BỎ','GIỮ':'GIỮ'},
+  xT:'Thực thi 69 giới hạn',xD:'Cả hàng đã duyệt lẫn chưa duyệt, để các nhóm cộng đủ 69. "Owner duyệt", "Mã xong", "QA đạt", "Lên PROD", "Cờ/cấu hình ON" và "VERIFIED" là sáu trạng thái tách riêng: nâng một cài đặt web hay merge vào nhánh dev KHÔNG được tính là đã lên PROD.',
+ xSymT:'Ký hiệu',xSym:{'✓':'có, có bằng chứng','~':'một phần hoặc chỉ REPORTED','✗':'chưa','–':'không áp dụng','?':'không đọc được'},xSymW:{'✓':'có','~':'một phần','✗':'chưa','–':'không áp dụng','?':'?'},
+ xSt:{od:'Owner duyệt',code:'Mã xong',qa:'QA đạt',deploy:'Lên PROD',on:'Cờ/cấu hình ON',verified:'VERIFIED'},xStrip:'Sáu trạng thái thực thi',
+ xAll:'Tất cả',xBlk:'Còn chặn AI',xBlkD:'Lọc chéo, có thể trùng với các nhóm dưới đây',xGroups:'Nhóm (mỗi hàng đúng một nhóm)',
+ xB:{owner:'Cần Owner quyết',qa:'Đang chờ QA',approved:'Đã duyệt / chưa thực thi',ship:'Chờ triển khai, bật hoặc kiểm chứng',clear:'Xong hoặc giữ, không còn việc'},
+ xBD:{owner:'Còn câu hỏi hoặc quyết định của Owner chặn hàng này.',qa:'Có mã nhưng QA chưa đạt đủ.',approved:'Owner đã duyệt (hoặc chỉ thị cho phép) nhưng chưa có mã hoặc chưa bật.',ship:'Mã/cài đặt có rồi; còn deploy, bật hoặc kiểm chứng độc lập.',clear:'Đã xong, hoặc hàng giữ theo thiết kế/chính sách.'},
+ xRecon:(parts,n,ok)=>parts+' = '+n+(ok?' ✓':' ⚠ LỆCH so với tổng'),xShown:(a,b)=>'Hiển thị '+a+'/'+b+' hàng',xSrch:'Tìm theo mã, tên, PR, blocker',xNone:'Không có hàng nào khớp bộ lọc.',
+ xEff:'Hiệu lực cuối',xLay:'Lớp còn chặn',xLayRel:'Lớp liên quan',xLayN:{FE:'FE',BE:'BE',API:'API',model:'mô hình',runner:'runner',proxy:'proxy',budget:'ngân sách'},xNext:'Chặn kế',xPr:'PR / SHA',xBl:'Blocker',xEta:'ETA',xChk:'Kiểm lúc',xEv:'Bằng chứng',xNoEv:'CHƯA XÁC MINH',
+ xNotes:'Ghi chú từng trạng thái',xNeeds:'Cần Owner',xBlocksTag:'Còn chặn AI',xFree:'Không chặn AI',xBucketW:'Nhóm',
+ xPrNone:'không cần PR',xPrMiss:'chưa có PR',
+ xOwnSum:n=>'Lựa chọn của Owner và đổi quyết định ('+n+')',histT:n=>'Lịch sử thay đổi ('+n+')',histOld:n=>'Xem '+n+' mục cũ hơn',histBy:'bởi',
  tk:{keep:'GIỮ',off:'BỎ',val:'GIÁ TRỊ',rec:'KHUYẾN NGHỊ'},pendChip:s=>'chờ gửi: '+s,note:'Ghi chú dữ liệu'},
 en:{tab:'AI Studio limits',notice:'Once you have chosen, copy and paste to #88; C0 applies hot-changeable settings on its next run, while items that need code or a release become a PR and wait for independent QA before PROD.',
  pendNote:'A choice you click on this page is only "pending" (kept in your browser) and is not an approval until you paste the message on #88.',
@@ -1874,6 +1944,17 @@ en:{tab:'AI Studio limits',notice:'Once you have chosen, copy and paste to #88; 
  apprStaged:n=>n+' choice'+(n===1?'':'s')+' pending (including changed decisions). Press "Copy & open #88" on the bar at the bottom of the screen.',
  apprEmpty:'No limit has been approved by you yet.',pendEmpty:'You have decided every limit.',apprShown:(a,b)=>'Showing '+a+'/'+b+' rows',
  ownChoice:{'BỎ':'OFF','GIỮ':'KEEP'},
+  xT:'Execution of the 69 limits',xD:'Decided and undecided rows are both listed so the groups add up to 69. "Owner approved", "Code done", "QA passed", "On PROD", "Flag/config ON" and "VERIFIED" are six separate states: raising a web setting or merging to the dev branch is NOT counted as live on PROD.',
+ xSymT:'Symbols',xSym:{'✓':'yes, with evidence','~':'partial, or REPORTED only','✗':'not yet','–':'not applicable','?':'unreadable'},xSymW:{'✓':'yes','~':'partial','✗':'not yet','–':'n/a','?':'?'},
+ xSt:{od:'Owner approved',code:'Code done',qa:'QA passed',deploy:'On PROD',on:'Flag/config ON',verified:'VERIFIED'},xStrip:'Six execution states',
+ xAll:'All',xBlk:'Still blocks AI',xBlkD:'Cross filter, may overlap the groups below',xGroups:'Groups (each row in exactly one)',
+ xB:{owner:'Needs Owner decision',qa:'Waiting for QA',approved:'Approved / not executed',ship:'Waiting to deploy, switch on or verify',clear:'Done or kept, nothing left'},
+ xBD:{owner:'An Owner question or decision still blocks this row.',qa:'Code exists but QA has not fully passed.',approved:'The Owner approved (or a directive allows it) but there is no code or it is not on yet.',ship:'Code/setting exists; deploy, switch-on or independent verification remains.',clear:'Done, or a row kept by design/policy.'},
+ xRecon:(parts,n,ok)=>parts+' = '+n+(ok?' ✓':' ⚠ does NOT match the total'),xShown:(a,b)=>'Showing '+a+'/'+b+' rows',xSrch:'Search id, title, PR, blocker',xNone:'No row matches the filters.',
+ xEff:'Final effective value',xLay:'Layers still blocking',xLayRel:'Related layers',xLayN:{FE:'FE',BE:'BE',API:'API',model:'model',runner:'runner',proxy:'proxy',budget:'budget'},xNext:'Next blocker',xPr:'PR / SHA',xBl:'Blocker',xEta:'ETA',xChk:'Checked',xEv:'Evidence',xNoEv:'UNVERIFIED',
+ xNotes:'Notes per state',xNeeds:'Needs Owner',xBlocksTag:'Still blocks AI',xFree:'Does not block AI',xBucketW:'Group',
+ xPrNone:'no PR needed',xPrMiss:'no PR yet',
+ xOwnSum:n=>'Owner choices and change of decision ('+n+')',histT:n=>'Change history ('+n+')',histOld:n=>'Show '+n+' older entries',histBy:'by',
  tk:{keep:'KEEP',off:'OFF',val:'VALUE',rec:'RECOMMENDED'},pendChip:s=>'pending: '+s,note:'Data note'}};
 function alGet(){let v=null,raw=null;try{raw=localStorage.getItem(ALKEY)}catch(e){raw=null;v=alMem}
  if(raw!==null&&raw!==undefined){try{v=JSON.parse(raw)}catch(e){v=null}}else if(v===null)v=alMem;
@@ -1893,6 +1974,22 @@ function alState(t){const s=alNorm(t.state),m={'de xuat':'proposed','da duyet':'
 function alOwner(o){if(!o||typeof o!=='object'||Array.isArray(o))return null;
  return {at:alFlat(o.at),choice:alFlat(o.choice),disp:alFlat(o.disposition),note:alFlat(o.dispositionNote),re:alFlat(o.reconfirmedAt)}}
 const AL_STG=['code','qa','deploy','on','verified'];
+/* execution truth per row (`exec`): six states kept apart (Owner approved / code / QA / PROD / ON / VERIFIED); a missing or malformed exec never breaks a row */
+const AL_XSYM=['✓','~','✗','–'],AL_XK=['od','code','qa','deploy','on','verified'],AL_XB=['owner','qa','approved','ship','clear'];
+const alX={b:'',blk:false,q:''};
+const alXS=o=>{if(!o||typeof o!=='object'||Array.isArray(o))return {s:'?',note:''};const s=alFlat(o.s);return {s:AL_XSYM.includes(s)?s:'?',note:alFlat(o.note)}};
+function alExecOf(e){if(!e||typeof e!=='object'||Array.isArray(e))return null;
+ const ef=e.effective&&typeof e.effective==='object'&&!Array.isArray(e.effective)?e.effective:{},pr=e.pr&&typeof e.pr==='object'&&!Array.isArray(e.pr)?e.pr:{},et=e.eta&&typeof e.eta==='object'&&!Array.isArray(e.eta)?e.eta:{};
+ const arr=v=>Array.isArray(v)?v.map(alFlat).filter(Boolean):[];
+ return {value:alFlat(ef.value),layers:arr(ef.layers),next:alFlat(ef.next),blocks:e.blocksAI===true,od:alXS(e.ownerDecision),needsOwner:alFlat(e.needsOwner),code:alXS(e.code),qa:alXS(e.qa),deploy:alXS(e.deploy),on:alXS(e.on),verified:alXS(e.verified),
+  prKind:alFlat(pr.kind),prText:alFlat(pr.text),blocker:alFlat(e.blocker),etaLabel:alFlat(et.label),etaText:alFlat(et.text),checkedAt:alFlat(e.checkedAt),evidence:arr(e.evidence)}}
+/* exclusive bucket, first match wins: the five buckets add up to the total of rows */
+function alBucket(x){if(!x)return '';
+ if(x.needsOwner||(x.od.s==='✗'&&x.blocks))return 'owner';
+ if((x.code.s==='✓'||x.code.s==='~')&&(x.qa.s==='~'||x.qa.s==='✗')&&x.prKind==='refs')return 'qa';
+ if((x.od.s==='✓'||x.od.s==='~')&&(x.code.s==='✗'||x.on.s==='✗'))return 'approved';
+ if(['deploy','on','verified'].some(k=>x[k].s==='✗'||x[k].s==='~'))return 'ship';
+ return 'clear'}
 function alStages(o){if(!o||typeof o!=='object'||Array.isArray(o))return [];return AL_STG.filter(k=>o[k]!=null&&alFlat(o[k])).map(k=>[k.toUpperCase(),alFlat(o[k])])}
 /* disposition text -> class (tolerant). Order matters: a clarification beats a code need. Missing text: applied/verified rows count as done, others fall to "other" */
 const AL_CLS=['clarify','code','done','design','other'];
@@ -1901,7 +1998,7 @@ function alClass(it){const o=it.owner;if(!o)return '';const d=alNorm(o.disp);
  if(/lam ro|chua ro|cho owner|cho anh|xac nhan|clarif|confirm/.test(d))return 'clarify';
  if(/theo thiet ke|by design/.test(d))return 'design';
  if(/\bma\b|ban phat hanh|\benv\b|release|\bqa\b|\bsec\b|\bpr\b|can code/.test(d))return 'code';
- if(/da ap dung|da o muc|da xong|hoan tat|da kiem chung|da dat|applied|done/.test(d))return 'done';
+ if(/da ap dung|da o muc|da xong|hoan tat|da kiem chung|da dat|khoi phuc|restored|applied|done/.test(d))return 'done';
  return 'other'}
 function alItems(){const a=payload&&payload.aiLimits;if(!a||!Array.isArray(a.items))return [];
  return a.items.filter(t=>t&&typeof t==='object'&&t.id!=null&&String(t.id)).map(t=>{const ef=Number(t.effortHours);
@@ -1912,7 +2009,7 @@ function alItems(){const a=payload&&payload.aiLimits;if(!a||!Array.isArray(a.ite
    rec:alFlat(t.recommend),recVal:alFlat(t.recommendedValue),effort:t.effortHours!=null&&t.effortHours!==''&&Number.isFinite(ef)?ef:null,rel:tri(t.needsRelease),
    group:alFlat(t.group),dev:alScalar(t.dev),prod:alScalar(t.prod),impact:alLevel(alScalar(t.impact)),impactNote:alFlat(t.impactNote),risk:rl,riskRaw:rl?'':rk.slice(0,40),riskNote:alFlat(t.riskNote),
    mand:t.mandatory===true,mandReason:alFlat(t.mandatoryReason),state:alState(t),stateNote:alFlat(t.stateNote)||alFlat(t.applied&&typeof t.applied==='object'?t.applied.note:''),
-   owner:alOwner(t.ownerChoice),stages:alStages(t.stages)}})}
+   owner:alOwner(t.ownerChoice),stages:alStages(t.stages),x:alExecOf(t.exec)}})}
 /* money rows stay locked: unit money, or a title naming tiền / chi phí / ngân sách (a token "ngân sách ngữ cảnh" is not money). Kept as a safety net next to the data flag `mandatory` */
 function alMoney(it){const t=String(it.title||'').normalize('NFC');return it.unit==='money'||/tiền|chi phí/i.test(t)||/ngân sách(?!\s+ngữ cảnh)/i.test(t)}
 const alLocked=it=>it.mand===true||alMoney(it);
@@ -2047,7 +2144,9 @@ function renderLimits(){
  tl.append(mkSub('approved',T.subA(appr.length)),mkSub('pending',T.subP(items.length)));bindTablist(tl);
  const mkPanel=k=>{const d=el('div','al-subpanel');d.id='alPanel-'+k;d.setAttribute('role','tabpanel');d.setAttribute('aria-labelledby','alsub-'+k);d.hidden=true;return d};
  const pApr=mkPanel('approved'),pPen=mkPanel('pending');
- pApr.append(aprBox);pPen.append(call,cnt,leg,bar,fil,selBox,toolbar,groups);
+ const hasX=all.some(i=>i.x),xBox=el('section','al-exec');xBox.id='alExec';xBox.setAttribute('aria-labelledby','alXT');
+ if(hasX){const ownDet=document.createElement('details');ownDet.className='al-owndet';ownDet.id='alOwnDet';ownDet.append(el('summary','',T.xOwnSum(appr.length)),aprBox);pApr.append(xBox,ownDet)}else pApr.append(aprBox);
+ pPen.append(call,cnt,leg,bar,fil,selBox,toolbar,groups);
  host.append(live,notice,pendNote,metaP);if(dn)host.append(dn);host.append(mvNote,tl,pApr,pPen,dock,dlg);
 
  const say=m=>{live.textContent='';setTimeout(()=>{live.textContent=m},30)};
@@ -2176,6 +2275,67 @@ function renderLimits(){
    const ul=el('ul','al-list');byC[c].forEach(i=>ul.append(card(i,st)));sec.append(ul);aprBox.append(sec)});
   refreshApprStaged()}
  function refreshApprStaged(){const n=alLines(all,stNow()).length,p=aprBox.querySelector('#alApprStaged');if(p)p.textContent=n?T.apprStaged(n):''}
+ /* ===== execution board: one compact card per row (all 69), six separate states, chips whose counts come from the data ===== */
+ function xCard(it){
+  const x=it.x,b=alBucket(x),title=pick(it.title,it.titleEn);
+  const li=document.createElement('li');li.className='al-xc';li.dataset.xid=it.id;li.dataset.bucket=b;li.dataset.blocks=x.blocks?'1':'0';
+  const top=el('div','al-xtop'),h4=el('h4','al-title',title);h4.id='al-xt-'+it.id;
+  const tg=el('span','al-xtags');tg.append(alChip(T.xB[b],b==='owner'?'no':b==='qa'||b==='ship'?'code':b==='approved'?'raise':'off',b==='owner'?'?':b==='clear'?'✓':'…'),alChip(x.blocks?T.xBlocksTag:T.xFree,x.blocks?'no':'off',x.blocks?'■':'○'));
+  top.append(el('span','al-id',it.id),h4,tg);li.append(top);
+  const ol=el('ol','al-xstrip');ol.setAttribute('aria-label',T.xStrip);
+  AL_XK.forEach(k=>{const v=x[k],c=document.createElement('li');c.dataset.k=k;c.dataset.s=v.s;if(v.note)c.title=v.note;
+   const g=el('span','al-xg',v.s);g.setAttribute('aria-hidden','true');c.append(g,el('span','al-xl',T.xSt[k]),el('span','al-xw',T.xSymW[v.s]||'?'));ol.append(c)});
+  li.append(ol);
+  const ef=el('div','al-xeff'),vv=el('div','al-xrow');vv.append(el('span','al-vl',T.xEff),el('span','al-xv',x.value||T.xNoEv));ef.append(vv);
+  if(x.layers.length){const lr=el('div','al-xrow');lr.append(el('span','al-vl',x.blocks?T.xLay:T.xLayRel));const ls=el('span','al-xlay');x.layers.forEach(l=>{const c=alChip(T.xLayN[l]||l,x.blocks?'no':'unk','');c.dataset.layer=l;ls.append(c)});lr.append(ls);ef.append(lr)}
+  if(x.next){const nr=el('div','al-xrow');nr.append(el('span','al-vl',T.xNext),el('span','al-xv al-xs',x.next));ef.append(nr)}
+  li.append(ef);
+  const ln=(lab,txt,cls)=>{const p=el('p','al-xline'+(cls?' '+cls:''));p.append(el('b','',lab+': '),document.createTextNode(txt));return p};
+  const prT=x.prKind==='missing'?(x.prText||T.xPrMiss):x.prKind==='none-needed'?(x.prText||T.xPrNone):x.prText||T.xNoEv;
+  const pl=ln(T.xPr,prT,'al-xpr');pl.dataset.pr=x.prKind||'';li.append(pl);
+  li.append(ln(T.xBl,x.blocker||T.xNoEv,'al-xbl'));
+  if(x.needsOwner)li.append(ln(T.xNeeds,x.needsOwner,'al-xno'));
+  const el2=el('p','al-xline al-xeta');el2.append(el('b','',T.xEta+': '));
+  const lab=x.etaLabel||'UNKNOWN';const eb=alChip(lab,lab==='ESTIMATE'?'code':lab==='UNKNOWN'?'unk':'keep','');eb.dataset.eta=lab;el2.append(eb,document.createTextNode(' '+(x.etaText||T.xNoEv)));li.append(el2);
+  li.append(ln(T.xChk,x.checkedAt?alTime(x.checkedAt)+' ICT':T.xNoEv,'al-xchk'));
+  const ev=el('div','al-xev');ev.append(el('b','',T.xEv+': '));
+  if(x.evidence.length){const u=document.createElement('ul');x.evidence.forEach(e=>u.append(el('li','',e)));ev.append(u)}else ev.append(el('span','al-xv',T.xNoEv));
+  li.append(ev);
+  const dt=document.createElement('details');dt.className='al-xdet';dt.append(el('summary','',T.xNotes));
+  const dl=document.createElement('dl');AL_XK.forEach(k=>{const v=x[k],g=document.createElement('div'),dd=el('dd','',v.s+' '+(T.xSymW[v.s]||'?')+(v.note?' · '+v.note:''));g.append(el('dt','',T.xSt[k]),dd);dl.append(g)});
+  dt.append(dl);li.append(dt);
+  return li}
+ function renderExec(){
+  const xs=all.filter(i=>i.x),N=xs.length,bk=Object.fromEntries(AL_XB.map(k=>[k,xs.filter(i=>alBucket(i.x)===k).length])),blkN=xs.filter(i=>i.x.blocks).length;
+  const sum=AL_XB.reduce((a,k)=>a+bk[k],0),ok=sum===N&&N===all.length;
+  xBox.replaceChildren();
+  const h=el('h3','',T.xT+' ('+N+')');h.id='alXT';xBox.append(h,el('p','al-hint',T.xD));
+  const lg=el('ul','al-xlegend');lg.id='alXLegend';lg.setAttribute('aria-label',T.xSymT);['✓','~','✗','–'].forEach(k=>{const l=document.createElement('li');l.dataset.s=k;l.append(el('span','al-xg',k),el('span','',T.xSym[k]));lg.append(l)});xBox.append(lg);
+  const lab=el('label','al-field al-fq'),inp=document.createElement('input');inp.type='search';inp.id='alXQ';inp.autocomplete='off';inp.maxLength=80;inp.value=alX.q;lab.append(el('span','',T.xSrch),inp);xBox.append(lab);
+  const chips=el('ul','al-xchips');chips.id='alXChips';chips.setAttribute('aria-label',T.xGroups);
+  const mk=(key,txt,n,kind)=>{const li=document.createElement('li');li.dataset.xf=key;const b=el('button','al-gchip al-xchip','');b.type='button';b.dataset.xf=key;b.dataset.kind=kind;
+   b.append(el('span','',txt+' '),el('b','',String(n)));if(key!=='all'&&key!=='blk'&&T.xBD[key])b.title=T.xBD[key];if(key==='blk')b.title=T.xBlkD;li.append(b);chips.append(li);return b};
+  const cAll=mk('all',T.xAll,N,'all'),cBlk=mk('blk',T.xBlk,blkN,'cross'),cB=AL_XB.map(k=>mk(k,T.xB[k],bk[k],'bucket'));
+  xBox.append(chips);
+  const rc=el('p','al-hint al-xrecon');rc.id='alXRecon';rc.dataset.ok=ok?'1':'0';rc.textContent=T.xRecon(AL_XB.map(k=>T.xB[k]+' '+bk[k]).join(' + '),sum,ok);xBox.append(rc);
+  const shown=el('p','al-hint');shown.id='alXShown';shown.setAttribute('role','status');xBox.append(shown);
+  const list=el('ul','al-xlist');list.id='alXList';xBox.append(list);
+  const hist=Array.isArray(a.history)?a.history.filter(h=>h&&typeof h==='object'&&alFlat(h.note)).slice().reverse():[];
+  const refresh=()=>{const q=alNorm(alX.q);
+   const vis=xs.filter(i=>(!alX.b||alBucket(i.x)===alX.b)&&(!alX.blk||i.x.blocks)&&(!q||q.split(' ').every(w=>alNorm([i.id,i.title,i.titleEn,i.x.prText,i.x.blocker,i.x.value,i.x.next,i.x.needsOwner].join(' ')).includes(w))));
+   list.replaceChildren(...vis.map(xCard));if(!vis.length)list.append(el('li','al-empty',T.xNone));
+   shown.textContent=T.xShown(vis.length,N);
+   cAll.setAttribute('aria-pressed',String(!alX.b&&!alX.blk));cBlk.setAttribute('aria-pressed',String(alX.blk));cB.forEach(b=>b.setAttribute('aria-pressed',String(alX.b===b.dataset.xf)))};
+  cAll.addEventListener('click',()=>{alX.b='';alX.blk=false;refresh()});
+  cBlk.addEventListener('click',()=>{alX.blk=!alX.blk;refresh()});
+  cB.forEach(b=>b.addEventListener('click',()=>{alX.b=alX.b===b.dataset.xf?'':b.dataset.xf;refresh()}));
+  inp.addEventListener('input',()=>{alX.q=inp.value;refresh()});
+  if(hist.length){const hd=document.createElement('details');hd.className='al-hist';hd.id='alHist';hd.open=true;hd.append(el('summary','',T.histT(hist.length)));
+   const mkLi=h=>{const li=document.createElement('li');li.append(el('time','al-hat',alTime(h.at)+' ICT'),el('span','al-hby',alFlat(h.by)?T.histBy+' '+alFlat(h.by):''),el('span','al-hnote',alFlat(h.note)));return li};
+   const u=el('ol','al-hlist');hist.slice(0,6).forEach(h=>u.append(mkLi(h)));hd.append(u);
+   if(hist.length>6){const od=document.createElement('details');od.className='al-hold';od.append(el('summary','',T.histOld(hist.length-6)));const u2=el('ol','al-hlist');hist.slice(6).forEach(h=>u2.append(mkLi(h)));od.append(u2);hd.append(od)}
+   xBox.append(hd)}
+  refresh()}
  function focusKey(k){if(!k)return;const n=[...host.querySelectorAll('[data-alf]')].find(x=>x.dataset.alf===k);if(n)n.focus()}
  function rowRefresh(it,fk){const old=host.querySelector('[data-al="'+it.id+'"]');if(!old)return;old.replaceWith(it.owner?card(it,stNow()):row(it,stNow()));focusKey(fk);updateGroups()}
  const gKeys=[...gNames,...(items.some(i=>!i.group)?['']:[])],gLab=g=>g||T.noGroup;
@@ -2250,7 +2410,7 @@ function renderLimits(){
  iQ.addEventListener('input',()=>{alF.q=iQ.value;renderGroups()});cT.addEventListener('change',()=>{alF.todo=cT.checked;renderGroups()});
  bTog.addEventListener('click',()=>{const o=!panel.classList.contains('open');panel.classList.toggle('open',o);bTog.setAttribute('aria-expanded',String(o))});
  bReset.addEventListener('click',()=>{alF.kind=alF.rec=alF.group=alF.state=alF.mand=alF.q='';alF.todo=false;sK.value=sR.value=sS.value=sM.value=iQ.value='';cT.checked=false;renderGroups();iQ.focus()});
- renderAppr();renderGroups();refreshBar();alOnSub=()=>refreshSel();syncLimitsSub()}
+ if(hasX)renderExec();renderAppr();renderGroups();refreshBar();alOnSub=()=>refreshSel();syncLimitsSub()}
 function setLimitsBadge(n,T){const b=document.getElementById('limitsTabCount'),t=document.getElementById('tab-limits');if(!b||!t)return;b.hidden=!n;b.textContent=n?String(n):'';t.setAttribute('aria-label',n?T.tab+': '+T.tabPend(n):T.tab)}
 async function load(){try{const r=await fetch('status.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);payload=await r.json();if(!Array.isArray(payload.features)||!Array.isArray(payload.releases))throw Error('Sai định dạng dữ liệu');let d=new Date(payload.asOf);const updatedLabel=txt('updated')+': '+(isNaN(d)?payload.asOf:d.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}))+' · Asia/Ho_Chi_Minh';els.update.title=updatedLabel;els.update.setAttribute('aria-label',updatedLabel);document.getElementById('updatedTime').textContent=isNaN(d)?'--:--':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);els.stats.replaceChildren(stat('R1',txt('r1'),txt('released'),'ok'),stat(txt('prodOn'),payload.features.filter(isFeatureOn).length,txt('uat'),'ok'),stat('R2',payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('r2Done'):txt('processing'),payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('verified'):txt('pending'),'ok'),stat(txt('features'),payload.features.length,txt('interactive')));render();renderProgress();renderRoadmap();renderProd();renderOwnerActions();renderProcess();renderAgent12();renderHourly();renderLimits();if(!window.__odTab&&(payload.ownerActions?.items||[]).some(x=>Array.isArray(x.options)&&x.options.length&&!['DONE','CLOSED'].includes(String(x.status||'').toUpperCase()))&&!location.hash){window.__odTab=1;document.getElementById('tab-owner')?.click()}}catch(e){els.update.title=txt('readError');els.update.setAttribute('aria-label',txt('readError'));document.getElementById('updatedTime').textContent='--:--';els.update.classList.add('has-error');els.stats.replaceChildren(stat(txt('error'),'—',txt('errorHint')));els.tbody.replaceChildren();const tr=el('tr'),td=el('td','empty','Không đọc được status.json. Nếu đang mở file://, hãy chạy local web server hoặc host nội bộ. '+e.message);td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
 
