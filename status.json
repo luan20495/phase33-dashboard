@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T11:06:00+07:00",
+  "asOf": "2026-11-12T11:10:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T11:06:00+07:00",
+  "detailUpdatedAt": "2026-11-12T11:10:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4194,7 +4194,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T11:06:00+07:00",
+    "updatedAt": "2026-11-12T11:10:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -6780,7 +6780,7 @@
     ]
   },
   "aiLimits": {
-    "updatedAt": "2026-11-12T10:37:00+07:00",
+    "updatedAt": "2026-11-12T11:10:00+07:00",
     "note": "Toàn bộ giới hạn liên quan đến AI Studio (kiểm kê từ mã và cấu hình, REPORTED, chưa QA độc lập). Owner 12/11: muốn không giới hạn AI, chỉ giới hạn tiền; lượt chạy/ngày/tháng và token/ngày/tháng tắt cho tới khi Owner bật lại; hỗ trợ mọi định dạng file; tối đa 10 file + ảnh; text không giới hạn; file nén tới 1 GB. Giới hạn tiền luôn giữ. | Cập nhật 2026-11-12 10:37: khuyến nghị 69 hàng theo chỉ thị 'nới tối đa năng lực AI' (kế hoạch MAXCAP); thêm trạng thái 5 bước CODE/QA/DEPLOY/ON/VERIFIED trong trường stages (chưa hàng nào đạt đủ). Hàng tiền và an toàn bắt buộc vẫn khóa.",
     "ownerAsk": [
       "Lượt chạy theo ngày/tháng: tắt cho tới khi Owner yêu cầu bật lại",
@@ -6815,10 +6815,10 @@
         "effortHours": 1.75,
         "needsRelease": false,
         "applied": {
-          "at": "2026-11-12T09:46:00+07:00",
+          "at": "2026-11-12T11:10:00+07:00",
           "by": "C0",
-          "state": "reported",
-          "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
+          "state": "verified",
+          "note": "Kiểm chứng độc lập giá trị cấu hình 12/11"
         },
         "group": "Lượt & token AI",
         "dev": "50 lượt/người/ngày (mặc định code)",
@@ -6829,8 +6829,8 @@
         "riskNote": "Một người có thể chiếm hết cửa sổ AI dùng chung; chi phí vẫn bị trần tiền và trần lượt của cửa sổ chặn.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "state": "verified",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11; giá trị cấu hình đã được một agent khác đọc lại chỉ-đọc: mặc định công ty = 0, hiệu lực của 3 tài khoản QA và 6 người có ngoại lệ = 0, không còn ngoại lệ lượt/token khác 0 (VERIFIED giá trị cấu hình). Hiệu lực thực tế vẫn bị trần chung 600 lượt/ngày (L06/L07) chưa bỏ.",
         "recommendBefore": "bỏ giới hạn",
         "directiveGroup": 1,
         "existingWork": [
@@ -6869,10 +6869,10 @@
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
-          "at": "2026-11-12T09:46:00+07:00",
+          "at": "2026-11-12T11:10:00+07:00",
           "by": "C0",
-          "state": "reported",
-          "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
+          "state": "verified",
+          "note": "Kiểm chứng độc lập giá trị cấu hình 12/11"
         },
         "group": "Lượt & token AI",
         "dev": "Không có ngoại lệ đặt sẵn trong code (chỉ có khi admin tạo)",
@@ -6883,8 +6883,8 @@
         "riskNote": "Ngoại lệ lớn hơn mặc định cho phép một người chiếm nhiều cửa sổ AI dùng chung.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "state": "verified",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11; giá trị cấu hình đã được một agent khác đọc lại chỉ-đọc: mặc định công ty = 0, hiệu lực của 3 tài khoản QA và 6 người có ngoại lệ = 0, không còn ngoại lệ lượt/token khác 0 (VERIFIED giá trị cấu hình). Hiệu lực thực tế vẫn bị trần chung 600 lượt/ngày (L06/L07) chưa bỏ.",
         "recommendBefore": "bỏ giới hạn",
         "directiveGroup": 1,
         "existingWork": [
@@ -7212,10 +7212,10 @@
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
-          "at": "2026-11-12T09:46:00+07:00",
+          "at": "2026-11-12T11:10:00+07:00",
           "by": "C0",
-          "state": "reported",
-          "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
+          "state": "verified",
+          "note": "Kiểm chứng độc lập giá trị cấu hình 12/11"
         },
         "group": "Lượt & token AI",
         "dev": "0 = tắt (mặc định code)",
@@ -7226,8 +7226,8 @@
         "riskNote": "Một người có thể dùng nhiều token mà không bị chặn; tiền vẫn bị trần cửa sổ và trần tiền chặn.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "state": "verified",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11; giá trị cấu hình đã được một agent khác đọc lại chỉ-đọc: mặc định công ty = 0, hiệu lực của 3 tài khoản QA và 6 người có ngoại lệ = 0, không còn ngoại lệ lượt/token khác 0 (VERIFIED giá trị cấu hình). Hiệu lực thực tế vẫn bị trần chung 600 lượt/ngày (L06/L07) chưa bỏ.",
         "recommendBefore": "bỏ giới hạn",
         "directiveGroup": 1,
         "existingWork": [
@@ -7266,10 +7266,10 @@
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
-          "at": "2026-11-12T09:46:00+07:00",
+          "at": "2026-11-12T11:10:00+07:00",
           "by": "C0",
-          "state": "reported",
-          "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
+          "state": "verified",
+          "note": "Kiểm chứng độc lập giá trị cấu hình 12/11"
         },
         "group": "Lượt & token AI",
         "dev": "0 = tắt (mặc định code)",
@@ -7280,8 +7280,8 @@
         "riskNote": "Một workspace dùng không giới hạn token trong tháng; tiền vẫn bị trần tiền chặn.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "state": "verified",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11; giá trị cấu hình đã được một agent khác đọc lại chỉ-đọc: mặc định công ty = 0, hiệu lực của 3 tài khoản QA và 6 người có ngoại lệ = 0, không còn ngoại lệ lượt/token khác 0 (VERIFIED giá trị cấu hình). Hiệu lực thực tế vẫn bị trần chung 600 lượt/ngày (L06/L07) chưa bỏ.",
         "recommendBefore": "bỏ giới hạn",
         "directiveGroup": 1,
         "existingWork": [
@@ -7320,10 +7320,10 @@
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
-          "at": "2026-11-12T09:46:00+07:00",
+          "at": "2026-11-12T11:10:00+07:00",
           "by": "C0",
-          "state": "reported",
-          "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
+          "state": "verified",
+          "note": "Kiểm chứng độc lập giá trị cấu hình 12/11"
         },
         "group": "Lượt & token AI",
         "dev": "Không có ngoại lệ đặt sẵn trong code",
@@ -7334,8 +7334,8 @@
         "riskNote": "Ngoại lệ token lớn hơn mặc định làm một đối tượng chiếm phần lớn tài nguyên AI chung.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "state": "verified",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11; giá trị cấu hình đã được một agent khác đọc lại chỉ-đọc: mặc định công ty = 0, hiệu lực của 3 tài khoản QA và 6 người có ngoại lệ = 0, không còn ngoại lệ lượt/token khác 0 (VERIFIED giá trị cấu hình). Hiệu lực thực tế vẫn bị trần chung 600 lượt/ngày (L06/L07) chưa bỏ.",
         "recommendBefore": "bỏ giới hạn",
         "directiveGroup": 1,
         "existingWork": [
@@ -7534,8 +7534,8 @@
         "riskNote": "Nâng làm một người chiếm hàng đợi build chung, làm người khác chờ lâu.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "Nâng lên mức tối đa hữu hạn của danh mục theo NO-30/DIR-9 (người/dự án/workspace 100.000/ngày, toàn hệ thống 1.000.000; tenant đã ở mức tối đa). Đọc lại khớp (REPORTED, chưa kiểm chứng độc lập). Không phải 'vô hạn thật': muốn 0 = vô hạn cần PR nhỏ.",
         "recommendBefore": "nâng",
         "directiveGroup": 1,
         "existingWork": [
@@ -7556,7 +7556,13 @@
           "HOT"
         ],
         "needsOwner": "",
-        "hotConfig": true
+        "hotConfig": true,
+        "applied": {
+          "at": "2026-11-12T11:10:00+07:00",
+          "by": "C0",
+          "state": "reported",
+          "note": "Agent vận hành, đọc lại khớp"
+        }
       },
       {
         "id": "L16",
@@ -7582,8 +7588,8 @@
         "riskNote": "Một ứng dụng lỗi lặp có thể dùng hết công suất build chung.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "Nâng lên mức tối đa hữu hạn của danh mục theo NO-30/DIR-9 (người/dự án/workspace 100.000/ngày, toàn hệ thống 1.000.000; tenant đã ở mức tối đa). Đọc lại khớp (REPORTED, chưa kiểm chứng độc lập). Không phải 'vô hạn thật': muốn 0 = vô hạn cần PR nhỏ.",
         "recommendBefore": "nâng",
         "directiveGroup": 1,
         "existingWork": [
@@ -7604,7 +7610,13 @@
           "HOT"
         ],
         "needsOwner": "",
-        "hotConfig": true
+        "hotConfig": true,
+        "applied": {
+          "at": "2026-11-12T11:10:00+07:00",
+          "by": "C0",
+          "state": "reported",
+          "note": "Agent vận hành, đọc lại khớp"
+        }
       },
       {
         "id": "L17",
@@ -7630,8 +7642,8 @@
         "riskNote": "Một workspace có thể chiếm phần lớn công suất build của máy.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "Nâng lên mức tối đa hữu hạn của danh mục theo NO-30/DIR-9 (người/dự án/workspace 100.000/ngày, toàn hệ thống 1.000.000; tenant đã ở mức tối đa). Đọc lại khớp (REPORTED, chưa kiểm chứng độc lập). Không phải 'vô hạn thật': muốn 0 = vô hạn cần PR nhỏ.",
         "recommendBefore": "nâng",
         "directiveGroup": 1,
         "existingWork": [
@@ -7652,7 +7664,13 @@
           "HOT"
         ],
         "needsOwner": "",
-        "hotConfig": true
+        "hotConfig": true,
+        "applied": {
+          "at": "2026-11-12T11:10:00+07:00",
+          "by": "C0",
+          "state": "reported",
+          "note": "Agent vận hành, đọc lại khớp"
+        }
       },
       {
         "id": "L18",
@@ -7678,8 +7696,8 @@
         "riskNote": "Bỏ trần toàn hệ thống mất lưới an toàn cuối cho công suất máy build.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "Nâng lên mức tối đa hữu hạn của danh mục theo NO-30/DIR-9 (người/dự án/workspace 100.000/ngày, toàn hệ thống 1.000.000; tenant đã ở mức tối đa). Đọc lại khớp (REPORTED, chưa kiểm chứng độc lập). Không phải 'vô hạn thật': muốn 0 = vô hạn cần PR nhỏ.",
         "recommendBefore": "nâng",
         "directiveGroup": 1,
         "existingWork": [
@@ -7700,7 +7718,13 @@
           "HOT"
         ],
         "needsOwner": "",
-        "hotConfig": true
+        "hotConfig": true,
+        "applied": {
+          "at": "2026-11-12T11:10:00+07:00",
+          "by": "C0",
+          "state": "reported",
+          "note": "Agent vận hành, đọc lại khớp"
+        }
       },
       {
         "id": "L19",
@@ -10152,6 +10176,11 @@
         "at": "2026-11-12T10:37:00+07:00",
         "by": "C0",
         "note": "Nạp khuyến nghị theo chỉ thị nới tối đa (MAXCAP-PLAN): 11 hàng đổi khuyến nghị; 11 hàng bắt buộc nhưng được phép NÂNG qua PR: L06, L07, L12, L14, L33, L45, L46, L47, L50, L64, L69. Chưa áp dụng thay đổi PROD nào ngoài 5 hàng lượt/token đã đặt 0."
+      },
+      {
+        "at": "2026-11-12T11:10:00+07:00",
+        "by": "C0",
+        "note": "Nâng quota build/ngày L15–L18 lên mức tối đa hữu hạn (NO-30). Kiểm chứng độc lập giá trị cấu hình L01/L02/L09/L10/L11 = 0 (đọc lại bởi agent khác). Tiền không đổi."
       }
     ]
   }
