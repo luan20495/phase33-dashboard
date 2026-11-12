@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T07:06:00+07:00",
+  "asOf": "2026-11-12T07:12:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T07:06:00+07:00",
+  "detailUpdatedAt": "2026-11-12T07:12:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3829,6 +3829,35 @@
         "decided": "A",
         "decidedAt": "2026-11-12T07:04:00+07:00",
         "decision": "Owner 07:04 chọn A (theo khuyến nghị kế hoạch): Q1–Q11 = A; Q12 đo ngay các lỗi đã biết, riêng J1, P0-05/06 và X1 sửa nhỏ trước. Gồm: cho thăng TẠM tài khoản QA người duyệt để kiểm bốn mắt (thu hồi sau mỗi đợt), 30 lượt Haiku, cấp phát thử rất nhỏ (thu hồi hết), cấp tạm quyền AI cho người duyệt, tối đa 3 dự án QA + 1 phiếu UAT- + 1 nguồn REST thử, nhãn BLOCKED cho thứ không có. Thứ tự: G0 tiền kiểm chỉ đọc (khóa SSH hết ~21:21 12/11 nên các phép đọc DB làm trước) → sửa nhỏ J1/P0-05/06/X1 → G1–G5 → Owner UAT. Mỗi bước ghi có nhật ký và thu hồi."
+      },
+      {
+        "id": "NO-27",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-12T07:12:00+07:00",
+        "title": "Hồ sơ nhân viên: 'AI Studio đọc read-only' hiện CHƯA tồn tại trong mã — chọn cách làm (NO-25 làm rõ)",
+        "detail": "Spec cục bộ ~/xweb-handoff/p37-studio/batch3/NO25-PROFILES-SPEC.md (REPORTED, agent viết, chưa QA). Đã có sẵn trong mã: bảng hồ sơ tách khỏi tài khoản, danh mục hệ thống chỉ có thao tác đọc, admin công ty bật, duyệt hai người, thu hồi ngay, cách ly tenant. CHƯA có: AI trong Studio không bao giờ nhận dòng dữ liệu thật (chỉ tên cột, kiểu, lớp dữ liệu); bản xem trước dùng dữ liệu mẫu; dòng thật chỉ đến người xem ứng dụng đã xuất bản theo quyền của họ. Không có 'danh tính AI' để cấp quyền; không có đối tượng phê duyệt 'ai được đọc hồ sơ'; không có xóa/lưu giữ; hồ sơ chưa gắn company_id (pháp nhân); hồ sơ chưa nhập/đồng bộ được (ORG_SYNC chỉ gồm đơn vị và thành viên). Vì vậy câu 'chỉ AI Studio đọc, toàn bộ' có 2 cách hiểu khác nhau nhiều về công sức và rủi ro.",
+        "solution": "C0 khuyến nghị A: AI thấy cấu trúc + dữ liệu mẫu; ứng dụng đọc dòng thật theo quyền người xem; thêm trang tóm tắt cho admin công ty; khoảng 20 giờ BE (14–28), rủi ro thấp. B: AI đọc dòng thật trong lượt dựng qua bảng phê duyệt mới + công cụ chỉ-đọc trong tool loop T23, giao với quyền hiện tại của người dùng, có hạn dùng và audit; khoảng 80 giờ (55–110) cộng ~28 giờ nếu muốn đồng bộ từ nguồn công ty; rủi ro: tên và email nhân viên đi tới nhà cung cấp mô hình bên ngoài, AI chép dữ liệu thật vào mã. Cờ ENTERPRISE_PROFILES giữ TẮT trong mọi trường hợp cho tới khi xong QA/SEC độc lập.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Cách A: AI thấy cấu trúc + mẫu, ứng dụng đọc dòng thật theo quyền người xem",
+            "desc": "~20 giờ BE, rủi ro thấp. Cờ vẫn TẮT tới khi QA/SEC xong.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Cách B: AI đọc dòng thật trong lượt dựng (qua phê duyệt admin công ty)",
+            "desc": "~80 giờ (+28 giờ nếu đồng bộ); cần Owner chấp nhận gửi tên/email tới nhà cung cấp mô hình, hạn cấp quyền tối đa, chính sách xóa dữ liệu cá nhân."
+          },
+          {
+            "key": "C",
+            "label": "Ý khác",
+            "desc": "Ghi vào ô ghi chú. Các câu còn mở của spec: tạo tay hay đồng bộ; 'công ty' là tenant hay pháp nhân; hồ sơ INACTIVE có thuộc 'toàn bộ'; hạn tối đa của quyền."
+          }
+        ]
       }
     ]
   },
@@ -4066,7 +4095,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T07:06:00+07:00",
+    "updatedAt": "2026-11-12T07:12:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
