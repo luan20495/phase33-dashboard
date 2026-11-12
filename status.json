@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T08:53:00+07:00",
+  "asOf": "2026-11-12T08:55:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T08:53:00+07:00",
+  "detailUpdatedAt": "2026-11-12T08:55:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -5585,7 +5585,7 @@
     ]
   },
   "process": {
-    "updatedAt": "2026-11-10T18:14:00+07:00",
+    "updatedAt": "2026-11-12T08:55:00+07:00",
     "note": "Bộ tiêu chuẩn vận hành XWeb do Owner chốt 10/11. Sửa một mục rồi “Gửi” để Claude áp dụng. Trạng thái: Đề xuất (chưa làm) / Chờ áp dụng (đã quyết, chưa chạy) / Đã áp dụng (Claude đang làm theo) / Đã xác minh (có bằng chứng đo thật).",
     "groups": [
       {
@@ -5597,7 +5597,7 @@
           {
             "id": "agents.min",
             "label": "Số agent tối thiểu khi còn việc",
-            "value": 4,
+            "value": 6,
             "type": "number",
             "editable": true,
             "explain": "Luôn duy trì ít nhất số này khi đủ việc và tài nguyên.",
@@ -6309,6 +6309,13 @@
         "id": "decide.NO-27/NO-28",
         "note": "Owner 08:52 duyệt NO-27 = A và NO-28 = A; thẻ đóng DONE theo tin nhắn của Owner",
         "state": "verified"
+      },
+      {
+        "at": "2026-11-12T08:55:00+07:00",
+        "by": "C0",
+        "id": "agents.min",
+        "note": "Owner 08:54 đổi số agent tối thiểu khi còn việc 4 → 6. C0 áp dụng: giữ ít nhất 6 agent bận khi còn việc được duyệt hoặc không cần duyệt (tối đa 8; một việc nặng một lúc, tải máy cao thì ưu tiên việc nhẹ). Hiện 5 đang chạy, đang giao thêm.",
+        "state": "applied"
       }
     ]
   },
