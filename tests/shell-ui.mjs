@@ -85,19 +85,19 @@ const selTab = p => p.evaluate(() => document.querySelector('[data-board-tab][ar
 const cardIds = (p, sel) => p.evaluate(s => [...document.querySelectorAll(s)].map(e => e.textContent), sel);
 
 /* ---------- structure ---------- */
-await T('01 four main tabs in order, real tablist with roles/aria, heading has no "Phase 3.3"', async () => {
+await T('01 five main tabs in order, real tablist with roles/aria, heading has no "Phase 3.3"', async () => {
   const p = await open();
   const info = await p.evaluate(() => ({
     title: document.title, h1: document.querySelector('h1').textContent,
     list: document.querySelector('#mainTabs').getAttribute('role'),
     tabs: [...document.querySelectorAll('#mainTabs [role=tab]')].map(t => ({n: t.querySelector('.board-tab-name').textContent, sel: t.getAttribute('aria-selected'), c: t.getAttribute('aria-controls'), tab: t.tabIndex})),
-    panels: ['view-roadmap', 'view-process', 'view-prod', 'view-owner'].map(id => document.getElementById(id)?.getAttribute('role')),
+    panels: ['view-roadmap', 'view-process', 'view-hourly', 'view-prod', 'view-owner'].map(id => document.getElementById(id)?.getAttribute('role')),
     sub: document.getElementById('boardSubtitle').textContent, text: document.body.innerText,
   }));
-  eq(info.tabs.map(t => t.n), ['Lộ trình', 'Quy trình & cấu hình', 'Đã lên PROD', 'Chờ anh quyết']);
-  eq(info.tabs.map(t => t.c), ['view-roadmap', 'view-process', 'view-prod', 'view-owner']);
-  eq(info.tabs.map(t => t.tab), [0, -1, -1, -1]); eq(info.tabs.map(t => t.sel), ['true', 'false', 'false', 'false']);
-  eq(info.panels, ['tabpanel', 'tabpanel', 'tabpanel', 'tabpanel']); eq(info.list, 'tablist');
+  eq(info.tabs.map(t => t.n), ['Lộ trình', 'Quy trình & cấu hình', 'Việc chạy mỗi giờ', 'Đã lên PROD', 'Chờ anh quyết']);
+  eq(info.tabs.map(t => t.c), ['view-roadmap', 'view-process', 'view-hourly', 'view-prod', 'view-owner']);
+  eq(info.tabs.map(t => t.tab), [0, -1, -1, -1, -1]); eq(info.tabs.map(t => t.sel), ['true', 'false', 'false', 'false', 'false']);
+  eq(info.panels, ['tabpanel', 'tabpanel', 'tabpanel', 'tabpanel', 'tabpanel']); eq(info.list, 'tablist');
   ok(/Bảng điều hành/.test(info.h1) && /Bảng điều hành/.test(info.title), info.h1 + ' / ' + info.title);
   ok(!/Phase 3\.3/.test(info.h1 + info.title + info.sub), 'Phase 3.3 still in header');
   ok(/Lộ trình, triển khai và nghiệm thu theo bằng chứng/.test(info.sub));
@@ -221,7 +221,7 @@ await T('10 language toggle (vi/en) and theme cycle; labels switch, hash and tab
   const p = await open({hash: '#prod/on'});
   await p.locator('#lang').click(); await p.waitForFunction(() => document.documentElement.lang === 'en');
   const en = await p.evaluate(() => ({tabs: [...document.querySelectorAll('#mainTabs .board-tab-name')].map(e => e.textContent), h: document.querySelector('h1').textContent, sub: document.getElementById('boardSubtitle').textContent, subtabs: [...document.querySelectorAll('#prodTabs .sub-name')].map(e => e.textContent), title: document.title}));
-  eq(en.tabs, ['Roadmap', 'Process & settings', 'Live on PROD', 'Awaiting you']); ok(/Delivery Control/.test(en.h) && /Delivery Control/.test(en.title), en.h);
+  eq(en.tabs, ['Roadmap', 'Process & settings', 'Hourly tasks', 'Live on PROD', 'Awaiting you']); ok(/Delivery Control/.test(en.h) && /Delivery Control/.test(en.title), en.h);
   ok(/evidence first/.test(en.sub)); eq(en.subtabs, ['Closed', 'Live, not closed']); eq(await hashOf(p), '#prod/on');
   await p.locator('#tab-roadmap').click(); await p.waitForSelector('#batchPanel .batch-head');
   ok(/Target:/.test(await p.locator('#batchPanel .batch-kicker').innerText()), 'roadmap en');
