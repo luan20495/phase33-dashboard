@@ -15755,7 +15755,7 @@
     "summary": "Máy phụ đầu tiên đang được dựng (thẻ cài đặt đang chạy): làn CHƯA sẵn sàng và CHƯA xác minh. Runbook để thêm một máy mới, script slot và nhật ký đã có; checklist nghiệm thu 0 PASS (các bước nặng như nạp Gradle, chứng minh offline, smoke FE/BE, kéo kết quả đều NOT_RUN trên máy phụ). Việc chỉ Owner còn mở: cô lập, Docker, tiến trình lớn của việc khác.",
     "links": [
       {"label": "Runbook thêm máy mới", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/RUNBOOK-NEW-MACHINE.md"},
-      {"label": "Nhật ký máy phụ đầu tiên", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/OXY-FIRST-MACHINE-LOG.md"},
+      {"label": "Nhật ký máy phụ đầu tiên", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/LANE-FIRST-MACHINE-LOG.md"},
       {"label": "Script slot", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/gradle-slot-lane.sh"},
       {"label": "Mục lục tài liệu", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/README.md"}
     ]

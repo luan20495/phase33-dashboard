@@ -27,7 +27,7 @@ const LANE = {
   summary: 'Máy phụ đầu tiên đang được dựng: làn CHƯA sẵn sàng và CHƯA xác minh. ' + 'Một đoạn rất dài không có dấu cách '.repeat(1) + 'x'.repeat(120),
   links: [
     {label: 'Runbook thêm máy mới', url: 'https://github.com/example/dashboard/blob/main/docs/lane/RUNBOOK-NEW-MACHINE.md'},
-    {label: 'Nhật ký', url: 'https://github.com/example/dashboard/blob/main/docs/lane/OXY-FIRST-MACHINE-LOG.md'},
+    {label: 'Nhật ký', url: 'https://github.com/example/dashboard/blob/main/docs/lane/LANE-FIRST-MACHINE-LOG.md'},
     {label: 'Liên kết không an toàn phải bị bỏ', url: 'javascript:alert(1)'},
     {label: 'http thường cũng bị bỏ', url: 'http://example.com/x'}
   ]

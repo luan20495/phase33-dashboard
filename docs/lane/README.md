@@ -8,7 +8,7 @@ Tài liệu để thêm một máy mới làm làn build/test XWeb và dùng đ�
 |---|---|
 | [RUNBOOK-NEW-MACHINE.md](RUNBOOK-NEW-MACHINE.md) | Runbook đầy đủ: vai trò máy chính/máy phụ, điều kiện tiên quyết, việc chỉ-Owner, kênh và mẫu thẻ việc, bố cục thư mục, toolchain, script slot và ngưỡng chốt, nạp Gradle online rồi offline, FE, kéo kết quả, tải/RAM/đĩa, khởi động lại, cô lập, hoàn nguyên, xử lý sự cố, checklist nghiệm thu PASS/FAIL |
 | [gradle-slot-lane.sh](gradle-slot-lane.sh) | Script slot tổng quát hóa (một việc nặng một lúc, chốt tải/RAM/đĩa/STOP, hết hạn, bản ghi kết quả có sha256) |
-| [OXY-FIRST-MACHINE-LOG.md](OXY-FIRST-MACHINE-LOG.md) | Nhật ký máy phụ đầu tiên: giờ ICT, số đo, bài học, phần NOT_RUN, và mục "Do máy phụ tự ghi" để agent máy phụ bổ sung |
+| [LANE-FIRST-MACHINE-LOG.md](LANE-FIRST-MACHINE-LOG.md) | Nhật ký máy phụ đầu tiên: giờ ICT, số đo, bài học, phần NOT_RUN, và mục "Do máy phụ tự ghi" để agent máy phụ bổ sung |
 
 Tên tệp nhật ký giữ nguyên theo yêu cầu của Owner; nội dung không ghi tên máy hay tài khoản.
 

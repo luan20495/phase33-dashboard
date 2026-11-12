@@ -2,7 +2,7 @@
 
 Phiên bản 1, viết lúc 2026-11-13 00:05 ICT. Phạm vi: macOS Apple silicon 16 GB, máy phụ đứng cạnh một "hub" đang chạy việc khác.
 
-> **Trạng thái trung thực của tài liệu này.** Runbook được rút ra từ máy phụ đầu tiên, nhưng máy đó **vẫn đang dựng** (thẻ cài đặt thứ hai đang chạy). Chưa có bước nặng nào (nạp cache Gradle, chứng minh offline, smoke FE/BE, kéo kết quả) được xác nhận PASS trên máy phụ. Vì vậy: lệnh ở mục 8-10 là **thiết kế đã review, NOT_RUN trên máy phụ**; các con số ghi `MEASURED` chỉ là số đo thật, `ESTIMATE` là ước lượng cần đo lại. Khi máy phụ đầu tiên xong, cập nhật cột "Máy phụ #1" ở mục 16 và `OXY-FIRST-MACHINE-LOG.md`. **Không ai được ghi "làn sẵn sàng" khi mục 16 chưa PASS hết.**
+> **Trạng thái trung thực của tài liệu này.** Runbook được rút ra từ máy phụ đầu tiên, nhưng máy đó **vẫn đang dựng** (thẻ cài đặt thứ hai đang chạy). Chưa có bước nặng nào (nạp cache Gradle, chứng minh offline, smoke FE/BE, kéo kết quả) được xác nhận PASS trên máy phụ. Vì vậy: lệnh ở mục 8-10 là **thiết kế đã review, NOT_RUN trên máy phụ**; các con số ghi `MEASURED` chỉ là số đo thật, `ESTIMATE` là ước lượng cần đo lại. Khi máy phụ đầu tiên xong, cập nhật cột "Máy phụ #1" ở mục 16 và `LANE-FIRST-MACHINE-LOG.md`. **Không ai được ghi "làn sẵn sàng" khi mục 16 chưa PASS hết.**
 
 Mục lục: 1 Mục đích và vai trò · 2 Điều kiện tiên quyết · 3 Việc chỉ Owner / việc agent máy phụ được làm · 4 Kênh và giao thức thẻ việc · 5 Bố cục thư mục · 6 Toolchain · 7 Script slot và ngưỡng chốt · 8 Nạp cache Gradle · 9 FE: cài và smoke · 10 Kéo kết quả · 11 Quy tắc tải, RAM, đĩa · 12 Khởi động lại · 13 Cô lập và bảo mật · 14 Hoàn nguyên · 15 Xử lý sự cố · 16 Checklist nghiệm thu.
 
@@ -190,7 +190,7 @@ JOB_TIMEOUT=2400 ~/xweb-lane/tools/gradle-slot-lane.sh be-seed ./gradlew compile
 
 Tham chiếu máy chính (chỉ để hình dung độ nặng, không phải số của làn): trên máy chính, `test` của một lớp BE thuần (19 test) kể cả biên dịch lần đầu mất 9 phút 37 giây ở tải 48; FE `test:unit` khoảng 77-79 giây (MEASURED, chạy chẩn đoán trên máy phụ đầu tiên).
 
-Thay đổi ngưỡng chỉ sau khi có đo thật (bảng thời gian trong `OXY-FIRST-MACHINE-LOG.md`, mục 6.1) và có người duyệt. Không hạ ngưỡng để việc "qua".
+Thay đổi ngưỡng chỉ sau khi có đo thật (bảng thời gian trong `LANE-FIRST-MACHINE-LOG.md`, mục 6.1) và có người duyệt. Không hạ ngưỡng để việc "qua".
 
 ## 8. Nạp cache Gradle: online một lần, rồi chứng minh offline
 
