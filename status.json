@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T22:38:44+07:00",
+  "asOf": "2026-11-12T22:41:16+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T22:38:44+07:00",
+  "detailUpdatedAt": "2026-11-12T22:41:16+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4117,6 +4117,38 @@
         "decided": "A",
         "decidedAt": "2026-11-12T15:17:00+07:00",
         "decision": "Owner 15:17 chọn A: bản 22 = các PR đã/đang qua QA độc lập; V101/#252 và #253 ra ngoài (vào bản 23); #251 đi cùng (chỉ test); biến môi trường token = 32.768 ở bước riêng sau lần triển khai đầu sạch; cửa sổ: đóng băng dev 17:30, QA tích hợp xong 19:30, chỉ triển khai khi QA tích hợp GO và còn ≥30 phút dư trước 21:21, nếu không hoãn sang sáng mai; các bước biến môi trường #250/#254 và việc nâng N là phê duyệt riêng."
+      },
+      {
+        "id": "NO-36",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-12T22:41:16+07:00",
+        "title": "Mục 07 (file, ngữ cảnh, đính kèm): 6 quyết định NO-DIR-5 để mở khóa upload lớn, giải nén an toàn và đọc theo phần",
+        "detail": "Nguồn: agent nghiên cứu chỉ-đọc ATT-e0 (ADR-ATT-E.md, OWNER-DECISIONS-NO-DIR-5.md trong ~/xweb-handoff/p38-att-e0/; mọi con số là ESTIMATE hoặc VERIFIED kèm file:line trong ADR; không chạm PROD, cờ hay tiền; mọi tính năng ra với cờ TẮT qua quy trình phát hành). Không trả lời = giữ nguyên, không làm gì. (1) Đường upload: A khuyến nghị = trình duyệt tải thẳng lên kho đối tượng theo mảnh 16 MiB (multipart có chữ ký, dùng SDK sẵn có), trần mỗi tệp là bảo vệ ổ đĩa mặc định 1 GiB, không có hạn ngạch theo người/tenant; B = PUT đơn (rẻ, không tiếp tục được, có thể vướng giới hạn 100 MB nếu có Cloudflare phía trước: chưa rõ); C = qua API (không khuyến nghị, quay lại lớp slowloris đã sửa). (2) Định dạng nén bản đầu: A khuyến nghị = zip, tar, tgz, gz, bz2 bằng Commons Compress 1.28.0 đã có sẵn trong jar PROD + ghim phiên bản và thêm kiểm chứng phụ thuộc Gradle; không thêm thư viện bên thứ ba; B = thêm 7z (thêm phụ thuộc mới); C = thêm RAR (không khuyến nghị: thư viện RAR có lỗ hổng duyệt đường dẫn 2026). (3) Nơi giải nén: A khuyến nghị cho bản đầu = trong JVM của API, theo luồng, không bung ra đĩa, trần vận hành gợi ý 64 MiB lưu trữ / 512 MiB luồng đếm / 60 giây / 10.000 mục, cờ TẮT; B = việc mới trên runner build (cần ảnh mới); C = container nạp riêng (thêm dịch vụ). (4) Nơi chạy bài thử 100 MiB và 1 GiB: A khuyến nghị = Mac DEV trong container dùng một lần (không đụng stack DEV XWeb), cộng MỘT cửa sổ chứng minh trên máy chủ PROD lúc rảnh, cần anh duyệt; B = máy Windows; C = chỉ Mac. (5) Văn bản đính kèm được lưu (ATT-f): lưu 30 ngày sau lần dùng cuối hoặc khi xóa dự án (A), ai đọc = thành viên dự án có quyền đọc (A), không đưa vào sao lưu dài hạn (A). (6) Rủi ro kho đối tượng: A khuyến nghị = chấp nhận cho bản đầu, không bao giờ tạo tài khoản S3 cho người dùng, mở việc riêng đánh giá phương án thay thế do bản MinIO cộng đồng đã lưu trữ và ảnh đang ghim có trước bản vá một CVE năm 2025; B = coi thay thế là điều kiện tiên quyết; C = không làm gì.",
+        "solution": "Khuyến nghị: A cho cả 6 câu. Giờ công ước lượng cho bản đầu khoảng 120 giờ công + 3–6 giờ máy Windows (tin cậy thấp–trung bình), xem mục 07 ở #roadmap/6.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo khuyến nghị cả 6 câu",
+            "desc": "Upload thẳng nhiều mảnh (trần 1 GiB), zip/tar/tgz/gz/bz2 bằng thư viện sẵn có, giải nén trong API (cờ TẮT), thử trên Mac DEV + một cửa sổ PROD khi anh duyệt, văn bản đính kèm lưu 30 ngày, chấp nhận rủi ro kho đối tượng cho bản đầu.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chọn từng câu",
+            "desc": "Anh ghi lựa chọn cho từng câu (1)–(6) vào ô ghi chú khi gửi; câu không ghi giữ khuyến nghị A hoặc không làm gì."
+          },
+          {
+            "key": "C",
+            "label": "Hoãn",
+            "desc": "Chưa quyết: các lát phụ thuộc (ATT-e1, e2, e3, e5, ATT-f) chưa bắt đầu; các lát nhỏ ATT-b1/b2, FILES-b, CTX-b vẫn chạy."
+          }
+        ],
+        "decided": false,
+        "decidedAt": null,
+        "decision": null
       }
     ]
   },
@@ -6816,7 +6848,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T22:38:44+07:00",
+    "updatedAt": "2026-11-12T22:41:16+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7375,6 +7407,11 @@
         "at": "2026-11-12T22:38:44+07:00",
         "by": "C0",
         "note": "QA T24+T25 GO có điều kiện và merge dev; mục 04/05 code ✓ QA ✓ (chưa deploy/ON/VERIFIED); PAYC-6/FE1 có PR; kiểm toán nhà cung cấp; roster 5 agent; đĩa hồi"
+      },
+      {
+        "at": "2026-11-12T22:41:16+07:00",
+        "by": "C0",
+        "note": "Thêm thẻ Owner NO-36 (6 quyết định NO-DIR-5 cho mục 07) từ ADR của agent ATT-e0"
       }
     ],
     "summary": {
