@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T02:10:39+07:00",
+  "asOf": "2026-11-13T02:39:48+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T02:10:39+07:00",
+  "detailUpdatedAt": "2026-11-13T02:39:48+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6379,13 +6379,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 27,
+            "value": 24,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "df 01:40 ICT 13/11: 27 GiB trống (trên ngưỡng 20)"
+            "evidence": "df 02:39 ICT 13/11: 24 GiB trống (trên ngưỡng 20, đang giảm)"
           },
           {
             "id": "disk.t_monitor",
@@ -6912,7 +6912,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T02:10:39+07:00",
+    "updatedAt": "2026-11-13T02:39:48+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6923,11 +6923,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T17:42:20+07:00",
-            "result": "ok",
-            "summary": "Không có comment [OWNER]/[CHATGPT] mới ngoài lệnh GO tách luồng review sang #257; #257 chưa có review nào"
-          },
           {
             "at": "2026-11-12T19:07:04+07:00",
             "result": "ok",
@@ -6972,6 +6967,11 @@
             "at": "2026-11-13T02:08:32+07:00",
             "result": "changed",
             "summary": "Đọc báo cáo QA UI r4 (GO có điều kiện); không có comment mới của Owner"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "changed",
+            "summary": "Đọc review #257 6833091611 (~02:00); không có comment Owner mới ở #88; trả lời ở #257 chỉ kết quả mới"
           }
         ]
       },
@@ -6983,11 +6983,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "ok",
-            "summary": "Đối chiếu tab Quy trình: agents.min 6/max 10 giữ nguyên; thực tế 2 agent chạy (giữ lệnh không giao thêm agent trong kiểm toán)"
-          },
           {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
@@ -7032,6 +7027,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "ok",
             "summary": "#process khớp thực tế"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "ok",
+            "summary": "#process khớp thực tế"
           }
         ]
       },
@@ -7043,11 +7043,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T17:42:20+07:00",
-            "result": "changed",
-            "summary": "PR #258 (runner, 71fe0055) mở, QA/SEC độc lập bắt đầu; #252 vẫn chờ QA; 10 agent RUNNING (ListAgents 17:42)"
-          },
           {
             "at": "2026-11-12T19:07:04+07:00",
             "result": "changed",
@@ -7092,6 +7087,11 @@
             "at": "2026-11-13T02:08:32+07:00",
             "result": "changed",
             "summary": "QA cặp ATT-b GO → merge #272/#207; QA #273 đang chạy; QA UI r4 xong"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "changed",
+            "summary": "ListAgents 02:39: 2 đang chạy; merge #273 sau QA; #274 mở chờ QA; chuỗi PAYC đang QA"
           }
         ]
       },
@@ -7103,11 +7103,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo lần 128 lên #88 (#6820154801)"
-          },
           {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "skipped",
@@ -7152,6 +7147,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "skipped",
             "summary": "Không đăng 19 dòng lên #88; phản hồi ở #257"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "skipped",
+            "summary": "Không đăng 19 dòng lên #88; phản hồi ở #257"
           }
         ]
       },
@@ -7163,11 +7163,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T17:42:20+07:00",
-            "result": "changed",
-            "summary": "Cập nhật hạng mục 08 (PR #258) và tóm tắt hằng giờ"
-          },
           {
             "at": "2026-11-12T19:07:04+07:00",
             "result": "changed",
@@ -7212,6 +7207,11 @@
             "at": "2026-11-13T02:08:32+07:00",
             "result": "changed",
             "summary": "Dashboard: sửa P2-A..E của QA r4; bảng PR 31 dòng; ẩn số tiền USD và tên tài khoản máy; bỏ .playwright-cli"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "changed",
+            "summary": "Dashboard: prTable (#273 merged, #274), agents, blockers, rủi ro đĩa"
           }
         ]
       },
@@ -7223,11 +7223,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "ok",
-            "summary": "Đĩa Mac còn ~28 GiB, trên ngưỡng khẩn 20; không cần dọn"
-          },
           {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
@@ -7272,6 +7267,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "ok",
             "summary": "df 01:40: 27 GiB; không dọn"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "changed",
+            "summary": "df 02:39: 24 GiB (giảm); xóa ~0,8 GB bản sao tạm cũ của C0; không đụng worktree/cache đang dùng, không prune Docker"
           }
         ]
       },
@@ -7283,11 +7283,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH máy chủ đã nạp lại 24 giờ (REPORTED, chưa thử đăng nhập)"
-          },
           {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "ok",
@@ -7332,6 +7327,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); dùng đọc-chỉ rsync sang máy phụ 00:5x"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); không dùng SSH máy chủ trong kỳ này"
           }
         ]
       },
@@ -7343,11 +7343,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T17:42:20+07:00",
-            "result": "ok",
-            "summary": "10 agent RUNNING (tối đa 10); không giao thêm"
-          },
           {
             "at": "2026-11-12T19:07:04+07:00",
             "result": "ok",
@@ -7392,6 +7387,11 @@
             "at": "2026-11-13T02:08:32+07:00",
             "result": "changed",
             "summary": "QA #273 chạy (1 agent); sửa test cũ chờ khe nặng"
+          },
+          {
+            "at": "2026-11-13T02:39:48+07:00",
+            "result": "changed",
+            "summary": "Đang 2 agent QA; việc kế (QA #273 xong, sửa test #274) đã giao; còn lại cần khe Gradle"
           }
         ]
       }
@@ -7506,10 +7506,15 @@
         "at": "2026-11-13T02:08:32+07:00",
         "by": "C0",
         "note": "QA UI r4 (c13726b, GO có điều kiện): sửa P2-A..E; dọn repo công khai (số USD, tên tài khoản máy, .playwright-cli); cập nhật prTable sau merge #272/#207"
+      },
+      {
+        "at": "2026-11-13T02:39:48+07:00",
+        "by": "C0",
+        "note": "Hourly 02:4x: #273 merged (QA độc lập), #274 mở, QA PAYC chạy; đĩa 24 GiB (giảm); dọn bản sao tạm cũ"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T01:40:55+07:00",
+      "checkedAt": "2026-11-13T02:39:48+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7518,7 +7523,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "02:04: QA độc lập cặp ATT-b GO và đã merge BE #272 + FE #207 (dev BE 4ec6ea65, FE 7c940a24); QA UI vòng 4 GO có điều kiện (sửa dữ liệu mâu thuẫn P2-B..E, tiêu đề thẻ NO-37, dọn thông tin nhạy cảm); QA #273 đang chạy; làn Oxy thẻ 4-5 có kết quả; bảng PR chuẩn: đã merge 21, đang mở 9",
+      "changeSincePrev": "02:39: merge sau QA độc lập BE #273 (khóa nguồn provider; dev BE bfe47279; FE dev 7c940a24); PR #274 (sửa 2 test route-list cũ + test chập chờn) mở, QA đang chạy; QA chuỗi PAYC (BE #271 + FE #204) đang chạy; bảng PR chuẩn: đã merge 22, đang mở 9",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7550,18 +7555,18 @@
       "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa vào dev, chưa có kết luận QA độc lập: BE #210, #262, #263, #265, #266, #267, #271, #273; FE #204 (bảng prTable)",
+        "PR đang mở chưa vào dev, chưa có kết luận QA độc lập: BE #210, #262, #263, #265, #266, #267, #271, #274; FE #204 (bảng prTable)",
         "Thẻ Owner NO-37 (paid=false tự khai) và NO-36 (mục 07) chờ quyết",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
-        "Nợ test cũ: DataManagementNegativeSecurityTests và ManagementTransportTests (danh sách route) đỏ trên dev sạch 82ff4e73 (REPORTED bởi agent #273); ReadShapesTests có ngưỡng thời gian thực dễ chập chờn"
+        "Nợ test cũ: 2 test route-list đỏ trên dev đã có PR sửa #274 (chờ QA độc lập); ReadShapesTests de-flake nằm trong #274"
       ],
       "risks": [
-        "Tài nguyên (đo 02:04): tải 5.83 6.66 7.71 (uptime), đĩa 28 GiB (df); máy chính tải cao khi nhiều agent chạy Gradle/Chrome; ngưỡng cảnh báo đĩa 20 GiB",
+        "Tài nguyên (đo 02:39): tải 10.82 8.24 7.96 (uptime), đĩa 24 GiB (df); đĩa giảm đều vì worktree/cache của agent; đã dọn ~0,8 GB bản sao tạm cũ của C0; không dọn volume Docker (bị chặn, cần Owner); ngưỡng cảnh báo 20 GiB",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy (máy thứ hai): thẻ 1-5 đã có kết quả (FE unit đầy đủ, guard, BE lớp thuần PASS); Docker Desktop chưa khởi động, bước sudo/Docker/cô lập chờ Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa 28 GiB trống (df 02:04), tải 5.83 6.66 7.71 (uptime 02:04); làn máy phụ: thẻ 1-5 có kết quả, chưa 'sẵn sàng'",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa 24 GiB trống (df 02:39, đang giảm: 33→24 trong ~2 giờ, ngưỡng 20), tải 10.82 8.24 7.96 (uptime 02:39); làn máy phụ: thẻ 1-5 có kết quả, chưa 'sẵn sàng'",
       "ownerNeeds": [
         "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm, mục 07) và NO-37 (bảo mật nhà cung cấp: paid=false tự khai) ở tab Chờ anh quyết",
         "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
@@ -7583,7 +7588,7 @@
         "proof": "QA vòng 4 độc lập trên c13726b (Pages cùng SHA, byte-identical); các sửa sau đó chỉ có C0 tự chạy (5 bộ test: 4 PASS, shell-ui chỉ còn 2 lỗi nền 06 và 16; kiểm trình duyệt thẻ NO-37 ở 320 px: không tràn). Chưa có QA độc lập trên SHA sửa",
         "open": "QA vòng 5 trên SHA sửa; trạng thái ASSIGNED/EXECUTING của timeline chưa kiểm (dữ liệu chỉ có RESULT/UNASSIGNED); lịch sử git còn chứa tên tài khoản máy và tệp .playwright-cli cũ (cần Owner quyết nếu muốn viết lại lịch sử)"
       },
-      "agentCensus": "1 đang chạy (QA #273), 40 đã xong, 0 nghi treo; QA ATT-b và QA UI r4 vừa xong",
+      "agentCensus": "2 đang chạy (QA chuỗi PAYC, QA #274), 42 đã xong, 0 nghi treo; dưới mức tối thiểu 4 vì chỉ một khe Gradle nặng (tải 10.82 8.24 7.96) và việc còn lại là QA; đĩa 24 GiB",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7592,12 +7597,12 @@
           "at": "2026-11-12T16:22:00+07:00"
         },
         "movingDev": {
-          "be": "4ec6ea65 (đo 02:04)",
-          "fe": "7c940a24 (đo 02:04)"
+          "be": "bfe47279 (đo 02:39)",
+          "fe": "7c940a24 (đo 02:39)"
         },
         "redTests": [
           "OlReferenceTurnWiringTests (#254 đổi lời nhắc theo trần đầu ra) và census patch_stale: đã sửa, merge trong #261 sau QA độc lập",
-          "PaidCodeEditProdAckTests (do #259) và AiGateSourceGuardTests (do #261): sửa đã merge trong #270 sau QA độc lập (QA-PR270.md); test P8 của OlDataPromptTests: sửa trong PR #273 (chờ QA); 2 test danh sách route còn đỏ trên dev (chưa có PR)"
+          "PaidCodeEditProdAckTests, AiGateSourceGuardTests: sửa đã merge (#270, QA độc lập); OlDataPromptTests P8: sửa đã merge trong #273 (QA độc lập); 2 test danh sách route (DataManagement…, ManagementTransport…) + ReadShapesTests: PR #274 chờ QA độc lập"
         ],
         "needs": "đóng băng lại; QA delta độc lập trên cặp SHA cuối (Flyway kỳ vọng 101|89|0, cho phép migration 101; bản sao tài liệu FE khớp BE; lõi FE vendored đồng bộ); không promote/deploy trước GO",
         "fullSuite": "10595 test, 10 đỏ trên d430a3e6 (6 baseline cũng đỏ trên main, 3 flake chạy riêng thì qua, 1 chỉ có trên dev là OlReferenceTurnWiringTests); test census patch_stale đỏ là lỗi riêng ở combined-check; cả hai đã sửa và merge trong #261; hai test đỏ do merge #259/#261 để lại sửa trong #270"
@@ -7663,9 +7668,9 @@
         ]
       },
       "prTable": {
-        "checkedAt": "2026-11-13T02:04:32+07:00",
-        "source": "gh pr view lúc 02:04 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "21 PR đã merge dev sau QA độc lập; 9 PR đang mở chưa có kết luận QA độc lập",
+        "checkedAt": "2026-11-13T02:39:48+07:00",
+        "source": "gh pr view lúc 02:39 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "22 PR đã merge dev sau QA độc lập; 9 PR đang mở chưa có kết luận QA độc lập",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -7899,6 +7904,17 @@
             "qaReport": "QA-PR272-207.md"
           },
           {
+            "repo": "xweb01",
+            "pr": 273,
+            "state": "MERGED",
+            "head": "2fd893e0",
+            "mergeCommit": "bfe47279",
+            "mergedAt": "2026-11-12T19:20:47Z",
+            "label": "status:done",
+            "qa": "QA GO / SEC GO có điều kiện (DNS rebinding/egress NOT_RUN)",
+            "qaReport": "QA-PR273.md"
+          },
+          {
             "repo": "Xweb01fe",
             "pr": 204,
             "state": "OPEN",
@@ -7906,7 +7922,7 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập một lần cho chuỗi PAYC + FE #204 đang chạy (kết quả chưa có)",
             "qaReport": null
           },
           {
@@ -7928,7 +7944,7 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập một lần cho chuỗi PAYC + FE #204 đang chạy (kết quả chưa có)",
             "qaReport": null
           },
           {
@@ -7939,7 +7955,7 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập một lần cho chuỗi PAYC + FE #204 đang chạy (kết quả chưa có)",
             "qaReport": null
           },
           {
@@ -7950,7 +7966,7 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập một lần cho chuỗi PAYC + FE #204 đang chạy (kết quả chưa có)",
             "qaReport": null
           },
           {
@@ -7961,7 +7977,7 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập một lần cho chuỗi PAYC + FE #204 đang chạy (kết quả chưa có)",
             "qaReport": null
           },
           {
@@ -7972,7 +7988,7 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập một lần cho chuỗi PAYC + FE #204 đang chạy (kết quả chưa có)",
             "qaReport": null
           },
           {
@@ -7983,37 +7999,37 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập một lần cho chuỗi PAYC + FE #204 đang chạy (kết quả chưa có)",
             "qaReport": null
           },
           {
             "repo": "xweb01",
-            "pr": 273,
+            "pr": 274,
+            "qaReport": null,
+            "qa": "QA độc lập đang chạy (kết quả chưa có); PR chỉ sửa test",
             "state": "OPEN",
-            "head": "2fd893e0",
+            "head": "2fa13607",
             "mergeCommit": null,
             "mergedAt": null,
-            "label": "status:qa",
-            "qa": "QA độc lập đang chạy (kết quả chưa có)",
-            "qaReport": null
+            "label": "status:qa"
           }
         ]
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T02:08:32+07:00",
-      "source": "ListAgents lúc 01:40 ICT (chụp trực tiếp)",
+      "checkedAt": "2026-11-13T02:39:48+07:00",
+      "source": "ListAgents lúc 02:39 ICT (chụp trực tiếp)",
       "cap": 10,
       "counts": {
-        "RUNNING_TOTAL": 1,
-        "WORKING": 1,
+        "RUNNING_TOTAL": 2,
+        "WORKING": 2,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 40
+        "FINISHED": 42
       },
-      "resources": "Tải 14.47 8.38 7.76; đĩa 27 GiB (df 01:40)",
+      "resources": "Tải 10.82 8.24 7.96; đĩa 24 GiB (df 02:39)",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
@@ -8021,13 +8037,26 @@
       ],
       "items": [
         {
-          "alias": "qa-pr273",
-          "id": "a50380e6",
-          "task": "QA+SEC độc lập BE #273 (khóa nguồn provider, URL, test cũ P8)",
+          "alias": "qa-payc",
+          "id": "a0ee2df9",
+          "task": "QA+SEC độc lập một lần cho chuỗi PAYC: BE #271 (chứa #262-#267) + FE #204",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-13T01:47:00+07:00",
+          "startAt": "2026-11-13T02:21:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "đang chạy lúc chụp",
+          "etaAt": null,
+          "waitReason": null
+        },
+        {
+          "alias": "qa-274",
+          "id": "ac8a2e55",
+          "task": "QA độc lập PR #274 (sửa test route-list + ReadShapesTests)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "requestedModel trong log (VERIFIED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T02:35:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
           "etaAt": null,
