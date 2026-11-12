@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T13:38:00+07:00",
+  "asOf": "2026-11-12T14:10:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T13:38:00+07:00",
+  "detailUpdatedAt": "2026-11-12T14:10:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4290,7 +4290,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T13:38:00+07:00",
+    "updatedAt": "2026-11-12T14:10:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -7017,7 +7017,7 @@
     ]
   },
   "aiLimits": {
-    "updatedAt": "2026-11-12T13:32:00+07:00",
+    "updatedAt": "2026-11-12T14:10:00+07:00",
     "note": "Toàn bộ giới hạn liên quan đến AI Studio (kiểm kê từ mã và cấu hình, REPORTED, chưa QA độc lập). Owner 12/11: muốn không giới hạn AI, chỉ giới hạn tiền; lượt chạy/ngày/tháng và token/ngày/tháng tắt cho tới khi Owner bật lại; hỗ trợ mọi định dạng file; tối đa 10 file + ảnh; text không giới hạn; file nén tới 1 GB. Giới hạn tiền luôn giữ. | Cập nhật 2026-11-12 10:37: khuyến nghị 69 hàng theo chỉ thị 'nới tối đa năng lực AI' (kế hoạch MAXCAP); thêm trạng thái 5 bước CODE/QA/DEPLOY/ON/VERIFIED trong trường stages (chưa hàng nào đạt đủ). Hàng tiền và an toàn bắt buộc vẫn khóa. | 11:34 12/11: Owner nhấn mạnh 'all user' và 'chỉ còn Admin duyệt ai dùng + bao nhiêu tiền'. Hai cổng đó đã có trong hệ thống (quyền AI theo workspace/dự án; cấp phát và yêu cầu ngân sách). Phần còn lại là bảo vệ kỹ thuật không thể gỡ mà không làm hỏng hệ thống: xem các hàng L20, L26, L60, L61 và nhóm bắt buộc.",
     "ownerAsk": [
       "Lượt chạy theo ngày/tháng: tắt cho tới khi Owner yêu cầu bật lại",
@@ -8137,9 +8137,9 @@
         "ownerChoice": {
           "at": "2026-11-12T11:31:00+07:00",
           "choice": "BỎ",
-          "disposition": "GIỮ — chờ Owner xác nhận",
-          "dispositionNote": "Hàng đợi build bảo vệ công suất runner (4 vCPU). Tắt hàng đợi trái mục 4 của chỉ thị (concurrency/queue phải giữ). Em chưa tắt. | Owner 12/11: 'không còn giới hạn nào cả' — C0 đề xuất nâng theo công suất thật thay vì gỡ hẳn, chờ Owner xác nhận.",
-          "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+          "disposition": "Đã ở mức tối đa; KHÔNG tắt hàng đợi",
+          "dispositionNote": "Số chỗ chờ 10 đã là tối đa danh mục, giới hạn theo workspace = 0 (không giới hạn). Tắt hàng đợi sẽ làm build bị từ chối thay vì chờ.",
+          "reconfirmedAt": "2026-11-12T14:06:00+07:00"
         }
       },
       {
@@ -8458,9 +8458,9 @@
         "ownerChoice": {
           "at": "2026-11-12T11:31:00+07:00",
           "choice": "BỎ",
-          "disposition": "GIỮ — chờ Owner xác nhận",
-          "dispositionNote": "2 luồng AI song song/người là hằng số trong mã và là concurrency (phải giữ theo mục 4); muốn nâng thì thành PR riêng có đo tải. | Owner 12/11: 'không còn giới hạn nào cả' — C0 đề xuất nâng theo công suất thật thay vì gỡ hẳn, chờ Owner xác nhận.",
-          "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+          "disposition": "Cần mã (có đo tải)",
+          "dispositionNote": "Hằng số 2 luồng AI/người trong mã; PR riêng, đo tải trên máy thật trước khi nâng.",
+          "reconfirmedAt": "2026-11-12T14:06:00+07:00"
         }
       },
       {
@@ -8533,8 +8533,8 @@
         "riskNote": "Tắt thì yêu cầu lớn dễ vượt giới hạn một lượt; bật thì tốn nhiều lượt AI hơn.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "Đã tắt chia bước (steps.enabled=false) lúc 14:09 theo xác nhận của Owner (REPORTED). Yêu cầu lớn chạy một lượt, bị trần 16.000 token cho tới PAY-b/T22-C.",
         "recommendBefore": "giữ",
         "directiveGroup": 2,
         "existingWork": [
@@ -8557,8 +8557,9 @@
         "ownerChoice": {
           "at": "2026-11-12T13:17:00+07:00",
           "choice": "BỎ",
-          "disposition": "Cần làm rõ — chưa đổi",
-          "dispositionNote": "'BỎ' ở hàng chia bước có thể hiểu là TẮT chia bước. Tắt thì mọi yêu cầu lớn phải xong trong MỘT lượt và chạm trần 16.000 token (ứng dụng chỉ dựng phần lõi) cho tới khi có PAY-b và T22-C. C0 giữ chia bước BẬT và chờ Owner xác nhận bằng lời."
+          "disposition": "Đã áp dụng (tắt chia bước)",
+          "dispositionNote": "Owner xác nhận lại 14:06; hoàn tác bằng true.",
+          "reconfirmedAt": "2026-11-12T14:06:00+07:00"
         }
       },
       {
@@ -10197,9 +10198,9 @@
         "ownerChoice": {
           "at": "2026-11-12T11:31:00+07:00",
           "choice": "BỎ",
-          "disposition": "GIỮ — chờ Owner xác nhận",
-          "dispositionNote": "Số dự án/workspace và tài nguyên là storage guard (mục 4 chỉ thị: phải giữ). Em chưa gỡ. | Owner 12/11: 'không còn giới hạn nào cả' — C0 đề xuất nâng theo công suất thật thay vì gỡ hẳn, chờ Owner xác nhận.",
-          "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+          "disposition": "Cần env + bản phát hành",
+          "dispositionNote": "Số dự án/workspace (1000) và tài nguyên/dự án (200) là biến môi trường, không đổi từ web; trần dung lượng giữ (bảo vệ đĩa).",
+          "reconfirmedAt": "2026-11-12T14:06:00+07:00"
         }
       },
       {
@@ -10226,8 +10227,8 @@
         "riskNote": "Tăng hạn làm đầy đĩa và MinIO; giảm hạn làm mất dữ liệu cần gỡ lỗi.",
         "mandatory": false,
         "mandatoryReason": "",
-        "state": "proposed",
-        "stateNote": "",
+        "state": "applied",
+        "stateNote": "retention.failed-build-days 14 → 365 (mức tối đa hữu hạn; chỉ log/cột quét trong CSDL). retention.preview-days không có nơi dùng trong mã (thời gian giữ bản xem trước thật là biến môi trường, mặc định 7 ngày). REPORTED.",
         "recommendBefore": "giữ",
         "directiveGroup": 4,
         "existingWork": [
@@ -10250,9 +10251,9 @@
         "ownerChoice": {
           "at": "2026-11-12T11:31:00+07:00",
           "choice": "BỎ",
-          "disposition": "Chưa rõ — chờ Owner xác nhận",
-          "dispositionNote": "Lưu giữ bản xem trước và build lỗi là cài đặt dọn dẹp lưu trữ, không phải quota AI; bỏ giới hạn nghĩa là lưu vô hạn (rủi ro đĩa). Em chưa đổi. | Owner 12/11: 'không còn giới hạn nào cả' — C0 đề xuất nâng theo công suất thật thay vì gỡ hẳn, chờ Owner xác nhận.",
-          "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+          "disposition": "Đã áp dụng một phần",
+          "dispositionNote": "Không tắt dọn dẹp; xem preview-days là việc mã/env riêng.",
+          "reconfirmedAt": "2026-11-12T14:06:00+07:00"
         }
       },
       {
@@ -10699,6 +10700,11 @@
         "at": "2026-11-12T13:32:00+07:00",
         "by": "C0",
         "note": "L21 đặt 3.600 giây (NO-33). Phát hiện: runner kẹp 900 giây và lease 25 phút → cần PR runner + đo build dài."
+      },
+      {
+        "at": "2026-11-12T14:10:00+07:00",
+        "by": "C0",
+        "note": "Owner xác nhận lại 14:06 cho L20, L26, L28, L60, L61. Đã áp dụng: L28 tắt chia bước, L61 failed-build-days 365. L20 đã ở tối đa (không tắt hàng đợi), L26 cần mã, L60 cần env. Đĩa runner ~81%."
       }
     ]
   }
