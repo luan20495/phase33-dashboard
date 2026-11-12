@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T17:32:32+07:00",
+  "asOf": "2026-11-12T17:42:20+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T17:32:32+07:00",
+  "detailUpdatedAt": "2026-11-12T17:42:20+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6798,7 +6798,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T17:32:32+07:00",
+    "updatedAt": "2026-11-12T17:42:20+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6809,11 +6809,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T07:04:00+07:00",
-            "result": "changed",
-            "summary": "Owner duyệt NO-25 = A, NO-26 = A; đã đóng thẻ và cập nhật U2/U4/U5"
-          },
           {
             "at": "2026-11-12T08:27:00+07:00",
             "result": "ok",
@@ -6858,6 +6853,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "ok",
             "summary": "Không có comment [OWNER]/[CHATGPT] mới trên #88 từ #6819001716; hai tin chat của Owner (khóa SSH, câu hỏi về con số trần) đã xử lý"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "ok",
+            "summary": "Không có comment [OWNER]/[CHATGPT] mới ngoài lệnh GO tách luồng review sang #257; #257 chưa có review nào"
           }
         ]
       },
@@ -6869,11 +6869,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T07:04:00+07:00",
-            "result": "changed",
-            "summary": "Ghi lịch sử quyết định NO-25/NO-26 vào tab Quy trình"
-          },
           {
             "at": "2026-11-12T08:27:00+07:00",
             "result": "changed",
@@ -6918,6 +6913,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "ok",
             "summary": "Đối chiếu tab Quy trình: agents.min 6/max 10 giữ nguyên; thực tế 2 agent chạy (giữ lệnh không giao thêm agent trong kiểm toán)"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "changed",
+            "summary": "Đồng bộ #process (nhóm Quản trị AI/USD) và quy tắc mới: #257 là luồng review, đọc mỗi giờ"
           }
         ]
       },
@@ -6929,11 +6929,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T07:30:00+07:00",
-            "result": "changed",
-            "summary": "G0 xong; #242 merge; PR FE #192 mở"
-          },
           {
             "at": "2026-11-12T08:27:00+07:00",
             "result": "changed",
@@ -6978,6 +6973,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "changed",
             "summary": "Merge dev: BE #250 (15:54), #254 (16:21, QA GO / SEC GO có điều kiện, head 3d8e6d81); dev đóng băng 16:25; QA tích hợp bản 22 đang chạy"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "changed",
+            "summary": "PR #258 (runner, 71fe0055) mở, QA/SEC độc lập bắt đầu; #252 vẫn chờ QA; 10 agent RUNNING (ListAgents 17:42)"
           }
         ]
       },
@@ -6989,11 +6989,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T07:30:00+07:00",
-            "result": "changed",
-            "summary": "Đăng lần 119 (comment 6810717606)"
-          },
           {
             "at": "2026-11-12T08:27:00+07:00",
             "result": "changed",
@@ -7038,6 +7033,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 128 lên #88 (#6820154801)"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "skipped",
+            "summary": "Không đăng báo cáo 19 dòng: thay đổi nhỏ từ 17:05; bảng 12 hạng mục ở #88 vẫn còn hiệu lực"
           }
         ]
       },
@@ -7049,11 +7049,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T07:30:00+07:00",
-            "result": "changed",
-            "summary": "Đĩa 14 GiB, G1 bắt đầu (commit 7a419e2)"
-          },
           {
             "at": "2026-11-12T08:27:00+07:00",
             "result": "changed",
@@ -7098,6 +7093,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "changed",
             "summary": "Cập nhật dashboard: bản ghi hằng giờ"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "changed",
+            "summary": "Cập nhật hạng mục 08 (PR #258) và tóm tắt hằng giờ"
           }
         ]
       },
@@ -7109,11 +7109,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T08:27:00+07:00",
-            "result": "ok",
-            "summary": "13 GiB, không còn gì dọn an toàn; chờ Owner chọn A/B cho cache Gradle"
-          },
           {
             "at": "2026-11-12T09:38:00+07:00",
             "result": "ok",
@@ -7158,6 +7153,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "ok",
             "summary": "Đĩa Mac còn ~28 GiB, trên ngưỡng khẩn 20; không cần dọn"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "changed",
+            "summary": "Đĩa 20 GiB trống (sát ngưỡng khẩn 20): đã xóa 10 worktree sạch đã merge và 3 bản sao scratch cũ; không đụng cache Gradle/Docker đang dùng"
           }
         ]
       },
@@ -7208,6 +7208,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "ok",
             "summary": "Khóa SSH máy chủ đã nạp lại 24 giờ (REPORTED, chưa thử đăng nhập)"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH nạp 24 giờ lúc ~16:40, hết ~16:40 ngày 13/11 (REPORTED, chưa thử đăng nhập)"
           }
         ]
       },
@@ -7263,6 +7268,11 @@
             "at": "2026-11-12T16:42:23+07:00",
             "result": "skipped",
             "summary": "Chỉ 2 agent chạy, dưới mức tối thiểu: giữ lệnh Owner không giao thêm agent trong kiểm toán DB; sẽ giao QA delta #252 sau khi trả lời"
+          },
+          {
+            "at": "2026-11-12T17:42:20+07:00",
+            "result": "ok",
+            "summary": "10 agent RUNNING (tối đa 10); không giao thêm"
           }
         ]
       }
@@ -7285,7 +7295,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T17:20:06+07:00",
+      "checkedAt": "2026-11-12T17:42:20+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7294,7 +7304,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "Có thay đổi: #250, #254 merge dev; dev đóng băng 16:25; 8 agent mới cho 12 hạng mục; bảng 12 hạng mục; đồng bộ 3 tab",
+      "changeSincePrev": "PR #258 (runner, 71fe0055) mở, QA độc lập đang chạy; dọn đĩa; luồng review chuyển sang #257 (chưa có review)",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7327,14 +7337,16 @@
       "blockers": [
         "P1: agent đọc-chỉ PROD (RealAiMode, quyền, NO-28) bị chặn, cần Owner xác nhận trực tiếp",
         "QA tích hợp bản 22 chưa có kết luận",
-        "QA #252 chưa có kết luận",
+        "QA #252 và QA #258 chưa có kết luận",
+        "QA trình duyệt độc lập cho sửa UI chưa có kết luận",
         "Chưa có test cross-app / cross-company thật (agent DEV đang chạy)"
       ],
       "risks": [
-        "Hàng đợi Gradle 3 chỗ cho 9 agent có thể kéo dài ETA",
+        "Đĩa Mac sát ngưỡng 20 GiB khi 10 agent build",
+        "Hàng đợi Gradle 3 chỗ cho 10 agent có thể kéo dài ETA",
         "ETA mục 07, 08, 12 chưa có dữ liệu thật"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chỉ có kế hoạch, chưa phát sinh chi phí; đĩa Mac 23 GiB trống",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chỉ có kế hoạch, chưa phát sinh chi phí; đĩa Mac 20 GiB trống (sát ngưỡng khẩn 20)",
       "ownerNeeds": [
         "Xác nhận trực tiếp: đồng ý đọc-chỉ PROD (RealAiMode, cấu hình quyền, NO-28)",
         "Tài khoản admin thứ hai (DEV) cho kiểm thử cách ly nếu cần mức đầy đủ"
@@ -11892,14 +11904,14 @@
     }
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-12T17:05:08+07:00",
+    "updatedAt": "2026-11-12T17:42:20+07:00",
     "overallEta": "~28/11/2026 (± 4 ngày) — ước tính CHƯA XÁC MINH, tin cậy thấp–trung bình",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
       {
         "id": "01",
         "name": "Quota/giới hạn L01–L69",
-        "pr": "audit 69 hàng; PR trần lượt và PR runner đang viết",
+        "pr": "PR trần lượt đang viết; BE #258 (L21/L58) mở",
         "done": "Audit 69/69; 37 hàng Owner duyệt bỏ; chia bước bật lại 15:19; build 3.600 s, hàng đợi 100/500/72 h (REPORTED)",
         "todo": "Trần lượt trong mã (1..100000) cần PR nâng; chưa xác minh giá trị hiệu lực xuyên FE→API→BE→Agent→Model→Runner→Proxy; 100 triệu không phải bỏ quota",
         "code": "~",
@@ -11997,15 +12009,15 @@
       {
         "id": "08",
         "name": "Runner/build",
-        "pr": "PR runner đang viết; runner 2 chỉ có kế hoạch",
-        "done": "Build 3.600 s; hàng đợi 1 chỗ + 10 chờ, T10 PASS (VERIFIED)",
-        "todo": "Trần 900 s + lease, chống giao trùng/RUNNER_LOST sai, runner 2 (xác minh tài nguyên + chi phí trước), tự build-đọc lỗi",
-        "code": "~",
+        "pr": "BE #258 71fe0055 (mở, status:qa); runner 2: chỉ kế hoạch",
+        "done": "PR #258: trần dòng AI cấu hình được (mặc định 900 không đổi), nhịp tim gia hạn lease, chạy test cục bộ (REPORTED: 419 test Kotlin + 134 Node, mutant bị diệt); build 3.600 s và hàng đợi T10 PASS (VERIFIED)",
+        "todo": "QA/SEC độc lập #258 đang chạy; sau merge cần deploy API + gói runner + env 2 phía mới có tác dụng trên PROD; điểm còn lại: runner nhận 409 không hủy bước build đang chạy (P2 chờ QA); runner thứ hai cần đo tài nguyên/chi phí",
+        "code": "✓",
         "qa": "✗",
         "deploy": "✗",
         "on": "~",
         "verified": "~",
-        "agent": "agent runner RUNNING",
+        "agent": "agent QA #258 RUNNING",
         "eta": "PR ~14/11; runner 2 ~20–24/11 (thấp)"
       },
       {
