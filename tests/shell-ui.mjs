@@ -57,6 +57,7 @@ const variant = {
   blockedSteps: () => { const d = JSON.parse(REAL); const x = d.dailyWork.items.find(i => i.id === 'D1.7'); x.steps = [{label: 'Mã', labelEn: 'Code', state: 'done'}, {label: 'Chờ khóa', labelEn: 'Waiting for key', state: 'blocked', note: 'ghi chú chặn'}, {label: 'Bước lạ', state: 'weird'}]; return d; },
   withDecision: () => {
     const d = JSON.parse(REAL);
+    for (const x of d.ownerActions.items) if (!['DONE', 'CLOSED'].includes(String(x.status || '').toUpperCase())) x.status = 'DONE'; // isolate from real open cards
     d.ownerActions.items.unshift({id: 'TEST-OD-1', kind: 'DECISION', priority: 'P1', status: 'OPEN', since: '2026-11-11T14:00:00+07:00', title: 'Thẻ quyết định thử nghiệm', detail: 'Chỉ dùng trong test.', options: [{key: 'A', label: 'Đồng ý', recommended: true, desc: 'Phương án A'}, {key: 'B', label: 'Từ chối', desc: 'Phương án B'}]});
     return d;
   },
