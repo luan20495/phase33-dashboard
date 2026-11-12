@@ -28,7 +28,18 @@
    "recommend": "bỏ giới hạn",
    "recommendedValue": "0",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Lượt & token AI",
+   "dev": "Mặc định trong mã L01: 50",
+   "prod": "Giá trị PROD L01: 500",
+   "impact": "Cao",
+   "impactNote": "Ảnh hưởng người dùng L01",
+   "risk": "Trung bình",
+   "riskNote": "Ghi chú rủi ro L01",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "applied",
+   "stateNote": "Ghi chú trạng thái L01"
   },
   {
    "id": "L02",
@@ -44,7 +55,18 @@
    "recommend": "bỏ giới hạn",
    "recommendedValue": "xóa hoặc 0",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Lượt & token AI",
+   "dev": "Mặc định trong mã L02: 50",
+   "prod": "Giá trị PROD L02: 500",
+   "impact": "Trung bình",
+   "impactNote": "Ảnh hưởng người dùng L02",
+   "risk": "Thấp",
+   "riskNote": "Ghi chú rủi ro L02",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "verified",
+   "stateNote": "Ghi chú trạng thái L02"
   },
   {
    "id": "L03",
@@ -60,7 +82,18 @@
    "recommend": "bỏ giới hạn",
    "recommendedValue": "0",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Lượt & token AI",
+   "dev": "Mặc định trong mã L03: 50",
+   "prod": "Giá trị PROD L03: 500",
+   "impact": "Cao",
+   "impactNote": "Ảnh hưởng người dùng L03",
+   "risk": "Cao",
+   "riskNote": "Ghi chú rủi ro L03",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "approved",
+   "stateNote": "Ghi chú trạng thái L03"
   },
   {
    "id": "L04",
@@ -76,7 +109,17 @@
    "recommend": "giữ",
    "recommendedValue": "-",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Lượt & token AI",
+   "dev": "Mặc định trong mã L04: 50",
+   "prod": "Giá trị PROD L04: 500",
+   "impact": "Thấp",
+   "impactNote": "Ảnh hưởng người dùng L04",
+   "risk": "Trung bình",
+   "riskNote": "Ghi chú rủi ro L04",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L05",
@@ -92,7 +135,17 @@
    "recommend": "nâng",
    "recommendedValue": "1000",
    "effortHours": 2,
-   "needsRelease": true
+   "needsRelease": true,
+   "group": "Hàng đợi & build",
+   "dev": "Mặc định trong mã L05: 50",
+   "prod": "Giá trị PROD L05: 500",
+   "impact": "Trung bình",
+   "impactNote": "Ảnh hưởng người dùng L05",
+   "risk": "Trung bình",
+   "riskNote": "Ghi chú rủi ro L05",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L06",
@@ -108,7 +161,17 @@
    "recommend": "cần mã",
    "recommendedValue": "20",
    "effortHours": 3,
-   "needsRelease": true
+   "needsRelease": true,
+   "group": "File & ảnh",
+   "dev": "Mặc định trong mã L06: 50",
+   "prod": "Giá trị PROD L06: 500",
+   "impact": "Cao",
+   "impactNote": "Ảnh hưởng người dùng L06",
+   "risk": "Cao",
+   "riskNote": "Ghi chú rủi ro L06",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L07",
@@ -124,7 +187,17 @@
    "recommend": "giữ",
    "recommendedValue": "4 MiB",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "File & ảnh",
+   "dev": "Mặc định trong mã L07: 50",
+   "prod": "Giá trị PROD L07: 500",
+   "impact": "Thấp",
+   "impactNote": "Ảnh hưởng người dùng L07",
+   "risk": "Trung bình",
+   "riskNote": "Ghi chú rủi ro L07",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L08",
@@ -140,7 +213,17 @@
    "recommend": "giữ",
    "recommendedValue": "-",
    "effortHours": 0.5,
-   "needsRelease": "unknown"
+   "needsRelease": "unknown",
+   "group": "Hạ tầng & truyền tải",
+   "dev": "UNKNOWN",
+   "prod": "UNKNOWN",
+   "impact": "Trung bình",
+   "impactNote": "Ảnh hưởng người dùng L08",
+   "risk": "Cao",
+   "riskNote": "Ghi chú rủi ro L08",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L09",
@@ -156,7 +239,17 @@
    "recommend": "giữ",
    "recommendedValue": "-",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Kế hoạch chia bước & tool loop",
+   "dev": "Mặc định trong mã L09: 50",
+   "prod": "Giá trị PROD L09: 500",
+   "impact": "Trung bình",
+   "impactNote": "Ảnh hưởng người dùng L09",
+   "risk": "Cao",
+   "riskNote": "Ghi chú rủi ro L09",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L10",
@@ -172,7 +265,17 @@
    "recommend": "giữ",
    "recommendedValue": "-",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Tiền & ngân sách",
+   "dev": "Mặc định trong mã L10: 50",
+   "prod": "Giá trị PROD L10: 500",
+   "impact": "Cao",
+   "impactNote": "Ảnh hưởng người dùng L10",
+   "risk": "Cao",
+   "riskNote": "Ghi chú rủi ro L10",
+   "mandatory": true,
+   "mandatoryReason": "Trần tiền bảo vệ chi phí",
+   "state": "proposed"
   },
   {
    "id": "L11",
@@ -188,7 +291,17 @@
    "recommend": "giữ",
    "recommendedValue": "-",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Tiền & ngân sách",
+   "dev": "Mặc định trong mã L11: 50",
+   "prod": "Giá trị PROD L11: 500",
+   "impact": "Cao",
+   "impactNote": "Ảnh hưởng người dùng L11",
+   "risk": "Cao",
+   "riskNote": "Ghi chú rủi ro L11",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L12",
@@ -204,7 +317,17 @@
    "recommend": "giữ",
    "recommendedValue": "-",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Prompt & văn bản",
+   "dev": "<u>dev</u>",
+   "prod": "Giá trị PROD L12: 500",
+   "impact": "Thấp",
+   "impactNote": "<b>ảnh hưởng</b> <script>window.__xss=4</script>",
+   "risk": "Thấp",
+   "riskNote": "<i>rủi ro</i> <img src=x onerror=\"window.__xss=5\">",
+   "mandatory": false,
+   "mandatoryReason": "",
+   "state": "proposed"
   },
   {
    "id": "L13",
@@ -236,7 +359,17 @@
    "recommend": "giữ",
    "recommendedValue": "3",
    "effortHours": 0.5,
-   "needsRelease": false
+   "needsRelease": false,
+   "group": "Tham chiếu & tìm kiếm",
+   "dev": "Mặc định trong mã L14: 50",
+   "prod": "Giá trị PROD L14: 500",
+   "impact": "Thấp",
+   "impactNote": "Ảnh hưởng người dùng L14",
+   "risk": "Thấp",
+   "riskNote": "Ghi chú rủi ro L14",
+   "mandatory": true,
+   "mandatoryReason": "Giới hạn an toàn bắt buộc",
+   "state": "proposed"
   }
  ],
  "history": [

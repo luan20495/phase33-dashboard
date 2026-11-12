@@ -94,10 +94,11 @@ await T('01 tab present in the tab bar (vi), route #hourly selects it, panel is 
     tabs: [...document.querySelectorAll('#mainTabs [role=tab]')].map(t => t.querySelector('.board-tab-name').textContent),
     sel: document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab,
     panel: document.getElementById('view-hourly').getAttribute('role'), ctl: document.getElementById('tab-hourly').getAttribute('aria-controls'),
-    hidden: ['roadmap', 'process', 'prod', 'owner'].map(v => document.getElementById('view-' + v).hidden),
+    hidden: ['roadmap', 'process', 'limits', 'prod', 'owner'].map(v => document.getElementById('view-' + v).hidden),
   }));
   ok(info.tabs.includes('Việc chạy mỗi giờ'), JSON.stringify(info.tabs)); eq(info.sel, 'hourly'); eq(info.panel, 'tabpanel'); eq(info.ctl, 'view-hourly');
-  eq(info.hidden, [true, true, true, true]);
+  eq(info.hidden, [true, true, true, true, true]);
+  eq(info.tabs.indexOf('Việc chạy mỗi giờ'), info.tabs.indexOf('Giới hạn AI Studio') + 1, 'hourly follows the limits tab');
   await lm.locator('#lang').click();
   eq(await lm.locator('#tab-hourly .board-tab-name').innerText(), 'Hourly tasks');
   await lm.locator('#lang').click();
@@ -309,13 +310,15 @@ await T('25 dark theme: card/chip/notice use dark surfaces, chips still distinct
 });
 await T('26 existing tabs still switch correctly alongside the new ones (6 panels, one visible at a time, hash routing)', async () => {
   const p = await open({hash: '#roadmap/1'});
-  for (const v of ['roadmap', 'process', 'hourly', 'limits', 'prod', 'owner']) {
+  for (const v of ['roadmap', 'process', 'limits', 'hourly', 'prod', 'owner']) {
     await p.locator('#tab-' + v).click();
-    const vis = await p.evaluate(() => ['roadmap', 'process', 'hourly', 'limits', 'prod', 'owner'].filter(x => !document.getElementById('view-' + x).hidden));
+    const vis = await p.evaluate(() => ['roadmap', 'process', 'limits', 'hourly', 'prod', 'owner'].filter(x => !document.getElementById('view-' + x).hidden));
     eq(vis, [v], 'visible views after ' + v); ok((await p.evaluate(() => location.hash)).startsWith('#' + v), 'hash for ' + v);
   }
-  await p.locator('#tab-hourly').focus(); await p.keyboard.press('ArrowRight');
-  eq(await p.evaluate(() => document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab), 'limits', 'arrow keys move across the new tab');
+  await p.locator('#tab-limits').focus(); await p.keyboard.press('ArrowRight');
+  eq(await p.evaluate(() => document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab), 'hourly', 'arrow keys move across the new tab');
+  await p.keyboard.press('ArrowRight');
+  eq(await p.evaluate(() => document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab), 'prod');
   await p.keyboard.press('ArrowLeft');
   eq(await p.evaluate(() => document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab), 'hourly');
   await p._ctx.close();

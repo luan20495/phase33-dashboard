@@ -6750,7 +6750,18 @@
           "by": "C0",
           "state": "reported",
           "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
-        }
+        },
+        "group": "Lượt & token AI",
+        "dev": "50 lượt/người/ngày (mặc định code)",
+        "prod": "0 (không giới hạn), đặt theo lệnh Owner 12/11 (REPORTED, chưa kiểm chứng độc lập); trước đó 500",
+        "impact": "Cao",
+        "impactNote": "Người dùng đang xây ứng dụng bị chặn AI_DAILY_LIMIT khi hết lượt trong 24 giờ; bỏ giới hạn thì không ai bị chặn theo lượt.",
+        "risk": "Trung bình",
+        "riskNote": "Một người có thể chiếm hết cửa sổ AI dùng chung; chi phí vẫn bị trần tiền và trần lượt của cửa sổ chặn.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "applied",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
       },
       {
         "id": "L02",
@@ -6772,7 +6783,18 @@
           "by": "C0",
           "state": "reported",
           "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
-        }
+        },
+        "group": "Lượt & token AI",
+        "dev": "Không có ngoại lệ đặt sẵn trong code (chỉ có khi admin tạo)",
+        "prod": "Ngoại lệ lượt/ngày đặt về 0 theo lệnh Owner 12/11 (REPORTED, chưa kiểm chứng độc lập); trước đó có ít nhất 2 ngoại lệ (3000 và 100)",
+        "impact": "Trung bình",
+        "impactNote": "Người hoặc workspace được ngoại lệ có hạn mức riêng; xóa ngoại lệ thì quay về mặc định công ty.",
+        "risk": "Trung bình",
+        "riskNote": "Ngoại lệ lớn hơn mặc định cho phép một người chiếm nhiều cửa sổ AI dùng chung.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "applied",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
       },
       {
         "id": "L03",
@@ -6788,7 +6810,18 @@
         "recommend": "bỏ giới hạn",
         "recommendedValue": "xóa hoặc 0",
         "effortHours": 0.25,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Lượt & token AI",
+        "dev": "Không có ngoại lệ đặt sẵn trong code",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Cả workspace dùng chung một hạn mức lượt/ngày; admin workspace thấy nhóm bị chặn cùng lúc.",
+        "risk": "Trung bình",
+        "riskNote": "Bỏ giới hạn cho cả workspace cho phép một nhóm làm cạn cửa sổ AI dùng chung của hệ thống.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L04",
@@ -6804,7 +6837,18 @@
         "recommend": "bỏ giới hạn",
         "recommendedValue": "xóa hoặc 0",
         "effortHours": 0.25,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Lượt & token AI",
+        "dev": "Không đặt sẵn trong code (mặc định không giới hạn theo ứng dụng)",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Một ứng dụng (project) bị chặn khi hết lượt/ngày, ảnh hưởng mọi người cùng làm trên ứng dụng đó.",
+        "risk": "Trung bình",
+        "riskNote": "Một ứng dụng bị lặp gọi AI (vòng lặp client) có thể tiêu hết lượt chung nếu không có trần ứng dụng.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L05",
@@ -6820,7 +6864,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Lượt & token AI",
+        "dev": "Không có (code không có phạm vi tenant)",
+        "prod": "không có giới hạn đếm theo tenant",
+        "impact": "Trung bình",
+        "impactNote": "Không có trần theo công ty: một công ty đông người có thể dùng hết phần của công ty khác trong cửa sổ AI dùng chung.",
+        "risk": "Trung bình",
+        "riskNote": "Thêm giới hạn theo tenant cần sửa mã; thiếu nó thì công bằng giữa các công ty chỉ dựa vào trần chung.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L06",
@@ -6836,7 +6891,18 @@
         "recommend": "nâng",
         "recommendedValue": "100000 (hoặc theo trần tiền)",
         "effortHours": 1,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tiền & ngân sách",
+        "dev": "Mặc định code: chế độ TIMED (không ALWAYS_OPEN); trần cứng tối đa 100.000 lượt/ngày",
+        "prod": "600/ngày (đọc 12/11 07:14 ICT: mode ALWAYS_OPEN, giới hạn ngày 600, hôm đó đã gửi 0)",
+        "impact": "Cao",
+        "impactNote": "Mọi người dùng AI thật của builder dùng chung số lượt này mỗi ngày; chạm trần là cả hệ thống ngừng gọi AI trả phí tới hôm sau.",
+        "risk": "Cao",
+        "riskNote": "Nâng hoặc bỏ trần làm tăng tốc độ tiêu tiền tối đa trong một ngày; chỉ trần tiền còn lại chặn.",
+        "mandatory": true,
+        "mandatoryReason": "Trần lượt/ngày của cửa sổ AI trả phí là phanh chi phí; không có giá trị không giới hạn.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L07",
@@ -6852,7 +6918,18 @@
         "recommend": "nâng",
         "recommendedValue": "100000 (code) và env tương ứng",
         "effortHours": 3,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Tiền & ngân sách",
+        "dev": "600 lượt (hằng số MAX_REQUESTS trong PaidCodeEdit.kt)",
+        "prod": "env 600 (FROM_ENVIRONMENT, đọc 12/11); hằng số code trên dev: 600; nhánh feat/t36-ceiling-5000 (chưa vào dev) đặt 5000",
+        "impact": "Cao",
+        "impactNote": "Quyết định mức trần mà quản trị viên có thể đặt cho cửa sổ AI; đặt quá trần thì khởi động từ chối.",
+        "risk": "Cao",
+        "riskNote": "Nâng hằng số mở rộng phong bì chi tiêu; lỗi sổ cái tiền khi đặt cao có thể tiêu nhanh tới trần tiền.",
+        "mandatory": true,
+        "mandatoryReason": "Phong bì lượt của cửa sổ AI trả phí ngăn gõ nhầm mở cửa sổ không giới hạn; mỗi lượt vẫn đặt chỗ chi phí xấu nhất.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L08",
@@ -6868,7 +6945,18 @@
         "recommend": "giữ",
         "recommendedValue": "ALWAYS_OPEN",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tiền & ngân sách",
+        "dev": "Tối đa 1440 phút (hằng số MAX_TTL_MINUTES); ttl/renew không đặt trong code",
+        "prod": "1440 phút (ttl và renew, FROM_ENVIRONMENT)",
+        "impact": "Trung bình",
+        "impactNote": "Cửa sổ AI tự đóng/gia hạn theo hạn này; hết hạn thì người dùng bị từ chối AI thật tới lần gia hạn.",
+        "risk": "Cao",
+        "riskNote": "Kéo dài hạn cửa sổ làm tăng thời gian chi tiêu không giám sát; hạn là một phần phong bì tiền.",
+        "mandatory": true,
+        "mandatoryReason": "Hạn cửa sổ AI trả phí giới hạn thời gian được phép chi tiền thật.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L09",
@@ -6890,7 +6978,18 @@
           "by": "C0",
           "state": "reported",
           "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
-        }
+        },
+        "group": "Lượt & token AI",
+        "dev": "0 = tắt (mặc định code)",
+        "prod": "0 (không giới hạn), đặt theo lệnh Owner 12/11 (REPORTED, chưa kiểm chứng độc lập); trước đó 10.000.000",
+        "impact": "Trung bình",
+        "impactNote": "Người dùng bị chặn khi dùng quá số token/24 giờ; ở mặc định code không có giới hạn token theo người.",
+        "risk": "Trung bình",
+        "riskNote": "Một người có thể dùng nhiều token mà không bị chặn; tiền vẫn bị trần cửa sổ và trần tiền chặn.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "applied",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
       },
       {
         "id": "L10",
@@ -6912,7 +7011,18 @@
           "by": "C0",
           "state": "reported",
           "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
-        }
+        },
+        "group": "Lượt & token AI",
+        "dev": "0 = tắt (mặc định code)",
+        "prod": "0 (không giới hạn), đặt theo lệnh Owner 12/11 (REPORTED, chưa kiểm chứng độc lập); trước đó 10.000.000",
+        "impact": "Trung bình",
+        "impactNote": "Cả workspace bị chặn khi hết token tháng; admin workspace phải xin nâng.",
+        "risk": "Trung bình",
+        "riskNote": "Một workspace dùng không giới hạn token trong tháng; tiền vẫn bị trần tiền chặn.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "applied",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
       },
       {
         "id": "L11",
@@ -6934,7 +7044,18 @@
           "by": "C0",
           "state": "reported",
           "note": "Đặt về 0 (không giới hạn) theo lệnh Owner 12/11; agent vận hành báo đọc lại khớp (REPORTED, C0 chưa đọc lại độc lập). Hoàn tác bằng giá trị cũ; Owner yêu cầu giữ TẮT cho tới khi Owner bật lại."
-        }
+        },
+        "group": "Lượt & token AI",
+        "dev": "Không có ngoại lệ đặt sẵn trong code",
+        "prod": "Ngoại lệ token đặt về 0 theo lệnh Owner 12/11 (REPORTED, chưa kiểm chứng độc lập); trước đó có ít nhất 1 ngoại lệ 2.000.000/ngày",
+        "impact": "Trung bình",
+        "impactNote": "Người/workspace/ứng dụng có ngoại lệ token riêng; xóa thì quay về mặc định.",
+        "risk": "Trung bình",
+        "riskNote": "Ngoại lệ token lớn hơn mặc định làm một đối tượng chiếm phần lớn tài nguyên AI chung.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "applied",
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
       },
       {
         "id": "L12",
@@ -6950,7 +7071,18 @@
         "recommend": "giữ",
         "recommendedValue": "16000",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tiền & ngân sách",
+        "dev": "16.000 token (hằng số CODE_EDIT_MAX_TOKENS); nếu không đặt env, mặc định cấu hình 8.192",
+        "prod": "16.000 (env); hằng số code 16.000; web chỉ hạ được",
+        "impact": "Cao",
+        "impactNote": "Giới hạn độ dài câu trả lời của AI cho một lượt; quá thấp thì ứng dụng lớn bị cắt dở, quá cao thì tốn.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm tăng chi phí xấu nhất của mỗi lượt và phần tiền đặt chỗ; web chỉ được hạ.",
+        "mandatory": true,
+        "mandatoryReason": "Số token tối đa mỗi lượt quyết định chi phí xấu nhất được đặt chỗ vào trần tiền.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L13",
@@ -6966,7 +7098,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Kế hoạch chia bước & tool loop",
+        "dev": "Tổng 64.000 byte, mỗi file 24.000 byte, ước tính tối đa 32.000 token (cờ context.* mặc định tắt)",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Quyết định phần mã nguồn của ứng dụng được gửi cho AI; quá nhỏ thì AI thiếu ngữ cảnh khi sửa ứng dụng lớn.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng kích thước yêu cầu và chi phí mỗi lượt; hạ làm AI sửa sai vì thiếu ngữ cảnh.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L14",
@@ -6982,7 +7125,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Kế hoạch chia bước & tool loop",
+        "dev": "Tắt (cờ mặc định false); tối đa 4 vòng, 120 giây, 300.000 token, kết quả mỗi lần 40.000 byte, tổng 200.000 byte",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Khi bật, AI tự đọc thêm file của ứng dụng qua vài vòng; người dùng chờ lâu hơn nhưng kết quả tốt hơn.",
+        "risk": "Cao",
+        "riskNote": "Bỏ trần vòng/token/thời gian làm AI lặp gọi tốn tiền; trần chỉ được ràng buộc bởi trần tiền.",
+        "mandatory": true,
+        "mandatoryReason": "Các trần vòng, token và thời gian của tool loop là phong bì chi phí; chỉ cờ bật/tắt tính năng được phép tắt.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L15",
@@ -6998,7 +7152,18 @@
         "recommend": "nâng",
         "recommendedValue": "100000",
         "effortHours": 0.25,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "60 build/người/ngày (mặc định code)",
+        "prod": "200 (DB)",
+        "impact": "Trung bình",
+        "impactNote": "Người dùng bị chặn build khi hết lượt trong ngày; ảnh hưởng người xây ứng dụng thử nhiều lần.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm một người chiếm hàng đợi build chung, làm người khác chờ lâu.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L16",
@@ -7014,7 +7179,18 @@
         "recommend": "nâng",
         "recommendedValue": "100000",
         "effortHours": 0.25,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "100 build/ứng dụng/ngày (mặc định code)",
+        "prod": "300 (DB)",
+        "impact": "Trung bình",
+        "impactNote": "Một ứng dụng bị chặn build khi vượt trần trong ngày; ảnh hưởng mọi người cùng làm ứng dụng đó.",
+        "risk": "Trung bình",
+        "riskNote": "Một ứng dụng lỗi lặp có thể dùng hết công suất build chung.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L17",
@@ -7030,7 +7206,18 @@
         "recommend": "nâng",
         "recommendedValue": "100000",
         "effortHours": 0.25,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "300 build/workspace/ngày (mặc định code)",
+        "prod": "300 (env)",
+        "impact": "Trung bình",
+        "impactNote": "Cả workspace bị chặn build khi chạm trần; admin phải xin nâng.",
+        "risk": "Trung bình",
+        "riskNote": "Một workspace có thể chiếm phần lớn công suất build của máy.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L18",
@@ -7046,7 +7233,18 @@
         "recommend": "nâng",
         "recommendedValue": "toàn hệ thống 1000000",
         "effortHours": 0.25,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "Tenant 1.000.000/ngày; toàn hệ thống 1.000/ngày (mặc định code)",
+        "prod": "tenant 1.000.000; toàn hệ thống 1.000 (env)",
+        "impact": "Trung bình",
+        "impactNote": "Trần toàn hệ thống chặn build của mọi công ty khi chạm; trần tenant gần như không có tác dụng.",
+        "risk": "Trung bình",
+        "riskNote": "Bỏ trần toàn hệ thống mất lưới an toàn cuối cho công suất máy build.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L19",
@@ -7062,7 +7260,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "Người 2, workspace 4, tenant 1.000 (mặc định code)",
+        "prod": "người 3, workspace 10, tenant 1000",
+        "impact": "Trung bình",
+        "impactNote": "Người bấm build lần thứ ba trong khi hai build đang chạy sẽ bị từ chối hoặc phải xếp hàng.",
+        "risk": "Cao",
+        "riskNote": "Nâng hoặc bỏ làm máy build quá tải, mọi build của mọi công ty chậm hoặc lỗi.",
+        "mandatory": true,
+        "mandatoryReason": "Trần build đồng thời bảo vệ máy build dùng chung khỏi bị chiếm hết và từ chối dịch vụ.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L20",
@@ -7078,7 +7287,18 @@
         "recommend": "giữ",
         "recommendedValue": "slots theo số runner",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "Tắt (enabled=false); slots 1; chờ tối đa 10/slot; mỗi workspace -1 (tự động)",
+        "prod": "UNKNOWN",
+        "impact": "Cao",
+        "impactNote": "Khi tắt, người bấm build lúc máy bận bị từ chối ngay; khi bật, họ được xếp hàng và thấy thông báo chờ.",
+        "risk": "Trung bình",
+        "riskNote": "Slots khai báo sai (cao hơn công suất thật) gây quá tải máy build.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L21",
@@ -7094,7 +7314,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "600 giây; kết quả build 100 MiB; mã nguồn 50 MiB (mặc định code)",
+        "prod": "600 s; 100 MiB; 50 MiB (env)",
+        "impact": "Trung bình",
+        "impactNote": "Build quá lâu hoặc quá lớn bị dừng và báo lỗi; ảnh hưởng ứng dụng lớn.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm build chạy mã không tin cậy lâu hơn và tốn đĩa; bỏ trần cho phép chiếm máy build.",
+        "mandatory": true,
+        "mandatoryReason": "Thời gian và kích thước build giới hạn sandbox chạy mã không tin cậy của người dùng.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L22",
@@ -7110,7 +7341,18 @@
         "recommend": "nâng",
         "recommendedValue": "tùy Owner",
         "effortHours": 0.25,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "10 mục/người, 30 mục/ứng dụng, giữ 8 giờ (mặc định code)",
+        "prod": "10 / người, 30 / ứng dụng, 8 giờ (env, đã bật hàng đợi)",
+        "impact": "Trung bình",
+        "impactNote": "Người gửi nhiều lời nhắc liên tiếp bị từ chối khi hàng đợi đầy; mục quá hạn bị bỏ.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm hàng đợi phình và có thể kích hoạt nhiều lượt AI liên tiếp tốn lượt.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L23",
@@ -7126,7 +7368,18 @@
         "recommend": "cần mã",
         "recommendedValue": "-",
         "effortHours": 6,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Hàng đợi & build",
+        "dev": "120 lần ghi/phút; thân JSON 1.048.576 ký tự (hằng số code)",
+        "prod": "120/phút; 1 MiB",
+        "impact": "Trung bình",
+        "impactNote": "Gõ/ghi hàng đợi quá nhanh bị từ chối; prompt cực dài bị cắt từ chối.",
+        "risk": "Trung bình",
+        "riskNote": "Bỏ giới hạn cho phép làm ngập API và lưu thân yêu cầu rất lớn.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L24",
@@ -7142,7 +7395,18 @@
         "recommend": "giữ",
         "recommendedValue": "30",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "30 lượt/phút/người (mặc định code, khoảng 5 đến 600)",
+        "prod": "30 (env)",
+        "impact": "Trung bình",
+        "impactNote": "Người gửi quá nhanh bị chậm lại; ít ảnh hưởng người dùng bình thường.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng cho phép bắn dồn nhiều lượt AI trong một phút, tăng áp lực cửa sổ AI.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L25",
@@ -7158,7 +7422,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "Tải tệp 60/phút; xuất bản 10/phút (mặc định code)",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Người tải nhiều tệp hoặc xuất bản liên tiếp bị chậm lại.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng cho phép bắn dồn tải tệp/xuất bản, tốn lưu trữ và build.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L26",
@@ -7174,7 +7449,18 @@
         "recommend": "giữ",
         "recommendedValue": "2",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "2 luồng/người (hằng số MAX_PER_USER)",
+        "prod": "2",
+        "impact": "Trung bình",
+        "impactNote": "Người mở nhiều tab chạy AI cùng lúc: lượt thứ ba bị từ chối.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm một người chiếm nhiều luồng AI và nhiều kết nối streaming của máy chủ.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L27",
@@ -7190,7 +7476,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hàng đợi & build",
+        "dev": "Cấu trúc: 1 lượt/dự án tại một thời điểm (OlProjectLocks)",
+        "prod": "cấu trúc",
+        "impact": "Trung bình",
+        "impactNote": "Hai người cùng gửi lượt vào một ứng dụng: người sau chờ hoặc nhận TURN_IN_PROGRESS.",
+        "risk": "Cao",
+        "riskNote": "Bỏ khóa làm hai lượt rẽ nhánh từ cùng bản nháp và ghi đè lẫn nhau, mất dữ liệu ứng dụng.",
+        "mandatory": true,
+        "mandatoryReason": "Khóa một lượt/dự án giữ nguyên vẹn mã nguồn ứng dụng của người dùng.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L28",
@@ -7206,7 +7503,18 @@
         "recommend": "giữ",
         "recommendedValue": "bật",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Kế hoạch chia bước & tool loop",
+        "dev": "Tắt (mặc định code false)",
+        "prod": "bật (builder/config steps.enabled=true)",
+        "impact": "Trung bình",
+        "impactNote": "Khi bật, yêu cầu lớn được chia bước có thể tiếp tục; khi tắt, mỗi yêu cầu là một lượt như trước.",
+        "risk": "Trung bình",
+        "riskNote": "Tắt thì yêu cầu lớn dễ vượt giới hạn một lượt; bật thì tốn nhiều lượt AI hơn.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L29",
@@ -7222,7 +7530,18 @@
         "recommend": "giữ",
         "recommendedValue": "6",
         "effortHours": 1,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Kế hoạch chia bước & tool loop",
+        "dev": "6 bước (khoảng 2 đến 8)",
+        "prod": "6",
+        "impact": "Trung bình",
+        "impactNote": "Kế hoạch dài hơn số bước tối đa bị gộp hoặc từ chối; ảnh hưởng ứng dụng rất lớn.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng số lượt AI và chi phí của một yêu cầu.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L30",
@@ -7238,7 +7557,18 @@
         "recommend": "giữ",
         "recommendedValue": "12000",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Kế hoạch chia bước & tool loop",
+        "dev": "12.000 byte (khoảng 1.000 đến 300.000)",
+        "prod": "12.000 byte",
+        "impact": "Trung bình",
+        "impactNote": "Quyết định yêu cầu nào bị chia bước; ngưỡng thấp thì nhiều yêu cầu bị chia.",
+        "risk": "Trung bình",
+        "riskNote": "Hạ quá thấp khiến mọi yêu cầu bị chia, tốn thêm lượt AI.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L31",
@@ -7254,7 +7584,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tiền & ngân sách",
+        "dev": "Có trần chi phí mỗi kế hoạch (mặc định code là số dương nhỏ, không ghi số ở đây)",
+        "prod": "đặt (không ghi số)",
+        "impact": "Cao",
+        "impactNote": "Kế hoạch dừng không chạy bước tiếp theo khi chạm trần; người dùng thấy kế hoạch dở dang.",
+        "risk": "Cao",
+        "riskNote": "Nâng hoặc bỏ cho phép một yêu cầu tiêu nhiều tiền; chỉ trần tiền toàn cục còn lại.",
+        "mandatory": true,
+        "mandatoryReason": "Trần chi phí mỗi kế hoạch là phanh tiền cho nhiều bước nối tiếp.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L32",
@@ -7270,7 +7611,18 @@
         "recommend": "cần mã",
         "recommendedValue": "tuỳ cửa sổ ngữ cảnh mô hình (xem phần 3)",
         "effortHours": 16,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Prompt & văn bản",
+        "dev": "262.144 byte UTF-8 (khoảng 8.192 đến 327.680)",
+        "prod": "cài đặt 300.000; hiệu lực 300.000 (= 360.000 − 60.000)",
+        "impact": "Cao",
+        "impactNote": "Lời nhắc dài hơn bị từ chối PROMPT_TOO_LARGE; người dán tài liệu dài là nhóm bị ảnh hưởng.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng quá trần gói yêu cầu AI trả phí thì bị chặn ở trần thân yêu cầu; kéo thân JSON gần 1 MiB.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L33",
@@ -7286,7 +7638,18 @@
         "recommend": "nâng",
         "recommendedValue": "tuỳ cửa sổ ngữ cảnh",
         "effortHours": 2,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Tiền & ngân sách",
+        "dev": "150.000 byte nếu không đặt env (khoảng hợp lệ 1.000 đến 1.000.000)",
+        "prod": "360.000 (env); khoảng hợp lệ 1.000..1.000.000; web chỉ hạ",
+        "impact": "Cao",
+        "impactNote": "Gói yêu cầu lớn hơn bị từ chối khi AI trả phí bật; quyết định lời nhắc, tài liệu và mã gửi được.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm tăng chi phí xấu nhất mỗi lượt (token vào) và phần tiền đặt chỗ.",
+        "mandatory": true,
+        "mandatoryReason": "Trần thân yêu cầu gửi AI trả phí giới hạn chi phí xấu nhất mỗi lượt và kích thước dữ liệu rời khỏi hệ thống.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L34",
@@ -7302,7 +7665,18 @@
         "recommend": "giữ",
         "recommendedValue": "1 MiB",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "1 MiB (MAX_REQUEST_BYTES, mặc định)",
+        "prod": "1 MiB (env MAX_REQUEST_BYTES, mặc định)",
+        "impact": "Trung bình",
+        "impactNote": "Thân JSON thường lớn hơn 1 MiB bị từ chối 413 ở mọi API trừ các tuyến upload riêng.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm Tomcat đọc thân lớn từ người chưa đăng nhập, dễ cạn luồng và bộ nhớ.",
+        "mandatory": true,
+        "mandatoryReason": "Trần thân yêu cầu JSON bảo vệ máy chủ API (Tomcat) trước thân quá lớn.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L35",
@@ -7318,7 +7692,18 @@
         "recommend": "giữ",
         "recommendedValue": "16 MiB",
         "effortHours": 2,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "16.777.216 byte (16 MiB, khoảng 1 MiB đến 24 MiB)",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Lượt có nhiều ảnh và tài liệu vượt 16 MiB bị từ chối; ảnh hưởng người đính kèm nhiều tệp.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm cổng edge và Next.js cắt/hỏng thân; bộ nhớ API tăng.",
+        "mandatory": true,
+        "mandatoryReason": "Trần thân một lượt builder phải nhỏ hơn trần của edge/Next.js và Tomcat.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L36",
@@ -7334,7 +7719,18 @@
         "recommend": "cần mã",
         "recommendedValue": "10 tổng (ảnh + tài liệu)",
         "effortHours": 10,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File & ảnh",
+        "dev": "8 tệp/lượt (hằng số MAX_COUNT)",
+        "prod": "8 (compile-time envelope)",
+        "impact": "Trung bình",
+        "impactNote": "Người đính kèm trên 8 tệp bị từ chối; đề xuất nâng lên 10 cần sửa mã.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm thân lượt lớn hơn trần 16 MiB và tăng token vào.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L37",
@@ -7350,7 +7746,18 @@
         "recommend": "cần mã",
         "recommendedValue": "gộp vào tổng 10",
         "effortHours": 0,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File & ảnh",
+        "dev": "6 ảnh/lượt (hằng số MAX_IMAGES)",
+        "prod": "6",
+        "impact": "Trung bình",
+        "impactNote": "Người đính kèm trên 6 ảnh bị từ chối.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng bộ nhớ giải mã ảnh và token vào.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L38",
@@ -7366,7 +7773,18 @@
         "recommend": "cần mã",
         "recommendedValue": "gộp vào tổng 10",
         "effortHours": 0,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File & ảnh",
+        "dev": "3 tài liệu/lượt (hằng số MAX_DOCUMENTS)",
+        "prod": "3",
+        "impact": "Trung bình",
+        "impactNote": "Người đính kèm trên 3 tài liệu bị từ chối.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng khối lượng trích xuất tài liệu và token vào.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L39",
@@ -7382,7 +7800,18 @@
         "recommend": "giữ",
         "recommendedValue": "4 MiB",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "File & ảnh",
+        "dev": "4 MiB/ảnh (hằng số MAX_EACH_BYTES)",
+        "prod": "4 MiB",
+        "impact": "Trung bình",
+        "impactNote": "Ảnh lớn hơn 4 MiB bị từ chối; người tải ảnh chụp độ phân giải cao phải nén lại.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm thân lượt vượt trần edge và bộ nhớ giải mã tăng.",
+        "mandatory": true,
+        "mandatoryReason": "Trần dung lượng ảnh bảo vệ edge, Tomcat và bộ giải mã khỏi ảnh quá lớn.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L40",
@@ -7398,7 +7827,18 @@
         "recommend": "giữ",
         "recommendedValue": "8 MiB",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "File & ảnh",
+        "dev": "8 MiB tổng ảnh/lượt (hằng số MAX_TOTAL_BYTES)",
+        "prod": "8 MiB",
+        "impact": "Trung bình",
+        "impactNote": "Nhiều ảnh cộng lại quá 8 MiB bị từ chối.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm tổng thân lượt vượt trần 16 MiB của edge.",
+        "mandatory": true,
+        "mandatoryReason": "Trần tổng ảnh mỗi lượt giữ thân yêu cầu dưới trần của edge và Tomcat.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L41",
@@ -7414,7 +7854,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "File & ảnh",
+        "dev": "Tối đa 12.582.912 điểm ảnh, 64 lượt quét JPEG, 2 luồng giải mã, 10 giây (hằng số code)",
+        "prod": "như mô tả",
+        "impact": "Trung bình",
+        "impactNote": "Ảnh có kích thước điểm ảnh quá lớn hoặc giải mã quá lâu bị từ chối; ảnh thường không bị ảnh hưởng.",
+        "risk": "Cao",
+        "riskNote": "Bỏ làm ảnh bom giải nén (ít byte nhưng hàng tỷ điểm ảnh) làm cạn bộ nhớ máy chủ.",
+        "mandatory": true,
+        "mandatoryReason": "Giới hạn điểm ảnh và thời gian giải mã chặn tấn công ảnh bom bộ nhớ.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L42",
@@ -7430,7 +7881,18 @@
         "recommend": "cần mã",
         "recommendedValue": "tuỳ Owner (xem phần 1, 4)",
         "effortHours": 2,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File & ảnh",
+        "dev": "1,5 MiB/tài liệu; 3 MiB tổng (hằng số code)",
+        "prod": "1,5 MiB / 3 MiB",
+        "impact": "Trung bình",
+        "impactNote": "Tài liệu lớn hơn 1,5 MiB bị từ chối; ảnh hưởng người đính kèm báo cáo dài.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng thời gian trích xuất và bộ nhớ.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L43",
@@ -7446,7 +7908,18 @@
         "recommend": "cần mã",
         "recommendedValue": "tuỳ cửa sổ ngữ cảnh",
         "effortHours": 6,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Prompt & văn bản",
+        "dev": "120.000 ký tự/tài liệu (khoảng 4.000 đến 240.000)",
+        "prod": "240.000 (DB); khoảng 4.000..240.000",
+        "impact": "Trung bình",
+        "impactNote": "Tài liệu dài hơn bị cắt và có báo rõ; ảnh hưởng người đính kèm văn bản dài.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng token vào và chi phí mỗi lượt, bị giới hạn thêm bởi trần gói yêu cầu.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L44",
@@ -7462,7 +7935,18 @@
         "recommend": "cần mã",
         "recommendedValue": "tuỳ cửa sổ ngữ cảnh",
         "effortHours": 0,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Prompt & văn bản",
+        "dev": "240.000 ký tự tổng (khoảng 8.000 đến 480.000)",
+        "prod": "318.000 (hiệu lực = trần 360.000 − 40.000 sàn − 2.000 khung); cài đặt 8.000..480.000",
+        "impact": "Trung bình",
+        "impactNote": "Nhiều tài liệu cộng lại vượt trần bị cắt bớt phần cuối.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng token vào và chi phí mỗi lượt, bị giới hạn bởi trần gói yêu cầu.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L45",
@@ -7478,7 +7962,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Prompt & văn bản",
+        "dev": "1.000.000 ký tự (hằng số TEXT_READ_CAP)",
+        "prod": "1.000.000",
+        "impact": "Thấp",
+        "impactNote": "Chỉ ảnh hưởng tài liệu cực dài: phần sau mốc đọc bị bỏ và báo rõ.",
+        "risk": "Cao",
+        "riskNote": "Bỏ làm trích xuất đọc toàn bộ tệp lớn vào bộ nhớ, dễ cạn heap.",
+        "mandatory": true,
+        "mandatoryReason": "Trần ký tự đọc bảo vệ bộ nhớ khi trích xuất văn bản từ tệp do người dùng gửi.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L46",
@@ -7494,7 +7989,18 @@
         "recommend": "cần mã",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File & ảnh",
+        "dev": "PNG, JPEG, WebP (hằng số MIMES)",
+        "prod": "như mô tả",
+        "impact": "Trung bình",
+        "impactNote": "Ảnh định dạng khác (GIF, BMP, HEIC, SVG) bị từ chối.",
+        "risk": "Cao",
+        "riskNote": "Mở thêm loại (SVG, định dạng động) có thể đưa nội dung chủ động hoặc bộ giải mã chưa được kiểm tra.",
+        "mandatory": true,
+        "mandatoryReason": "Danh sách loại ảnh cho phép là kiểm soát an toàn: nhận dạng theo byte, không nhận SVG hay tệp thực thi.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L47",
@@ -7510,7 +8016,18 @@
         "recommend": "cần mã",
         "recommendedValue": "-",
         "effortHours": 16,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File & ảnh",
+        "dev": "PDF bật (code mặc định true; PROD ghi đè tắt); DOCX, XLSX, văn bản như mô tả",
+        "prod": "PDF: UNKNOWN (compose PROD ghi đè tắt, FE nói chưa bật); DOCX, XLSX, văn bản như mô tả",
+        "impact": "Trung bình",
+        "impactNote": "Người có tài liệu PDF không đính kèm được khi cờ PDF tắt; DOCX, XLSX, văn bản vẫn dùng được.",
+        "risk": "Cao",
+        "riskNote": "Bật PDF mở thêm bộ phân tích tệp phức tạp (bom toán tử, glyph); mở loại khác tăng bề mặt tấn công.",
+        "mandatory": true,
+        "mandatoryReason": "Danh sách loại tài liệu và công tắc PDF an toàn: chỉ cờ PDF được tắt, không được nới danh sách.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L48",
@@ -7526,7 +8043,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "An toàn & cách ly",
+        "dev": "ZIP: 1.000 mục, 24 MiB giải nén, 8 MiB/phần, tỉ lệ 100; XML sâu 100; XLSX 10 trang tính, 1.000 hàng; PDF 30 trang, 2.000.000 toán tử, 500.000 glyph",
+        "prod": "như mô tả",
+        "impact": "Trung bình",
+        "impactNote": "Tài liệu vượt giới hạn trích xuất bị từ chối với mã rõ ràng; tài liệu thường không bị ảnh hưởng.",
+        "risk": "Cao",
+        "riskNote": "Bỏ làm ZIP/XML/PDF bom làm cạn CPU, bộ nhớ hoặc đĩa của máy chủ API.",
+        "mandatory": true,
+        "mandatoryReason": "Các giới hạn giải nén DOCX/XLSX/PDF chặn tấn công zip bomb, XML bomb và PDF bomb.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L49",
@@ -7542,7 +8070,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "An toàn & cách ly",
+        "dev": "Bật (từ chối tên và nội dung giống bí mật)",
+        "prod": "bật",
+        "impact": "Trung bình",
+        "impactNote": "Tệp có tên hoặc nội dung giống mật khẩu, khóa bị từ chối; người đính kèm file cấu hình có khóa phải xóa khóa.",
+        "risk": "Cao",
+        "riskNote": "Tắt làm khóa, mật khẩu của người dùng đi vào lời nhắc, nhà cung cấp AI và bản ghi lượt.",
+        "mandatory": true,
+        "mandatoryReason": "Từ chối tệp nhạy cảm là kiểm soát bí mật/redaction; không được tắt.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L50",
@@ -7558,7 +8097,18 @@
         "recommend": "cần mã",
         "recommendedValue": "tối đa 1 GB",
         "effortHours": 80,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File nén",
+        "dev": "Chưa hỗ trợ đính kèm; nhập dự án ZIP tối đa 10 MiB, 1.000 mục, 300 tệp, tỉ lệ 20",
+        "prod": "chưa hỗ trợ",
+        "impact": "Trung bình",
+        "impactNote": "Người dán tệp nén vào lời nhắc bị từ chối; muốn nhận tệp nén tới 1 GB cần tính năng mới.",
+        "risk": "Cao",
+        "riskNote": "Tệp nén lớn mở rủi ro zip bomb, path traversal, đầy đĩa và quét mã độc.",
+        "mandatory": true,
+        "mandatoryReason": "Mọi nhận tệp nén phải đi qua giới hạn giải nén, kiểm tra đường dẫn và quét; không được bỏ.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L51",
@@ -7574,7 +8124,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "File & ảnh",
+        "dev": "Không nhận video (FE)",
+        "prod": "không nhận",
+        "impact": "Thấp",
+        "impactNote": "Người dán video bị từ chối; chỉ ảnh khung hình được hỗ trợ.",
+        "risk": "Trung bình",
+        "riskNote": "Mở nhận video thêm bề mặt giải mã và dung lượng rất lớn.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L52",
@@ -7590,7 +8151,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "File & ảnh",
+        "dev": "Tắt (assets.enabled=false mặc định); tối đa 20 MiB tài nguyên/dự án, PNG và JPEG, 6 ảnh",
+        "prod": "tắt (assetsEnabled=false)",
+        "impact": "Trung bình",
+        "impactNote": "Khi tắt, ảnh đính kèm chỉ làm tham chiếu, không được lưu vào ứng dụng.",
+        "risk": "Cao",
+        "riskNote": "Bỏ quy tắc namespace và mã hóa lại ảnh cho phép model ghi đè tài nguyên hoặc lưu ảnh chứa metadata độc.",
+        "mandatory": true,
+        "mandatoryReason": "Quy tắc lưu tài nguyên (mã hóa lại ảnh, namespace dành riêng, hạn mức dự án) là kiểm soát an toàn; chỉ cờ bật tính năng được tắt.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L53",
@@ -7606,7 +8178,18 @@
         "recommend": "cần mã",
         "recommendedValue": "-",
         "effortHours": 4,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "File & ảnh",
+        "dev": "Phản chiếu số của backend: 8 tệp, 6 ảnh, 3 tài liệu, 4 MiB, 8 MiB (FE attachments.ts)",
+        "prod": "như mô tả",
+        "impact": "Thấp",
+        "impactNote": "Chỉ báo lỗi sớm trên giao diện; backend vẫn là chốt chặn thật.",
+        "risk": "Thấp",
+        "riskNote": "Lệch số giữa FE và BE làm báo lỗi sai, nhưng không mở lỗ hổng.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L54",
@@ -7622,7 +8205,18 @@
         "recommend": "giữ",
         "recommendedValue": "3",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tham chiếu & tìm kiếm",
+        "dev": "3 URL/lượt; tối đa 2.000 ký tự/URL (hằng số code)",
+        "prod": "3; tính năng tham chiếu TẮT",
+        "impact": "Trung bình",
+        "impactNote": "Người dán nhiều hơn 3 liên kết tham chiếu bị từ chối; tính năng tham chiếu đang tắt trên PROD.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng số lần tải trang ngoài và token vào mỗi lượt.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L55",
@@ -7638,7 +8232,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "An toàn & cách ly",
+        "dev": "Tối đa 512 KiB, 8 giây tổng, 3 chuyển hướng, 25 giây mỗi lượt; chỉ https, chặn địa chỉ riêng",
+        "prod": "tính năng TẮT",
+        "impact": "Trung bình",
+        "impactNote": "Trang quá lớn, quá chậm hoặc chuyển hướng quá nhiều bị bỏ qua; mô tả lỗi rõ ràng.",
+        "risk": "Cao",
+        "riskNote": "Bỏ chặn địa chỉ riêng/https hoặc trần tải cho phép SSRF vào mạng nội bộ và tải trang khổng lồ.",
+        "mandatory": true,
+        "mandatoryReason": "Chặn SSRF (https, địa chỉ riêng, chuyển hướng) và trần tải trang là bảo vệ bắt buộc.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L56",
@@ -7654,7 +8259,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tham chiếu & tìm kiếm",
+        "dev": "50 lượt đọc trang kết xuất/công ty/ngày (mặc định env trong application.yml)",
+        "prod": "mặc định 50 (env); tính năng TẮT",
+        "impact": "Trung bình",
+        "impactNote": "Hết trần thì dùng bản tóm tắt thường, nói rõ READER_DAILY_CAP; tính năng đang tắt.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng hoặc bỏ làm tăng gọi dịch vụ đọc trang ngoài, tốn phí và băng thông.",
+        "mandatory": true,
+        "mandatoryReason": "Trần lượt gọi dịch vụ ngoài có tính phí là hạn mức chi phí.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L57",
@@ -7670,7 +8286,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tham chiếu & tìm kiếm",
+        "dev": "100 tìm kiếm/công ty/ngày (mặc định env); 5/người/phút (hằng số code)",
+        "prod": "mặc định 100/ngày (env); 5/phút (code); tính năng TẮT",
+        "impact": "Trung bình",
+        "impactNote": "Hết trần thì bước tìm kiếm web bị bỏ qua; tính năng đang tắt.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng hoặc bỏ làm tăng gọi dịch vụ tìm kiếm ngoài, tốn phí và lộ nội dung lời nhắc.",
+        "mandatory": true,
+        "mandatoryReason": "Trần lượt gọi dịch vụ tìm kiếm ngoài có tính phí là hạn mức chi phí.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L58",
@@ -7686,7 +8313,18 @@
         "recommend": "nâng",
         "recommendedValue": "tuỳ kết quả thử",
         "effortHours": 0.5,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "Nhà cung cấp AI 45 giây; luồng AI 120 giây (mặc định code)",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Gọi AI quá lâu thì bị cắt; ảnh hưởng ứng dụng lớn cần nhiều thời gian sinh.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm giữ kết nối và luồng lâu hơn; hạ làm nhiều lượt bị cắt oan và tốn tiền vô ích.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L59",
@@ -7702,7 +8340,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Prompt & văn bản",
+        "dev": "50 tệp, 200.000 byte/tệp, 1.000.000 byte tổng cho một thay đổi do AI",
+        "prod": "như mô tả",
+        "impact": "Trung bình",
+        "impactNote": "Thay đổi AI vượt giới hạn bị từ chối; ảnh hưởng ứng dụng sinh hàng loạt tệp.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng kích thước commit và tải build, quy tắc đường dẫn/bí mật vẫn áp dụng.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L60",
@@ -7718,7 +8367,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "1.000 dự án/workspace; 200 tài nguyên/dự án (env mặc định); 200 MiB tài nguyên/dự án",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Workspace chạm trần không tạo thêm được dự án.",
+        "risk": "Trung bình",
+        "riskNote": "Nâng làm tăng dung lượng lưu trữ và chi phí hạ tầng.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L61",
@@ -7734,7 +8394,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "Xem trước 7 ngày; build lỗi 14 ngày (mặc định code)",
+        "prod": "mặc định",
+        "impact": "Thấp",
+        "impactNote": "Bản xem trước/build lỗi cũ hơn hạn bị dọn; người dùng mất bản xem trước cũ.",
+        "risk": "Trung bình",
+        "riskNote": "Tăng hạn làm đầy đĩa và MinIO; giảm hạn làm mất dữ liệu cần gỡ lỗi.",
+        "mandatory": false,
+        "mandatoryReason": "",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L62",
@@ -7750,7 +8421,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "An toàn & cách ly",
+        "dev": "ZDR bắt buộc (require-zdr mặc định true; false làm khởi động từ chối); suy luận: compose PROD mặc định tắt (code mặc định không); danh sách mô hình do cấu hình",
+        "prod": "ZDR bắt buộc; 4 mô hình hiển thị trong ai/status; ngữ cảnh 200.000 / ~1.048.576 / ~1.024.000 token",
+        "impact": "Cao",
+        "impactNote": "Người dùng chỉ thấy các mô hình được duyệt; mô hình ngoài danh sách bị từ chối.",
+        "risk": "Cao",
+        "riskNote": "Bỏ ZDR gửi mã nguồn và dữ liệu khách hàng tới nhà cung cấp có thể lưu lại; mô hình lạ làm sai giá và ngân sách.",
+        "mandatory": true,
+        "mandatoryReason": "ZDR và danh sách mô hình là ràng buộc nhà cung cấp về bảo mật dữ liệu và tiền; không được nới.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L63",
@@ -7766,7 +8448,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Tiền & ngân sách",
+        "dev": "Có trần tiền cứng và biên an toàn (mặc định code; trần tối đa do Owner đặt, không ghi số ở đây)",
+        "prod": "đã đặt (không ghi số trong tài liệu này)",
+        "impact": "Cao",
+        "impactNote": "Khi chạm trần tiền, mọi AI trả phí dừng cho tới khi Owner duyệt tăng; ảnh hưởng toàn bộ người dùng AI thật.",
+        "risk": "Cao",
+        "riskNote": "Bỏ hoặc nâng vượt phê duyệt Owner làm chi tiêu AI không còn giới hạn.",
+        "mandatory": true,
+        "mandatoryReason": "Trần tiền là phanh chi phí cuối cùng và không bao giờ được tắt.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L64",
@@ -7782,7 +8475,18 @@
         "recommend": "cần mã",
         "recommendedValue": "tải lên thẳng MinIO",
         "effortHours": 2,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "120 giây đọc thân cho POST, PUT, PATCH (Caddy)",
+        "prod": "120 s",
+        "impact": "Trung bình",
+        "impactNote": "Người tải chậm hơn mốc này bị ngắt kết nối; hiếm với người dùng thường.",
+        "risk": "Cao",
+        "riskNote": "Bỏ cho phép tấn công đọc chậm (slowloris) giữ hết 64 luồng của API.",
+        "mandatory": true,
+        "mandatoryReason": "Hạn đọc thân ở edge chặn kết nối chậm làm cạn luồng Tomcat.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L65",
@@ -7798,7 +8502,18 @@
         "recommend": "giữ",
         "recommendedValue": "20m",
         "effortHours": 1,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "20m (nginx cổng portal)",
+        "prod": "20m",
+        "impact": "Trung bình",
+        "impactNote": "Tải lên lớn hơn 20 MB bị cổng chặn 413.",
+        "risk": "Cao",
+        "riskNote": "Nâng vượt trần thân lượt builder làm lệch các tầng; bỏ cho phép đẩy thân khổng lồ vào cổng.",
+        "mandatory": true,
+        "mandatoryReason": "Trần thân ở cổng nginx là giới hạn cứng của edge.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L66",
@@ -7814,7 +8529,18 @@
         "recommend": "giữ",
         "recommendedValue": "18mb",
         "effortHours": 1,
-        "needsRelease": true
+        "needsRelease": true,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "18mb (proxyClientMaxBodySize của Next.js)",
+        "prod": "18 MiB",
+        "impact": "Trung bình",
+        "impactNote": "Lượt có ảnh và tài liệu nặng hơn 18 MB bị Next.js cắt, backend thấy JSON hỏng.",
+        "risk": "Cao",
+        "riskNote": "Hạ dưới 16 MiB làm lượt hợp lệ hỏng; nâng không kèm trần backend làm lệch tầng.",
+        "mandatory": true,
+        "mandatoryReason": "Trần proxy Next.js phải đi cùng trần backend; nới riêng một tầng gây lỗi và mở rộng thân.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L67",
@@ -7830,7 +8556,18 @@
         "recommend": "giữ",
         "recommendedValue": "UNKNOWN",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "12m (mẫu nginx studio.conf; chưa rõ PROD có dùng)",
+        "prod": "12m (mẫu; chưa rõ PROD có dùng không)",
+        "impact": "Thấp",
+        "impactNote": "Là mẫu cấu hình; chỉ ảnh hưởng nếu triển khai dùng nó, khi đó thân trên 12 MB bị chặn.",
+        "risk": "Trung bình",
+        "riskNote": "Mẫu thấp hơn trần 16 MiB của backend có thể chặn lượt hợp lệ nếu dùng nhầm.",
+        "mandatory": true,
+        "mandatoryReason": "Trần thân ở nginx là giới hạn cứng của edge, nếu được dùng.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L68",
@@ -7846,7 +8583,18 @@
         "recommend": "giữ",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "64 luồng, hàng chờ 100, tối đa 2.048 kết nối, kết nối 10 giây, giữ sống 120 giây, swallow 0B",
+        "prod": "UNKNOWN",
+        "impact": "Trung bình",
+        "impactNote": "Quá tải thì thêm yêu cầu xếp hàng hoặc bị từ chối; ảnh hưởng mọi người dùng cùng lúc.",
+        "risk": "Cao",
+        "riskNote": "Nâng luồng/hàng chờ vượt công suất VM làm sập API; swallow lớn mở lại lỗi giữ luồng.",
+        "mandatory": true,
+        "mandatoryReason": "Giới hạn Tomcat (luồng, kết nối, thời gian, swallow) bảo vệ khả dụng của API.",
+        "state": "proposed",
+        "stateNote": ""
       },
       {
         "id": "L69",
@@ -7862,7 +8610,18 @@
         "recommend": "cần mã",
         "recommendedValue": "-",
         "effortHours": 0,
-        "needsRelease": false
+        "needsRelease": false,
+        "group": "Hạ tầng & truyền tải",
+        "dev": "Ảnh 10.485.760 byte; tài liệu 20.971.520 byte (application.yml)",
+        "prod": "xem L50",
+        "impact": "Trung bình",
+        "impactNote": "Tệp tải thẳng lên MinIO lớn hơn mức này bị từ chối.",
+        "risk": "Cao",
+        "riskNote": "Nâng làm đầy lưu trữ đối tượng; bỏ cho phép tải lên không giới hạn vào MinIO.",
+        "mandatory": true,
+        "mandatoryReason": "Trần dung lượng upload vào MinIO bảo vệ lưu trữ đối tượng.",
+        "state": "proposed",
+        "stateNote": ""
       }
     ],
     "history": [
