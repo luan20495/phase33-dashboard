@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T13:25:00+07:00",
+  "asOf": "2026-11-12T13:26:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T13:25:00+07:00",
+  "detailUpdatedAt": "2026-11-12T13:26:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4021,6 +4021,35 @@
         "decided": "A",
         "decidedAt": "2026-11-12T13:24:00+07:00",
         "decision": "Owner 13:24 chọn A: theo mặc định cả 6 câu. (1) Super Admin ghi quyền AI ở đợt 1, Admin công ty ở đợt 2; (2) bỏ cột 'calls' khỏi yêu cầu/cấp phát B3 bằng migration chỉ-mở-rộng; (3) trần chi phí kế hoạch thành điểm DỪNG-XÁC-NHẬN, tối đa 16 bước, giữ chốt chống lặp; (4) trình duyệt không đầu trong runner cô lập chỉ chạy kịch bản JSON khai báo, sau SEC và sau cờ; (5) quy tắc đổi nóng: chỉ sau thẻ của Owner, từng khóa một, đọc lại độc lập, có comment #88 (C0 áp dụng mặc định; đường API cấu hình AI vẫn là kênh đổi nóng nhưng chỉ sau thẻ); (6) nghiệm thu: 'workflow' = máy trạng thái mức ứng dụng; Haiku chứng minh cơ chế; một lượt chất lượng bằng mô hình mạnh hơn CẦN Owner duyệt mô hình và ngân sách riêng khi đến lúc. Chuỗi: H0 → QA plan_missing → T23 chạy thật → T24-3 + FILES-b → T25-3 → T22-C → tạm dừng/tiếp tục ngân sách → vai trò T30-lite → công cụ kiểm thử trình duyệt → E2E nghiệm thu."
+      },
+      {
+        "id": "NO-33",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-12T13:26:00+07:00",
+        "title": "Mục tiêu 'không giới hạn token vào/ra, tệp, văn bản, thời gian chờ AI Agent': cái gì làm ngay được, cái gì cần mã, cái gì không thể 'vô hạn'",
+        "detail": "Đối chiếu 69 hàng (REPORTED). LÀM NGAY BẰNG CẤU HÌNH (cần thẻ của Owner theo quy tắc đổi nóng): thời gian build L21 600 giây → mức tối đa của danh mục 3.600 giây (1 giờ); thời gian chờ nhà cung cấp 120 giây và luồng AI 900 giây (L58) ĐÃ ở mức tối đa của danh mục. CẦN MÃ (đã có PR hoặc đã nằm trong kế hoạch được duyệt): TOKEN RA: PAY-b nâng trần 16.000 theo từng mô hình (PR đang viết); TOKEN VÀO và VĂN BẢN: trần prompt 300.000 byte (L32) và ký tự tài liệu (L43–L45) chuyển sang theo cửa sổ ngữ cảnh của mô hình, không cắt âm thầm; TỆP: tổng 10 tệp (L36–L38) và tải thẳng cho tài liệu lớn/file nén (L42, L50, L64–L69); THỜI GIAN DÀI: một lượt dài hàng giờ không thể là MỘT kết nối: dùng công việc bền J1 + tự tiếp tục T22-C + checkpoint từng bước, mỗi thao tác có thời gian chờ riêng (để không treo), tổng thời gian không giới hạn, dừng khi hết tiền/bị hủy/cần duyệt. KHÔNG THỂ 'VÔ HẠN' THEO NGHĨA ĐEN: (1) cửa sổ ngữ cảnh của mô hình (khoảng 200 nghìn đến hơn 1 triệu token): vượt thì phải từ chối rõ hoặc đọc tiếp qua tool loop/tìm kiếm, không gửi nguyên văn; (2) một tệp 1 GB không đưa nguyên vào mô hình: chỉ danh sách + phần chọn lọc; (3) thời gian: hạ tầng có các thời hạn khác (proxy/Caddy 120 giây cho thân yêu cầu, nginx, Next, Tomcat) nên lượt dài chạy bằng công việc nền, không bằng một yêu cầu HTTP kéo dài; (4) giữ nguyên các chốt chặn an toàn: thời gian chờ từng thao tác (chống treo), khóa dự án, concurrency, storage guard, SSRF/DoS, giới hạn tiền.",
+        "solution": "Khuyến nghị A = (1) duyệt đặt build 3.600 giây ngay (một khóa, đọc lại độc lập, comment #88; build lâu giữ ô runner lâu nên giữ hàng đợi build); (2) 'không giới hạn thời gian' nghĩa là TỔNG thời gian công việc không giới hạn (nhiều giờ đến một ngày), còn thời gian chờ MỖI thao tác vẫn tồn tại ở mức cực rộng (cực đại danh mục) để không treo; (3) token vào/ra và văn bản: theo mô hình, từ chối rõ khi vượt cửa sổ, không cắt âm thầm; (4) tệp: tổng 10 tệp, tài liệu lớn/file nén qua đường tải thẳng. Kế hoạch mã đã nằm trong NO-30/NO-32 nên không mở việc mới.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo khuyến nghị (đặt build 3.600 giây ngay; còn lại theo kế hoạch mã đã duyệt)",
+            "desc": "Một khóa cấu hình hôm nay; token/tệp/thời gian dài đi qua PAY-b, ATT, J1+T22-C.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Chưa đặt build 3.600 giây, chờ T22-C",
+            "desc": "Giữ 600 giây cho tới khi có công việc nền + checkpoint."
+          },
+          {
+            "key": "C",
+            "label": "Anh đổi một số mục",
+            "desc": "Ghi vào ô ghi chú."
+          }
+        ]
       }
     ]
   },
@@ -4258,7 +4287,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T13:25:00+07:00",
+    "updatedAt": "2026-11-12T13:26:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -6953,7 +6982,8 @@
       "Text không giới hạn",
       "File nén (zip, rar...) hỗ trợ tới 1 GB",
       "CHỈ giới hạn tiền",
-      "11:34 12/11 (Owner): áp dụng cho TẤT CẢ người dùng; chỉ còn hai cổng: Admin duyệt ai được dùng AI (quyền AI/entitlement) và duyệt bao nhiêu tiền (cấp phát ngân sách); không còn giới hạn nào khác để AI Studio build ứng dụng mạnh nhất."
+      "11:34 12/11 (Owner): áp dụng cho TẤT CẢ người dùng; chỉ còn hai cổng: Admin duyệt ai được dùng AI (quyền AI/entitlement) và duyệt bao nhiêu tiền (cấp phát ngân sách); không còn giới hạn nào khác để AI Studio build ứng dụng mạnh nhất.",
+      "13:26 12/11 (Owner): mục tiêu KHÔNG còn giới hạn token vào/ra, KHÔNG giới hạn tệp và văn bản, KHÔNG giới hạn thời gian chờ của AI Agent khi trả build (hoặc nới cực rộng: 1 giờ đến 1 ngày cũng được)."
     ],
     "risks": [
       "Trần chung của cửa sổ AI trả tiền (600 lượt/ngày toàn hệ thống) không tắt được bằng cài đặt; cần PR và bản phát hành (nhánh nâng lên 5000 chưa merge)",
