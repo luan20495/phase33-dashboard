@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T16:42:23+07:00",
+  "asOf": "2026-11-12T17:05:08+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T16:42:23+07:00",
+  "detailUpdatedAt": "2026-11-12T17:05:08+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -11676,5 +11676,180 @@
         "BYOK và đường cũ/miễn phí"
       ]
     }
+  },
+  "aiAgent12": {
+    "updatedAt": "2026-11-12T17:05:08+07:00",
+    "overallEta": "~28/11/2026 (± 4 ngày) — ước tính CHƯA XÁC MINH, tin cậy thấp–trung bình",
+    "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
+    "items": [
+      {
+        "id": "01",
+        "name": "Quota/giới hạn L01–L69",
+        "pr": "audit 69 hàng; PR trần lượt và PR runner đang viết",
+        "done": "Audit 69/69; 37 hàng Owner duyệt bỏ; chia bước bật lại 15:19; build 3.600 s, hàng đợi 100/500/72 h (REPORTED)",
+        "todo": "Trần lượt trong mã (1..100000) cần PR nâng; chưa xác minh giá trị hiệu lực xuyên FE→API→BE→Agent→Model→Runner→Proxy; 100 triệu không phải bỏ quota",
+        "code": "~",
+        "qa": "✗",
+        "deploy": "✗",
+        "on": "~",
+        "verified": "✗",
+        "agent": "agent PR trần lượt RUNNING",
+        "eta": "PR ~13/11, bản gộp ~15/11 (trung bình)"
+      },
+      {
+        "id": "02",
+        "name": "Model/token (#254)",
+        "pr": "BE #254 3d8e6d81 (dev)",
+        "done": "Trần mỗi lượt theo model đến 128.000 trong mã; giữ chỗ = trần gửi; QA GO / SEC GO có điều kiện (VERIFIED)",
+        "todo": "PROD vẫn 16.000 đến khi deploy + env 32.768 → 64.000 → 128.000 từng bước riêng; FE phản chiếu chưa kiểm",
+        "code": "✓",
+        "qa": "✓",
+        "deploy": "✗",
+        "on": "✗",
+        "verified": "✗",
+        "agent": "–",
+        "eta": "Sau deploy ~15/11; 128.000 sau #252 bật (trung bình)"
+      },
+      {
+        "id": "03",
+        "name": "T23 Tool Loop",
+        "pr": "BE #165 (c43ff0cc), FE #114, #239, #248, docs #242",
+        "done": "Vòng đọc có giới hạn đã merge, cờ TẮT; QA-ON trên DEV có báo cáo",
+        "todo": "12 lượt Haiku thật chưa chạy (Owner GO); dự án nhiều nghìn file cần đo; bật theo allow-list QA",
+        "code": "✓",
+        "qa": "~",
+        "deploy": "✗",
+        "on": "✗",
+        "verified": "✗",
+        "agent": "chưa giao",
+        "eta": "~18–19/11 (thấp–trung bình)"
+      },
+      {
+        "id": "04",
+        "name": "T24 Structured Patch",
+        "pr": "BE #231 (thư viện, chưa nối)",
+        "done": "Bộ phân tích/áp dụng vá thuần đã merge",
+        "todo": "Nối vào Agent (T24-3), diff, rollback, xung đột nhiều file",
+        "code": "~",
+        "qa": "~",
+        "deploy": "✗",
+        "on": "✗",
+        "verified": "✗",
+        "agent": "agent T24-3 RUNNING",
+        "eta": "PR ~14/11, merge ~16/11 (trung bình)"
+      },
+      {
+        "id": "05",
+        "name": "T25 Skill Library",
+        "pr": "BE #237, #240 (chưa nối)",
+        "done": "Bộ nạp, lint, chọn tất định, 3 gói công thức",
+        "todo": "Nối vào luồng AI, đủ skill BA/UI/FE/BE/DB/API/QA/DevOps, kiểm bằng nhiệm vụ thật",
+        "code": "~",
+        "qa": "~",
+        "deploy": "✗",
+        "on": "✗",
+        "verified": "✗",
+        "agent": "agent T25-3 RUNNING",
+        "eta": "PR ~14/11, đo thật ~20/11 (thấp–trung bình)"
+      },
+      {
+        "id": "06",
+        "name": "T22-C / J1 tự tiếp tục",
+        "pr": "T22-B BE #203 (PROD); #252 360dd9b5",
+        "done": "T22-B ON; thiết kế PAYC/T22-C xong (REPORTED)",
+        "todo": "Checkpoint + tiếp tục, tạm dừng khi hết USD, TTL hàng đợi không mất việc, không DONE khi chưa đủ",
+        "code": "✗",
+        "qa": "✗",
+        "deploy": "~",
+        "on": "~",
+        "verified": "✗",
+        "agent": "chưa giao",
+        "eta": "~20–26/11 (thấp)"
+      },
+      {
+        "id": "07",
+        "name": "File/context/attachment",
+        "pr": "chưa có PR",
+        "done": "Prompt 300.000 byte, tệp 120.000/240.000 ký tự, câu trả lời 48.000 ký tự đã trên PROD (VERIFIED)",
+        "todo": "CTX-b, FILES-b, ATT-b/e, ZIP/Excel/PDF, upload trực tiếp storage, giải nén cô lập, đọc theo phần, kiểm xuyên proxy",
+        "code": "✗",
+        "qa": "✗",
+        "deploy": "✗",
+        "on": "✗",
+        "verified": "✗",
+        "agent": "chưa giao",
+        "eta": "~22–27/11 (rất thấp)"
+      },
+      {
+        "id": "08",
+        "name": "Runner/build",
+        "pr": "PR runner đang viết; runner 2 chỉ có kế hoạch",
+        "done": "Build 3.600 s; hàng đợi 1 chỗ + 10 chờ, T10 PASS (VERIFIED)",
+        "todo": "Trần 900 s + lease, chống giao trùng/RUNNER_LOST sai, runner 2 (xác minh tài nguyên + chi phí trước), tự build-đọc lỗi",
+        "code": "~",
+        "qa": "✗",
+        "deploy": "✗",
+        "on": "~",
+        "verified": "~",
+        "agent": "agent runner RUNNING",
+        "eta": "PR ~14/11; runner 2 ~20–24/11 (thấp)"
+      },
+      {
+        "id": "09",
+        "name": "Database / Data Sources",
+        "pr": "X2 (ON), X3, X4 (OFF), X5",
+        "done": "Catalog hệ thống đọc-chỉ qua gateway/IAM; DB riêng mỗi app; AI builder không nhận dòng dữ liệu",
+        "todo": "AI tự thiết kế schema/migration/API/CRUD; dùng lại dữ liệu chung; test cách ly thực chưa chạy",
+        "code": "~",
+        "qa": "~",
+        "deploy": "~",
+        "on": "~",
+        "verified": "✗",
+        "agent": "agent kiểm cách ly (DEV) RUNNING",
+        "eta": "~20/11 (thấp–trung bình)"
+      },
+      {
+        "id": "10",
+        "name": "IAM/Security",
+        "pr": "agent test 2 tenant × 2 app (DEV) RUNNING",
+        "done": "SYSTEM_ADMIN không đọc dữ liệu nghiệp vụ theo thiết kế; 16/16 vai thử bị 404 ở X4",
+        "todo": "RealAiMode/BYOK/operator/free-legacy trên PROD chưa kiểm (đọc PROD bị chặn, cần Owner xác nhận trực tiếp); cross-app/cross-company chưa chạy",
+        "code": "~",
+        "qa": "✗",
+        "deploy": "–",
+        "on": "–",
+        "verified": "✗",
+        "agent": "agent SEC RUNNING; agent đọc PROD bị chặn",
+        "eta": "~16/11 (trung bình), cần xác nhận Owner"
+      },
+      {
+        "id": "11",
+        "name": "USD Budget/Ledger",
+        "pr": "B1 #148 (PROD), #252 360dd9b5, #253 58ec0fc5, #251 6999f0d9",
+        "done": "Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS",
+        "todo": "NO-28: 8 khoản giữ chỗ chưa giải thích; #252 QA delta; cancel/retry/timeout/đồng thời",
+        "code": "~",
+        "qa": "~",
+        "deploy": "~",
+        "on": "~",
+        "verified": "✗",
+        "agent": "QA #252 RUNNING",
+        "eta": "QA #252 ~13/11; NO-28 sau khi Owner xác nhận"
+      },
+      {
+        "id": "12",
+        "name": "QA/E2E/nghiệm thu",
+        "pr": "Đợt 3: 0/19",
+        "done": "Smoke/E2E từng mảnh trên PROD",
+        "todo": "App doanh nghiệp phức tạp prompt→phát hành bằng trình duyệt thật, ca lỗi/quá tải/hết USD/rollback, chi phí USD; sau 01–11",
+        "code": "✗",
+        "qa": "✗",
+        "deploy": "✗",
+        "on": "✗",
+        "verified": "✗",
+        "agent": "chưa giao",
+        "eta": "~24–28/11 (thấp)"
+      }
+    ]
   }
 }
