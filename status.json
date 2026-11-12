@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T17:52:14+07:00",
+  "asOf": "2026-11-12T17:57:30+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T17:52:14+07:00",
+  "detailUpdatedAt": "2026-11-12T17:57:30+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6816,7 +6816,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T17:52:14+07:00",
+    "updatedAt": "2026-11-12T17:57:30+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7320,10 +7320,15 @@
         "at": "2026-11-12T17:52:14+07:00",
         "by": "C0",
         "note": "ETA theo giờ (#257 6821355397) + quy tắc QA sau tích hợp (Owner) đã vào dashboard; QA trình duyệt độc lập 1c3f4d2: GO có điều kiện (P3); đã sửa 4 điều kiện P3 (touch target 44 px, gợi ý cuộn ngang, chữ (VERIFIED) lẫn lộn, cột ETA); chưa QA lại"
+      },
+      {
+        "at": "2026-11-12T17:57:30+07:00",
+        "by": "C0",
+        "note": "Đọc-chỉ PROD (Owner chat 17:44) xong; #252 merge dev (QA GO có điều kiện/SEC GO); test cách ly DEV 0 P0–P2; hạng mục 08/09/10/11 cập nhật"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T17:49:56+07:00",
+      "checkedAt": "2026-11-12T17:57:30+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7332,7 +7337,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "PR #258 (runner, 71fe0055) mở, QA độc lập đang chạy; dọn đĩa; luồng review chuyển sang #257 (chưa có review)",
+      "changeSincePrev": "#252 QA GO có điều kiện + SEC GO, merge dev 524cfab9 (cờ TẮT); test cách ly DEV 2 tenant × 2 app: 0 P0–P2; đọc-chỉ PROD xong (chế độ AI thật = danh sách cho phép, SYSTEM_ADMIN không có quyền ngầm, PROD có 2 tenant); dashboard #limits/approved dựng lại (69/69) và ETA theo giờ",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7363,11 +7368,11 @@
       },
       "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
       "blockers": [
-        "P1: agent đọc-chỉ PROD (RealAiMode, quyền, NO-28) bị chặn, cần Owner xác nhận trực tiếp",
         "QA tích hợp bản 22 chưa có kết luận",
-        "QA #252 và QA #258 chưa có kết luận",
         "QA trình duyệt độc lập cho sửa UI chưa có kết luận",
-        "Chưa có test cross-app / cross-company thật (agent DEV đang chạy)"
+        "Chưa có test cross-app / cross-company thật (agent DEV đang chạy)",
+        "Giữ chỗ cũ trong bộ đếm Redis chưa giải phóng (cần quyết định bốn mắt, cờ giải phóng TẮT)",
+        "Ca hủy-sau-chữ-đầu vẫn tính cả khoản giữ chỗ trên PROD đến khi #252 được deploy và bật"
       ],
       "risks": [
         "Đĩa Mac sát ngưỡng 20 GiB khi 10 agent build",
@@ -15514,7 +15519,7 @@
     "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-12T17:49:56+07:00",
+    "updatedAt": "2026-11-12T17:57:30+07:00",
     "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 24/11–02/12/2026 (tin cậy thấp); xem lý do ở chi tiết",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
@@ -15873,10 +15878,10 @@
       {
         "id": "11",
         "name": "USD Budget/Ledger",
-        "pr": "B1 #148 (PROD), #252 360dd9b5, #253 58ec0fc5, #251 6999f0d9",
-        "done": "Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS",
-        "todo": "NO-28: 8 khoản giữ chỗ chưa giải thích; #252 QA delta; cancel/retry/timeout/đồng thời",
-        "code": "~",
+        "pr": "B1 #148 (PROD), #252 merged dev 524cfab9 (flag OFF, V101), #253 58ec0fc5, #251 6999f0d9",
+        "done": "Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS; #252: QA GO có điều kiện + SEC GO trên đúng head 360dd9b5 (VERIFIED, 34 test của PR + 116 hồi quy, 13/15 mutant bị diệt), đã merge dev, cờ TẮT; đọc-chỉ PROD 17:48: sổ cái 113 dòng đều SETTLED (110 REPORTED + 3 WORST_CASE), 0 RESERVED; còn một khoản giữ chỗ cũ trong bộ đếm Redis không có dòng sổ cái tương ứng (không xóa, không đổi)",
+        "todo": "Chưa deploy; trước khi bật cờ #252 phải chứng minh trên DEV (hạ đúng số thật của nhà cung cấp, 5 nơi cùng giảm, khởi động lại không giảm đôi, tắt cờ dừng); ca hủy-sau-chữ-đầu vẫn bị tính cả khoản giữ chỗ trên PROD (dòng WORST_CASE mới nhất cách đây ~6 giờ); NO-28: cần số ngân sách B1/B3 + quyết định bốn mắt để giải phóng; #253/#251 chưa QA",
+        "code": "✓",
         "qa": "~",
         "deploy": "~",
         "on": "~",
@@ -15892,13 +15897,13 @@
           "updatedAt": "2026-11-12T17:49:56+07:00",
           "basis": "QA #252 dự kiến tối nay; đối soát NO-28 cần quyết định bốn mắt và số ngân sách QA của Owner",
           "blockers": [
-            "QA #252 đang chạy",
-            "Owner: số ngân sách B1/B3 và quyết định giải phóng giữ chỗ"
+            "bằng chứng DEV trước khi bật #252",
+            "Owner: số ngân sách B1/B3 và quyết định giải phóng giữ chỗ cũ"
           ],
           "milestones": [
             {
-              "label": "QA #252 xong (mốc QA)",
-              "etaAt": "2026-11-12T19:30:00+07:00"
+              "label": "QA #252 xong và merge dev (đã xong 17:55)",
+              "etaAt": "2026-11-12T17:55:00+07:00"
             }
           ],
           "unknownReason": "Chưa xác định giờ — chờ Owner quyết số ngân sách B1/B3 và cách giải phóng giữ chỗ cũ"
