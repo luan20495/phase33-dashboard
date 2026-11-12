@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T10:03:00+07:00",
+  "asOf": "2026-11-12T10:12:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T10:03:00+07:00",
+  "detailUpdatedAt": "2026-11-12T10:12:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3922,6 +3922,35 @@
             "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
           }
         ]
+      },
+      {
+        "id": "NO-30",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-12T10:12:00+07:00",
+        "title": "Chỉ thị 'nới tối đa năng lực AI': 9 chỗ không thể làm đúng nghĩa đen, chọn mặc định (≈332 giờ việc mới)",
+        "detail": "Kế hoạch (REPORTED, đọc mã, chưa QA): ~/xweb-handoff/p37-studio/batch3/MAXCAP-PLAN.md + ai-limits-maxcap.json. Sau khi tái dùng mã đã có (T36, T22-A/B, T23/T24/T25, J1, T10, P36-ATTACH, ArchiveReader…), việc MỚI ≈ 332 giờ (216–448, ±35%): 276 giờ theo hàng + 56 giờ xuyên suốt (báo cáo giới hạn hiệu lực, E2E PROD, phát hành); riêng file nén 1 GB ≈ 98 giờ; việc đã có phải hoàn tất ≈ 129 giờ (T23 39, T24 55, T25 31, T10 4). Chưa hàng nào đạt đủ 5 bước CODE/QA/DEPLOY/ON/VERIFIED. Kiểm 'số 0': 0 = không giới hạn ĐÚNG cho L01–L04, L09–L11 (đã đặt); SAI cho build/ngày L15–L18 (0 chặn mọi build; chỉ đặt được mức tối đa hữu hạn 100.000/ngày, tenant và toàn hệ thống 1.000.000) và L06/L07 (không có vô hạn; hằng số 600, mã cho tối đa 100.000/ngày, cần PR + đổi env + khởi động lại). Hiện chặn thực tế đầu tiên là trần chung 600 lượt/ngày, rồi 30 lời nhắc/phút, 2 luồng song song, 16.000 token mỗi câu trả lời. 'Đã đặt 0' chưa có nghĩa hết bị chặn theo lượt. 9 chỗ cần Owner quyết (mặc định đề xuất): DIR-1 trần 600 lượt (L06/L07): nâng hằng số và env lên 100.000/ngày + cảnh báo không chặn, để trần tiền giữ chi phí; điều kiện trước: xử lý 8 khoản giữ chỗ chưa giải thích; chỉ thị này thay quyết định cũ N=5.000 và PR #217 đã đóng. DIR-2 'không cắt âm thầm' vs cửa sổ ngữ cảnh hữu hạn: chữ người gõ KHÔNG tự cắt, từ chối rõ (413) kèm gợi ý đổi mô hình ngữ cảnh lớn; tài liệu cắt CÓ thông báo và đọc tiếp qua tool loop; không bật tóm tắt nhiều tầng mặc định. DIR-3 'mọi định dạng': nhận mọi loại đọc được (mã hóa mới, PPTX/ODF/EPUB/RTF, PDF sau QA), tệp không đọc được ghi dòng siêu dữ liệu 'đính kèm nhưng không đọc được'; KHÔNG làm OLE cũ, KHÔNG video. DIR-4 đầu ra theo mô hình (L12): bước đầu nâng tới 32.000 cho mô hình hỗ trợ sau 3 lượt Haiku có bảng token. DIR-5 file nén 1 GB: tải multipart thẳng lên kho lưu trữ, trích xuất cô lập không mạng, trần sau giải nén 3 GiB và 20.000 mục, ZIP/TAR/TGZ/7z trước (thư viện cần duyệt chuỗi cung ứng), RAR không làm ở đợt đầu (giấy phép), ClamAV để sau; hạ tầng do Windows làm; chỉ thử 1 GB trên máy rảnh có phê duyệt. DIR-6 tự tiếp tục nhiều bước: cờ TẮT, bật cho workspace QA trước, tối đa 12 bước, dừng ở trần tiền của kế hoạch, thao tác rủi ro vẫn chờ phê duyệt. DIR-7 tham chiếu URL và tìm kiếm: bật tham chiếu URL (miễn phí) cho workspace QA sau SEC; giữ trần ngày của dịch vụ trả phí. DIR-8 thêm khoảng 30 lượt Haiku thật trên PROD theo từng đợt (ngoài 12 lượt T23 và Đợt 3). DIR-9 build: chấp nhận 'bỏ quota' = mức tối đa hữu hạn 100.000/ngày; chỉ làm PR nhỏ '0 = vô hạn' nếu Owner muốn con số 0 thật. Chuỗi biên: 10 tệp × dung lượng tối đa vượt thân JSON 16 MiB; giữ tổng 8 MiB ảnh + 3 MiB tài liệu trong JSON, vượt thì đi đường file nén/ATT-e; KHÔNG nâng Caddy/nginx/Next/Tomcat.",
+        "solution": "C0 khuyến nghị A = theo mặc định cả 9 chỗ. Thứ tự: H0 (đọc lại độc lập 5 hàng đã đặt 0, đọc toàn bộ bảng ngoại lệ, nâng build/ngày lên mức tối đa khi Owner xác nhận) → T36-b (bỏ trần 600) + báo cáo giới hạn hiệu lực → 10 tệp + đầu ra theo mô hình → prompt theo mô hình → tự tiếp tục (sau T23 và T24-3) → định dạng + tham chiếu/tìm kiếm → file nén 1 GB (cần Owner duyệt hạ tầng và thư viện). Mỗi đợt tách CODE / QA / DEPLOY / ON / VERIFIED; không đổi giới hạn tiền.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo mặc định cả 9 chỗ",
+            "desc": "Bắt đầu theo thứ tự đề xuất; mỗi đợt qua PR, QA/SEC độc lập, phát hành; xin thêm lượt Haiku từng đợt.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Anh đổi một số chỗ",
+            "desc": "Ghi mã DIR-n và lựa chọn vào ô ghi chú."
+          },
+          {
+            "key": "C",
+            "label": "Chỉ làm bước H0 và T36-b trước, chờ anh duyệt các đợt sau",
+            "desc": "Giữ phạm vi nhỏ: đọc lại 5 hàng đã đặt, bỏ trần 600, báo cáo giới hạn hiệu lực."
+          }
+        ]
       }
     ]
   },
@@ -4159,7 +4188,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T10:03:00+07:00",
+    "updatedAt": "2026-11-12T10:12:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
