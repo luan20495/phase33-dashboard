@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T12:01:00+07:00",
+  "asOf": "2026-11-12T12:16:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T12:01:00+07:00",
+  "detailUpdatedAt": "2026-11-12T12:16:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3986,6 +3986,35 @@
             "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
           }
         ]
+      },
+      {
+        "id": "NO-32",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-12T12:16:00+07:00",
+        "title": "Chỉ thị 'quản trị bằng USD + năng lực agent tối đa': kế hoạch 25 yêu cầu (≈410 giờ việc mới) và 6 câu để chốt",
+        "detail": "Kế hoạch (REPORTED, đọc mã, chưa QA): ~/xweb-handoff/p37-studio/batch3/AGENT-CAPABILITY-PLAN.md. Chỉ thị tách thành 25 yêu cầu R1..R25. Hôm nay: 0/25 yêu cầu đạt đủ 5 bước CODE/QA/DEPLOY/ON/VERIFIED (CODE 7 xong + 9 một phần; QA 5 xong + 10 một phần; DEPLOY 7 xong + 7 một phần; ON 4 xong + 11 một phần; VERIFIED 0 xong + 6 một phần). NĂM KHOẢNG TRỐNG LỚN: (1) còn hạn mức đếm LƯỢT ẩn ngoài 69 giới hạn: yêu cầu/cấp phát ngân sách B3 BẮT BUỘC có số 'calls' 1..1000 (cột không cho rỗng), chia bước tối đa 8 bước/3 lần thử mỗi bước, trần chi phí kế hoạch là lỗi cứng không thử lại được, cộng trần chung 600 lượt/ngày; (2) CHƯA có tạm dừng/tiếp tục: checkpoint chỉ ở mức một bước (PLAN.md), hàng đợi J1 đã có trạng thái BLOCKED khi bị từ chối tiền nhưng chưa có gì nối 'duyệt ngân sách' → mở khóa; chưa có tự tiếp tục (T22-C); TTL hàng đợi tối đa 72 giờ trong khi yêu cầu ngân sách sống 7 ngày; (3) agent chưa sửa/kiểm thử được: T24 (patch) và T25 (công thức) đã merge nhưng KHÔNG file nào gọi, T23 TẮT và chưa có lượt mô hình thật, chưa có kiểm thử trình duyệt (runner không có trình duyệt), tự sửa lỗi TẮT trên PROD, vai trò T30 chưa bắt đầu; (4) plan_missing vẫn mở (PR #245/#246 đang QA; nâng ngưỡng 300.000 chỉ che điều kiện theo kích thước); (5) lỗ 'mặc định từ chối': nếu PROD đang bật RealAiMode (CHƯA ĐỌC ĐƯỢC) thì REAL_AI mặc định CHO PHÉP; mô hình của nhà cung cấp do vận hành bỏ qua PAID_CODE_EDIT và sổ cái; quyền AI chỉ SYSTEM_ADMIN ghi; chưa có endpoint giới hạn hiệu lực. Chuỗi xây dựng chính (builder → quyền → ủy quyền → sổ cái) là chắc. THIẾT KẾ KHUYẾN NGHỊ: một agent chính, các vai BA/Architect/Dev/QA/DevOps là các PHA của kế hoạch T22 (T30 từ ~110 xuống ~52 giờ), đơn vị checkpoint = một bước; tạm dừng/tiếp tục dùng lại hàng đợi J1 (BLOCKED) + phê duyệt B3 + sự kiện mới 'cấp phát được duyệt → mở khóa'. CÔNG SỨC: việc MỚI của chỉ thị ≈ 410 giờ, cộng MAXCAP 332 + cài đặt AI đơn giản 118 + hồ sơ nhân viên 83 + hoàn tất T23/T24/T25 129 (các số này KHÔNG tính lại với nhau). Chuỗi nghiệm thu ≈ 582 giờ (227 dùng lại + 355 mới, 378–786). Đường găng ≈ 250 giờ-agent, khoảng 3–4 tuần với 4–6 agent (không phải cam kết). Thứ tự: H0 6 → QA plan_missing 9 → T23 chạy thật 39 → T24-3 + FILES-b → T25-3 + công thức doanh nghiệp → T22-C tự tiếp tục 31 → tạm dừng/tiếp tục ngân sách 36 → vai trò T30-lite 52 → công cụ kiểm thử trình duyệt 94 + bật tự sửa lỗi 9 → E2E nghiệm thu 78. Làn song song: nhánh prompt/builder tuần tự; nhánh tiền (T36-b → PAY-b → sửa mặc định từ chối; calls-optional → tạm dừng/tiếp tục) hai chuỗi chạy song song; nhánh runner/hạ tầng (kiểm thử trình duyệt); nhánh chỉ đọc (endpoint giới hạn hiệu lực); nhánh không mã (#106, kịch bản E2E, dashboard). CHÚ Ý: các thay đổi cấu hình đổi nóng hôm nay (hàng đợi 100/500/72 giờ, ngưỡng chia bước 300.000) chưa đo hiệu quả thực; dashboard KHÔNG được tuyên bố 'đã bỏ quota' cho tới khi T36-b và bỏ-calls-bắt-buộc được phát hành.",
+        "solution": "Khuyến nghị A = theo mặc định cả 6 câu: (1) 'Admin có thẩm quyền' = Super Admin ghi quyền AI ở đợt 1, Admin công ty ở đợt 2 (≈30 giờ); (2) bỏ cột 'calls' khỏi yêu cầu/cấp phát B3 bằng migration chỉ-mở-rộng; (3) trần chi phí kế hoạch thành điểm DỪNG-XÁC-NHẬN thay vì lỗi cứng, tối đa 16 bước, giữ chốt chống lặp; (4) cho phép trình duyệt không đầu trong runner cô lập (bề mặt tấn công mới, ≈94 giờ) chỉ chạy kịch bản JSON khai báo, sau SEC, sau cờ; (5) quy tắc đổi nóng: chỉ sau thẻ của Owner, từng khóa một, đọc lại độc lập và có comment #88 — anh cho biết lộ trình B2 (API cấu hình AI) có được tính là quy trình đã duyệt không; (6) định nghĩa nghiệm thu: 'workflow' = máy trạng thái ở mức ứng dụng (WorkflowEngine của nền tảng đang TẮT, B7 chưa merge); Haiku chứng minh cơ chế, cộng 1 lượt chạy chất lượng bằng mô hình mạnh hơn cần anh duyệt mô hình và ngân sách. Việc em cần đọc ngay không cần quyết định: giá trị PROD của chế độ AI thật (RealAiMode) để biết lỗ 'mặc định cho phép' có tồn tại hay không.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo mặc định cả 6 câu",
+            "desc": "Bắt đầu chuỗi theo thứ tự đề xuất; các nhánh song song khi không chung file; mỗi lát qua PR + QA/SEC độc lập.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Anh đổi một số câu",
+            "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
+          },
+          {
+            "key": "C",
+            "label": "Chỉ làm trước H0 + QA plan_missing + T23 chạy thật, các đợt sau anh duyệt lại",
+            "desc": "Giữ phạm vi nhỏ ≈54 giờ: đọc cấu hình cần thiết, sửa plan_missing, đưa T23 vào chạy thật ở workspace QA."
+          }
+        ]
       }
     ]
   },
@@ -4223,7 +4252,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T12:01:00+07:00",
+    "updatedAt": "2026-11-12T12:16:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
