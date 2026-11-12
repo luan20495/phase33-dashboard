@@ -6,14 +6,15 @@ Dashboard Owner bằng tiếng Việt (có English), responsive desktop/mobile, 
 
 - `index.html`: một trang, tự chứa (không CDN/font ngoài).
 - `status.json`: dữ liệu (đọc cùng thư mục). Tác vụ đồng bộ hằng giờ sửa file này.
-- `tests/process-ui.mjs`: kiểm tra tab Quy trình & cấu hình. `tests/shell-ui.mjs`: kiểm tra khung 4 tab, định tuyến, bàn phím, thẻ Owner, a11y.
+- `tests/process-ui.mjs`: kiểm tra tab Quy trình & cấu hình. `tests/shell-ui.mjs`: kiểm tra khung 5 tab, định tuyến, bàn phím, thẻ Owner, a11y. `tests/hourly-ui.mjs` (+ `tests/fixtures/hourly.json`): kiểm tra tab Việc chạy mỗi giờ.
 
-## Cấu trúc 4 tab
+## Cấu trúc 5 tab
 
 | Tab | Hash | Nội dung |
 |---|---|---|
 | Lộ trình | `#roadmap` (= `#roadmap/1`), `#roadmap/1` … `#roadmap/6` | 6 tab con Đợt 1–6. Mỗi đợt: mục tiêu, ngày dự kiến, thanh tiến độ (chỉ đếm số mục đã hoàn tất) và danh sách mục CHƯA xong. Mục hoàn tất rời khỏi đây, sang tab Đã lên PROD. Cuối trang: "Ngoài lộ trình" (audit đã xong, việc tạm gác). |
 | Quy trình & cấu hình | `#process` | Quy tắc đã chỉ đạo, sửa và gửi cho Claude (giữ nguyên hành vi). |
+| Việc chạy mỗi giờ | `#hourly` | Danh sách việc C0 chạy mỗi giờ (`status.json` > `hourly`): mỗi việc có công tắc BẬT/TẮT, kết quả và 10 lần chạy gần nhất. Trang tĩnh không ghi được file: thay đổi của Owner (đổi công tắc, thêm, xóa) được lưu nháp trong trình duyệt (`xw-hr:`), hiện "chờ gửi", hoàn tác được, rồi sao chép tin nhắn `## [OWNER] ...: cập nhật việc chạy hằng giờ` (dòng `- H3: TẮT`, `- H5: BẬT`, `- THÊM: <tên> \| <mô tả>`, `- XÓA: H7`) để dán lên #88; C0 áp dụng vào `status.json` ở lần chạy kế tiếp. |
 | Đã lên PROD | `#prod/on` (mặc định), `#prod/done` | **Hoàn tất**: chỉ mục có `closed: true` (QA/SEC độc lập + đã kiểm trên PROD + Owner chấp nhận). **Đã bật, chưa hoàn tất**: nhóm 19 hạng mục nền tảng (tiến độ, bộ lọc, ngăn chi tiết) và việc giao có `group: ON_PROD` chưa đóng. ON không phải DONE. |
 | Chờ anh quyết | `#owner` | Thẻ quyết định/thao tác của Owner (chọn phương án, ghi chú, sao chép nội dung `## [OWNER] HH:MM ICT DD/MM: duyệt từ dashboard`). Chấm đỏ + số khi có việc chờ. |
 
