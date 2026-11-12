@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T01:40:55+07:00",
+  "asOf": "2026-11-13T02:08:32+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -46,7 +46,7 @@
       "actualAt": "2026-11-06T18:14:00+07:00",
       "backendSha": "c0b6680b77fb16fc0d2e76ad36e37fd16cc81f89",
       "frontendSha": "b0952327eb5550f672a8df36f60139b6f9b84ff9",
-      "notes": "Bỏ giới hạn 4.000 ký tự prompt (BE #133 V86, FE #85), hàng đợi 3 chế độ (FE #84), X2/X3/X5 mã có cờ TẮT. Deploy 18:12–18:15 VN; QA/SEC độc lập từng PR GATE-PASS-WITH-CONDITIONS; 17 container, Flyway V86, 0 lỗi API, smoke 5 cổng OK. Giới hạn prompt hiệu lực 60.000 byte; 17.441 ký tự → lượt Haiku UPDATED đủ phần đuôi (0,0055 USD); 70.000 → 413 không tốn AI. Không bật cờ mới. Rollback: env sao lưu + R4a chạy được trên DB hiện tại."
+      "notes": "Bỏ giới hạn 4.000 ký tự prompt (BE #133 V86, FE #85), hàng đợi 3 chế độ (FE #84), X2/X3/X5 mã có cờ TẮT. Deploy 18:12–18:15 VN; QA/SEC độc lập từng PR GATE-PASS-WITH-CONDITIONS; 17 container, Flyway V86, 0 lỗi API, smoke 5 cổng OK. Giới hạn prompt hiệu lực 60.000 byte; 17.441 ký tự → lượt Haiku UPDATED đủ phần đuôi ([mức USD nội bộ]); 70.000 → 413 không tốn AI. Không bật cờ mới. Rollback: env sao lưu + R4a chạy được trên DB hiện tại."
     },
     {
       "id": "R15",
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T01:40:55+07:00",
+  "detailUpdatedAt": "2026-11-13T02:08:32+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3649,14 +3649,14 @@
         "status": "DONE",
         "since": "2026-11-11T14:13:00+07:00",
         "title": "T22-B (AI làm theo bước): cờ chỉ có mức toàn hệ thống, không bật riêng cho workspace QA được",
-        "detail": "Đã đo 3→2 lượt Haiku trên PROD (kế hoạch 2 bước, build thành công, finish_reason stop, 0 lỗi, ~0,011 USD) rồi TẮT lại cờ. Cờ ai.builder.steps.enabled là cài đặt toàn hệ thống nên lựa chọn A của NO-06 ('bật cho workspace QA trước') không làm được nguyên văn.",
+        "detail": "Đã đo 3→2 lượt Haiku trên PROD (kế hoạch 2 bước, build thành công, finish_reason stop, 0 lỗi, ~[mức USD nội bộ]) rồi TẮT lại cờ. Cờ ai.builder.steps.enabled là cài đặt toàn hệ thống nên lựa chọn A của NO-06 ('bật cho workspace QA trước') không làm được nguyên văn.",
         "solution": "C0 khuyến nghị A (bật toàn hệ thống). C0 giữ cờ TẮT cho đến khi Owner chọn.",
         "link": "",
         "options": [
           {
             "key": "A",
             "label": "Bật toàn hệ thống",
-            "desc": "Trần chi phí 0,30 USD mỗi kế hoạch, Haiku, tắt lại bằng một lệnh. Nhanh nhất.",
+            "desc": "Trần chi phí [mức USD nội bộ] mỗi kế hoạch, Haiku, tắt lại bằng một lệnh. Nhanh nhất.",
             "recommended": true
           },
           {
@@ -3753,7 +3753,7 @@
         "status": "DONE",
         "since": "2026-11-11T18:26:00+07:00",
         "title": "Giới hạn cho người dùng thật: nâng giới hạn mềm và chốt phần tiền",
-        "detail": "Danh sách giới hạn đã rà (U9). Giới hạn mềm C0 đề xuất nâng: lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3 (không phải tiền, lùi bằng một lệnh). Phần tiền do Owner quyết: trần cửa sổ AI 50 USD (còn ~21), hạn mức tuần của khóa nhà cung cấp, 50 USD/người/tháng và 50 USD/workspace/tháng.",
+        "detail": "Danh sách giới hạn đã rà (U9). Giới hạn mềm C0 đề xuất nâng: lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3 (không phải tiền, lùi bằng một lệnh). Phần tiền do Owner quyết: trần cửa sổ AI [mức USD nội bộ] (còn ~21), hạn mức tuần của khóa nhà cung cấp, [mức USD nội bộ]/người/tháng và [mức USD nội bộ]/workspace/tháng.",
         "solution": "C0 khuyến nghị A cho giới hạn mềm. Với phần tiền, Owner nhập con số mong muốn (ví dụ tổng mỗi tuần) trong ô ghi chú; C0 đối chiếu với khóa nhà cung cấp rồi báo mức đề xuất.",
         "link": "",
         "options": [
@@ -3766,11 +3766,11 @@
           {
             "key": "B",
             "label": "Giữ nguyên",
-            "desc": "Chỉ giữ trần chi phí kế hoạch 8 USD đã nâng."
+            "desc": "Chỉ giữ trần chi phí kế hoạch [mức USD nội bộ] đã nâng."
           }
         ],
         "decided": "A",
-        "decision": "Nâng giới hạn mềm theo đề xuất (Owner 18:30): lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3. C0 đã đặt lúc 18:31 (VERIFIED đọc lại). Phần tiền (trần cửa sổ 50 USD, 50 USD/người/tháng, 50 USD/workspace/tháng, hạn mức tuần của khóa) CHƯA đổi: chờ Owner nhập con số."
+        "decision": "Nâng giới hạn mềm theo đề xuất (Owner 18:30): lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3. C0 đã đặt lúc 18:31 (VERIFIED đọc lại). Phần tiền (trần cửa sổ [mức USD nội bộ], [mức USD nội bộ]/người/tháng, [mức USD nội bộ]/workspace/tháng, hạn mức tuần của khóa) CHƯA đổi: chờ Owner nhập con số."
       },
       {
         "id": "NO-25",
@@ -4156,7 +4156,7 @@
         "priority": "P1",
         "status": "OPEN",
         "since": "2026-11-13T00:21:59+07:00",
-        "title": "Bảo mật nhà cung cấp AI: một dòng nhà cung cấp tự khai 'miễn phí' (OPENAI_COMPATIBLE/LOCAL) có thể qua mặt sổ cái nếu danh sách chấp nhận bị đặt",
+        "title": "Bảo mật nhà cung cấp AI: một dòng nhà cung cấp tự khai 'miễn phí' có thể qua mặt sổ cái nếu danh sách chấp nhận bị đặt",
         "detail": "Nguồn: QA+SEC độc lập PR #270 (GO có điều kiện, không P0/P1; đã merge dev). Phát hiện C1: cờ `paid=false` trên một dòng nhà cung cấp loại OPENAI_COMPATIBLE hoặc LOCAL là lời khẳng định của quản trị viên, không được kiểm chứng. QA tạo thử một dòng trỏ tới một địa chỉ https công khai với `paid=false`: được tạo (201) và hệ thống coi là miễn phí. Nếu một dòng như vậy trỏ tới OpenRouter hoặc OpenAI và danh sách nhà cung cấp chấp nhận (một cấu hình vận hành hiện để trống trên PROD) bị đặt thì có thể qua mặt giữ chỗ, hard cap USD và chặn ZDR. Hôm nay PROD được che bởi danh sách trống và lá chắn khởi động mới; nguy cơ chỉ còn khi ai đó đặt danh sách. Các lựa chọn: A (khuyến nghị) = với OPENAI_COMPATIBLE/LOCAL chỉ cho `paid=false` khi địa chỉ là loopback/LAN (không công khai) hoặc cần duyệt hai người (bốn mắt) cho địa chỉ công khai; B = giữ nguyên, chấp nhận rủi ro nhờ lá chắn danh sách trống; C = loại OPENAI_COMPATIBLE khỏi địa chỉ công khai hẳn (xung đột quyết định D-003: máy chủ local loại này được hỗ trợ). Không trả lời = giữ B, không đổi gì.",
         "solution": "Khuyến nghị A: nhỏ, không đổi đường OpenRouter/sổ cái/hard cap; cần một PR BE nhỏ + QA độc lập.",
         "link": "",
@@ -4428,7 +4428,7 @@
         "id": "T37-P0",
         "title": "P0 (Owner 22:15): Studio dùng dữ liệu nội bộ THẬT: Web App do AI tạo đọc Công ty / Phòng ban / Nhân viên theo quyền (chỉ đọc)",
         "titleEn": "P0: Studio Web Apps read REAL internal data (Company / Org units / Employees) per access rights (read-only)",
-        "status": "22:20 Owner đổi ưu tiên: S10 (Studio) lên trước Import/Export/API Sync; không lập lại T37; tái dùng Data Connector, nguồn hệ thống, X2/X3/X5, IAM. TRẠNG THÁI TÁCH BẠCH: CODE: đã có sẵn (X2/X3/X5 trên PROD; danh mục Phòng ban/Nhân viên/Chức danh–bậc; Published PRIVATE đọc theo quyền, thu hồi không cần phát hành lại); CHƯA có: Preview đọc dữ liệu thật (S10 PR-B), danh mục Công ty (S10 PR-A; S2 đã merge dev), giao diện chọn nguồn/công tắc xem trước (agent FE đang kiểm hiện trạng). QA: X2/X3/X5 đã QA độc lập PASS (VERIFIED) nhưng E2E đọc dữ liệu 4 vai trò, thu hồi, xuất bản lại trên PROD là NOT_RUN. PROD: cờ X2/X3/X5 BẬT; CHƯA có nguồn hệ thống nào được duyệt nên không ứng dụng nào đọc được dữ liệu; S2/S3/S10 chưa lên PROD (đợt 17+). ON: Preview dữ liệu thật và danh mục Công ty CHƯA có cờ/mã; sẽ là cờ riêng mặc định TẮT. TEST THẬT: 1 (mốc 1, xem cuối). Đang làm: BE S10 PR-A/PR-B, FE kiểm hiện trạng + PR, agent kiểm kê PROD chỉ đọc + chuẩn bị E2E (cần tài khoản quản trị tenant thứ hai); tạm dừng S1/S4-N8/S6/FE S2/FE S3 (có checkpoint, làm tiếp sau). | 22:28: kiểm kê PROD chỉ đọc (REPORTED): tenant QA 12 đơn vị / 52 nhân viên / 40 chức danh / 6 bậc; 0 danh mục nguồn hệ thống được bật, 0 chính sách duyệt, chưa có slot hệ thống; Công ty/Hồ sơ chưa có trên PROD. CHẶN E2E thật: chỉ 1 TENANT_ADMIN (luật bốn mắt cần người thứ hai), chờ Owner chọn người. FE kiểm hiện trạng xong: 4 bước thiết lập đều đã có giao diện; rủi ro: danh sách danh mục FE là danh sách đóng (PR FE phải lên PROD trước khi bật cờ danh mục mới); Preview dữ liệu thật chưa có gì. Đang chạy: BE S10, FE S10, kiểm kê API (3 nhóm: dùng ngay / thiếu quyền đọc hoặc kết nối / thiếu thật) | 23:04: MỐC 1 (Published PRIVATE) E2E trên tenant QA hiện có, tài khoản hiện có (không tạo tài khoản/tenant/dữ liệu giả): bước 1–4 PASS (REPORTED, C0 chạy qua agent): bật danh mục Phòng ban/Nhân viên/Chức danh–bậc (3 nguồn ở trạng thái CHỜ DUYỆT, không lộ dữ liệu), tự duyệt bị 403 (SELF_APPROVAL) ở cả 3, người duyệt/người xem/quản trị tenant khác bị 403 khi sửa/duyệt/tắt, workspace lạ 404; đã nhập 1 project app thử (PRIVATE, chưa phát hành). Bước 5+ BỊ CHẶN: duyệt nguồn cần quyền cấp tenant của danh mục (chỉ TENANT_ADMIN) và người duyệt khác người bật; tenant QA chỉ có 1 TENANT_ADMIN. Thao tác Admin cần: gán vai TENANT_ADMIN cho một tài khoản QA đã có (đề xuất tài khoản QA ‘người phê duyệt’), rồi hạ lại sau khi duyệt. Chờ Owner xác nhận tên tài khoản. Các bước sau đã có script (duyệt, phát hành, gán quyền theo phạm vi, đọc theo vai, thu hồi không phát hành lại, người lạ xuyên tenant). TEST THẬT trên PROD vẫn = 0 cho đến khi chạy xong | 23:28: BE #216 (S10 PR-A) mở, QA độc lập đang chạy; FE #174 (Nguồn dữ liệu nội bộ) mở; BE PR-B đang viết; E2E mốc 1 đang chạy chuỗi duyệt–phát hành–gán quyền–đọc–thu hồi (kết quả chưa có) | 23:38: **MỐC 1 ĐẠT TRÊN PROD (REPORTED bởi agent E2E; C0 tự chạy lại các bước đọc lúc 23:36: 16/16 PASS):** Published PRIVATE đọc dữ liệu nội bộ THẬT theo quyền qua đường có sẵn X2/X3 + Data Connector, tenant QA hiện có, tài khoản hiện có (không tạo tài khoản/tenant/dữ liệu giả). 15/15 bước PASS: bật 3 danh mục (Phòng ban, Nhân viên, Chức danh/bậc); bốn mắt: người bật tự duyệt bị 403 SELF_APPROVAL (3/3), người duyệt khác (tạm gán TENANT_ADMIN ~25 phút rồi đã hạ về thành viên) duyệt 6 chính sách + 3 nguồn; phát hành app PRIVATE mang đủ 3 vai đọc theo nguồn; gán quyền theo phạm vi (đòi phạm vi: 400 DATA_SCOPE_REQUIRED); đọc theo vai: toàn công ty 52 dòng, chỉ mình 1 dòng, theo đơn vị 8 dòng (đúng bằng bộ lọc cây con), người không được cấp 404, người lạ xuyên tenant không có thẻ app/0 dòng/403 ở API quản trị, không cột nhạy cảm, không khóa cá nhân; **thu hồi quyền có hiệu lực ở lần gọi kế tiếp, không cần phát hành lại**, gán lại thì đọc được lại; phát hành lại giữ nguyên. Còn lại: QA độc lập chạy lại trên PROD (chưa), chứng minh xuyên tenant chỉ với 1 người lạ (không tạo công ty thứ hai theo lệnh Owner), app này là trang React sửa tay (KHÔNG do AI tạo): mốc 1b (AI tạo app đọc dữ liệu) và mốc 2 (Preview thật) chưa làm. Trạng thái lưu lại: 3 danh mục đang BẬT + ĐÃ DUYỆT và các quyền đọc đang hiệu lực cho 3 tài khoản QA (gỡ được bằng một script). | 00:27 11/11: BE #216 (danh mục Công ty, employees.get, sync-operations) và FE #174 (mục Nguồn dữ liệu nội bộ) ĐÃ MERGE vào dev sau QA/SEC độc lập (VERIFIED); BE #218 (Preview thật) + FE #175 mở, QA #218 đang chạy; FE #173 QA đang chạy; FE PR-C (UX) đang làm. Đợt 17 dự kiến 04:30–06:00 11/11 (ESTIMATE, cờ TẮT); bật ENTERPRISE_DATA sau đó; Preview thật đợt 18 (chiều tối 11/11–12/11). TEST THẬT trên PROD vẫn = 1 (mốc 1) | 01:27 11/11: FE #173 và #176 ĐÃ MERGE vào dev sau QA độc lập (VERIFIED). BE #218 (Preview thật) QA GO-WITH-CONDITIONS: lỗi F1 (chế độ thật chưa gắn thay đổi xem trước) đã sửa, chờ QA kiểm lại; FE #175 chỉnh theo giao thức mới. ĐỢT 17 (S2/S3 + #216 + FE #173/#174, cờ TẮT, có migration V99/V100): script rel53 sẵn sàng, QA tích hợp độc lập đang chạy; dự kiến deploy 04:30–06:00 (ESTIMATE) | 02:27 11/11: ĐỢT 17: QA tích hợp phần an toàn migration ĐẠT (VERIFIED); tìm 2 lỗi FE (PROD_DEPLOY lệch bản BE, nhãn audit quá dài) + cần PR mirror BE: đang sửa (FE #177 QA, rồi PR mirror BE, QA lại cặp SHA cuối); dự kiến deploy 05:30–07:00 (ESTIMATE, cờ TẮT). BE #218 Preview thật: F1b (chạy mã người khác trong xem trước thật) đang sửa; Owner cần quyết reviewRequired trước khi bật; FE #175 QA đang chạy (đợt 18) | 03:14 11/11: ĐỢT 17 ĐÃ LÊN PROD (VERIFIED; deploy 03:02–03:05; Flyway 100|88|0; 0 lỗi 5xx; mọi cờ T37 TẮT). Studio hiện mục ‘Nguồn dữ liệu nội bộ’ trong tab Dữ liệu (3 nguồn đã duyệt, Nhân viên ghi rõ là danh sách tài khoản); mốc 1 chạy lại sau deploy 16/16 PASS (C0). Còn: bật ENTERPRISE_DATA (Công ty), mốc 1b (AI tạo app), Preview thật (đợt 18: BE #218 sửa F1c, FE #175 QA lại) | 03:27 11/11: đợt 18 (Preview thật): BE #218 sửa F1c (head 4bf413dd) và FE #175 sửa theo QA (head fe844808) đang QA delta độc lập; chưa bật cờ nào | 04:27 11/11: đợt 18 (Preview thật, cờ TẮT): BE #218, #220 và FE #175 ĐÃ MERGE vào dev sau QA độc lập (VERIFIED); FE #178 và BE #221 đang QA; E2E DEV bước 2/8 đang chạy (NOT_RUN kết quả); chưa deploy | 05:28 11/11: E2E DEV Preview thật xong (REPORTED, agent độc lập): không lỗi P0–P2; các ca chuỗi commit với Forgejo thật, khóa 409, header, thu hồi, nhiều app đạt; lượt Haiku thật cho test marker NOT_RUN (cửa sổ AI DEV mất). Đợt 18 (Preview thật dormant, không migration, cờ TẮT): QA tích hợp độc lập đang chạy; BE #221, FE #178, #179 đã merge sau QA; PR mirror BE #222 chờ QA. Chờ Owner: A/B cho test marker, reviewRequired, ack, đồng ý bật | 05:45 11/11: Owner chọn B: chấp nhận NOT_RUN lượt Haiku thật cho test marker của Preview thật (không dựng lại cửa sổ Haiku DEV; quét log PROD chỉ-đọc sau khi bật). Cờ SYSTEM_PREVIEW_REAL vẫn TẮT; còn chờ đợt 18 deploy, ack, reviewRequired, đồng ý bật | 06:27 11/11: QA tích hợp đợt 18 GO-WITH-CONDITIONS (VERIFIED); đợt 18 đã promote 06:13 và đang build trên máy chủ (không migration, cờ TẮT, chưa lên PROD). Owner chỉ đạo: deploy xong thì bật SYSTEM_PREVIEW_REAL trên PROD rồi chạy vài lượt Haiku xác nhận | 06:58 11/11: ĐỢT 18 LÊN PROD (VERIFIED 06:38–06:41) và ĐÃ BẬT SYSTEM_PREVIEW_REAL (06:43–06:46) theo Owner. MỐC 2 (Preview thật) chạy thật trên PROD: công tắc, biểu ngữ phạm vi, khung xem trước chuyển từ dữ liệu mẫu (4/5) sang dữ liệu thật (9 đơn vị/52 nhân viên), tắt về dữ liệu mẫu. MỐC 1b: 1 lượt Haiku 5.5 trên PROD (UPDATED, ~0,002 USD) tạo bảng Phòng ban đọc nguồn nội bộ qua Data Connector; đã duyệt, merge, phát hành PRIVATE: người tạo thấy 9 dòng, người xem đơn vị thấy 1 dòng. Marker: 0 tên nhân viên thật trong prompt/audit/log PROD. TEST THẬT trên PROD: mốc 1, 1b, 2 (REPORTED + C0). Còn: QA độc lập chạy lại, xuyên tenant, ENTERPRISE_DATA, reviewRequired | 09:27 11/11: Owner báo thẻ wizard ‘Danh mục nội bộ XWeb’ còn ghi ‘Sắp có’ (chữ cứng cũ, tính năng thật ở mục ‘Danh mục dữ liệu hệ thống’): đang sửa (PR FE nhỏ + 3 chuỗi cũ + mã lỗi slot), cần QA + deploy FE đợt 19. Hướng dẫn trọn bộ P38 viết xong (FE #180, BE #223), QA độc lập đối chiếu giao diện PROD đang chạy; sổ tay r3 cần chương mới trong r4 | 10:27 11/11: hướng dẫn trọn bộ P38 (FE #180 + BE #223) ĐÃ MERGE vào dev sau QA độc lập đối chiếu PROD (VERIFIED). Sửa thẻ ‘Sắp có’ (FE #181) đang QA độc lập, rồi deploy FE đợt 19 (chỉ FE, dự kiến 11:30–12:30, ESTIMATE). Chờ Owner: ENTERPRISE_DATA, reviewRequired, T35, sổ tay r4 | 11:27 11/11: FE #181 (sửa thẻ ‘Sắp có’, tab Dữ liệu hiện sẵn nguồn nội bộ, tên dễ hiểu) ĐÃ MERGE vào dev sau QA độc lập GO-WITH-CONDITIONS (VERIFIED). Đợt 19 (chỉ FE, không migration): PR mirror BE #224 mở, QA tích hợp đang chạy (mirror + harness xanh, còn kết luận cuối); chưa deploy, dự kiến 12:00–13:00 (ESTIMATE) | 12:04 11/11: ĐỢT 19 (chỉ FE) LÊN PROD (VERIFIED 11:53–11:55): thẻ wizard hết ‘Sắp có’ (ghi Có sẵn + nút mở mục), tab Dữ liệu Studio mở sẵn ‘Nguồn dữ liệu nội bộ’ với tên dễ hiểu; không migration, không đổi cờ; mốc 1 16/16 PASS. Owner chỉ đạo thứ tự: T gần ON → T còn lại → Phase 3.3 → các phase còn lại (tuần tự); đang lập kế hoạch | 12:30 11/11: giao 2 agent FE song song (màn Công ty FE-S2, màn Hồ sơ nhân viên FE-S3); kế hoạch 3 đợt NEXT-ON-PLAN-20261111 và 8 thẻ quyết định đã đưa lên",
+        "status": "22:20 Owner đổi ưu tiên: S10 (Studio) lên trước Import/Export/API Sync; không lập lại T37; tái dùng Data Connector, nguồn hệ thống, X2/X3/X5, IAM. TRẠNG THÁI TÁCH BẠCH: CODE: đã có sẵn (X2/X3/X5 trên PROD; danh mục Phòng ban/Nhân viên/Chức danh–bậc; Published PRIVATE đọc theo quyền, thu hồi không cần phát hành lại); CHƯA có: Preview đọc dữ liệu thật (S10 PR-B), danh mục Công ty (S10 PR-A; S2 đã merge dev), giao diện chọn nguồn/công tắc xem trước (agent FE đang kiểm hiện trạng). QA: X2/X3/X5 đã QA độc lập PASS (VERIFIED) nhưng E2E đọc dữ liệu 4 vai trò, thu hồi, xuất bản lại trên PROD là NOT_RUN. PROD: cờ X2/X3/X5 BẬT; CHƯA có nguồn hệ thống nào được duyệt nên không ứng dụng nào đọc được dữ liệu; S2/S3/S10 chưa lên PROD (đợt 17+). ON: Preview dữ liệu thật và danh mục Công ty CHƯA có cờ/mã; sẽ là cờ riêng mặc định TẮT. TEST THẬT: 1 (mốc 1, xem cuối). Đang làm: BE S10 PR-A/PR-B, FE kiểm hiện trạng + PR, agent kiểm kê PROD chỉ đọc + chuẩn bị E2E (cần tài khoản quản trị tenant thứ hai); tạm dừng S1/S4-N8/S6/FE S2/FE S3 (có checkpoint, làm tiếp sau). | 22:28: kiểm kê PROD chỉ đọc (REPORTED): tenant QA 12 đơn vị / 52 nhân viên / 40 chức danh / 6 bậc; 0 danh mục nguồn hệ thống được bật, 0 chính sách duyệt, chưa có slot hệ thống; Công ty/Hồ sơ chưa có trên PROD. CHẶN E2E thật: chỉ 1 TENANT_ADMIN (luật bốn mắt cần người thứ hai), chờ Owner chọn người. FE kiểm hiện trạng xong: 4 bước thiết lập đều đã có giao diện; rủi ro: danh sách danh mục FE là danh sách đóng (PR FE phải lên PROD trước khi bật cờ danh mục mới); Preview dữ liệu thật chưa có gì. Đang chạy: BE S10, FE S10, kiểm kê API (3 nhóm: dùng ngay / thiếu quyền đọc hoặc kết nối / thiếu thật) | 23:04: MỐC 1 (Published PRIVATE) E2E trên tenant QA hiện có, tài khoản hiện có (không tạo tài khoản/tenant/dữ liệu giả): bước 1–4 PASS (REPORTED, C0 chạy qua agent): bật danh mục Phòng ban/Nhân viên/Chức danh–bậc (3 nguồn ở trạng thái CHỜ DUYỆT, không lộ dữ liệu), tự duyệt bị 403 (SELF_APPROVAL) ở cả 3, người duyệt/người xem/quản trị tenant khác bị 403 khi sửa/duyệt/tắt, workspace lạ 404; đã nhập 1 project app thử (PRIVATE, chưa phát hành). Bước 5+ BỊ CHẶN: duyệt nguồn cần quyền cấp tenant của danh mục (chỉ TENANT_ADMIN) và người duyệt khác người bật; tenant QA chỉ có 1 TENANT_ADMIN. Thao tác Admin cần: gán vai TENANT_ADMIN cho một tài khoản QA đã có (đề xuất tài khoản QA ‘người phê duyệt’), rồi hạ lại sau khi duyệt. Chờ Owner xác nhận tên tài khoản. Các bước sau đã có script (duyệt, phát hành, gán quyền theo phạm vi, đọc theo vai, thu hồi không phát hành lại, người lạ xuyên tenant). TEST THẬT trên PROD vẫn = 0 cho đến khi chạy xong | 23:28: BE #216 (S10 PR-A) mở, QA độc lập đang chạy; FE #174 (Nguồn dữ liệu nội bộ) mở; BE PR-B đang viết; E2E mốc 1 đang chạy chuỗi duyệt–phát hành–gán quyền–đọc–thu hồi (kết quả chưa có) | 23:38: **MỐC 1 ĐẠT TRÊN PROD (REPORTED bởi agent E2E; C0 tự chạy lại các bước đọc lúc 23:36: 16/16 PASS):** Published PRIVATE đọc dữ liệu nội bộ THẬT theo quyền qua đường có sẵn X2/X3 + Data Connector, tenant QA hiện có, tài khoản hiện có (không tạo tài khoản/tenant/dữ liệu giả). 15/15 bước PASS: bật 3 danh mục (Phòng ban, Nhân viên, Chức danh/bậc); bốn mắt: người bật tự duyệt bị 403 SELF_APPROVAL (3/3), người duyệt khác (tạm gán TENANT_ADMIN ~25 phút rồi đã hạ về thành viên) duyệt 6 chính sách + 3 nguồn; phát hành app PRIVATE mang đủ 3 vai đọc theo nguồn; gán quyền theo phạm vi (đòi phạm vi: 400 DATA_SCOPE_REQUIRED); đọc theo vai: toàn công ty 52 dòng, chỉ mình 1 dòng, theo đơn vị 8 dòng (đúng bằng bộ lọc cây con), người không được cấp 404, người lạ xuyên tenant không có thẻ app/0 dòng/403 ở API quản trị, không cột nhạy cảm, không khóa cá nhân; **thu hồi quyền có hiệu lực ở lần gọi kế tiếp, không cần phát hành lại**, gán lại thì đọc được lại; phát hành lại giữ nguyên. Còn lại: QA độc lập chạy lại trên PROD (chưa), chứng minh xuyên tenant chỉ với 1 người lạ (không tạo công ty thứ hai theo lệnh Owner), app này là trang React sửa tay (KHÔNG do AI tạo): mốc 1b (AI tạo app đọc dữ liệu) và mốc 2 (Preview thật) chưa làm. Trạng thái lưu lại: 3 danh mục đang BẬT + ĐÃ DUYỆT và các quyền đọc đang hiệu lực cho 3 tài khoản QA (gỡ được bằng một script). | 00:27 11/11: BE #216 (danh mục Công ty, employees.get, sync-operations) và FE #174 (mục Nguồn dữ liệu nội bộ) ĐÃ MERGE vào dev sau QA/SEC độc lập (VERIFIED); BE #218 (Preview thật) + FE #175 mở, QA #218 đang chạy; FE #173 QA đang chạy; FE PR-C (UX) đang làm. Đợt 17 dự kiến 04:30–06:00 11/11 (ESTIMATE, cờ TẮT); bật ENTERPRISE_DATA sau đó; Preview thật đợt 18 (chiều tối 11/11–12/11). TEST THẬT trên PROD vẫn = 1 (mốc 1) | 01:27 11/11: FE #173 và #176 ĐÃ MERGE vào dev sau QA độc lập (VERIFIED). BE #218 (Preview thật) QA GO-WITH-CONDITIONS: lỗi F1 (chế độ thật chưa gắn thay đổi xem trước) đã sửa, chờ QA kiểm lại; FE #175 chỉnh theo giao thức mới. ĐỢT 17 (S2/S3 + #216 + FE #173/#174, cờ TẮT, có migration V99/V100): script rel53 sẵn sàng, QA tích hợp độc lập đang chạy; dự kiến deploy 04:30–06:00 (ESTIMATE) | 02:27 11/11: ĐỢT 17: QA tích hợp phần an toàn migration ĐẠT (VERIFIED); tìm 2 lỗi FE (PROD_DEPLOY lệch bản BE, nhãn audit quá dài) + cần PR mirror BE: đang sửa (FE #177 QA, rồi PR mirror BE, QA lại cặp SHA cuối); dự kiến deploy 05:30–07:00 (ESTIMATE, cờ TẮT). BE #218 Preview thật: F1b (chạy mã người khác trong xem trước thật) đang sửa; Owner cần quyết reviewRequired trước khi bật; FE #175 QA đang chạy (đợt 18) | 03:14 11/11: ĐỢT 17 ĐÃ LÊN PROD (VERIFIED; deploy 03:02–03:05; Flyway 100|88|0; 0 lỗi 5xx; mọi cờ T37 TẮT). Studio hiện mục ‘Nguồn dữ liệu nội bộ’ trong tab Dữ liệu (3 nguồn đã duyệt, Nhân viên ghi rõ là danh sách tài khoản); mốc 1 chạy lại sau deploy 16/16 PASS (C0). Còn: bật ENTERPRISE_DATA (Công ty), mốc 1b (AI tạo app), Preview thật (đợt 18: BE #218 sửa F1c, FE #175 QA lại) | 03:27 11/11: đợt 18 (Preview thật): BE #218 sửa F1c (head 4bf413dd) và FE #175 sửa theo QA (head fe844808) đang QA delta độc lập; chưa bật cờ nào | 04:27 11/11: đợt 18 (Preview thật, cờ TẮT): BE #218, #220 và FE #175 ĐÃ MERGE vào dev sau QA độc lập (VERIFIED); FE #178 và BE #221 đang QA; E2E DEV bước 2/8 đang chạy (NOT_RUN kết quả); chưa deploy | 05:28 11/11: E2E DEV Preview thật xong (REPORTED, agent độc lập): không lỗi P0–P2; các ca chuỗi commit với Forgejo thật, khóa 409, header, thu hồi, nhiều app đạt; lượt Haiku thật cho test marker NOT_RUN (cửa sổ AI DEV mất). Đợt 18 (Preview thật dormant, không migration, cờ TẮT): QA tích hợp độc lập đang chạy; BE #221, FE #178, #179 đã merge sau QA; PR mirror BE #222 chờ QA. Chờ Owner: A/B cho test marker, reviewRequired, ack, đồng ý bật | 05:45 11/11: Owner chọn B: chấp nhận NOT_RUN lượt Haiku thật cho test marker của Preview thật (không dựng lại cửa sổ Haiku DEV; quét log PROD chỉ-đọc sau khi bật). Cờ SYSTEM_PREVIEW_REAL vẫn TẮT; còn chờ đợt 18 deploy, ack, reviewRequired, đồng ý bật | 06:27 11/11: QA tích hợp đợt 18 GO-WITH-CONDITIONS (VERIFIED); đợt 18 đã promote 06:13 và đang build trên máy chủ (không migration, cờ TẮT, chưa lên PROD). Owner chỉ đạo: deploy xong thì bật SYSTEM_PREVIEW_REAL trên PROD rồi chạy vài lượt Haiku xác nhận | 06:58 11/11: ĐỢT 18 LÊN PROD (VERIFIED 06:38–06:41) và ĐÃ BẬT SYSTEM_PREVIEW_REAL (06:43–06:46) theo Owner. MỐC 2 (Preview thật) chạy thật trên PROD: công tắc, biểu ngữ phạm vi, khung xem trước chuyển từ dữ liệu mẫu (4/5) sang dữ liệu thật (9 đơn vị/52 nhân viên), tắt về dữ liệu mẫu. MỐC 1b: 1 lượt Haiku 5.5 trên PROD (UPDATED, ~[mức USD nội bộ]) tạo bảng Phòng ban đọc nguồn nội bộ qua Data Connector; đã duyệt, merge, phát hành PRIVATE: người tạo thấy 9 dòng, người xem đơn vị thấy 1 dòng. Marker: 0 tên nhân viên thật trong prompt/audit/log PROD. TEST THẬT trên PROD: mốc 1, 1b, 2 (REPORTED + C0). Còn: QA độc lập chạy lại, xuyên tenant, ENTERPRISE_DATA, reviewRequired | 09:27 11/11: Owner báo thẻ wizard ‘Danh mục nội bộ XWeb’ còn ghi ‘Sắp có’ (chữ cứng cũ, tính năng thật ở mục ‘Danh mục dữ liệu hệ thống’): đang sửa (PR FE nhỏ + 3 chuỗi cũ + mã lỗi slot), cần QA + deploy FE đợt 19. Hướng dẫn trọn bộ P38 viết xong (FE #180, BE #223), QA độc lập đối chiếu giao diện PROD đang chạy; sổ tay r3 cần chương mới trong r4 | 10:27 11/11: hướng dẫn trọn bộ P38 (FE #180 + BE #223) ĐÃ MERGE vào dev sau QA độc lập đối chiếu PROD (VERIFIED). Sửa thẻ ‘Sắp có’ (FE #181) đang QA độc lập, rồi deploy FE đợt 19 (chỉ FE, dự kiến 11:30–12:30, ESTIMATE). Chờ Owner: ENTERPRISE_DATA, reviewRequired, T35, sổ tay r4 | 11:27 11/11: FE #181 (sửa thẻ ‘Sắp có’, tab Dữ liệu hiện sẵn nguồn nội bộ, tên dễ hiểu) ĐÃ MERGE vào dev sau QA độc lập GO-WITH-CONDITIONS (VERIFIED). Đợt 19 (chỉ FE, không migration): PR mirror BE #224 mở, QA tích hợp đang chạy (mirror + harness xanh, còn kết luận cuối); chưa deploy, dự kiến 12:00–13:00 (ESTIMATE) | 12:04 11/11: ĐỢT 19 (chỉ FE) LÊN PROD (VERIFIED 11:53–11:55): thẻ wizard hết ‘Sắp có’ (ghi Có sẵn + nút mở mục), tab Dữ liệu Studio mở sẵn ‘Nguồn dữ liệu nội bộ’ với tên dễ hiểu; không migration, không đổi cờ; mốc 1 16/16 PASS. Owner chỉ đạo thứ tự: T gần ON → T còn lại → Phase 3.3 → các phase còn lại (tuần tự); đang lập kế hoạch | 12:30 11/11: giao 2 agent FE song song (màn Công ty FE-S2, màn Hồ sơ nhân viên FE-S3); kế hoạch 3 đợt NEXT-ON-PLAN-20261111 và 8 thẻ quyết định đã đưa lên",
         "statusEn": "Owner re-prioritised: S10 ahead of Import/Export/API Sync. CODE/QA/PROD/ON/REAL-TEST tracked separately; real PROD E2E = 0 so far.",
         "prs": "BE #214 (S2 merged), #215 (S3), S10 PR-A/B sắp mở",
         "eta": "Mốc sớm nhất kiểm thử một Web App đọc dữ liệu thật trên PROD: cập nhật khi agent kiểm kê PROD trả kết quả (dự kiến trước 23:30)",
@@ -5227,8 +5227,8 @@
         "prio": "1",
         "title": "Đợt 1 · 1.6 T22-B: AI làm theo từng bước (3 lượt Haiku)",
         "titleEn": "Batch 1 · 1.6 T22-B AI by steps",
-        "status": "10:53 12/11 (rà soát lộ trình): chuyển IN_PROGRESS → IN_PROGRESS; Cờ bật chưa phải xong và có lỗi độc lập đang mở. | 14:19 11/11: ĐÃ BẬT toàn hệ thống theo Owner (NO-20 = A); cờ ai.builder.steps.enabled = true, 0 lỗi 5xx sau khi bật. Chưa: QA độc lập, tài liệu, Owner UAT. | 14:13 11/11: 3 lượt Haiku đã đo trên PROD 13:51–13:53 (VERIFIED): kế hoạch 2 bước, cả hai build thành công, finish_reason stop, 0 lỗi nhà cung cấp, ~0,011 USD; cờ đã TẮT lại. Cờ chỉ có mức toàn hệ thống (không theo workspace): chờ Owner chọn (thẻ NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
-        "statusEn": "14:19 11/11: TURNED ON globally per Owner (NO-20 = A); 0 5xx after the switch. Missing: independent QA, docs, Owner UAT. | 14:13 11/11: 3 Haiku turns measured on PROD 13:51–13:53 (VERIFIED): 2-step plan, both builds succeeded, finish_reason stop, 0 provider errors, ~0.011 USD; flag turned OFF again. The flag is global only: awaiting Owner choice (card NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển IN_PROGRESS → IN_PROGRESS; Cờ bật chưa phải xong và có lỗi độc lập đang mở. | 14:19 11/11: ĐÃ BẬT toàn hệ thống theo Owner (NO-20 = A); cờ ai.builder.steps.enabled = true, 0 lỗi 5xx sau khi bật. Chưa: QA độc lập, tài liệu, Owner UAT. | 14:13 11/11: 3 lượt Haiku đã đo trên PROD 13:51–13:53 (VERIFIED): kế hoạch 2 bước, cả hai build thành công, finish_reason stop, 0 lỗi nhà cung cấp, ~[mức USD nội bộ]; cờ đã TẮT lại. Cờ chỉ có mức toàn hệ thống (không theo workspace): chờ Owner chọn (thẻ NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
+        "statusEn": "14:19 11/11: TURNED ON globally per Owner (NO-20 = A); 0 5xx after the switch. Missing: independent QA, docs, Owner UAT. | 14:13 11/11: 3 Haiku turns measured on PROD 13:51–13:53 (VERIFIED): 2-step plan, both builds succeeded, finish_reason stop, 0 provider errors, ~[mức USD nội bộ]; flag turned OFF again. The flag is global only: awaiting Owner choice (card NO-20). | Owner chọn A (13:36): 3 lượt Haiku rồi bật cho workspace QA trước. Agent đang chuẩn bị script (chưa chạy lượt AI nào).",
         "prs": "",
         "eta": "12/11",
         "etaFirst": "12/11",
@@ -5285,8 +5285,8 @@
         "prio": "1",
         "title": "Đợt 1 · 1.7 T10: chứng minh hàng đợi build (2 lượt Haiku; số chỗ vẫn 1)",
         "titleEn": "Batch 1 · 1.7 T10 queue proof",
-        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → ON_PROD; Mục đang PLANNED nhưng việc đã làm xong. | 14:13 11/11: ĐÃ CHỨNG MINH trên PROD 13:56 (VERIFIED): 2 lượt Haiku đồng thời trên 2 dự án QA, build thứ hai đợi 25,1 s rồi chạy thành công, số chỗ = 1, ~0,0065 USD. slots=2 để Đợt 2 (cần runner thứ hai). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
-        "statusEn": "14:13 11/11: PROVEN on PROD 13:56 (VERIFIED): 2 simultaneous Haiku turns on 2 QA projects, the second build waited 25.1 s then succeeded, slots = 1, ~0.0065 USD. slots=2 is Batch 2 (needs a second runner). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → ON_PROD; Mục đang PLANNED nhưng việc đã làm xong. | 14:13 11/11: ĐÃ CHỨNG MINH trên PROD 13:56 (VERIFIED): 2 lượt Haiku đồng thời trên 2 dự án QA, build thứ hai đợi 25,1 s rồi chạy thành công, số chỗ = 1, ~[mức USD nội bộ]. slots=2 để Đợt 2 (cần runner thứ hai). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
+        "statusEn": "14:13 11/11: PROVEN on PROD 13:56 (VERIFIED): 2 simultaneous Haiku turns on 2 QA projects, the second build waited 25.1 s then succeeded, slots = 1, ~[mức USD nội bộ]. slots=2 is Batch 2 (needs a second runner). | Script đang chuẩn bị cùng 1.6. slots=2 cần tiến trình runner thứ hai (chưa có quy trình) → để Đợt 2.",
         "prs": "",
         "eta": "12/11",
         "etaFirst": "12/11",
@@ -5386,7 +5386,7 @@
         "prio": "2",
         "title": "Đợt 1 · 1.10 Gói UAT cho Owner: UX13, P0-18, T14, T15, P0-19",
         "titleEn": "Batch 1 · 1.10 UAT pack",
-        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → IN_PROGRESS; Gói đã soạn; còn lại là việc của Owner. | 15:31 11/11: Owner chọn A (NO-21). C0 đã chuẩn bị T14: dự án QA chính có 1 thay đổi AI READY chưa merge (1 lượt Haiku, build thành công, ~0,003 USD); Owner KHÔNG bấm 'Đưa vào' thay đổi đó khi thử. Còn: Owner thử UAT từng mục. | 15:09 11/11: ĐÃ SOẠN gói UAT (chỉ tài liệu, ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md): UX13 14 bước, P0-18 16 bước, T14 8 bước, T15 7 bước, P0-19 16 bước, T35 hồi quy 8 bước; mỗi bước có kết quả mong đợi và ô Đạt/Lỗi; không có mật khẩu/email/IP. Còn 9 điểm cần Owner nói rõ (thẻ NO-21). Chưa có Owner UAT. | Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
+        "status": "10:53 12/11 (rà soát lộ trình): chuyển PLANNED → IN_PROGRESS; Gói đã soạn; còn lại là việc của Owner. | 15:31 11/11: Owner chọn A (NO-21). C0 đã chuẩn bị T14: dự án QA chính có 1 thay đổi AI READY chưa merge (1 lượt Haiku, build thành công, ~[mức USD nội bộ]); Owner KHÔNG bấm 'Đưa vào' thay đổi đó khi thử. Còn: Owner thử UAT từng mục. | 15:09 11/11: ĐÃ SOẠN gói UAT (chỉ tài liệu, ~/xweb-handoff/p37-studio/uat/UAT-PACK-20261111.md): UX13 14 bước, P0-18 16 bước, T14 8 bước, T15 7 bước, P0-19 16 bước, T35 hồi quy 8 bước; mỗi bước có kết quả mong đợi và ô Đạt/Lỗi; không có mật khẩu/email/IP. Còn 9 điểm cần Owner nói rõ (thẻ NO-21). Chưa có Owner UAT. | Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "statusEn": "Chưa bắt đầu. Không phải tính năng mới: gói hướng dẫn + checklist để Owner nghiệm thu từng mục.",
         "prs": "",
         "eta": "~14/11",
@@ -5749,10 +5749,10 @@
         "prio": "0",
         "batch": 1,
         "closed": false,
-        "title": "ƯU TIÊN CAO · Kế hoạch bước 2 treo (chạm trần chi phí 0,30 USD mỗi kế hoạch)",
-        "titleEn": "TOP PRIORITY · Step 2 stuck: per-plan cost cap 0.30 USD reached",
-        "status": "18:26: ĐÃ XỬ LÝ: nâng ai.builder.steps.cost-cap-usd lên 8,00 USD (Owner chọn A, dùng cho người dùng thật). Kế hoạch KOI 5/5 xong, chi phí 2,46 USD. Nguyên nhân: trần 0,30 chưa từng đo chi phí thật; bước 1 (đọc cả tài liệu, Opus) tốn 0,79. Việc sau: trần theo mô hình/bước, đưa cài đặt lên màn quản trị (hiện chỉ chỉnh bằng API).",
-        "statusEn": "18:26: ĐÃ XỬ LÝ: nâng ai.builder.steps.cost-cap-usd lên 8,00 USD (Owner chọn A, dùng cho người dùng thật). Kế hoạch KOI 5/5 xong, chi phí 2,46 USD. Nguyên nhân: trần 0,30 chưa từng đo chi phí thật; bước 1 (đọc cả tài liệu, Opus) tốn 0,79. Việc sau: trần theo mô hình/bước, đưa cài đặt lên màn quản trị (hiện chỉ chỉnh bằng API).",
+        "title": "ƯU TIÊN CAO · Kế hoạch bước 2 treo (chạm trần chi phí [mức USD nội bộ] mỗi kế hoạch)",
+        "titleEn": "TOP PRIORITY · Step 2 stuck: per-plan cost cap [mức USD nội bộ] reached",
+        "status": "18:26: ĐÃ XỬ LÝ: nâng ai.builder.steps.cost-cap-usd lên [mức USD nội bộ] (Owner chọn A, dùng cho người dùng thật). Kế hoạch KOI 5/5 xong, chi phí [mức USD nội bộ]. Nguyên nhân: trần 0,30 chưa từng đo chi phí thật; bước 1 (đọc cả tài liệu, Opus) tốn 0,79. Việc sau: trần theo mô hình/bước, đưa cài đặt lên màn quản trị (hiện chỉ chỉnh bằng API).",
+        "statusEn": "18:26: ĐÃ XỬ LÝ: nâng ai.builder.steps.cost-cap-usd lên [mức USD nội bộ] (Owner chọn A, dùng cho người dùng thật). Kế hoạch KOI 5/5 xong, chi phí [mức USD nội bộ]. Nguyên nhân: trần 0,30 chưa từng đo chi phí thật; bước 1 (đọc cả tài liệu, Opus) tốn 0,79. Việc sau: trần theo mô hình/bước, đưa cài đặt lên màn quản trị (hiện chỉ chỉnh bằng API).",
         "prs": "cài đặt chạy nóng",
         "eta": "đã xong phần chính",
         "etaFirst": "đã xong phần chính",
@@ -5762,7 +5762,7 @@
         "accept": [],
         "steps": [
           {
-            "label": "Nâng trần lên 8 USD",
+            "label": "Nâng trần lên [mức USD nội bộ]",
             "state": "done"
           },
           {
@@ -5819,8 +5819,8 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Số liệu OpenRouter 'không chuẩn' (sổ nội bộ cao hơn)",
         "titleEn": "TOP PRIORITY · OpenRouter usage does not match the internal ledger",
-        "status": "19:27: ĐÃ ĐO: 12 lượt TIMEOUT/ERROR/CANCELLED (không mã generation, không token ra) bị sổ ghi 12,07 USD ở mức tối đa; khớp chênh ~10,45 USD với OpenRouter. Owner cho phép dùng API/tài liệu OpenRouter, nhưng sửa sổ tài chính cần Owner nói 'sửa sổ'. | 18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu (1,2203 USD); tuần trước sổ nội bộ cao hơn khoảng 10 USD vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
-        "statusEn": "18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu (1,2203 USD); tuần trước sổ nội bộ cao hơn khoảng 10 USD vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
+        "status": "19:27: ĐÃ ĐO: 12 lượt TIMEOUT/ERROR/CANCELLED (không mã generation, không token ra) bị sổ ghi [mức USD nội bộ] ở mức tối đa; khớp chênh ~[mức USD nội bộ] với OpenRouter. Owner cho phép dùng API/tài liệu OpenRouter, nhưng sửa sổ tài chính cần Owner nói 'sửa sổ'. | 18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu ([mức USD nội bộ]); tuần trước sổ nội bộ cao hơn khoảng [mức USD nội bộ] vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
+        "statusEn": "18:26: đo: chi phí từng lượt lấy từ phản hồi nhà cung cấp; tuần này khớp từng xu ([mức USD nội bộ]); tuần trước sổ nội bộ cao hơn khoảng [mức USD nội bộ] vì lượt không thành công (hết thời gian/lỗi/hủy) ghi ở mức tối đa. An toàn nhưng thừa. Chờ Owner: bảng đối chiếu chỉ-đọc 26 lượt với OpenRouter.",
         "prs": "",
         "eta": "chờ Owner",
         "etaFirst": "chờ Owner",
@@ -5855,8 +5855,8 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Rà các giới hạn còn chặn người dùng thật",
         "titleEn": "TOP PRIORITY · Audit of remaining limits blocking real users",
-        "status": "09:46 12/11: Owner yêu cầu không giới hạn AI chỉ giới hạn tiền: đã đặt 0 cho lượt/ngày và token/ngày/tháng (3 cài đặt + 5 ngoại lệ, REPORTED). Còn trần chung 600 lượt/ngày cần mã. Danh sách 69 giới hạn đã lên tab 'Giới hạn AI Studio' để Owner chọn. | 19:27: Owner: 'khoảng 5 người'. Đề xuất tiền: khóa OpenRouter 150 USD/tuần, trần cửa sổ 150 (cần đổi giá trị gốc cùng bản 21), 100 USD/người/tháng, 400 USD/workspace/tháng; chờ Owner xác nhận. | 18:31: ĐÃ NÂNG giới hạn mềm theo thẻ NO-24 = A (VERIFIED đọc lại): lượt AI/người/ngày 500, build/người/ngày 200, build/dự án/ngày 300, build đồng thời/người 3. Còn chờ Owner: phần tiền. | 18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
-        "statusEn": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI 50 USD (còn ~21), hạn mức khóa nhà cung cấp 60 USD/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, 50 USD/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "status": "09:46 12/11: Owner yêu cầu không giới hạn AI chỉ giới hạn tiền: đã đặt 0 cho lượt/ngày và token/ngày/tháng (3 cài đặt + 5 ngoại lệ, REPORTED). Còn trần chung 600 lượt/ngày cần mã. Danh sách 69 giới hạn đã lên tab 'Giới hạn AI Studio' để Owner chọn. | 19:27: Owner: 'khoảng 5 người'. Đề xuất tiền: khóa OpenRouter [mức USD nội bộ]/tuần, trần cửa sổ 150 (cần đổi giá trị gốc cùng bản 21), [mức USD nội bộ]/người/tháng, [mức USD nội bộ]/workspace/tháng; chờ Owner xác nhận. | 18:31: ĐÃ NÂNG giới hạn mềm theo thẻ NO-24 = A (VERIFIED đọc lại): lượt AI/người/ngày 500, build/người/ngày 200, build/dự án/ngày 300, build đồng thời/người 3. Còn chờ Owner: phần tiền. | 18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI [mức USD nội bộ] (còn ~21), hạn mức khóa nhà cung cấp [mức USD nội bộ]/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, [mức USD nội bộ]/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "statusEn": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI [mức USD nội bộ] (còn ~21), hạn mức khóa nhà cung cấp [mức USD nội bộ]/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, [mức USD nội bộ]/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
         "prs": "cài đặt chạy nóng",
         "eta": "chờ Owner",
         "etaFirst": "chờ Owner",
@@ -6880,7 +6880,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T01:40:55+07:00",
+    "updatedAt": "2026-11-13T02:08:32+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6891,11 +6891,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "ok",
-            "summary": "Không có comment [OWNER]/[CHATGPT] mới trên #88 từ #6819001716; hai tin chat của Owner (khóa SSH, câu hỏi về con số trần) đã xử lý"
-          },
           {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "ok",
@@ -6940,6 +6935,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "changed",
             "summary": "Đọc review #257 6832062061 (01:16): xác nhận prTable; còn 5 yêu cầu bằng chứng; trả lời ở #257"
+          },
+          {
+            "at": "2026-11-13T02:08:32+07:00",
+            "result": "changed",
+            "summary": "Đọc báo cáo QA UI r4 (GO có điều kiện); không có comment mới của Owner"
           }
         ]
       },
@@ -7012,11 +7012,6 @@
         "createdBy": "C0",
         "runs": [
           {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "changed",
-            "summary": "Merge dev: BE #250 (15:54), #254 (16:21, QA GO / SEC GO có điều kiện, head 3d8e6d81); dev đóng băng 16:25; QA tích hợp bản 22 đang chạy"
-          },
-          {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
             "summary": "PR #258 (runner, 71fe0055) mở, QA/SEC độc lập bắt đầu; #252 vẫn chờ QA; 10 agent RUNNING (ListAgents 17:42)"
@@ -7060,6 +7055,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "changed",
             "summary": "ListAgents 01:40: 1 đang chạy (QA ATT-b); #273 mới mở; #272/#207 chờ QA; Oxy thẻ 4-5 có kết quả"
+          },
+          {
+            "at": "2026-11-13T02:08:32+07:00",
+            "result": "changed",
+            "summary": "QA cặp ATT-b GO → merge #272/#207; QA #273 đang chạy; QA UI r4 xong"
           }
         ]
       },
@@ -7132,11 +7132,6 @@
         "createdBy": "C0",
         "runs": [
           {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "changed",
-            "summary": "Cập nhật dashboard: bản ghi hằng giờ"
-          },
-          {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "changed",
             "summary": "Cập nhật hạng mục 08 (PR #258) và tóm tắt hằng giờ"
@@ -7180,6 +7175,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "changed",
             "summary": "Dashboard: hiển thị bảng PR chuẩn và diễn tiến làn máy phụ (ASSIGNED/EXECUTING/RESULT); nợ test mới"
+          },
+          {
+            "at": "2026-11-13T02:08:32+07:00",
+            "result": "changed",
+            "summary": "Dashboard: sửa P2-A..E của QA r4; bảng PR 31 dòng; ẩn số tiền USD và tên tài khoản máy; bỏ .playwright-cli"
           }
         ]
       },
@@ -7312,11 +7312,6 @@
         "createdBy": "C0",
         "runs": [
           {
-            "at": "2026-11-12T16:42:23+07:00",
-            "result": "skipped",
-            "summary": "Chỉ 2 agent chạy, dưới mức tối thiểu: giữ lệnh Owner không giao thêm agent trong kiểm toán DB; sẽ giao QA delta #252 sau khi trả lời"
-          },
-          {
             "at": "2026-11-12T17:42:20+07:00",
             "result": "ok",
             "summary": "10 agent RUNNING (tối đa 10); không giao thêm"
@@ -7360,6 +7355,11 @@
             "at": "2026-11-13T01:40:55+07:00",
             "result": "changed",
             "summary": "1 agent chạy do tải 14.47 8.38 7.76 và khe nặng; QA #273 xếp hàng; sẽ giao QA dashboard r4 và sửa test cũ khi khe rảnh"
+          },
+          {
+            "at": "2026-11-13T02:08:32+07:00",
+            "result": "changed",
+            "summary": "QA #273 chạy (1 agent); sửa test cũ chờ khe nặng"
           }
         ]
       }
@@ -7469,6 +7469,11 @@
         "at": "2026-11-13T01:40:55+07:00",
         "by": "C0",
         "note": "Review #257 6832062061: hiển thị prTable và diễn tiến làn máy phụ trong #hourly (ASSIGNED/EXECUTING/RESULT theo giờ); PR #207/#273 vào bảng; nợ test mới ghi vào blockers"
+      },
+      {
+        "at": "2026-11-13T02:08:32+07:00",
+        "by": "C0",
+        "note": "QA UI r4 (c13726b, GO có điều kiện): sửa P2-A..E; dọn repo công khai (số USD, tên tài khoản máy, .playwright-cli); cập nhật prTable sau merge #272/#207"
       }
     ],
     "summary": {
@@ -7481,7 +7486,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "01:40: ATT-b có PR sửa BE #272 + FE #207 (REPORTED; đang QA độc lập cặp); PR #273 (khóa nguồn provider, URL, test cũ P8) mở chờ QA; thẻ 4 và 5 của máy phụ có KẾT QUẢ (đã kéo về, sha256 khớp, FE unit 6108/6100/0/0/8); bảng PR chuẩn cập nhật: đã merge 19, đang mở 10",
+      "changeSincePrev": "02:04: QA độc lập cặp ATT-b GO và đã merge BE #272 + FE #207 (dev BE 4ec6ea65, FE 7c940a24); QA UI vòng 4 GO có điều kiện (sửa dữ liệu mâu thuẫn P2-B..E, tiêu đề thẻ NO-37, dọn thông tin nhạy cảm); QA #273 đang chạy; làn Oxy thẻ 4-5 có kết quả; bảng PR chuẩn: đã merge 21, đang mở 9",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7513,18 +7518,18 @@
       "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa vào dev, chưa có kết luận QA độc lập: BE #262, #263, #265, #266, #267, #271, #272, #273; FE #204, #207 (bảng prTable)",
+        "PR đang mở chưa vào dev, chưa có kết luận QA độc lập: BE #210, #262, #263, #265, #266, #267, #271, #273; FE #204 (bảng prTable)",
         "Thẻ Owner NO-37 (paid=false tự khai) và NO-36 (mục 07) chờ quyết",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "Nợ test cũ: DataManagementNegativeSecurityTests và ManagementTransportTests (danh sách route) đỏ trên dev sạch 82ff4e73 (REPORTED bởi agent #273); ReadShapesTests có ngưỡng thời gian thực dễ chập chờn"
       ],
       "risks": [
-        "Tải Mac hoangluan 13.80 16.48 19.17 (uptime 23:38); đĩa 36 GiB (df 23:38); nguồn hồi: hệ thống giải phóng bớt snapshot cục bộ sau khi C0 xóa worktree sạch (không xóa Docker, không xóa bằng chứng QA)",
+        "Tài nguyên (đo 02:04): tải 5.83 6.66 7.71 (uptime), đĩa 28 GiB (df); máy chính tải cao khi nhiều agent chạy Gradle/Chrome; ngưỡng cảnh báo đĩa 20 GiB",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
-        "Làn Oxy (máy thứ hai) mới đo, chưa chạy việc: Docker Desktop chưa khởi động, bước sudo/Docker chờ Owner"
+        "Làn Oxy (máy thứ hai): thẻ 1-5 đã có kết quả (FE unit đầy đủ, guard, BE lớp thuần PASS); Docker Desktop chưa khởi động, bước sudo/Docker/cô lập chờ Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên; đĩa Mac hoangluan 27 GiB trống (df 01:40), tải 14.47 8.38 7.76 (uptime 01:40); làn máy phụ: thẻ 1-5 đã có kết quả, chưa 'sẵn sàng'",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa 28 GiB trống (df 02:04), tải 5.83 6.66 7.71 (uptime 02:04); làn máy phụ: thẻ 1-5 có kết quả, chưa 'sẵn sàng'",
       "ownerNeeds": [
         "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm, mục 07) và NO-37 (bảo mật nhà cung cấp: paid=false tự khai) ở tab Chờ anh quyết",
         "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
@@ -7536,24 +7541,17 @@
         "change": "Từ 27/11–07/12 sang 20/11–27/11: PAYC-1 thật chỉ ~1 giờ 05 phút so với 14 giờ công thiết kế nên mục 06 ngắn hơn nhiều; đường găng chuyển sang mục 07 và 12"
       },
       "uiux": {
-        "checkedAt": "2026-11-13T01:40:55+07:00",
-        "status": "QA_INDEPENDENT_R3_FIXED_PENDING_R4",
-        "qaSha": "19de68e (vòng 3)",
-        "qaVerdict": "GO có điều kiện (vòng 3: 192 ô local + 96 ô live, 5 điều kiện P2 đã sửa ở be8b37f/aa68ff0)",
+        "checkedAt": "2026-11-13T02:08:32+07:00",
+        "status": "QA_INDEPENDENT_R4_GO_WITH_CONDITIONS_FIXES_PENDING_R5",
+        "qaSha": "c13726b (vòng 4)",
+        "qaVerdict": "GO có điều kiện (không P0/P1; P2-A..E: tiêu đề thẻ NO-37 tràn trên điện thoại, dữ liệu mâu thuẫn về #258/#254/#252, test đỏ, rủi ro/agent cũ; 28/29 dòng bảng PR khớp gh, dòng lệch do merge sau lúc đọc)",
         "afterQaShas": [
-          "be8b37f",
-          "aa68ff0",
-          "872df1d",
-          "db1a504",
-          "fb5a1b5",
-          "317e12a",
-          "2975087",
-          "commit hourly hiện tại (thêm hiển thị bảng PR chuẩn và diễn tiến làn máy phụ)"
+          "commit hourly 13/11 ~02:00 sửa P2-A..E, bỏ .playwright-cli khỏi repo, ẩn số tiền USD và tên tài khoản máy trong status.json"
         ],
-        "proof": "QA vòng 3 độc lập trên 19de68e; các sửa sau đó chỉ có C0 tự chạy (4 bộ test PASS, kiểm trình duyệt hiển thị mục mới 01:2x); QA vòng 4 độc lập sẽ giao trên đúng SHA Pages",
-        "open": "QA vòng 3: 8 cỡ × 2 theme, deep link, zoom 200%, tương phản, bàn phím"
+        "proof": "QA vòng 4 độc lập trên c13726b (Pages cùng SHA, byte-identical); các sửa sau đó chỉ có C0 tự chạy (5 bộ test: 4 PASS, shell-ui chỉ còn 2 lỗi nền 06 và 16; kiểm trình duyệt thẻ NO-37 ở 320 px: không tràn). Chưa có QA độc lập trên SHA sửa",
+        "open": "QA vòng 5 trên SHA sửa; trạng thái ASSIGNED/EXECUTING của timeline chưa kiểm (dữ liệu chỉ có RESULT/UNASSIGNED); lịch sử git còn chứa tên tài khoản máy và tệp .playwright-cli cũ (cần Owner quyết nếu muốn viết lại lịch sử)"
       },
-      "agentCensus": "1 đang chạy (QA cặp ATT-b), 38 đã xong, 0 nghi treo; dừng agent ATT-b vì gửi lại báo cáo 4 lần; #273 chờ QA khi khe nặng rảnh (tải 14.47 8.38 7.76); đĩa 27 GiB",
+      "agentCensus": "1 đang chạy (QA #273), 40 đã xong, 0 nghi treo; QA ATT-b và QA UI r4 vừa xong",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7562,12 +7560,12 @@
           "at": "2026-11-12T16:22:00+07:00"
         },
         "movingDev": {
-          "be": "82ff4e73 (đo 00:38)",
-          "fe": "3a4ba863 (đo 00:38)"
+          "be": "4ec6ea65 (đo 02:04)",
+          "fe": "7c940a24 (đo 02:04)"
         },
         "redTests": [
           "OlReferenceTurnWiringTests (#254 đổi lời nhắc theo trần đầu ra) và census patch_stale: đã sửa, merge trong #261 sau QA độc lập",
-          "PaidCodeEditProdAckTests (do #259) và AiGateSourceGuardTests (do #261): sửa nằm trong #270, đang QA"
+          "PaidCodeEditProdAckTests (do #259) và AiGateSourceGuardTests (do #261): sửa đã merge trong #270 sau QA độc lập (QA-PR270.md); test P8 của OlDataPromptTests: sửa trong PR #273 (chờ QA); 2 test danh sách route còn đỏ trên dev (chưa có PR)"
         ],
         "needs": "đóng băng lại; QA delta độc lập trên cặp SHA cuối (Flyway kỳ vọng 101|89|0, cho phép migration 101; bản sao tài liệu FE khớp BE; lõi FE vendored đồng bộ); không promote/deploy trước GO",
         "fullSuite": "10595 test, 10 đỏ trên d430a3e6 (6 baseline cũng đỏ trên main, 3 flake chạy riêng thì qua, 1 chỉ có trên dev là OlReferenceTurnWiringTests); test census patch_stale đỏ là lỗi riêng ở combined-check; cả hai đã sửa và merge trong #261; hai test đỏ do merge #259/#261 để lại sửa trong #270"
@@ -7633,9 +7631,9 @@
         ]
       },
       "prTable": {
-        "checkedAt": "2026-11-13T01:40:55+07:00",
-        "source": "gh pr view lúc 01:40 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "19 PR đã merge dev sau QA độc lập; 10 PR đang mở chưa có kết luận QA độc lập",
+        "checkedAt": "2026-11-13T02:04:32+07:00",
+        "source": "gh pr view lúc 02:04 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "21 PR đã merge dev sau QA độc lập; 9 PR đang mở chưa có kết luận QA độc lập",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -7702,6 +7700,17 @@
             "label": "status:done",
             "qa": "QA GO có điều kiện / SEC GO",
             "qaReport": "QA-PR268-206.md"
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 207,
+            "state": "MERGED",
+            "head": "367b04ed",
+            "mergeCommit": "7c940a24",
+            "mergedAt": "2026-11-12T18:45:10Z",
+            "label": "status:done",
+            "qa": "QA+SEC GO (cặp với BE #272)",
+            "qaReport": "QA-PR272-207.md"
           },
           {
             "repo": "xweb01",
@@ -7848,6 +7857,39 @@
           },
           {
             "repo": "xweb01",
+            "pr": 272,
+            "state": "MERGED",
+            "head": "5062fd3d",
+            "mergeCommit": "4ec6ea65",
+            "mergedAt": "2026-11-12T18:45:04Z",
+            "label": "status:done",
+            "qa": "QA+SEC GO (cặp với FE #207)",
+            "qaReport": "QA-PR272-207.md"
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 204,
+            "state": "OPEN",
+            "head": "2090b5d8",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "xweb01",
+            "pr": 210,
+            "qaReport": null,
+            "qa": "chưa QA độc lập (NOT_RUN); PR cũ (XLSX)",
+            "state": "OPEN",
+            "head": "5e5c30ac",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa"
+          },
+          {
+            "repo": "xweb01",
             "pr": 262,
             "state": "OPEN",
             "head": "6b32491b",
@@ -7914,53 +7956,20 @@
           },
           {
             "repo": "xweb01",
-            "pr": 272,
-            "state": "OPEN",
-            "head": "5062fd3d",
-            "mergeCommit": null,
-            "mergedAt": null,
-            "label": "status:qa",
-            "qa": "QA độc lập cặp #272+#207 đang chạy từ 01:13 (kết quả chưa có)",
-            "qaReport": null
-          },
-          {
-            "repo": "Xweb01fe",
-            "pr": 204,
-            "state": "OPEN",
-            "head": "2090b5d8",
-            "mergeCommit": null,
-            "mergedAt": null,
-            "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
-            "qaReport": null
-          },
-          {
-            "repo": "Xweb01fe",
-            "pr": 207,
-            "state": "OPEN",
-            "head": "367b04ed",
-            "mergeCommit": null,
-            "mergedAt": null,
-            "label": "status:qa",
-            "qa": "QA độc lập cặp #272+#207 đang chạy từ 01:13 (kết quả chưa có)",
-            "qaReport": null
-          },
-          {
-            "repo": "xweb01",
             "pr": 273,
             "state": "OPEN",
             "head": "2fd893e0",
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qa": "QA độc lập đang chạy (kết quả chưa có)",
             "qaReport": null
           }
         ]
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T01:40:55+07:00",
+      "checkedAt": "2026-11-13T02:08:32+07:00",
       "source": "ListAgents lúc 01:40 ICT (chụp trực tiếp)",
       "cap": 10,
       "counts": {
@@ -7970,23 +7979,23 @@
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 38
+        "FINISHED": 40
       },
       "resources": "Tải 14.47 8.38 7.76; đĩa 27 GiB (df 01:40)",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
-        "Phiên ngang hàng hoangluan-e4 (tương tác) không phải agent của C0, không tính.",
+        "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
         "Model cả 4 agent: claude-sonnet-5-5 theo log từng agent."
       ],
       "items": [
         {
-          "alias": "qa-attb",
-          "id": "a97e8ce8",
-          "task": "QA độc lập cặp ATT-b: BE #272 (5062fd3d) + FE #207 (367b04ed)",
+          "alias": "qa-pr273",
+          "id": "a50380e6",
+          "task": "QA+SEC độc lập BE #273 (khóa nguồn provider, URL, test cũ P8)",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-13T01:13:00+07:00",
+          "startAt": "2026-11-13T01:47:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
           "etaAt": null,
@@ -16107,13 +16116,13 @@
       "note": "Kiểm toán chỉ đọc 69/69 theo tầng (REPORTED; mã BE dev 53da22c5, FE dev 29c2f075). Phân lớp: QUOTA_NGHIEP_VU 21, GIOI_HAN_TAI_NGUYEN 17, GIOI_HAN_MODEL 13, BAO_MAT 13, GIOI_HAN_TIEN 5. Giai đoạn (hàng có nội dung thật): CODE 8, QA 6, DEPLOY 0 (PROD vẫn chạy bản 21, không PR nào từ BE #243 trở đi có trong đó), ON 15 (đều là cài đặt nóng), VERIFIED 9.",
       "q1": "Tổng 68 vì dashboard xếp L21 vào 'cần mã' (chữ 'PR runner') và L28 vào nhóm 'khác' không có chip; đã sửa dữ liệu: 19 đã áp dụng + 17 cần mã + 1 giữ + 32 chưa quyết = 69.",
       "blockers": [
-        "Trần trả lời 16.000 token/lượt + lời nhắc ~7.000/11.000 token (PAY-b #254 mở)",
+        "Trần trả lời 16.000 token/lượt + lời nhắc ~7.000/11.000 token (PAY-b #254 đã merge dev sau QA độc lập; chưa deploy/ON)",
         "Không tự tiếp tục khi chạm trần/hết tiền; bước kế hoạch bị cắt vẫn bị đánh DONE (chưa có PR: PAYC)",
         "AI chỉ thấy ≤64 KB nguồn, ≤24 KB mỗi tệp; vòng đọc T23 TẮT và chưa triển khai (CTX-b chưa có PR)",
         "Sửa nhiều tệp = viết lại cả tệp, ≤10 tệp/câu trả lời; T24 đã merge nhưng chưa nối (T24-3..8 chưa có PR)",
         "Trần lượt chung 600/ngày: #250 đã merge, chưa triển khai",
         "Runner build: kẹp 900 giây/bước, lease 25 phút không gia hạn, 1 chỗ chạy (chưa có PR)",
-        "Huỷ lượt bị tính mức tối đa: #252 mở, ngoài bản 22",
+        "Huỷ lượt bị tính mức tối đa: #252 đã merge dev sau QA độc lập (QA-PR252-r2.md); chưa nằm trong bản 22 đã deploy",
         "Tệp vào bị chặn: ≤3 tài liệu/1,5 MiB, không nhận file nén (ATT-b/ATT-e chưa có PR)"
       ],
       "holes": [
@@ -16322,7 +16331,7 @@
         "deploy": "✗",
         "on": "✗",
         "verified": "✗",
-        "agent": "agent sửa BE theo điều kiện QA RUNNING; agent sửa FE khóa nguyên mẫu RUNNING",
+        "agent": "agent sửa BE theo điều kiện QA: đã xong (PR #272 merged); agent sửa FE khóa nguyên mẫu: đã xong",
         "eta": "PR ~14/11, merge ~16/11 (trung bình)",
         "etaInfo": {
           "etaAt": "2026-11-13T18:30:00+07:00",
@@ -16371,7 +16380,7 @@
         "deploy": "✗",
         "on": "✗",
         "verified": "✗",
-        "agent": "cùng PR sửa điều kiện QA (BE+FE) RUNNING",
+        "agent": "cùng PR sửa điều kiện QA (BE #272 + FE #207): đã merge sau QA độc lập, không còn agent chạy",
         "eta": "PR ~14/11, đo thật ~20/11 (thấp–trung bình)",
         "etaInfo": {
           "etaAt": "2026-11-13T22:30:00+07:00",
@@ -16475,7 +16484,7 @@
         "deploy": "✗",
         "on": "✗",
         "verified": "✗",
-        "agent": "agent ATT-b1 (BE) RUNNING; agent ATT-e0 (ADR/quyết định NO-DIR-5) RUNNING",
+        "agent": "ATT-b: xong (#272/#207 merged); ATT-e0 (ADR/NO-DIR-5): xong, chờ Owner NO-36",
         "eta": "~22–27/11 (rất thấp)",
         "etaInfo": {
           "etaAt": null,
@@ -16538,7 +16547,7 @@
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "QA delta trên cặp SHA cuối (sau khi #258, FE #200, T24/T25 tích hợp xong)",
-            "2 test đỏ chỉ có trên dev cần sửa (OlReferenceTurnWiringTests, census patch_stale)",
+            "Test đỏ chỉ có trên dev: 2 cái đã sửa (#261); còn nợ mới trên dev sạch: DataManagementNegativeSecurityTests, ManagementTransportTests (danh sách route), OlDataPromptTests P8 (sửa trong #273, chờ QA) — REPORTED",
             "bộ test BE đầy đủ ~3 giờ 15 phút khi tải máy cao"
           ],
           "milestones": [
@@ -16615,7 +16624,7 @@
         "deploy": "–",
         "on": "–",
         "verified": "✗",
-        "agent": "agent PR bảo mật nhà cung cấp RUNNING",
+        "agent": "agent PR bảo mật nhà cung cấp: xong (#273 mở, QA độc lập đang chạy)",
         "eta": "~16/11 (trung bình), cần xác nhận Owner",
         "etaInfo": {
           "etaAt": null,

@@ -1,8 +1,9 @@
 # Nhật ký dựng làn build/test trên máy phụ đầu tiên
 
 > Nội dung dùng từ chung ("máy phụ", "máy chính", "hub"), không ghi tên máy, tài khoản hay địa chỉ.
-> Cập nhật 2026-11-13 00:40 ICT. Nguồn: các comment trên issue điều phối của hub (đọc bằng `gh`: báo cáo thẻ 2, báo cáo thẻ 3 phần A+B, runbook của máy phụ, thẻ 4), 9 thư mục kết quả đã kéo về máy chính bằng SSH chỉ-đọc (`job.log`, `meta.txt`, `SHA256SUMS`), và lần chạy thử script slot trên máy chính.
-> **Trạng thái làn: ĐANG KIỂM CHỨNG (IN_VERIFICATION). CHƯA tuyên bố "sẵn sàng".** Thẻ 2 và thẻ 3 (phần A+B) của máy phụ đã xong với kết quả thật (mục 3); việc QA thật đầu tiên (thẻ 4) mới được đăng và chưa có kết quả. Docker/Testcontainers và spec trình duyệt vẫn `NOT_RUN`.
+> Cập nhật 2026-11-13 02:08 ICT (thẻ 4 và 5 đã có kết quả: xem mục 7). Nguồn: các comment trên issue điều phối của hub (đọc bằng `gh`: báo cáo thẻ 2, báo cáo thẻ 3 phần A+B, runbook của máy phụ, thẻ 4), 9 thư mục kết quả đã kéo về máy chính bằng SSH chỉ-đọc (`job.log`, `meta.txt`, `SHA256SUMS`), và lần chạy thử script slot trên máy chính.
+> **Trạng thái làn: ĐANG KIỂM CHỨNG (IN_VERIFICATION). CHƯA tuyên bố "sẵn sàng".** Thẻ 2 và thẻ 3 (phần A+B) của máy phụ đã xong với kết quả thật (mục 3); việc QA thật đầu tiên (thẻ 4) mới được đăng và chưa có kết quả. Docker/Testcontainers và spec trình duyệt vẫn `NOT_RUN`.  
+> **Cập nhật 02:08:** thẻ 4 (QA thật đầu tiên) và thẻ 5 (FE unit giới hạn song song) đã chạy, kết quả máy chính kéo về và xác minh sha256 (mục 7). Các đoạn phía trên phản ánh thời điểm 00:40.
 
 Nhãn dùng trong file: **MEASURED** = đo/đọc được từ đầu ra hoặc comment có nguồn; **ESTIMATE** = suy luận hoặc con số cần đo lại; **NOT_RUN** = chưa chạy; **PASS/FAIL** chỉ khi có lệnh, mã thoát và đầu ra thật.
 
@@ -151,7 +152,7 @@ Tải cao nhất cả phiên (thẻ 3): 10,35 lúc 00:23:06, 66 mẫu. Mọi vi�
 | Docker Desktop khởi động và đặt giới hạn (việc của Owner) | chưa | NOT_RUN |
 | Một lớp test BE dùng Testcontainers chạy đạt | chưa | NOT_RUN |
 | Chrome cho spec trình duyệt FE | chưa (Playwright chưa cài) | NOT_RUN |
-| `test:unit` đầy đủ qua script slot (thẻ 4 việc 1) | chưa có kết quả | NOT_RUN |
+| `test:unit` đầy đủ qua script slot (thẻ 4 việc 1) | thẻ 4: ABORTED_LOAD; thẻ 5 (lệnh tương đương song song 3): 6108/6100/0/0/8 PASS — xem mục 7 | NOT_RUN qua script gốc |
 | Offline lần hai từ worktree mới của cùng SHA | chưa | NOT_RUN |
 
 ### 6.3 RUNBOOK từ máy phụ (do chính máy phụ viết, 13/11 00:30 ICT)
