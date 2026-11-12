@@ -6,15 +6,16 @@ Dashboard Owner bằng tiếng Việt (có English), responsive desktop/mobile, 
 
 - `index.html`: một trang, tự chứa (không CDN/font ngoài).
 - `status.json`: dữ liệu (đọc cùng thư mục). Tác vụ đồng bộ hằng giờ sửa file này.
-- `tests/process-ui.mjs`: kiểm tra tab Quy trình & cấu hình. `tests/shell-ui.mjs`: kiểm tra khung 5 tab, định tuyến, bàn phím, thẻ Owner, a11y. `tests/hourly-ui.mjs` (+ `tests/fixtures/hourly.json`): kiểm tra tab Việc chạy mỗi giờ.
+- `tests/process-ui.mjs`: kiểm tra tab Quy trình & cấu hình. `tests/shell-ui.mjs`: kiểm tra khung 5 tab, định tuyến, bàn phím, thẻ Owner, a11y. `tests/hourly-ui.mjs` (+ `tests/fixtures/hourly.json`): kiểm tra tab Việc chạy mỗi giờ. `tests/limits-ui.mjs` (+ `tests/fixtures/limits.json`): kiểm tra tab Giới hạn AI Studio.
 
-## Cấu trúc 5 tab
+## Cấu trúc 6 tab
 
 | Tab | Hash | Nội dung |
 |---|---|---|
 | Lộ trình | `#roadmap` (= `#roadmap/1`), `#roadmap/1` … `#roadmap/6` | 6 tab con Đợt 1–6. Mỗi đợt: mục tiêu, ngày dự kiến, thanh tiến độ (chỉ đếm số mục đã hoàn tất) và danh sách mục CHƯA xong. Mục hoàn tất rời khỏi đây, sang tab Đã lên PROD. Cuối trang: "Ngoài lộ trình" (audit đã xong, việc tạm gác). |
 | Quy trình & cấu hình | `#process` | Quy tắc đã chỉ đạo, sửa và gửi cho Claude (giữ nguyên hành vi). |
 | Việc chạy mỗi giờ | `#hourly` | Danh sách việc C0 chạy mỗi giờ (`status.json` > `hourly`): mỗi việc có công tắc BẬT/TẮT, kết quả và 10 lần chạy gần nhất. Trang tĩnh không ghi được file: thay đổi của Owner (đổi công tắc, thêm, xóa) được lưu nháp trong trình duyệt (`xw-hr:`), hiện "chờ gửi", hoàn tác được, rồi sao chép tin nhắn `## [OWNER] ...: cập nhật việc chạy hằng giờ` (dòng `- H3: TẮT`, `- H5: BẬT`, `- THÊM: <tên> \| <mô tả>`, `- XÓA: H7`) để dán lên #88; C0 áp dụng vào `status.json` ở lần chạy kế tiếp. |
+| Giới hạn AI Studio | `#limits` | Toàn bộ giới hạn của AI Studio (`status.json` > `aiLimits`: `ownerAsk`, `risks`, `items` L01..L69, `history`) để Owner quyết một lần. Đầu trang: yêu cầu của Owner, 5 rủi ro, số lượng theo loại (`kind`) và theo khuyến nghị (`recommend`). Bộ lọc (loại, khuyến nghị, tìm chữ không phân biệt dấu, chỉ hàng chưa chọn) và nhóm thu gọn theo loại; hàng gọn gồm mã, tên, giá trị hiện tại, chip loại, chip khuyến nghị, chip tắt-được; bấm "Chi tiết" để xem là gì, nằm ở đâu, cách bỏ, rủi ro, công sức (giờ) và có cần bản phát hành. Mỗi hàng chọn một trong: Giữ nguyên, Bỏ giới hạn (tắt), Đặt giá trị… (kèm đơn vị), Theo khuyến nghị, cộng ghi chú tùy chọn; hàng giới hạn tiền (`unit: money` hoặc tên có tiền / chi phí / ngân sách, trừ "ngân sách ngữ cảnh") bị khóa "giữ (giới hạn tiền)" và không có lựa chọn. Thao tác hàng loạt: "Áp dụng khuyến nghị cho tất cả hàng chưa chọn" và "Bỏ giới hạn cho các hàng đếm lượt/token" (chỉ hàng `offPossible: true`, đơn vị `count`/`tokens`; không bao giờ hàng `false`/`unknown`). Lựa chọn lưu nháp trong trình duyệt (`xw-al:`, có bộ nhớ tạm khi localStorage lỗi), hiện "chờ gửi", hoàn tác từng hàng hoặc tất cả, rồi sao chép tin nhắn `## [OWNER] ...: chọn giới hạn AI Studio` (mỗi dòng `- L01: BỎ`, `- L01: GIỮ`, `- L01: GIÁ TRỊ <giá trị> <đơn vị>`, `- L01: KHUYẾN NGHỊ`, ghi chú nối ` // <ghi chú>`) để dán lên #88. Trang tĩnh không ghi được: C0 áp dụng cài đặt đổi nóng ở lần chạy kế tiếp; mục cần mã/bản phát hành thành PR và chờ QA độc lập rồi mới lên PROD. |
 | Đã lên PROD | `#prod/on` (mặc định), `#prod/done` | **Hoàn tất**: chỉ mục có `closed: true` (QA/SEC độc lập + đã kiểm trên PROD + Owner chấp nhận). **Đã bật, chưa hoàn tất**: nhóm 19 hạng mục nền tảng (tiến độ, bộ lọc, ngăn chi tiết) và việc giao có `group: ON_PROD` chưa đóng. ON không phải DONE. |
 | Chờ anh quyết | `#owner` | Thẻ quyết định/thao tác của Owner (chọn phương án, ghi chú, sao chép nội dung `## [OWNER] HH:MM ICT DD/MM: duyệt từ dashboard`). Chấm đỏ + số khi có việc chờ. |
 
@@ -57,5 +58,7 @@ Nếu GitHub Pages không tải được dữ liệu, mở cùng thư mục qua 
 npm i --no-save playwright-core axe-core   # hoặc đặt PW_MODULE / AXE trỏ tới bản có sẵn
 node tests/process-ui.mjs
 node tests/shell-ui.mjs
+node tests/hourly-ui.mjs
+node tests/limits-ui.mjs
 ```
-Hai bộ test tự mở web server tạm trên 127.0.0.1 và không ghi vào `status.json`.
+Các bộ test tự mở web server tạm trên 127.0.0.1 và không ghi vào `status.json`.

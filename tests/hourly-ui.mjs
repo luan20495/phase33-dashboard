@@ -297,7 +297,7 @@ await T('24 responsive 390px: no horizontal scroll (idle, busy, open histories),
     wide: [...document.querySelectorAll('#view-hourly *')].filter(e => e.getBoundingClientRect().right > innerWidth + 0.5 && getComputedStyle(e).position !== 'fixed' && !e.closest('.hr-live')).map(e => e.className || e.tagName).slice(0, 5),
     small: [...document.querySelectorAll('#view-hourly button,#view-hourly input,#view-hourly textarea,#view-hourly summary,#mainTabs [role=tab]')].filter(e => e.offsetParent).filter(e => { const r = e.getBoundingClientRect(); return r.height < 43.5; }).map(e => e.className || e.id).slice(0, 5)}));
   eq(m.sw, m.cw, 'horizontal scroll'); eq(m.wide, [], 'overflowing'); eq(m.small, [], 'small targets');
-  eq(await p.locator('#mainTabs [role=tab]').count(), 5); await shot(p, 'hourly-390');
+  eq(await p.locator('#mainTabs [role=tab]').count(), 6); await shot(p, 'hourly-390');
   await p._ctx.close();
 });
 await T('25 dark theme: card/chip/notice use dark surfaces, chips still distinct; light stays light', async () => {
@@ -307,15 +307,15 @@ await T('25 dark theme: card/chip/notice use dark surfaces, chips still distinct
     return {card: lum(bg('.hr-card')), page: lum(bg('body')), chips: new Set([...document.querySelectorAll('[data-hr="H1"] .hr-run .hr-chip')].map(c => getComputedStyle(c).backgroundColor)).size, notice: lum(bg('.hr-notice')), sw: bg('[data-hr="H1"] .hr-sw-t')}; });
   ok(m.card < 80 && m.page < 80 && m.notice < 100, JSON.stringify(m)); eq(m.chips, 4); await shot(p, 'hourly-1280-dark'); await p._ctx.close();
 });
-await T('26 existing four tabs still switch correctly alongside the new one (5 panels, one visible at a time, hash routing)', async () => {
+await T('26 existing tabs still switch correctly alongside the new ones (6 panels, one visible at a time, hash routing)', async () => {
   const p = await open({hash: '#roadmap/1'});
-  for (const v of ['roadmap', 'process', 'hourly', 'prod', 'owner']) {
+  for (const v of ['roadmap', 'process', 'hourly', 'limits', 'prod', 'owner']) {
     await p.locator('#tab-' + v).click();
-    const vis = await p.evaluate(() => ['roadmap', 'process', 'hourly', 'prod', 'owner'].filter(x => !document.getElementById('view-' + x).hidden));
+    const vis = await p.evaluate(() => ['roadmap', 'process', 'hourly', 'limits', 'prod', 'owner'].filter(x => !document.getElementById('view-' + x).hidden));
     eq(vis, [v], 'visible views after ' + v); ok((await p.evaluate(() => location.hash)).startsWith('#' + v), 'hash for ' + v);
   }
   await p.locator('#tab-hourly').focus(); await p.keyboard.press('ArrowRight');
-  eq(await p.evaluate(() => document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab), 'prod', 'arrow keys move across the new tab');
+  eq(await p.evaluate(() => document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab), 'limits', 'arrow keys move across the new tab');
   await p.keyboard.press('ArrowLeft');
   eq(await p.evaluate(() => document.querySelector('[data-board-tab][aria-selected="true"]').dataset.boardTab), 'hourly');
   await p._ctx.close();
