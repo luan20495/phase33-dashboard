@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T00:03:28+07:00",
+  "asOf": "2026-11-13T00:21:59+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T00:03:28+07:00",
+  "detailUpdatedAt": "2026-11-13T00:21:59+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4144,6 +4144,38 @@
             "key": "C",
             "label": "Hoãn",
             "desc": "Chưa quyết: các lát phụ thuộc (ATT-e1, e2, e3, e5, ATT-f) chưa bắt đầu; các lát nhỏ ATT-b1/b2, FILES-b, CTX-b vẫn chạy."
+          }
+        ],
+        "decided": false,
+        "decidedAt": null,
+        "decision": null
+      },
+      {
+        "id": "NO-37",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-13T00:21:59+07:00",
+        "title": "Bảo mật nhà cung cấp AI: một dòng nhà cung cấp tự khai 'miễn phí' (OPENAI_COMPATIBLE/LOCAL) có thể qua mặt sổ cái nếu danh sách chấp nhận bị đặt",
+        "detail": "Nguồn: QA+SEC độc lập PR #270 (GO có điều kiện, không P0/P1; đã merge dev). Phát hiện C1: cờ `paid=false` trên một dòng nhà cung cấp loại OPENAI_COMPATIBLE hoặc LOCAL là lời khẳng định của quản trị viên, không được kiểm chứng. QA tạo thử một dòng trỏ tới một địa chỉ https công khai với `paid=false`: được tạo (201) và hệ thống coi là miễn phí. Nếu một dòng như vậy trỏ tới OpenRouter hoặc OpenAI và danh sách nhà cung cấp chấp nhận (một cấu hình vận hành hiện để trống trên PROD) bị đặt thì có thể qua mặt giữ chỗ, hard cap USD và chặn ZDR. Hôm nay PROD được che bởi danh sách trống và lá chắn khởi động mới; nguy cơ chỉ còn khi ai đó đặt danh sách. Các lựa chọn: A (khuyến nghị) = với OPENAI_COMPATIBLE/LOCAL chỉ cho `paid=false` khi địa chỉ là loopback/LAN (không công khai) hoặc cần duyệt hai người (bốn mắt) cho địa chỉ công khai; B = giữ nguyên, chấp nhận rủi ro nhờ lá chắn danh sách trống; C = loại OPENAI_COMPATIBLE khỏi địa chỉ công khai hẳn (xung đột quyết định D-003: máy chủ local loại này được hỗ trợ). Không trả lời = giữ B, không đổi gì.",
+        "solution": "Khuyến nghị A: nhỏ, không đổi đường OpenRouter/sổ cái/hard cap; cần một PR BE nhỏ + QA độc lập.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Hạn chế paid=false cho địa chỉ không công khai",
+            "desc": "OPENAI_COMPATIBLE/LOCAL chỉ được tự khai miễn phí khi địa chỉ là loopback/LAN; địa chỉ công khai cần duyệt hai người. Cần PR BE nhỏ + QA.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Giữ nguyên",
+            "desc": "Chấp nhận rủi ro vì PROD để danh sách chấp nhận trống và có lá chắn khởi động; chỉ ghi chú."
+          },
+          {
+            "key": "C",
+            "label": "Chỉ cho OPENAI_COMPATIBLE địa chỉ công khai được tính phí",
+            "desc": "Chặn tự khai miễn phí cho loại này; xung đột D-003 (máy chủ local), cần anh quyết lại."
           }
         ],
         "decided": false,
@@ -6848,7 +6880,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T00:03:28+07:00",
+    "updatedAt": "2026-11-13T00:21:59+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7422,10 +7454,15 @@
         "at": "2026-11-13T00:03:28+07:00",
         "by": "C0",
         "note": "QA UI r3 (19de68e): GO có điều kiện; đã sửa 5 điều kiện P2 (mâu thuẫn #258/#264/#251/#253, test đỏ, ETA tổng, render mục mới) và P3 (số agent, mốc đã xong, chờ 10 giờ mục 03, ngày cập nhật)"
+      },
+      {
+        "at": "2026-11-13T00:21:59+07:00",
+        "by": "C0",
+        "note": "QA #270 GO có điều kiện (không P0/P1), merge dev; thẻ Owner NO-37 (C1); PR theo sau giao; lane: thẻ 3"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T00:03:28+07:00",
+      "checkedAt": "2026-11-13T00:21:59+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7434,7 +7471,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "Đã merge dev sau QA độc lập: FE #200, #202, #203; BE #251, #253, #258, #259, #261, #264 (QA T24+T25: GO có điều kiện đã xong và đã merge); PR mới: #262–#271, FE #204–#206; kiểm toán nhà cung cấp xong và PR bảo mật #270 đang QA độc lập; mở làn Oxy (đo xong, thẻ cài đặt đã đăng); đĩa 36 GiB (df 23:38)",
+      "changeSincePrev": "Merge dev sau QA độc lập: BE #269, #270, #268, FE #205, #206; QA UI r3 sửa; làn máy phụ: thẻ 2 báo cáo (PASS đến be-offline, smoke ngoại tuyến cần nạp bù có mạng), thẻ 3 đã đăng; tài liệu máy mới lên dashboard; thẻ Owner NO-37",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7477,8 +7514,8 @@
       ],
       "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chưa phát sinh chi phí; đĩa Mac hoangluan 36 GiB trống (df 23:38 ICT, nguồn duy nhất, trên ngưỡng khẩn 20); đĩa và tải đo lúc 23:38: mọi số đĩa ở các trường khác là bản chụp cũ nếu khác",
       "ownerNeeds": [
-        "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm cho mục 07) ở tab Chờ anh quyết",
-        "Làn Oxy (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
+        "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm, mục 07) và NO-37 (bảo mật nhà cung cấp: paid=false tự khai) ở tab Chờ anh quyết",
+        "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
       ],
       "eta": {
         "value": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
@@ -7521,25 +7558,25 @@
         "fullSuite": "10595 test, 10 đỏ trên d430a3e6 (6 baseline cũng đỏ trên main, 3 flake chạy riêng thì qua, 1 chỉ có trên dev là OlReferenceTurnWiringTests); test census patch_stale đỏ là lỗi riêng ở combined-check; cả hai đã sửa và merge trong #261; hai test đỏ do merge #259/#261 để lại sửa trong #270"
       },
       "providerAudit": {
-        "checkedAt": "2026-11-12T23:38:50+07:00",
+        "checkedAt": "2026-11-13T00:21:59+07:00",
         "source": "AUDIT-PROVIDER-PATHS.md (đọc mã, không truy cập PROD) + QA #270 đang chạy",
         "answer": "Không phải mọi đường tới model đều ghi vào sổ cái trả phí trước PR #270: chỉ đường OpenRouter (hàm đo `metered()`) có giữ chỗ, hard cap và chặn ZDR; nhà cung cấp trả phí khác (dòng cấu hình anthropic trên PROD, nhà cung cấp openai/anthropic/gemini từ biến môi trường, BYOK của tenant) không qua sổ cái.",
         "exposure": "Hiện bị chặn ở PROD bởi danh sách nhà cung cấp chấp nhận (đọc chỉ-đọc 17:46: khóa không có trong tệp cấu hình ⇒ trống ⇒ HTTP 451). Nếu danh sách bị đặt, người dùng có quyền AI thật có thể gọi nhà cung cấp đó không qua hard cap (P1 tiềm ẩn, chưa thể khai thác trên PROD hôm nay).",
-        "fix": "PR #270 (đầu 4595ae12, status:qa): từ chối nhà cung cấp trả phí không đo trước khi dựng yêu cầu (mã AI_PROVIDER_UNMETERED), audit ghi kind/paid, khóa việc lật paid, siết base_url; chưa QA độc lập; không bật đường nhà cung cấp thứ hai; hard cap/sổ cái/giữ chỗ OpenRouter không đổi",
+        "fix": "PR #270 đã merge dev sau QA+SEC độc lập (GO có điều kiện, không P0/P1): mọi đường tới model nay hoặc ghi vào sổ cái trả phí hoặc từ chối trước khi dựng yêu cầu (QA liệt kê mọi chỗ gọi); audit ghi kind/paid, khóa lật paid, siết base_url, không theo chuyển hướng",
         "residual": [
           "ghim IP chống DNS rebinding cần tường lửa chặn ra ngoài",
-          "OPENAI_COMPATIBLE chỉ công khai cần Owner quyết (D-003)",
-          "ack nhóm trong script Windows",
-          "duyệt hai người cho lật paid"
+          "thẻ NO-37: paid=false trên OPENAI_COMPATIBLE/LOCAL là lời tự khai",
+          "PR theo sau: lá chắn nguồn chịu được xuống dòng/khoảng trắng, nhận diện OpenRouter theo kiểu, IPv6/localhost, test P8 cũ",
+          "nhóm ack trong script Windows; duyệt hai người cho lật paid; audit probe/discover"
         ],
-        "verdict": "CHƯA SEC GO: chờ QA+SEC độc lập #270"
+        "verdict": "SEC GO có điều kiện cho #270 (C1: Owner quyết thẻ NO-37; C2: lá chắn nguồn chỉ là chốt cảnh báo, đang sửa trong PR theo sau; C3: kiểm môi trường DEV trước khi triển khai); chưa deploy; PROD không đổi"
       },
       "oxyLane": {
         "checkedAt": "2026-11-12T23:38:50+07:00",
         "status": "Đo xong (thẻ 1, Oxy trả lời 23:35); thẻ 2 cài đặt đã đăng 23:37; chưa có việc nào chạy",
         "facts": "Oxy: 16 GiB RAM, SSD 228 GB (88 GiB trống), JDK 21 có, Node 24 có, Docker Desktop đã cài nhưng chưa chạy, cache Gradle hiện tại là của dự án khác",
         "ownerNeeded": [
-          "Làn Oxy (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
+          "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
         ]
       }
     },
@@ -15754,10 +15791,22 @@
     "status": "IN_SETUP",
     "summary": "Máy phụ đầu tiên đang được dựng (thẻ cài đặt đang chạy): làn CHƯA sẵn sàng và CHƯA xác minh. Runbook để thêm một máy mới, script slot và nhật ký đã có; checklist nghiệm thu 0 PASS (các bước nặng như nạp Gradle, chứng minh offline, smoke FE/BE, kéo kết quả đều NOT_RUN trên máy phụ). Việc chỉ Owner còn mở: cô lập, Docker, tiến trình lớn của việc khác.",
     "links": [
-      {"label": "Runbook thêm máy mới", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/RUNBOOK-NEW-MACHINE.md"},
-      {"label": "Nhật ký máy phụ đầu tiên", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/LANE-FIRST-MACHINE-LOG.md"},
-      {"label": "Script slot", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/gradle-slot-lane.sh"},
-      {"label": "Mục lục tài liệu", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/README.md"}
+      {
+        "label": "Runbook thêm máy mới",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/RUNBOOK-NEW-MACHINE.md"
+      },
+      {
+        "label": "Nhật ký máy phụ đầu tiên",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/LANE-FIRST-MACHINE-LOG.md"
+      },
+      {
+        "label": "Script slot",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/gradle-slot-lane.sh"
+      },
+      {
+        "label": "Mục lục tài liệu",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/README.md"
+      }
     ]
   },
   "aiAgent12": {
