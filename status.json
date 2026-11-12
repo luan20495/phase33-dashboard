@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T15:16:00+07:00",
+  "asOf": "2026-11-12T15:18:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T15:16:00+07:00",
+  "detailUpdatedAt": "2026-11-12T15:18:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4058,7 +4058,7 @@
         "id": "NO-34",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-12T14:57:00+07:00",
         "title": "Bật lại chia bước (L28) + thiết kế PAY-c/T22-C: trần token ra theo công việc, tự lưu và tiếp tục khi chạm trần (5 câu)",
         "detail": "PHẦN 1 — BẬT LẠI CHIA BƯỚC (cần anh xác nhận trực tiếp, hệ thống an toàn đã từ chối khi em cố làm từ chỉ thị trên #88): chỉ thị 14:46 của anh nói khôi phục chia bước (`ai.builder.steps.enabled`) và không đánh đồng 'bỏ giới hạn số bước' với 'tắt chia bước'. Em đã tắt nó lúc 14:09 vì hiểu 'BỎ L28' là tắt. Đánh giá (REPORTED): ngưỡng kích thước đã 300.000 nên chia bước chỉ còn kích hoạt khi ≥15 dòng liệt kê hoặc ≥10 từ trang/vai trò/module; BẬT tốt hơn hoặc ngang TẮT; bản sửa plan_missing #245/#246 chưa triển khai nên còn một số ca thất bại. Chỉ một khóa, hoàn tác bằng một lệnh. PHẦN 2 — THIẾT KẾ PAY-c + T22-C (REPORTED, đọc mã; ~/xweb-handoff/p37-studio/batch3/PAYC-T22C-DESIGN.md). Hôm nay chạm trần đầu ra có 3 dạng: (A) lập luận ăn hết trần → FAILED, không lưu gì (ca spec 25 KB của QA); (B) cắt giữa tệp đầu → BAD_OUTPUT rồi thử lại trả tiền cùng trần; (C) cắt sau ≥1 tệp đã đóng → lặng lẽ UPDATED, không có tín hiệu 'chưa xong'. Lỗi thật mới tìm thấy: bước kế hoạch bị đánh dấu DONE dù tệp bị trần cắt rơi mất. THIẾT KẾ: trần của #254 chỉ là TRẦN TRÊN; bộ cấp phát chọn một số 'requested' cho từng lần gọi theo kích thước đầu ra dự kiến, cỡ bước kế hoạch, lịch sử chạm trần của dự án và cửa sổ ngữ cảnh, theo bậc 16k → 32k → 64k → trần; cùng một con số dùng cho max_tokens, phần giữ chỗ tiền, ngưỡng báo chạm trần, giá trị hiển thị và lời nhắc cho mô hình (lời nhắc #254 hiện nói theo TRẦN, sẽ đổi thành số được cấp). Kết quả một phần hợp lệ = khối tệp đã đóng mà các import tương đối đều giải được; qua đúng các kiểm tra như lượt thường, ghi vào nhánh nháp, KHÔNG gộp hay xuất bản. Một bước chỉ DONE khi mọi tệp liệt kê tồn tại và finish_reason=stop. Tiếp tục = mục J1 xếp hàng phía máy chủ (T22-C1) với clientTurnId idempotent, bộ quét sửa lỗi sự cố, trạng thái trong reuse_sources.cont (không chép văn bản mô hình); dừng khi: từ chối tiền (tạm dừng chờ duyệt), trần chi phí chuỗi (dùng lại trần chi phí kế hoạch rồi 'Tiếp tục thêm'), người dùng hủy, thao tác cần duyệt, không tiến triển (băm đầu ra trùng), bị thay thế, cộng chốt kỹ thuật 25 lần. CÔNG SỨC (ESTIMATE ±35%): PAYC-1 bộ cấp phát 14 giờ; PAYC-2 lời nhắc 8; PAYC-3 lưu một phần + phân loại 20; PAYC-4 chuỗi tiếp tục J1 22; PAYC-5 tạm dừng/tiếp tục ngân sách 10; FE 18; QA+SEC 24 (~6 lượt Haiku thật); E2E/phát hành/tài liệu 14; tổng ≈130 giờ độc lập hoặc ≈85 giờ nếu T22-C1/C2/C3 vào trước. Thứ tự: #245 + #249 → #250 → #254 → #252 (phải vào trước khi nâng trần trên 32k hoặc tự tiếp tục, vì lượt huỷ bị ghi toàn bộ phần giữ chỗ) → PAYC-1 → PAYC-3 → PAYC-2 → PAYC-4/5 → FE. ĐỀ XUẤT BIẾN MÔI TRƯỜNG ĐỢT 1 (bản 22): APP_AI_PAID_MAX_TOKENS_PER_CALL = 32.000, không phải 128.000: khi chưa có bộ cấp phát, biến này chính là số yêu cầu của mọi lượt gọi; 128.000 làm phần giữ chỗ phía đầu ra tăng ~8 lần và báo cho mô hình '88.000 token'; hạn 900 giây của luồng là rủi ro thật ở 128k trên mô hình chậm. 32k gấp đôi trần hiện tại. Sau PAYC-1 + #252 lên 64k, tới 128k chỉ khi đo được p95 thời gian lượt khi tiếp tục đã chạy.",
@@ -4081,13 +4081,16 @@
             "label": "Anh đổi một số câu",
             "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
           }
-        ]
+        ],
+        "decided": "A",
+        "decidedAt": "2026-11-12T15:17:00+07:00",
+        "decision": "Owner 15:17 chọn A: bật lại chia bước ngay (ai.builder.steps.enabled=true, một khóa, đang áp dụng) + theo mặc định cả 5 câu: (1) biến môi trường bản 22 = 32.768 (thẻ ghi 32.000, bản script dùng 32.768: C0 theo 32.768, gấp đôi trần hiện tại); (2) trần chi phí chuỗi = dùng lại trần chi phí kế hoạch rồi DỪNG-CHỜ 'Tiếp tục thêm'; (3) lần đầu trên PROD: lưu một phần + một nhấp 'Tiếp tục', tự tiếp tục hoàn toàn chỉ sau thêm một vòng QA; (4) chốt kỹ thuật 25 lần tiếp tục mỗi chuỗi (không thay trần tiền); (5) bản nháp trung gian build lỗi: giữ nháp, thử tự sửa, dừng chuỗi nếu vẫn hỏng. Bắt đầu PAYC-1 sau khi #254 qua QA/SEC."
       },
       {
         "id": "NO-35",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-12T15:16:00+07:00",
         "title": "Bản phát hành 22: script đã sẵn sàng (chưa chạy gì); 5 quyết định về nội dung, giá trị token ban đầu và giờ triển khai",
         "detail": "Chuẩn bị xong (REPORTED, ~/xweb-handoff/p32/RELEASE-22-PLAN.md; kiểm bằng 125 kiểm tra của bộ test script, không chạm máy chủ): bộ script bản 58 (điền SHA, tải lên, kiểm trước, dựng, đưa lên, hoàn tác theo thứ tự đúng) mặc định chạy khô, EXPECT_FLYWAY bắt buộc phải khai báo; hoàn tác trả hai cận biến môi trường về trước vì ảnh bản 21 từ chối khởi động với 100.000 và 32.768. Bản đang triển khai: BE 4a400ed0cc75, FE 449621de3b4a. Dev hiện: BE 873e4cd7 / FE 91a2a0ed; thiếu bước đồng bộ lõi (re-pin) phía BE; chưa có migration mới (Flyway giữ 100|88|0 nếu không đưa V101). ĐÃ VÀO DEV VÀ QA ĐỘC LẬP (VERIFIED trên đúng head): BE #243 #244 #246 #247 #248, FE #192–#198. Ngoài ra đã merge từ bản 21 nhưng chưa có trong danh sách trước: BE #231, #235–#241 và FE #190, #191 (cùng đi khi promote). CHỜ CỔNG: BE #245/#249 (QA cũ trên head cũ, đang QA delta), #250 (QA và SEC GO có điều kiện; đã sửa, đang kiểm lại; cần nhãn FE #198 đã vào và sửa PROD_DEPLOY.md dòng ~1199 giống hệt ở hai kho), #251 (chỉ test), #252 (đổi cách tính tiền + migration V101, QA và SEC đang chạy), #254 (PAY-b, đổi giữ chỗ tiền + biến môi trường, QA và SEC đang chạy), #253 (B1 hồ sơ nhân viên, chưa QA, đề xuất để ngoài). RÀNG BUỘC: khóa SSH hết hạn 21:21 hôm nay; cổng QA tích hợp phải chạy bộ BE đầy đủ lần đầu trên dev cuối cùng (chưa từng đo danh sách đỏ gốc: so với main 4a400ed0, đỏ cả hai bên là nền, đỏ riêng ở dev là chặn phát hành).",
@@ -4110,7 +4113,10 @@
             "label": "Hoãn bản 22 sang sáng mai (anh nạp lại SSH)",
             "desc": "Cửa sổ rộng hơn, ít áp lực QA; PAY-b/T36-b/chia bước vẫn chưa có hiệu lực đến lúc đó."
           }
-        ]
+        ],
+        "decided": "A",
+        "decidedAt": "2026-11-12T15:17:00+07:00",
+        "decision": "Owner 15:17 chọn A: bản 22 = các PR đã/đang qua QA độc lập; V101/#252 và #253 ra ngoài (vào bản 23); #251 đi cùng (chỉ test); biến môi trường token = 32.768 ở bước riêng sau lần triển khai đầu sạch; cửa sổ: đóng băng dev 17:30, QA tích hợp xong 19:30, chỉ triển khai khi QA tích hợp GO và còn ≥30 phút dư trước 21:21, nếu không hoãn sang sáng mai; các bước biến môi trường #250/#254 và việc nâng N là phê duyệt riêng."
       }
     ]
   },
@@ -4348,7 +4354,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T15:16:00+07:00",
+    "updatedAt": "2026-11-12T15:18:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -6585,6 +6591,13 @@
         "id": "agents.max",
         "note": "Owner ~15:10 12/11: tăng số agent tối đa lên 10, điều phối theo CPU/RAM/SSD, tránh nhiều build Gradle nặng cùng lúc (ô Gradle giữ 3), ListAgents định kỳ, dừng agent xong hoặc treo, không giao trùng. Chuẩn bị release 22 song song với QA nhưng chỉ triển khai khi QA/SEC và kiểm tra tích hợp đạt. PAY-b #254: không mặc định yêu cầu 128.000 token; AI phân bổ theo công việc; chạm trần đầu ra thì lưu kết quả hợp lệ và tiếp tục qua T22-C/J1; giữ đặt chỗ tiền và hard cap.",
         "state": "applied"
+      },
+      {
+        "at": "2026-11-12T15:18:00+07:00",
+        "by": "C0",
+        "id": "decide.NO-34/NO-35",
+        "note": "Owner 15:17 duyệt NO-34 = A và NO-35 = A; thẻ đóng DONE. Bật lại chia bước; bản 22 không có V101/#253; env token 32.768 ở bước riêng; cửa sổ 17:30/19:30/21:21.",
+        "state": "verified"
       }
     ]
   },
@@ -8614,7 +8627,7 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "applied",
-        "stateNote": "Đã tắt chia bước (steps.enabled=false) lúc 14:09 theo xác nhận của Owner (REPORTED). Yêu cầu lớn chạy một lượt, bị trần 16.000 token cho tới PAY-b/T22-C.",
+        "stateNote": "Owner 15:17 (NO-34 = A): khôi phục chia bước BẬT; agent vận hành đang đặt ai.builder.steps.enabled=true. Hiệu lực chờ đọc lại. Bỏ 'giới hạn số bước' sẽ qua T22-C, không tắt tính năng.",
         "recommendBefore": "giữ",
         "directiveGroup": 2,
         "existingWork": [
@@ -8637,7 +8650,7 @@
         "ownerChoice": {
           "at": "2026-11-12T13:17:00+07:00",
           "choice": "BỎ",
-          "disposition": "Đã áp dụng (tắt chia bước)",
+          "disposition": "Đang khôi phục chia bước (BẬT)",
           "dispositionNote": "Owner xác nhận lại 14:06; hoàn tác bằng true.",
           "reconfirmedAt": "2026-11-12T14:06:00+07:00"
         }
