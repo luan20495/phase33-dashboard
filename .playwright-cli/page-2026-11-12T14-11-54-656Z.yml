@@ -1,0 +1,284 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: XWEB · LỘ TRÌNH · TRIỂN KHAI · NGHIỆM THU
+      - heading "XWeb Bảng điều hành" [level=1] [ref=e11]
+      - paragraph [ref=e12]: Lộ trình, triển khai và nghiệm thu theo bằng chứng
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - button "Giao diện · Theo máy · Bấm chuyển sang Sáng" [ref=e15] [cursor=pointer]
+        - button "Ngôn ngữ · Tiếng Việt · Bấm chuyển sang English" [ref=e19] [cursor=pointer]
+      - 'status "Cập nhật dữ liệu: 21:08 12 thg 11, 2026 · Asia/Ho_Chi_Minh" [ref=e23]':
+        - time [ref=e27]: 21:08
+  - tablist "Khu vực chính" [ref=e29]:
+    - tab "Lộ trình 55" [ref=e30] [cursor=pointer]:
+      - generic [ref=e33]: Lộ trình
+      - generic [ref=e34]: "55"
+    - tab "Quy trình & cấu hình" [ref=e35] [cursor=pointer]
+    - tab "Giới hạn AI Studio" [ref=e41] [cursor=pointer]
+    - tab "Việc chạy mỗi giờ" [selected] [ref=e47] [cursor=pointer]
+    - tab "Đã lên PROD 27" [ref=e52] [cursor=pointer]:
+      - generic [ref=e56]: Đã lên PROD
+      - generic [ref=e57]: "27"
+    - 'tab "Chờ anh quyết: 0" [ref=e58] [cursor=pointer]':
+      - generic [ref=e62]: Chờ anh quyết
+      - generic [ref=e63]: "0"
+  - text: ✓ ✓ ✓
+  - tabpanel "Việc chạy mỗi giờ" [ref=e371]:
+    - region [ref=e372]:
+      - strong [ref=e374]: Việc chạy mỗi giờ
+      - generic [ref=e375]:
+        - region "Tóm tắt hằng giờ" [ref=e376]:
+          - heading "Tóm tắt kỳ gần nhất" [level=3] [ref=e377]
+          - paragraph [ref=e378]: "Đọc lúc: 2026-11-12T21:08:09+07:00 (nguồn: GitHub PR BE/FE (gh); QA/SEC trong ~/xweb-handoff/agents; ListAgents; df; Master #88; status.json aiAgent12)"
+          - paragraph [ref=e379]: "Thay đổi so với kỳ trước: Merge dev sau QA độc lập: FE #200, BE #251/#253/#258; PR mới: #262 PAYC-1, #263 PAYC-3, #264+FE #203 (trần lượt dự án), FE #201+#202 tích hợp; QA cặp #264/#203 đang chạy; bản 22 vẫn NO-GO nguyên trạng"
+          - paragraph [ref=e380]: "DONE VERIFIED: 0/12 hạng mục AI Agent"
+          - paragraph [ref=e381]: "Nhóm (có / một phần / chưa): CODE 4/5/3 · QA 1/5/6 · DEPLOY 0/3/8 · ON 0/5/6 · VERIFIED 0/1/11"
+          - paragraph [ref=e382]: "PROD hiện hành: Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy"
+          - paragraph [ref=e383]: "Ngân sách và runner: Trần USD và hard cap giữ nguyên; runner thứ hai chỉ có kế hoạch, chưa phát sinh chi phí; đĩa Mac 18 GiB trống đo bằng df lúc 20:39 ICT (nguồn duy nhất; dưới ngưỡng khẩn 20)"
+          - paragraph [ref=e384]:
+            - text: "Blocker:"
+            - list [ref=e385]:
+              - listitem [ref=e386]: "Bản 22: NO-GO nguyên trạng, cần đóng băng lại + QA delta (#252 V101, #259, 2 test đỏ)"
+              - listitem [ref=e387]: "QA delta #258, QA FE #200, QA #251/#253 đang chạy"
+              - listitem [ref=e388]: QA một lần cho cụm T24+T25 chờ tích hợp
+              - listitem [ref=e389]: Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt
+          - paragraph [ref=e390]:
+            - text: "Rủi ro:"
+            - list [ref=e391]:
+              - listitem [ref=e392]: Đĩa Mac 18 GiB trống (df 20:39), dưới ngưỡng khẩn 20; có 16 volume Docker có tên (một số là stack DEV XWeb đang dừng) và 38 volume ẩn danh chưa gắn container (~5 GiB), 1 snapshot Time Machine; KHÔNG xóa gì khi chưa được Owner cho phép
+              - listitem [ref=e393]: Tải máy cao (19–20) và 3 chỗ Gradle kéo dài ETA
+              - listitem [ref=e394]: Bản 22 bị chặn bởi QA delta; ETA mục 01/02/03/04/05/08 phụ thuộc deploy bản gộp
+          - paragraph [ref=e395]:
+            - text: "Cần Owner quyết:"
+            - list [ref=e396]:
+              - listitem [ref=e397]: "Xác nhận trực tiếp: đồng ý đọc-chỉ PROD (RealAiMode, cấu hình quyền, NO-28)"
+              - listitem [ref=e398]: Tài khoản admin thứ hai (DEV) cho kiểm thử cách ly nếu cần mức đầy đủ
+          - paragraph [ref=e399]: "ETA toàn bộ AI Agent: Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp) [ESTIMATE, tin cậy thấp] — thay đổi: Từ 27/11–07/12 sang 20/11–27/11: PAYC-1 thật chỉ ~1 giờ 05 phút so với 14 giờ công thiết kế nên mục 06 ngắn hơn nhiều; đường găng chuyển sang mục 07 và 12"
+          - paragraph [ref=e400]:
+            - text: "ETA từng hạng mục (giờ ICT):"
+            - list [ref=e401]:
+              - listitem [ref=e402]: "01 Quota/giới hạn L01–L69: Dự kiến xong lúc (ICT): 13/11 12:00 ICT · 8 giờ công còn lại · 8,6 giờ thực tế cần chờ · tin cậy thấp (khoảng 13/11 10:00 ICT – 13/11 18:00 ICT)"
+              - listitem [ref=e403]: "02 Model/token (#254): Chưa xác định giờ: nghiệm thu 128.000 phụ thuộc bằng chứng DEV của #252 và đọc ngân sách; mốc con 32.768 ~13/11 06:30–08:00 · 2 giờ công còn lại đã biết · tin cậy thấp"
+              - listitem [ref=e404]: "03 T23 Tool Loop: Dự kiến xong lúc (ICT): 13/11 22:00 ICT · 6 giờ công còn lại · 10 giờ thực tế cần chờ · tin cậy thấp (khoảng 13/11 18:00 ICT – 14/11 10:00 ICT)"
+              - listitem [ref=e405]: "04 T24 Structured Patch: Dự kiến xong lúc (ICT): 13/11 18:30 ICT · 2 giờ công còn lại · 15 giờ thực tế cần chờ · tin cậy thấp (khoảng 13/11 14:00 ICT – 14/11 18:00 ICT)"
+              - listitem [ref=e406]: "05 T25 Skill Library: Dự kiến xong lúc (ICT): 13/11 22:30 ICT · 2 giờ công còn lại · 16 giờ thực tế cần chờ · tin cậy thấp (khoảng 13/11 18:00 ICT – 14/11 22:00 ICT)"
+              - listitem [ref=e407]: "06 T22-C / J1 tự tiếp tục: Dự kiến xong lúc (ICT): 13/11 12:00 ICT · 16 giờ công còn lại · tin cậy thấp (khoảng 13/11 06:00 ICT – 14/11 12:00 ICT)"
+              - listitem [ref=e408]: "07 File/context/attachment: Chưa xác định giờ nghiệm thu (PROD ON): xong trên dev sau ~85–125 giờ thực tế (3,5–5 ngày liên tục), lên PROD ON ~7–12 ngày kể từ lúc bắt đầu; còn chờ quyết định NO-DIR-5 của Owner, máy Windows và nơi chạy bài thử 1 GB. Khoảng ngày ESTIMATE: 19/11 – 24/11 · 232 giờ công còn lại đã biết · tin cậy thấp"
+              - listitem [ref=e409]: "08 Runner/build: Dự kiến xong lúc (ICT): 13/11 12:00 ICT · 6 giờ công còn lại · 8,6 giờ thực tế cần chờ · tin cậy thấp (khoảng 13/11 10:00 ICT – 13/11 18:00 ICT)"
+              - listitem [ref=e410]: "09 Database / Data Sources: Chưa xác định giờ: phần AI tự thiết kế schema/migration/CRUD chưa có ước lượng (sẽ giao ước lượng sau agent 07/12) · 12 giờ công còn lại đã biết · tin cậy thấp"
+              - listitem [ref=e411]: "10 IAM/Security: Chưa xác định giờ: chưa giao việc kiểm đường nhà cung cấp thứ hai; chuỗi cần runner chờ ảnh runner và tải máy · 10 giờ công còn lại đã biết · tin cậy trung bình"
+              - listitem [ref=e412]: "11 USD Budget/Ledger: Chưa xác định giờ: cần Owner quyết số ngân sách và cách giải phóng; chứng minh #252 trên DEV sau deploy · 8 giờ công còn lại đã biết · tin cậy thấp"
+              - listitem [ref=e413]: "12 QA/E2E/nghiệm thu: Chưa xác định giờ: lần chạy đầy đủ chờ mục 06 (đã hiệu chuẩn 3 lát ~1 giờ/lát, DEV-sẵn-sàng dự kiến ~13/11 12:00) rồi ~100–120 giờ thực tế; khoảng ESTIMATE lên PROD 20–27/11; mô hình chi phí AI nằm ở file nội bộ (không công khai). Khoảng ngày ESTIMATE: 20/11 – 27/11 · 230 giờ công còn lại đã biết · tin cậy thấp"
+          - paragraph [ref=e414]: "Agent (ListAgents 12/11 20:39 ICT): 3 đang chạy · 3 làm việc · 0 chờ · 0 bị chặn · 0 nhàn rỗi · 0 nghi treo · 14 đã xong · tối đa 10"
+          - paragraph [ref=e415]: "Tài nguyên: Tải máy cao (19–20 đo lúc 18:40; chưa đo lại), 3 chỗ Gradle; đĩa 18 GiB trống (df 20:39)"
+          - paragraph [ref=e416]:
+            - text: "Từng agent:"
+            - list [ref=e417]:
+              - listitem [ref=e418]: "be-integration-t24-t25 (a0d66828, claude-sonnet-5-5) · Tích hợp BE T24-3+T25-3 + sync lõi FE + turns[].recipes + sửa test đỏ · WORKING · bắt đầu 12/11 18:36 ICT · ghi cuối UNKNOWN trước · dự kiến xong: chưa xác định"
+              - listitem [ref=e419]: "payc-4 (ab48b19e, claude-sonnet-5-5) · PAYC-4 chuỗi tiếp tục (chồng trên #263) · WORKING · bắt đầu 12/11 20:30 ICT · ghi cuối UNKNOWN trước · dự kiến xong lúc (ICT) 12/11 22:30 ICT"
+              - listitem [ref=e420]: "qa-pr264-203 (acf0a217, claude-sonnet-5-5) · QA độc lập cặp BE #264 + FE #203 · WORKING · bắt đầu 12/11 20:36 ICT · ghi cuối UNKNOWN trước · dự kiến xong lúc (ICT) 12/11 22:30 ICT"
+          - paragraph [ref=e421]: "Chỉ đếm sub-agent của phiên C0; ListAgents hiện chỉ liệt kê agent gần đây: các agent đã xong không còn hiện nhưng đã được ghi ở 'finished'."
+          - paragraph [ref=e422]: "Một phiên ngang hàng mới (hoangluan-e4, tương tác, bắt đầu 20:36) xuất hiện: không phải agent của C0 và không được tính."
+          - paragraph [ref=e423]: Model của cả 3 agent đang chạy là claude-sonnet-5-5 theo log của từng agent.
+          - paragraph [ref=e424]: "Không kết luận 'không treo' chỉ từ thời gian chạy: mỗi agent đều ghi log trong vòng vài phút lúc chụp (đã kiểm tuổi tệp log)."
+        - status [ref=e425]
+        - paragraph [ref=e426]: "Công tắc có hiệu lực sau khi anh gửi tin nhắn lên #88 và C0 áp dụng ở lần chạy kế tiếp (C0 đọc danh sách này trước mỗi lần chạy)."
+        - generic [ref=e427]:
+          - generic [ref=e428]: 8 việc · 8 đang BẬT
+          - generic [ref=e429]: "Dữ liệu cập nhật: 21:08 12/11/2026 giờ ICT (UTC+7)"
+        - paragraph [ref=e430]: "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất."
+        - region [ref=e431]:
+          - strong [ref=e432]: Ý nghĩa kết quả mỗi lần chạy
+          - list [ref=e433]:
+            - listitem [ref=e434]:
+              - generic "Chạy xong, không có gì cần đổi" [ref=e435]:
+                - generic [aria-hidden] [ref=e436]: ✓
+                - generic [ref=e437]: OK
+              - generic [ref=e438]: Chạy xong, không có gì cần đổi
+            - listitem [ref=e439]:
+              - generic "Chạy xong và đã cập nhật/đổi một thứ gì đó" [ref=e440]:
+                - generic [aria-hidden] [ref=e441]: ◆
+                - generic [ref=e442]: Có thay đổi
+              - generic [ref=e443]: Chạy xong và đã cập nhật/đổi một thứ gì đó
+            - listitem [ref=e444]:
+              - generic "Không chạy hoặc không có việc để làm ở lần này" [ref=e445]:
+                - generic [aria-hidden] [ref=e446]: –
+                - generic [ref=e447]: Bỏ qua
+              - generic [ref=e448]: Không chạy hoặc không có việc để làm ở lần này
+            - listitem [ref=e449]:
+              - generic "Chạy không thành công, cần xem lại" [ref=e450]:
+                - generic [aria-hidden] [ref=e451]: ✕
+                - generic [ref=e452]: Lỗi
+              - generic [ref=e453]: Chạy không thành công, cần xem lại
+        - region "Chưa có thay đổi nào chờ gửi" [ref=e454]:
+          - generic [ref=e455]:
+            - strong [ref=e456]: Chưa có thay đổi nào chờ gửi
+            - 'button "Sao chép & mở #88" [disabled] [ref=e457]'
+            - button "Sao chép" [disabled] [ref=e458]
+            - button "Hoàn tác tất cả" [disabled] [ref=e459]
+          - 'textbox "Nội dung sẽ gửi lên #88" [ref=e460]': (Chưa có thay đổi. Bật/tắt công tắc, thêm hoặc xóa việc ở bên dưới.)
+          - paragraph
+        - generic [ref=e461]:
+          - heading "Danh sách việc" [level=3] [ref=e462]
+          - button "Mở lịch sử tất cả" [ref=e463] [cursor=pointer]
+        - list [ref=e464]:
+          - listitem [ref=e465]:
+            - generic [ref=e466]:
+              - generic [ref=e467]: H1
+              - 'heading "Đọc comment mới của Owner/ChatGPT trên #88 và xử lý" [level=3] [ref=e468]'
+              - paragraph [ref=e469]: Đọc các comment [OWNER]/[CHATGPT] mới kể từ lần trước; áp dụng quyết định, đóng thẻ khi có tin nhắn của Owner.
+            - 'switch "Đọc comment mới của Owner/ChatGPT trên #88 và xử lý BẬT" [checked] [ref=e471] [cursor=pointer]':
+              - generic [ref=e473]: BẬT
+            - generic [ref=e474]:
+              - generic [ref=e475]: "Lần chạy gần nhất:"
+              - time [ref=e476]: 20:40 12-11
+              - generic "Chạy xong và đã cập nhật/đổi một thứ gì đó" [ref=e477]:
+                - generic [aria-hidden] [ref=e478]: ◆
+                - generic [ref=e479]: Có thay đổi
+              - generic [ref=e480]: "Review ChatGPT #6824558960 đã trả lời ở #257 (#6825187990); không có comment [OWNER] mới ở #88"
+            - group [ref=e481]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e482] [cursor=pointer]
+            - 'button "Xóa việc H1: Đọc comment mới của Owner/ChatGPT trên #88 và xử lý" [ref=e484] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e485]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+          - listitem [ref=e486]:
+            - generic [ref=e487]:
+              - generic [ref=e488]: H2
+              - heading "Áp dụng cấu hình tab Quy trình và đối chiếu với thực tế" [level=3] [ref=e489]
+              - paragraph [ref=e490]: Áp dụng mọi tin nhắn cấu hình của Owner vào process.groups; so từng mục với thực tế (số agent, ổ đĩa, khóa SSH, báo cáo giờ).
+            - switch "Áp dụng cấu hình tab Quy trình và đối chiếu với thực tế BẬT" [checked] [ref=e492] [cursor=pointer]:
+              - generic [ref=e494]: BẬT
+            - generic [ref=e495]:
+              - generic [ref=e496]: "Lần chạy gần nhất:"
+              - time [ref=e497]: 20:40 12-11
+              - generic "Chạy xong, không có gì cần đổi" [ref=e498]:
+                - generic [aria-hidden] [ref=e499]: ✓
+                - generic [ref=e500]: OK
+              - generic [ref=e501]: "#process khớp thực tế; quy tắc QA một lần áp dụng cho cặp #264/#203 và cụm T24+T25"
+            - group [ref=e502]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e503] [cursor=pointer]
+            - 'button "Xóa việc H2: Áp dụng cấu hình tab Quy trình và đối chiếu với thực tế" [ref=e505] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e506]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+          - listitem [ref=e507]:
+            - generic [ref=e508]:
+              - generic [ref=e509]: H3
+              - heading "Kiểm tra agent, PR đang mở, báo cáo QA/SEC" [level=3] [ref=e510]
+              - paragraph [ref=e511]: ListAgents, danh sách PR mở và đã merge của hai repo, báo cáo QA/SEC mới trong ~/xweb-handoff/agents.
+            - switch "Kiểm tra agent, PR đang mở, báo cáo QA/SEC BẬT" [checked] [ref=e513] [cursor=pointer]:
+              - generic [ref=e515]: BẬT
+            - generic [ref=e516]:
+              - generic [ref=e517]: "Lần chạy gần nhất:"
+              - time [ref=e518]: 20:40 12-11
+              - generic "Chạy xong và đã cập nhật/đổi một thứ gì đó" [ref=e519]:
+                - generic [aria-hidden] [ref=e520]: ◆
+                - generic [ref=e521]: Có thay đổi
+              - generic [ref=e522]: "ListAgents 20:40: 3 đang chạy; merge dev sau QA: FE #200, BE #251/#253/#258; PR mới #262, #263, #264, FE #203; QA cặp #264/#203 + QA UI dashboard đang chạy"
+            - group [ref=e523]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e524] [cursor=pointer]
+            - 'button "Xóa việc H3: Kiểm tra agent, PR đang mở, báo cáo QA/SEC" [ref=e526] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e527]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+          - listitem [ref=e528]:
+            - generic [ref=e529]:
+              - generic [ref=e530]: H4
+              - 'heading "Đăng báo cáo 19 dòng lên #88 (chỉ khi có thay đổi)" [level=3] [ref=e531]'
+              - paragraph [ref=e532]: Dựng từ báo cáo giờ trước; đúng 19 dòng; nhãn REPORTED/VERIFIED; không có bí mật hay số tiền.
+            - 'switch "Đăng báo cáo 19 dòng lên #88 (chỉ khi có thay đổi) BẬT" [checked] [ref=e534] [cursor=pointer]':
+              - generic [ref=e536]: BẬT
+            - generic [ref=e537]:
+              - generic [ref=e538]: "Lần chạy gần nhất:"
+              - time [ref=e539]: 20:40 12-11
+              - generic "Không chạy hoặc không có việc để làm ở lần này" [ref=e540]:
+                - generic [aria-hidden] [ref=e541]: –
+                - generic [ref=e542]: Bỏ qua
+              - generic [ref=e543]: "Không đăng báo cáo 19 dòng lên #88; phản hồi chi tiết ở #257"
+            - group [ref=e544]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e545] [cursor=pointer]
+            - 'button "Xóa việc H4: Đăng báo cáo 19 dòng lên #88 (chỉ khi có thay đổi)" [ref=e547] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e548]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+          - listitem [ref=e549]:
+            - generic [ref=e550]:
+              - generic [ref=e551]: H5
+              - heading "Đồng bộ dashboard (status.json)" [level=3] [ref=e552]
+              - paragraph [ref=e553]: git pull --rebase, chỉ cập nhật mục có sự kiện thay đổi, asOf là giờ thật, push main.
+            - switch "Đồng bộ dashboard (status.json) BẬT" [checked] [ref=e555] [cursor=pointer]:
+              - generic [ref=e557]: BẬT
+            - generic [ref=e558]:
+              - generic [ref=e559]: "Lần chạy gần nhất:"
+              - time [ref=e560]: 20:40 12-11
+              - generic "Chạy xong và đã cập nhật/đổi một thứ gì đó" [ref=e561]:
+                - generic [aria-hidden] [ref=e562]: ◆
+                - generic [ref=e563]: Có thay đổi
+              - generic [ref=e564]: "Dashboard 4a3e9b7: chi tiết NO-GO bản 22, nguồn đĩa duy nhất, bảng nguồn giờ công, roster agent trực tiếp, tách SHA đã QA UI"
+            - group [ref=e565]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e566] [cursor=pointer]
+            - 'button "Xóa việc H5: Đồng bộ dashboard (status.json)" [ref=e568] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e569]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+          - listitem [ref=e570]:
+            - generic [ref=e571]:
+              - generic [ref=e572]: H6
+              - heading "Kiểm ổ đĩa và dọn phần an toàn" [level=3] [ref=e573]
+              - paragraph [ref=e574]: Đọc df; nếu dưới ngưỡng thì xóa snapshot Time Machine cũ (giữ 3 bản mới nhất) và thư mục build của worktree đã sạch và đã đẩy; không đụng cache Gradle hay volume Docker khi chưa có lệnh của Owner.
+            - switch "Kiểm ổ đĩa và dọn phần an toàn BẬT" [checked] [ref=e576] [cursor=pointer]:
+              - generic [ref=e578]: BẬT
+            - generic [ref=e579]:
+              - generic [ref=e580]: "Lần chạy gần nhất:"
+              - time [ref=e581]: 20:40 12-11
+              - generic "Chạy xong, không có gì cần đổi" [ref=e582]:
+                - generic [aria-hidden] [ref=e583]: ✓
+                - generic [ref=e584]: OK
+              - generic [ref=e585]: "df 20:40: 18 GiB trống (dưới ngưỡng 20); không xóa thêm, chờ Owner cho volume/snapshot"
+            - group [ref=e586]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e587] [cursor=pointer]
+            - 'button "Xóa việc H6: Kiểm ổ đĩa và dọn phần an toàn" [ref=e589] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e590]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+          - listitem [ref=e591]:
+            - generic [ref=e592]:
+              - generic [ref=e593]: H7
+              - heading "Kiểm khóa SSH tới máy chủ còn hạn" [level=3] [ref=e594]
+              - paragraph [ref=e595]: Khóa SSH hiện còn hạn đến khoảng 21:21 ngày 12/11; báo Owner nạp lại (ssh-add -t 24h) trước giờ đó và trước các phép đọc cơ sở dữ liệu.
+            - switch "Kiểm khóa SSH tới máy chủ còn hạn BẬT" [checked] [ref=e597] [cursor=pointer]:
+              - generic [ref=e599]: BẬT
+            - generic [ref=e600]:
+              - generic [ref=e601]: "Lần chạy gần nhất:"
+              - time [ref=e602]: 20:40 12-11
+              - generic "Chạy xong, không có gì cần đổi" [ref=e603]:
+                - generic [aria-hidden] [ref=e604]: ✓
+                - generic [ref=e605]: OK
+              - generic [ref=e606]: Khóa SSH nạp ~16:40 hết ~16:40 ngày 13/11 (REPORTED); cần ≥30 phút biên khi deploy bản gộp
+            - group [ref=e607]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e608] [cursor=pointer]
+            - 'button "Xóa việc H7: Kiểm khóa SSH tới máy chủ còn hạn" [ref=e610] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e611]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+          - listitem [ref=e612]:
+            - generic [ref=e613]:
+              - generic [ref=e614]: H8
+              - 'heading "Giữ tối thiểu 4 agent: giao việc không cần Owner duyệt khi rảnh" [level=3] [ref=e615]'
+              - paragraph [ref=e616]: Nếu số agent đang chạy dưới 4 và tải máy cho phép, giao việc đã được duyệt hoặc không cần duyệt (QA, sửa lỗi nhỏ, tài liệu); không giao quá một việc nặng một lúc.
+            - 'switch "Giữ tối thiểu 4 agent: giao việc không cần Owner duyệt khi rảnh BẬT" [checked] [ref=e618] [cursor=pointer]':
+              - generic [ref=e620]: BẬT
+            - generic [ref=e621]:
+              - generic [ref=e622]: "Lần chạy gần nhất:"
+              - time [ref=e623]: 20:40 12-11
+              - generic "Không chạy hoặc không có việc để làm ở lần này" [ref=e624]:
+                - generic [aria-hidden] [ref=e625]: –
+                - generic [ref=e626]: Bỏ qua
+              - generic [ref=e627]: "Chỉ 3 agent đang chạy (dưới mức tối thiểu 6): đĩa dưới ngưỡng khẩn và 3 chỗ Gradle; QA một lần theo quy tắc Owner; sẽ giao thêm khi PAYC-2/5 tới lượt"
+            - group [ref=e628]:
+              - generic "10/10 lần chạy gần nhất · Mới nhất ở trên · giờ ICT (UTC+7)" [ref=e629] [cursor=pointer]
+            - 'button "Xóa việc H8: Giữ tối thiểu 4 agent: giao việc không cần Owner duyệt khi rảnh" [ref=e631] [cursor=pointer]': Xóa việc
+            - paragraph [ref=e632]: "Dữ liệu cập nhật: 21:08 12/11/2026 · Tạo 08:50 12/11/2026 bởi C0"
+        - form [ref=e633]:
+          - heading "Thêm việc mới" [level=3] [ref=e634]
+          - generic [ref=e635]:
+            - generic [ref=e636]: Tên việc (bắt buộc)
+            - textbox "Tên việc (bắt buộc) 0/120 ký tự" [ref=e637]
+            - generic [ref=e638]: 0/120 ký tự
+          - generic [ref=e639]:
+            - generic [ref=e640]: Mô tả (không bắt buộc)
+            - textbox "Mô tả (không bắt buộc) 0/400 ký tự" [ref=e641]
+            - generic [ref=e642]: 0/400 ký tự
+          - paragraph [ref=e643]: Việc mới chưa có mã; C0 sẽ gán mã khi áp dụng. Tên không dùng ký tự |.
+          - button "Thêm vào danh sách chờ gửi" [ref=e644] [cursor=pointer]
+        - group [ref=e645]:
+          - generic "Lịch sử thay đổi danh sách (13)" [ref=e646] [cursor=pointer]
+  - generic [ref=e370]: "Nguồn: Snapshot tổng hợp từ GitHub và nhật ký phát hành. Trạng thái phát hành, cờ và Owner UAT được phân biệt. Dữ liệu không phải thời gian thực."

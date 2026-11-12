@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T20:40:13+07:00",
+  "asOf": "2026-11-12T21:08:09+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T20:40:13+07:00",
+  "detailUpdatedAt": "2026-11-12T21:08:09+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6283,13 +6283,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 23,
+            "value": 22,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "df 17:20 ICT 12/11: 23 GiB trống, trên ngưỡng khẩn 20; đã xóa 3 snapshot Time Machine theo lệnh Owner và worktree sạch đã đẩy; chỉ dọn worktree/build, giữ nguyên thư mục bằng chứng QA"
+            "evidence": "df 21:08 ICT 12/11: 22 GiB trống, dưới ngưỡng khẩn 20; chỉ dọn worktree sạch đã merge (không xóa bằng chứng QA); volume Docker ẩn danh và snapshot Time Machine chờ Owner cho phép"
           },
           {
             "id": "disk.t_monitor",
@@ -6816,7 +6816,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T20:40:13+07:00",
+    "updatedAt": "2026-11-12T21:08:09+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7360,10 +7360,15 @@
         "at": "2026-11-12T20:39:04+07:00",
         "by": "C0",
         "note": "Theo review #257 6824558960: tách SHA đã QA UI độc lập (1c3f4d2) khỏi SHA sau QA; nguồn đĩa duy nhất (df); chi tiết bản 22 NO-GO (SHA, 2 test đỏ, dev di chuyển); bảng nguồn giờ công (680 → 534, đơn vị tách); ETA 03/04/05 dời theo đường găng sau NO-GO; roster agent chụp trực tiếp"
+      },
+      {
+        "at": "2026-11-12T21:08:09+07:00",
+        "by": "C0",
+        "note": "QA UI độc lập r2 (a2ff232a, head 4a3e9b7): GO có điều kiện; đã sửa dữ liệu (đếm CODE khớp bảng, đĩa một nguồn, khoảng ETA mục 12 khớp tổng, giờ công mỗi mục = bảng nguồn 534, giờ deploy thống nhất 06:30–08:00), UI (múi giờ a12Dt, nhãn thẻ lặp, cú đua đổi ngôn ngữ, vùng chạm 44 px, ngày cập nhật); chưa QA lại SHA sửa"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T20:39:04+07:00",
+      "checkedAt": "2026-11-12T21:08:09+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7376,8 +7381,8 @@
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
-          "yes": 2,
-          "partial": 7,
+          "yes": 4,
+          "partial": 5,
           "no": 3
         },
         "QA": {
@@ -15654,7 +15659,7 @@
     "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-12T20:39:04+07:00",
+    "updatedAt": "2026-11-12T21:08:09+07:00",
     "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
@@ -15703,7 +15708,7 @@
           ],
           "unknownReason": null,
           "startAt": "2026-11-12T16:49:00+07:00",
-          "prevEta": "13/11 03:30",
+          "prevEta": "13/11 06:30–08:00",
           "waits": [
             {
               "from": "2026-11-12T19:30:00+07:00",
@@ -15759,11 +15764,11 @@
               "etaAt": "2026-11-13T12:00:00+07:00"
             }
           ],
-          "unknownReason": "Chưa xác định giờ: nghiệm thu 128.000 phụ thuộc bằng chứng DEV của #252 và đọc ngân sách; mốc con 32.768 ~13/11 03:30",
+          "unknownReason": "Chưa xác định giờ: nghiệm thu 128.000 phụ thuộc bằng chứng DEV của #252 và đọc ngân sách; mốc con 32.768 ~13/11 06:30–08:00",
           "startAt": "2026-11-12T17:00:00+07:00",
           "prevEta": "13/11 14:00 (chỉ 32.768)",
           "waits": [],
-          "removedWait": "Mốc con: đạt 32.768 trên PROD ~13/11 03:30 cùng bước deploy (không phải 128.000)"
+          "removedWait": "Mốc con: đạt 32.768 trên PROD ~13/11 06:30–08:00 cùng bước deploy (không phải 128.000)"
         }
       },
       {
@@ -15833,7 +15838,7 @@
             "2026-11-13T14:00:00+07:00",
             "2026-11-14T18:00:00+07:00"
           ],
-          "remainingEffortHours": 14,
+          "remainingEffortHours": 2,
           "remainingElapsedHours": 15,
           "confidence": "low",
           "updatedAt": "2026-11-12T20:39:04+07:00",
@@ -15881,7 +15886,7 @@
             "2026-11-13T18:00:00+07:00",
             "2026-11-14T22:00:00+07:00"
           ],
-          "remainingEffortHours": 20,
+          "remainingEffortHours": 2,
           "remainingElapsedHours": 16,
           "confidence": "low",
           "updatedAt": "2026-11-12T20:39:04+07:00",
@@ -15964,7 +15969,7 @@
               "reason": "QA độc lập một lần trên bản tích hợp PAYC-1..5"
             }
           ],
-          "removedWait": "Đã có 2 lát (#262, #263) thay vì chỉ thiết kế"
+          "removedWait": "Đã có 3 lát (#262, #263, #265) thay vì chỉ thiết kế; PAYC-5 đang làm"
         }
       },
       {
@@ -16034,7 +16039,7 @@
             "2026-11-13T10:00:00+07:00",
             "2026-11-13T18:00:00+07:00"
           ],
-          "remainingEffortHours": 10,
+          "remainingEffortHours": 6,
           "remainingElapsedHours": 8.6,
           "confidence": "low",
           "updatedAt": "2026-11-12T19:50:56+07:00",
@@ -16056,7 +16061,7 @@
           ],
           "unknownReason": null,
           "startAt": "2026-11-12T16:49:00+07:00",
-          "prevEta": "13/11 03:30",
+          "prevEta": "13/11 06:30–08:00",
           "waits": [
             {
               "from": "2026-11-12T19:30:00+07:00",
@@ -16111,7 +16116,7 @@
         "name": "IAM/Security",
         "pr": "agent test 2 tenant × 2 app (DEV) RUNNING",
         "done": "SYSTEM_ADMIN không đọc dữ liệu nghiệp vụ theo thiết kế; 16/16 vai thử bị 404 ở X4",
-        "todo": "Đọc PROD (chế độ AI thật, quyền SYSTEM_ADMIN) XONG 17:48 (VERIFIED); còn: đường nhà cung cấp thứ hai (BYOK/vận hành) có ghi sổ cái chưa kiểm; chuỗi cần runner (token capability thật, preview-real, ghi X4 thật, prompt injection AI thật) chưa chạy vì ảnh runner đã bị dọn",
+        "todo": "Đọc PROD (chế độ AI thật, quyền SYSTEM_ADMIN) XONG 17:48 (đã kiểm riêng); còn: đường nhà cung cấp thứ hai (BYOK/vận hành) có ghi sổ cái chưa kiểm; chuỗi cần runner (token capability thật, preview-real, ghi X4 thật, prompt injection AI thật) chưa chạy vì ảnh runner đã bị dọn",
         "code": "~",
         "qa": "✗",
         "deploy": "–",
@@ -16148,7 +16153,7 @@
         "id": "11",
         "name": "USD Budget/Ledger",
         "pr": "B1 #148 (PROD), #252 merged dev 524cfab9 (flag OFF, V101), #253 58ec0fc5, #251 6999f0d9",
-        "done": "Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS; #252: QA GO có điều kiện + SEC GO trên đúng head 360dd9b5 (VERIFIED, 34 test của PR + 116 hồi quy, 13/15 mutant bị diệt), đã merge dev, cờ TẮT; đọc-chỉ PROD 17:48: sổ cái 113 dòng đều SETTLED (110 REPORTED + 3 WORST_CASE), 0 RESERVED; còn một khoản giữ chỗ cũ trong bộ đếm Redis không có dòng sổ cái tương ứng (không xóa, không đổi)",
+        "done": "Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS; #252: QA GO có điều kiện + SEC GO trên đúng head 360dd9b5 (đã kiểm, 34 test của PR + 116 hồi quy, 13/15 mutant bị diệt), đã merge dev, cờ TẮT; đọc-chỉ PROD 17:48: sổ cái 113 dòng đều SETTLED (110 REPORTED + 3 WORST_CASE), 0 RESERVED; còn một khoản giữ chỗ cũ trong bộ đếm Redis không có dòng sổ cái tương ứng (không xóa, không đổi)",
         "todo": "Chưa deploy; trước khi bật cờ #252 phải chứng minh trên DEV (hạ đúng số thật của nhà cung cấp, 5 nơi cùng giảm, khởi động lại không giảm đôi, tắt cờ dừng); ca hủy-sau-chữ-đầu vẫn bị tính cả khoản giữ chỗ trên PROD (dòng WORST_CASE mới nhất cách đây ~6 giờ); NO-28: cần số ngân sách B1/B3 + quyết định bốn mắt để giải phóng; #253/#251 chưa QA",
         "code": "✓",
         "qa": "~",
@@ -16198,8 +16203,8 @@
         "etaInfo": {
           "etaAt": null,
           "etaRange": [
-            "2026-11-27",
-            "2026-12-07"
+            "2026-11-20",
+            "2026-11-27"
           ],
           "remainingEffortHours": 230,
           "remainingElapsedHours": null,
@@ -16223,7 +16228,7 @@
               "etaAt": "2026-11-14T08:00:00+07:00"
             }
           ],
-          "unknownReason": "Chưa xác định giờ: lần chạy đầy đủ chờ mục 06 (130 giờ công chưa hiệu chuẩn); khoảng ESTIMATE lên PROD 27/11–07/12; mô hình chi phí AI nằm ở file nội bộ (không công khai)",
+          "unknownReason": "Chưa xác định giờ: lần chạy đầy đủ chờ mục 06 (đã hiệu chuẩn 3 lát ~1 giờ/lát, DEV-sẵn-sàng dự kiến ~13/11 12:00) rồi ~100–120 giờ thực tế; khoảng ESTIMATE lên PROD 20–27/11; mô hình chi phí AI nằm ở file nội bộ (không công khai)",
           "startAt": null,
           "prevEta": "Chưa xác định giờ (24–28/11)",
           "waits": [],
@@ -16314,7 +16319,7 @@
             "basis": "agent ước lượng chỉ-đọc: chuẩn bị ~125 + chạy đầy đủ ~105 (80–130); phần nhẹ đã làm"
           }
         ],
-        "total": "≈ 534 giờ công (khoảng 450–700), giảm từ 680 vì mục 06 và 04/05 đã hiệu chuẩn bằng PR thật"
+        "total": "≈ 534 giờ công (khoảng 450–700) = tổng các dòng trên; mỗi mục dùng đúng số ở bảng này"
       }
     }
   }
