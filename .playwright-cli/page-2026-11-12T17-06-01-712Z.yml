@@ -1,0 +1,29 @@
+- main [ref=e2]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]: XWEB · LỘ TRÌNH · TRIỂN KHAI · NGHIỆM THU
+      - heading "XWeb Bảng điều hành" [level=1] [ref=e11]
+      - paragraph [ref=e12]: Lộ trình, triển khai và nghiệm thu theo bằng chứng
+    - generic [ref=e13]:
+      - generic [ref=e14]:
+        - button "Giao diện · Theo máy · Bấm chuyển sang Sáng" [ref=e15] [cursor=pointer]
+        - button "Ngôn ngữ · Tiếng Việt · Bấm chuyển sang English" [ref=e19] [cursor=pointer]
+      - status "Không tải được status.json" [ref=e23]:
+        - time [ref=e27]: "--:--"
+  - tablist "Khu vực chính" [ref=e29]:
+    - tab "Lộ trình 55" [ref=e30] [cursor=pointer]:
+      - generic [ref=e33]: Lộ trình
+      - generic [ref=e34]: "55"
+    - tab "Quy trình & cấu hình" [ref=e35] [cursor=pointer]
+    - tab "Giới hạn AI Studio" [ref=e41] [cursor=pointer]
+    - tab "Việc chạy mỗi giờ" [selected] [ref=e47] [cursor=pointer]
+    - tab "Đã lên PROD 27" [ref=e52] [cursor=pointer]:
+      - generic [ref=e56]: Đã lên PROD
+      - generic [ref=e57]: "27"
+    - 'tab "Chờ anh quyết: 1" [ref=e58] [cursor=pointer]':
+      - generic [ref=e63]: Chờ anh quyết
+      - generic [ref=e64]: "1"
+  - tabpanel "Việc chạy mỗi giờ" [ref=e65]:
+    - region [ref=e66]:
+      - strong [ref=e68]: Việc chạy mỗi giờ
+  - generic [ref=e70]: "Nguồn: Snapshot tổng hợp từ GitHub và nhật ký phát hành. Trạng thái phát hành, cờ và Owner UAT được phân biệt. Dữ liệu không phải thời gian thực."

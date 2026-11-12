@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T23:38:50+07:00",
+  "asOf": "2026-11-13T00:03:28+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T23:38:50+07:00",
+  "detailUpdatedAt": "2026-11-13T00:03:28+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6848,7 +6848,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T23:38:50+07:00",
+    "updatedAt": "2026-11-13T00:03:28+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7027,7 +7027,7 @@
           {
             "at": "2026-11-12T23:38:50+07:00",
             "result": "changed",
-            "summary": "ListAgents 23:38: 4 đang chạy (QA #269/#205, #270, #268/#206, kế hoạch Oxy); PR mở #262–#271, FE #204–#206 chờ QA"
+            "summary": "ListAgents 23:38: 4 đang chạy (QA #269/#205, #270, #268/#206, kế hoạch Oxy); PR mở chờ QA: #262, #263, #265–#271, FE #204–#206 chờ QA"
           }
         ]
       },
@@ -7417,10 +7417,15 @@
         "at": "2026-11-12T23:38:50+07:00",
         "by": "C0",
         "note": "Theo review #257 6828332761: đồng bộ release22/blockers (QA T24+T25 đã xong và merge), thêm providerAudit (đường gọi, phơi nhiễm, sửa, chưa SEC GO), đĩa một nguồn có thời điểm, SHA đã QA UI tách khỏi SHA sau QA, làn Oxy"
+      },
+      {
+        "at": "2026-11-13T00:03:28+07:00",
+        "by": "C0",
+        "note": "QA UI r3 (19de68e): GO có điều kiện; đã sửa 5 điều kiện P2 (mâu thuẫn #258/#264/#251/#253, test đỏ, ETA tổng, render mục mới) và P3 (số agent, mốc đã xong, chờ 10 giờ mục 03, ngày cập nhật)"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T23:38:50+07:00",
+      "checkedAt": "2026-11-13T00:03:28+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7460,8 +7465,8 @@
       },
       "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
       "blockers": [
-        "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, hai test đỏ trên dev, bản sao tài liệu FE) + rollback; mọi PR chờ QA (#262,#263,#265,#266,#267,#268,#269,#270,#271; FE #204,#205,#206) chưa vào dev",
-        "QA delta #269/#205, QA #270 (bảo mật nhà cung cấp), QA cặp #268/#206 đang chạy",
+        "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; PR còn chờ QA chưa vào dev: BE #262, #263, #265, #266, #267, #268, #270, #271; FE #204, #206",
+        "QA #270 (bảo mật nhà cung cấp) và QA cặp #268/#206 đang chạy",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Đường nhà cung cấp thứ hai: PR #270 đang QA, chưa bật gì"
       ],
@@ -7472,8 +7477,8 @@
       ],
       "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chưa phát sinh chi phí; đĩa Mac hoangluan 36 GiB trống (df 23:38 ICT, nguồn duy nhất, trên ngưỡng khẩn 20); đĩa và tải đo lúc 23:38: mọi số đĩa ở các trường khác là bản chụp cũ nếu khác",
       "ownerNeeds": [
-        "Xác nhận trực tiếp: đồng ý đọc-chỉ PROD (RealAiMode, cấu hình quyền, NO-28)",
-        "Tài khoản admin thứ hai (DEV) cho kiểm thử cách ly nếu cần mức đầy đủ"
+        "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm cho mục 07) ở tab Chờ anh quyết",
+        "Làn Oxy (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
       ],
       "eta": {
         "value": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
@@ -7509,11 +7514,11 @@
           "fe": "943889f7 (đo 23:38)"
         },
         "redTests": [
-          "Hai test đỏ chỉ có trên dev (OlReferenceTurnWiringTests, census patch_stale) đã sửa và merge trong #261 sau QA độc lập",
-          "Hai test đỏ khác do merge trước để lại (PaidCodeEditProdAckTests do #259; AiGateSourceGuardTests do #261): sửa nằm trong #270 đang QA"
+          "OlReferenceTurnWiringTests (#254 đổi lời nhắc theo trần đầu ra) và census patch_stale: đã sửa, merge trong #261 sau QA độc lập",
+          "PaidCodeEditProdAckTests (do #259) và AiGateSourceGuardTests (do #261): sửa nằm trong #270, đang QA"
         ],
         "needs": "đóng băng lại; QA delta độc lập trên cặp SHA cuối (Flyway kỳ vọng 101|89|0, cho phép migration 101; bản sao tài liệu FE khớp BE; lõi FE vendored đồng bộ); không promote/deploy trước GO",
-        "fullSuite": "10595 test, 10 đỏ (6 baseline, 3 flake, 1 chỉ dev), 3 giờ 15 phút, trên d430a3e6; lần đo sau: các tập con theo từng QA"
+        "fullSuite": "10595 test, 10 đỏ trên d430a3e6 (6 baseline cũng đỏ trên main, 3 flake chạy riêng thì qua, 1 chỉ có trên dev là OlReferenceTurnWiringTests); test census patch_stale đỏ là lỗi riêng ở combined-check; cả hai đã sửa và merge trong #261; hai test đỏ do merge #259/#261 để lại sửa trong #270"
       },
       "providerAudit": {
         "checkedAt": "2026-11-12T23:38:50+07:00",
@@ -7534,9 +7539,7 @@
         "status": "Đo xong (thẻ 1, Oxy trả lời 23:35); thẻ 2 cài đặt đã đăng 23:37; chưa có việc nào chạy",
         "facts": "Oxy: 16 GiB RAM, SSD 228 GB (88 GiB trống), JDK 21 có, Node 24 có, Docker Desktop đã cài nhưng chưa chạy, cache Gradle hiện tại là của dự án khác",
         "ownerNeeded": [
-          "mở Docker Desktop một lần và đặt giới hạn",
-          "quyết tắt giả lập Android khi chạy việc nặng",
-          "cô lập (user riêng/VM) nếu muốn"
+          "Làn Oxy (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
         ]
       }
     },
@@ -7557,7 +7560,7 @@
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
         "Phiên ngang hàng hoangluan-e4 (tương tác) không phải agent của C0, không tính.",
-        "Model cả 5 agent: claude-sonnet-5-5 theo log từng agent."
+        "Model cả 4 agent: claude-sonnet-5-5 theo log từng agent."
       ],
       "items": [
         {
@@ -15746,22 +15749,22 @@
     "execNote": "Mỗi hàng có exec riêng. Ký hiệu: ✓ có bằng chứng; ~ một phần hoặc chỉ REPORTED; ✗ chưa; – không áp dụng. Mã xong ≠ QA đạt ≠ lên PROD ≠ cờ/cấu hình ON ≠ VERIFIED. Merge vào dev KHÔNG được tính là lên PROD. PROD hiện = release 21; bản 22 mới đóng băng ở dev. Không rõ thì ghi CHƯA XÁC MINH."
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-12T23:38:50+07:00",
+    "updatedAt": "2026-11-13T00:03:28+07:00",
     "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
       {
         "id": "01",
         "name": "Quota/giới hạn L01–L69",
-        "pr": "PR trần lượt đang viết; BE #258 (L21/L58) mở",
+        "pr": "BE #259 (trần lượt, merge dev), #258 (runner, merge dev sau QA r2), FE #200 (merge dev); còn chồng PAYC/ATT/bảo mật chờ QA",
         "done": "Audit 69/69; 37 hàng Owner duyệt bỏ; chia bước bật lại 15:19; build 3.600 s, hàng đợi 100/500/72 h (REPORTED)",
-        "todo": "69 giới hạn: 29 hàng còn chặn AI (xem #limits/approved). Trần lượt chỉ là L06/L07 (#259 đã merge dev, PROD vẫn 600/ngày); L12 #254 merge dev, PROD vẫn 16.000; L21/L58 #258 đang QA; chưa xác minh giá trị hiệu lực xuyên FE→API→BE→Agent→Model→Runner→Proxy; bản 22 (đỉnh đóng băng d430a3e6): QA tích hợp NO-GO nguyên trạng, cần đóng băng lại và QA delta",
+        "todo": "69 giới hạn: 29 hàng còn chặn AI (xem #limits/approved). Trần lượt chỉ là L06/L07 (#259 đã merge dev, PROD vẫn 600/ngày); L12 #254 merge dev, PROD vẫn 16.000; L21/L58 #258 merge dev (QA độc lập r2: GO có điều kiện), PROD vẫn 900 giây cho đến khi deploy + gói runner + biến môi trường; chưa xác minh giá trị hiệu lực xuyên FE→API→BE→Agent→Model→Runner→Proxy; bản 22 (đỉnh đóng băng d430a3e6): QA tích hợp NO-GO nguyên trạng, cần đóng băng lại và QA delta",
         "code": "~",
         "qa": "✗",
         "deploy": "✗",
         "on": "~",
         "verified": "✗",
-        "agent": "agent PR trần lượt xong (#259 đã merge); agent FE nâng trần RUNNING (Sonnet 5.5)",
+        "agent": "không có agent chạy cho mục này lúc chụp (PR trần lượt, FE nâng trần và QA #258 đã xong)",
         "eta": "PR ~13/11, bản gộp ~15/11 (trung bình)",
         "etaInfo": {
           "etaAt": "2026-11-13T12:00:00+07:00",
@@ -15772,11 +15775,10 @@
           "remainingEffortHours": 8,
           "remainingElapsedHours": 8.6,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "QA delta trên cặp SHA cuối (sau khi #258, FE #200, T24/T25 tích hợp xong)",
-            "2 test đỏ chỉ có trên dev cần sửa (OlReferenceTurnWiringTests, census patch_stale)",
             "bộ test BE đầy đủ ~3 giờ 15 phút khi tải máy cao"
           ],
           "milestones": [
@@ -15785,8 +15787,9 @@
               "etaAt": "2026-11-12T18:30:00+07:00"
             },
             {
-              "label": "QA #258 xong (mốc QA)",
-              "etaAt": "2026-11-12T19:30:00+07:00"
+              "label": "QA #258 xong và merge dev (đã xong)",
+              "etaAt": "2026-11-12T19:30:00+07:00",
+              "done": true
             },
             {
               "label": "deploy bản gộp",
@@ -15801,7 +15804,7 @@
               "from": "2026-11-12T19:30:00+07:00",
               "to": "2026-11-12T21:30:00+07:00",
               "hours": 2,
-              "reason": "chờ PR FE nâng trần (giao 18:33) + QA #258"
+              "reason": "PR FE nâng trần (#200) và QA #258 đã xong; còn lại chờ QA delta trên cặp SHA cuối"
             },
             {
               "from": "2026-11-12T21:30:00+07:00",
@@ -15839,7 +15842,7 @@
           "remainingEffortHours": 2,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "128.000 chỉ sau khi #252 chứng minh trên DEV và bật",
@@ -15881,7 +15884,7 @@
           "remainingEffortHours": 6,
           "remainingElapsedHours": 10,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "deploy bản gộp",
@@ -15900,8 +15903,8 @@
             {
               "from": "2026-11-13T03:30:00+07:00",
               "to": "2026-11-13T13:30:00+07:00",
-              "hours": 0,
-              "reason": "không chờ: 12 lượt Haiku ~3 giờ → QA độc lập kết quả ~3 giờ → đo dự án lớn ~4 giờ, nối tiếp sau deploy"
+              "hours": 10,
+              "reason": "chờ nối tiếp sau deploy bản gộp (12 lượt Haiku ~3 giờ → QA độc lập kết quả ~3 giờ → đo dự án lớn ~4 giờ)"
             }
           ],
           "removedWait": "Dời ~8,5 giờ theo đường găng mới: bản gộp deploy ~13/11 06:30–08:00 (sau QA delta trên SHA cuối), rồi thử thật trên PROD; mốc phụ không phải nghiệm thu"
@@ -15929,7 +15932,7 @@
           "remainingEffortHours": 2,
           "remainingElapsedHours": 15,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "tích hợp T24+T25 và FE T24-6 chưa xong",
@@ -15938,7 +15941,8 @@
           "milestones": [
             {
               "label": "PR #261 đã mở (mốc PR)",
-              "etaAt": "2026-11-12T18:36:00+07:00"
+              "etaAt": "2026-11-12T18:36:00+07:00",
+              "done": true
             }
           ],
           "unknownReason": null,
@@ -15977,7 +15981,7 @@
           "remainingEffortHours": 2,
           "remainingElapsedHours": 16,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "FE T25-5 chưa xong",
@@ -15988,7 +15992,8 @@
           "milestones": [
             {
               "label": "PR #260 đã mở (mốc PR)",
-              "etaAt": "2026-11-12T18:30:00+07:00"
+              "etaAt": "2026-11-12T18:30:00+07:00",
+              "done": true
             }
           ],
           "unknownReason": null,
@@ -16020,7 +16025,7 @@
           "remainingEffortHours": 16,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Hiệu chuẩn 2 điểm: PAYC-1 14 giờ thiết kế → 1 giờ 05 phút; PAYC-3 20 giờ thiết kế → 56 phút (gồm chờ Gradle và 3 lần biên dịch lỗi). PAYC-4/2/5/FE1 ước ~1–2 giờ mỗi lát + QA một lần trên cả chồng ~4 giờ + ~6 lượt Haiku thật; chỉ hai điểm hiệu chuẩn, còn rủi ro xung đột với tích hợp T24/T25 trong CodeAi.kt",
           "blockers": [
             "PAYC-2 chờ tích hợp T24/T25 (đổi prompt)",
@@ -16031,11 +16036,13 @@
           "milestones": [
             {
               "label": "4 lát BE PAYC có PR (mốc PR, xong 21:25)",
-              "etaAt": "2026-11-12T21:25:00+07:00"
+              "etaAt": "2026-11-12T21:25:00+07:00",
+              "done": true
             },
             {
               "label": "PAYC-FE1 PR (mốc PR, dự kiến)",
-              "etaAt": "2026-11-12T23:00:00+07:00"
+              "etaAt": "2026-11-12T23:00:00+07:00",
+              "done": true
             },
             {
               "label": "QA độc lập một lần cho cả chồng xong (mốc QA, chưa nghiệm thu)",
@@ -16078,7 +16085,7 @@
           "remainingEffortHours": 232,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Agent ước lượng chỉ-đọc (ESTIMATE-07-12.md): ~232 giờ công (180–310); kế hoạch cũ cộng ~160 nhưng thiếu ATT-f (lưu văn bản đính kèm + công cụ đọc theo phần) và ATT-e3 (giải nén cô lập) lớn hơn dự tính. Hiệu chuẩn: lát ≤300 dòng cần 2–4 giờ viết + 2–3 giờ QA độc lập; QA, tranh chấp chỗ Gradle (tải 19–20) và chờ bên ngoài là đường găng chứ không phải viết mã",
           "blockers": [
             "quyết định NO-DIR-5 của Owner",
@@ -16107,15 +16114,15 @@
       {
         "id": "08",
         "name": "Runner/build",
-        "pr": "BE #258 71fe0055 (mở, status:qa); runner 2: chỉ kế hoạch",
+        "pr": "BE #258 69586bd4 (merge dev sau QA độc lập r2: QA GO có điều kiện, SEC GO); runner 2: chỉ kế hoạch + làn Oxy đang dựng",
         "done": "PR #258: trần dòng AI cấu hình được (mặc định 900 không đổi), nhịp tim gia hạn lease, chạy test cục bộ (REPORTED: 419 test Kotlin + 134 Node, mutant bị diệt); build 3.600 s và hàng đợi T10 PASS (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
-        "todo": "QA/SEC độc lập #258 đang chạy; sau merge cần deploy API + gói runner + env 2 phía mới có tác dụng trên PROD; điểm còn lại: runner nhận 409 không hủy bước build đang chạy (P2 chờ QA); runner thứ hai cần đo tài nguyên/chi phí",
+        "todo": "Sau merge cần deploy API + gói runner + biến môi trường 2 phía mới có tác dụng trên PROD (cổng runner PROD đã có luật heartbeat trong PR); điểm còn lại: runner nhận 409 không hủy bước build đang chạy (P2 theo dõi); runner thứ hai cần đo tài nguyên/chi phí",
         "code": "✓",
-        "qa": "✗",
+        "qa": "✓",
         "deploy": "✗",
         "on": "~",
         "verified": "~",
-        "agent": "agent QA #258 RUNNING (Sonnet 5.5)",
+        "agent": "không có agent chạy cho mục này (QA #258 đã xong)",
         "eta": "PR ~14/11; runner 2 ~20–24/11 (thấp)",
         "etaInfo": {
           "etaAt": "2026-11-13T12:00:00+07:00",
@@ -16126,7 +16133,7 @@
           "remainingEffortHours": 6,
           "remainingElapsedHours": 8.6,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "QA delta trên cặp SHA cuối (sau khi #258, FE #200, T24/T25 tích hợp xong)",
@@ -16151,7 +16158,7 @@
               "from": "2026-11-12T19:30:00+07:00",
               "to": "2026-11-12T21:30:00+07:00",
               "hours": 2,
-              "reason": "QA #258 + cùng cửa QA tích hợp"
+              "reason": "cùng cửa QA delta trên cặp SHA cuối"
             }
           ],
           "removedWait": "Lùi ~8,5 giờ: QA tích hợp bản 22 trả NO-GO cho đỉnh dev đã đóng băng vì dev đã di chuyển sau 16:22 (#252 có V101, #259) và có 2 test đỏ chỉ có trên dev; cần QA delta trên cặp SHA cuối (bộ test BE đầy đủ đo thật 3 giờ 15 phút), Flyway kỳ vọng 101|89|0",
@@ -16177,7 +16184,7 @@
           "remainingEffortHours": 12,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "chuỗi cần runner chưa chạy (ảnh runner bị dọn)",
@@ -16215,7 +16222,7 @@
           "remainingEffortHours": 10,
           "remainingElapsedHours": null,
           "confidence": "medium",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "đường nhà cung cấp thứ hai chưa kiểm",
@@ -16237,9 +16244,9 @@
       {
         "id": "11",
         "name": "USD Budget/Ledger",
-        "pr": "B1 #148 (PROD), #252 merged dev 524cfab9 (flag OFF, V101), #253 58ec0fc5, #251 6999f0d9",
+        "pr": "B1 #148 (PROD), #252 merge dev 524cfab9 (cờ TẮT, V101), #253 và #251 merge dev sau QA độc lập (#253: GO có điều kiện, cờ TẮT), #264 + FE #203 merge dev sau QA độc lập",
         "done": "Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS; #252: QA GO có điều kiện + SEC GO trên đúng head 360dd9b5 (đã kiểm, 34 test của PR + 116 hồi quy, 13/15 mutant bị diệt), đã merge dev, cờ TẮT; đọc-chỉ PROD 17:48: sổ cái 113 dòng đều SETTLED (110 REPORTED + 3 WORST_CASE), 0 RESERVED; còn một khoản giữ chỗ cũ trong bộ đếm Redis không có dòng sổ cái tương ứng (không xóa, không đổi)",
-        "todo": "Chưa deploy; trước khi bật cờ #252 phải chứng minh trên DEV (hạ đúng số thật của nhà cung cấp, 5 nơi cùng giảm, khởi động lại không giảm đôi, tắt cờ dừng); ca hủy-sau-chữ-đầu vẫn bị tính cả khoản giữ chỗ trên PROD (dòng WORST_CASE mới nhất cách đây ~6 giờ); NO-28: cần số ngân sách B1/B3 + quyết định bốn mắt để giải phóng; #253/#251 chưa QA",
+        "todo": "Chưa deploy; trước khi bật cờ #252 phải chứng minh trên DEV (hạ đúng số thật của nhà cung cấp, 5 nơi cùng giảm, khởi động lại không giảm đôi, tắt cờ dừng); ca hủy-sau-chữ-đầu vẫn bị tính cả khoản giữ chỗ trên PROD (dòng WORST_CASE mới nhất cách đây ~6 giờ); NO-28: cần số ngân sách B1/B3 + quyết định bốn mắt để giải phóng; #253: 4 điều kiện P2 (đếm người đọc, giới hạn 2000 dòng, chính sách chưa duyệt, đếm theo gán quyền) chờ lát B2/B3 trước khi bật cờ",
         "code": "✓",
         "qa": "~",
         "deploy": "~",
@@ -16253,7 +16260,7 @@
           "remainingEffortHours": 8,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "Owner: số ngân sách B1/B3 và quyết định bốn mắt",
@@ -16262,7 +16269,8 @@
           "milestones": [
             {
               "label": "QA #252 xong và merge dev (đã xong 17:55)",
-              "etaAt": "2026-11-12T17:55:00+07:00"
+              "etaAt": "2026-11-12T17:55:00+07:00",
+              "done": true
             }
           ],
           "unknownReason": "Chưa xác định giờ: cần Owner quyết số ngân sách và cách giải phóng; chứng minh #252 trên DEV sau deploy",
@@ -16294,7 +16302,7 @@
           "remainingEffortHours": 230,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-12T22:38:44+07:00",
+          "updatedAt": "2026-11-13T00:03:28+07:00",
           "basis": "ESTIMATE-07-12.md: chuẩn bị song song ngay (11 lát P1–P11: kho prompt, rubric, persona, bộ trình duyệt, app mẫu có mutant, gói API+DB, kịch bản lỗi F1–F6, đồng hồ chi phí, báo cáo) ~125 giờ công, 30–45 giờ thực tế; chạy đầy đủ (bậc A mechanism, B app nhỏ, C app đầy đủ + lỗi, bảo mật, PROD) ~80–130 giờ công gồm 2–3 vòng sửa (mỗi vòng 8–12 giờ), ~100–120 giờ thực tế SAU khi mục 06 sẵn sàng trên DEV",
           "blockers": [
             "mục 06 chưa có ETA",
@@ -16330,12 +16338,12 @@
       "remainingEffortHours": 534,
       "remainingElapsedHours": null,
       "confidence": "low",
-      "updatedAt": "2026-11-12T21:39:18+07:00",
+      "updatedAt": "2026-11-13T00:03:28+07:00",
       "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
       "blockers": [
-        "mục 06 chưa hiệu chuẩn",
-        "mục 07 và 12 chưa có giờ công",
-        "Owner: ngân sách B1/B3 và giải phóng giữ chỗ"
+        "mục 07 (~232 giờ công) và 12 (~230 giờ công) là ước lượng chưa hiệu chuẩn bằng PR thật; mục 06 đã hiệu chuẩn bằng PAYC-1..6 (~1 giờ/lát)",
+        "phụ thuộc deploy bản gộp (đang bị QA delta chặn)",
+        "Owner: quyết NO-36 (mục 07), ngân sách B1/B3 và giải phóng giữ chỗ"
       ],
       "milestones": [],
       "unknownReason": "Chưa xác định giờ: các mục 07 và 12 chưa hiệu chuẩn bằng PR thật, giờ VERIFIED toàn bộ phụ thuộc deploy bản gộp (đang bị QA delta chặn) và Owner (ngân sách, giải phóng giữ chỗ); khoảng ESTIMATE 20/11–27/11 (tin cậy thấp)",
@@ -16396,7 +16404,7 @@
           {
             "id": "11",
             "hours": 8,
-            "basis": "ước lượng C0; PR #264/#203 (trần lượt dự án) đang QA"
+            "basis": "ước lượng C0; PR #264/#203 (trần lượt dự án) đã merge dev sau QA độc lập"
           },
           {
             "id": "12",
