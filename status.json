@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T00:21:59+07:00",
+  "asOf": "2026-11-13T00:38:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T00:21:59+07:00",
+  "detailUpdatedAt": "2026-11-13T00:38:49+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6347,13 +6347,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 36,
+            "value": 33,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "df 23:38 ICT 12/11: 36 GiB trống (trên ngưỡng 20); nguồn duy nhất, trường khác chỉ là bản chụp cũ"
+            "evidence": "df 00:38 ICT 13/11: 33 GiB trống (trên ngưỡng 20)"
           },
           {
             "id": "disk.t_monitor",
@@ -6880,7 +6880,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T00:21:59+07:00",
+    "updatedAt": "2026-11-13T00:38:49+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6891,11 +6891,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "ok",
-            "summary": "Không có comment mới của Owner/ChatGPT sau lựa chọn 14:06 (đã xử lý)"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "ok",
@@ -6940,6 +6935,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "changed",
             "summary": "Đọc review ChatGPT #6828332761 (22:46); trả lời ở #257; comment mới ở #123 (Oxy trả lời thẻ 1)"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "changed",
+            "summary": "Đọc review ChatGPT #6830983237 (00:29): trả lời ở #257 với bảng PR chuẩn; Oxy báo thẻ 3 (00:29) và runbook (00:30) ở #123"
           }
         ]
       },
@@ -6951,11 +6951,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "ok",
-            "summary": "Tab Quy trình khớp thực tế; đĩa 32 GiB; tải máy 31–45"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "changed",
@@ -7000,6 +6995,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "ok",
             "summary": "#process khớp thực tế"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "ok",
+            "summary": "#process khớp thực tế; thêm khối làn máy phụ"
           }
         ]
       },
@@ -7011,11 +7011,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "changed",
-            "summary": "BE #246 merge; #250/#252/#245/#249/#251 và FE #196/#197 chờ hoặc sửa theo QA; 8 agent chạy"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "changed",
@@ -7060,6 +7055,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "changed",
             "summary": "ListAgents 23:38: 4 đang chạy (QA #269/#205, #270, #268/#206, kế hoạch Oxy); PR mở chờ QA: #262, #263, #265–#271, FE #204–#206 chờ QA"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "changed",
+            "summary": "ListAgents 00:38: 2 đang chạy; PR mở BE #262,#263,#265,#266,#267,#271,#272 + FE #204 chờ QA; đã merge BE #268/#269/#270, FE #205/#206 sau QA độc lập"
           }
         ]
       },
@@ -7071,11 +7071,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "changed",
-            "summary": "Đăng lần 126"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "changed",
@@ -7120,6 +7115,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "skipped",
             "summary": "Không đăng báo cáo 19 dòng lên #88; phản hồi ở #257"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "skipped",
+            "summary": "Không đăng báo cáo 19 dòng lên #88; phản hồi ở #257"
           }
         ]
       },
@@ -7131,11 +7131,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "changed",
-            "summary": "Dashboard: L28/L61/L20/L26/L60 + ghi kết quả chạy giờ"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "changed",
@@ -7180,6 +7175,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "changed",
             "summary": "Dashboard: đồng bộ release22/blockers/providerAudit/oxyLane/uiux/đĩa một nguồn"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "changed",
+            "summary": "Dashboard: bảng PR chuẩn prTable làm nguồn duy nhất cho trạng thái PR/QA; đồng bộ blockers/groups/uiux"
           }
         ]
       },
@@ -7191,11 +7191,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "ok",
-            "summary": "Đĩa 32 GiB trên ngưỡng khẩn 20; không cần dọn"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "changed",
@@ -7240,6 +7235,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "ok",
             "summary": "df 23:38: 36 GiB; không dọn thêm"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "ok",
+            "summary": "df 00:38: 33 GiB; không dọn"
           }
         ]
       },
@@ -7251,11 +7251,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH còn hạn đến ~21:21 12/11 (REPORTED); nhắc Owner nạp lại trước 21:00 nếu cần đọc CSDL"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "ok",
@@ -7300,6 +7295,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); đã dùng thật 17:46 và 23:31 (Oxy, chỉ đọc)"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); dùng thật 17:46, 23:31 và rsync chỉ đọc sang Oxy 00:2x"
           }
         ]
       },
@@ -7311,11 +7311,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T14:38:00+07:00",
-            "result": "ok",
-            "summary": "8 agent chạy (trên tối thiểu 6, trong trần 8); tải máy cao nên không giao thêm"
-          },
           {
             "at": "2026-11-12T15:45:00+07:00",
             "result": "changed",
@@ -7360,6 +7355,11 @@
             "at": "2026-11-12T23:38:50+07:00",
             "result": "ok",
             "summary": "4 agent đang chạy; thêm QA UI vòng 3 sau khi đồng bộ dashboard"
+          },
+          {
+            "at": "2026-11-13T00:38:49+07:00",
+            "result": "skipped",
+            "summary": "2 agent chạy (tải 5.30 6.53 8.91, đĩa 33 GiB, quy tắc QA một lần); làn Oxy chạy việc nặng thay phần tải"
           }
         ]
       }
@@ -7459,10 +7459,15 @@
         "at": "2026-11-13T00:21:59+07:00",
         "by": "C0",
         "note": "QA #270 GO có điều kiện (không P0/P1), merge dev; thẻ Owner NO-37 (C1); PR theo sau giao; lane: thẻ 3"
+      },
+      {
+        "at": "2026-11-13T00:38:49+07:00",
+        "by": "C0",
+        "note": "Review #257 6830983237: thêm bảng PR chuẩn (prTable) từ gh làm nguồn duy nhất; blockers/changeSincePrev/groups tính lại từ đó (QA #270 không còn 'đang chạy'; #268/#270 không còn 'chưa vào dev'); đếm QA=? từ aiAgent12.items"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T00:21:59+07:00",
+      "checkedAt": "2026-11-13T00:38:49+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7471,7 +7476,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "Merge dev sau QA độc lập: BE #269, #270, #268, FE #205, #206; QA UI r3 sửa; làn máy phụ: thẻ 2 báo cáo (PASS đến be-offline, smoke ngoại tuyến cần nạp bù có mạng), thẻ 3 đã đăng; tài liệu máy mới lên dashboard; thẻ Owner NO-37",
+      "changeSincePrev": "Bảng PR chuẩn (prTable, 00:38): đã merge dev sau QA độc lập BE #250, #251, #252, #253, #254, #258, #259, #260, #261, #264, #268, #269, #270; FE #200, #201, #202, #203, #205, #206; đang mở chưa QA độc lập BE #262, #263, #265, #266, #267, #271, #272; FE #204; làn máy phụ: thẻ 2/3 PASS, thẻ 4 (QA thật đầu tiên) đã giao",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7480,9 +7485,9 @@
           "no": 3
         },
         "QA": {
-          "yes": 3,
+          "yes": 4,
           "partial": 3,
-          "no": 6
+          "no": 5
         },
         "DEPLOY": {
           "yes": 0,
@@ -7502,17 +7507,18 @@
       },
       "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
       "blockers": [
-        "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; PR còn chờ QA chưa vào dev: BE #262, #263, #265, #266, #267, #268, #270, #271; FE #204, #206",
-        "QA #270 (bảo mật nhà cung cấp) và QA cặp #268/#206 đang chạy",
+        "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
+        "PR đang mở chưa vào dev và chưa QA độc lập: BE #262, #263, #265, #266, #267, #271, #272; FE #204 (bảng prTable)",
+        "Thẻ Owner NO-37 (paid=false tự khai) và NO-36 (mục 07) chờ quyết",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
-        "Đường nhà cung cấp thứ hai: PR #270 đang QA, chưa bật gì"
+        "Chưa deploy; PROD vẫn wave 21"
       ],
       "risks": [
         "Tải Mac hoangluan 13.80 16.48 19.17 (uptime 23:38); đĩa 36 GiB (df 23:38); nguồn hồi: hệ thống giải phóng bớt snapshot cục bộ sau khi C0 xóa worktree sạch (không xóa Docker, không xóa bằng chứng QA)",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy (máy thứ hai) mới đo, chưa chạy việc: Docker Desktop chưa khởi động, bước sudo/Docker chờ Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên; runner thứ hai chưa phát sinh chi phí; đĩa Mac hoangluan 36 GiB trống (df 23:38 ICT, nguồn duy nhất, trên ngưỡng khẩn 20); đĩa và tải đo lúc 23:38: mọi số đĩa ở các trường khác là bản chụp cũ nếu khác",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên; đĩa Mac hoangluan 33 GiB trống (df 00:38), tải 5.30 6.53 8.91 (uptime 00:38); làn máy phụ đang kiểm chứng",
       "ownerNeeds": [
         "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm, mục 07) và NO-37 (bảo mật nhà cung cấp: paid=false tự khai) ở tab Chờ anh quyết",
         "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
@@ -7524,21 +7530,21 @@
         "change": "Từ 27/11–07/12 sang 20/11–27/11: PAYC-1 thật chỉ ~1 giờ 05 phút so với 14 giờ công thiết kế nên mục 06 ngắn hơn nhiều; đường găng chuyển sang mục 07 và 12"
       },
       "uiux": {
-        "checkedAt": "2026-11-12T23:38:50+07:00",
-        "status": "QA_INDEPENDENT_STALE",
-        "qaSha": "4a3e9b7",
-        "qaVerdict": "GO có điều kiện (QA vòng 2: 192 ô local + 96 ô live)",
+        "checkedAt": "2026-11-13T00:38:49+07:00",
+        "status": "QA_INDEPENDENT_R3_FIXED_PENDING_R4",
+        "qaSha": "19de68e (vòng 3)",
+        "qaVerdict": "GO có điều kiện (vòng 3: 192 ô local + 96 ô live, 5 điều kiện P2 đã sửa ở be8b37f/aa68ff0)",
         "afterQaShas": [
-          "047c896",
-          "7c88e73",
-          "74d589c",
-          "85a7c2f",
-          "a5e0fd0 và các commit hourly sau đó"
+          "be8b37f",
+          "aa68ff0",
+          "872df1d",
+          "db1a504",
+          "fb5a1b5 và các commit hourly sau đó"
         ],
-        "proof": "Chỉ C0 tự chạy lại ma trận sau 4a3e9b7; chưa QA độc lập; QA vòng 3 trên đúng HEAD và trang live giao lúc 23:38",
+        "proof": "QA vòng 3 độc lập trên 19de68e (GitHub Pages cùng commit); các sửa sau đó chỉ có C0 tự chạy (4 bộ test PASS, ma trận 80 ô 0 vấn đề)",
         "open": "QA vòng 3: 8 cỡ × 2 theme, deep link, zoom 200%, tương phản, bàn phím"
       },
-      "agentCensus": "4 đang chạy (4 làm việc), 32 đã xong, 0 nghi treo; tối đa 10; đĩa 36 GiB, tải 13.80 16.48 19.17",
+      "agentCensus": "2 đang chạy (2 làm việc), 36 đã xong, 0 nghi treo; thấp vì tải 5.30 6.53 8.91, đĩa 33 GiB và quy tắc QA một lần; làn Oxy đang chạy việc QA thật đầu tiên (thẻ 4)",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7547,8 +7553,8 @@
           "at": "2026-11-12T16:22:00+07:00"
         },
         "movingDev": {
-          "be": "cdd91002 (đo 23:38)",
-          "fe": "943889f7 (đo 23:38)"
+          "be": "82ff4e73 (đo 00:38)",
+          "fe": "3a4ba863 (đo 00:38)"
         },
         "redTests": [
           "OlReferenceTurnWiringTests (#254 đổi lời nhắc theo trần đầu ra) và census patch_stale: đã sửa, merge trong #261 sau QA độc lập",
@@ -7562,7 +7568,7 @@
         "source": "AUDIT-PROVIDER-PATHS.md (đọc mã, không truy cập PROD) + QA #270 đang chạy",
         "answer": "Không phải mọi đường tới model đều ghi vào sổ cái trả phí trước PR #270: chỉ đường OpenRouter (hàm đo `metered()`) có giữ chỗ, hard cap và chặn ZDR; nhà cung cấp trả phí khác (dòng cấu hình anthropic trên PROD, nhà cung cấp openai/anthropic/gemini từ biến môi trường, BYOK của tenant) không qua sổ cái.",
         "exposure": "Hiện bị chặn ở PROD bởi danh sách nhà cung cấp chấp nhận (đọc chỉ-đọc 17:46: khóa không có trong tệp cấu hình ⇒ trống ⇒ HTTP 451). Nếu danh sách bị đặt, người dùng có quyền AI thật có thể gọi nhà cung cấp đó không qua hard cap (P1 tiềm ẩn, chưa thể khai thác trên PROD hôm nay).",
-        "fix": "PR #270 đã merge dev sau QA+SEC độc lập (GO có điều kiện, không P0/P1): mọi đường tới model nay hoặc ghi vào sổ cái trả phí hoặc từ chối trước khi dựng yêu cầu (QA liệt kê mọi chỗ gọi); audit ghi kind/paid, khóa lật paid, siết base_url, không theo chuyển hướng",
+        "fix": "PR #270 đã merge dev sau QA+SEC độc lập (GO có điều kiện, không P0/P1): mọi đường tới model nay hoặc ghi vào sổ cái trả phí hoặc từ chối trước khi dựng yêu cầu (QA liệt kê mọi chỗ gọi); audit ghi kind/paid, khóa lật paid, siết base_url, không theo chuyển hướng (merge dev: 82ff4e73)",
         "residual": [
           "ghim IP chống DNS rebinding cần tường lửa chặn ra ngoài",
           "thẻ NO-37: paid=false trên OPENAI_COMPATIBLE/LOCAL là lời tự khai",
@@ -7578,22 +7584,326 @@
         "ownerNeeded": [
           "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
         ]
+      },
+      "prTable": {
+        "checkedAt": "2026-11-13T00:38:49+07:00",
+        "source": "gh pr view lúc 00:38 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "19 PR đã merge dev sau QA độc lập; 8 PR đang mở chưa QA độc lập",
+        "items": [
+          {
+            "repo": "Xweb01fe",
+            "pr": 200,
+            "state": "MERGED",
+            "head": "e5ea4132",
+            "mergeCommit": "f5eef75d",
+            "mergedAt": "2026-11-12T13:15:48Z",
+            "label": "status:done",
+            "qa": "QA GO",
+            "qaReport": "QA-FE-PR200.md"
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 201,
+            "state": "MERGED",
+            "head": "422e5cd7",
+            "mergeCommit": "b5841bbf",
+            "mergedAt": "2026-11-12T15:31:04Z",
+            "label": "status:done",
+            "qa": "trong #202",
+            "qaReport": "QA-T24-T25.md"
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 202,
+            "state": "MERGED",
+            "head": "efcbf6ba",
+            "mergeCommit": "943889f7",
+            "mergedAt": "2026-11-12T15:31:01Z",
+            "label": "status:done",
+            "qa": "QA GO / SEC GO (cặp với BE #261)",
+            "qaReport": "QA-T24-T25.md"
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 203,
+            "state": "MERGED",
+            "head": "fbd2df2d",
+            "mergeCommit": "8ec2e97a",
+            "mergedAt": "2026-11-12T13:53:58Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO (cặp với BE #264)",
+            "qaReport": "QA-PR264-203.md"
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 205,
+            "state": "MERGED",
+            "head": "883e5085",
+            "mergeCommit": "989b8b14",
+            "mergedAt": "2026-11-12T16:51:11Z",
+            "label": "status:done",
+            "qa": "QA GO / SEC GO",
+            "qaReport": "QA-PR269-205.md"
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 206,
+            "state": "MERGED",
+            "head": "168d710f",
+            "mergeCommit": "3a4ba863",
+            "mergedAt": "2026-11-12T17:11:53Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO",
+            "qaReport": "QA-PR268-206.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 250,
+            "state": "MERGED",
+            "head": "16dad77f",
+            "mergeCommit": "53da22c5",
+            "mergedAt": "2026-11-12T08:54:15Z",
+            "label": "status:done",
+            "qa": "QA+SEC độc lập (delta) GO",
+            "qaReport": "QA-PR250.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 251,
+            "state": "MERGED",
+            "head": "6999f0d9",
+            "mergeCommit": "575d0849",
+            "mergedAt": "2026-11-12T13:25:32Z",
+            "label": "status:done",
+            "qa": "QA GO / SEC GO",
+            "qaReport": "QA-PR251-253.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 252,
+            "state": "MERGED",
+            "head": "360dd9b5",
+            "mergeCommit": "524cfab9",
+            "mergedAt": "2026-11-12T10:57:04Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO",
+            "qaReport": "QA-PR252-r2.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 253,
+            "state": "MERGED",
+            "head": "58ec0fc5",
+            "mergeCommit": "5c6f2184",
+            "mergedAt": "2026-11-12T13:25:45Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO có điều kiện (cờ TẮT)",
+            "qaReport": "QA-PR251-253.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 254,
+            "state": "MERGED",
+            "head": "3d8e6d81",
+            "mergeCommit": "d430a3e6",
+            "mergedAt": "2026-11-12T09:21:16Z",
+            "label": "status:done",
+            "qa": "QA GO / SEC GO có điều kiện",
+            "qaReport": "QA-PR254.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 258,
+            "state": "MERGED",
+            "head": "69586bd4",
+            "mergeCommit": "a69909b3",
+            "mergedAt": "2026-11-12T13:28:42Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO (r2)",
+            "qaReport": "QA-PR258-r2.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 259,
+            "state": "MERGED",
+            "head": "f0fa1d9b",
+            "mergeCommit": "f4c38af4",
+            "mergedAt": "2026-11-12T11:33:46Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO",
+            "qaReport": "QA-PR259.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 260,
+            "state": "MERGED",
+            "head": "a81180d3",
+            "mergeCommit": "cda96c5e",
+            "mergedAt": "2026-11-12T15:31:16Z",
+            "label": "status:done",
+            "qa": "trong #261",
+            "qaReport": "QA-T24-T25.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 261,
+            "state": "MERGED",
+            "head": "f229449f",
+            "mergeCommit": "cdd91002",
+            "mergedAt": "2026-11-12T15:31:14Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO có điều kiện (cặp với FE #202)",
+            "qaReport": "QA-T24-T25.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 264,
+            "state": "MERGED",
+            "head": "d027e8fe",
+            "mergeCommit": "24921681",
+            "mergedAt": "2026-11-12T13:53:46Z",
+            "label": "status:done",
+            "qa": "QA GO / SEC GO (cặp với FE #203)",
+            "qaReport": "QA-PR264-203.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 268,
+            "state": "MERGED",
+            "head": "c96ff4e5",
+            "mergeCommit": "342232b8",
+            "mergedAt": "2026-11-12T17:11:40Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO (cặp với FE #206)",
+            "qaReport": "QA-PR268-206.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 269,
+            "state": "MERGED",
+            "head": "394eaffc",
+            "mergeCommit": "e4dce423",
+            "mergedAt": "2026-11-12T16:50:59Z",
+            "label": "status:done",
+            "qa": "QA GO / SEC GO (cùng FE #205)",
+            "qaReport": "QA-PR269-205.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 270,
+            "state": "MERGED",
+            "head": "4595ae12",
+            "mergeCommit": "82ff4e73",
+            "mergedAt": "2026-11-12T17:21:28Z",
+            "label": "status:done",
+            "qa": "QA GO có điều kiện / SEC GO có điều kiện",
+            "qaReport": "QA-PR270.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 262,
+            "state": "OPEN",
+            "head": "6b32491b",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "xweb01",
+            "pr": 263,
+            "state": "OPEN",
+            "head": "7432b95e",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "xweb01",
+            "pr": 265,
+            "state": "OPEN",
+            "head": "2cdcb2ba",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "xweb01",
+            "pr": 266,
+            "state": "OPEN",
+            "head": "6b0069af",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "xweb01",
+            "pr": 267,
+            "state": "OPEN",
+            "head": "3e94a82a",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "xweb01",
+            "pr": 271,
+            "state": "OPEN",
+            "head": "4239dd16",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "xweb01",
+            "pr": 272,
+            "state": "OPEN",
+            "head": "5062fd3d",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          },
+          {
+            "repo": "Xweb01fe",
+            "pr": 204,
+            "state": "OPEN",
+            "head": "2090b5d8",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa",
+            "qa": "chưa QA độc lập (NOT_RUN)",
+            "qaReport": null
+          }
+        ]
       }
     },
     "agents": {
-      "checkedAt": "2026-11-12T23:38:50+07:00",
-      "source": "ListAgents lúc 23:38 ICT (chụp trực tiếp)",
+      "checkedAt": "2026-11-13T00:38:49+07:00",
+      "source": "ListAgents lúc 00:38 ICT (chụp trực tiếp)",
       "cap": 10,
       "counts": {
-        "RUNNING_TOTAL": 4,
-        "WORKING": 4,
+        "RUNNING_TOTAL": 2,
+        "WORKING": 2,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 32
+        "FINISHED": 36
       },
-      "resources": "Tải 13.80 16.48 19.17 (uptime 23:38); đĩa 36 GiB (df 23:38); 3 chỗ Gradle",
+      "resources": "Tải 5.30 6.53 8.91; đĩa 33 GiB (df 00:38)",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
         "Phiên ngang hàng hoangluan-e4 (tương tác) không phải agent của C0, không tính.",
@@ -7601,55 +7911,29 @@
       ],
       "items": [
         {
-          "alias": "qa-269-205",
-          "id": "ade0df95",
-          "task": "QA delta độc lập BE #269 + FE #205",
+          "alias": "attb-fix",
+          "id": "a1f3e113",
+          "task": "PR sửa ATT-b (BE #272 + FE): byte mạch lạc, đếm theo cấu hình mới",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T23:06:00+07:00",
+          "startAt": "2026-11-13T00:09:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
-          "etaAt": "2026-11-13T00:30:00+07:00",
+          "etaAt": null,
           "waitReason": null
         },
         {
-          "alias": "qa-270",
-          "id": "a45b052b",
-          "task": "QA+SEC độc lập bảo mật nhà cung cấp #270",
+          "alias": "provider-sec2",
+          "id": "ac3a3df2",
+          "task": "Theo sau #270: lá chắn nguồn, nhận diện OpenRouter theo kiểu, IPv6/localhost, test P8",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T23:27:00+07:00",
+          "startAt": "2026-11-13T00:19:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
-          "etaAt": "2026-11-13T01:00:00+07:00",
-          "waitReason": null
-        },
-        {
-          "alias": "qa-268-206",
-          "id": "a0ded69c",
-          "task": "QA độc lập cặp BE #268 + FE #206 (đính kèm)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-12T23:29:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": "2026-11-13T01:00:00+07:00",
-          "waitReason": null
-        },
-        {
-          "alias": "oxy-lane-planner",
-          "id": "a7626ae2",
-          "task": "Lập kế hoạch làn Oxy (thiết kế + thẻ)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-12T23:30:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": "2026-11-13T00:00:00+07:00",
+          "etaAt": null,
           "waitReason": null
         }
       ],
@@ -15791,14 +16075,26 @@
     "status": "IN_VERIFICATION",
     "summary": "Đang kiểm chứng, CHƯA tuyên bố sẵn sàng. Máy phụ đầu tiên đã chạy xong thẻ cài đặt và thẻ 3 phần A+B (đo thật, kết quả được máy chính kéo về bằng SSH chỉ-đọc, 12/12 sha256 khớp): nạp Gradle có mạng 23 phút 38 giây rồi offline PASS, smoke BE 3/3 test, FE npm ci 74 giây, guard:static 9/7/0, guard:test 168/110/0, typecheck 2 phút 49 giây. Chốt tải từ chối đúng 1 lần (5,42 lớn hơn 4,0); tải đỉnh 10,35 khi npm ci. Checklist nghiệm thu: 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc. Chưa có: việc QA thật đầu tiên (thẻ 4 vừa đăng), Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner.",
     "links": [
-      {"label": "Runbook thêm máy mới", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/RUNBOOK-NEW-MACHINE.md"},
-      {"label": "Nhật ký máy phụ đầu tiên", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/LANE-FIRST-MACHINE-LOG.md"},
-      {"label": "Script slot", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/gradle-slot-lane.sh"},
-      {"label": "Mục lục tài liệu", "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/README.md"}
+      {
+        "label": "Runbook thêm máy mới",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/RUNBOOK-NEW-MACHINE.md"
+      },
+      {
+        "label": "Nhật ký máy phụ đầu tiên",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/LANE-FIRST-MACHINE-LOG.md"
+      },
+      {
+        "label": "Script slot",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/gradle-slot-lane.sh"
+      },
+      {
+        "label": "Mục lục tài liệu",
+        "url": "https://github.com/luan20495/phase33-dashboard/blob/main/docs/lane/README.md"
+      }
     ]
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-13T00:03:28+07:00",
+    "updatedAt": "2026-11-13T00:38:49+07:00",
     "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
