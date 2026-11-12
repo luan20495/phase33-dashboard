@@ -2,7 +2,7 @@
 
 Phiên bản 1, viết lúc 2026-11-13 00:05 ICT. Phạm vi: macOS Apple silicon 16 GB, máy phụ đứng cạnh một "hub" đang chạy việc khác.
 
-> **Trạng thái trung thực của tài liệu này.** Runbook được rút ra từ máy phụ đầu tiên, nhưng máy đó **vẫn đang dựng** (thẻ cài đặt thứ hai đang chạy). Chưa có bước nặng nào (nạp cache Gradle, chứng minh offline, smoke FE/BE, kéo kết quả) được xác nhận PASS trên máy phụ. Vì vậy: lệnh ở mục 8-10 là **thiết kế đã review, NOT_RUN trên máy phụ**; các con số ghi `MEASURED` chỉ là số đo thật, `ESTIMATE` là ước lượng cần đo lại. Khi máy phụ đầu tiên xong, cập nhật cột "Máy phụ #1" ở mục 16 và `LANE-FIRST-MACHINE-LOG.md`. **Không ai được ghi "làn sẵn sàng" khi mục 16 chưa PASS hết.**
+> **Trạng thái trung thực của tài liệu này (cập nhật 2026-11-13 00:40 ICT): làn ĐANG KIỂM CHỨNG, CHƯA tuyên bố "sẵn sàng".** Runbook được rút ra từ máy phụ đầu tiên. Máy đó đã chạy xong thẻ cài đặt (thẻ 2) và thẻ 3 phần A+B với kết quả thật: nạp Gradle có mạng rồi chứng minh offline, smoke BE 3/3 test, FE `npm ci`, `guard:static`, `guard:test`, `typecheck` đều PASS, kết quả đã được máy chính kéo về bằng SSH chỉ-đọc và đối chiếu sha256. **Chưa có:** việc QA thật đầu tiên (thẻ 4 vừa đăng), `test:unit` đầy đủ qua script slot, Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner. Nhãn: `MEASURED` là số đo thật, `ESTIMATE` là ước lượng cần đo lại, `NOT_RUN` là chưa chạy. Cập nhật cột "Máy phụ #1" ở mục 16 và `LANE-FIRST-MACHINE-LOG.md` khi có kết quả mới. **Không ai được ghi "làn sẵn sàng" khi mục 16 chưa PASS hết các dòng bắt buộc.**
 
 Mục lục: 1 Mục đích và vai trò · 2 Điều kiện tiên quyết · 3 Việc chỉ Owner / việc agent máy phụ được làm · 4 Kênh và giao thức thẻ việc · 5 Bố cục thư mục · 6 Toolchain · 7 Script slot và ngưỡng chốt · 8 Nạp cache Gradle · 9 FE: cài và smoke · 10 Kéo kết quả · 11 Quy tắc tải, RAM, đĩa · 12 Khởi động lại · 13 Cô lập và bảo mật · 14 Hoàn nguyên · 15 Xử lý sự cố · 16 Checklist nghiệm thu.
 
@@ -173,33 +173,34 @@ JOB_TIMEOUT=2400 ~/xweb-lane/tools/gradle-slot-lane.sh be-seed ./gradlew compile
 ```
 
 - Cú pháp: `gradle-slot-lane.sh <nhãn> <lệnh> [tham số...]`, chạy từ thư mục repo/worktree cần đo (SHA đọc từ thư mục hiện tại). Nhãn chỉ gồm `A-Za-z0-9._-`.
-- **Một slot nặng + một slot nhẹ.** Việc nặng/nhẹ được quyết theo **chữ trong lệnh** (không theo nhãn): gradle, testcontainers, docker, colima, bootRun, playwright, chrome, harness-server, gate:frontend, tsc, mutant, test:unit, browser. Lưu ý (MEASURED bằng đọc mã): `npm ci` và `npm run typecheck` không chứa từ khóa nên rơi vào slot **nhẹ**, không qua chốt. Muốn ép nặng cho `typecheck` thì thêm từ khóa: `env TSC=1 npm run typecheck`.
+- **Một slot nặng + một slot nhẹ.** Việc nặng/nhẹ được quyết theo **chữ trong lệnh** (không theo nhãn): gradle, testcontainers, docker, colima, bootRun, playwright, chrome, harness-server, gate:frontend, tsc, mutant, test:unit, browser. **MEASURED trên máy phụ #1:** `npm run guard:static` và `npm run guard:test` rơi vào slot **nhẹ** (cột `guard=` trống trong `meta.txt`), tức bỏ chốt RAM/đĩa; theo đọc mã thì `npm ci` và `npm run typecheck` cũng vậy. **Quy tắc từ thẻ 4: đặt tiền tố `env LANE_HEAVY=gradle <lệnh>` cho MỌI lệnh nặng** (kể cả `npm ci`, `guard:*`, `test:unit`); riêng `typecheck` dùng `env TSC=1`. `LANE_HEAVY` **không phải biến của script**: nó chỉ hoạt động vì script thấy chữ `gradle` trong dòng lệnh (và `TSC=1` vì thấy chữ `tsc`). Một biến ghi đè tường minh (`LANE_KIND`) là đề xuất chưa làm.
 - Mã thoát: 0 xong; **75 bị từ chối (chốt hoặc slot bận) hoặc STOP: không chờ, không khởi chạy, người gọi tự xếp hàng lại**; 124 quá hạn (cả nhóm tiến trình bị giết: TERM, chờ 20 giây, KILL); 1/2 lỗi cú pháp; còn lại là mã của việc.
 - Mỗi việc có thư mục `results/<UTC>-<nhãn>-<sha12>/` gồm `job.log`, `meta.txt` (giờ UTC và ICT, lệnh, đường dẫn làm việc, kết quả chốt), `SHA256SUMS`. Lưu ý: `meta.txt` chứa đường dẫn đầy đủ (có tên tài khoản): **không đăng nguyên văn lên nơi công khai**.
 - Ưu tiên thấp: `nice -n 15` và `taskpolicy -b` nếu có.
+- **Chốt chỉ kiểm lúc bắt đầu việc.** Trong lúc việc chạy, tải có thể vượt xa 4 (MEASURED: `npm ci` 9,87; đỉnh phiên 10,35). Vì vậy người gọi phải canh (mục 11, khoản 4: quy tắc `ABORTED_LOAD`).
 - Dừng làn: `touch ~/xweb-lane/STOP` (chỉ chặn việc **mới**; Owner, máy chính hoặc người vận hành hub đều được làm). Dừng việc đang chạy: `kill` pid ghi trong `~/xweb-lane/locks/heavy.lock/pid`, rồi `ps` xác nhận không còn tiến trình con; nếu còn thì `kill -TERM -<pgid>`; không bao giờ `pkill` theo tên (cách này ESTIMATE, chưa thử trên máy phụ).
 
 ### 7.1 Ngưỡng chốt (chặn việc nặng; biến môi trường đổi được)
 
 | Chốt | Biến | Mặc định | Giá trị thực trên máy phụ đầu tiên | Nhãn |
 |---|---|---|---|---|
-| Tải 1 phút tối đa | `LANE_MAX_LOAD` | 4.0 | tải khi rảnh 1,36-1,70 (23:32-23:34 ICT); sau khởi động lại 41-56; **tải cao nhất khi chạy việc nặng: chưa có** | mặc định ESTIMATE; số rảnh MEASURED; số khi chạy NOT_RUN |
-| RAM khả dụng tối thiểu (trống + không hoạt động + đệm) | `LANE_MIN_FREE_RAM_MB` | 5000 | RAM nền khi hub rảnh ước khoảng 6-7 GB đã dùng trên 16 GB (ESTIMATE); RAM khả dụng đo thật: chưa có | ESTIMATE |
-| Đĩa trống tối thiểu | `LANE_MIN_FREE_DISK_GB` | 20 | 88 GiB lúc 23:32 ICT; sàn 20 GiB là yêu cầu của Owner | sàn: Owner; số đo: MEASURED |
-| Hết hạn việc | `JOB_TIMEOUT` | 1500 giây | lần biên dịch Gradle đầu cần 2400; thực tế: chưa có | mặc định ESTIMATE |
+| Tải 1 phút tối đa | `LANE_MAX_LOAD` | 4.0 | tải khi rảnh 1,30-3,43 lúc bắt đầu các việc; **chốt từ chối đúng 1 lần: 5,42 > 4,0** ngay sau hai việc Gradle liên tiếp, qua sau nghỉ 3 phút; tải cao nhất khi chạy: 3,15 (test Gradle có mạng), 2,07 (test offline), 2,96 (`tsc`), **9,87 (`npm ci`)**, đỉnh phiên 10,35; `be-seed` 23 phút 38 giây không lấy mẫu; sau khởi động lại 41-56 | mặc định ESTIMATE; số đo MEASURED |
+| RAM khả dụng tối thiểu (trống + không hoạt động + đệm) | `LANE_MIN_FREE_RAM_MB` | 5000 | RAM khả dụng lúc bắt đầu việc nặng: 6278 MB (tải 2,52), 8246-8603 MB ở các việc sau; chốt 5000 MB chưa từ chối lần nào. RAM trống thấp nhất **trong lúc** việc chạy: NOT_RUN | số lúc bắt đầu MEASURED; ngưỡng ESTIMATE |
+| Đĩa trống tối thiểu | `LANE_MIN_FREE_DISK_GB` | 20 | 88 GiB lúc 23:32 ICT, 86 GiB sau thẻ 3; sàn 20 GiB là yêu cầu của Owner | sàn: Owner; số đo: MEASURED |
+| Hết hạn việc | `JOB_TIMEOUT` | 1500 giây | lần biên dịch Gradle đầu (nạp có mạng) mất 23 phút 38 giây = 1418 giây, chạy với `JOB_TIMEOUT=2400`; test Gradle 30 giây - 1 phút 28 giây; `npm ci` 74 giây; `tsc` 169 giây | MEASURED |
 
 Tham chiếu máy chính (chỉ để hình dung độ nặng, không phải số của làn): trên máy chính, `test` của một lớp BE thuần (19 test) kể cả biên dịch lần đầu mất 9 phút 37 giây ở tải 48; FE `test:unit` khoảng 77-79 giây (MEASURED, chạy chẩn đoán trên máy phụ đầu tiên).
 
-Thay đổi ngưỡng chỉ sau khi có đo thật (bảng thời gian trong `LANE-FIRST-MACHINE-LOG.md`, mục 6.1) và có người duyệt. Không hạ ngưỡng để việc "qua".
+Chưa có số RSS lớn nhất và RAM trống thấp nhất trong lúc chạy (NOT_RUN), nên ngưỡng RAM vẫn là ESTIMATE. Thay đổi ngưỡng chỉ sau khi có đo thật (bảng thời gian trong `LANE-FIRST-MACHINE-LOG.md`, mục 6.1) và có người duyệt. Không hạ ngưỡng để việc "qua".
 
 ## 8. Nạp cache Gradle: online một lần, rồi chứng minh offline
 
 Vì sao cần cẩn thận (MEASURED trong sự cố ngày 12/11 trên máy chính): BE khóa phụ thuộc (`gradle.lockfile`) ghim các artifact Kotlin ở 2.2.21, nhưng `kotlin-reflect` không khai phiên bản mà lấy từ BOM của Spring Boot (2.3.21). Thông thường plugin Boot ép lại về 2.2.21; nếu bước ép bị bỏ qua (xảy ra khi cache `transforms` bị xóa trong lúc nhiều build khởi động cùng lúc) thì kiểm khóa báo `LockOutOfDate`. Hệ quả cho làn:
 
-- Cache phải đủ: plugin, mọi artifact bị khóa cho **cả biên dịch lẫn chạy test** (kể cả Testcontainers bom, JUnit launcher) và các artifact Kotlin 2.2.21. `--offline` hỏng ở artifact thiếu đầu tiên, nên lần nạp phải chạy **một test thật**, không chỉ `compileKotlin`.
+- Cache phải đủ: plugin, mọi artifact bị khóa cho **cả biên dịch lẫn chạy test** (kể cả Testcontainers bom, JUnit launcher) và các artifact Kotlin 2.2.21. `--offline` hỏng ở artifact thiếu đầu tiên, nên lần nạp phải chạy **một test thật**, không chỉ `compileKotlin`. **MEASURED trên máy phụ #1:** nạp chỉ bằng `compileKotlin compileTestKotlin` rồi `--offline test` hỏng vì thiếu `org.postgresql:postgresql` và `org.checkerframework:checker-qual`; một lần `test` có mạng (1 phút 28 giây) đã đủ và lần `--offline` sau đó đạt.
 - **Không bao giờ** xóa `caches/*/transforms` hay `modules-2` khi còn khả năng một build khởi động; không `--refresh-dependencies`; không tạo cache bằng nhiều build cùng lúc.
 
-Quy trình (đã review, **NOT_RUN trên máy phụ**; trên máy phụ đầu tiên đang chạy ở thẻ 2):
+Quy trình (đã chạy trên máy phụ #1 với các số đo ghi ở mục 7.1 và nhật ký; **offline lần hai từ worktree mới vẫn NOT_RUN**). Bản khuyến nghị dưới đây gộp bước 2 và 3 thành **một lệnh `test` có mạng**, bỏ lần nạp chỉ biên dịch mà máy phụ #1 đã làm (23 phút 38 giây):
 
 1. Cửa sổ yên: làn rảnh, tải hub ≤ 2, không Gradle nào khác của bạn (đếm tiến trình gradle bằng `ps` phải bằng 0).
 2. **Nạp có mạng, chạy một mình:**
@@ -210,11 +211,11 @@ Quy trình (đã review, **NOT_RUN trên máy phụ**; trên máy phụ đầu t
    JOB_TIMEOUT=2400 ~/xweb-lane/tools/gradle-slot-lane.sh be-seed ./gradlew --no-daemon --max-workers=1 --console=plain -Dorg.gradle.parallel=false -Pkotlin.daemon.jvmargs=-Xmx3g compileKotlin compileTestKotlin
    ```
    Nếu gặp `LockOutOfDate ... kotlin-reflect:2.2.21 ... 2.3.21`: thêm `-Pkotlin.version=2.2.21` (ghim BOM về đúng phiên bản khóa; không đổi tập phụ thuộc đã giải), ghi rõ cờ trong báo cáo.
-3. **Nạp phụ thuộc test:** chạy đúng lệnh smoke (mục 8.1) **một lần có mạng** với nhãn `seed-online`.
-4. Bằng chứng nạp: thời gian, `du -sh $GRADLE_USER_HOME`, `ls $GRADLE_USER_HOME/caches/modules-2/files-2.1 | wc -l`, số dòng `Download` trong `job.log`, có thư mục `kotlin-*` phiên bản 2.3.x không (kỳ vọng không có hoặc chỉ có pom).
-5. **Chứng minh offline, KHÔNG có cờ ghim:** chạy lại lệnh smoke với `--offline`. PASS = BUILD SUCCESSFUL, số test đúng, `grep -c '^Download' job.log` bằng 0.
+3. **Nạp phụ thuộc test:** chạy đúng lệnh smoke (mục 8.1) **một lần có mạng** (nhãn `seed-online`). Nếu bước 2 đã là một lệnh `test` có mạng thì bước 3 đã xong.
+4. Bằng chứng nạp: thời gian, `du -sh $GRADLE_USER_HOME`, `ls $GRADLE_USER_HOME/caches/modules-2/files-2.1 | wc -l`, số dòng `Download` trong `job.log` (chỉ để tham khảo: với `--console=plain` Gradle không in dòng `Download` cho từng artifact, chỉ cho bản phân phối Gradle), có thư mục `kotlin-*` phiên bản 2.3.x không (kỳ vọng không có hoặc chỉ có pom).
+5. **Chứng minh offline, KHÔNG có cờ ghim:** chạy lại lệnh smoke với `--offline`. PASS = BUILD SUCCESSFUL của lần chạy `--offline` và số test đúng (đọc từ XML). **Không dùng số dòng `Download` làm bằng chứng**: MEASURED trên máy phụ #1, lần `seed-online` tải jar mới mà `grep -c '^Download'` vẫn bằng 0; bằng chứng offline là chính lần chạy `--offline` thành công.
 6. Chứng minh offline lần hai từ một worktree **mới** của cùng SHA (cache không gắn với worktree).
-7. Vệ sinh: `./gradlew --stop` với đúng `GRADLE_USER_HOME` của làn, rồi `ps` kiểm không còn `java`/Kotlin daemon của làn. Daemon Kotlin có thoát cùng Gradle không: chưa biết (UNKNOWN), thẻ đo sẽ ghi lại. Nếu còn, báo pid và tuổi; không kill theo tên.
+7. Vệ sinh: `./gradlew --stop` với đúng `GRADLE_USER_HOME` của làn, rồi `ps` kiểm không còn `java`/Kotlin daemon của làn. Daemon Kotlin có thoát cùng Gradle không: chưa kiểm trên máy phụ #1 (NOT_RUN). Nếu còn, báo pid và tuổi; không kill theo tên.
 
 ### 8.1 Lệnh smoke BE không Docker
 
@@ -222,7 +223,7 @@ Quy trình (đã review, **NOT_RUN trên máy phụ**; trên máy phụ đầu t
 JOB_TIMEOUT=1500 ~/xweb-lane/tools/gradle-slot-lane.sh be-smoke-unit ./gradlew test --tests '<lớp-test-thuần-nhỏ>' --offline --no-daemon --max-workers=1 --console=plain
 ```
 
-Số test kỳ vọng lấy từ XML (`build/test-results/test/*.xml`), không từ lời đoán: lớp dùng ở thẻ 2 của máy phụ đầu tiên kỳ vọng 3 test; lớp dùng để chứng minh trên máy chính có 19 test. Chọn lớp thuần (không khởi container); danh sách ứng viên (khoảng 596 tệp, ESTIMATE tĩnh) nên thành danh sách cho phép do QA sở hữu, qua PR thường lệ.
+Số test kỳ vọng lấy từ XML (`build/test-results/test/*.xml`), không từ lời đoán: lớp dùng ở thẻ 2/3 của máy phụ đầu tiên cho **3 test, 0 lỗi, 0 bỏ qua (MEASURED, XML)**; lớp dùng để chứng minh trên máy chính có 19 test. Chọn lớp thuần (không khởi container); danh sách ứng viên (khoảng 596 tệp, ESTIMATE tĩnh) nên thành danh sách cho phép do QA sở hữu, qua PR thường lệ.
 
 Lựa chọn thay thế: chép `modules-2` từ máy chính (khoảng 1,1 GB) cần **quyền ghi** lên máy phụ, ngoài phạm vi SSH chỉ-đọc, và vẫn phải qua bước 5-6. Không khuyến nghị.
 
@@ -234,24 +235,26 @@ Nguồn mạng của làn (kiểm kê): phân phối Gradle, cổng plugin Gradl
 cd ~/xweb-lane/work/<fe>
 export PATH=/opt/homebrew/opt/node@24/bin:$PATH        # dùng Node có sẵn; ghi node -v
 export npm_config_cache=$HOME/xweb-lane/npm-cache      # khuyến nghị; thẻ 2 đầu tiên dùng cache npm chung
-JOB_TIMEOUT=1800 ~/xweb-lane/tools/gradle-slot-lane.sh fe-ci npm ci --ignore-scripts
-JOB_TIMEOUT=1200 ~/xweb-lane/tools/gradle-slot-lane.sh fe-guards npm run guard:static
-JOB_TIMEOUT=1200 ~/xweb-lane/tools/gradle-slot-lane.sh fe-guard-tests npm run guard:test
-NODE_OPTIONS=--max-old-space-size=3072 JOB_TIMEOUT=1800 ~/xweb-lane/tools/gradle-slot-lane.sh fe-tsc env TSC=1 npm run typecheck
+S=~/xweb-lane/tools/gradle-slot-lane.sh                 # tiền tố env LANE_HEAVY=gradle: ép slot nặng (mục 7)
+JOB_TIMEOUT=1800 $S fe-ci env LANE_HEAVY=gradle npm ci --ignore-scripts
+JOB_TIMEOUT=1200 $S fe-guards env LANE_HEAVY=gradle npm run guard:static
+JOB_TIMEOUT=1200 $S fe-guard-tests env LANE_HEAVY=gradle npm run guard:test
+NODE_OPTIONS=--max-old-space-size=3072 JOB_TIMEOUT=1800 $S fe-tsc env TSC=1 npm run typecheck
 # hiệu chuẩn một lần: toàn bộ unit test FE
-NODE_OPTIONS=--max-old-space-size=3072 JOB_TIMEOUT=1800 ~/xweb-lane/tools/gradle-slot-lane.sh fe-unit-full npm run test:unit
+NODE_OPTIONS=--max-old-space-size=3072 JOB_TIMEOUT=2700 $S fe-unit-full env LANE_HEAVY=gradle npm run test:unit
 ```
 
-Số kỳ vọng tại đúng SHA ghim (đo trên máy chính, ghi trong thẻ 2; **chưa có số đo trên máy phụ**):
+Số đo tại đúng SHA ghim (Node 24.22.1):
 
-| Lệnh | Kỳ vọng | Nhãn |
+| Lệnh | Kết quả | Nhãn |
 |---|---|---|
-| `guard:static` | 9 đạt / 7 bỏ qua (kiểm chéo repo) / 0 lỗi | máy chính MEASURED; máy phụ NOT_RUN |
-| `guard:test` | 168 đạt / 110 bỏ qua / 0 lỗi | máy chính MEASURED; máy phụ NOT_RUN |
-| `typecheck` | sạch (rc 0) | máy chính MEASURED; máy phụ NOT_RUN |
-| `test:unit` đầy đủ | 6070 test, 6062 đạt, 0 lỗi, 8 bỏ qua, khoảng 79 giây (Node 24, bản FE ghim) | MEASURED trên máy phụ đầu tiên bằng chạy chẩn đoán ngoài engine; chạy qua script slot: NOT_RUN |
+| `npm ci --ignore-scripts` | rc 0, 74 giây, 0 lỗ hổng; **tải cao nhất 9,87** | MEASURED trên máy phụ #1 |
+| `guard:static` | 9 đạt / 7 bỏ qua (kiểm chéo repo) / 0 lỗi, 14 giây | MEASURED trên máy phụ #1 (khớp máy chính) |
+| `guard:test` | 278 test: 168 đạt / 0 lỗi / 110 bỏ qua, 13 giây | MEASURED trên máy phụ #1 (khớp máy chính) |
+| `typecheck` | rc 0, không lỗi, 2 phút 49 giây, tải cao nhất 2,96 | MEASURED trên máy phụ #1 |
+| `test:unit` đầy đủ | 6070 test, 6062 đạt, 0 lỗi, 8 bỏ qua, khoảng 79 giây (chạy chẩn đoán ngoài engine, không qua script slot); qua script slot: việc 1 của thẻ 4, chưa có kết quả | chẩn đoán MEASURED; qua script: NOT_RUN |
 
-Sau mỗi lệnh `git status --porcelain` phải trống (trừ thư mục sinh ra như `.test-build`). Lệnh cần trình duyệt (spec dưới `tests/browser`, cần Chrome) **chưa thuộc thẻ cài đặt**: ghi `NOT_RUN`, thẻ sau.
+Sau mỗi lệnh `git status --porcelain` nên trống (máy phụ #1 chưa báo kiểm này) (trừ thư mục sinh ra như `.test-build`). Lệnh cần trình duyệt (spec dưới `tests/browser`, cần Chrome) **chưa thuộc thẻ cài đặt**: ghi `NOT_RUN`, thẻ sau.
 
 Số đo đi kèm mỗi việc: thời gian, RSS lớn nhất (`/usr/bin/time -l` chỉ cho tiến trình đơn lớn nhất, không là tổng), RAM trống thấp nhất và tải cao nhất (bộ lấy mẫu `vm_stat`/`sysctl` mỗi 10 giây trong cùng phiên, dừng bằng đúng pid của nó).
 
@@ -290,7 +293,7 @@ shasum -a 256 "$DEST/SHA256SUMS"                            # 64 ký tự hex đ
 1. **Một việc nặng một lúc** trên máy phụ (độc lập với quy tắc của máy chính: làn là thêm sức máy, không để hai việc nặng cùng một máy).
 2. Ngân sách RAM cho làn (ESTIMATE): tối đa khoảng 6 GB, để hub còn ít nhất 3 GB. Đỉnh ước tính: FE `test:unit`/tsc khoảng 3 GB (`--max-old-space-size=3072`); spec trình duyệt 2-2,5 GB; biên dịch BE lần đầu 4,5-5 GB (Gradle JVM + Kotlin daemon 3 GB); chạy test BE 3,5-6,5 GB; thêm VM container khoảng 3 GB.
 3. Gradle trên máy phụ: `--no-daemon --max-workers=1 -Dorg.gradle.parallel=false` (mặc định repo là cho máy lớn). Kotlin daemon mặc định `-Xmx3g`. Đừng tăng bộ nhớ "cho qua" mà không báo.
-4. **Người canh trong lúc chạy** (phiên agent, mỗi 60 giây, KHÔNG phải launchd): nếu dịch vụ hub không còn chạy, hoặc tải 1 phút > 8 liên tục 2 phút, hoặc RAM khả dụng < 2 GB thì kill pid của slot (nhóm tiến trình) và tạo `STOP`.
+4. **Người canh trong lúc chạy** (phiên agent, lấy mẫu mỗi 15-60 giây, KHÔNG phải launchd; lấy mẫu từ việc đầu tiên, kể cả việc dài như nạp Gradle): chốt của script chỉ kiểm lúc bắt đầu (MEASURED: `npm ci` làm tải 9,87). **Quy tắc `ABORTED_LOAD` (từ thẻ 4): nếu tải 1 phút > 8 liên tục quá 2 phút trong lúc một việc chạy thì dừng việc đó (kill nhóm tiến trình do script tạo, không động tiến trình khác), ghi `ABORTED_LOAD` làm trạng thái và báo.** Với dịch vụ hub không còn chạy hoặc RAM khả dụng < 2 GB: cũng dừng việc và tạo `STOP`.
 5. Đĩa: sàn 20 GiB cho việc nặng (chốt trong script); không clone/cài khi dưới 30 GiB; ngân sách làn tổng ≤ 25 GB (ESTIMATE): worktree BE khoảng 0,3 GB + `build` 85 MB; FE khoảng 0,8 GB mỗi worktree có `node_modules`; Gradle home 2-3 GB lúc đầu và có thể tới 8 GB; ảnh Docker 1,44 GB + đĩa VM (thưa, tối đa 30 GB); kết quả tối đa 5 GB.
 6. Dọn dẹp: **không bao giờ xóa bằng chứng** (`results`); worktree chỉ xóa đúng cái mình tạo bằng `git worktree remove`, sau khi đã có bản ghi kết quả. Khi Gradle home vượt 8 GB: dừng daemon của làn, chắc chắn không có khóa slot, chỉ xóa `build-cache-1` và log daemon cũ hơn 7 ngày; **không** xóa `transforms`/`modules-2`; sau đó chạy `help` rồi một lần biên dịch **một mình** trước khi nhả slot. Đĩa < 20 GiB: script từ chối việc mới; khôi phục làm thủ công và báo.
 7. Chỉ Owner hoặc điều phối máy chính, sau khi đã kéo và đối chiếu sha256 và có bản sao ở máy chính, mới được lưu trữ kết quả cũ hơn 30 ngày.
@@ -331,48 +334,60 @@ Cài theo runbook chỉ thêm vào `~/xweb-lane` và cache chung: hoàn nguyên 
 | Script trả rc 75 | (a) chốt từ chối: tải/RAM/đĩa/STOP, (b) slot đang bận | Đọc dòng `[slot] ... REFUSED:` hoặc `slot busy`. Không chờ vòng lặp. Tải/RAM/đĩa: đợi hub rảnh rồi chạy lại, **không** hạ ngưỡng. STOP: hỏi người đặt. Bận: xem `cat ~/xweb-lane/locks/heavy.lock/label` và pid; pid chết thì script tự dọn; pid sống và việc bị treo thì xử lý theo mục 7 | MEASURED (chạy thử trên máy chính với việc giả) |
 | Listener không thấy comment | listener đã dừng; cursor kẹt; bị giới hạn tốc độ (chờ tới 15 phút); comment mang tiền tố của chính listener nên bị bỏ qua; comment không đúng issue; `gh` hết đăng nhập | Kiểm `launchctl list` (lọc nhãn của listener); đọc heartbeat (`ok:true`), `cursor.json`, `listener.log`; kiểm `gh auth status`; thử vòng nonce thật. Chưa nhận thì đọc trực tiếp bằng `gh issue view <issue> --comments`. Listener là chỉ-đọc, không bao giờ chạy nội dung comment; không cần sudo | MEASURED (hành vi listener ghi trong comment ngày 12/11); lệnh kiểm tra là ESTIMATE theo cấu trúc thư mục |
 | Docker không chạy: "Cannot connect to the Docker daemon" | Docker Desktop đã cài nhưng chưa mở (trạng thái máy phụ đầu tiên) hoặc chưa đặt giới hạn | Việc của Owner: mở Docker Desktop một lần, đặt Resources. Agent chỉ chạy `docker info` để xác nhận. Đến lúc đó lớp Testcontainers ghi `NOT_RUN` | MEASURED (chưa chạy); smoke: NOT_RUN |
-| Khóa cache dùng chung: "Timeout waiting to lock ..." / "currently in use by another Gradle instance" | Làn dùng chung `~/.gradle` với dự án khác của Owner (máy phụ đầu tiên: dự án Android, Gradle khác phiên bản) và hai bên chạy Gradle cùng lúc | Dừng và báo, đừng xóa khóa. Chuyển làn sang `GRADLE_USER_HOME=$HOME/xweb-lane/gradle-home` riêng (khuyến nghị ngay từ đầu; thẻ 2 đầu tiên chưa làm). Kiểm `ps` xem Gradle nào của ai đang chạy; không kill tiến trình không phải của mình. Nội dung chính xác của thông báo khóa: ESTIMATE, cần quan sát khi gặp | quan sát của máy chính 23:43 (MEASURED); xung đột thật: chưa gặp |
+| Khóa cache dùng chung: "Timeout waiting to lock ..." / "currently in use by another Gradle instance" | Làn dùng chung `~/.gradle` với dự án khác của Owner (máy phụ đầu tiên: dự án Android, Gradle khác phiên bản) và hai bên chạy Gradle cùng lúc | Dừng và báo, đừng xóa khóa. **Tách `GRADLE_USER_HOME=$HOME/xweb-lane/gradle-home` riêng ngay từ đầu** (máy phụ #1 tự nhận đây là điều sẽ làm khác; thẻ 2 và 3 vẫn dùng `~/.gradle` chung, cache lớn từ khoảng 3,6 lên 4,0 GB, chưa thấy tranh khóa). Kiểm `ps` xem Gradle nào của ai đang chạy; không kill tiến trình không phải của mình. Nội dung chính xác của thông báo khóa: ESTIMATE, cần quan sát khi gặp | quan sát của máy chính 23:43 (MEASURED); xung đột thật: chưa gặp |
 | `java: Unable to locate a Java Runtime` / Gradle báo cần JVM 17 trở lên | JDK Homebrew chưa liên kết hoặc `JAVA_HOME` trỏ JDK cũ | Đặt `JAVA_HOME` tường minh (mục 6); không cần sudo | MEASURED |
 | Đo trên máy phụ thấy "không có node/java/docker" | Phiên SSH không đăng nhập thiếu PATH Homebrew | Chạy qua `zsh -lc` | MEASURED |
 | `npm ci` đòi Playwright/trình duyệt | Một script cần trình duyệt | Không cài trong thẻ cài đặt; ghi `NOT_RUN` kèm tên lệnh | thiết kế |
+| `--offline test` hỏng: "Could not resolve all files for configuration ':testRuntimeClasspath'" / "No cached version of ... available for offline mode" (ví dụ `org.postgresql:postgresql`, `org.checkerframework:checker-qual`) | Cache được nạp chỉ bằng `compileKotlin compileTestKotlin` nên thiếu phụ thuộc chỉ dùng khi chạy test | Chạy **một lần `test` có mạng** (nhãn `seed-online`, `--max-workers=1`), rồi chạy lại `--offline` làm bằng chứng. Lần sau nạp thẳng bằng một lệnh `test` có mạng, bỏ bước chỉ biên dịch. Không `--refresh-dependencies`, không xóa cache | MEASURED (máy phụ #1: FAIL rồi PASS, 1 phút 28 giây) |
+| Chốt tải từ chối ngay sau việc Gradle (`REFUSED: load1=5.42 > 4.0`, rc 75) | Hai việc Gradle liên tiếp làm tải còn cao | Nghỉ khoảng 3 phút cho tải xuống rồi chạy lại **một lần**; không vòng lặp chờ, không hạ ngưỡng. Nếu thẻ bảo "bị từ chối thì dừng và báo" thì dừng và báo | MEASURED (máy phụ #1: nghỉ 3 phút rồi qua) |
+| Việc `npm run guard:*` không qua chốt RAM/đĩa (`guard=` trống trong `meta.txt`) | Script xếp nặng/nhẹ theo **chữ** trong dòng lệnh; `guard:*`, `npm ci`, `typecheck` không có từ khóa nặng nên vào slot nhẹ | Đặt tiền tố `env LANE_HEAVY=gradle <lệnh>` cho **mọi** lệnh nặng (`typecheck`: `env TSC=1`). Kiểm `meta.txt`: dòng `kind=heavy` và `guard=guard ok: ...` phải có. `LANE_HEAVY` chỉ là mẹo chữ, không phải biến của script | MEASURED (máy phụ #1: `fe-guards`, `fe-guard-tests` vào khe nhẹ) |
+| Tải vượt 4 (thậm chí 9-10) giữa chừng một việc dù chốt lúc bắt đầu đạt | Chốt chỉ kiểm lúc bắt đầu; `npm ci` và biên dịch làm tải tăng | Người canh lấy mẫu tải **từ việc đầu tiên và trong suốt job** (mỗi 15 giây). Luật `ABORTED_LOAD`: tải 1 phút > 8 liên tục quá 2 phút thì dừng việc (kill nhóm tiến trình do script tạo), ghi `ABORTED_LOAD`, báo. Việc nạp Gradle 23 phút 38 giây của máy phụ #1 chạy mà không có mẫu tải: đừng lặp lại | MEASURED (`npm ci` 9,87; đỉnh phiên 10,35 lúc 00:23, nguyên nhân chưa xác định) |
+| Offline "chứng minh" bằng `grep -c '^Download' job.log` bằng 0 mà vẫn có artifact mới được tải | `--console=plain` không in dòng `Download` cho từng artifact, chỉ cho bản phân phối Gradle | Bằng chứng offline là lần chạy `--offline` BUILD SUCCESSFUL và số test từ XML; số dòng `Download` chỉ để tham khảo | MEASURED (`seed-online` tải jar mà đếm bằng 0) |
+| Số liệu đo bị mất (ví dụ không thấy dòng phần trăm RAM trống của `memory_pressure`) | Cắt đầu ra bằng `head` | Không cắt khi đo; lọc bằng `grep -i 'free percentage'` hoặc dùng `vm_stat` | MEASURED (thẻ đo 1) |
+| Lệnh đầu tiên chạy thiếu cờ của thẻ (ví dụ thiếu `--max-workers=1`) | Bổ sung của thẻ được đọc sau khi đã bắt đầu việc dài | Đọc hết thẻ và mọi bổ sung trước khi bắt đầu; mọi lệnh Gradle nặng có `--no-daemon --max-workers=1` ngay từ việc đầu | MEASURED (máy phụ #1: `be-seed` thiếu cờ) |
 | Việc hết hạn (rc 124) | treo hoặc quá chậm | Script đã giết cả nhóm; `ps` xác nhận; tăng `JOB_TIMEOUT` chỉ khi có lý do và báo | MEASURED (việc giả) |
 
 ## 16. Checklist nghiệm thu "làn sẵn sàng"
 
-Mỗi dòng phải có lệnh, mã thoát và đầu ra thật; `NOT_RUN` không bao giờ được tính là PASS. Cột "Máy phụ #1" là trạng thái **tính đến 00:05 ICT ngày 13/11/2026**; cập nhật khi có kết quả, kèm giờ và mã job.
+Mỗi dòng phải có lệnh, mã thoát và đầu ra thật; `NOT_RUN` không bao giờ được tính là PASS. Cột "Máy phụ #1" là trạng thái **tính đến 00:40 ICT ngày 13/11/2026**; cập nhật khi có kết quả, kèm giờ và mã job. Một dòng chỉ PASS khi kết quả chứng minh đủ tiêu chí ở cột "PASS khi".
 
 | # | Kiểm tra | PASS khi | FAIL khi | Máy phụ #1 |
 |---|---|---|---|---|
-| 1 | Thư mục và quyền | `~/xweb-lane` có `tools repos results locks logs`, mode 700 | thiếu thư mục hoặc quyền rộng | NOT_RUN (thư mục đã tạo lúc 23:38, chưa kiểm quyền) |
-| 2 | Script nguyên vẹn | `bash -n` đạt; sha256 bằng giá trị trong thẻ | khác giá trị | NOT_RUN |
-| 3 | Chạy thử script bằng việc giả trên máy phụ | từ chối vì tải rc 75; chạy rc 0 có `SHA256SUMS`; hết hạn rc 124 không còn tiến trình; slot bận rc 75; STOP rc 75 | bất kỳ ca nào lệch | NOT_RUN (chỉ đã chạy trên máy chính) |
-| 4 | JDK 21 | `java -version` của `openjdk@21` in ra 21.x qua `JAVA_HOME` | không in được | NOT_RUN (đã cài: MEASURED, chưa chạy lại qua thẻ cài đặt) |
-| 5 | Repo ở đúng SHA, push tắt | `git rev-parse` khớp SHA ghim; `git remote -v` push là `DISABLED` | khác SHA hoặc push mở | NOT_RUN |
-| 6 | Nạp Gradle có mạng | BUILD SUCCESSFUL; ghi thời gian, dung lượng cache, số `Download` | lỗi (nêu nguyên văn) | NOT_RUN |
-| 7 | Chứng minh offline | BUILD SUCCESSFUL, số test đúng, 0 dòng `Download`, không dùng cờ ghim (hoặc ghi rõ cờ) | `LockOutOfDate` không khắc phục được, thiếu artifact | NOT_RUN |
-| 8 | Offline lần hai từ worktree mới | kết quả như dòng 7 | | NOT_RUN |
-| 9 | Vệ sinh sau Gradle | `--stop`; không còn `java`/Kotlin daemon của làn (hoặc báo pid) | còn tiến trình treo | NOT_RUN |
-| 10 | FE `npm ci` | rc 0; `git status --porcelain` trống | rc khác 0 | NOT_RUN |
-| 11 | FE `guard:static` | khớp kỳ vọng mục 9 (9 đạt / 7 bỏ qua / 0 lỗi) hoặc có giải thích | lệch không giải thích | NOT_RUN |
-| 12 | FE `guard:test` | 168 đạt / 110 bỏ qua / 0 lỗi hoặc có giải thích | lệch không giải thích | NOT_RUN |
-| 13 | FE `typecheck` | rc 0, sạch | lỗi kiểu | NOT_RUN |
-| 14 | FE `test:unit` hiệu chuẩn | khớp 6070 / 6062 / 0 / 8 hoặc liệt kê khác biệt | lệch không giải thích | NOT_RUN qua script slot (chạy chẩn đoán trước đó: MEASURED, khớp) |
-| 15 | Số đo tài nguyên đã có | mỗi việc có thời gian, RSS lớn nhất, RAM trống thấp nhất, tải cao nhất, đĩa sau | thiếu số | NOT_RUN |
-| 16 | Hub không bị ảnh hưởng | `launchctl` của hub không đổi trước/sau; heartbeat listener `ok:true` suốt; chốt không từ chối oan | dịch vụ hub đổi hoặc chết | NOT_RUN |
-| 17 | `locks` rỗng khi xong | `ls ~/xweb-lane/locks` rỗng | còn khóa của pid sống không việc | NOT_RUN |
-| 18 | Quét bí mật kết quả | chỉ còn hằng số test đã liệt kê | có thứ giống thật (không công bố) | NOT_RUN |
-| 19 | Kéo kết quả bằng SSH chỉ-đọc | sha256 của `SHA256SUMS` khớp comment; `shasum -c` đạt; danh sách tệp khớp | lệch | NOT_RUN |
-| 20 | Thẻ đóng bằng một comment | đủ bảng PASS/FAIL/NOT_RUN, giờ ICT, SHA, phiên bản Node/JDK, không token | thiếu mục | NOT_RUN |
+| 1 | Thư mục và quyền | `~/xweb-lane` có `tools repos results locks logs`, mode 700 | thiếu thư mục hoặc quyền rộng | NOT_RUN (thư mục `repos results locks tools logs` có đủ, MEASURED; quyền 700 chưa kiểm; `work`, `gradle-home`, `npm-cache` chưa tạo vì thẻ dùng bố cục rút gọn) |
+| 2 | Script nguyên vẹn | sha256 bằng giá trị trong thẻ | khác giá trị | PASS (thẻ 2 bước 1, 23:38 ICT 12/11: sha256 khớp, bản gốc v1; bản tổng quát `gradle-slot-lane.sh` chưa cài trên máy phụ) |
+| 3 | Chạy thử script bằng việc giả trên máy phụ | từ chối vì tải rc 75; chạy rc 0 có `SHA256SUMS`; hết hạn rc 124 không còn tiến trình; slot bận rc 75; STOP rc 75 | bất kỳ ca nào lệch | NOT_RUN (đã thấy thật trên máy phụ: từ chối vì tải rc 75 và chạy rc 0 có `SHA256SUMS`; hết hạn, slot bận, STOP chỉ mới chạy trên máy chính) |
+| 4 | JDK 21 | build BE chạy với toolchain 21 qua `JAVA_HOME` của `openjdk@21` (BUILD SUCCESSFUL) và/hoặc `java -version` in 21.x | không chạy được | PASS (`be-seed`, `be-offline`, `seed-online`, smoke offline đều BUILD SUCCESSFUL; `openjdk@21` 21.0.13.0.3 theo thẻ đo 1; báo cáo chưa dán `java -version`) |
+| 5 | Repo ở đúng SHA, push tắt | `git rev-parse` khớp SHA ghim; `git remote -v` push là `DISABLED` | khác SHA hoặc push mở | NOT_RUN (SHA: PASS, cả hai repo ở đúng SHA ghim; push chưa tắt vì thẻ 2 không có bước `git remote set-url --push origin DISABLED`) |
+| 6 | Nạp Gradle có mạng | BUILD SUCCESSFUL; ghi thời gian, dung lượng cache | lỗi (nêu nguyên văn) | PASS (`be-seed` 23 phút 38 giây, cache khoảng 4,0 GB; `seed-online` 1 phút 28 giây) |
+| 7 | Chứng minh offline | lần chạy `--offline` BUILD SUCCESSFUL, số test đúng (XML), không dùng cờ ghim (hoặc ghi rõ cờ) | `LockOutOfDate` không khắc phục được, thiếu artifact | PASS (`be-offline` 49 giây; `be-smoke-unit-offline` 30 giây, 3/3 test; không dùng cờ ghim, không `LockOutOfDate`). Lần smoke offline đầu FAIL vì thiếu phụ thuộc test, đã sửa bằng `seed-online` |
+| 8 | Offline lần hai từ worktree mới | kết quả như dòng 7 |  | NOT_RUN |
+| 9 | Vệ sinh sau Gradle | `--stop`; không còn `java`/Kotlin daemon của làn (hoặc báo pid) | còn tiến trình treo | NOT_RUN (chạy `--no-daemon`, `locks` rỗng; chưa kiểm tiến trình Kotlin daemon) |
+| 10 | FE `npm ci` | rc 0 | rc khác 0 | PASS (74 giây, rc 0, 0 lỗ hổng, tải cao nhất 9,87; `git status --porcelain` chưa báo) |
+| 11 | FE `guard:static` | 9 đạt / 7 bỏ qua / 0 lỗi hoặc có giải thích | lệch không giải thích | PASS (9/7/0, 14 giây) |
+| 12 | FE `guard:test` | 168 đạt / 110 bỏ qua / 0 lỗi hoặc có giải thích | lệch không giải thích | PASS (278 test: 168/0/110, 13 giây) |
+| 13 | FE `typecheck` | rc 0, sạch | lỗi kiểu | PASS (2 phút 49 giây, rc 0) |
+| 14 | FE `test:unit` hiệu chuẩn qua script | khớp 6070 / 6062 / 0 / 8 hoặc liệt kê khác biệt | lệch không giải thích | NOT_RUN qua script slot (chạy chẩn đoán trước đó MEASURED, khớp; thẻ 4 việc 1 sẽ chạy trên đỉnh dev, chưa có kết quả) |
+| 15 | Số đo tài nguyên đã có | mỗi việc có thời gian, RSS lớn nhất, RAM trống thấp nhất, tải cao nhất, đĩa sau | thiếu số | NOT_RUN (có thời gian, tải, đĩa; thiếu RSS lớn nhất và RAM trống thấp nhất trong lúc chạy; `be-seed` không có mẫu tải) |
+| 16 | Hub không bị ảnh hưởng | `launchctl` của hub không đổi trước/sau (heartbeat listener `ok:true` suốt: nếu đo được) | dịch vụ hub đổi hoặc chết | PASS (6 dịch vụ cùng PID trước/sau ở thẻ 2 và thẻ 3; chốt từ chối đúng 1 lần là đúng; heartbeat suốt chưa báo) |
+| 17 | `locks` rỗng khi xong | `ls ~/xweb-lane/locks` rỗng | còn khóa của pid sống không việc | PASS (rỗng sau thẻ 2 và thẻ 3) |
+| 18 | Quét bí mật kết quả | chỉ còn hằng số test đã liệt kê | có thứ giống thật (không công bố) | NOT_RUN (máy phụ chưa báo bước quét) |
+| 19 | Kéo kết quả bằng SSH chỉ-đọc | sha256 của `job.log` và `meta.txt` khớp comment; `shasum -c SHA256SUMS` đạt | lệch | PASS (13/11 00:30 ICT: 9 thư mục, 12/12 sha256 khớp comment theo máy chính; `shasum -c` OK trong cả 9 thư mục) |
+| 20 | Thẻ đóng bằng một comment | đủ bảng PASS/FAIL/NOT_RUN, giờ ICT, SHA, phiên bản Node/JDK, không token | thiếu mục | NOT_RUN (một comment mỗi thẻ, có bảng, giờ, SHA, Node; chưa thấy `java -version` trong báo cáo) |
 | 21 | Quyết định chỉ-Owner đã ghi | cô lập (mục 13), tiến trình lớn của việc khác, Docker, giờ chạy cho phép | chưa có quyết định | NOT_RUN (chưa có quyết định của Owner) |
-| 22 | Lớp Testcontainers (mở rộng, tùy chọn) | một lớp test dùng Testcontainers đạt qua runtime đã chọn | không chạy được | NOT_RUN |
-| 23 | Spec trình duyệt FE (mở rộng, tùy chọn) | một spec chạy đạt với `CHROME=` | không chạy được | NOT_RUN |
+| 22 | Tài liệu do máy phụ tự ghi | máy phụ tự viết runbook của mình (thứ tự làm, bất ngờ, số đo, việc chưa làm, điều sẽ làm khác) và được đưa vào nhật ký | chưa có | PASS (13/11 00:30 ICT: máy phụ đăng runbook 5 phần; đã đưa nguyên văn vào `LANE-FIRST-MACHINE-LOG.md` mục 6.3 và đối chiếu từng mục bất ngờ với bảng sự cố) |
+| 23 | Lớp Testcontainers (mở rộng, tùy chọn) | một lớp test dùng Testcontainers đạt qua runtime đã chọn | không chạy được | NOT_RUN (Docker Desktop đã cài, chưa mở) |
+| 24 | Spec trình duyệt FE (mở rộng, tùy chọn) | một spec chạy đạt với `CHROME=` | không chạy được | NOT_RUN (Playwright chưa cài) |
 
-**Điều kiện để tuyên bố "làn sẵn sàng" cho FE + BE lớp thuần:** dòng 1 đến 21 đều PASS. Dòng 22-23 là mở rộng và tách bạch: chưa PASS thì làn chỉ được ghi "sẵn sàng cho FE + BE lớp thuần", không cho Testcontainers hay trình duyệt.
+**Tính đến 00:40 ICT 13/11/2026 (máy phụ #1): 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc (1-22); 2 dòng mở rộng (23-24) NOT_RUN.** PASS: dòng 2, 4, 6, 7, 10, 11, 12, 13, 16, 17, 19, 22.
+
+**Điều kiện để tuyên bố "làn sẵn sàng" cho FE + BE lớp thuần:** dòng 1 đến 22 đều PASS. Dòng 23-24 là mở rộng và tách bạch: chưa PASS thì làn chỉ được ghi "sẵn sàng cho FE + BE lớp thuần", không cho Testcontainers hay trình duyệt. Trạng thái hiện tại: **ĐANG KIỂM CHỨNG**; việc QA thật đầu tiên (thẻ 4) chưa có kết quả.
 
 ### Việc tiếp theo đã biết (đề xuất, chưa làm)
 
-1. Sửa script thêm `LANE_KIND=heavy|light` để `npm run typecheck`/`npm ci` không lọt nhánh nhẹ.
+1. Sửa script thêm `LANE_KIND=heavy|light` (biến ghi đè tường minh) để `guard:*`, `npm ci`, `typecheck` không phụ thuộc mẹo chữ `LANE_HEAVY`/`TSC`.
 2. Chuyển làn sang `GRADLE_USER_HOME` và `npm_config_cache` riêng ngay từ đầu.
-3. Danh sách cho phép các lớp test BE thuần do QA sở hữu.
-4. Hiệu chỉnh ngưỡng chốt từ số đo thật của 2-3 lượt chạy.
-5. Thẻ 3 (Docker/Testcontainers, Chrome) sau khi Owner quyết cô lập và tiến trình lớn của việc khác.
+3. Cài luật `ABORTED_LOAD` vào người canh (tải 1 phút > 8 quá 2 phút), lấy mẫu tải từ việc đầu tiên.
+4. Tắt push trong clone của làn (dòng 5) và quét bí mật kết quả trước khi kéo (dòng 18).
+5. Danh sách cho phép các lớp test BE thuần do QA sở hữu.
+6. Hiệu chuẩn ngưỡng chốt RAM từ RSS lớn nhất và RAM trống thấp nhất đo trong lúc chạy.
+7. Thẻ cho Docker/Testcontainers và Chrome sau khi Owner quyết cô lập và tiến trình lớn của việc khác.

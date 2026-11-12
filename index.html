@@ -1416,7 +1416,7 @@ function renderLane(){
  const host=document.getElementById('processBody');if(!host)return;
  host.querySelector('#laneBox')?.remove();
  const ln=payload?.lane;if(!ln||typeof ln!=='object')return;
- const ST={IN_SETUP:['Đang dựng, chưa xác minh','setup'],READY:['Sẵn sàng','ready'],BLOCKED:['Bị chặn','blocked'],NOT_RUN:['Chưa chạy','unknown']};
+ const ST={IN_SETUP:['Đang dựng, chưa xác minh','setup'],IN_VERIFICATION:['Đang kiểm chứng, chưa sẵn sàng','setup'],READY:['Sẵn sàng','ready'],BLOCKED:['Bị chặn','blocked'],NOT_RUN:['Chưa chạy','unknown']};
  const st=ST[String(ln.status||'').toUpperCase()]||['Chưa rõ trạng thái','unknown'];
  const d=document.createElement('details');d.className='ln-box';d.id='laneBox';
  const sm=document.createElement('summary');const chip=el('span','ln-chip',st[0]);chip.dataset.s=st[1];

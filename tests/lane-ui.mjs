@@ -23,7 +23,7 @@ const {chromium} = loadPlaywright();
 const FIX = JSON.parse(fs.readFileSync(path.join(root, 'tests/fixtures/status.process.json'), 'utf8'));
 const REAL = fs.readFileSync(path.join(root, 'status.json'), 'utf8');
 const LANE = {
-  title: 'Máy phụ (làn build/test)', updatedAt: '2026-11-13T00:05:00+07:00', status: 'IN_SETUP',
+  title: 'Máy phụ (làn build/test)', updatedAt: '2026-11-13T00:40:00+07:00', status: 'IN_SETUP',
   summary: 'Máy phụ đầu tiên đang được dựng: làn CHƯA sẵn sàng và CHƯA xác minh. ' + 'Một đoạn rất dài không có dấu cách '.repeat(1) + 'x'.repeat(120),
   links: [
     {label: 'Runbook thêm máy mới', url: 'https://github.com/example/dashboard/blob/main/docs/lane/RUNBOOK-NEW-MACHINE.md'},
@@ -133,9 +133,9 @@ await T('04 the rest of the Process tab still works (groups, search) and is not 
   ok(await p0.locator('#laneBox').isVisible(), 'box stays visible while searching');
   await p0.locator('#pcSearch').press('Escape');
 });
-await T('05 status chips map: READY / BLOCKED / NOT_RUN / unknown value', async () => {
+await T('05 status chips map: IN_VERIFICATION / READY / BLOCKED / NOT_RUN / unknown value', async () => {
   const out = {};
-  for (const [s, want] of [['READY', 'Sẵn sàng'], ['BLOCKED', 'Bị chặn'], ['NOT_RUN', 'Chưa chạy'], ['WHATEVER', 'Chưa rõ trạng thái']]) {
+  for (const [s, want] of [['IN_VERIFICATION', 'Đang kiểm chứng, chưa sẵn sàng'], ['READY', 'Sẵn sàng'], ['BLOCKED', 'Bị chặn'], ['NOT_RUN', 'Chưa chạy'], ['WHATEVER', 'Chưa rõ trạng thái']]) {
     const p = await open({m: 'status:' + s}); out[s] = await p.locator('#laneBox .ln-chip').innerText(); ok(out[s] === want, s + ' -> ' + out[s]); await p._ctx.close();
   }
 });
@@ -149,7 +149,7 @@ await T('07 REAL status.json: box present with 4 https links to the lane docs an
   const h = await p.locator('#laneBox .ln-links a').evaluateAll(a => a.map(x => x.getAttribute('href')));
   ok(h.length === 4 && h.every(x => /^https:\/\/github\.com\/[^/]+\/phase33-dashboard\/blob\/main\/docs\/lane\/[A-Za-z0-9._-]+$/.test(x)), JSON.stringify(h));
   ok(h.some(x => x.endsWith('/RUNBOOK-NEW-MACHINE.md')), 'runbook link');
-  ok(['Đang dựng, chưa xác minh', 'Sẵn sàng', 'Bị chặn', 'Chưa chạy'].includes(await p.locator('#laneBox .ln-chip').innerText()), 'chip text is a known status label');
+  ok(['Đang dựng, chưa xác minh', 'Đang kiểm chứng, chưa sẵn sàng', 'Sẵn sàng', 'Bị chặn', 'Chưa chạy'].includes(await p.locator('#laneBox .ln-chip').innerText()), 'chip text is a known status label');
   await p._ctx.close();
 });
 await p0.close(); await p0._ctx.close();
