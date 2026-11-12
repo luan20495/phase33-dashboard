@@ -423,6 +423,23 @@ html[data-theme="dark"] #view-process .pc-sw[aria-checked="true"] .pc-sw-t{backg
 .pc-hn .pc-state{margin-left:6px;vertical-align:1px}
 .pc-empty{text-align:center;padding:28px 12px;color:var(--muted);font-size:14px;display:flex;flex-direction:column;align-items:center;gap:8px}
 .pc-empty[hidden]{display:none}
+/* Máy phụ (làn build/test): collapsible box at the top of #process; scoped, tokens only */
+#view-process .ln-box{border:1px solid var(--line);border-radius:var(--pc-r);background:var(--card);min-width:0}
+#view-process .ln-box>summary{list-style:none;cursor:pointer;min-height:44px;padding:8px 16px;display:flex;align-items:center;flex-wrap:wrap;gap:6px 10px;font-weight:700;font-size:14px;border-radius:var(--pc-r)}
+#view-process .ln-box>summary::-webkit-details-marker{display:none}
+#view-process .ln-box>summary::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s}
+#view-process .ln-box[open]>summary::after{transform:rotate(-135deg)}
+#view-process .ln-title{min-width:0;overflow-wrap:anywhere}
+#view-process .ln-chip{display:inline-flex;align-items:center;min-height:24px;padding:0 10px;border-radius:12px;border:1px solid var(--pc-warn-bd);background:var(--pc-warn-bg);color:var(--pc-warn-fg);font-size:12px;font-weight:650}
+#view-process .ln-chip[data-s="ready"]{border-color:transparent;background:var(--st-verified-bg);color:var(--st-verified-fg)}
+#view-process .ln-chip[data-s="blocked"]{border-color:var(--pc-err-bd);background:var(--pc-err-bg);color:var(--pc-err-fg)}
+#view-process .ln-chip[data-s="unknown"]{border-color:transparent;background:var(--st-unknown-bg);color:var(--st-unknown-fg)}
+#view-process .ln-body{padding:2px 16px 16px;display:grid;gap:10px;min-width:0;font-size:13px;line-height:1.55;color:var(--fg)}
+#view-process .ln-body p{margin:0;overflow-wrap:anywhere}
+#view-process .ln-meta{font-size:12px;color:var(--muted)}
+#view-process .ln-links{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+#view-process .ln-links a{display:flex;align-items:center;min-height:44px;padding:0 14px;border:1px solid var(--line);border-radius:12px;background:var(--soft);color:var(--pc-lnk);font-weight:600;text-decoration:none;overflow-wrap:anywhere}
+#view-process .ln-links a:hover{text-decoration:underline}
 /* preview sheet */
 .pc-sheet{border:0;padding:0;background:var(--card);color:var(--fg);width:min(640px,calc(100vw - 32px));max-height:min(86dvh,820px);border-radius:24px;box-shadow:0 24px 70px rgba(0,0,0,.4);overflow:hidden}
 .pc-sheet[open]{display:flex;flex-direction:column}
@@ -1394,6 +1411,24 @@ const PC_RULES=[
  [['sso.backend_idle_min','sso.idle_days'],n=>n('sso.backend_idle_min')<=n('sso.idle_days')*1440,(n,L)=>'“'+L('sso.backend_idle_min')+'” ('+n('sso.backend_idle_min')+' phút) vượt “'+L('sso.idle_days')+'” × 1440 ('+n('sso.idle_days')*1440+' phút).'],
  [['sso.backend_abs_min','sso.max_days'],n=>n('sso.backend_abs_min')<=n('sso.max_days')*1440,(n,L)=>'“'+L('sso.backend_abs_min')+'” ('+n('sso.backend_abs_min')+' phút) vượt “'+L('sso.max_days')+'” × 1440 ('+n('sso.max_days')*1440+' phút).']];
 let pcSearchQ='';
+/* Máy phụ (làn build/test): small collapsible section on top of the Quy trình tab; data = status.json key `lane` */
+function renderLane(){
+ const host=document.getElementById('processBody');if(!host)return;
+ host.querySelector('#laneBox')?.remove();
+ const ln=payload?.lane;if(!ln||typeof ln!=='object')return;
+ const ST={IN_SETUP:['Đang dựng, chưa xác minh','setup'],READY:['Sẵn sàng','ready'],BLOCKED:['Bị chặn','blocked'],NOT_RUN:['Chưa chạy','unknown']};
+ const st=ST[String(ln.status||'').toUpperCase()]||['Chưa rõ trạng thái','unknown'];
+ const d=document.createElement('details');d.className='ln-box';d.id='laneBox';
+ const sm=document.createElement('summary');const chip=el('span','ln-chip',st[0]);chip.dataset.s=st[1];
+ sm.append(el('span','ln-title',String(ln.title||'Máy phụ (làn build/test)')),chip);
+ const body=el('div','ln-body');
+ const upd=new Date(ln.updatedAt);
+ if(!isNaN(upd))body.append(el('p','ln-meta','Cập nhật '+upd.toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'short',timeStyle:'short'})+' ICT'));
+ if(ln.summary)body.append(el('p','',String(ln.summary)));
+ const links=(Array.isArray(ln.links)?ln.links:[]).filter(x=>x&&typeof x.url==='string'&&/^https:\/\//.test(x.url));
+ if(links.length){const ul=el('ul','ln-links');for(const x of links){const li=document.createElement('li'),a=el('a','',String(x.label||x.url));a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';li.append(a);ul.append(li)}body.append(ul)}
+ d.append(sm,body);host.prepend(d);
+}
 function renderProcess(){
  const p=payload?.process,host=document.getElementById('processBody');if(!host)return;host.replaceChildren();
  if(!p||!Array.isArray(p.groups)){host.append(el('p','owner-empty','Chưa có dữ liệu quy trình.'));return}
@@ -2429,7 +2464,7 @@ function renderLimits(){
  bReset.addEventListener('click',()=>{alF.kind=alF.rec=alF.group=alF.state=alF.mand=alF.q='';alF.todo=false;sK.value=sR.value=sS.value=sM.value=iQ.value='';cT.checked=false;renderGroups();iQ.focus()});
  if(hasX)renderExec();renderAppr();renderGroups();refreshBar();alOnSub=()=>refreshSel();syncLimitsSub()}
 function setLimitsBadge(n,T){const b=document.getElementById('limitsTabCount'),t=document.getElementById('tab-limits');if(!b||!t)return;b.hidden=!n;b.textContent=n?String(n):'';t.setAttribute('aria-label',n?T.tab+': '+T.tabPend(n):T.tab)}
-async function load(){try{const r=await fetch('status.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);payload=await r.json();if(!Array.isArray(payload.features)||!Array.isArray(payload.releases))throw Error('Sai định dạng dữ liệu');let d=new Date(payload.asOf);const updatedLabel=txt('updated')+': '+(isNaN(d)?payload.asOf:d.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}))+' · Asia/Ho_Chi_Minh';els.update.title=updatedLabel;els.update.setAttribute('aria-label',updatedLabel);document.getElementById('updatedTime').textContent=isNaN(d)?'--:--':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);els.stats.replaceChildren(stat('R1',txt('r1'),txt('released'),'ok'),stat(txt('prodOn'),payload.features.filter(isFeatureOn).length,txt('uat'),'ok'),stat('R2',payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('r2Done'):txt('processing'),payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('verified'):txt('pending'),'ok'),stat(txt('features'),payload.features.length,txt('interactive')));render();renderProgress();renderRoadmap();renderProd();renderOwnerActions();renderProcess();renderAgent12();renderHourly();renderLimits();if(!window.__odTab&&(payload.ownerActions?.items||[]).some(x=>Array.isArray(x.options)&&x.options.length&&!['DONE','CLOSED'].includes(String(x.status||'').toUpperCase()))&&!location.hash){window.__odTab=1;document.getElementById('tab-owner')?.click()}}catch(e){els.update.title=txt('readError');els.update.setAttribute('aria-label',txt('readError'));document.getElementById('updatedTime').textContent='--:--';els.update.classList.add('has-error');els.stats.replaceChildren(stat(txt('error'),'—',txt('errorHint')));els.tbody.replaceChildren();const tr=el('tr'),td=el('td','empty','Không đọc được status.json. Nếu đang mở file://, hãy chạy local web server hoặc host nội bộ. '+e.message);td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
+async function load(){try{const r=await fetch('status.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);payload=await r.json();if(!Array.isArray(payload.features)||!Array.isArray(payload.releases))throw Error('Sai định dạng dữ liệu');let d=new Date(payload.asOf);const updatedLabel=txt('updated')+': '+(isNaN(d)?payload.asOf:d.toLocaleString(lang==='vi'?'vi-VN':'en-US',{timeZone:'Asia/Ho_Chi_Minh',dateStyle:'medium',timeStyle:'short'}))+' · Asia/Ho_Chi_Minh';els.update.title=updatedLabel;els.update.setAttribute('aria-label',updatedLabel);document.getElementById('updatedTime').textContent=isNaN(d)?'--:--':new Intl.DateTimeFormat('vi-VN',{timeZone:'Asia/Ho_Chi_Minh',hour:'2-digit',minute:'2-digit',hour12:false}).format(d);els.stats.replaceChildren(stat('R1',txt('r1'),txt('released'),'ok'),stat(txt('prodOn'),payload.features.filter(isFeatureOn).length,txt('uat'),'ok'),stat('R2',payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('r2Done'):txt('processing'),payload.releases.find(x=>x.id==='R2')?.state==='PROD_DEPLOYED'?txt('verified'):txt('pending'),'ok'),stat(txt('features'),payload.features.length,txt('interactive')));render();renderProgress();renderRoadmap();renderProd();renderOwnerActions();renderProcess();renderLane();renderAgent12();renderHourly();renderLimits();if(!window.__odTab&&(payload.ownerActions?.items||[]).some(x=>Array.isArray(x.options)&&x.options.length&&!['DONE','CLOSED'].includes(String(x.status||'').toUpperCase()))&&!location.hash){window.__odTab=1;document.getElementById('tab-owner')?.click()}}catch(e){els.update.title=txt('readError');els.update.setAttribute('aria-label',txt('readError'));document.getElementById('updatedTime').textContent='--:--';els.update.classList.add('has-error');els.stats.replaceChildren(stat(txt('error'),'—',txt('errorHint')));els.tbody.replaceChildren();const tr=el('tr'),td=el('td','empty','Không đọc được status.json. Nếu đang mở file://, hãy chạy local web server hoặc host nội bộ. '+e.message);td.colSpan=7;tr.append(td);els.tbody.append(tr)}}
 
 const detailLabels={
 vi:{heading:'Hồ sơ hạng mục',close:'Đóng',problem:'Vấn đề / chưa đạt',fix:'Hướng xử lý',done:'Đã xong — có bằng chứng',doing:'Đang làm',todo:'Công việc cần làm / xác minh',proof:'Bằng chứng và QA',source:'Nguồn công việc',deployment:'Triển khai',flag:'Cờ',integrated:'BE/FE đã tích hợp theo snapshot',deployed:'Đã triển khai mã lên PROD',enabled:'Cờ chức năng đang ON',noneDone:'Chưa có công việc được xác nhận hoàn tất ở mức này',noCurrent:'Chưa có bằng chứng đáng tin cậy về agent đang xử lý; không suy đoán trạng thái Claude Code.',needVerify:'Cần xác minh',notStarted:'Chưa xác nhận bắt đầu',inProgress:'Đang làm (có bằng chứng)',completed:'Hoàn thành (có bằng chứng)',labelEvidence:'QA / SEC',original:'Ghi chú nguồn (tiếng Việt)',next:'Bước tiếp theo',master:'Mở Master #88',scope:'Mở issue Data/IAM #86',actual:'Đã ghi nhận',planned:'Chưa xếp đợt',disclaimer:'Trạng thái task dựa trên snapshot GitHub; không phải giám sát tiến trình Claude Code trực tiếp.'},
