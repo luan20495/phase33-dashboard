@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T10:12:00+07:00",
+  "asOf": "2026-11-12T10:37:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T10:12:00+07:00",
+  "detailUpdatedAt": "2026-11-12T10:37:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4188,7 +4188,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T10:12:00+07:00",
+    "updatedAt": "2026-11-12T10:37:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -6711,8 +6711,8 @@
     ]
   },
   "aiLimits": {
-    "updatedAt": "2026-11-12T09:46:00+07:00",
-    "note": "Toàn bộ giới hạn liên quan đến AI Studio (kiểm kê từ mã và cấu hình, REPORTED, chưa QA độc lập). Owner 12/11: muốn không giới hạn AI, chỉ giới hạn tiền; lượt chạy/ngày/tháng và token/ngày/tháng tắt cho tới khi Owner bật lại; hỗ trợ mọi định dạng file; tối đa 10 file + ảnh; text không giới hạn; file nén tới 1 GB. Giới hạn tiền luôn giữ.",
+    "updatedAt": "2026-11-12T10:37:00+07:00",
+    "note": "Toàn bộ giới hạn liên quan đến AI Studio (kiểm kê từ mã và cấu hình, REPORTED, chưa QA độc lập). Owner 12/11: muốn không giới hạn AI, chỉ giới hạn tiền; lượt chạy/ngày/tháng và token/ngày/tháng tắt cho tới khi Owner bật lại; hỗ trợ mọi định dạng file; tối đa 10 file + ảnh; text không giới hạn; file nén tới 1 GB. Giới hạn tiền luôn giữ. | Cập nhật 2026-11-12 10:37: khuyến nghị 69 hàng theo chỉ thị 'nới tối đa năng lực AI' (kế hoạch MAXCAP); thêm trạng thái 5 bước CODE/QA/DEPLOY/ON/VERIFIED trong trường stages (chưa hàng nào đạt đủ). Hàng tiền và an toàn bắt buộc vẫn khóa.",
     "ownerAsk": [
       "Lượt chạy theo ngày/tháng: tắt cho tới khi Owner yêu cầu bật lại",
       "Token theo ngày/tháng: tắt cho tới khi Owner yêu cầu bật lại",
@@ -6742,8 +6742,8 @@
         "offHow": "0 = không giới hạn (cần gõ RAISE); PUT /api/v1/admin/ai/config/{key} (AI_CONFIG ON trên PROD) hoặc PUT /api/v1/admin/ai/limits/defaults; gõ RAISE khi đặt 0",
         "danger": "Chi phí nhưng đã bị trần tiền chặn; quota miễn phí của nhà cung cấp; một người có thể chiếm hết cửa sổ AI dùng chung (xem L06)",
         "recommend": "bỏ giới hạn",
-        "recommendedValue": "0",
-        "effortHours": 0.5,
+        "recommendedValue": "0 (đã đặt 12/11, REPORTED)",
+        "effortHours": 1.75,
         "needsRelease": false,
         "applied": {
           "at": "2026-11-12T09:46:00+07:00",
@@ -6761,7 +6761,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "recommendBefore": "bỏ giới hạn",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Master #88 U9: Owner 12/11 09:46 đặt ai.daily-requests-per-user = 0 bằng cài đặt nóng (REPORTED bởi agent vận hành, C0 chưa đọc lại độc lập): CODE n/a; DEPLOY+ON một phần"
+        ],
+        "missing": "Đọc lại độc lập (GET admin/ai/limits + ai/config) và 1 lượt Haiku thật sau khi cả L06 được nâng để chứng minh không còn AI_DAILY_LIMIT; ghi VERIFIED.",
+        "slices": [
+          "H0 (không PR): đọc lại độc lập + bảng giá trị hiệu lực"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L02",
@@ -6775,7 +6796,7 @@
         "offHow": "PUT /api/v1/admin/ai/limits/overrides {requestsPerDay:0} hoặc DELETE /api/v1/admin/ai/limits/overrides/{id} (xóa ngoại lệ thì quay về mặc định)",
         "danger": "Nếu quên xóa/đặt 0, người đó vẫn bị chặn dù mặc định là 0",
         "recommend": "bỏ giới hạn",
-        "recommendedValue": "xóa hoặc 0",
+        "recommendedValue": "0 hoặc xóa ngoại lệ (đã đặt 5 ngoại lệ USER = 0, REPORTED)",
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
@@ -6794,7 +6815,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "recommendBefore": "bỏ giới hạn",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Master #88 09:46: 5 ngoại lệ theo người đặt về 0 (REPORTED); không có ngoại lệ workspace/dự án theo báo cáo"
+        ],
+        "missing": "Đối chiếu: kiểm kê ghi 6 dòng ngoại lệ (USER/WORKSPACE) nhưng báo cáo vận hành nói 5 người, 0 workspace/dự án; dòng thứ 6 có thể là ngoại lệ ngân sách (tiền, phải GIỮ) hoặc một dòng chưa được sửa. Đọc lại toàn bảng ai_limit_overrides (chỉ đọc).",
+        "slices": [
+          "H0: đọc lại 6/6 dòng ngoại lệ, phân loại lượt/token (đã bỏ) và ngân sách tiền (giữ nguyên)"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L03",
@@ -6808,7 +6850,7 @@
         "offHow": "như L02 với scopeType WORKSPACE",
         "danger": "như L02",
         "recommend": "bỏ giới hạn",
-        "recommendedValue": "xóa hoặc 0",
+        "recommendedValue": "xóa hoặc 0 (hiện không có dòng theo báo cáo)",
         "effortHours": 0.25,
         "needsRelease": false,
         "group": "Lượt & token AI",
@@ -6821,7 +6863,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "bỏ giới hạn",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Master #88 09:46: báo cáo không có ngoại lệ workspace (REPORTED)"
+        ],
+        "missing": "Xác nhận bằng đọc bảng; không có việc khác.",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "không áp dụng",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L04",
@@ -6835,7 +6898,7 @@
         "offHow": "DELETE ngoại lệ PROJECT hoặc rpd=0",
         "danger": "một app lặp vòng lặp có thể ăn hết quota chung",
         "recommend": "bỏ giới hạn",
-        "recommendedValue": "xóa hoặc 0",
+        "recommendedValue": "xóa hoặc 0 (hiện không có dòng theo báo cáo)",
         "effortHours": 0.25,
         "needsRelease": false,
         "group": "Lượt & token AI",
@@ -6848,7 +6911,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "bỏ giới hạn",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Master #88 09:46: báo cáo không có ngoại lệ dự án (REPORTED)"
+        ],
+        "missing": "Xác nhận bằng đọc bảng; lưu ý ngoại lệ PROJECT còn mang tokensPerMonth (L11).",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "không áp dụng",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L05",
@@ -6862,8 +6946,8 @@
         "offHow": "không cần làm gì",
         "danger": "-",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "không có (code không có phạm vi TENANT)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Lượt & token AI",
         "dev": "Không có (code không có phạm vi tenant)",
@@ -6875,7 +6959,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Không có mã/PR: giới hạn lượt AI theo tenant không tồn tại (AiLimits.kt, không scope TENANT)"
+        ],
+        "missing": "Không có gì. Chi phí theo tenant đi qua sổ cấp phát tiền (L63), không phải đếm lượt.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L06",
@@ -6889,8 +6992,8 @@
         "offHow": "Không có giá trị 'không giới hạn': tối đa N = min(100000, env APP_AI_PAID_MAX_REQUESTS, web ai.window.max-requests). Trần env hiện 600 nên chỉ nâng được qua L07.",
         "danger": "Là chốt đếm lượt trước khi chạm tiền; nâng cao thì chỉ còn trần tiền chặn",
         "recommend": "nâng",
-        "recommendedValue": "100000 (hoặc theo trần tiền)",
-        "effortHours": 1,
+        "recommendedValue": "100000 lượt/ngày = hằng số mã tối đa của cửa sổ (WindowModes.MAX_DAILY); thực chất không còn chặn, tiền chặn thay",
+        "effortHours": 3,
         "needsRelease": false,
         "group": "Tiền & ngân sách",
         "dev": "Mặc định code: chế độ TIMED (không ALWAYS_OPEN); trần cứng tối đa 100.000 lượt/ngày",
@@ -6900,9 +7003,32 @@
         "risk": "Cao",
         "riskNote": "Nâng hoặc bỏ trần làm tăng tốc độ tiêu tiền tối đa trong một ngày; chỉ trần tiền còn lại chặn.",
         "mandatory": true,
-        "mandatoryReason": "Trần lượt/ngày của cửa sổ AI trả phí là phanh chi phí; không có giá trị không giới hạn.",
+        "mandatoryReason": "Trần lượt/ngày của cửa sổ AI trả phí là phanh chi phí; không có giá trị không giới hạn. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 1,
+        "existingWork": [
+          "T36 BE #207 + FE #167 + test #208 merged: CODE+QA+DEPLOY+ON (ALWAYS_OPEN, đang chạy với trần 600/ngày; QA độc lập ghi nhận GO-RECORD chỉ đọc 11/11 = VERIFIED một phần)",
+          "BE #217 (nâng 600->5000, 159 dòng) CLOSED theo Owner 10/11; nhánh feat/t36-ceiling-5000 còn nguyên, tái dùng được (hằng số + preflight sh/ps1 + test biên + tài liệu)"
+        ],
+        "missing": "Hằng số PaidCodeEdit.MAX_REQUESTS=600 chặn khởi động và preflight; env APP_AI_PAID_MAX_REQUESTS=600 trên PROD; web chỉ hạ. Không có chế độ 'không đếm lượt'. Cần PR + bản phát hành + sửa env + khởi động lại API.",
+        "slices": [
+          "T36-b (BE, ≤200 dòng, rebase nhánh feat/t36-ceiling-5000): MAX_REQUESTS 600->100000 (bằng MAX_DAILY), preflight sh+ps1, test biên, tài liệu; mặc định giữ nguyên cho tới khi Owner đổi env"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "Có (NO-DIR-1: thay thế trần lượt bằng gì)",
+        "hotConfig": false
       },
       {
         "id": "L07",
@@ -6916,8 +7042,8 @@
         "offHow": "Cần PR đổi hằng số + sửa env + release; không phải cờ nóng",
         "danger": "Nếu đặt quá cao mà ledger tiền lỗi, vòng lặp có thể tiêu nhanh tới trần tiền",
         "recommend": "nâng",
-        "recommendedValue": "100000 (code) và env tương ứng",
-        "effortHours": 3,
+        "recommendedValue": "env APP_AI_PAID_MAX_REQUESTS=100000 (hoặc để trống) + hằng số mã tương ứng",
+        "effortHours": 4,
         "needsRelease": true,
         "group": "Tiền & ngân sách",
         "dev": "600 lượt (hằng số MAX_REQUESTS trong PaidCodeEdit.kt)",
@@ -6927,9 +7053,33 @@
         "risk": "Cao",
         "riskNote": "Nâng hằng số mở rộng phong bì chi tiêu; lỗi sổ cái tiền khi đặt cao có thể tiêu nhanh tới trần tiền.",
         "mandatory": true,
-        "mandatoryReason": "Phong bì lượt của cửa sổ AI trả phí ngăn gõ nhầm mở cửa sổ không giới hạn; mỗi lượt vẫn đặt chỗ chi phí xấu nhất.",
+        "mandatoryReason": "Phong bì lượt của cửa sổ AI trả phí ngăn gõ nhầm mở cửa sổ không giới hạn; mỗi lượt vẫn đặt chỗ chi phí xấu nhất. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 1,
+        "existingWork": [
+          "T36 #207 (mang hằng số 600) CODE+QA+DEPLOY+ON",
+          "feat/t36-ceiling-5000 (chưa merge dev; Owner đóng #217)"
+        ],
+        "missing": "Cùng lát với L06; cộng bước ENV: sửa .env.prod + preflight + khởi động lại (Windows/Owner làm), ack theo SHA.",
+        "slices": [
+          "T36-b (chung với L06)",
+          "Bước ENV/RELEASE: .env.prod + preflight + restart API (không phải PR)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "Có (chung NO-DIR-1)",
+        "hotConfig": false
       },
       {
         "id": "L08",
@@ -6943,8 +7093,8 @@
         "offHow": "ALWAYS_OPEN đã bỏ hạn cuối; không có 'tắt' TTL của chế độ TIMED",
         "danger": "Đây là giới hạn thời gian/an toàn, không phải tiền",
         "recommend": "giữ",
-        "recommendedValue": "ALWAYS_OPEN",
-        "effortHours": 0,
+        "recommendedValue": "ALWAYS_OPEN (đang bật, không có hạn cuối)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Tiền & ngân sách",
         "dev": "Tối đa 1440 phút (hằng số MAX_TTL_MINUTES); ttl/renew không đặt trong code",
@@ -6956,7 +7106,26 @@
         "mandatory": true,
         "mandatoryReason": "Hạn cửa sổ AI trả phí giới hạn thời gian được phép chi tiền thật.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 1,
+        "existingWork": [
+          "T36 #207/#167: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L09",
@@ -6970,7 +7139,7 @@
         "offHow": "0 = tắt (gõ RAISE); PUT /api/v1/admin/ai/config/{key} (AI_CONFIG ON trên PROD) hoặc PUT /api/v1/admin/ai/limits/defaults; gõ RAISE khi đặt 0",
         "danger": "Chi phí (đã có trần tiền); mức dùng chỉ biết sau khi gọi xong",
         "recommend": "bỏ giới hạn",
-        "recommendedValue": "0",
+        "recommendedValue": "0 (đã đặt 12/11, REPORTED)",
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
@@ -6989,7 +7158,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "recommendBefore": "bỏ giới hạn",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Master #88 09:46: ai.daily-tokens-per-user = 0 (REPORTED)"
+        ],
+        "missing": "Đọc lại độc lập; lưu ý token chỉ được đếm SAU khi gọi nên không còn là lan can (chốt thật là tiền + L06/L07).",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L10",
@@ -7003,7 +7193,7 @@
         "offHow": "0 = tắt (gõ RAISE); PUT /api/v1/admin/ai/config/{key} (AI_CONFIG ON trên PROD) hoặc PUT /api/v1/admin/ai/limits/defaults; gõ RAISE khi đặt 0",
         "danger": "như L09",
         "recommend": "bỏ giới hạn",
-        "recommendedValue": "0",
+        "recommendedValue": "0 (đã đặt 12/11, REPORTED)",
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
@@ -7022,7 +7212,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "recommendBefore": "bỏ giới hạn",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Master #88 09:46: ai.monthly-tokens-per-workspace = 0 (REPORTED)"
+        ],
+        "missing": "Đọc lại độc lập.",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L11",
@@ -7036,7 +7247,7 @@
         "offHow": "PUT overrides với 0 hoặc DELETE ngoại lệ",
         "danger": "quên xóa thì vẫn bị chặn",
         "recommend": "bỏ giới hạn",
-        "recommendedValue": "xóa hoặc 0",
+        "recommendedValue": "0 hoặc xóa ngoại lệ token",
         "effortHours": 0.5,
         "needsRelease": false,
         "applied": {
@@ -7055,7 +7266,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "applied",
-        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập"
+        "stateNote": "Đặt 0 theo lệnh Owner 12/11, agent vận hành báo đọc lại khớp (REPORTED), chưa kiểm chứng độc lập",
+        "recommendBefore": "bỏ giới hạn",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Master #88 09:46: ngoại lệ token đặt về 0 (REPORTED)"
+        ],
+        "missing": "Đọc lại độc lập cả tokensPerDay (USER/WORKSPACE) và tokensPerMonth (WORKSPACE/PROJECT).",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L12",
@@ -7068,9 +7300,9 @@
         "offPossible": false,
         "offHow": "Tối đa 32.768 theo kiểm tra cấu hình, nhưng khi cửa sổ trả phí bật chỉ được ≤ hằng số code 16.000",
         "danger": "Tăng làm tăng tiền giữ chỗ mỗi lượt và độ trễ; không phải giới hạn ngày/tháng",
-        "recommend": "giữ",
-        "recommendedValue": "16000",
-        "effortHours": 0,
+        "recommend": "theo mô hình",
+        "recommendedValue": "tối đa = completion lớn nhất mà mô hình công bố (OrModel.maxCompletionTokens), kẹp bởi trần cấu hình; mặc định giữ 16000 cho tới khi đo",
+        "effortHours": 10,
         "needsRelease": false,
         "group": "Tiền & ngân sách",
         "dev": "16.000 token (hằng số CODE_EDIT_MAX_TOKENS); nếu không đặt env, mặc định cấu hình 8.192",
@@ -7080,9 +7312,33 @@
         "risk": "Cao",
         "riskNote": "Nâng làm tăng chi phí xấu nhất của mỗi lượt và phần tiền đặt chỗ; web chỉ được hạ.",
         "mandatory": true,
-        "mandatoryReason": "Số token tối đa mỗi lượt quyết định chi phí xấu nhất được đặt chỗ vào trần tiền.",
+        "mandatoryReason": "Số token tối đa mỗi lượt quyết định chi phí xấu nhất được đặt chỗ vào trần tiền. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "T22-A BE #197 + FE #158: CODE+QA+DEPLOY+ON (chạm trần báo OUTPUT_LIMIT_REACHED, không âm thầm cắt)",
+          "B2 02b BE #164 + FE #117: CODE+QA+DEPLOY+ON (cơ chế đổi nóng, chỉ HẠ)",
+          "T24 BE #231 merged CODE+QA (sửa theo đoạn giảm nhu cầu xuất cả file; chưa nối: chưa DEPLOY)"
+        ],
+        "missing": "Hằng số CODE_EDIT_MAX_TOKENS=16000 là trần cứng; khởi động từ chối giá trị cao hơn khi cửa sổ trả phí bật. Cần PR đọc maxCompletionTokens theo mô hình, nâng trần có kẹp, giữ nguyên cơ chế giữ chỗ tiền xấu nhất (nâng max_tokens làm tiền giữ chỗ mỗi lượt lớn hơn, nên số lượt đồng thời trong trần tiền giảm; không đổi trần tiền).",
+        "slices": [
+          "PAY-b (BE, ≤220 dòng): trần output theo mô hình + env APP_AI_PAID_MAX_TOKENS_PER_CALL, mặc định không đổi; test sổ giữ chỗ và OUTPUT_LIMIT_REACHED"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "Có (NO-DIR-4: mức output tối đa theo mô hình)",
+        "hotConfig": false
       },
       {
         "id": "L13",
@@ -7095,9 +7351,9 @@
         "offPossible": false,
         "offHow": "Tham số env APP_BUILDER_CONTEXT_TOTAL_BYTES/PER_FILE_BYTES/MAX_TOKENS_ESTIMATE (khoảng 1.500..400.000)",
         "danger": "Nâng làm lời nhắc lớn hơn, tốn tiền hơn",
-        "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommend": "theo mô hình",
+        "recommendedValue": "tổng ngữ cảnh nguồn = tỉ lệ cửa sổ ngữ cảnh của mô hình đã chọn (cờ, mặc định TẮT)",
+        "effortHours": 12,
         "needsRelease": false,
         "group": "Kế hoạch chia bước & tool loop",
         "dev": "Tổng 64.000 byte, mỗi file 24.000 byte, ước tính tối đa 32.000 token (cờ context.* mặc định tắt)",
@@ -7109,7 +7365,31 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "P0-16 / P37 S1-S3 BE #196 (soft cap token, IAM_WIDE): CODE+QA+DEPLOY+ON",
+          "X5 BE #168 slot-only cost guard: CODE+QA+DEPLOY+ON",
+          "T23 A2 BE #238 (tỉ lệ byte/token đo thật 2,17): CODE+QA merged, chưa DEPLOY"
+        ],
+        "missing": "Hiện cố định (64.000 B tổng, 24.000 B/tệp, ước 32.000 token). Cần hàm dẫn xuất từ cửa sổ ngữ cảnh mô hình, sau cờ; công tắc context.* mặc định TẮT trên PROD (UNKNOWN giá trị thật: đọc chỉ-đọc ai/config).",
+        "slices": [
+          "CTX-b (BE, ≤220 dòng, cờ TẮT): ContextBudget dẫn xuất từ OrModel.contextLength; dùng chung ước lượng token ratio 1,05/2,17"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L14",
@@ -7122,8 +7402,8 @@
         "offPossible": true,
         "offHow": "Chỉ bật theo workspace: ai.builder.tool-loop.workspaces (SETTING nóng) khi cờ khởi động bật",
         "danger": "Vòng lặp tự động có thể gọi AI nhiều lần liên tiếp",
-        "recommend": "giữ",
-        "recommendedValue": "-",
+        "recommend": "nâng",
+        "recommendedValue": "vòng đọc 4 -> 8, các trần byte/giây/token nâng theo L12/L13; cờ + danh sách workspace giữ",
         "effortHours": 0,
         "needsRelease": false,
         "group": "Kế hoạch chia bước & tool loop",
@@ -7134,9 +7414,32 @@
         "risk": "Cao",
         "riskNote": "Bỏ trần vòng/token/thời gian làm AI lặp gọi tốn tiền; trần chỉ được ràng buộc bởi trần tiền.",
         "mandatory": true,
-        "mandatoryReason": "Các trần vòng, token và thời gian của tool loop là phong bì chi phí; chỉ cờ bật/tắt tính năng được phép tắt.",
+        "mandatoryReason": "Các trần vòng, token và thời gian của tool loop là phong bì chi phí; chỉ cờ bật/tắt tính năng được phép tắt. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "T23 (cùng 'tool loop'): BE #165 + FE #114 CODE+QA+DEPLOY (cờ TẮT từ đợt 4); lát QA-ON BE #236/#238/#239/#241/#242/#243 + FE #192/#194 merged: CODE+QA, chưa DEPLOY, cờ TẮT",
+          "Dashboard T23: còn 12 lượt Haiku trong cửa sổ Owner, FE nối tiến trình trực tiếp (3 test P2 FE #194), runbook #242 xong"
+        ],
+        "missing": "Không mở việc mới: hoàn tất T23 (QA-ON 12 lượt Haiku, release 22 mang lát BE+FE, bật cờ khởi động + workspace QA). Sau đó nâng vòng/trần bằng env (cần chứng cứ từ 12 lượt). Trần là bảo vệ tiền/DoS nên giữ ở dạng trần có kiểm soát.",
+        "slices": [
+          "T23 hiện có (KHÔNG tính mới): D1,D2,D3,D5,E + nối FE ≈ 39 giờ",
+          "Bước ENV sau khi có số đo (không PR)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "Có (bật tool loop vẫn là duyệt riêng của Owner theo dashboard T23)",
+        "hotConfig": false
       },
       {
         "id": "L15",
@@ -7150,7 +7453,7 @@
         "offHow": "Không có giá trị vô hạn; đặt giá trị tối đa của danh mục (100.000) thay cho 'tắt'",
         "danger": "Build tốn CPU của máy build 4 vCPU; hàng đợi build và tối đa đồng thời vẫn bảo vệ máy",
         "recommend": "nâng",
-        "recommendedValue": "100000",
+        "recommendedValue": "100000 (tối đa registry)",
         "effortHours": 0.25,
         "needsRelease": false,
         "group": "Hàng đợi & build",
@@ -7163,7 +7466,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 1,
+        "existingWork": [
+          "NO-24 (11/11): build/người/ngày 60->200, đọc lại khớp (VERIFIED); T10 hàng đợi build ON (bảo vệ công suất)"
+        ],
+        "missing": "Đặt giá trị tối đa. 0 KHÔNG phải vô hạn: 0 chặn mọi build (BuildPolicy `n >= limit`).",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L16",
@@ -7190,7 +7514,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 1,
+        "existingWork": [
+          "NO-24: 100->300 (VERIFIED)"
+        ],
+        "missing": "Như L15.",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L17",
@@ -7217,7 +7562,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 1,
+        "existingWork": [
+          "Giá trị 300 theo env; T03 nâng song song workspace 4->10 (ON)"
+        ],
+        "missing": "Như L15.",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L18",
@@ -7231,7 +7597,7 @@
         "offHow": "đặt tối đa 1.000.000 cho toàn hệ thống",
         "danger": "toàn hệ thống 1.000 có thể là nút cổ chai kế tiếp khi người dùng tăng",
         "recommend": "nâng",
-        "recommendedValue": "toàn hệ thống 1000000",
+        "recommendedValue": "tenant 1000000; toàn hệ thống 1000000",
         "effortHours": 0.25,
         "needsRelease": false,
         "group": "Hàng đợi & build",
@@ -7244,7 +7610,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 1,
+        "existingWork": [
+          "tenant đã 1000000; toàn hệ thống 1000 (env)"
+        ],
+        "missing": "Chỉ nâng 'toàn hệ thống'; chốt thật còn lại là công suất runner (L19/L20).",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L19",
@@ -7258,8 +7645,8 @@
         "offHow": "Không vô hạn (min 1)",
         "danger": "DoS máy build; hàng đợi build (L20) thay cho giới hạn workspace khi bật",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "người 3, workspace 10, tenant 1000",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hàng đợi & build",
         "dev": "Người 2, workspace 4, tenant 1.000 (mặc định code)",
@@ -7271,7 +7658,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần build đồng thời bảo vệ máy build dùng chung khỏi bị chiếm hết và từ chối dịch vụ.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "T10 + T03 + NO-24: ON"
+        ],
+        "missing": "Không có (bảo vệ công suất, đúng yêu cầu 'vẫn bảo vệ concurrency').",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L20",
@@ -7285,7 +7691,7 @@
         "offHow": "build.queue.enabled=false trở về giới hạn đồng thời cũ",
         "danger": "Slot quá cao làm quá tải máy build",
         "recommend": "giữ",
-        "recommendedValue": "slots theo số runner",
+        "recommendedValue": "theo số runner; slots=2 chỉ khi có tiến trình runner thứ hai",
         "effortHours": 0,
         "needsRelease": false,
         "group": "Hàng đợi & build",
@@ -7298,7 +7704,29 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "T10 BE #193/#195 + FE #150/#153: CODE+QA+DEPLOY+ON (slots=1), 2 lượt Haiku chứng minh hàng đợi (VERIFIED 11/11)"
+        ],
+        "missing": "slots=2 cần quy trình thêm runner đã kiểm (INFRA, Windows/VM) — việc của T10 hiện có, không phải lát mới.",
+        "slices": [
+          "T10 slots=2 hiện có (≈4 giờ, KHÔNG tính mới)"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ",
+          "INFRA (tùy chọn)"
+        ],
+        "needsOwner": "Có (hạ tầng runner thứ hai)",
+        "hotConfig": false
       },
       {
         "id": "L21",
@@ -7312,8 +7740,8 @@
         "offHow": "Có trần danh mục: 3600 s, 1024 MiB, 2048 MiB",
         "danger": "Build treo giữ slot; đĩa đầy",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "600 s / 100 MiB / 50 MiB (có thể nâng nóng nếu số đo build timeout cho thấy cần; tối đa 3600 s)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hàng đợi & build",
         "dev": "600 giây; kết quả build 100 MiB; mã nguồn 50 MiB (mặc định code)",
@@ -7325,7 +7753,26 @@
         "mandatory": true,
         "mandatoryReason": "Thời gian và kích thước build giới hạn sandbox chạy mã không tin cậy của người dùng.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "T03/T10 ON"
+        ],
+        "missing": "Không có; theo dõi tỉ lệ build timeout sau khi AI tạo app lớn hơn.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L22",
@@ -7339,7 +7786,7 @@
         "offHow": "không có 'tắt': khoảng 1..100, 1..500, 1..72 giờ (có thể nâng bằng PUT admin/ai/config)",
         "danger": "hàng đợi dài giữ nhiều lượt AI sẽ chạy sau, tốn tiền ngoài ý muốn",
         "recommend": "nâng",
-        "recommendedValue": "tùy Owner",
+        "recommendedValue": "10/người -> 100, 30/dự án -> 500, TTL 8 giờ -> 72 giờ (tối đa của registry)",
         "effortHours": 0.25,
         "needsRelease": false,
         "group": "Hàng đợi & build",
@@ -7352,7 +7799,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 2,
+        "existingWork": [
+          "J1 prompt queue (BE code/queue, FE #103/#105/#119): CODE+QA+DEPLOY+ON; queue đã bật trên PROD"
+        ],
+        "missing": "Đặt giá trị tối đa của registry; QA chạy 1 kịch bản xếp nhiều lượt (đã có mẫu ở G2/J1).",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L23",
@@ -7366,7 +7834,7 @@
         "offHow": "cần PR",
         "danger": "-",
         "recommend": "cần mã",
-        "recommendedValue": "-",
+        "recommendedValue": "ghi/phút theo cấu hình (nâng 120), thân JSON hàng đợi theo trần lời nhắc; hàng đợi chưa nhận tệp/URL",
         "effortHours": 6,
         "needsRelease": true,
         "group": "Hàng đợi & build",
@@ -7379,7 +7847,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 2,
+        "existingWork": [
+          "J1 queue CODE+QA+DEPLOY+ON (giới hạn 120/phút, 1 MiB là hằng số)"
+        ],
+        "missing": "Hằng số WRITES_PER_MINUTE=120 và PROMPT_BODY_CHARS=1.048.576; hàng đợi từ chối tệp (QUEUE_ATTACHMENTS_UNSUPPORTED) và URL (QUEUE_REFERENCE_UNSUPPORTED) -> 'gửi trực tiếp'. Nếu L32 nâng thì thân hàng đợi phải theo, nhưng KHÔNG nâng trần JSON thường (L34).",
+        "slices": [
+          "J1-b (BE, ≤150 dòng): hai hằng số thành cài đặt có envelope; thân hàng đợi = trần lời nhắc x hệ số UTF-8; nhận tệp qua tham chiếu đối tượng chỉ sau ATT-e"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L24",
@@ -7393,8 +7882,8 @@
         "offHow": "tối đa 600/phút, không vô hạn",
         "danger": "Bảo vệ chống lạm dụng và chống DoS API",
         "recommend": "giữ",
-        "recommendedValue": "30",
-        "effortHours": 0,
+        "recommendedValue": "30 lượt/phút/người",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hàng đợi & build",
         "dev": "30 lượt/phút/người (mặc định code, khoảng 5 đến 600)",
@@ -7406,7 +7895,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "Cài đặt hiện có (rate.prompt-per-minute 5..600)"
+        ],
+        "missing": "Không có (chống DoS).",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L25",
@@ -7420,8 +7928,8 @@
         "offHow": "tối đa 600 và 120",
         "danger": "như L24",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "60 tải / 10 xuất bản mỗi phút",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hàng đợi & build",
         "dev": "Tải tệp 60/phút; xuất bản 10/phút (mặc định code)",
@@ -7433,7 +7941,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "Cài đặt hiện có"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L26",
@@ -7447,8 +7974,8 @@
         "offHow": "cần PR để vượt 2",
         "danger": "Giữ thread Tomcat (64) và kết nối nhà cung cấp",
         "recommend": "giữ",
-        "recommendedValue": "2",
-        "effortHours": 0,
+        "recommendedValue": "2 luồng AI song song/người",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hàng đợi & build",
         "dev": "2 luồng/người (hằng số MAX_PER_USER)",
@@ -7460,7 +7987,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "B2 02b: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không có (concurrency). Auto-continue (T22-C) phải đi qua hàng đợi để không vượt 2 luồng.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L27",
@@ -7474,8 +8020,8 @@
         "offHow": "không nên tắt",
         "danger": "Hỏng nhánh nguồn nếu hai lượt cùng sửa",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "1 lượt/dự án (khóa dự án)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hàng đợi & build",
         "dev": "Cấu trúc: 1 lượt/dự án tại một thời điểm (OlProjectLocks)",
@@ -7487,7 +8033,26 @@
         "mandatory": true,
         "mandatoryReason": "Khóa một lượt/dự án giữ nguyên vẹn mã nguồn ứng dụng của người dùng.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "OlProjectLocks: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L28",
@@ -7501,8 +8066,8 @@
         "offHow": "ai.builder.steps.enabled=false",
         "danger": "Tắt thì yêu cầu lớn dễ bị cắt đầu ra",
         "recommend": "giữ",
-        "recommendedValue": "bật",
-        "effortHours": 0,
+        "recommendedValue": "bật (đang ON)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Kế hoạch chia bước & tool loop",
         "dev": "Tắt (mặc định code false)",
@@ -7514,7 +8079,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "T22-B BE #203 + FE #162 + #205 + FE #189: CODE+QA+DEPLOY+ON toàn hệ thống (NO-20=A), 3 lượt Haiku thật + smoke PROD; VERIFIED một phần"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "xong",
+          "qa": "xong",
+          "deploy": "xong",
+          "on": "xong",
+          "verified": "một phần"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L29",
@@ -7527,9 +8111,9 @@
         "offPossible": false,
         "offHow": "web tối đa 8; vượt cần PR",
         "danger": "Mỗi bước là một lượt AI trả phí",
-        "recommend": "giữ",
-        "recommendedValue": "6",
-        "effortHours": 1,
+        "recommend": "cần mã",
+        "recommendedValue": "tối đa 12-16 bước; tự tiếp tục có checkpoint/resume (cờ TẮT)",
+        "effortHours": 31,
         "needsRelease": true,
         "group": "Kế hoạch chia bước & tool loop",
         "dev": "6 bước (khoảng 2 đến 8)",
@@ -7541,7 +8125,30 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "T22-B (kế hoạch trong PlanFile, mỗi bước 3 lần thử, nút 'Tiếp tục' THỦ CÔNG): CODE+QA+DEPLOY+ON",
+          "J1 queue + OlProjectLocks (khóa dự án) tái dùng để xếp bước kế tiếp"
+        ],
+        "missing": "Hiện không có tự tiếp tục (INFERRED: chỉ có nút 'Tiếp tục'; không thấy mã auto-continue). Cần: hằng cứng HARD_MAX_STEPS=8 nâng, tự xếp bước kế vào hàng đợi, tạm dừng/hủy/tiếp tục sau tải lại, dừng khi chạm trần tiền của kế hoạch (L31) hoặc cần phê duyệt thao tác rủi ro.",
+        "slices": [
+          "T22-C1 (BE, ≤300 dòng, cờ ai.builder.steps.auto-continue TẮT)",
+          "T22-C2 (FE, ≤200 dòng): công tắc, trạng thái, tạm dừng/hủy, tiếp tục sau tải lại"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "Có (NO-DIR-6: mức tự chủ ban đầu)",
+        "hotConfig": false
       },
       {
         "id": "L30",
@@ -7555,8 +8162,8 @@
         "offHow": "1.000..300.000",
         "danger": "-",
         "recommend": "giữ",
-        "recommendedValue": "12000",
-        "effortHours": 0,
+        "recommendedValue": "12000 byte (có thể hạ nóng nếu muốn chia sớm hơn)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Kế hoạch chia bước & tool loop",
         "dev": "12.000 byte (khoảng 1.000 đến 300.000)",
@@ -7568,7 +8175,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "T22-B ON (cài đặt đổi nóng 1.000..300.000)"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L31",
@@ -7582,8 +8208,8 @@
         "offHow": "-",
         "danger": "-",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "giữ nguyên trần tiền mỗi kế hoạch (không ghi số)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Tiền & ngân sách",
         "dev": "Có trần chi phí mỗi kế hoạch (mặc định code là số dương nhỏ, không ghi số ở đây)",
@@ -7595,7 +8221,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần chi phí mỗi kế hoạch là phanh tiền cho nhiều bước nối tiếp.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "T22-B ON; U6 đã xử lý theo Owner"
+        ],
+        "missing": "Không có. Là chốt tiền khi bật tự tiếp tục (T22-C).",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L32",
@@ -7608,9 +8253,9 @@
         "offPossible": false,
         "offHow": "Cài đặt tối đa 327.680 (hằng số code); thực tế bị kẹp bởi L33. Không có giá trị 'không giới hạn'.",
         "danger": "Giới hạn kích thước yêu cầu, lưu trữ và tiền",
-        "recommend": "cần mã",
-        "recommendedValue": "tuỳ cửa sổ ngữ cảnh mô hình (xem phần 3)",
-        "effortHours": 16,
+        "recommend": "theo mô hình",
+        "recommendedValue": "trần lời nhắc = hàm của cửa sổ ngữ cảnh mô hình đã chọn; vượt thì TỪ CHỐI RÕ (413), không cắt",
+        "effortHours": 12,
         "needsRelease": true,
         "group": "Prompt & văn bản",
         "dev": "262.144 byte UTF-8 (khoảng 8.192 đến 327.680)",
@@ -7622,7 +8267,30 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 2,
+        "existingWork": [
+          "T04 hot 300.000 B: ON (không PR); BE #192 (câu trả lời 48.000 ký tự) ON; FE #195 (byte count) OPEN, chưa QA"
+        ],
+        "missing": "Giá trị cố định 300.000 B (setting) / 327.680 (hằng) / 360.000-60.000 (kẹp bởi L33); không biết mô hình. Cần kiểm token ước lượng trước khi gửi theo mô hình + mã lỗi riêng + gợi ý đổi mô hình ngữ cảnh lớn.",
+        "slices": [
+          "ATT-c1 (BE, ≤300 dòng, cờ ai.prompt.model-aware TẮT): PromptBudget(model)",
+          "ATT-c2 (FE, ≤200 dòng): đồng hồ dung lượng + thẻ thông báo + gợi ý đổi mô hình"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "chưa",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "Có (NO-DIR-2: hành vi khi vượt cửa sổ)",
+        "hotConfig": false
       },
       {
         "id": "L33",
@@ -7635,9 +8303,9 @@
         "offPossible": false,
         "offHow": "nâng bằng env + release",
         "danger": "Nâng làm tăng tiền giữ chỗ xấu nhất mỗi lượt",
-        "recommend": "nâng",
-        "recommendedValue": "tuỳ cửa sổ ngữ cảnh",
-        "effortHours": 2,
+        "recommend": "theo mô hình",
+        "recommendedValue": "env APP_AI_PAID_MAX_PROMPT_BYTES nâng theo cửa sổ mô hình (tối đa cấu hình 1.000.000); tiền giữ chỗ vẫn bảo vệ",
+        "effortHours": 4,
         "needsRelease": true,
         "group": "Tiền & ngân sách",
         "dev": "150.000 byte nếu không đặt env (khoảng hợp lệ 1.000 đến 1.000.000)",
@@ -7647,9 +8315,32 @@
         "risk": "Cao",
         "riskNote": "Nâng làm tăng chi phí xấu nhất mỗi lượt (token vào) và phần tiền đặt chỗ.",
         "mandatory": true,
-        "mandatoryReason": "Trần thân yêu cầu gửi AI trả phí giới hạn chi phí xấu nhất mỗi lượt và kích thước dữ liệu rời khỏi hệ thống.",
+        "mandatoryReason": "Trần thân yêu cầu gửi AI trả phí giới hạn chi phí xấu nhất mỗi lượt và kích thước dữ liệu rời khỏi hệ thống. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 2,
+        "existingWork": [
+          "B2 02b BE #164 + FE #117: CODE+QA+DEPLOY+ON (web chỉ hạ)"
+        ],
+        "missing": "Nâng cần env + phát hành; thân yêu cầu lớn làm tiền giữ chỗ xấu nhất mỗi lượt lớn hơn (an toàn, nhưng có thể gây từ chối vì 'quá đắt' thay vì quá dài; phải báo mã riêng).",
+        "slices": [
+          "ATT-c1 (chung với L32)",
+          "Bước ENV sau khi có số đo (không PR)"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "ENV/RELEASE",
+          "CODE"
+        ],
+        "needsOwner": "Có (chung NO-DIR-2)",
+        "hotConfig": false
       },
       {
         "id": "L34",
@@ -7663,8 +8354,8 @@
         "offHow": "nâng bằng env",
         "danger": "DoS bộ nhớ",
         "recommend": "giữ",
-        "recommendedValue": "1 MiB",
-        "effortHours": 0,
+        "recommendedValue": "1 MiB (JSON thường)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
         "dev": "1 MiB (MAX_REQUEST_BYTES, mặc định)",
@@ -7676,7 +8367,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần thân yêu cầu JSON bảo vệ máy chủ API (Tomcat) trước thân quá lớn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "Cấu hình hiện có"
+        ],
+        "missing": "Không nâng bừa theo yêu cầu (4)(L64-L69): tệp lớn đi đường tải trực tiếp, không qua JSON.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L35",
@@ -7690,8 +8400,8 @@
         "offHow": "env APP_BUILDER_OPEN_LOVABLE_MAX_TURN_BYTES, trần cứng 24 MiB",
         "danger": "Mỗi yêu cầu giữ tới 16-24 MiB trong heap",
         "recommend": "giữ",
-        "recommendedValue": "16 MiB",
-        "effortHours": 2,
+        "recommendedValue": "16 MiB (tối đa 24 MiB)",
+        "effortHours": null,
         "needsRelease": true,
         "group": "Hạ tầng & truyền tải",
         "dev": "16.777.216 byte (16 MiB, khoảng 1 MiB đến 24 MiB)",
@@ -7703,7 +8413,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần thân một lượt builder phải nhỏ hơn trần của edge/Next.js và Tomcat.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "P1-ATT: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không nâng: 10 tệp vẫn nằm trong 16 MiB nếu giữ trần dung lượng L39/L40/L42; vượt thì dùng ATT-e (tải trực tiếp).",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L36",
@@ -7717,8 +8446,8 @@
         "offHow": "Nâng thành 10 gộp cần đổi hằng số (BE + FE ATT_LIMITS + thông báo lỗi)",
         "danger": "Thân yêu cầu lớn hơn",
         "recommend": "cần mã",
-        "recommendedValue": "10 tổng (ảnh + tài liệu)",
-        "effortHours": 10,
+        "recommendedValue": "10 tệp tổng (ảnh + tài liệu)",
+        "effortHours": 8,
         "needsRelease": true,
         "group": "File & ảnh",
         "dev": "8 tệp/lượt (hằng số MAX_COUNT)",
@@ -7730,7 +8459,31 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "P1-ATT / P36-ATTACH (#146/#190), T33 FE #155/#156: CODE+QA+DEPLOY+ON cho trần 8/6/3",
+          "SVG FE #187: CODE+QA+DEPLOY+ON (SVG đổi sang PNG trên trình duyệt)",
+          "FE #193 (xóa tệp khi server nhận lượt): CODE+QA merged, chưa DEPLOY"
+        ],
+        "missing": "Hằng số MAX_COUNT=8, MAX_IMAGES=6, MAX_DOCUMENTS=3 là envelope (web chỉ hạ). Đổi thành 10/10/10 (tổng 10), PROMPT_FRAME_BYTES theo 10 khung, echo guard, thông báo; FE ATT_LIMITS. Mặc định cài đặt web giữ 8/6/3 cho tới khi bật nóng -> hành vi mặc định không đổi.",
+        "slices": [
+          "ATT-b1 (BE, ≤250 dòng)",
+          "ATT-b2 (FE, ≤250 dòng): đọc giới hạn từ máy chủ (đã có mẫu P36-ATTACH), i18n, bản nháp"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L37",
@@ -7757,7 +8510,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Như L36"
+        ],
+        "missing": "Chung ATT-b1/b2.",
+        "slices": [
+          "ATT-b1 (chung L36)"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L38",
@@ -7784,7 +8558,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Như L36"
+        ],
+        "missing": "Chung ATT-b1/b2.",
+        "slices": [
+          "ATT-b1 (chung L36)"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L39",
@@ -7798,7 +8593,7 @@
         "offHow": "web chỉ hạ",
         "danger": "Giải mã ảnh lớn tốn CPU/RAM",
         "recommend": "giữ",
-        "recommendedValue": "4 MiB",
+        "recommendedValue": "4 MiB/ảnh trong đường JSON; nâng chỉ qua ATT-e7 (ảnh bằng tham chiếu đối tượng, vẫn giải mã cô lập)",
         "effortHours": 0,
         "needsRelease": false,
         "group": "File & ảnh",
@@ -7811,7 +8606,29 @@
         "mandatory": true,
         "mandatoryReason": "Trần dung lượng ảnh bảo vệ edge, Tomcat và bộ giải mã khỏi ảnh quá lớn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "P1-ATT/WP-COMPOSER S7: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Nâng chỉ khi ảnh không nằm trong JSON (ATT-e7) vì 10 ảnh x 4 MiB đã vượt 16 MiB thân.",
+        "slices": [
+          "ATT-e7 (chung L42)"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ",
+          "CODE (sau ATT-e)"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L40",
@@ -7825,8 +8642,8 @@
         "offHow": "web chỉ hạ",
         "danger": "Thân yêu cầu",
         "recommend": "giữ",
-        "recommendedValue": "8 MiB",
-        "effortHours": 0,
+        "recommendedValue": "8 MiB tổng ảnh/lượt trong đường JSON",
+        "effortHours": null,
         "needsRelease": false,
         "group": "File & ảnh",
         "dev": "8 MiB tổng ảnh/lượt (hằng số MAX_TOTAL_BYTES)",
@@ -7838,7 +8655,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần tổng ảnh mỗi lượt giữ thân yêu cầu dưới trần của edge và Tomcat.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Như L39"
+        ],
+        "missing": "Như L39.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L41",
@@ -7852,8 +8688,8 @@
         "offHow": "cần PR",
         "danger": "Bom giải nén ảnh (decompression bomb)",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "cạnh 4096, 12,58 MP, JPEG 64 lượt quét, 2 luồng, 10 s",
+        "effortHours": null,
         "needsRelease": false,
         "group": "File & ảnh",
         "dev": "Tối đa 12.582.912 điểm ảnh, 64 lượt quét JPEG, 2 luồng giải mã, 10 giây (hằng số code)",
@@ -7865,7 +8701,26 @@
         "mandatory": true,
         "mandatoryReason": "Giới hạn điểm ảnh và thời gian giải mã chặn tấn công ảnh bom bộ nhớ.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "WP-COMPOSER S7: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không có (chống pixel-bomb). Giữ khi nâng dung lượng.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L42",
@@ -7879,8 +8734,8 @@
         "offHow": "cần PR",
         "danger": "Giữ RAM và thời gian trích",
         "recommend": "cần mã",
-        "recommendedValue": "tuỳ Owner (xem phần 1, 4)",
-        "effortHours": 2,
+        "recommendedValue": "tài liệu lớn hơn qua tham chiếu đối tượng đã tải trực tiếp (ATT-e7); đường JSON giữ 1,5/3 MiB",
+        "effortHours": 6,
         "needsRelease": true,
         "group": "File & ảnh",
         "dev": "1,5 MiB/tài liệu; 3 MiB tổng (hằng số code)",
@@ -7892,7 +8747,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "P36-ATTACH CODE+QA+DEPLOY+ON cho 1,5/3 MiB"
+        ],
+        "missing": "Trần byte thô là hằng; nâng trong JSON làm vỡ chuỗi biên (nginx 20m, Next 18 MiB, thân 16 MiB).",
+        "slices": [
+          "ATT-e7 (BE ≤200 + FE ≤120): ảnh/tài liệu đính kèm bằng tham chiếu tới đối tượng đã tải lên"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L43",
@@ -7905,9 +8781,9 @@
         "offPossible": false,
         "offHow": "Tối đa 240.000 (hằng); nâng cần PR",
         "danger": "Tiền theo token",
-        "recommend": "cần mã",
-        "recommendedValue": "tuỳ cửa sổ ngữ cảnh",
-        "effortHours": 6,
+        "recommend": "theo mô hình",
+        "recommendedValue": "ký tự mỗi tài liệu = phần còn lại của cửa sổ ngữ cảnh; phần cắt phải nêu rõ + đọc tiếp được",
+        "effortHours": 8,
         "needsRelease": true,
         "group": "Prompt & văn bản",
         "dev": "120.000 ký tự/tài liệu (khoảng 4.000 đến 240.000)",
@@ -7919,7 +8795,29 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 2,
+        "existingWork": [
+          "P36-ATTACH BE #190 + FE #146: CODE+QA+DEPLOY+ON (số ký tự do máy chủ công bố); T05 ON (hot 120.000/240.000); marker '[đã cắt: n/m ký tự]' + truncated=true đã có"
+        ],
+        "missing": "Trần 240.000 ký tự là hằng (DocumentLimits). Cần dẫn xuất theo mô hình và đường 'đọc phần còn lại' (dùng tool loop read_file_range khi T23 bật) thay vì cắt.",
+        "slices": [
+          "ATT-c1 (chung)",
+          "ATT-c2 (chung)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "một phần"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "Có (chung NO-DIR-2)",
+        "hotConfig": false
       },
       {
         "id": "L44",
@@ -7932,9 +8830,9 @@
         "offPossible": false,
         "offHow": "Tối đa 480.000 (hằng) và bị trần L33 kẹp",
         "danger": "như L43",
-        "recommend": "cần mã",
-        "recommendedValue": "tuỳ cửa sổ ngữ cảnh",
-        "effortHours": 0,
+        "recommend": "theo mô hình",
+        "recommendedValue": "tổng ký tự mọi tài liệu = ngân sách chung theo mô hình (trừ hệ thống/lịch sử/nguồn/đầu ra)",
+        "effortHours": 2,
         "needsRelease": true,
         "group": "Prompt & văn bản",
         "dev": "240.000 ký tự tổng (khoảng 8.000 đến 480.000)",
@@ -7946,7 +8844,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 2,
+        "existingWork": [
+          "P36-ATTACH #190/#146 CODE+QA+DEPLOY+ON; hiệu lực hiện 318.000 (kẹp bởi L33)"
+        ],
+        "missing": "Chung ATT-c1.",
+        "slices": [
+          "ATT-c1 (chung)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "một phần"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L45",
@@ -7959,9 +8878,9 @@
         "offPossible": false,
         "offHow": "cần PR",
         "danger": "-",
-        "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommend": "theo mô hình",
+        "recommendedValue": "trần đọc 1.000.000 ký tự -> theo ngân sách mô hình; phần chưa đọc nêu rõ, không im lặng",
+        "effortHours": 4,
         "needsRelease": false,
         "group": "Prompt & văn bản",
         "dev": "1.000.000 ký tự (hằng số TEXT_READ_CAP)",
@@ -7971,9 +8890,30 @@
         "risk": "Cao",
         "riskNote": "Bỏ làm trích xuất đọc toàn bộ tệp lớn vào bộ nhớ, dễ cạn heap.",
         "mandatory": true,
-        "mandatoryReason": "Trần ký tự đọc bảo vệ bộ nhớ khi trích xuất văn bản từ tệp do người dùng gửi.",
+        "mandatoryReason": "Trần ký tự đọc bảo vệ bộ nhớ khi trích xuất văn bản từ tệp do người dùng gửi. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "OlDocuments hiện có thông báo khi vượt trần đọc (phần còn lại 'được bỏ và nói rõ'): CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Trần đọc là bảo vệ bộ nhớ/DoS nên vẫn giữ ở dạng có trần; chỉ cho phép nâng cùng L48 (giới hạn thời gian/bộ nhớ trích xuất). Nằm trong ATT-c1.",
+        "slices": [
+          "ATT-c1 (chung)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "một phần"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L46",
@@ -7987,8 +8927,8 @@
         "offHow": "thêm định dạng cần PR",
         "danger": "Bộ giải mã ảnh là bề mặt tấn công; WebP không nén lại nên giữ nguyên metadata",
         "recommend": "cần mã",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "thêm GIF(khung đầu)/BMP/TIFF/HEIC đổi sang PNG trên trình duyệt; giữ allow-list PNG/JPEG/WebP ở BE",
+        "effortHours": 6,
         "needsRelease": true,
         "group": "File & ảnh",
         "dev": "PNG, JPEG, WebP (hằng số MIMES)",
@@ -7998,9 +8938,30 @@
         "risk": "Cao",
         "riskNote": "Mở thêm loại (SVG, định dạng động) có thể đưa nội dung chủ động hoặc bộ giải mã chưa được kiểm tra.",
         "mandatory": true,
-        "mandatoryReason": "Danh sách loại ảnh cho phép là kiểm soát an toàn: nhận dạng theo byte, không nhận SVG hay tệp thực thi.",
+        "mandatoryReason": "Danh sách loại ảnh cho phép là kiểm soát an toàn: nhận dạng theo byte, không nhận SVG hay tệp thực thi. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "SVG->PNG FE #187: CODE+QA+DEPLOY+ON, Owner đã thử (U2 ổn)"
+        ],
+        "missing": "Mở rộng bộ chuyển đổi FE (canvas, giới hạn kích thước/pixel), BE không đổi nên bề mặt tấn công không tăng. Ảnh động vẫn từ chối (hoặc lấy khung đầu có thông báo).",
+        "slices": [
+          "ATT-d1 (FE, ≤220 dòng)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "một phần"
+        },
+        "needs": [
+          "CODE (FE)"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L47",
@@ -8014,8 +8975,8 @@
         "offHow": "pdf-enabled bật/tắt bằng env APP_BUILDER_OPEN_LOVABLE_DOCUMENTS_PDF_ENABLED",
         "danger": "Trình phân tích PDF/Office là bề mặt DoS",
         "recommend": "cần mã",
-        "recommendedValue": "-",
-        "effortHours": 16,
+        "recommendedValue": "nhận mọi tệp ĐỌC ĐƯỢC (mã hóa văn bản mới, PPTX, ODF, EPUB, RTF, PDF); tệp không đọc được ghi dòng siêu dữ liệu",
+        "effortHours": 33,
         "needsRelease": true,
         "group": "File & ảnh",
         "dev": "PDF bật (code mặc định true; PROD ghi đè tắt); DOCX, XLSX, văn bản như mô tả",
@@ -8025,9 +8986,35 @@
         "risk": "Cao",
         "riskNote": "Bật PDF mở thêm bộ phân tích tệp phức tạp (bom toán tử, glyph); mở loại khác tăng bề mặt tấn công.",
         "mandatory": true,
-        "mandatoryReason": "Danh sách loại tài liệu và công tắc PDF an toàn: chỉ cờ PDF được tắt, không được nới danh sách.",
+        "mandatoryReason": "Danh sách loại tài liệu và công tắc PDF an toàn: chỉ cờ PDF được tắt, không được nới danh sách. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "P36-ATTACH/SEC-P1/P1b: văn bản UTF-8, DOCX, XLSX, PDF (cờ pdf-enabled compose PROD mặc định TẮT, giá trị thật UNKNOWN): CODE+QA; PDF chưa DEPLOY/ON (INFERRED)",
+          "T37 S4 BE #210 (thư viện XLSX thuần, OPEN, status:qa, không nối): không phải việc L47; chỉ tham khảo mẫu parser an toàn"
+        ],
+        "missing": "Tầng A: nhận diện UTF-16/Windows-1258/1252; Tầng B: PPTX/ODF/EPUB/RTF tái dùng bộ chặn zip/XML; Tầng C: dòng siêu dữ liệu 'tệp X (loại, dung lượng, băm) đính kèm nhưng không đọc được'; bật PDF bằng env sau QA. Không làm .doc/.xls/.ppt (OLE) ở đợt này.",
+        "slices": [
+          "ATT-d2 (BE ≤200)",
+          "ATT-d3a/d3b (BE ≤280 x2)",
+          "ATT-d4 (BE ≤150 + FE ≤120, cờ TẮT)",
+          "ATT-d5 (ENV: bật PDF + QA)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "Có (NO-DIR-3: chính sách 'mọi định dạng')",
+        "hotConfig": false
       },
       {
         "id": "L48",
@@ -8041,8 +9028,8 @@
         "offHow": "không nên tắt",
         "danger": "Bom giải nén, XXE, DoS bộ phân tích",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "giữ toàn bộ bộ chặn ZIP/XML/XLSX/PDF; áp dụng cho mọi bộ trích mới",
+        "effortHours": null,
         "needsRelease": false,
         "group": "An toàn & cách ly",
         "dev": "ZIP: 1.000 mục, 24 MiB giải nén, 8 MiB/phần, tỉ lệ 100; XML sâu 100; XLSX 10 trang tính, 1.000 hàng; PDF 30 trang, 2.000.000 toán tử, 500.000 glyph",
@@ -8054,7 +9041,26 @@
         "mandatory": true,
         "mandatoryReason": "Các giới hạn giải nén DOCX/XLSX/PDF chặn tấn công zip bomb, XML bomb và PDF bomb.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "SEC-P1/P1b: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không có. Mọi parser mới (ATT-d3) phải qua cùng giới hạn + thời gian + bể luồng.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L49",
@@ -8068,8 +9074,8 @@
         "offHow": "không nên tắt",
         "danger": "Rò rỉ bí mật sang nhà cung cấp AI",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "từ chối tệp nhạy cảm",
+        "effortHours": null,
         "needsRelease": false,
         "group": "An toàn & cách ly",
         "dev": "Bật (từ chối tên và nội dung giống bí mật)",
@@ -8081,7 +9087,26 @@
         "mandatory": true,
         "mandatoryReason": "Từ chối tệp nhạy cảm là kiểm soát bí mật/redaction; không được tắt.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không có. Áp dụng cả cho tệp trích từ file nén (ATT-e).",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L50",
@@ -8095,8 +9120,8 @@
         "offHow": "cần mã (xem phần 4)",
         "danger": "Bom giải nén, zip-slip, liên kết, tệp mã hóa, RAR bản quyền",
         "recommend": "cần mã",
-        "recommendedValue": "tối đa 1 GB",
-        "effortHours": 80,
+        "recommendedValue": "tối đa 1 GB/tệp nén, tải trực tiếp lên MinIO (multipart), trích xuất cô lập; ZIP/TAR/TGZ/7z trước, RAR sau",
+        "effortHours": 68,
         "needsRelease": true,
         "group": "File nén",
         "dev": "Chưa hỗ trợ đính kèm; nhập dự án ZIP tối đa 10 MiB, 1.000 mục, 300 tệp, tỉ lệ 20",
@@ -8106,9 +9131,37 @@
         "risk": "Cao",
         "riskNote": "Tệp nén lớn mở rủi ro zip bomb, path traversal, đầy đĩa và quét mã độc.",
         "mandatory": true,
-        "mandatoryReason": "Mọi nhận tệp nén phải đi qua giới hạn giải nén, kiểm tra đường dẫn và quét; không được bỏ.",
+        "mandatoryReason": "Mọi nhận tệp nén phải đi qua giới hạn giải nén, kiểm tra đường dẫn và quét; không được bỏ. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "T32/T34/I1 import: BE #151/#157/#198/#202 + FE #160/#163: CODE+QA+DEPLOY+ON cho ZIP 10 MiB trong bộ nhớ (ArchiveReader: zip-slip, symlink, mã hóa, chồng chéo, CRC, đếm khi giải nén) — tái dùng cho phần kiểm tra, không đủ cho 1 GB",
+          "Presign PUT đơn của MinIO có sẵn (storage/MinioStorageProvider.kt:48-54) nhưng KHÔNG có multipart"
+        ],
+        "missing": "Toàn bộ kiến trúc: phiên tải multipart (phần 32-64 MiB, tiếp tục được), vòng đời xóa, hạn mức dung lượng, IAM + audit; trích xuất trong runner cô lập không mạng (đếm byte khi đọc, trần giải nén/số mục/độ sâu, từ chối symlink/lồng/mã hóa); chọn tệp từ cây để đưa vào ngân sách ký tự; FE tải có tiến trình/hủy/tiếp tục. RAR/ClamAV là quyết định riêng.",
+        "slices": [
+          "ATT-e1 (BE upload session ≤300 x2)",
+          "ATT-e3 (BE trích xuất cô lập ≤300 x3)",
+          "ATT-e4 (BE chọn nội dung vào prompt ≤250)",
+          "ATT-e5 (FE ≤300 x2)",
+          "ATT-e6 (QA/SEC + thử tải 1 GB)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE",
+          "INFRA",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "Có (NO-DIR-5: phạm vi 1 GB, thư viện, RAR, ClamAV, đĩa)",
+        "hotConfig": false
       },
       {
         "id": "L51",
@@ -8122,7 +9175,7 @@
         "offHow": "cần mã nếu muốn nhận",
         "danger": "-",
         "recommend": "giữ",
-        "recommendedValue": "-",
+        "recommendedValue": "không nhận video (quyết định Owner 30/10); video/âm thanh = siêu dữ liệu (ATT-d4)",
         "effortHours": 0,
         "needsRelease": false,
         "group": "File & ảnh",
@@ -8135,7 +9188,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Quyết định Owner 30/10"
+        ],
+        "missing": "Chỉ sửa thông báo lỗi cũ còn nhắc 'khung hình video' (nằm trong ATT-d4).",
+        "slices": [
+          "ATT-d4 (chung L47)"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L52",
@@ -8149,8 +9223,8 @@
         "offHow": "APP_BUILDER_OPEN_LOVABLE_ASSETS_ENABLED",
         "danger": "Ảnh công khai khi xuất bản",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "tắt (assetsEnabled=false); quy tắc lưu tài nguyên giữ",
+        "effortHours": null,
         "needsRelease": false,
         "group": "File & ảnh",
         "dev": "Tắt (assets.enabled=false mặc định); tối đa 20 MiB tài nguyên/dự án, PNG và JPEG, 6 ảnh",
@@ -8162,7 +9236,26 @@
         "mandatory": true,
         "mandatoryReason": "Quy tắc lưu tài nguyên (mã hóa lại ảnh, namespace dành riêng, hạn mức dự án) là kiểm soát an toàn; chỉ cờ bật tính năng được tắt.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "OlAssets CODE+QA; PROD TẮT"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L53",
@@ -8176,8 +9269,8 @@
         "offHow": "cần PR FE mỗi khi đổi L36-L44",
         "danger": "Lệch BE-FE gây từ chối muộn",
         "recommend": "cần mã",
-        "recommendedValue": "-",
-        "effortHours": 4,
+        "recommendedValue": "FE đọc giới hạn từ máy chủ thay vì hằng số",
+        "effortHours": 6,
         "needsRelease": true,
         "group": "File & ảnh",
         "dev": "Phản chiếu số của backend: 8 tệp, 6 ảnh, 3 tài liệu, 4 MiB, 8 MiB (FE attachments.ts)",
@@ -8189,7 +9282,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "P36-ATTACH FE #146: CODE+QA+DEPLOY+ON cho số ký tự (đã công bố từ máy chủ); số lượng/dung lượng vẫn hằng"
+        ],
+        "missing": "Mở rộng 'builder config' công bố số tệp/dung lượng (mô hình sẵn có), FE bỏ ATT_LIMITS cứng.",
+        "slices": [
+          "ATT-b2 (chung L36)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "một phần",
+          "verified": "một phần"
+        },
+        "needs": [
+          "CODE (FE)"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L54",
@@ -8202,9 +9316,9 @@
         "offPossible": true,
         "offHow": "cờ APP_BUILDER_OPEN_LOVABLE_REFERENCE_ENABLED",
         "danger": "SSRF (đã có chặn địa chỉ riêng, chỉ HTTPS)",
-        "recommend": "giữ",
-        "recommendedValue": "3",
-        "effortHours": 0,
+        "recommend": "nâng",
+        "recommendedValue": "3 -> 10 URL (envelope 10, mặc định 3); bật sau QA/SEC (cờ TẮT hiện nay)",
+        "effortHours": 8,
         "needsRelease": false,
         "group": "Tham chiếu & tìm kiếm",
         "dev": "3 URL/lượt; tối đa 2.000 ký tự/URL (hằng số code)",
@@ -8216,7 +9330,29 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Tính năng tham chiếu hiện có (OlReferences/ReferenceFetcher/ReferenceReader): CODE; cờ APP_BUILDER_OPEN_LOVABLE_REFERENCE_ENABLED TẮT trên PROD; QA gần đây chưa đọc được -> qa 'chưa'"
+        ],
+        "missing": "Hoàn thiện: QA/SEC độc lập chạy lại đường SSRF (PinnedHttpsTransport + PublicAddressPolicy) trên bản dev, URL hiện 3, hàng đợi từ chối URL, E2E mạng thật.",
+        "slices": [
+          "REF-b (BE ≤200): số URL cấu hình + hàng đợi mang URL; QA/SEC + E2E"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "chưa",
+          "deploy": "một phần",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "ENV/RELEASE",
+          "CODE"
+        ],
+        "needsOwner": "Có (NO-DIR-7: bật tham chiếu cho ai, khi nào)",
+        "hotConfig": false
       },
       {
         "id": "L55",
@@ -8230,8 +9366,8 @@
         "offHow": "cần PR",
         "danger": "SSRF, DoS",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "https-only, chặn địa chỉ riêng/loopback/link-local, ghim DNS, trần kích thước/thời gian",
+        "effortHours": 4,
         "needsRelease": false,
         "group": "An toàn & cách ly",
         "dev": "Tối đa 512 KiB, 8 giây tổng, 3 chuyển hướng, 25 giây mỗi lượt; chỉ https, chặn địa chỉ riêng",
@@ -8243,7 +9379,28 @@
         "mandatory": true,
         "mandatoryReason": "Chặn SSRF (https, địa chỉ riêng, chuyển hướng) và trần tải trang là bảo vệ bắt buộc.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "CODE+QA (SSRF) nhưng tính năng TẮT"
+        ],
+        "missing": "Giữ nguyên; chỉ chạy lại kiểm thử SSRF trong REF-b.",
+        "slices": [
+          "REF-b (chung L54)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L56",
@@ -8257,8 +9414,8 @@
         "offHow": "web hạ được; tối đa 100.000",
         "danger": "Tiền và tải",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "giữ trần ngày của trình đọc có phí (tiền); nâng cần env",
+        "effortHours": 2,
         "needsRelease": false,
         "group": "Tham chiếu & tìm kiếm",
         "dev": "50 lượt đọc trang kết xuất/công ty/ngày (mặc định env trong application.yml)",
@@ -8270,7 +9427,29 @@
         "mandatory": true,
         "mandatoryReason": "Trần lượt gọi dịch vụ ngoài có tính phí là hạn mức chi phí.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "B2 02b: web chỉ hạ"
+        ],
+        "missing": "Không đổi trong lát này; QA kiểm cap thật.",
+        "slices": [
+          "REF-b (chung)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "GIỮ",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L57",
@@ -8284,8 +9463,8 @@
         "offHow": "web hạ được; tối đa 100.000",
         "danger": "Tiền của nhà cung cấp tìm kiếm",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "giữ trần tìm kiếm ngày/công ty và 5/phút/người; nâng cần env",
+        "effortHours": 2,
         "needsRelease": false,
         "group": "Tham chiếu & tìm kiếm",
         "dev": "100 tìm kiếm/công ty/ngày (mặc định env); 5/người/phút (hằng số code)",
@@ -8297,7 +9476,29 @@
         "mandatory": true,
         "mandatoryReason": "Trần lượt gọi dịch vụ tìm kiếm ngoài có tính phí là hạn mức chi phí.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "B2 02b: web chỉ hạ"
+        ],
+        "missing": "Như L56.",
+        "slices": [
+          "REF-b (chung)"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "một phần",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "GIỮ",
+          "ENV/RELEASE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L58",
@@ -8311,7 +9512,7 @@
         "offHow": "tối đa 120 s và 900 s",
         "danger": "Yêu cầu lớn (nhiều token) cần thời gian dài hơn; nếu không đổi sẽ hết giờ trước khi xong",
         "recommend": "nâng",
-        "recommendedValue": "tuỳ kết quả thử",
+        "recommendedValue": "stream 600 s (tối đa 900), nhà cung cấp 120 s (tối đa 120) sau khi thử; phụ thuộc chuỗi biên (L64-L66)",
         "effortHours": 0.5,
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
@@ -8324,7 +9525,28 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "nâng",
+        "directiveGroup": 2,
+        "existingWork": [
+          "Master #88: cài đặt đổi nóng có sẵn; FE #138 đã nâng proxyTimeout /api lên 960 s (CODE+DEPLOY)"
+        ],
+        "missing": "Đọc GET ai/config (PROD UNKNOWN), đặt giá trị, 1 lượt Haiku dài đo thời gian; kiểm nhịp tim 10 s qua nginx portal (proxy_read_timeout 120 s tính giữa hai lần đọc).",
+        "slices": [
+          "H0"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "HOT"
+        ],
+        "needsOwner": "",
+        "hotConfig": true
       },
       {
         "id": "L59",
@@ -8337,9 +9559,9 @@
         "offPossible": false,
         "offHow": "cần PR",
         "danger": "Không phải giới hạn đầu vào; là giới hạn đầu ra (khác 'tối đa 10 tệp đính kèm')",
-        "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommend": "cần mã",
+        "recommendedValue": "10 tệp/câu trả lời -> cấu hình tới 30; sửa nhiều tệp qua nhiều patch có xác minh (T24)",
+        "effortHours": 6,
         "needsRelease": false,
         "group": "Prompt & văn bản",
         "dev": "50 tệp, 200.000 byte/tệp, 1.000.000 byte tổng cho một thay đổi do AI",
@@ -8351,7 +9573,29 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 2,
+        "existingWork": [
+          "T24 BE #231 (bộ phân tích <patch> + bộ áp dụng theo vùng, thuần, chưa nối): CODE+QA (GO-WITH-CONDITIONS), chưa DEPLOY"
+        ],
+        "missing": "T24-3 (nối dây, cờ), T24-6 (FE), T24-8 (QA) là CÔNG VIỆC CỦA T24 (≈55 giờ còn lại, không tính mới). Mới chỉ thêm: FILES_MAX thành cài đặt có envelope.",
+        "slices": [
+          "T24-3/T24-6/T24-8 hiện có (KHÔNG tính mới)",
+          "FILES-b (BE, ≤120 dòng): OpenLovableTurns.FILES_MAX cấu hình được"
+        ],
+        "stages": {
+          "code": "một phần",
+          "qa": "một phần",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "CODE"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L60",
@@ -8365,8 +9609,8 @@
         "offHow": "env hoặc cài đặt storage.* (SETTING)",
         "danger": "Đầy đĩa",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "1.000 dự án/workspace, 200 tài nguyên, 200 MiB tải, 1.000 MiB artifact (storage guard)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
         "dev": "1.000 dự án/workspace; 200 tài nguyên/dự án (env mặc định); 200 MiB tài nguyên/dự án",
@@ -8378,7 +9622,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "Cài đặt hiện có"
+        ],
+        "missing": "Không có. Bổ sung hạn mức riêng cho thư mục tạm của ATT-e.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L61",
@@ -8392,8 +9655,8 @@
         "offHow": "-",
         "danger": "Đĩa",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "7/14/30 ngày, 5 bản",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
         "dev": "Xem trước 7 ngày; build lỗi 14 ngày (mặc định code)",
@@ -8405,7 +9668,26 @@
         "mandatory": false,
         "mandatoryReason": "",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "Cài đặt hiện có"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L62",
@@ -8419,8 +9701,8 @@
         "offHow": "ZDR không tắt được (khởi động báo lỗi)",
         "danger": "Dữ liệu người dùng gửi ra nhà cung cấp phải theo chính sách không lưu",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "ZDR bắt buộc, danh sách mô hình, người dùng, workspace",
+        "effortHours": null,
         "needsRelease": false,
         "group": "An toàn & cách ly",
         "dev": "ZDR bắt buộc (require-zdr mặc định true; false làm khởi động từ chối); suy luận: compose PROD mặc định tắt (code mặc định không); danh sách mô hình do cấu hình",
@@ -8432,7 +9714,26 @@
         "mandatory": true,
         "mandatoryReason": "ZDR và danh sách mô hình là ràng buộc nhà cung cấp về bảo mật dữ liệu và tiền; không được nới.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "Cố định trong mã (không tắt được)"
+        ],
+        "missing": "Không có. Mọi đường mới (tham chiếu, tìm kiếm, tải trực tiếp) phải đi qua ZDR + danh sách cho phép.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L63",
@@ -8446,8 +9747,8 @@
         "offHow": "Theo yêu cầu Owner: GIỮ",
         "danger": "Đây là lan can duy nhất còn lại khi bỏ các giới hạn khác",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "giữ nguyên toàn bộ trần tiền",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Tiền & ngân sách",
         "dev": "Có trần tiền cứng và biên an toàn (mặc định code; trần tối đa do Owner đặt, không ghi số ở đây)",
@@ -8459,7 +9760,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần tiền là phanh chi phí cuối cùng và không bao giờ được tắt.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 4,
+        "existingWork": [
+          "B1/B3 sổ tiền, AI window: CODE+QA+DEPLOY+ON"
+        ],
+        "missing": "Không có. Điều kiện tiên quyết: xử lý 8 khoản giữ chỗ chưa giải thích (J1-04, NO-28 = đo lại ở G2) trước khi tăng tốc độ tiêu.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L64",
@@ -8473,8 +9793,8 @@
         "offHow": "đổi cấu hình rồi khởi động lại Caddy (owner Windows lo CI/CD/deploy)",
         "danger": "Tệp 1 GB cần ~67 Mbit/s để xong trong 120 s",
         "recommend": "cần mã",
-        "recommendedValue": "tải lên thẳng MinIO",
-        "effortHours": 2,
+        "recommendedValue": "đường tải trực tiếp MinIO KHÔNG đi qua Caddy 120 s thân; host/route riêng",
+        "effortHours": 3,
         "needsRelease": true,
         "group": "Hạ tầng & truyền tải",
         "dev": "120 giây đọc thân cho POST, PUT, PATCH (Caddy)",
@@ -8484,9 +9804,31 @@
         "risk": "Cao",
         "riskNote": "Bỏ cho phép tấn công đọc chậm (slowloris) giữ hết 64 luồng của API.",
         "mandatory": true,
-        "mandatoryReason": "Hạn đọc thân ở edge chặn kết nối chậm làm cạn luồng Tomcat.",
+        "mandatoryReason": "Hạn đọc thân ở edge chặn kết nối chậm làm cạn luồng Tomcat. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Không có PR nào; hạ tầng (Windows lo CI/CD/deploy)"
+        ],
+        "missing": "Route/hostname tải trực tiếp (TLS, CORS), giữ read_timeout 120 s cho đường JSON.",
+        "slices": [
+          "ATT-e2 (INFRA, Windows): host tải lên + CORS + giới hạn"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "INFRA",
+          "CODE"
+        ],
+        "needsOwner": "Có (hostname/DNS/TLS cho tải trực tiếp)",
+        "hotConfig": false
       },
       {
         "id": "L65",
@@ -8500,8 +9842,8 @@
         "offHow": "sửa mẫu cấu hình + release hạ tầng",
         "danger": "-",
         "recommend": "giữ",
-        "recommendedValue": "20m",
-        "effortHours": 1,
+        "recommendedValue": "20m cho JSON; đường tải lớn không đi qua",
+        "effortHours": null,
         "needsRelease": true,
         "group": "Hạ tầng & truyền tải",
         "dev": "20m (nginx cổng portal)",
@@ -8513,7 +9855,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần thân ở cổng nginx là giới hạn cứng của edge.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Cấu hình hiện có"
+        ],
+        "missing": "Không nâng (đúng tinh thần không nâng bừa JSON); chỉ ghi vào tài liệu.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L66",
@@ -8527,8 +9888,8 @@
         "offHow": "đổi cấu hình FE + build",
         "danger": "Giữ trần 16 MiB của BE hợp lý",
         "recommend": "giữ",
-        "recommendedValue": "18mb",
-        "effortHours": 1,
+        "recommendedValue": "18 MiB",
+        "effortHours": null,
         "needsRelease": true,
         "group": "Hạ tầng & truyền tải",
         "dev": "18mb (proxyClientMaxBodySize của Next.js)",
@@ -8540,7 +9901,26 @@
         "mandatory": true,
         "mandatoryReason": "Trần proxy Next.js phải đi cùng trần backend; nới riêng một tầng gây lỗi và mở rộng thân.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Cấu hình hiện có"
+        ],
+        "missing": "Không nâng.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L67",
@@ -8554,8 +9934,8 @@
         "offHow": "nếu dùng thì phải nâng ≥ trần BE",
         "danger": "Lệch cấu hình gây lỗi 413 lạ",
         "recommend": "giữ",
-        "recommendedValue": "UNKNOWN",
-        "effortHours": 0,
+        "recommendedValue": "12m (mẫu) — xác minh PROD có dùng không",
+        "effortHours": 1,
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
         "dev": "12m (mẫu nginx studio.conf; chưa rõ PROD có dùng)",
@@ -8567,7 +9947,29 @@
         "mandatory": true,
         "mandatoryReason": "Trần thân ở nginx là giới hạn cứng của edge, nếu được dùng.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Không có"
+        ],
+        "missing": "Xác minh với Windows: nếu mẫu được dùng thì 12m < thân lượt 16 MiB; ghi rõ trong tài liệu.",
+        "slices": [
+          "ATT-e2 (chung): 1 giờ xác minh"
+        ],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "chưa",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "chưa"
+        },
+        "needs": [
+          "GIỮ",
+          "INFRA (xác minh)"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L68",
@@ -8581,8 +9983,8 @@
         "offHow": "biến TOMCAT_*",
         "danger": "Tải trọng lớn giữ luồng (64) lâu",
         "recommend": "giữ",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "giữ Tomcat (không bật multipart cho builder)",
+        "effortHours": null,
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
         "dev": "64 luồng, hàng chờ 100, tối đa 2.048 kết nối, kết nối 10 giây, giữ sống 120 giây, swallow 0B",
@@ -8594,7 +9996,26 @@
         "mandatory": true,
         "mandatoryReason": "Giới hạn Tomcat (luồng, kết nối, thời gian, swallow) bảo vệ khả dụng của API.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "giữ",
+        "directiveGroup": 3,
+        "existingWork": [
+          "Cấu hình hiện có"
+        ],
+        "missing": "Không có.",
+        "slices": [],
+        "stages": {
+          "code": "không áp dụng",
+          "qa": "không áp dụng",
+          "deploy": "không áp dụng",
+          "on": "không áp dụng",
+          "verified": "không áp dụng"
+        },
+        "needs": [
+          "GIỮ"
+        ],
+        "needsOwner": "",
+        "hotConfig": false
       },
       {
         "id": "L69",
@@ -8608,8 +10029,8 @@
         "offHow": "-",
         "danger": "Cần bucket tạm và vòng đời xóa cho kho lưu tệp nén",
         "recommend": "cần mã",
-        "recommendedValue": "-",
-        "effortHours": 0,
+        "recommendedValue": "MinIO: multipart + CORS + vòng đời xóa + hạn mức; tách khỏi tải tài nguyên 200 MiB",
+        "effortHours": 21,
         "needsRelease": false,
         "group": "Hạ tầng & truyền tải",
         "dev": "Ảnh 10.485.760 byte; tài liệu 20.971.520 byte (application.yml)",
@@ -8619,9 +10040,32 @@
         "risk": "Cao",
         "riskNote": "Nâng làm đầy lưu trữ đối tượng; bỏ cho phép tải lên không giới hạn vào MinIO.",
         "mandatory": true,
-        "mandatoryReason": "Trần dung lượng upload vào MinIO bảo vệ lưu trữ đối tượng.",
+        "mandatoryReason": "Trần dung lượng upload vào MinIO bảo vệ lưu trữ đối tượng. Chỉ thị 12/11: được NÂNG/mở rộng qua PR có QA/SEC độc lập (xem thẻ NO-30), nhưng KHÔNG được tắt hẳn.",
         "state": "proposed",
-        "stateNote": ""
+        "stateNote": "",
+        "recommendBefore": "cần mã",
+        "directiveGroup": 3,
+        "existingWork": [
+          "MinioStorageProvider presign PUT đơn: CODE+DEPLOY+ON cho tài nguyên dự án"
+        ],
+        "missing": "Thêm multipart (create/presign part/complete/abort), thư mục/bucket tạm riêng, lifecycle xóa 24 giờ, dọn phần dở dang.",
+        "slices": [
+          "ATT-e1 (BE ≤300 x2)",
+          "ATT-e2 (INFRA)"
+        ],
+        "stages": {
+          "code": "chưa",
+          "qa": "chưa",
+          "deploy": "chưa",
+          "on": "chưa",
+          "verified": "chưa"
+        },
+        "needs": [
+          "INFRA",
+          "CODE"
+        ],
+        "needsOwner": "Có (chung NO-DIR-5)",
+        "hotConfig": false
       }
     ],
     "history": [
@@ -8634,6 +10078,11 @@
         "at": "2026-11-12T09:46:00+07:00",
         "by": "C0",
         "note": "Đã tắt (=0) giới hạn lượt/ngày và token/ngày/tháng: 3 cài đặt mặc định + 5 mức ngoại lệ theo người. Tiền không đổi. Trần chung cửa sổ AI (600 lượt/ngày) vẫn còn, cần mã + phát hành."
+      },
+      {
+        "at": "2026-11-12T10:37:00+07:00",
+        "by": "C0",
+        "note": "Nạp khuyến nghị theo chỉ thị nới tối đa (MAXCAP-PLAN): 11 hàng đổi khuyến nghị; 11 hàng bắt buộc nhưng được phép NÂNG qua PR: L06, L07, L12, L14, L33, L45, L46, L47, L50, L64, L69. Chưa áp dụng thay đổi PROD nào ngoài 5 hàng lượt/token đã đặt 0."
       }
     ]
   }
