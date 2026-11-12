@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T07:46:00+07:00",
+  "asOf": "2026-11-12T08:27:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T07:46:00+07:00",
+  "detailUpdatedAt": "2026-11-12T08:27:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4124,7 +4124,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T07:46:00+07:00",
+    "updatedAt": "2026-11-12T08:27:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -5989,13 +5989,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 14,
+            "value": 13,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "df 07:30 ICT 12/11: 14 GiB trống, DƯỚI ngưỡng khẩn 20 (giảm từ 25 lúc 04:28 do nhiều agent tạo worktree và node_modules); đã xóa 1 snapshot Time Machine (giữ 3) và 1.3 GiB thư mục build của worktree cũ đã sạch"
+            "evidence": "df 08:27 ICT 12/11: 13 GiB trống, DƯỚI ngưỡng khẩn 20 hơn 12 giờ; chờ Owner chọn A/B dọn cache Gradle (27 GiB, cần dừng DEV API)"
           },
           {
             "id": "disk.t_monitor",
