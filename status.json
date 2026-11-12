@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T15:45:00+07:00",
+  "asOf": "2026-11-12T16:15:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T15:45:00+07:00",
+  "detailUpdatedAt": "2026-11-12T16:15:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4354,7 +4354,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T15:45:00+07:00",
+    "updatedAt": "2026-11-12T16:15:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -7125,7 +7125,7 @@
     ]
   },
   "aiLimits": {
-    "updatedAt": "2026-11-12T15:20:00+07:00",
+    "updatedAt": "2026-11-12T16:15:00+07:00",
     "note": "Toàn bộ giới hạn liên quan đến AI Studio (kiểm kê từ mã và cấu hình, REPORTED, chưa QA độc lập). Owner 12/11: muốn không giới hạn AI, chỉ giới hạn tiền; lượt chạy/ngày/tháng và token/ngày/tháng tắt cho tới khi Owner bật lại; hỗ trợ mọi định dạng file; tối đa 10 file + ảnh; text không giới hạn; file nén tới 1 GB. Giới hạn tiền luôn giữ. | Cập nhật 2026-11-12 10:37: khuyến nghị 69 hàng theo chỉ thị 'nới tối đa năng lực AI' (kế hoạch MAXCAP); thêm trạng thái 5 bước CODE/QA/DEPLOY/ON/VERIFIED trong trường stages (chưa hàng nào đạt đủ). Hàng tiền và an toàn bắt buộc vẫn khóa. | 11:34 12/11: Owner nhấn mạnh 'all user' và 'chỉ còn Admin duyệt ai dùng + bao nhiêu tiền'. Hai cổng đó đã có trong hệ thống (quyền AI theo workspace/dự án; cấp phát và yêu cầu ngân sách). Phần còn lại là bảo vệ kỹ thuật không thể gỡ mà không làm hỏng hệ thống: xem các hàng L20, L26, L60, L61 và nhóm bắt buộc.",
     "ownerAsk": [
       "Lượt chạy theo ngày/tháng: tắt cho tới khi Owner yêu cầu bật lại",
@@ -7203,6 +7203,19 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "0 = không giới hạn",
+          "nextBlocker": "L06",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "API": "AiGate.authorize đếm Redis 24 h",
+            "BE": "AiGovernance.kt:437",
+            "DB": "system_settings qua AI_CONFIG (typed RAISE khi 0)",
+            "FE": "chỉ hiển thị còn lại (MeController), không chặn"
+          },
+          "source": "settings/Settings.kt:36 (ai.daily-requests-per-user, 0..100000); ai/AiGovernance.kt:437-442 limiter.hit(\"ai:<user>\", perDay, 86400) -> 429 AI_DAILY_LIMIT; ai/AiLimits.kt:32 effective()"
         }
       },
       {
@@ -7262,6 +7275,18 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "0 cho 5 người; người thứ 6 theo mặc định (0)",
+          "nextBlocker": "L06",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "DB": "ai_limit_overrides (USER)",
+            "BE": "AiGovernance.kt:437",
+            "API": "PUT /admin/ai/limits/overrides"
+          },
+          "source": "ai/AiLimits.kt:34-41 (pick USER > WORKSPACE > default); admin/AdminAiLimits.kt:126 PUT overrides, :151 DELETE; bảng ai_limit_overrides"
         }
       },
       {
@@ -7315,6 +7340,17 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "không giới hạn (không có hàng)",
+          "nextBlocker": "L06",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "DB": "ai_limit_overrides (WORKSPACE)",
+            "BE": "AiGovernance.kt:437"
+          },
+          "source": "ai/AiLimits.kt:34-41; admin/AdminAiLimits.kt:126 (allowedFields WORKSPACE rpd,tpd,tpm,budget)"
         }
       },
       {
@@ -7368,6 +7404,17 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "không giới hạn (không có hàng)",
+          "nextBlocker": "L06",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "DB": "ai_limit_overrides (PROJECT)",
+            "BE": "AiGovernance.kt:444"
+          },
+          "source": "ai/AiGovernance.kt:444-449 limiter.hit(\"ai-app:<project>\"); admin/AdminAiLimits.kt:126 (PROJECT rpd,tpm)"
         }
       },
       {
@@ -7419,6 +7466,17 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "không giới hạn",
+          "nextBlocker": "L06 (rồi L63 tiền)",
+          "disableVsRaise": "KHONG_AP_DUNG",
+          "layers": {
+            "BE": "không có lớp nào đếm lượt AI theo tenant",
+            "Budget": "phân bổ TIỀN theo tenant (AllocationLedger) là giới hạn tiền, không phải lượt"
+          },
+          "source": "ai/AiLimits.kt (EffectiveLimits chỉ có USER/WORKSPACE/PROJECT/mặc định, không có scope TENANT)"
         }
       },
       {
@@ -7469,7 +7527,21 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "Có (NO-DIR-1: thay thế trần lượt bằng gì)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "600/ngày toàn hệ thống (envelope = min(100000, env 600, web 600))",
+          "nextBlocker": "L07, rồi L24 (30/phút/người), L26 (2 luồng/người; 16 luồng cả máy), L27 (1 lượt/dự án), L63 (tiền)",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "PaidAi.kt tryReserve Lua: 402 AI_SPEND_MAX_REQUESTS",
+            "Budget": "sổ cái Redis aispend:v1 (đếm ngày UTC, TOÀN hệ thống, không theo người)",
+            "DB": "system_settings ai.paid.window.mode",
+            "API": "PUT /admin/ai/spend/window-mode (RAISE)",
+            "IAM": "SYSTEM_ADMIN"
+          },
+          "source": "ai/PaidCodeEdit.kt:40 (MAX_REQUESTS = 100000 trên dev sau #250), :87 start guard; integration/llm/PaidAi.kt:306 MAX_DAILY, :349 alwaysOpenEnvelope(), :499-503 windowMode() (N > envelope => TIMED), :571 tryReserve(ao), :602-617 cảnh báo 80/100%; ai/PaidAiWeb.kt:271 PUT window-mode (400 AI_SPEND_LIMIT"
+        }
       },
       {
         "id": "L07",
@@ -7520,7 +7592,20 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "Có (chung NO-DIR-1)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "600",
+          "nextBlocker": "L06 -> L24/L26/L27 -> L63",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "Proxy": "biến môi trường qua compose.prod.yml (Windows sửa .env.prod + ack SHA)",
+            "BE": "start guard PaidCodeEdit.kt:87",
+            "DB": "web key ai.window.max-requests",
+            "IAM": "SYSTEM_ADMIN"
+          },
+          "source": "ai/PaidCodeEdit.kt:40 MAX_REQUESTS; compose.prod.yml:369 APP_AI_PAID_MAX_REQUESTS; ai/config/AiConfigRegistry.kt:51 (ai.window.max-requests 10..100000, web chỉ hạ); integration/llm/PaidAi.kt:248 (optionalInt max-requests 1..100000)"
+        }
       },
       {
         "id": "L08",
@@ -7566,7 +7651,19 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TIEN",
+          "effective": "chế độ ALWAYS_OPEN: không áp dụng; fallback TIMED 1440 phút",
+          "nextBlocker": "L63",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Budget": "TTL của cửa sổ TIMED",
+            "BE": "windowMode()",
+            "DB": "-"
+          },
+          "source": "ai/config/AiConfigRegistry.kt:49-50 (ai.window.ttl-minutes/renew-minutes 10..43200); ai/PaidCodeEdit.kt:38 MAX_TTL_MINUTES; integration/llm/PaidAi.kt:499 windowMode() (ALWAYS_OPEN không có hạn cuối)"
+        }
       },
       {
         "id": "L09",
@@ -7625,6 +7722,18 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "0 = tắt",
+          "nextBlocker": "L12 (token/lượt gọi) và L63",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "AiUsageService.requireBudget (SUM ai_calls 24 h)",
+            "DB": "ai_calls + system_settings",
+            "Budget": "đếm sau khi gọi nên có thể vượt một câu"
+          },
+          "source": "settings/Settings.kt:37 (ai.daily-tokens-per-user, 0..1e9); ai/AiUsageService.kt:84-89 requireBudget -> 429 AI_TOKEN_LIMIT; ai/AiGovernance.kt:434"
         }
       },
       {
@@ -7684,6 +7793,17 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "0 = tắt",
+          "nextBlocker": "L12, L63",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "AiUsageService.requireBudget (SUM ai_calls tháng)",
+            "DB": "ai_calls"
+          },
+          "source": "settings/Settings.kt:38 (ai.monthly-tokens-per-workspace); ai/AiUsageService.kt:90-95"
         }
       },
       {
@@ -7743,6 +7863,17 @@
           "at": "2026-11-12T11:29:00+07:00",
           "choice": "BỎ",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "0",
+          "nextBlocker": "L12, L63",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "DB": "ai_limit_overrides",
+            "BE": "AiUsageService.requireBudget"
+          },
+          "source": "ai/AiLimits.kt:34-41; ai/AiUsageService.kt:84-101 (tokensPerDay USER/WORKSPACE, tokensPerMonth WORKSPACE/PROJECT); admin/AdminAiLimits.kt:126"
         }
       },
       {
@@ -7794,7 +7925,21 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "Có (NO-DIR-4: mức output tối đa theo mô hình)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "16000 (lời nhắc khiến câu trả lời thực chỉ ~7000-11000)",
+          "nextBlocker": "L29 (6 bước ~6000 token/bước), L59 (10 tệp/trả lời), L58 (luồng 900 s), L63 (giữ chỗ tiền)",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "Model": "max_tokens gửi nhà cung cấp; giới hạn công bố của mô hình",
+            "Agent": "lời nhắc hệ thống bảo trả lời <= ~7000/11000 token",
+            "BE": "kẹp env/web",
+            "Budget": "giữ chỗ trường hợp xấu nhất theo max_tokens",
+            "Runner": "-"
+          },
+          "source": "ai/PaidCodeEdit.kt:42 CODE_EDIT_MAX_TOKENS=16000; integration/llm/PaidAi.kt:242-243 (max-tokens-per-call 16..32768, mặc định 8192 khi rỗng); ai/config/AiConfigRegistry.kt:53; code/OpenLovableBuilder.kt:1376 answerBudget (7000 site / 11000 shop token); PR #254: PaidAiPolicy.effectiveMaxTokens, PAID_O"
+        }
       },
       {
         "id": "L13",
@@ -7852,6 +7997,19 @@
           "disposition": "Cần mã/bản phát hành",
           "dispositionNote": "Ngữ cảnh nguồn theo mô hình (PR 'prompt/ngữ cảnh theo cửa sổ mô hình'); không có giá trị vô hạn.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "64.000 B tổng, 24.000 B mỗi tệp (suy ra)",
+          "nextBlocker": "L14 (vòng đọc TẮT) rồi L32/L33",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "Agent": "khối <file> trong lời nhắc",
+            "BE": "ContextSelector/Pipeline",
+            "Model": "cửa sổ ngữ cảnh 200K..~1M token (ai/status)",
+            "Proxy": "compose.prod.yml không truyền biến CONTEXT_* nên PROD dùng mặc định mã"
+          },
+          "source": "code/context/ContextBudget.kt:51-57 (DEFAULT_TOTAL 64000, DEFAULT_PER_FILE 24000, DEFAULT_MAX_TOKENS 32000); code/context/ContextSelector.kt:134 (size > perFile => DropWhy.TOO_LARGE); ContextSettings.kt:20-23 (env); ContextNotice.kt:17 (thông báo khi bỏ)"
         }
       },
       {
@@ -7902,7 +8060,21 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "Có (bật tool loop vẫn là duyệt riêng của Owner theo dashboard T23)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "TẮT: AI không tự đọc thêm tệp",
+          "nextBlocker": "L13",
+          "disableVsRaise": "BAT_TINH_NANG",
+          "layers": {
+            "Agent": "3 công cụ chỉ-đọc list/search/read_file_range",
+            "BE": "ToolLoopWorkspaces allow-list (rỗng = không ai)",
+            "IAM": "ReadPolicy kiểm quyền mỗi lần đọc, che bí mật",
+            "Budget": "mỗi vòng là một lượt gọi vào sổ cái",
+            "Model": "-"
+          },
+          "source": "code/toolloop/ToolLoopSettings.kt:58-68 (4 vòng, 40.000 B/kết quả, 200.000 B tổng, 120 s, 300.000 token, tệp 1 MiB); settings/Settings.kt:57 ai.builder.tool-loop.workspaces; compose.prod.yml:245 APP_BUILDER_CONTEXT_TOOL_LOOP_ENABLED"
+        }
       },
       {
         "id": "L15",
@@ -7963,6 +8135,18 @@
           "disposition": "Đã áp dụng ở mức tối đa hữu hạn",
           "dispositionNote": "Không có vô hạn thật (0 chặn mọi build); nâng lên 100.000/ngày (tenant và toàn hệ thống 1.000.000).",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "100000 (tối đa catalog, hữu hạn)",
+          "nextBlocker": "L19 (đồng thời), L20 (hàng đợi 1 chỗ + 10 chờ), L21",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "BuildPolicyService.requireCapacity",
+            "DB": "build_jobs đếm theo ngày + system_settings",
+            "Runner": "-"
+          },
+          "source": "settings/Settings.kt:72 (build.max-per-user-per-day, catalog tối đa 100000; 0 = CHẶN TẤT CẢ); code/BuildPolicy.kt:41-57 (n >= limit => 429 BUILD_QUOTA_*); ai/config/AiConfigRegistry.kt:23-27 (sàn 1)"
         }
       },
       {
@@ -8024,6 +8208,18 @@
           "disposition": "Đã áp dụng ở mức tối đa hữu hạn",
           "dispositionNote": "Không có vô hạn thật (0 chặn mọi build); nâng lên 100.000/ngày (tenant và toàn hệ thống 1.000.000).",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "100000 (tối đa catalog, hữu hạn)",
+          "nextBlocker": "L19 (đồng thời), L20 (hàng đợi 1 chỗ + 10 chờ), L21",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "BuildPolicyService.requireCapacity",
+            "DB": "build_jobs đếm theo ngày + system_settings",
+            "Runner": "-"
+          },
+          "source": "settings/Settings.kt:75 (build.max-per-project-per-day, catalog tối đa 100000; 0 = CHẶN TẤT CẢ); code/BuildPolicy.kt:41-57 (n >= limit => 429 BUILD_QUOTA_*); ai/config/AiConfigRegistry.kt:23-27 (sàn 1)"
         }
       },
       {
@@ -8085,6 +8281,18 @@
           "disposition": "Đã áp dụng ở mức tối đa hữu hạn",
           "dispositionNote": "Không có vô hạn thật (0 chặn mọi build); nâng lên 100.000/ngày (tenant và toàn hệ thống 1.000.000).",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "100000 (tối đa catalog, hữu hạn)",
+          "nextBlocker": "L19 (đồng thời), L20 (hàng đợi 1 chỗ + 10 chờ), L21",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "BuildPolicyService.requireCapacity",
+            "DB": "build_jobs đếm theo ngày + system_settings",
+            "Runner": "-"
+          },
+          "source": "settings/Settings.kt:71 (build.max-per-workspace-per-day, catalog tối đa 100000; 0 = CHẶN TẤT CẢ); code/BuildPolicy.kt:41-57 (n >= limit => 429 BUILD_QUOTA_*); ai/config/AiConfigRegistry.kt:23-27 (sàn 1)"
         }
       },
       {
@@ -8146,6 +8354,17 @@
           "disposition": "Đã áp dụng ở mức tối đa hữu hạn",
           "dispositionNote": "Không có vô hạn thật (0 chặn mọi build); nâng lên 100.000/ngày (tenant và toàn hệ thống 1.000.000).",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "1.000.000 (tối đa catalog)",
+          "nextBlocker": "L19, L20",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "BuildPolicyService",
+            "DB": "build_jobs"
+          },
+          "source": "settings/Settings.kt:70 (org/ngày) và :73 (tenant/ngày); code/BuildPolicy.kt:44-47"
         }
       },
       {
@@ -8192,7 +8411,19 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "người 3, tenant 1000; workspace không áp dụng",
+          "nextBlocker": "L20",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "BuildPolicyService",
+            "DB": "build_jobs",
+            "Runner": "máy build 4 vCPU"
+          },
+          "source": "settings/Settings.kt:74,76,77; code/BuildPolicy.kt:50-55 (USER/TENANT_CONCURRENT; WORKSPACE bỏ qua khi hàng đợi bật :52)"
+        }
       },
       {
         "id": "L20",
@@ -8248,6 +8479,19 @@
           "disposition": "Đã ở mức tối đa; KHÔNG tắt hàng đợi",
           "dispositionNote": "Số chỗ chờ 10 đã là tối đa danh mục, giới hạn theo workspace = 0 (không giới hạn). Tắt hàng đợi sẽ làm build bị từ chối thay vì chờ.",
           "reconfirmedAt": "2026-11-12T14:06:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "1 build chạy + 10 chờ = 11 chỗ",
+          "nextBlocker": "L21 và runner thứ hai (T10 slots 2: kế hoạch p32/REL17-ENV-PLAN.md, chưa làm)",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "BuildQueueService",
+            "Runner": "slots = số runner (1)",
+            "DB": "build_jobs",
+            "FE": "hiển thị vị trí chờ"
+          },
+          "source": "settings/Settings.kt:79-82 (build.queue.enabled/slots/max-waiting-per-slot/max-per-workspace); code/BuildQueue.kt:37 MAX_SLOTS 64, :75 limits(); code/BuildPolicy.kt:60-74 (429 BUILD_QUEUE_FULL)"
         }
       },
       {
@@ -8298,8 +8542,21 @@
         "ownerChoice": {
           "at": "2026-11-12T13:29:00+07:00",
           "choice": "NÂNG",
-          "disposition": "Đã áp dụng cấu hình; hiệu lực chờ PR runner",
+          "disposition": "Đã áp dụng (cấu hình 3.600 giây; hiệu lực chờ sửa runner)",
           "dispositionNote": "Chỉ khóa thời gian build; kích thước build giữ nguyên (bảo vệ đĩa)."
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "<= 900 s nếu runner là chr/buildd (UNKNOWN); build > 25 phút bị giao lại sau lease+120 s; lần giao thứ 2 hết lease => RUNNER_LOST",
+          "nextBlocker": "chính runner (cần PR runner: nâng 900 + gia hạn lease)",
+          "disableVsRaise": "NANG_CO_KIEM_SOAT",
+          "layers": {
+            "API": "setting 3600",
+            "BE": "lease 25 phút + sweeper 60 phút",
+            "Runner": "đường chr/buildd kẹp 900 s mỗi bước; đường docker thuần dùng buildSeconds",
+            "DB": "build_jobs.claimed_until"
+          },
+          "source": "settings/Settings.kt:83-85 (build.max-duration-seconds 60..3600, artifact 100 MiB, repo 50 MiB); code/BuildJobs.kt:146 (claimed_until = now()+25 phút, KHÔNG có đường gia hạn: chỉ :146 và :218); :149 limits.buildSeconds; code/BuildPolicy.kt:84,77; code/BuildResilience.kt:39 (reclaim-backoff 120 s, ma"
         }
       },
       {
@@ -8355,6 +8612,18 @@
           "disposition": "Đã áp dụng (mức tối đa)",
           "dispositionNote": "Nâng kích thước hàng đợi lời nhắc và TTL lên mức tối đa của danh mục; không có giá trị vô hạn.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "100 / 500 / 72 giờ (tối đa catalog)",
+          "nextBlocker": "L06 (lượt chung), L27 (1 lượt/dự án), TTL 72 giờ < hiệu lực yêu cầu ngân sách 7 ngày (xem Q5)",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "QueueService.add 409 QUEUE_FULL",
+            "DB": "builder_queue_items.expires_at",
+            "API": "PUT /admin/ai/config/{key}"
+          },
+          "source": "ai/config/AiConfigRegistry.kt:37-39 (queue.max-per-user 1..100, per-project 1..500, item-ttl-hours 1..72); code/queue/QueueStore.kt:14-16; code/queue/QueueDispatcher.kt:123 (EXPIRED khi quá hạn)"
         }
       },
       {
@@ -8410,6 +8679,18 @@
           "disposition": "Cần mã",
           "dispositionNote": "Ghi/phút và cỡ thân JSON của hàng đợi là hằng số trong mã; thuộc lát hàng đợi lớn.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "120 ghi/phút/người; 1 MiB; hàng đợi không nhận tệp đính kèm",
+          "nextBlocker": "L32 (prompt byte)",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "API": "QueueController 1 MiB + 120 ghi/phút",
+            "BE": "QueueService từ chối tệp đính kèm",
+            "Proxy": "20m/18 MiB không phải nút thắt"
+          },
+          "source": "code/queue/QueueController.kt:39 WRITES_PER_MINUTE=120, PROMPT_BODY 1 MiB; code/queue/QueueService.kt:65 (QUEUE_ATTACHMENTS_UNSUPPORTED); common/RequestFilters.kt:21 (1 MiB JSON)"
         }
       },
       {
@@ -8463,6 +8744,18 @@
           "disposition": "Cần env/bản phát hành",
           "dispositionNote": "Nhịp lời nhắc/phút đặt bằng env, tối đa 600/phút; đổi cùng bản phát hành 22.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "30 lượt/phút/người",
+          "nextBlocker": "L26",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "RateLimiter Redis theo người (khóa prompt:/plan:)",
+            "API": "429",
+            "DB": "web key rate.prompt-per-minute"
+          },
+          "source": "ai/config/AiConfigRegistry.kt:33 rate.prompt-per-minute 5..600; ai/config/AiConfigConfiguration.kt:81; common/RateLimiter.kt:13 hit()"
         }
       },
       {
@@ -8516,6 +8809,17 @@
           "disposition": "Cần env/bản phát hành",
           "dispositionNote": "Nhịp tải tệp/xuất bản; tối đa 600 và 120/phút; đổi cùng bản phát hành.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "UNKNOWN",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "RateLimiter",
+            "DB": "web key"
+          },
+          "source": "ai/config/AiConfigRegistry.kt:34-35 (rate.publish-per-minute 2..120, rate.upload-per-minute 5..600)"
         }
       },
       {
@@ -8569,6 +8873,17 @@
           "disposition": "Cần mã (có đo tải)",
           "dispositionNote": "Hằng số 2 luồng AI/người trong mã; PR riêng, đo tải trên máy thật trước khi nâng.",
           "reconfirmedAt": "2026-11-12T14:06:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "2 / người; 16 cả máy chủ API",
+          "nextBlocker": "L27",
+          "disableVsRaise": "NANG_CO_KIEM_SOAT",
+          "layers": {
+            "BE": "AiStreams",
+            "Proxy": "Tomcat 64 luồng (L68)"
+          },
+          "source": "ai/AiStreams.kt:33 MAX_PER_USER=2 (:67-68 429 AI_STREAMS_PER_USER); :28 ThreadPoolExecutor(2,16,SynchronousQueue) (:106-108 503 AI_BUSY: tối đa 16 luồng AI cả máy)"
         }
       },
       {
@@ -8615,7 +8930,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "1 lượt người đang chạy trên mỗi dự án",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "OlProjectLocks (trong bộ nhớ, mỗi máy chủ API)",
+            "Runner": "-"
+          },
+          "source": "code/OlProjectLocks.kt:23 holder(); code/OpenLovableBuilder.kt:538,562 (streams.start trong khóa dự án; lượt thứ hai chờ hoặc 409 BUSY)"
+        }
       },
       {
         "id": "L28",
@@ -8665,9 +8991,22 @@
         "ownerChoice": {
           "at": "2026-11-12T13:17:00+07:00",
           "choice": "BỎ",
-          "disposition": "Đã khôi phục BẬT",
+          "disposition": "Đã áp dụng (khôi phục BẬT chia bước)",
           "dispositionNote": "Owner xác nhận lại 14:06; hoàn tác bằng true.",
           "reconfirmedAt": "2026-11-12T14:06:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "true",
+          "nextBlocker": "TẮT chia bước KHÔNG có nghĩa là không giới hạn bước: mỗi lượt chỉ còn 1 câu trả lời <= L12/L59",
+          "disableVsRaise": "VO_HIEU_TINH_NANG",
+          "layers": {
+            "Agent": "STEP_RULE trong lời nhắc",
+            "BE": "OlSteps/StepsGuard",
+            "FE": "thẻ kế hoạch/ tiếp tục",
+            "DB": "system_settings"
+          },
+          "source": "settings/Settings.kt:50 (ai.builder.steps.enabled, BOOL, Risk.HIGH); code/steps/Steps.kt:13; code/OpenLovableBuilder.kt:589-591 (lượt PLAN đòi src/PLAN.md); BE #245 (dung sai thiếu PLAN.md)"
         }
       },
       {
@@ -8725,6 +9064,18 @@
           "disposition": "Cần mã (T22-C)",
           "dispositionNote": "Số bước tối đa 6 → 12 + tự tiếp tục: lát T22-C đã có trong kế hoạch.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "6 bước, mỗi bước ~6000 token",
+          "nextBlocker": "L12",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "Agent": "<= 6 tệp, ~6000 token mỗi bước (trong lời nhắc)",
+            "BE": "StepsGuard 409 STEPS_*",
+            "FE": "thẻ kế hoạch"
+          },
+          "source": "code/steps/Steps.kt:23 HARD_MAX_STEPS=8, :20 MAX_ATTEMPTS_PER_STEP=3, :22 EXTRA_TURNS=4, :24 MAX_FILES_PER_STEP=8, :199 'about 6000 tokens'; settings/Settings.kt:51 (max-steps 2..8)"
         }
       },
       {
@@ -8778,6 +9129,18 @@
           "disposition": "Đã áp dụng (mức tối đa)",
           "dispositionNote": "Nâng lên 300.000 byte theo lựa chọn của Owner.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "300000 (trigger kích thước không còn); còn MANY_ITEMS (15 dòng) và MANY_PAGES (10 từ)",
+          "nextBlocker": "L12 (ca G2B: OUTPUT_LIMIT_REACHED)",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "StepsHeuristics",
+            "FE": "api-client lovableStepsWire.ts:31 (0 hợp lệ, FE #197)",
+            "DB": "system_settings"
+          },
+          "source": "settings/Settings.kt:53 (ai.builder.steps.large-prompt-bytes 1000..300000; BE #249: 0 = tắt trigger theo kích thước); code/steps/OlSteps.kt:27 largeBytes(); code/steps/Steps.kt:123-124 ITEM_LINES=15, PAGE_WORDS=10"
         }
       },
       {
@@ -8824,7 +9187,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TIEN",
+          "effective": "đặt",
+          "nextBlocker": "L63",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "StepsGuard",
+            "Budget": "tiền của kế hoạch"
+          },
+          "source": "settings/Settings.kt:52 (ai.builder.steps.cost-cap-usd); code/steps/Steps.kt:111 Block STEPS_COST_CAP (409 không thử lại)"
+        }
       },
       {
         "id": "L32",
@@ -8881,6 +9255,20 @@
           "disposition": "Cần mã/bản phát hành",
           "dispositionNote": "Trần prompt theo cửa sổ mô hình (DIR-2: từ chối rõ 413 + gợi ý đổi mô hình, không cắt âm thầm).",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "300.000 B",
+          "nextBlocker": "L33 rồi cửa sổ ngữ cảnh mô hình (L62)",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "FE": "Composer đếm theo promptMaxBytes của máy chủ (không tự mã hóa cứng)",
+            "API": "413 PROMPT_TOO_LARGE",
+            "BE": "PromptLimits.require",
+            "Budget": "trần thân trả phí (L33)",
+            "Model": "cửa sổ ngữ cảnh"
+          },
+          "source": "code/PromptLimits.kt:20-46 (DEFAULT 262144, MAX_BYTES 327680, PAID_HEADROOM 60000), :23 maxBytes() = min(cài đặt, trần trả phí - 60000); settings/Settings.kt:86; code/queue/QueueService.kt:69"
         }
       },
       {
@@ -8931,7 +9319,20 @@
           "CODE"
         ],
         "needsOwner": "Có (chung NO-DIR-2)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "360.000 B",
+          "nextBlocker": "cửa sổ ngữ cảnh mô hình (L62)",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "BE": "PaidAi.guard 402/413 AI_PAID_PROMPT_TOO_LARGE",
+            "Proxy": "biến môi trường (Windows)",
+            "Budget": "giữ chỗ theo kích thước",
+            "Model": "-"
+          },
+          "source": "integration/llm/PaidAi.kt:252-253 (max-prompt-bytes 1000..1000000, mặc định 150000), :345; ai/config/AiConfigRegistry.kt:54; env APP_AI_PAID_MAX_PROMPT_BYTES"
+        }
       },
       {
         "id": "L34",
@@ -8977,7 +9378,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "1 MiB",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "API": "RequestSizeFilter 413",
+            "Proxy": "-"
+          },
+          "source": "common/RequestFilters.kt:21 (app.limits.max-request-bytes 1 MiB); application.yml (MAX_REQUEST_BYTES)"
+        }
       },
       {
         "id": "L35",
@@ -9023,7 +9435,19 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "<= 16 MiB (min chuỗi: BE 16, Next 18, nginx 20)",
+          "nextBlocker": "L66/L65",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "API": "RequestSizeFilter + OlTurnBodies",
+            "Proxy": "Next.js 18 MiB (L66), portal 20m (L65)",
+            "BE": "base64 trong heap"
+          },
+          "source": "code/OlTurnBodies.kt:25-26 (max-turn-bytes mặc định 16 MiB, kẹp 1..24 MiB); common/RequestFilters.kt:24-33 (turnRoute POST .../builder/turns)"
+        }
       },
       {
         "id": "L36",
@@ -9080,6 +9504,19 @@
           "choice": "BỎ",
           "disposition": "Cần mã (ATT-b1/b2)",
           "dispositionNote": "Tổng tối đa 10 tệp kể cả ảnh (một mức chung) — PR đổi hằng số và FE; giữ tổng 8 MiB ảnh + 3 MiB tài liệu trong JSON."
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "8",
+          "nextBlocker": "L37/L38, L40 (8 MiB ảnh), L42 (3 MiB tài liệu), L35",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "FE": "ATT_LIMITS.total 8 (mã cứng, không đọc từ máy chủ)",
+            "API": "plan() 400",
+            "BE": "OlAttachments",
+            "Proxy": "thân 16/18/20 MiB"
+          },
+          "source": "code/OlAttachments.kt:48 MAX_COUNT=8, :109 plan() (TOO_MANY_ATTACHMENTS 400); code/OlDocuments.kt:126 tooMany (câu 8/6/3); ai/config/AiConfigRegistry.kt:43; FE features/studio/lovable/core/attachments.ts:19 ATT_LIMITS.total=8"
         }
       },
       {
@@ -9134,6 +9571,18 @@
           "choice": "BỎ",
           "disposition": "Cần mã (ATT-b1/b2)",
           "dispositionNote": "Đi cùng L36: ảnh nằm trong tổng 10 tệp."
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "6",
+          "nextBlocker": "L36, L39/L40",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "FE": "6",
+            "API": "plan() limits() 400 TOO_MANY_IMAGES",
+            "BE": "OlAttachments"
+          },
+          "source": "code/OlAttachments.kt:49 MAX_IMAGES=6; FE attachments.ts:19"
         }
       },
       {
@@ -9188,6 +9637,18 @@
           "choice": "BỎ",
           "disposition": "Cần mã (ATT-b1/b2)",
           "dispositionNote": "Đi cùng L36: tài liệu nằm trong tổng 10 tệp."
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "3",
+          "nextBlocker": "L36, L42, L44",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "FE": "3",
+            "API": "plan() limits() 400 TOO_MANY_DOCUMENTS",
+            "BE": "OlAttachments"
+          },
+          "source": "code/OlAttachments.kt:50 MAX_DOCUMENTS=3; code/OlDocuments.kt:99 PROMPT_FRAME_BYTES (tính cho 3 khung); FE attachments.ts:19"
         }
       },
       {
@@ -9237,7 +9698,19 @@
           "CODE (sau ATT-e)"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "4 MiB",
+          "nextBlocker": "L40",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "FE": "imageBytes 4 MiB",
+            "API": "413",
+            "BE": "plan() trước khi giải mã"
+          },
+          "source": "code/OlAttachments.kt:51 MAX_EACH_BYTES=4 MiB, :109 plan(); FE attachments.ts:20"
+        }
       },
       {
         "id": "L40",
@@ -9283,7 +9756,19 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "8 MiB",
+          "nextBlocker": "L35",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "FE": "imageTotal 8 MiB",
+            "API": "413 TOTAL",
+            "Proxy": "giữ thân < 16 MiB"
+          },
+          "source": "code/OlAttachments.kt:52 MAX_TOTAL_BYTES=8 MiB; FE attachments.ts:20"
+        }
       },
       {
         "id": "L41",
@@ -9329,7 +9814,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "như mô tả",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "OlAttachments.reencode (đọc header trước)",
+            "Runner": "-"
+          },
+          "source": "code/OlAttachments.kt:53,67,71-72 (cạnh 4096, 12.582.912 điểm ảnh, JPEG 64 lượt quét, 2 luồng giải mã, 10 s)"
+        }
       },
       {
         "id": "L42",
@@ -9383,6 +9879,18 @@
           "choice": "BỎ",
           "disposition": "Cần mã (đường ATT-e)",
           "dispositionNote": "Dung lượng tài liệu: không nâng JSON (nginx 20m/Next 18 MiB); tài liệu lớn đi đường tải thẳng lên kho lưu trữ."
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "1,5 MiB mỗi tài liệu; 3 MiB tổng",
+          "nextBlocker": "L43/L44",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "FE": "documentBytes 1,5 MiB",
+            "API": "413 ATTACHMENT_TOO_LARGE",
+            "BE": "OlDocuments"
+          },
+          "source": "code/OlDocuments.kt:61-62 (1,5 MiB / 3 MiB); FE attachments.ts:20 documentBytes/documentTotal"
         }
       },
       {
@@ -9439,6 +9947,19 @@
           "disposition": "Cần mã/bản phát hành",
           "dispositionNote": "Ký tự mỗi tài liệu: tối đa hằng số 240.000; nâng cần PR theo mô hình.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "240.000 ký tự (cắt có thông báo)",
+          "nextBlocker": "L44",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "BE": "DocumentLimits",
+            "Agent": "<attached_document> trong lời nhắc",
+            "Budget": "trần trả phí - 40.000 - 2.000",
+            "FE": "đọc charsEach từ builder/config"
+          },
+          "source": "settings/Settings.kt:88 (build.attach-doc-chars-each 4.000..240.000); code/OlDocuments.kt:708-735 DocumentLimits.effective(); :554 marker '[đã cắt: n/m ký tự]'"
         }
       },
       {
@@ -9494,6 +10015,18 @@
           "disposition": "Cần mã/bản phát hành",
           "dispositionNote": "Tổng ký tự tài liệu bị kẹp bởi trần prompt (L33); đi cùng PR prompt/ngữ cảnh theo mô hình.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "318.000 ký tự",
+          "nextBlocker": "L33",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "BE": "DocumentLimits",
+            "Budget": "L33",
+            "FE": "charsTotal"
+          },
+          "source": "settings/Settings.kt:89 (build.attach-doc-chars-total 8.000..480.000); code/OlDocuments.kt:97 PROMPT_FLOOR_BYTES, :716 room = trần trả phí - sàn - khung"
         }
       },
       {
@@ -9542,7 +10075,18 @@
           "CODE"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "1.000.000 ký tự",
+          "nextBlocker": "L43",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "OlDocuments.decode",
+            "Runner": "-"
+          },
+          "source": "code/OlDocuments.kt:79 TEXT_READ_CAP=1.000.000 ký tự"
+        }
       },
       {
         "id": "L46",
@@ -9590,7 +10134,19 @@
           "CODE (FE)"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "PNG, JPEG, WebP",
+          "nextBlocker": "L47",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "FE": "danh sách đuôi + sniff",
+            "API": "415 UNSUPPORTED_ATTACHMENT_TYPE",
+            "BE": "sniff byte đầu"
+          },
+          "source": "code/OlAttachments.kt:76 MIMES (PNG, JPEG, WebP); :109 plan() (415 cho GIF/BMP/TIFF/ICO/SVG/HEIC); FE attachments.ts:50-76 (ARCHIVE_EXT/VIDEO_EXT...), SVG đổi PNG trong trình duyệt"
+        }
       },
       {
         "id": "L47",
@@ -9643,7 +10199,20 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "Có (NO-DIR-3: chính sách 'mọi định dạng')",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "văn bản UTF-8, DOCX, XLSX; PDF UNKNOWN",
+          "nextBlocker": "L48 (bảo vệ bộ phân tích)",
+          "disableVsRaise": "BAT_TINH_NANG",
+          "layers": {
+            "FE": "ACCEPT_BY.document không mời .pdf",
+            "API": "415",
+            "BE": "OlDocuments.detect",
+            "Proxy": "env pdf-enabled"
+          },
+          "source": "code/OlDocuments.kt:149-163 knownUnsupported (GIF/BMP/OLE/RTF/nén/thực thi/âm thanh -> 415), :186 pdfEnabled, :195-201 detect; compose.prod.yml:349 APP_BUILDER_OPEN_LOVABLE_DOCUMENTS_PDF_ENABLED (mặc định false)"
+        }
       },
       {
         "id": "L48",
@@ -9689,7 +10258,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "như mô tả",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "OlDocuments (bộ nhớ, nhóm luồng có giới hạn)",
+            "Runner": "-"
+          },
+          "source": "code/OlDocuments.kt:67-95 (ZIP 1000 mục/24 MiB/8 MiB/tỉ lệ 100; XML sâu 100/3.000.000 sự kiện; XLSX 10 sheet/1000 hàng/50 cột/50.000 ô; PDF 30 trang/2.000.000 toán tử; 10 s; 2 luồng)"
+        }
       },
       {
         "id": "L49",
@@ -9735,7 +10315,19 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "bật",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "FE": "chặn trước khi gửi",
+            "BE": "OlDocuments",
+            "Model": "ZDR: dữ liệu ra ngoài"
+          },
+          "source": "code/OlDocuments.kt:265 sensitiveName + quét nội dung (ATTACHMENT_SENSITIVE 422); FE attachments.ts looksSensitiveName"
+        }
       },
       {
         "id": "L50",
@@ -9790,7 +10382,20 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "Có (NO-DIR-5: phạm vi 1 GB, thư viện, RAR, ClamAV, đĩa)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "không nhận tệp nén",
+          "nextBlocker": "L64-L66, L69 (đường 1 GB)",
+          "disableVsRaise": "BAT_TINH_NANG",
+          "layers": {
+            "FE": "từ chối",
+            "API": "415",
+            "BE": "OlDocuments",
+            "Proxy": "thân 16-20 MiB không đủ cho 1 GB"
+          },
+          "source": "code/OlDocuments.kt:157 (Rar!/7z/gz/xz/bz2 -> 415; zip không phải docx/xlsx -> 415); FE attachments.ts:69,171 (ARCHIVE_EXT => 'archive'); đã có code/importing/ArchiveReader.kt (nhập dự án, 10 MiB, zip-slip/symlink)"
+        }
       },
       {
         "id": "L51",
@@ -9844,6 +10449,18 @@
           "choice": "BỎ",
           "disposition": "Giữ theo thiết kế",
           "dispositionNote": "Video không có văn bản để mô hình đọc (NO-30/DIR-3: không làm video); chỉ sửa thông báo lỗi cũ nhắc 'khung hình video'."
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "không nhận",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "FE": "VIDEO_EXT",
+            "API": "415",
+            "Model": "không có văn bản để đọc"
+          },
+          "source": "FE attachments.ts:73,7 (VIDEO_EXT, quyết định Owner 30/10); code/OlDocuments.kt:160 (MEDIA/âm thanh -> 415)"
         }
       },
       {
@@ -9890,7 +10507,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "tắt",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "OlAssets",
+            "Proxy": "env"
+          },
+          "source": "code/OlAssets.kt:18-21 (6 ảnh, 4 MiB, 20 MiB mỗi dự án); APP_BUILDER_OPEN_LOVABLE_ASSETS_ENABLED"
+        }
       },
       {
         "id": "L53",
@@ -9944,6 +10572,16 @@
           "choice": "BỎ",
           "disposition": "Cần mã (ATT-b1)",
           "dispositionNote": "FE đọc giới hạn từ cấu hình máy chủ thay vì hằng số riêng; đi cùng PR 10 tệp."
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "trùng BE: 8/6/3",
+          "nextBlocker": "L36-L38",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "FE": "ATT_LIMITS mã cứng + DRAFT_MAX_CHARS"
+          },
+          "source": "FE features/studio/lovable/core/attachments.ts:19-22 ATT_LIMITS (8/6/3, 4/8/1,5/3 MiB; textChars 24.000 / textTotalChars 48.000 chỉ khi máy chủ không công bố); core/composerDraft.ts:23 DRAFT_MAX_CHARS 500.000, :63,84"
         }
       },
       {
@@ -9999,6 +10637,18 @@
           "choice": "BỎ",
           "disposition": "Cần mã + QA/SEC",
           "dispositionNote": "Hoàn thiện tham chiếu URL (SSRF đã có chốt): bật cho workspace QA sau khi QA/SEC độc lập chạy lại; nâng 3 URL lên theo mô hình."
+        },
+        "audit": {
+          "class": "QUOTA_NGHIEP_VU",
+          "effective": "tắt",
+          "nextBlocker": "L55, L56",
+          "disableVsRaise": "BO_QUOTA",
+          "layers": {
+            "BE": "OlReferences.parse 400",
+            "Agent": "<reference> khối",
+            "Runner": "-"
+          },
+          "source": "code/OlReferences.kt:37-38 (MAX_URLS=3, 2000 ký tự); cờ APP_BUILDER_OPEN_LOVABLE_REFERENCE_ENABLED"
         }
       },
       {
@@ -10047,7 +10697,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "tắt",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "ReferenceFetcher (SSRF guard)",
+            "Proxy": "-"
+          },
+          "source": "code/ReferenceFetcher.kt:165,178 (512 KiB, 3 chuyển hướng, 8 s, PRIVATE_ADDRESS :23, chỉ HTTPS); code/ReferenceReader.kt:46"
+        }
       },
       {
         "id": "L56",
@@ -10096,7 +10757,18 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TIEN",
+          "effective": "tắt",
+          "nextBlocker": "L55",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "đếm theo tenant/ngày UTC",
+            "DB": "web key"
+          },
+          "source": "ai/config/AiConfigRegistry.kt:61 (reference.reader.daily-cap 1..100000); application.yml (mặc định 50)"
+        }
       },
       {
         "id": "L57",
@@ -10145,7 +10817,18 @@
           "ENV/RELEASE"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TIEN",
+          "effective": "tắt",
+          "nextBlocker": "L55",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "đếm tenant/ngày + người/phút",
+            "DB": "web key"
+          },
+          "source": "ai/config/AiConfigRegistry.kt:60 (search.daily-cap 1..100000); code/OpenLovableBuilder.kt:324 SEARCH_PER_USER_MINUTE=5; code/WebSearchClient.kt"
+        }
       },
       {
         "id": "L58",
@@ -10200,6 +10883,19 @@
           "disposition": "Đã ở mức tối đa",
           "dispositionNote": "Nâng thời gian chờ nhà cung cấp AI/luồng AI lên mức tối đa của danh mục (120 s và 900 s); timeout từng thao tác vẫn còn.",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "120 s mỗi lượt gọi; 900 s mỗi luồng",
+          "nextBlocker": "L12 (câu rất dài có thể chạm 900 s trước trần token: TIMEOUT)",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "Model": "mỗi lượt gọi tối đa 120 s",
+            "BE": "luồng 900 s",
+            "Proxy": "nginx portal proxy_read_timeout 120 s (L65)",
+            "DB": "system_settings"
+          },
+          "source": "ai/config/AiConfigRegistry.kt:41 provider.timeout-seconds 5..120; settings/Settings.kt:60 ai.stream-timeout-seconds 10..900; ai/AiStreams.kt (hạn chót luồng)"
         }
       },
       {
@@ -10256,6 +10952,18 @@
           "disposition": "Cần mã",
           "dispositionNote": "Số tệp/byte của một thay đổi AI là hằng số trong mã; lát 'sửa nhiều tệp qua nhiều patch có xác minh' (T24-3).",
           "reconfirmedAt": "2026-11-12T13:17:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_MODEL",
+          "effective": "10 tệp mỗi câu trả lời",
+          "nextBlocker": "L12",
+          "disableVsRaise": "NANG_THEO_MODEL",
+          "layers": {
+            "Agent": "lời nhắc: tối đa 10 tệp mỗi câu trả lời (OpenLovableBuilder.kt:1398)",
+            "BE": "CodeChangePolicy + OlPatchParser",
+            "Model": "-"
+          },
+          "source": "code/CodeProjects.kt:27-29 (CodeChangePolicy: 50 tệp, 200.000 B/tệp, 1.000.000 B/thay đổi); code/OpenLovableBuilder.kt:242 FILES_MAX=10 (answer); code/OlPatch*.kt (T24 chưa nối dây)"
         }
       },
       {
@@ -10309,6 +11017,17 @@
           "disposition": "Cần env + bản phát hành",
           "dispositionNote": "Số dự án/workspace (1000) và tài nguyên/dự án (200) là biến môi trường, không đổi từ web; trần dung lượng giữ (bảo vệ đĩa).",
           "reconfirmedAt": "2026-11-12T14:06:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "1000 dự án / workspace",
+          "nextBlocker": "L61",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "ProjectController, AssetController",
+            "DB": "-"
+          },
+          "source": "application.yml:173-174 (max-projects-per-workspace 1000, max-assets-per-project 200; env MAX_PROJECTS_PER_WORKSPACE/MAX_ASSETS_PER_PROJECT); settings/Settings.kt:93-94 (storage MiB)"
         }
       },
       {
@@ -10362,6 +11081,17 @@
           "disposition": "Đã áp dụng một phần",
           "dispositionNote": "Không tắt dọn dẹp; xem preview-days là việc mã/env riêng.",
           "reconfirmedAt": "2026-11-12T14:06:00+07:00"
+        },
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "365 ngày build lỗi; xem trước 7 ngày (env)",
+          "nextBlocker": "đĩa runner ~81%",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "BE": "ArtifactRetention",
+            "DB": "-"
+          },
+          "source": "settings/Settings.kt:99-101 (retention.*-days); retention.failed-build-days: maintenance/ArtifactRetention.kt:85; retention.preview-days không có nơi dùng (BE preview thật: code/BuildJobs.kt:99 app.build.preview-days 7)"
         }
       },
       {
@@ -10408,7 +11138,20 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "ZDR + 4 mô hình",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Model": "4 mô hình ZDR; ngữ cảnh 200K..~1M token",
+            "BE": "BuilderModelCatalog",
+            "IAM": "danh sách người/workspace",
+            "Budget": "-"
+          },
+          "source": "integration/llm/PaidAi.kt:240-241 (require-zdr bắt buộc true, reasoning-off); ai/PaidCodeEdit.kt:44 MAX_ALLOWED_USERS=15, :46 MAX_WINDOW_MODELS=12; ai/RealAiDataPolicyGuard.kt"
+        }
       },
       {
         "id": "L63",
@@ -10454,7 +11197,18 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TIEN",
+          "effective": "đã đặt",
+          "nextBlocker": "-",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Budget": "sổ cái Redis + PostgreSQL + cấp phát B3",
+            "IAM": "SYSTEM_ADMIN/WORKSPACE_ADMIN duyệt"
+          },
+          "source": "settings/Settings.kt:58-59; ai/PaidCodeEdit.kt:37 CAP_CEILING (trần cứng của cửa sổ); ai/config/AiConfigRegistry.kt:56,62-64; integration/llm/PaidAi.kt (sổ cái); ai/budget/*"
+        }
       },
       {
         "id": "L64",
@@ -10503,7 +11257,17 @@
           "CODE"
         ],
         "needsOwner": "Có (hostname/DNS/TLS cho tải trực tiếp)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "120 s",
+          "nextBlocker": "L65, L66",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Proxy": "Caddy 120 s toàn thân"
+          },
+          "source": "infra/prod/sites.caddy:16-24 (request_body read_timeout 120s cho POST/PUT/PATCH)"
+        }
       },
       {
         "id": "L65",
@@ -10549,7 +11313,17 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "20m",
+          "nextBlocker": "L66",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Proxy": "nginx cổng portal"
+          },
+          "source": "infra/portal-gateway/default.conf.template:34,49,64 (client_max_body_size 20m, proxy_read/send_timeout 120s)"
+        }
       },
       {
         "id": "L66",
@@ -10595,7 +11369,17 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "18 MiB",
+          "nextBlocker": "L35",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Proxy": "Next.js rewrite /api"
+          },
+          "source": "FE apps/studio/next.config.ts:14 (experimental.proxyClientMaxBodySize '18mb'); packages/auth/src/server/nextConfig.ts:84 (proxyTimeout)"
+        }
       },
       {
         "id": "L67",
@@ -10644,7 +11428,17 @@
           "INFRA (xác minh)"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "BAO_MAT",
+          "effective": "UNKNOWN",
+          "nextBlocker": "L66",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Proxy": "mẫu"
+          },
+          "source": "infra/nginx/conf.d/studio.conf:52 (client_max_body_size 12m); infra/nginx/docker-compose.prod.example.yml"
+        }
       },
       {
         "id": "L68",
@@ -10690,7 +11484,17 @@
           "GIỮ"
         ],
         "needsOwner": "",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "64 luồng (mặc định)",
+          "nextBlocker": "L26",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Proxy": "Tomcat"
+          },
+          "source": "application.yml:60-76 (Tomcat threads 64, accept-count 100, max-connections 2048, header 16KB, connection-timeout 10s, max-swallow-size 0B)"
+        }
       },
       {
         "id": "L69",
@@ -10740,7 +11544,18 @@
           "CODE"
         ],
         "needsOwner": "Có (chung NO-DIR-5)",
-        "hotConfig": false
+        "hotConfig": false,
+        "audit": {
+          "class": "GIOI_HAN_TAI_NGUYEN",
+          "effective": "tệp đính kèm lượt builder không đi qua MinIO",
+          "nextBlocker": "L50",
+          "disableVsRaise": "GIU",
+          "layers": {
+            "Proxy": "MinIO",
+            "BE": "AssetController"
+          },
+          "source": "application.yml:788-795 (MinIO buckets studio-assets/studio-artifacts); asset/AssetController.kt:82-90 (STORAGE_QUOTA); presigned PUT"
+        }
       }
     ],
     "history": [
@@ -10818,7 +11633,33 @@
         "at": "2026-11-12T15:20:00+07:00",
         "by": "C0",
         "note": "L28: ai.builder.steps.enabled false → true lúc 15:19 theo NO-34 = A."
+      },
+      {
+        "at": "2026-11-12T16:15:00+07:00",
+        "by": "C0",
+        "note": "Nạp kết quả kiểm toán 69/69 (REPORTED); sửa phân loại L21/L28; Q1: 19+17+1+32 = 69."
       }
-    ]
+    ],
+    "audit": {
+      "updatedAt": "2026-11-12T16:15:00+07:00",
+      "file": "~/xweb-handoff/p37-studio/batch3/LIMITS-AUDIT-69.md (cục bộ)",
+      "note": "Kiểm toán chỉ đọc 69/69 theo tầng (REPORTED; mã BE dev 53da22c5, FE dev 29c2f075). Phân lớp: QUOTA_NGHIEP_VU 21, GIOI_HAN_TAI_NGUYEN 17, GIOI_HAN_MODEL 13, BAO_MAT 13, GIOI_HAN_TIEN 5. Giai đoạn (hàng có nội dung thật): CODE 8, QA 6, DEPLOY 0 (PROD vẫn chạy bản 21, không PR nào từ BE #243 trở đi có trong đó), ON 15 (đều là cài đặt nóng), VERIFIED 9.",
+      "q1": "Tổng 68 vì dashboard xếp L21 vào 'cần mã' (chữ 'PR runner') và L28 vào nhóm 'khác' không có chip; đã sửa dữ liệu: 19 đã áp dụng + 17 cần mã + 1 giữ + 32 chưa quyết = 69.",
+      "blockers": [
+        "Trần trả lời 16.000 token/lượt + lời nhắc ~7.000/11.000 token (PAY-b #254 mở)",
+        "Không tự tiếp tục khi chạm trần/hết tiền; bước kế hoạch bị cắt vẫn bị đánh DONE (chưa có PR: PAYC)",
+        "AI chỉ thấy ≤64 KB nguồn, ≤24 KB mỗi tệp; vòng đọc T23 TẮT và chưa triển khai (CTX-b chưa có PR)",
+        "Sửa nhiều tệp = viết lại cả tệp, ≤10 tệp/câu trả lời; T24 đã merge nhưng chưa nối (T24-3..8 chưa có PR)",
+        "Trần lượt chung 600/ngày: #250 đã merge, chưa triển khai",
+        "Runner build: kẹp 900 giây/bước, lease 25 phút không gia hạn, 1 chỗ chạy (chưa có PR)",
+        "Huỷ lượt bị tính mức tối đa: #252 mở, ngoài bản 22",
+        "Tệp vào bị chặn: ≤3 tài liệu/1,5 MiB, không nhận file nén (ATT-b/ATT-e chưa có PR)"
+      ],
+      "holes": [
+        "RealAiMode BẬT thì mọi người đã đăng nhập đều được gọi AI (giá trị PROD: UNKNOWN)",
+        "Mô hình của nhà cung cấp do vận hành bỏ qua chính sách trả phí và sổ cái",
+        "BYOK và đường cũ/miễn phí"
+      ]
+    }
   }
 }
