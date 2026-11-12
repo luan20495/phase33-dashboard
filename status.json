@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T17:20:06+07:00",
+  "asOf": "2026-11-12T17:32:32+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T17:20:06+07:00",
+  "detailUpdatedAt": "2026-11-12T17:32:32+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6798,7 +6798,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T17:20:06+07:00",
+    "updatedAt": "2026-11-12T17:32:32+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7277,6 +7277,11 @@
         "at": "2026-11-12T17:20:06+07:00",
         "by": "C0",
         "note": "Thêm tóm tắt hằng giờ (DONE VERIFIED /12, nhóm CODE/QA/DEPLOY/ON/VERIFIED, bản PROD, blocker, ETA gắn nhãn) theo chỉ đạo Owner 17:17"
+      },
+      {
+        "at": "2026-11-12T17:32:32+07:00",
+        "by": "C0",
+        "note": "Sửa bug UI Owner báo (#6821048125): CSS mobile toàn cục table/tr/td đã được giới hạn trong bảng lộ trình cũ; bảng 12 hạng mục có bảng cuộn ngang (desktop/tablet) và thẻ theo hạng mục (<=720 px), màu theo token cho light/dark; thanh tab cuộn ngang bên trong. C0 tự chạy 80 kiểm tra (8 cỡ × 2 theme × 5 trang): 0 cuộn ngang trang, bảng/thẻ hiện đúng theo cỡ. Chưa QA trình duyệt độc lập nên CHƯA ghi FIXED/VERIFIED."
       }
     ],
     "summary": {
@@ -7338,6 +7343,13 @@
         "value": "~28/11/2026 (± 4 ngày)",
         "label": "ESTIMATE",
         "confidence": "thấp–trung bình"
+      },
+      "uiux": {
+        "checkedAt": "2026-11-12T17:32:32+07:00",
+        "status": "FIX_PENDING_INDEPENDENT_QA",
+        "proof": "C0 browser: 80 kiểm tra 8 cỡ × 2 theme (320/375/390/430/768/1024/1280/1440), 0 cuộn ngang trang; ảnh trong thư mục bằng chứng nội bộ",
+        "tests": "hourly-ui 27 PASS, process-ui 63 PASS, limits-ui 51 PASS, shell-ui 20 PASS + 2 lỗi cũ",
+        "open": "QA browser độc lập; chưa kiểm contrast AA bằng công cụ, zoom 200% và chữ chồng bằng ảnh đủ ma trận"
       }
     }
   },
