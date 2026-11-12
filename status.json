@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T19:31:26+07:00",
+  "asOf": "2026-11-12T19:38:23+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T19:31:26+07:00",
+  "detailUpdatedAt": "2026-11-12T19:38:23+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6816,7 +6816,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-12T19:31:26+07:00",
+    "updatedAt": "2026-11-12T19:38:23+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6827,11 +6827,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "ok",
-            "summary": "Không có comment mới của Owner/ChatGPT (các quyết định 08:52/08:54 đã áp dụng ở lượt trước)"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "ok",
@@ -6876,6 +6871,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "ok",
             "summary": "Không có comment [OWNER]/[CHATGPT] mới ngoài #6822154890 và #6822259976 (đã trả lời ở #257)"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "ok",
+            "summary": "Không có comment [OWNER]/[CHATGPT] mới ở #88 và #257 từ phản hồi gần nhất (#6822806905)"
           }
         ]
       },
@@ -6887,11 +6887,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "changed",
-            "summary": "agents.min 4→6 đã áp dụng; đĩa 22 GiB"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "ok",
@@ -6936,6 +6931,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "changed",
             "summary": "#process: quy tắc QA sau tích hợp, nhóm Quản trị AI/USD; nhãn Việt cho ETA"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "ok",
+            "summary": "#process khớp thực tế: quy tắc QA một lần sau tích hợp áp dụng cho PR mới (T24/T25, PAYC); agent 6 đang chạy, tối đa 10"
           }
         ]
       },
@@ -6947,11 +6947,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "changed",
-            "summary": "#193 merge; PR #194, BE #244 mở chờ QA; G1-B xong; 6 agent chạy"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "changed",
@@ -6996,6 +6991,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "changed",
             "summary": "ListAgents 19:07: 8 đang chạy; #258 QA GO có điều kiện (đang sửa vòng 2); #259, #252 merge dev; #260, #261 mở; agent ước lượng 07/12 và chuẩn bị 12 xong"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "changed",
+            "summary": "ListAgents 19:38: 6 đang chạy; PR mở: BE #258, #260, #261, #262; FE #200, #201, #202 (đều status:qa, chưa QA độc lập); agent gộp BE T24+T25 và FE T24-6+T25-5 đang chạy"
           }
         ]
       },
@@ -7007,11 +7007,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "changed",
-            "summary": "Đăng lần 121 (comment 6812744426)"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "changed",
@@ -7056,6 +7051,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "skipped",
             "summary": "Không đăng báo cáo 19 dòng: dùng bảng 12 hạng mục ở #88 và phản hồi ở #257"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "skipped",
+            "summary": "Không đăng báo cáo 19 dòng: không có quyết định/blocker mới ngoài các điểm đã báo ở #257"
           }
         ]
       },
@@ -7067,11 +7067,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "changed",
-            "summary": "Ghi kết quả chạy giờ và đĩa 22 GiB"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "changed",
@@ -7116,6 +7111,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "changed",
             "summary": "Dashboard: ETA 24/7, thống kê agent, ước lượng 07/12, chuẩn bị mục 12"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "changed",
+            "summary": "Dashboard: hiệu chuẩn PAYC-1 vào ETA mục 06; ước lượng mục 07/12; census agent"
           }
         ]
       },
@@ -7127,11 +7127,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T10:41:00+07:00",
-            "result": "failed",
-            "summary": "Đĩa 14 GiB dưới ngưỡng 20; chỉ còn 1 snapshot và không có thư mục build cũ đã sạch để xóa; không dọn được thêm nếu chưa dừng DEV API để xóa cache Gradle (chờ Owner A/B)"
-          },
           {
             "at": "2026-11-12T11:39:00+07:00",
             "result": "failed",
@@ -7176,6 +7171,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "changed",
             "summary": "Đĩa 15 GiB trống (dưới ngưỡng khẩn 20); đã xóa 15 worktree sạch đã merge; lệnh xóa volume Docker bị chặn, chờ Owner"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "ok",
+            "summary": "Đĩa 21 GiB trống (dao động 11–19); còn 1 snapshot Time Machine; không xóa thêm: volume Docker ẩn danh chờ Owner"
           }
         ]
       },
@@ -7187,11 +7187,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH còn hạn đến ~21:21 12/11 (REPORTED, chưa dùng trong giờ này); nhắc Owner nạp lại trước 21:00"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "ok",
@@ -7236,6 +7231,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "ok",
             "summary": "Khóa SSH 24 giờ nạp lúc ~16:40, hết ~16:40 ngày 13/11 (REPORTED); đã dùng thật lúc 17:46 để đọc PROD"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH nạp 24 giờ lúc ~16:40 hết ~16:40 ngày 13/11 (REPORTED)"
           }
         ]
       },
@@ -7247,11 +7247,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T09:38:00+07:00",
-            "result": "ok",
-            "summary": "6 agent chạy (đúng mức tối thiểu 6); tải máy 33–46 nên không giao thêm việc nặng"
-          },
           {
             "at": "2026-11-12T10:41:00+07:00",
             "result": "changed",
@@ -7296,6 +7291,11 @@
             "at": "2026-11-12T19:07:04+07:00",
             "result": "ok",
             "summary": "8 agent đang chạy, tối đa 10; giao PAYC-1 và 2 agent ước lượng/chuẩn bị"
+          },
+          {
+            "at": "2026-11-12T19:38:23+07:00",
+            "result": "ok",
+            "summary": "6 agent đang chạy (<10); không tăng thêm vì đĩa và 3 chỗ Gradle"
           }
         ]
       }
@@ -7348,7 +7348,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-12T19:31:26+07:00",
+      "checkedAt": "2026-11-12T19:38:23+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7417,22 +7417,22 @@
         "tests": "hourly-ui 27 PASS, process-ui 63 PASS, limits-ui 51 PASS, shell-ui 20 PASS + 2 lỗi cũ",
         "open": "QA browser độc lập; chưa kiểm contrast AA bằng công cụ, zoom 200% và chữ chồng bằng ảnh đủ ma trận"
       },
-      "agentCensus": "8 đang chạy (5 làm việc, 3 chờ), 9 đã xong, 0 nghi treo; tối đa 10"
+      "agentCensus": "6 đang chạy (4 làm việc, 2 chờ Gradle/test), 12 đã xong, 0 nghi treo; tối đa 10"
     },
     "agents": {
-      "checkedAt": "2026-11-12T19:07:04+07:00",
+      "checkedAt": "2026-11-12T19:38:23+07:00",
       "source": "ListAgents + thời điểm ghi cuối của log từng agent (chỉ đọc)",
       "cap": 10,
       "counts": {
-        "RUNNING_TOTAL": 8,
-        "WORKING": 5,
-        "WAITING": 3,
+        "RUNNING_TOTAL": 6,
+        "WORKING": 4,
+        "WAITING": 2,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 9
+        "FINISHED": 12
       },
-      "resources": "Tải máy 19–20, 3 chỗ Gradle nặng toàn máy; đĩa ~15 GiB trống (dưới ngưỡng khẩn 20)",
+      "resources": "Tải máy cao (19–20 đo lúc 18:40), 3 chỗ Gradle nặng; đĩa ~21 GiB trống (dao động 11–19, dưới ngưỡng khẩn 20)",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; shell và monitor của Operator không phải agent (không tính 7 shell = 7 agent).",
         "Agent lâu nhất của phiên này chạy ~7 giờ (hồ sơ B0/B1), đang WAITING chỗ Gradle, log vẫn ghi trong vòng 2 phút: không HUNG_SUSPECTED. Các session 32 giờ và 37 giờ 35 phút trong log Operator không phải sub-agent của phiên này: C0 chưa thấy chúng trong ListAgents; phiên ngang hàng duy nhất là một shell dự án khác đang nhàn rỗi ~1 ngày.",
@@ -7467,94 +7467,55 @@
           "waitReason": "bộ test BE đầy đủ đang chạy"
         },
         {
-          "alias": "qa-pr258",
-          "id": "a843f6d3",
-          "task": "QA/SEC độc lập #258 (runner)",
+          "alias": "runner-258-fix",
+          "id": "ac315e54",
+          "task": "Vòng sửa #258 theo QA (cổng runner PROD, kiểm tra cấu hình, tuổi lease)",
           "model": "claude-sonnet-5-5",
-          "modelSource": "trường requestedModel trong log agent (VERIFIED)",
-          "state": "WAITING",
-          "startAt": "2026-11-12T17:41:00+07:00",
-          "lastProgressAgoSec": 88,
-          "lastOutput": "đang chờ log bộ test 'DONE'",
-          "etaAt": "2026-11-12T19:30:00+07:00",
-          "waitReason": "bộ test và mutant đang chạy"
-        },
-        {
-          "alias": "fe-req-ceiling",
-          "id": "a75e20cc",
-          "task": "FE: nâng trần lượt trong giao diện admin",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "trường requestedModel trong log agent (VERIFIED)",
+          "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T18:33:00+07:00",
-          "lastProgressAgoSec": 17,
-          "lastOutput": "sửa mã/viết test gần đây",
-          "etaAt": "2026-11-12T19:30:00+07:00",
-          "waitReason": null
-        },
-        {
-          "alias": "fe-t25-5",
-          "id": "a9d926e5",
-          "task": "FE T25-5: hiển thị gói kỹ năng",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "trường requestedModel trong log agent (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-12T18:33:00+07:00",
-          "lastProgressAgoSec": 44,
-          "lastOutput": "đang viết test recipe-packs",
-          "etaAt": "2026-11-12T20:00:00+07:00",
+          "startAt": "2026-11-12T17:35:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "hoạt động gần đây",
+          "etaAt": null,
           "waitReason": null
         },
         {
           "alias": "be-integration-t24-t25",
           "id": "a0d66828",
-          "task": "Tích hợp BE T24-3 + T25-3",
+          "task": "Tích hợp BE T24-3 + T25-3 + sync lõi FE + turns[].recipes",
           "model": "claude-sonnet-5-5",
-          "modelSource": "trường requestedModel trong log agent (VERIFIED)",
+          "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
           "startAt": "2026-11-12T18:36:00+07:00",
-          "lastProgressAgoSec": 11,
-          "lastOutput": "đang đọc diff với dev để gộp",
-          "etaAt": "2026-11-12T20:30:00+07:00",
-          "waitReason": null
-        },
-        {
-          "alias": "fe-t24-6",
-          "id": "afc4910a",
-          "task": "FE T24-6: trạng thái patch",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "trường requestedModel trong log agent (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-12T18:36:00+07:00",
-          "lastProgressAgoSec": 3,
-          "lastOutput": "đang thêm kiểu dữ liệu patch",
-          "etaAt": "2026-11-12T20:00:00+07:00",
-          "waitReason": null
-        },
-        {
-          "alias": "payc-1",
-          "id": "a2984aad",
-          "task": "PAYC-1 bộ cấp phát đầu ra (BE)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "trường requestedModel trong log agent (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-12T18:50:00+07:00",
-          "lastProgressAgoSec": 2,
-          "lastOutput": "vừa bắt đầu, đọc thiết kế",
+          "lastProgressAgoSec": null,
+          "lastOutput": "hoạt động gần đây",
           "etaAt": null,
           "waitReason": null
         },
         {
-          "alias": "estimate-07-12",
-          "id": "af65cacf",
-          "task": "Ước lượng chỉ-đọc mục 07 và 12",
+          "alias": "fe-integration",
+          "id": "afc4910a",
+          "task": "Tích hợp FE T24-6 (#202) + T25-5 (#201)",
           "model": "claude-sonnet-5-5",
-          "modelSource": "trường requestedModel trong log agent (VERIFIED)",
+          "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-12T18:50:00+07:00",
-          "lastProgressAgoSec": 3,
-          "lastOutput": "đang đọc tài liệu/mã",
-          "etaAt": "2026-11-12T19:45:00+07:00",
+          "startAt": "2026-11-12T18:36:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "hoạt động gần đây",
+          "etaAt": null,
+          "waitReason": null
+        },
+        {
+          "alias": "payc-3",
+          "id": "ab112c6a",
+          "task": "PAYC-3 phân loại ca bị cắt + lưu một phần (chồng trên #262)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "requestedModel trong log (VERIFIED)",
+          "state": "WORKING",
+          "startAt": "2026-11-12T19:31:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa bắt đầu",
+          "etaAt": null,
           "waitReason": null
         }
       ],
