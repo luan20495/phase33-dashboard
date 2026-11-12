@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T13:19:00+07:00",
+  "asOf": "2026-11-12T13:25:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T13:19:00+07:00",
+  "detailUpdatedAt": "2026-11-12T13:25:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3962,7 +3962,7 @@
         "id": "NO-31",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-12T11:49:00+07:00",
         "title": "Cài đặt AI chỉ còn 2 việc: 'Ai được dùng' + 'Ngân sách' — thiết kế và 6 câu để chốt (≈118 giờ)",
         "detail": "Kiểm kê (REPORTED, đọc mã, chưa QA) ~/xweb-handoff/p37-studio/batch3/SIMPLE-AI-SETTINGS.md: hôm nay có 14 màn cài đặt AI với khoảng 186 ô nhập (≈165 ô khác nhau): Platform > AI có 8 tab (nhà cung cấp 10 ô, mô hình và giá 4, giới hạn 12, quyền AI 28, chi tiêu 23, yêu cầu 5, cấu hình 35 khóa), cộng 'Quản trị AI' ở Admin 16, thẻ AI của người dùng 5, trang Cài đặt 31 khóa AI và build, BYOK 9, hai hộp ngân sách trong Studio 4+4. 16 khóa sửa được ở hai nơi; có 4 cơ chế tiền song song (chính sách chi tiêu và cửa sổ, cấp phát, ngân sách tháng theo người/workspace, ai_budgets); chỉ SYSTEM_ADMIN ghi được quyền AI; luồng bốn mắt xin thêm tiền có ở BE (cờ TẮT) nhưng chưa có màn FE; chưa có báo cáo giới hạn hiệu lực. THIẾT KẾ: một trang 'Cài đặt AI' (cờ mới AI_SIMPLE_SETTINGS, mặc định TẮT; màn cũ giữ làm trang 'chuyên gia' chỉ đọc, không xóa gì) với 2 thẻ: (A) 'Ai được dùng AI': chọn người/nhóm/workspace/cả công ty + một công tắc (ghi vào quyền AI hiện có trong một giao dịch, ghi đè theo dự án nếu cần, công tắc ngắt khẩn ở đầu trang); (B) 'Ngân sách': một khoản theo workspace và kỳ (ghi vào cấp phát B1), kèm ai được xin thêm (luồng B3 hiện có); trần tiền cứng chỉ đọc. Thêm khối chỉ đọc 'Giới hạn hiệu lực' và mục 'Nâng cao' thu gọn có nút 'Khôi phục mặc định an toàn'. 14 màn/186 ô → 1 trang chính/6 ô + 1 vùng chuyên gia chỉ đọc. GIỚI HẠN VẪN CHẶN AI LÀM VIỆC (xếp theo mức chặn): 1) trần chung 600 lượt/ngày cho mọi người; 2) 16.000 token đầu ra mỗi lần gọi và lời nhắc hệ thống bảo model giữ quanh 7.000 (site) hoặc 11.000 (shop); 3) chế độ chia bước bắt buộc: 6 bước, mỗi bước tối đa 6 tệp và ~6.000 token, kích hoạt khi ≥15 dòng liệt kê hoặc ≥10 từ trang/vai trò/module, phải bấm 'tiếp tục' thủ công; 4) T24 sửa theo đoạn chưa nối + tối đa 10 tệp mỗi câu trả lời; 5) ngân sách ngữ cảnh mặc định 64.000 byte tổng và 24.000 byte mỗi tệp (giá trị PROD chưa rõ), tool loop TẮT; 6) trần prompt 300.000 byte; 7) giới hạn đính kèm; 8) 2 luồng/người, 1 lượt/dự án, 30 lời nhắc/phút; 9) hàng đợi build 1 chỗ, 600 giây; 10) thời gian chờ 120 s đã ở mức tối đa (có đủ cho câu trả lời 16.000 token trên model chậm hay không cần đo). 3 VIỆC MỞ KHÓA NHANH NHẤT: (1) T36-b bỏ trần 600 (~7 giờ; cần đổi biến môi trường + xác nhận của Windows; chờ xử lý 8 khoản giữ chỗ chưa giải thích); (2) nâng ngân sách ngữ cảnh bằng biến môi trường (~1 giờ, không cần PR) rồi CTX-b (12 giờ) — cần đọc giá trị PROD trước; (3) PAY-b: trần đầu ra theo mô hình + sửa hằng 'answerBudget' (~13 giờ). Lớn hơn nhưng sau: T24-3 + FILES-b (~61 giờ) và tự tiếp tục T22-C (~31 giờ). CÔNG SỨC: phần cài đặt đơn giản mới ≈118 giờ (77–159): 2 lát BE 26, 5 lát FE 54, kiểm di chuyển 6, tài liệu 4, QA 12, SEC 10, smoke PROD 6; cộng ~30 giờ nếu Admin (không chỉ Super-admin) cũng được ghi quyền AI. Các lát mở khóa nằm trong MAXCAP (≈332 giờ) và không tính lại.",
@@ -3985,13 +3985,16 @@
             "label": "Anh đổi một số câu",
             "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
           }
-        ]
+        ],
+        "decided": "A",
+        "decidedAt": "2026-11-12T13:24:00+07:00",
+        "decision": "Owner 13:24 chọn A: theo mặc định cả 6 câu. Một trang 'Cài đặt AI' hai thẻ (Ai được dùng AI / Ngân sách) sau cờ AI_SIMPLE_SETTINGS mặc định TẮT; Super-admin ghi quyền AI trước, Admin công ty ở đợt hai sau SEC; 'mặc định an toàn' = hồ sơ MAXCAP; thẻ Ngân sách chỉ ghi cấp phát B1, ba cơ chế tiền còn lại vẫn được thi hành nhưng chỉ đọc; giữ luồng xin thêm tiền B3; người mới: AI TẮT theo từng người + nút 'bật cả công ty'; màn cũ giữ làm trang chuyên gia chỉ đọc, không xóa. Công sức ≈118 giờ (ESTIMATE). Bắt đầu 2 lát BE (cờ TẮT), FE sau khi hợp đồng đóng băng; mỗi lát qua PR + QA/SEC độc lập."
       },
       {
         "id": "NO-32",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-12T12:16:00+07:00",
         "title": "Chỉ thị 'quản trị bằng USD + năng lực agent tối đa': kế hoạch 25 yêu cầu (≈410 giờ việc mới) và 6 câu để chốt",
         "detail": "Kế hoạch (REPORTED, đọc mã, chưa QA): ~/xweb-handoff/p37-studio/batch3/AGENT-CAPABILITY-PLAN.md. Chỉ thị tách thành 25 yêu cầu R1..R25. Hôm nay: 0/25 yêu cầu đạt đủ 5 bước CODE/QA/DEPLOY/ON/VERIFIED (CODE 7 xong + 9 một phần; QA 5 xong + 10 một phần; DEPLOY 7 xong + 7 một phần; ON 4 xong + 11 một phần; VERIFIED 0 xong + 6 một phần). NĂM KHOẢNG TRỐNG LỚN: (1) còn hạn mức đếm LƯỢT ẩn ngoài 69 giới hạn: yêu cầu/cấp phát ngân sách B3 BẮT BUỘC có số 'calls' 1..1000 (cột không cho rỗng), chia bước tối đa 8 bước/3 lần thử mỗi bước, trần chi phí kế hoạch là lỗi cứng không thử lại được, cộng trần chung 600 lượt/ngày; (2) CHƯA có tạm dừng/tiếp tục: checkpoint chỉ ở mức một bước (PLAN.md), hàng đợi J1 đã có trạng thái BLOCKED khi bị từ chối tiền nhưng chưa có gì nối 'duyệt ngân sách' → mở khóa; chưa có tự tiếp tục (T22-C); TTL hàng đợi tối đa 72 giờ trong khi yêu cầu ngân sách sống 7 ngày; (3) agent chưa sửa/kiểm thử được: T24 (patch) và T25 (công thức) đã merge nhưng KHÔNG file nào gọi, T23 TẮT và chưa có lượt mô hình thật, chưa có kiểm thử trình duyệt (runner không có trình duyệt), tự sửa lỗi TẮT trên PROD, vai trò T30 chưa bắt đầu; (4) plan_missing vẫn mở (PR #245/#246 đang QA; nâng ngưỡng 300.000 chỉ che điều kiện theo kích thước); (5) lỗ 'mặc định từ chối': nếu PROD đang bật RealAiMode (CHƯA ĐỌC ĐƯỢC) thì REAL_AI mặc định CHO PHÉP; mô hình của nhà cung cấp do vận hành bỏ qua PAID_CODE_EDIT và sổ cái; quyền AI chỉ SYSTEM_ADMIN ghi; chưa có endpoint giới hạn hiệu lực. Chuỗi xây dựng chính (builder → quyền → ủy quyền → sổ cái) là chắc. THIẾT KẾ KHUYẾN NGHỊ: một agent chính, các vai BA/Architect/Dev/QA/DevOps là các PHA của kế hoạch T22 (T30 từ ~110 xuống ~52 giờ), đơn vị checkpoint = một bước; tạm dừng/tiếp tục dùng lại hàng đợi J1 (BLOCKED) + phê duyệt B3 + sự kiện mới 'cấp phát được duyệt → mở khóa'. CÔNG SỨC: việc MỚI của chỉ thị ≈ 410 giờ, cộng MAXCAP 332 + cài đặt AI đơn giản 118 + hồ sơ nhân viên 83 + hoàn tất T23/T24/T25 129 (các số này KHÔNG tính lại với nhau). Chuỗi nghiệm thu ≈ 582 giờ (227 dùng lại + 355 mới, 378–786). Đường găng ≈ 250 giờ-agent, khoảng 3–4 tuần với 4–6 agent (không phải cam kết). Thứ tự: H0 6 → QA plan_missing 9 → T23 chạy thật 39 → T24-3 + FILES-b → T25-3 + công thức doanh nghiệp → T22-C tự tiếp tục 31 → tạm dừng/tiếp tục ngân sách 36 → vai trò T30-lite 52 → công cụ kiểm thử trình duyệt 94 + bật tự sửa lỗi 9 → E2E nghiệm thu 78. Làn song song: nhánh prompt/builder tuần tự; nhánh tiền (T36-b → PAY-b → sửa mặc định từ chối; calls-optional → tạm dừng/tiếp tục) hai chuỗi chạy song song; nhánh runner/hạ tầng (kiểm thử trình duyệt); nhánh chỉ đọc (endpoint giới hạn hiệu lực); nhánh không mã (#106, kịch bản E2E, dashboard). CHÚ Ý: các thay đổi cấu hình đổi nóng hôm nay (hàng đợi 100/500/72 giờ, ngưỡng chia bước 300.000) chưa đo hiệu quả thực; dashboard KHÔNG được tuyên bố 'đã bỏ quota' cho tới khi T36-b và bỏ-calls-bắt-buộc được phát hành.",
@@ -4014,7 +4017,10 @@
             "label": "Chỉ làm trước H0 + QA plan_missing + T23 chạy thật, các đợt sau anh duyệt lại",
             "desc": "Giữ phạm vi nhỏ ≈54 giờ: đọc cấu hình cần thiết, sửa plan_missing, đưa T23 vào chạy thật ở workspace QA."
           }
-        ]
+        ],
+        "decided": "A",
+        "decidedAt": "2026-11-12T13:24:00+07:00",
+        "decision": "Owner 13:24 chọn A: theo mặc định cả 6 câu. (1) Super Admin ghi quyền AI ở đợt 1, Admin công ty ở đợt 2; (2) bỏ cột 'calls' khỏi yêu cầu/cấp phát B3 bằng migration chỉ-mở-rộng; (3) trần chi phí kế hoạch thành điểm DỪNG-XÁC-NHẬN, tối đa 16 bước, giữ chốt chống lặp; (4) trình duyệt không đầu trong runner cô lập chỉ chạy kịch bản JSON khai báo, sau SEC và sau cờ; (5) quy tắc đổi nóng: chỉ sau thẻ của Owner, từng khóa một, đọc lại độc lập, có comment #88 (C0 áp dụng mặc định; đường API cấu hình AI vẫn là kênh đổi nóng nhưng chỉ sau thẻ); (6) nghiệm thu: 'workflow' = máy trạng thái mức ứng dụng; Haiku chứng minh cơ chế; một lượt chất lượng bằng mô hình mạnh hơn CẦN Owner duyệt mô hình và ngân sách riêng khi đến lúc. Chuỗi: H0 → QA plan_missing → T23 chạy thật → T24-3 + FILES-b → T25-3 → T22-C → tạm dừng/tiếp tục ngân sách → vai trò T30-lite → công cụ kiểm thử trình duyệt → E2E nghiệm thu."
       }
     ]
   },
@@ -4252,7 +4258,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T13:19:00+07:00",
+    "updatedAt": "2026-11-12T13:25:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
@@ -6467,6 +6473,13 @@
         "by": "C0",
         "id": "disk.free_now",
         "note": "Dọn cache Gradle theo lựa chọn A của Owner: script chiếm cả 3 ô Gradle lúc 12:17, tắt daemon Gradle, xóa thư mục transforms (regenerable). Đĩa 16 → 46 GiB. Không xóa dữ liệu nào khác. Lần dựng Gradle đầu sau đó sẽ chậm hơn vì dựng lại cache.",
+        "state": "verified"
+      },
+      {
+        "at": "2026-11-12T13:25:00+07:00",
+        "by": "C0",
+        "id": "decide.NO-31/NO-32",
+        "note": "Owner 13:24 duyệt NO-31 = A và NO-32 = A; thẻ đóng DONE theo tin nhắn của Owner. Quy tắc đổi nóng PROD: chỉ sau thẻ của Owner, từng khóa một, đọc lại độc lập, comment #88.",
         "state": "verified"
       }
     ]
