@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-12T14:57:00+07:00",
+  "asOf": "2026-11-12T15:16:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-12T14:57:00+07:00",
+  "detailUpdatedAt": "2026-11-12T15:16:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4082,6 +4082,35 @@
             "desc": "Ghi số câu và lựa chọn vào ô ghi chú."
           }
         ]
+      },
+      {
+        "id": "NO-35",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-12T15:16:00+07:00",
+        "title": "Bản phát hành 22: script đã sẵn sàng (chưa chạy gì); 5 quyết định về nội dung, giá trị token ban đầu và giờ triển khai",
+        "detail": "Chuẩn bị xong (REPORTED, ~/xweb-handoff/p32/RELEASE-22-PLAN.md; kiểm bằng 125 kiểm tra của bộ test script, không chạm máy chủ): bộ script bản 58 (điền SHA, tải lên, kiểm trước, dựng, đưa lên, hoàn tác theo thứ tự đúng) mặc định chạy khô, EXPECT_FLYWAY bắt buộc phải khai báo; hoàn tác trả hai cận biến môi trường về trước vì ảnh bản 21 từ chối khởi động với 100.000 và 32.768. Bản đang triển khai: BE 4a400ed0cc75, FE 449621de3b4a. Dev hiện: BE 873e4cd7 / FE 91a2a0ed; thiếu bước đồng bộ lõi (re-pin) phía BE; chưa có migration mới (Flyway giữ 100|88|0 nếu không đưa V101). ĐÃ VÀO DEV VÀ QA ĐỘC LẬP (VERIFIED trên đúng head): BE #243 #244 #246 #247 #248, FE #192–#198. Ngoài ra đã merge từ bản 21 nhưng chưa có trong danh sách trước: BE #231, #235–#241 và FE #190, #191 (cùng đi khi promote). CHỜ CỔNG: BE #245/#249 (QA cũ trên head cũ, đang QA delta), #250 (QA và SEC GO có điều kiện; đã sửa, đang kiểm lại; cần nhãn FE #198 đã vào và sửa PROD_DEPLOY.md dòng ~1199 giống hệt ở hai kho), #251 (chỉ test), #252 (đổi cách tính tiền + migration V101, QA và SEC đang chạy), #254 (PAY-b, đổi giữ chỗ tiền + biến môi trường, QA và SEC đang chạy), #253 (B1 hồ sơ nhân viên, chưa QA, đề xuất để ngoài). RÀNG BUỘC: khóa SSH hết hạn 21:21 hôm nay; cổng QA tích hợp phải chạy bộ BE đầy đủ lần đầu trên dev cuối cùng (chưa từng đo danh sách đỏ gốc: so với main 4a400ed0, đỏ cả hai bên là nền, đỏ riêng ở dev là chặn phát hành).",
+        "solution": "Khuyến nghị A = (1) V101/#252 ra ngoài bản 22 (cờ TẮT, chưa có đường bật, chưa QA/SEC; giữ Flyway 100|88|0 và hoàn tác đơn giản), vào bản 23; (2) PAY-b đợt 1: APP_AI_PAID_MAX_TOKENS_PER_CALL = 32.768 (gấp đôi trần hiện tại; vm-env58 từ chối giá trị cao hơn trừ khi có OWNER_APPROVED_TOKENS=cùng số); không mặc định 128.000; (3) cửa sổ: đóng băng dev lúc 17:30, QA tích hợp xong lúc 19:30, bắt đầu triển khai chỉ khi QA tích hợp GO và còn ≥30 phút dư để hoàn tác trước 21:21, ngược lại hoãn sang sáng mai (anh nạp lại khóa SSH); (4) các bước biến môi trường của #250 và #254 và việc nâng N là phê duyệt riêng sau lần triển khai đầu sạch; (5) #251 đi cùng (chỉ test), #253 để bản sau. Em không tự triển khai khi chưa đủ cổng.",
+        "link": "",
+        "options": [
+          {
+            "key": "A",
+            "label": "Theo khuyến nghị cả 5 câu",
+            "desc": "Bản 22 = các PR đã/đang qua QA độc lập; V101 và #253 ra ngoài; biến môi trường token = 32.768 ở bước riêng.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Đưa cả #252 (V101) vào bản 22",
+            "desc": "Thêm migration V101, EXPECT_FLYWAY 101|89|0; cần QA/SEC #252 đạt trước và hoàn tác phức tạp hơn."
+          },
+          {
+            "key": "C",
+            "label": "Hoãn bản 22 sang sáng mai (anh nạp lại SSH)",
+            "desc": "Cửa sổ rộng hơn, ít áp lực QA; PAY-b/T36-b/chia bước vẫn chưa có hiệu lực đến lúc đó."
+          }
+        ]
       }
     ]
   },
@@ -4319,7 +4348,7 @@
     }
   ],
   "dailyWork": {
-    "updatedAt": "2026-11-12T14:57:00+07:00",
+    "updatedAt": "2026-11-12T15:16:00+07:00",
     "title": "Việc giao ngày 09/11: tiến độ lên PROD",
     "note": "Owner 18:35: chỉ chạy 4 mục T32 (ưu tiên cao nhất), T33, T22-A, T29 với 4 agent; các mục khác tạm dừng đến khi xong 4 mục này. Nhóm theo trạng thái thật. ON = đã chạy trên PROD, công tắc đã BẬT và đã kiểm; chỉ có PR, đã merge dev hoặc công tắc còn TẮT thì KHÔNG tính là ON. “Bản dùng được đầu tiên” khác “bản hoàn chỉnh”. Không có thông tin bí mật hay tài chính. | Quy tắc agent (Owner 18:55): tối đa 4, tối thiểu 2, +1 khi rất cần; khôi phục khi dừng giữa chừng bằng checkpoint từng agent + STATE chung (tệp cục bộ). | 11/11 13:47: thêm lộ trình 6 đợt (mục D1.x, D2–D6); mốc ngày là ước lượng Claude, không phải số đo.",
     "items": [
