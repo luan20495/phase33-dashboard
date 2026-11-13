@@ -8298,17 +8298,17 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T16:12:04+07:00",
+      "checkedAt": "2026-11-13T16:12:56+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 4,
-        "WORKING": 4,
+        "RUNNING_TOTAL": 3,
+        "WORKING": 3,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 70
+        "FINISHED": 71
       },
       "resources": "Tải ~10, RAM trống thấp: agent máy chính chỉ đọc/viết tệp, không Gradle/Docker (tạm dừng việc nặng theo Owner)",
       "notes": [
@@ -8348,22 +8348,6 @@
           "etaAt": null,
           "waitReason": null,
           "files": "worktree p38-atte3a",
-          "reviewer": "QA độc lập khi có PR",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "IMPL-ATT-S0G",
-          "id": "a6d5169f",
-          "task": "Viết ATT-s0 cổng lưu nội dung + ATT-g nhóm bật cờ",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T15:59:44+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "worktree p38-attfs0g",
           "reviewer": "QA độc lập khi có PR",
           "machine": "máy chính"
         },
@@ -8410,10 +8394,11 @@
         "IMPL-ATT-F1A (wip, NOT_RUN)",
         "IMPL-S09-A (wip, NOT_RUN)",
         "IMPL-ATTE1-FIX (head 5d997cf7, NOT_RUN)",
-        "IMPL-S09-C (head 30d0ff00, NOT_RUN)"
+        "IMPL-S09-C (head 30d0ff00, NOT_RUN)",
+        "IMPL-ATT-S0G (head af7e50cc, NOT_RUN)"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T16:12:04+07:00",
+        "checkedAt": "2026-11-13T16:12:56+07:00",
         "status": "REPORTED bởi Oxy (#123, 15:47 ICT): 2 job nặng bị hủy do tải (ABORTED_LOAD, không phải test đỏ); đổi cách chia: chỉ MỘT job dùng Docker/Postgres tại một thời điểm trên cả 3 làn; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
@@ -8437,7 +8422,8 @@
           "Hàng đợi Docker lần lượt: FILES-b mutant → PR #280 mutant → NO-37 mut3…mut8 → ATT-e1 → 2T2A → suite BE (11 nhóm) → PR #276 ×2 → phân loại lớp đỏ",
           "Ước lượng (ESTIMATE): mỗi job BE 10–60 phút; toàn hàng đợi còn nhiều giờ — nút cổ chai là MỘT job Docker một lúc, thêm agent ở máy chính không làm nhanh hơn phần này",
           "Thẻ 27 (không Docker, xếp vào làn rảnh): S09-B 076da115, S09-A c2e8614e, ATT-f1a 82e5baad — mọi test/mutant NOT_RUN, tác giả chưa biên dịch",
-          "Thẻ 28: ATT-e1 SHA mới 5d997cf7 (Docker, thay job cũ đã hoãn) và S09-C 30d0ff00 (không Docker) — NOT_RUN"
+          "Thẻ 28: ATT-e1 SHA mới 5d997cf7 (Docker, thay job cũ đã hoãn) và S09-C 30d0ff00 (không Docker) — NOT_RUN",
+          "Thẻ 29: ATT-s0+g af7e50cc (phần lớn không Docker, 1 lớp MinIO cần Docker) — NOT_RUN"
         ],
         "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39)"
       }
