@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T17:53:57+07:00",
+  "asOf": "2026-11-13T17:54:52+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T17:53:57+07:00",
+  "detailUpdatedAt": "2026-11-13T17:54:52+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7889,9 +7889,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-13T17:53:57+07:00",
-        "source": "gh pr view lúc 17:27 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "35 PR trong bảng đã merge dev sau QA độc lập; 6 PR trong bảng đang mở chưa merge: FE #208, BE #210, BE #276, BE #278, BE #279, BE #280",
+        "checkedAt": "2026-11-13T17:54:52+07:00",
+        "source": "gh pr view lúc 17:54 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "36 PR trong bảng đã merge dev sau QA độc lập; 5 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #278, BE #279, BE #280",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -7984,13 +7984,13 @@
           {
             "repo": "Xweb01fe",
             "pr": 208,
-            "qaReport": "QA-FE-PR208.md",
-            "qa": "QA độc lập (đọc mã) GO có điều kiện ở head cũ; Oxy (REPORTED 17:46): f615a0c0 xanh toàn bộ (guard, tsc, 67/67 chain-card+ratchet, unit 6161/6153/0 đỏ); QA bổ sung trên f615a0c0 đang chạy; spec trình duyệt C4–C6 NOT_RUN",
-            "state": "OPEN",
+            "qaReport": "QA-FE-208-E5A.md",
+            "qa": "QA độc lập (đọc mã) GO trên đúng head f615a0c0; Oxy (REPORTED 17:46): guard/tsc/unit 6161/6153/0 đỏ xanh; đã merge dev, cờ chuỗi PAYC giữ TẮT; spec trình duyệt C4–C6 vẫn NOT_RUN (phải chạy trước khi bật cờ)",
+            "state": "MERGED",
             "head": "f615a0c0",
-            "mergeCommit": null,
-            "mergedAt": null,
-            "label": "status:qa"
+            "mergeCommit": "03462a0d",
+            "mergedAt": "2026-11-13T10:54:34Z",
+            "label": "status:done"
           },
           {
             "repo": "Xweb01fe",
@@ -8353,17 +8353,17 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T17:47:10+07:00",
+      "checkedAt": "2026-11-13T17:54:52+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 7,
-        "WORKING": 7,
+        "RUNNING_TOTAL": 5,
+        "WORKING": 5,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 74
+        "FINISHED": 77
       },
       "resources": "Tải ~7–8, swap đã dùng ~6,5/7 GB (sát giới hạn): chỉ thêm agent chỉ đọc (QA tĩnh), không Gradle/Docker",
       "notes": [
@@ -8374,22 +8374,6 @@
         "17:45 theo lệnh Owner 'thêm agent nếu máy không mỏi': tải máy sát giới hạn (swap), nên giao 7 agent QA tĩnh chỉ đọc để bắt lỗi trước khi Oxy chạy xong hàng Gradle; mức tối thiểu 12 vẫn chưa đạt vì không còn việc nhẹ độc lập nào khác"
       ],
       "items": [
-        {
-          "alias": "QA-ATTE1-DELTA",
-          "id": "a9620266",
-          "task": "QA bổ sung ATT-e1 bản sửa 5d997cf7 (đọc mã)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T17:47:10+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "chỉ đọc",
-          "reviewer": "là người review (độc lập với tác giả)",
-          "machine": "máy chính"
-        },
         {
           "alias": "QA-ISO2T2A-DELTA",
           "id": "a816bd13",
@@ -8455,35 +8439,19 @@
           "machine": "máy chính"
         },
         {
-          "alias": "QA-PR279-280-DELTA",
-          "id": "a225028f",
-          "task": "QA bổ sung PR #279 (6bb3f5d5) và #280 (bfed0431) (đọc mã)",
+          "alias": "IMPL-ATT-E5A-FIX",
+          "id": "a0521b7a",
+          "task": "Sửa FE ATT-e5a theo QA (429 mở quá nhiều phiên, timeout tải part, vài P3)",
           "model": "claude-sonnet-5-5",
           "modelSource": "yêu cầu giao việc (REPORTED)",
           "state": "WORKING",
-          "startAt": "2026-11-13T17:47:10+07:00",
+          "startAt": "2026-11-13T17:54:52+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "vừa giao",
           "etaAt": null,
           "waitReason": null,
-          "files": "chỉ đọc",
-          "reviewer": "là người review (độc lập với tác giả)",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "QA-FE-208-E5A",
-          "id": "a7c83d0b",
-          "task": "QA bổ sung FE #208 (f615a0c0) và FE ATT-e5a (7bbb7891) (đọc mã)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T17:47:10+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "chỉ đọc",
-          "reviewer": "là người review (độc lập với tác giả)",
+          "files": "worktree p38-fe-atte5a",
+          "reviewer": "QA độc lập khi có PR",
           "machine": "máy chính"
         }
       ],
@@ -8517,7 +8485,10 @@
         "IMPL-ATT-S0G (head af7e50cc, NOT_RUN)",
         "IMPL-ISO2T2A-FIX (head 94cebc48, NOT_RUN)",
         "IMPL-ATT-E5A (FE 7bbb7891; 53/53 bằng node trên máy chính REPORTED, tsc NOT_RUN)",
-        "IMPL-ATT-E3A (head 5bff1734, NOT_RUN)"
+        "IMPL-ATT-E3A (head 5bff1734, NOT_RUN)",
+        "QA-ATTE1-DELTA (GO có điều kiện: bật cờ chờ điều kiện; merge khi cờ TẮT được)",
+        "QA-FE-208-E5A (FE #208 GO; ATT-e5a GO có điều kiện)",
+        "QA-PR279-280-DELTA (#279 và #280 GO có điều kiện)"
       ],
       "oxy": {
         "checkedAt": "2026-11-13T17:53:57+07:00",
