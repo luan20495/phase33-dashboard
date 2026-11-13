@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T08:19:24+07:00",
+  "asOf": "2026-11-13T08:41:46+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T08:19:24+07:00",
+  "detailUpdatedAt": "2026-11-13T08:41:46+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6403,13 +6403,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại theo Finder (GB, gồm phần thu hồi được)",
-            "value": 74,
+            "value": 71,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "07:38 ICT 13/11: Finder 76 GB khả dụng (tầng 70–100: dọn nhẹ); số thật của ổ ~18 GB chỉ tham khảo"
+            "evidence": "08:41 ICT 13/11: Finder 71 GB khả dụng (tầng 70–100: dọn nhẹ)"
           },
           {
             "id": "disk.t_monitor",
@@ -6938,7 +6938,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T08:19:24+07:00",
+    "updatedAt": "2026-11-13T08:41:46+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6949,11 +6949,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "changed",
-            "summary": "Review ChatGPT #6824558960 đã trả lời ở #257 (#6825187990); không có comment [OWNER] mới ở #88"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "changed",
@@ -6998,6 +6993,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
             "summary": "Không có comment mới ở #88/#257/#123"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới của Owner/ChatGPT ở #88/#257"
           }
         ]
       },
@@ -7009,11 +7009,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "ok",
-            "summary": "#process khớp thực tế: quy tắc QA một lần sau tích hợp áp dụng cho PR mới (T24/T25, PAYC); agent 6 đang chạy, tối đa 10"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "ok",
@@ -7058,6 +7053,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
             "summary": "#process khớp; ngưỡng đĩa 30 GB theo Finder đã áp dụng"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "ok",
+            "summary": "#process khớp; min 12 / max 20 đã áp dụng"
           }
         ]
       },
@@ -7069,11 +7069,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "changed",
-            "summary": "ListAgents 20:40: 3 đang chạy; merge dev sau QA: FE #200, BE #251/#253/#258; PR mới #262, #263, #264, FE #203; QA cặp #264/#203 + QA UI dashboard đang chạy"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "changed",
@@ -7118,6 +7113,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "changed",
             "summary": "FE #204 đổi head (9fa342ac); 2 agent chạy (sửa PAYC, PR theo dõi); chưa có hand-back"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "changed",
+            "summary": "QA #276 (chỉ đọc) GO có điều kiện, chưa merge; 5 agent chạy; tải 24-42"
           }
         ]
       },
@@ -7129,11 +7129,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "skipped",
-            "summary": "Không đăng báo cáo 19 dòng: không có quyết định/blocker mới ngoài các điểm đã báo ở #257"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "skipped",
@@ -7178,6 +7173,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "skipped",
             "summary": "Không đăng 19 dòng lên #88; không có thay đổi lớn"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "skipped",
+            "summary": "Không đăng 19 dòng lên #88"
           }
         ]
       },
@@ -7189,11 +7189,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "changed",
-            "summary": "Dashboard 4a3e9b7: chi tiết NO-GO bản 22, nguồn đĩa duy nhất, bảng nguồn giờ công, roster agent trực tiếp, tách SHA đã QA UI"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "changed",
@@ -7238,6 +7233,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "changed",
             "summary": "Dashboard: head #204, đĩa Finder, bản ghi chạy"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "changed",
+            "summary": "Dashboard: QA #276, roster, tải/rủi ro"
           }
         ]
       },
@@ -7249,11 +7249,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "ok",
-            "summary": "Đĩa 21 GiB trống (dao động 11–19); còn 1 snapshot Time Machine; không xóa thêm: volume Docker ẩn danh chờ Owner"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "ok",
@@ -7298,6 +7293,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
             "summary": "Finder 76 GB (tầng dọn nhẹ); không dọn thêm"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "ok",
+            "summary": "Finder 71 GB (tầng dọn nhẹ); không dọn"
           }
         ]
       },
@@ -7309,11 +7309,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH nạp 24 giờ lúc ~16:40 hết ~16:40 ngày 13/11 (REPORTED)"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "ok",
@@ -7358,6 +7353,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED)"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); sẽ kiểm trước giờ đó"
           }
         ]
       },
@@ -7369,11 +7369,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "skipped",
-            "summary": "Chỉ 3 agent đang chạy (dưới mức tối thiểu 6): đĩa dưới ngưỡng khẩn và 3 chỗ Gradle; QA một lần theo quy tắc Owner; sẽ giao thêm khi PAYC-2/5 tới lượt"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "skipped",
@@ -7418,6 +7413,11 @@
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
             "summary": "2 agent chạy; thẻ 6 cho Oxy đang chờ; một khe Gradle"
+          },
+          {
+            "at": "2026-11-13T08:41:46+07:00",
+            "result": "changed",
+            "summary": "Không giao thêm việc nặng: máy chính quá tải (tải 24-42); QA #276 chạy lại khi máy yên"
           }
         ]
       }
@@ -7572,10 +7572,15 @@
         "at": "2026-11-13T08:19:24+07:00",
         "by": "C0",
         "note": "Thẻ 6 (PASS, verified) và thẻ 7 (6/6 review, REPORTED) của Oxy ghi vào dashboard; sửa 3 lỗi tài liệu lane theo R5; giao agent làm script slot v2"
+      },
+      {
+        "at": "2026-11-13T08:41:46+07:00",
+        "by": "C0",
+        "note": "Hourly 08:4x: QA #276 chỉ đọc mã GO có điều kiện (chưa chạy test do tải 22-62); dừng agent QA #276 lặp báo cáo; không giao thêm việc nặng khi máy quá tải"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T08:06:11+07:00",
+      "checkedAt": "2026-11-13T08:41:46+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7584,7 +7589,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "07:38: FE #204 đổi head (agent sửa điều kiện PAYC đã push, chưa có QA delta); còn lại không đổi so với 07:1x",
+      "changeSincePrev": "08:41: QA #276 (chỉ đọc mã) GO có điều kiện, chưa chạy test vì tải máy 22-62 (Kotlin compile daemon mồ côi + nhiều Gradle) nên CHƯA merge; thẻ 6 và 7 của máy phụ có kết quả; 5 agent đang chạy; không PR nào merge thêm",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7620,14 +7625,14 @@
         "Thẻ Owner NO-37 (paid=false tự khai) và NO-36 (mục 07) chờ quyết",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
-        "Nợ theo dõi: test CSRF rỗng (FC4) + P4 thứ tự bảo vệ SystemCatalog + P3-2 compensate: PR theo dõi đang viết (REPORTED)"
+        "QA #276 cần chạy lại trên máy yên (12 lớp test, RED, mutant) + test nhánh SRC_WRITES_UNAVAILABLE; tải máy 22-62 làm các job chờ nhau — nút cổ chai là CPU/RAM, thêm agent không tăng tốc việc nặng"
       ],
       "risks": [
-        "Tài nguyên (đo 08:06): tải 45.33 41.79 30.67; đĩa theo Finder 74 GB khả dụng (ngưỡng khẩn 30, tầng dọn nhẹ); số thật của ổ ~20 GB chỉ tham khảo",
+        "Tài nguyên (đo 08:41): tải 22.07 32.05 38.25 (đỉnh 62), Finder 71 GB; tiến trình Kotlin compile daemon mồ côi chiếm ~400% CPU phục vụ build của agent QA delta PAYC (không kill); nhiều job Gradle/Testcontainers chờ nhau",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy (máy thứ hai): thẻ 1-5 đã có kết quả (FE unit đầy đủ, guard, BE lớp thuần PASS); Docker Desktop chưa khởi động, bước sudo/Docker/cô lập chờ Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 76 GB khả dụng (tầng dọn nhẹ; ngưỡng khẩn 30), tải 5.64 9.96 10.29 (uptime 07:38); làn máy phụ: thẻ 6 đã giao, chưa báo",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 71 GB (tầng dọn nhẹ; ngưỡng khẩn 30), tải 22.07 32.05 38.25 (uptime 08:41, đã tới 22-62 từ 07:44); làn máy phụ: thẻ 1-7 có kết quả, chưa 'sẵn sàng'",
       "ownerNeeds": [
         "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm, mục 07) và NO-37 (bảo mật nhà cung cấp: paid=false tự khai) ở tab Chờ anh quyết",
         "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
@@ -7650,7 +7655,7 @@
         "proof": "QA vòng 5 độc lập trên ab78d1c; các sửa sau đó chỉ có C0 tự chạy (bộ test + kiểm trình duyệt)",
         "open": "QA vòng 6 trên SHA sửa"
       },
-      "agentCensus": "Máy chính: 6 đang chạy (QA delta PAYC, QA #276, CTX-b, FILES-b, cô lập 2T2A, script slot v2); đã xong: sửa PAYC, QA UI r5. Máy phụ: thẻ 7 dùng 6 agent phụ (REPORTED, đã xong). Mục tiêu Owner: tối thiểu 12 / tối đa 20.",
+      "agentCensus": "Máy chính: 5 đang chạy (QA delta PAYC, CTX-b, FILES-b, cô lập 2T2A, script slot v2), 53 đã xong (gồm QA #276 chỉ đọc mã, QA UI r5), 0 nghi treo; dưới mức tối thiểu Owner (6/máy) vì máy chính đã quá tải (tải 22.07 32.05 38.25); máy phụ: thẻ 7 dùng 6 agent phụ, đã xong, hiện UNKNOWN",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7747,8 +7752,8 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-13T08:06:11+07:00",
-        "source": "gh pr view lúc 08:06 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "checkedAt": "2026-11-13T08:41:46+07:00",
+        "source": "gh pr view lúc 08:41 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
         "summary": "24 PR đã merge dev sau QA độc lập; 9 PR đang mở chưa có kết luận QA độc lập",
         "items": [
           {
@@ -8106,8 +8111,8 @@
           {
             "repo": "xweb01",
             "pr": 276,
-            "qaReport": null,
-            "qa": "QA+SEC độc lập đang chạy (kết quả chưa có)",
+            "qaReport": "QA-PR276.md",
+            "qa": "QA+SEC độc lập GO có điều kiện (chỉ đọc mã; KHÔNG chạy test vì tải 22-62): cần chạy 12 lớp test, bằng chứng đỏ + mutant, thêm test nhánh SRC_WRITES_UNAVAILABLE",
             "state": "OPEN",
             "head": "529146cd",
             "mergeCommit": null,
@@ -8118,19 +8123,19 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T08:19:24+07:00",
-      "source": "ListAgents lúc 07:43 ICT (chụp trực tiếp)",
+      "checkedAt": "2026-11-13T08:41:46+07:00",
+      "source": "ListAgents lúc 08:41 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 6,
-        "WORKING": 6,
+        "RUNNING_TOTAL": 5,
+        "WORKING": 5,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 50
+        "FINISHED": 53
       },
-      "resources": "Tải 9.13 7.79 9.12; Finder 76 GB; hạn mức: tối thiểu 12 / tối đa 20 (mỗi máy 6–10)",
+      "resources": "Tải 22.07 32.05 38.25; Finder 71 GB",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; agent xong/nhàn rỗi bị dừng sau báo cáo cuối.",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
@@ -8138,22 +8143,6 @@
         "Mục tiêu Owner 13/11: tối thiểu 12 / tối đa 20 (mỗi máy 6–10); số agent máy phụ = UNKNOWN cho tới khi Oxy báo."
       ],
       "items": [
-        {
-          "alias": "qa-276",
-          "id": "ae112c90",
-          "task": "QA+SEC độc lập BE #276 (CSRF không rỗng, SystemCatalog guard-first, compensate luôn chốt trạng thái)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T07:42:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "chỉ đọc (worktree qa-pr276)",
-          "reviewer": "— (là người review)",
-          "machine": "máy chính"
-        },
         {
           "alias": "ctx-b",
           "id": "a7383a30",
