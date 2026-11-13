@@ -1,5 +1,5 @@
 #!/bin/bash
-# Build/test lane slot v2.0.0 (hardened, generic: install to $LANE/tools/gradle-slot-lane-v2.sh, chmod 0755). Replaces v1 of the lane slot script (gradle-slot-lane.sh). Portable to macOS bash 3.2 + system perl (no flock(1) needed).
+# Build/test lane slot v2.0.1 (hardened, generic: install to $LANE/tools/gradle-slot-lane-v2.sh, chmod 0755). Replaces v1 of the lane slot script (gradle-slot-lane.sh). Portable to macOS bash 3.2 + system perl (no flock(1) needed).
 # Same CLI and exit codes as v1:  gradle-slot-lane-v2.sh <label> <command> [args...]
 #   rc 0..n = the job's own rc | 2 usage/config error | 75 refused (guard or slot busy, nothing started) | 124 timeout | 128+N killed by signal N
 # What is new (each item answers one finding of review R6 / the reproduction in IMPL-P38-SLOT-V2.md):
@@ -19,7 +19,7 @@
 # Never start this from launchd/cron/login items. Results are never deleted (only the empty results dir of a REFUSED start is removed).
 # Env: LANE_BASE (default $HOME/xweb-lane) LANE_MAX_LOAD (4.0) LANE_MIN_FREE_RAM_MB (5000) LANE_MIN_FREE_DISK_GB (20) JOB_TIMEOUT JOB_TERM_GRACE LANE_KIND LANE_KIND_FORCE LANE_SWEEP
 #      LANE_NO_DAEMON LANE_ALLOW_NO_TIMEOUT LANE_GUARD_FAILOPEN LANE_LOCAL_TZ (for the start_local meta line)
-SLOT_VERSION="2.0.0"
+SLOT_VERSION="2.0.1"
 SELF="$0"
 set -u
 
