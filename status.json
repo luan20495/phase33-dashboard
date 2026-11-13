@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T20:18:14+07:00",
+  "asOf": "2026-11-13T20:39:51+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T20:18:14+07:00",
+  "detailUpdatedAt": "2026-11-13T20:39:51+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6974,7 +6974,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T19:38:13+07:00",
+    "updatedAt": "2026-11-13T20:39:51+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6985,11 +6985,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "ok",
-            "summary": "Không có comment Owner/ChatGPT mới ở #88 (since 07:46) và #257 (since 09:44)"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "changed",
@@ -7034,6 +7029,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "ok",
             "summary": "Không có comment mới của Owner/ChatGPT trên #88/#257; Oxy #123 im lặng từ 19:01 (#280 gốc XANH, REPORTED) — đã hỏi tình hình hàng đợi"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "changed",
+            "summary": "ChatGPT INDEPENDENT DELTA 20:13 trên #257: P2 tóm tắt hằng giờ bị cũ sau merge NO-37 — ĐÚNG, đã sửa và trả lời; không có comment mới của Owner; Oxy: #280 gốc xanh + mutant 11/12 (REPORTED), ACK thẻ 40"
           }
         ]
       },
@@ -7045,11 +7045,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "ok",
-            "summary": "#process khớp thực tế; quy tắc 3 agent khi nặng đã áp dụng"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "ok",
@@ -7094,6 +7089,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "ok",
             "summary": "Tab Quy trình khớp thực tế: agents.min 12/max 30 áp dụng; 0 agent của C0 chạy vì mọi lát chờ Oxy; Finder ~53 GB (>30 GB), tải ~5"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "ok",
+            "summary": "Tab Quy trình khớp thực tế: agents.min 12/max 30 áp dụng; 0 agent của C0 chạy vì mọi lát chờ Oxy; Finder ~60 GB (>30 GB), tải ~4,7"
           }
         ]
       },
@@ -7105,11 +7105,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "ok",
-            "summary": "0 agent chạy (đã dọn theo Owner); không PR mới; 5 lát việc ở nhánh wip/*; Oxy thẻ 9-12 đang xử lý"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "ok",
@@ -7154,6 +7149,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "ok",
             "summary": "Đầu PR không đổi từ 18:38 (BE #276/#279/#280/#282, FE #212 đang mở; không merge mới); chưa có kết quả mutant #280"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "changed",
+            "summary": "PR: #280 MERGED 20:17 sau QA độc lập; mới BE #283 (nháp, test mut10); bảng PR dựng lại từ một lần đọc gh (45 dòng: 39 merged / 6 open)"
           }
         ]
       },
@@ -7165,11 +7165,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "skipped",
-            "summary": "Không đăng 19 dòng lên #88: không có thay đổi mới"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "skipped",
@@ -7214,6 +7209,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "skipped",
             "summary": "Chưa đăng báo cáo 19 dòng mới: không có thay đổi quan trọng kể từ lần 130 (18:50); chờ kết quả mutant #280"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "skipped",
+            "summary": "Chưa đăng báo cáo 19 dòng mới: lần 130 (18:50) đã nêu; từ đó chỉ #280 merge và kết quả Oxy (REPORTED) — gộp vào lần 131 khi có thêm kết quả quan trọng"
           }
         ]
       },
@@ -7225,11 +7225,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "changed",
-            "summary": "Dashboard: dòng thời gian Oxy (thẻ 8-12), tải/đĩa, bản ghi chạy"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "changed",
@@ -7274,6 +7269,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "changed",
             "summary": "Bản ghi hằng giờ 19:38; bảng PR và làn máy phụ không đổi"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "changed",
+            "summary": "Dashboard: dựng lại MỌI phần hourly.summary từ cùng snapshot (checkedAt, changeSincePrev, blockers, risks, release22.movingDev, agentCensus, providerAudit; uiux gắn nhãn STALE); thêm test tests/summary-consistency.mjs; bản ghi hằng giờ 20:38"
           }
         ]
       },
@@ -7285,11 +7285,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "ok",
-            "summary": "Finder 70 GB; không dọn thêm"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "ok",
@@ -7334,6 +7329,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "ok",
             "summary": "Finder trống ~53 GB (>30 GB); không cần dọn"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "ok",
+            "summary": "Finder trống ~60 GB (>30 GB); không cần dọn"
           }
         ]
       },
@@ -7345,11 +7345,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); chưa dùng SSH máy chủ trong kỳ này"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "ok",
@@ -7394,6 +7389,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "ok",
             "summary": "Không kiểm khóa SSH máy chủ GCP lần này; đường SSH Mac→Oxy vẫn đứt (UNKNOWN)"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "ok",
+            "summary": "Không kiểm khóa SSH máy chủ GCP lần này; đường SSH Mac→Oxy vẫn đứt (UNKNOWN)"
           }
         ]
       },
@@ -7405,11 +7405,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T10:38:29+07:00",
-            "result": "skipped",
-            "summary": "Owner: việc nặng giữ 3 agent; hiện việc nặng ở Oxy nên chưa giao agent ở máy chính"
-          },
           {
             "at": "2026-11-13T11:39:00+07:00",
             "result": "ok",
@@ -7454,6 +7449,11 @@
             "at": "2026-11-13T19:38:13+07:00",
             "result": "ok",
             "summary": "0 agent đang chạy: không có việc nhẹ độc lập còn lại; QA bổ sung/merge ngay khi Oxy trả kết quả #280, ATT-e1, FE e5a"
+          },
+          {
+            "at": "2026-11-13T20:39:51+07:00",
+            "result": "ok",
+            "summary": "0 agent đang chạy: mọi lát đã viết + QA độc lập xong, chờ Oxy; sẽ giao QA bổ sung/merge khi Oxy trả kết quả ATT-e1, FE e5a, 2T2A"
           }
         ]
       }
@@ -7661,7 +7661,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T14:39:14+07:00",
+      "checkedAt": "2026-11-13T20:39:51+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7670,7 +7670,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "14:39: mở 3 PR mới: BE #277 CTX-b (cờ TẮT), #278 NO-37 (paid=false chỉ loopback/LAN, đã sửa theo QA: danh sách cho phép dương + ISATAP), #279 FILES-b (hợp nhất với dev); Oxy báo CTX-b baseline 114/114 và 5/5 mutant bị diệt, lô nhỏ NO-37/FILES-b PASS (REPORTED); Oxy chạy 2 làn song song; endpoint riêng của hub chạy (đọc + việc ghi thử PASS)",
+      "changeSincePrev": "20:38: từ 14:39 đã merge dev sau QA độc lập: BE #277 (14:42), #278 NO-37 (18:00), #280 chuỗi PAYC (20:17), tài liệu BE #281/FE #209, FE #208, #210, #211; PR nháp mới BE #282/#283 và FE #212 (chỉ test); Oxy (REPORTED): NO-37 gốc 45 test + 9/9 mutant bị diệt, #280 gốc 471 test + 11/12 mutant bị diệt (mut10 sống sót), FE #208 xanh, combined-check XANH; sự cố tải 18:37 → luật một job Gradle một lúc",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7702,16 +7702,16 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: BE #210, #276, #277, #278, #279; #277/#278/#279 chờ kết quả test+mutant của Oxy và QA độc lập (file kết quả chưa kéo được: đổi mạng); #276 cần chạy lại test",
+        "PR đang mở chưa merge: FE #212, BE #210, BE #276, BE #279, BE #282, BE #283; #276/#279/#282/#283 và FE #212 chờ kết quả Oxy (file kết quả chưa kéo được về: SSH đứt) và QA bổ sung",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
-        "QA #276 cần chạy lại trên máy yên (12 lớp test, RED, mutant) + test nhánh SRC_WRITES_UNAVAILABLE; tải máy 22-62 làm các job chờ nhau — nút cổ chai là CPU/RAM, thêm agent không tăng tốc việc nặng",
-        "Mục 07 (ATT-e*) và NO-37 đã được Owner duyệt (07:46) nhưng CHƯA có mã: ATT-e1 và PR NO-37 đang viết; ATT-e2 cần Windows (hạ tầng), ATT-e3/e4/e5/ATT-f xếp sau"
+        "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
+        "Nút cổ chai thật: một job Gradle một lúc trên Oxy (hàng đợi còn nhiều giờ, ESTIMATE); các lát ATT-e1, 2T2A, S09-A/B/C, ATT-f1a, ATT-s0G, ATT-e3a, FE ATT-e5a đã viết + QA đọc mã nhưng NOT_RUN; các lát nối dây (ATT-e3b/f1b, S09-D/E, FE e5b) chưa viết"
       ],
       "risks": [
-        "Tài nguyên 13:38: máy chính nhẹ (tải 3.68 3.41 3.31); Finder 61 GB giảm dần (67→61 trong 1 giờ); đã dọn cache build Gradle cũ; việc nặng ở máy phụ",
+        "Tài nguyên 20:38: máy chính tải ~4,7; Finder ~60 GB (>30 GB); việc nặng ở máy phụ",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
-        "Làn Oxy: Docker Desktop đang chạy từ 09:36 (REPORTED); A3 7/7 và A4 154/154 PASS (REPORTED, chưa kiểm sha256 file vì đổi mạng = UNKNOWN xác minh độc lập); cô lập user/VM và Spotlight là việc Owner"
+        "Làn Oxy: kết quả chỉ là REPORTED (chưa kéo file/đối chiếu mã băm: SSH đứt = UNKNOWN xác minh độc lập); cô lập user/VM và Spotlight là việc Owner"
       ],
       "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 65 GB (tầng dọn chủ động), tải 10.91 5.67 4.92 (uptime 14:39); việc nặng ở máy phụ",
       "ownerNeeds": [
@@ -7739,9 +7739,10 @@
           "commit hourly hiện tại"
         ],
         "proof": "QA r6 độc lập trên 84998dd (192 ô local + 192 ô live qua); các commit sau chỉ có C0 tự chạy (bộ test)",
-        "open": "QA vòng 7 trên đúng Pages SHA, 8 viewport × 2 theme, deep link, zoom 200%, contrast/keyboard"
+        "open": "QA vòng 7 trên đúng Pages SHA, 8 viewport × 2 theme, deep link, zoom 200%, contrast/keyboard",
+        "staleNote": "STALE: phần UI/UX chưa đo lại từ 11:39 ICT; QA r7 trên Pages SHA hiện tại = UNKNOWN (không suy ra từ các merge hôm nay)"
       },
-      "agentCensus": "14:39: máy chính 1 agent chạy (QA vòng bổ sung #277, chỉ đọc); việc nặng ở Oxy (2 làn song song); máy chính không biên dịch nổi cây test (swap 7,6/9,2 GB, bộ nhớ trống ~4,6 GB)",
+      "agentCensus": "20:38: 0 sub-agent của C0 đang chạy (hoàn thành trong ngày: ~35 agent việc nhẹ chỉ-đọc/viết tệp); mọi lát code đã viết chờ Oxy; mức tối thiểu 12 chưa đạt vì không còn việc nhẹ độc lập",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7751,8 +7752,8 @@
           "note": "cặp đóng băng CŨ, lỗi thời, KHÔNG dùng để suy ra điều kiện deploy"
         },
         "movingDev": {
-          "be": "333040bf (đo 11:39)",
-          "fe": "ba80f451 (đo 11:39)"
+          "be": "7b8f9474 (đo 20:38)",
+          "fe": "3a2f69b0 (đo 20:38)"
         },
         "redTests": [
           "OlReferenceTurnWiringTests (#254 đổi lời nhắc theo trần đầu ra) và census patch_stale: đã sửa, merge trong #261 sau QA độc lập",
@@ -7762,18 +7763,18 @@
         "fullSuite": "10595 test, 10 đỏ trên d430a3e6 (6 baseline cũng đỏ trên main, 3 flake chạy riêng thì qua, 1 chỉ có trên dev là OlReferenceTurnWiringTests); test census patch_stale đỏ là lỗi riêng ở combined-check; cả hai đã sửa và merge trong #261; hai test đỏ do merge #259/#261 để lại sửa trong #270"
       },
       "providerAudit": {
-        "checkedAt": "2026-11-13T00:21:59+07:00",
+        "checkedAt": "2026-11-13T20:38:54+07:00",
         "source": "AUDIT-PROVIDER-PATHS.md (đọc mã, không truy cập PROD); QA #270 đã xong và đã merge; theo dõi tiếp ở #273 (đã merge)",
         "answer": "Không phải mọi đường tới model đều ghi vào sổ cái trả phí trước PR #270: chỉ đường OpenRouter (hàm đo `metered()`) có giữ chỗ, hard cap và chặn ZDR; nhà cung cấp trả phí khác (dòng cấu hình anthropic trên PROD, nhà cung cấp openai/anthropic/gemini từ biến môi trường, BYOK của tenant) không qua sổ cái.",
         "exposure": "Hiện bị chặn ở PROD bởi danh sách nhà cung cấp chấp nhận (đọc chỉ-đọc 17:46: khóa không có trong tệp cấu hình ⇒ trống ⇒ HTTP 451). Nếu danh sách bị đặt, người dùng có quyền AI thật có thể gọi nhà cung cấp đó không qua hard cap (P1 tiềm ẩn, chưa thể khai thác trên PROD hôm nay).",
         "fix": "PR #270 đã merge dev sau QA+SEC độc lập (GO có điều kiện, không P0/P1): mọi đường tới model nay hoặc ghi vào sổ cái trả phí hoặc từ chối trước khi dựng yêu cầu (QA liệt kê mọi chỗ gọi); audit ghi kind/paid, khóa lật paid, siết base_url, không theo chuyển hướng (merge dev: 82ff4e73)",
         "residual": [
           "ghim IP chống DNS rebinding cần tường lửa chặn ra ngoài",
-          "thẻ NO-37: paid=false trên OPENAI_COMPATIBLE/LOCAL là lời tự khai",
           "PR theo sau: lá chắn nguồn chịu được xuống dòng/khoảng trắng, nhận diện OpenRouter theo kiểu, IPv6/localhost, test P8 cũ",
-          "nhóm ack trong script Windows; duyệt hai người cho lật paid; audit probe/discover"
+          "nhóm ack trong script Windows; duyệt hai người cho lật paid; audit probe/discover",
+          "NO-37 #278 đã merge dev: còn F7 (kiểm hàng paid=false và base-url cấu hình trước deploy), F2 (địa chỉ riêng ≠ miễn phí), F3 (DNS rebinding/egress), N2 (ISATAP/Teredo cứng hóa)"
         ],
-        "verdict": "SEC GO có điều kiện cho #270 (đã merge). C1 (paid=false tự khai): Owner đã duyệt A (NO-37) lúc 07:46: mã đang viết (nhánh wip/p38-no37, chưa biên dịch/chạy test, chưa PR); C2: lá chắn nguồn chỉ là chốt cảnh báo, đã sửa ở #273/#276; C3: kiểm môi trường DEV chưa chạy; DNS rebinding/egress NOT_RUN"
+        "verdict": "SEC GO có điều kiện cho #270 và #278 (đã merge dev, chưa deploy). C1 (paid=false tự khai): NO-37 #278 đã MERGED dev 18:00 sau QA+SEC độc lập GO có điều kiện trên head 33748569; Oxy (REPORTED) 45 test + 9/9 mutant bị diệt; CÒN: kiểm F7 trước deploy, rủi ro dư F2/F3/N2 chờ Owner; C3: kiểm môi trường DEV chưa chạy; DNS rebinding/egress NOT_RUN"
       },
       "oxyLane": {
         "checkedAt": "2026-11-13T14:39:14+07:00",
@@ -7889,9 +7890,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-13T20:18:14+07:00",
-        "source": "gh pr view lúc 20:18 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "39 PR trong bảng đã merge dev sau QA độc lập; 5 PR trong bảng đang mở chưa merge: FE #212, BE #210, BE #276, BE #279, BE #282",
+        "checkedAt": "2026-11-13T20:39:51+07:00",
+        "source": "gh pr view lúc 20:38 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "39 PR trong bảng đã merge dev sau QA độc lập; 6 PR trong bảng đang mở chưa merge: FE #212, BE #210, BE #276, BE #279, BE #282, BE #283",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -8376,6 +8377,17 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 283,
+            "qaReport": null,
+            "qa": "PR nháp chỉ thêm test cho khoảng trống mut10 của #280 (lượt thử lại trên chuỗi đã hủy); tác giả chưa chạy; cần Oxy + QA độc lập",
+            "state": "OPEN",
+            "head": "5d0af064",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa"
           }
         ]
       },
@@ -8386,7 +8398,7 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T19:38:13+07:00",
+      "checkedAt": "2026-11-13T20:39:51+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
