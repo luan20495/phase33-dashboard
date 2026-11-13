@@ -8298,17 +8298,17 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T16:11:19+07:00",
+      "checkedAt": "2026-11-13T16:12:04+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 6,
-        "WORKING": 6,
+        "RUNNING_TOTAL": 4,
+        "WORKING": 4,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 68
+        "FINISHED": 70
       },
       "resources": "Tải ~10, RAM trống thấp: agent máy chính chỉ đọc/viết tệp, không Gradle/Docker (tạm dừng việc nặng theo Owner)",
       "notes": [
@@ -8319,22 +8319,6 @@
         "QA tài liệu xong, PR #281/#209 đã merge dev (16:08–16:09 ICT, đúng head đã QA). Lát wip mới (chưa PR, chưa biên dịch): S09-A/B, ATT-f1a, ATT-e3a, s0+g, FE e5a, sửa ATT-e1, sửa 2T2A; đã xếp S09-A/B và ATT-f1a vào thẻ 27 cho Oxy."
       ],
       "items": [
-        {
-          "alias": "IMPL-ATTE1-FIX",
-          "id": "af67dc4c",
-          "task": "Sửa ATT-e1 theo QA (P1 đĩa đầy, P2 complete lỗi mơ hồ, test đồng thời)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T15:59:44+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "worktree p38-atte1",
-          "reviewer": "QA độc lập khi có PR",
-          "machine": "máy chính"
-        },
         {
           "alias": "IMPL-ISO2T2A-FIX",
           "id": "a4a73ed0",
@@ -8398,22 +8382,6 @@
           "files": "worktree p38-fe-atte5a",
           "reviewer": "QA độc lập khi có PR",
           "machine": "máy chính"
-        },
-        {
-          "alias": "IMPL-S09-C",
-          "id": "a61f4d88",
-          "task": "Viết S09-C: bộ sinh schema.gen.ts",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T16:11:19+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "worktree p38-s09c",
-          "reviewer": "QA độc lập khi có PR",
-          "machine": "máy chính"
         }
       ],
       "finished": [
@@ -8440,10 +8408,12 @@
         "QA-DOCS-281-209 (GO trên head mới)",
         "IMPL-S09-B (wip, NOT_RUN)",
         "IMPL-ATT-F1A (wip, NOT_RUN)",
-        "IMPL-S09-A (wip, NOT_RUN)"
+        "IMPL-S09-A (wip, NOT_RUN)",
+        "IMPL-ATTE1-FIX (head 5d997cf7, NOT_RUN)",
+        "IMPL-S09-C (head 30d0ff00, NOT_RUN)"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T16:11:19+07:00",
+        "checkedAt": "2026-11-13T16:12:04+07:00",
         "status": "REPORTED bởi Oxy (#123, 15:47 ICT): 2 job nặng bị hủy do tải (ABORTED_LOAD, không phải test đỏ); đổi cách chia: chỉ MỘT job dùng Docker/Postgres tại một thời điểm trên cả 3 làn; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
@@ -8466,7 +8436,8 @@
         "queue": [
           "Hàng đợi Docker lần lượt: FILES-b mutant → PR #280 mutant → NO-37 mut3…mut8 → ATT-e1 → 2T2A → suite BE (11 nhóm) → PR #276 ×2 → phân loại lớp đỏ",
           "Ước lượng (ESTIMATE): mỗi job BE 10–60 phút; toàn hàng đợi còn nhiều giờ — nút cổ chai là MỘT job Docker một lúc, thêm agent ở máy chính không làm nhanh hơn phần này",
-          "Thẻ 27 (không Docker, xếp vào làn rảnh): S09-B 076da115, S09-A c2e8614e, ATT-f1a 82e5baad — mọi test/mutant NOT_RUN, tác giả chưa biên dịch"
+          "Thẻ 27 (không Docker, xếp vào làn rảnh): S09-B 076da115, S09-A c2e8614e, ATT-f1a 82e5baad — mọi test/mutant NOT_RUN, tác giả chưa biên dịch",
+          "Thẻ 28: ATT-e1 SHA mới 5d997cf7 (Docker, thay job cũ đã hoãn) và S09-C 30d0ff00 (không Docker) — NOT_RUN"
         ],
         "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39)"
       }
