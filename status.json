@@ -8298,17 +8298,17 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T15:59:44+07:00",
+      "checkedAt": "2026-11-13T16:11:19+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 10,
-        "WORKING": 10,
+        "RUNNING_TOTAL": 6,
+        "WORKING": 6,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 61
+        "FINISHED": 68
       },
       "resources": "Tải ~10, RAM trống thấp: agent máy chính chỉ đọc/viết tệp, không Gradle/Docker (tạm dừng việc nặng theo Owner)",
       "notes": [
@@ -8316,73 +8316,9 @@
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
         "Model các agent: claude-sonnet-5-5 theo log từng agent.",
         "Danh sách agent ở trên chỉ gồm sub-agent Claude của máy chính. Việc nặng (biên dịch/test/mutant/Docker) chạy ở máy phụ theo 3 làn — xem “Làn máy phụ” bên dưới; máy chính không biên dịch nổi cây test BE (hết RAM/swap).",
-        "Giờ hiện tại: 10 agent việc nhẹ chạy trên máy chính (mức tối thiểu cấu hình 12). QA tĩnh ATT-e1 và 2T2A trả lỗi cần sửa, nên đã báo Oxy hoãn hai job đó (#123, SHA sẽ đổi); đã bắt đầu 4 lát ATT mới (e3a, f1a, s0+g, FE e5a) trên nhánh wip riêng, chưa có PR."
+        "QA tài liệu xong, PR #281/#209 đã merge dev (16:08–16:09 ICT, đúng head đã QA). Lát wip mới (chưa PR, chưa biên dịch): S09-A/B, ATT-f1a, ATT-e3a, s0+g, FE e5a, sửa ATT-e1, sửa 2T2A; đã xếp S09-A/B và ATT-f1a vào thẻ 27 cho Oxy."
       ],
       "items": [
-        {
-          "alias": "PREP12-A",
-          "id": "a2c306f5",
-          "task": "Mục 12: chuẩn bị P4–P6 (spec trình duyệt, app mẫu có mutant, gói API/DB) — chỉ viết tệp",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T16:05:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "p12/prep-a",
-          "reviewer": "C0 + QA độc lập khi có PR",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "PREP12-B",
-          "id": "aae614c1",
-          "task": "Mục 12: chuẩn bị P9–P11 (kịch bản lỗi, bảng chi phí, mẫu báo cáo) — chỉ viết tệp",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T16:05:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "p12/prep-b",
-          "reviewer": "C0 + QA độc lập khi có PR",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "PLAN-09",
-          "id": "a883c5b8",
-          "task": "Mục 09: kế hoạch AI tự thiết kế schema/migration/CRUD (phân tích, không mã)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T16:05:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "PLAN-09-AI-SCHEMA.md",
-          "reviewer": "C0 + QA độc lập khi có PR",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "QA-DOCS-281-209",
-          "id": "a230806d",
-          "task": "QA độc lập hai PR tài liệu #281/#209 (đọc mã)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T15:59:44+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "chỉ đọc",
-          "reviewer": "QA độc lập khi có PR",
-          "machine": "máy chính"
-        },
         {
           "alias": "IMPL-ATTE1-FIX",
           "id": "af67dc4c",
@@ -8432,22 +8368,6 @@
           "machine": "máy chính"
         },
         {
-          "alias": "IMPL-ATT-F1A",
-          "id": "acdfac8c",
-          "task": "Viết ATT-f1a: logic lưu/đọc văn bản đính kèm thuần",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T15:59:44+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "worktree p38-attf1a",
-          "reviewer": "QA độc lập khi có PR",
-          "machine": "máy chính"
-        },
-        {
           "alias": "IMPL-ATT-S0G",
           "id": "a6d5169f",
           "task": "Viết ATT-s0 cổng lưu nội dung + ATT-g nhóm bật cờ",
@@ -8478,6 +8398,22 @@
           "files": "worktree p38-fe-atte5a",
           "reviewer": "QA độc lập khi có PR",
           "machine": "máy chính"
+        },
+        {
+          "alias": "IMPL-S09-C",
+          "id": "a61f4d88",
+          "task": "Viết S09-C: bộ sinh schema.gen.ts",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:11:19+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "đang chạy",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "worktree p38-s09c",
+          "reviewer": "QA độc lập khi có PR",
+          "machine": "máy chính"
         }
       ],
       "finished": [
@@ -8497,10 +8433,17 @@
         "QA-ATTE1 (1 P1, 4 P2)",
         "QA-ISO2T2A (dự đoán 3 test đỏ)",
         "PLAN-ATT (kế hoạch ATT-f/e3)",
-        "RUNBOOK-252 (quy trình DEV, chưa chạy)"
+        "RUNBOOK-252 (quy trình DEV, chưa chạy)",
+        "PREP12-B (mục 12 P7–P9 viết xong, NOT_RUN)",
+        "PREP12-A (mục 12 P4–P6; API mẫu 17/17 mutant server bị diệt, trình duyệt NOT_RUN)",
+        "PLAN-09 (kế hoạch mục 09)",
+        "QA-DOCS-281-209 (GO trên head mới)",
+        "IMPL-S09-B (wip, NOT_RUN)",
+        "IMPL-ATT-F1A (wip, NOT_RUN)",
+        "IMPL-S09-A (wip, NOT_RUN)"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T16:05:00+07:00",
+        "checkedAt": "2026-11-13T16:11:19+07:00",
         "status": "REPORTED bởi Oxy (#123, 15:47 ICT): 2 job nặng bị hủy do tải (ABORTED_LOAD, không phải test đỏ); đổi cách chia: chỉ MỘT job dùng Docker/Postgres tại một thời điểm trên cả 3 làn; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
@@ -8522,7 +8465,8 @@
         ],
         "queue": [
           "Hàng đợi Docker lần lượt: FILES-b mutant → PR #280 mutant → NO-37 mut3…mut8 → ATT-e1 → 2T2A → suite BE (11 nhóm) → PR #276 ×2 → phân loại lớp đỏ",
-          "Ước lượng (ESTIMATE): mỗi job BE 10–60 phút; toàn hàng đợi còn nhiều giờ — nút cổ chai là MỘT job Docker một lúc, thêm agent ở máy chính không làm nhanh hơn phần này"
+          "Ước lượng (ESTIMATE): mỗi job BE 10–60 phút; toàn hàng đợi còn nhiều giờ — nút cổ chai là MỘT job Docker một lúc, thêm agent ở máy chính không làm nhanh hơn phần này",
+          "Thẻ 27 (không Docker, xếp vào làn rảnh): S09-B 076da115, S09-A c2e8614e, ATT-f1a 82e5baad — mọi test/mutant NOT_RUN, tác giả chưa biên dịch"
         ],
         "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39)"
       }
