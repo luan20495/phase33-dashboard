@@ -8298,43 +8298,27 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T14:39:14+07:00",
+      "checkedAt": "2026-11-13T15:35:00+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 1,
-        "WORKING": 1,
+        "RUNNING_TOTAL": 0,
+        "WORKING": 0,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 53
+        "FINISHED": 54
       },
       "resources": "Tải 10.91 5.67 4.92; Finder 65 GB",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; agent xong/nhàn rỗi bị dừng sau báo cáo cuối.",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
         "Model các agent: claude-sonnet-5-5 theo log từng agent.",
-        "Mục tiêu Owner 13/11: tối thiểu 12 / tối đa 20 (mỗi máy 6–10); số agent máy phụ = UNKNOWN cho tới khi Oxy báo."
+        "Danh sách agent ở trên chỉ gồm sub-agent Claude của máy chính. Việc nặng (biên dịch/test/mutant/Docker) chạy ở máy phụ theo 3 làn — xem “Làn máy phụ” bên dưới; máy chính không biên dịch nổi cây test BE (hết RAM/swap).",
+        "Máy chính 15:35: 0 sub-agent đang chạy (QA bổ sung #277 đã xong); chờ kết quả Oxy để chạy QA bổ sung #278/#279/#280/#208."
       ],
-      "items": [
-        {
-          "alias": "qa-277-delta",
-          "id": "ae148abf",
-          "task": "QA vòng bổ sung PR #277 (CTX-b) trên head f20340b8 (đọc mã)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T14:37:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "chỉ đọc",
-          "reviewer": "— (là người review)",
-          "machine": "máy chính"
-        }
-      ],
+      "items": [],
       "finished": [
         "QA #254",
         "QA #252",
@@ -8344,12 +8328,37 @@
         "PR #258 runner",
         "PR #259 + QA",
         "PR #260 T25-3",
-        "PR #261 T24-3"
+        "PR #261 T24-3",
+        "QA bổ sung #277"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T10:27:17+07:00",
-        "status": "Thẻ 9, 10, 11 giao (nới chốt, Docker, PR từ Oxy, route intake có chữ ký, 5 lô test nặng); chưa có báo cáo; số agent phụ UNKNOWN (REPORTED khi Oxy báo)",
-        "note": "Việc nặng chuyển sang Oxy theo Owner (máy chính nghỉ cho Owner code Flutter)"
+        "checkedAt": "2026-11-13T15:35:00+07:00",
+        "status": "REPORTED bởi Oxy (comment #123 lúc 14:49 và 15:20 ICT): 3 làn nặng đang chạy; chưa kéo được file kết quả về máy chính (SSH đứt do đổi mạng) nên chưa VERIFIED",
+        "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
+        "lanes": [
+          {
+            "lane": "L1",
+            "now": "FILES-b (PR #279) 6bb3f5d5: chạy lại bản gốc rồi 10 mutant",
+            "next": "nhận hàng đợi"
+          },
+          {
+            "lane": "L2",
+            "now": "NO-37 (PR #278) 33748569: mutant",
+            "next": "ATT-e1 be1eb362 → cô lập 2T2A 5f748a52 → nhận hàng đợi"
+          },
+          {
+            "lane": "L3",
+            "now": "suite BE đầy đủ trên dev 012844dc, nhóm code.* (bắt đầu 14:47)",
+            "next": "các nhóm còn lại (9 nhóm, 1207 lớp)"
+          }
+        ],
+        "queue": [
+          "PR #280 (chuỗi PAYC) bfed0431: bản gốc + 10 mutant — đứng đầu hàng đợi",
+          "PR #276 trên bản hợp nhất tạm với dev + bằng chứng ĐỎ",
+          "FE dev + PR #208 5cc6a3b9 (guard, tsc, unit; spec trình duyệt chưa chạy được: Oxy chưa có Playwright)",
+          "combined-check + verify-frontend-core + api-contract-check"
+        ],
+        "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39)"
       }
     },
     "lastOwnerCommentId": 6840348947
