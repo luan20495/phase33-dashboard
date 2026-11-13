@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T10:23:41+07:00",
+  "asOf": "2026-11-13T10:27:17+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T10:23:41+07:00",
+  "detailUpdatedAt": "2026-11-13T10:27:17+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6101,6 +6101,19 @@
             "value": "TẠM DỪNG từ 10:23 ICT 13/11: không Gradle/Docker/Chrome/npm test ở máy chính; agent chỉ viết code/test/tài liệu và commit cục bộ; chờ Owner báo xong để 'resume'. Việc nặng chạy ở Oxy (thẻ 9/10).",
             "state": "applied",
             "evidence": "10:23 ICT 13/11: Owner nhắn 'hạ xuống đê, anh code flutter'; đã dừng 4 job Gradle + daemon Kotlin/Gradle của agent (kill theo pid)"
+          },
+          {
+            "id": "agents.heavy_three",
+            "label": "Số agent khi làm việc nặng",
+            "type": "number",
+            "editable": true,
+            "explain": "Owner 13/11: khi làm việc nặng giữ 3 agent; việc nhẹ giữ như cũ (tối thiểu 12, tối đa 30).",
+            "impact": "Nặng = Gradle/Docker/Chrome/test đầy đủ.",
+            "value": 3,
+            "min": 1,
+            "max": 10,
+            "state": "applied",
+            "evidence": "10:27 ICT 13/11 (Owner, chat): 'duy trì 3 agent nếu làm việc nặng, nếu nhẹ thì cứ như cũ'"
           }
         ]
       },
@@ -6961,7 +6974,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T10:23:41+07:00",
+    "updatedAt": "2026-11-13T10:27:17+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7620,6 +7633,11 @@
         "at": "2026-11-13T10:23:41+07:00",
         "by": "C0",
         "note": "Owner yêu cầu hạ tải để code Flutter: dừng 4 job Gradle + daemon của agent (kill theo pid), tạm dừng việc nặng ở máy chính; agent chỉ viết/commit cục bộ; kết quả các job bị dừng = NOT_RUN"
+      },
+      {
+        "at": "2026-11-13T10:27:17+07:00",
+        "by": "C0",
+        "note": "Owner 13/11: khi làm việc nặng giữ 3 agent, việc nhẹ như cũ; sửa dữ liệu mâu thuẫn QA r6 (NO-36/37 không còn 'chờ Owner'; roster/census/oxy); thẻ 11 cho Oxy"
       }
     ],
     "summary": {
@@ -7699,7 +7717,7 @@
         "proof": "QA vòng 5 độc lập trên ab78d1c; các sửa sau đó chỉ có C0 tự chạy (bộ test + kiểm trình duyệt)",
         "open": "QA vòng 6 trên SHA sửa"
       },
-      "agentCensus": "10:23: TẠM DỪNG việc nặng ở máy chính theo Owner (code Flutter): 4 job Gradle đã dừng (NOT_RUN: cô lập 2T2A, FILES-b, NO-37, CTX-b); agent chỉ viết/commit cục bộ; ATT-e1, NO-37, CTX-b, FILES-b chưa có PR; việc nặng chuyển cho Oxy",
+      "agentCensus": "10:27: 0 agent đang chạy ở máy chính (đã dọn theo Owner); 5 lát việc dở (NO-37, FILES-b, CTX-b, ATT-e1, cô lập 2T2A) nằm ở nhánh wip/* để Oxy biên dịch và chạy test (thẻ 11). Quy tắc Owner 13/11: khi việc NẶNG giữ 3 agent; việc nhẹ giữ số cũ (12-20)",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7730,7 +7748,7 @@
           "PR theo sau: lá chắn nguồn chịu được xuống dòng/khoảng trắng, nhận diện OpenRouter theo kiểu, IPv6/localhost, test P8 cũ",
           "nhóm ack trong script Windows; duyệt hai người cho lật paid; audit probe/discover"
         ],
-        "verdict": "SEC GO có điều kiện cho #270 (C1: Owner quyết thẻ NO-37; C2: lá chắn nguồn chỉ là chốt cảnh báo, đang sửa trong PR theo sau; C3: kiểm môi trường DEV trước khi triển khai); chưa deploy; PROD không đổi"
+        "verdict": "SEC GO có điều kiện cho #270 (đã merge). C1 (paid=false tự khai): Owner đã duyệt A (NO-37) lúc 07:46: mã đang viết (nhánh wip/p38-no37, chưa biên dịch/chạy test, chưa PR); C2: lá chắn nguồn chỉ là chốt cảnh báo, đã sửa ở #273/#276; C3: kiểm môi trường DEV chưa chạy; DNS rebinding/egress NOT_RUN"
       },
       "oxyLane": {
         "checkedAt": "2026-11-13T08:19:24+07:00",
@@ -8176,8 +8194,8 @@
       "source": "ListAgents lúc 08:41 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 6,
-        "WORKING": 6,
+        "RUNNING_TOTAL": 0,
+        "WORKING": 0,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
@@ -8191,104 +8209,7 @@
         "Model các agent: claude-sonnet-5-5 theo log từng agent.",
         "Mục tiêu Owner 13/11: tối thiểu 12 / tối đa 20 (mỗi máy 6–10); số agent máy phụ = UNKNOWN cho tới khi Oxy báo."
       ],
-      "items": [
-        {
-          "alias": "ctx-b",
-          "id": "a7383a30",
-          "task": "CTX-b: ngân sách ngữ cảnh theo cửa sổ của mô hình (cờ mới, mặc định TẮT)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T07:42:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "code/context/*, CodeAi.kt (nối dây), registry",
-          "reviewer": "QA độc lập sau khi PR mở",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "files-b",
-          "id": "a75d1122",
-          "task": "FILES-b: số tệp tối đa mỗi câu trả lời thành cài đặt (mặc định 10, trần 30)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T07:42:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "OpenLovableBuilder.kt (FILES_MAX), OlLimits, OlPatchParser, OlAnswerRetry, OlPrompts",
-          "reviewer": "QA độc lập sau khi PR mở",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "iso-2t2a",
-          "id": "aa89b122",
-          "task": "Mục 10: test cô lập 2 tenant × 2 ứng dụng (chỉ test; lỗ hổng nếu có thì báo ngay)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T07:42:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "tệp test mới",
-          "reviewer": "QA độc lập sau khi PR mở",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "no37",
-          "id": "a2033d91",
-          "task": "PR NO-37: paid=false tự khai chỉ hợp lệ với địa chỉ loopback/LAN (Owner duyệt A 07:46)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T09:44:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "ProviderAddressPolicy/ProviderBaseUrl/ExternalLLMProvider/AdminAiProvidersController",
-          "reviewer": "QA độc lập sau khi PR mở",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "att-e1",
-          "id": "adb6acc1",
-          "task": "ATT-e1: phiên tải lên nhiều phần (BE, cờ TẮT, migration V102) sau khi Owner duyệt NO-36 (A)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T09:44:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "integration/storage/*, gói mới upload-sessions, migration V102",
-          "reviewer": "QA độc lập sau khi PR mở",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "qa-dash-r6",
-          "id": "a0be42bb",
-          "task": "QA UI dashboard vòng 6 (độc lập)",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T09:47:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "chỉ đọc",
-          "reviewer": "— (là người review)",
-          "machine": "máy chính"
-        }
-      ],
+      "items": [],
       "finished": [
         "QA #254",
         "QA #252",
@@ -8301,9 +8222,9 @@
         "PR #261 T24-3"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T07:43:13+07:00",
-        "status": "Thẻ 7 giao lúc 07:43 (đội review chỉ-đọc, tối đa 6 agent phụ); thẻ 6 (quét hồi quy) giao 07:11; chưa có báo cáo nên số agent ở máy phụ = UNKNOWN (REPORTED khi Oxy báo)",
-        "note": "Việc nặng ở máy phụ vẫn một khe, tải ≤ 4; Docker/giả lập/cô lập là việc Owner"
+        "checkedAt": "2026-11-13T10:27:17+07:00",
+        "status": "Thẻ 9, 10, 11 giao (nới chốt, Docker, PR từ Oxy, route intake có chữ ký, 5 lô test nặng); chưa có báo cáo; số agent phụ UNKNOWN (REPORTED khi Oxy báo)",
+        "note": "Việc nặng chuyển sang Oxy theo Owner (máy chính nghỉ cho Owner code Flutter)"
       }
     },
     "lastOwnerCommentId": 6840348947
@@ -14161,17 +14082,17 @@
           },
           "blocksAI": true,
           "ownerDecision": {
-            "s": "~",
-            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+            "s": "✓",
+            "note": "Owner đã duyệt A (NO-36/NO-DIR-5) lúc 07:46 13/11; ĐÃ DUYỆT, chưa triển khai"
           },
-          "needsOwner": "Có (NO-DIR-5: phạm vi 1 GB, thư viện, RAR, ClamAV, đĩa)",
+          "needsOwner": "Không còn: Owner đã duyệt A (NO-36/NO-DIR-5) lúc 07:46 13/11; ĐÃ DUYỆT, chưa triển khai",
           "code": {
             "s": "✗",
             "note": "ATT-e chưa có PR"
           },
           "pr": {
-            "kind": "missing",
-            "text": "chưa có PR (ATT-e ~98 giờ ước lượng, đợt D)",
+            "kind": "wip",
+            "text": "chưa có PR (ATT-e1: nhánh wip/p38-atte1 chạy test ở máy phụ)",
             "refs": []
           },
           "qa": {
@@ -14190,7 +14111,7 @@
             "s": "✗",
             "note": "Chưa"
           },
-          "blocker": "ATT-e + hạ tầng; chờ NO-DIR-5 (phạm vi 1 GB, thư viện, RAR, quét virus).",
+          "blocker": "ATT-e1 đã có mã (nhánh wip, chưa biên dịch/chạy test); ATT-e2 cần Windows; e3/e4/e5/ATT-f xếp sau; chưa PR/QA",
           "eta": {
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
@@ -16275,17 +16196,17 @@
           },
           "blocksAI": true,
           "ownerDecision": {
-            "s": "~",
-            "note": "Chỉ thị 12/11 cho phép NÂNG qua PR có QA/SEC; chưa có lựa chọn riêng của Owner cho hàng này"
+            "s": "✓",
+            "note": "Owner đã duyệt A (NO-36/NO-DIR-5) lúc 07:46 13/11; ĐÃ DUYỆT, chưa triển khai"
           },
-          "needsOwner": "Có (chung NO-DIR-5)",
+          "needsOwner": "Không còn: Owner đã duyệt A (NO-36/NO-DIR-5) lúc 07:46 13/11; ĐÃ DUYỆT, chưa triển khai",
           "code": {
             "s": "✗",
             "note": "ATT-e chưa có PR"
           },
           "pr": {
-            "kind": "missing",
-            "text": "chưa có PR (ATT-e)",
+            "kind": "wip",
+            "text": "chưa có PR (ATT-e1: nhánh wip/p38-atte1 chạy test ở máy phụ)",
             "refs": []
           },
           "qa": {
@@ -16304,7 +16225,7 @@
             "s": "✗",
             "note": "Chưa"
           },
-          "blocker": "ATT-e (đường 1 GB) chưa có PR; chờ NO-DIR-5.",
+          "blocker": "ATT-e1 đã có mã (nhánh wip, chưa biên dịch/chạy test); ATT-e2 cần Windows; e3/e4/e5/ATT-f xếp sau; chưa PR/QA",
           "eta": {
             "label": "ESTIMATE",
             "text": "file/context/attachment ~22–27/11 (rất thấp; bảng 12 hạng mục #07)"
@@ -16788,14 +16709,13 @@
           "remainingEffortHours": 232,
           "remainingElapsedHours": null,
           "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
+          "updatedAt": "2026-11-13T10:27:17+07:00",
           "basis": "Agent ước lượng chỉ-đọc (ESTIMATE-07-12.md): ~232 giờ công (180–310); kế hoạch cũ cộng ~160 nhưng thiếu ATT-f (lưu văn bản đính kèm + công cụ đọc theo phần) và ATT-e3 (giải nén cô lập) lớn hơn dự tính. Hiệu chuẩn: lát ≤300 dòng cần 2–4 giờ viết + 2–3 giờ QA độc lập; QA, tranh chấp chỗ Gradle (tải 19–20) và chờ bên ngoài là đường găng chứ không phải viết mã",
           "blockers": [
-            "quyết định NO-DIR-5 của Owner",
-            "máy Windows (hạ tầng upload)",
-            "nơi chạy bài thử 1 GB",
-            "CTX-b/FILES-b sau khi #260/#261 merge",
-            "chỗ Gradle: tối đa 2 chỗ cho mục 07"
+            "Windows (hạ tầng upload ATT-e2)",
+            "nơi chạy bài thử 1 GB (Mac DEV đã duyệt: A)",
+            "chỗ chạy việc nặng: máy chính đang nghỉ cho Owner code Flutter, việc nặng chuyển sang Oxy",
+            "ATT-e1 chưa biên dịch/chạy test lần nào"
           ],
           "milestones": [
             {
@@ -16807,7 +16727,7 @@
               "etaAt": "2026-11-16T22:00:00+07:00"
             }
           ],
-          "unknownReason": "Chưa xác định giờ nghiệm thu (PROD ON): xong trên dev sau ~85–125 giờ thực tế (3,5–5 ngày liên tục), lên PROD ON ~7–12 ngày kể từ lúc bắt đầu; còn chờ quyết định NO-DIR-5 của Owner, máy Windows và nơi chạy bài thử 1 GB",
+          "unknownReason": "Chưa xác định giờ nghiệm thu (PROD ON): xong trên dev sau ~85–125 giờ thực tế (3,5–5 ngày liên tục), lên PROD ON ~7–12 ngày kể từ lúc bắt đầu; (Owner đã duyệt NO-DIR-5 = A lúc 07:46) còn chờ NO-DIR-5 của Owner, máy Windows và nơi chạy bài thử 1 GB",
           "startAt": "2026-11-12T19:00:00+07:00",
           "prevEta": "Chưa xác định giờ",
           "waits": [],
@@ -17045,8 +16965,8 @@
       "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
       "blockers": [
         "mục 07 (~232 giờ công) và 12 (~230 giờ công) là ước lượng chưa hiệu chuẩn bằng PR thật; mục 06 đã hiệu chuẩn bằng PAYC-1..6 (~1 giờ/lát)",
-        "phụ thuộc deploy bản gộp (đang bị QA delta chặn)",
-        "Owner: quyết NO-36 (mục 07), ngân sách B1/B3 và giải phóng giữ chỗ"
+        "phụ thuộc deploy bản gộp (QA delta PAYC đã GO; chờ đóng băng cặp cuối)",
+        "Owner: ngân sách B1/B3 và giải phóng giữ chỗ (NO-36 đã duyệt A 07:46)"
       ],
       "milestones": [],
       "unknownReason": "Chưa xác định giờ: các mục 07 và 12 chưa hiệu chuẩn bằng PR thật, giờ VERIFIED toàn bộ phụ thuộc deploy bản gộp (đang bị QA delta chặn) và Owner (ngân sách, giải phóng giữ chỗ); khoảng ESTIMATE 20/11–27/11 (tin cậy thấp)",
