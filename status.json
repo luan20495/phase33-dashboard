@@ -6974,7 +6974,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T14:39:14+07:00",
+    "updatedAt": "2026-11-13T15:38:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6985,11 +6985,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T02:39:48+07:00",
-            "result": "changed",
-            "summary": "Đọc review #257 6833091611 (~02:00); không có comment Owner mới ở #88; trả lời ở #257 chỉ kết quả mới"
-          },
           {
             "at": "2026-11-13T07:12:28+07:00",
             "result": "ok",
@@ -7034,6 +7029,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "ok",
             "summary": "Không có comment Owner/ChatGPT mới (#88 since 07:46, #257 since 11:43)"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới của Owner/ChatGPT trên #88/#257 và Oxy trên #123 kể từ 15:25 (đọc có phân trang + since); không có thay đổi cấu hình"
           }
         ]
       },
@@ -7045,11 +7045,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T01:40:55+07:00",
-            "result": "ok",
-            "summary": "#process khớp thực tế"
-          },
           {
             "at": "2026-11-13T02:39:48+07:00",
             "result": "ok",
@@ -7094,6 +7089,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "ok",
             "summary": "#process khớp thực tế"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "ok",
+            "summary": "Tab Quy trình khớp thực tế: ổ đĩa Finder 66,5 GB (mức 40–70 tích cực), 0 job Gradle trên máy chính, việc nặng ở Oxy"
           }
         ]
       },
@@ -7105,11 +7105,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T02:08:32+07:00",
-            "result": "changed",
-            "summary": "QA cặp ATT-b GO → merge #272/#207; QA #273 đang chạy; QA UI r4 xong"
-          },
           {
             "at": "2026-11-13T02:39:48+07:00",
             "result": "changed",
@@ -7154,6 +7149,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "changed",
             "summary": "Mở PR #277, #278, #279; QA độc lập đọc mã cho #277/#278 (GO có điều kiện); Oxy 2 làn song song"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "ok",
+            "summary": "Đầu PR không đổi: BE #276/#278/#279/#280 và FE #208 vẫn status:qa; 0 agent chạy trên máy chính; chờ kết quả Oxy (REPORTED)"
           }
         ]
       },
@@ -7165,11 +7165,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T01:40:55+07:00",
-            "result": "skipped",
-            "summary": "Không đăng 19 dòng lên #88; phản hồi ở #257"
-          },
           {
             "at": "2026-11-13T02:39:48+07:00",
             "result": "skipped",
@@ -7214,6 +7209,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "skipped",
             "summary": "Không đăng 19 dòng lên #88: không có Owner decision mới"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "skipped",
+            "summary": "Chưa đăng báo cáo 19 dòng: không có thay đổi quan trọng kể từ lần 120"
           }
         ]
       },
@@ -7225,11 +7225,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T02:08:32+07:00",
-            "result": "changed",
-            "summary": "Dashboard: sửa P2-A..E của QA r4; bảng PR 31 dòng; ẩn số tiền USD và tên tài khoản máy; bỏ .playwright-cli"
-          },
           {
             "at": "2026-11-13T02:39:48+07:00",
             "result": "changed",
@@ -7274,6 +7269,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "changed",
             "summary": "Dashboard: prTable (#277-#279), dòng thời gian Oxy, roster"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "changed",
+            "summary": "Dashboard thêm mục làn máy phụ (3 làn + hàng đợi, REPORTED) và dọn danh sách agent (af79034); bản ghi hằng giờ lúc 15:38"
           }
         ]
       },
@@ -7285,11 +7285,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T01:40:55+07:00",
-            "result": "ok",
-            "summary": "df 01:40: 27 GiB; không dọn"
-          },
           {
             "at": "2026-11-13T02:39:48+07:00",
             "result": "changed",
@@ -7334,6 +7329,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "ok",
             "summary": "Finder 65 GB; không dọn thêm"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "ok",
+            "summary": "Finder trống 66,5 GB (>30 GB), df 15 GiB trống phần hệ thống; không cần dọn"
           }
         ]
       },
@@ -7345,11 +7345,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T01:40:55+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); dùng đọc-chỉ rsync sang máy phụ 00:5x"
-          },
           {
             "at": "2026-11-13T02:39:48+07:00",
             "result": "ok",
@@ -7394,6 +7389,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); sắp hết hạn: nếu cần SSH máy chủ thì báo Owner trước 16:40"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "ok",
+            "summary": "Không kiểm khóa SSH máy chủ GCP trong lần này (không đổi); đường SSH Mac→Oxy vẫn đứt do đổi mạng (UNKNOWN)"
           }
         ]
       },
@@ -7405,11 +7405,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T02:08:32+07:00",
-            "result": "changed",
-            "summary": "QA #273 chạy (1 agent); sửa test cũ chờ khe nặng"
-          },
           {
             "at": "2026-11-13T02:39:48+07:00",
             "result": "changed",
@@ -7454,6 +7449,11 @@
             "at": "2026-11-13T14:39:14+07:00",
             "result": "changed",
             "summary": "Máy chính 1 agent (QA đọc mã); việc nặng ở Oxy theo Owner"
+          },
+          {
+            "at": "2026-11-13T15:38:00+07:00",
+            "result": "ok",
+            "summary": "Máy chính 0 agent: không có việc không cần Owner mà máy này làm được (không biên dịch nổi test BE); việc nặng chạy 3 làn ở Oxy; sẽ giao QA bổ sung ngay khi có kết quả Oxy"
           }
         ]
       }
@@ -8298,7 +8298,7 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T15:35:00+07:00",
+      "checkedAt": "2026-11-13T15:38:00+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
