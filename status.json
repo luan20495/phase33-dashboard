@@ -14091,8 +14091,8 @@
             "note": "ATT-e chưa có PR"
           },
           "pr": {
-            "kind": "wip",
-            "text": "chưa có PR (ATT-e1: nhánh wip/p38-atte1 chạy test ở máy phụ)",
+            "kind": "missing",
+            "text": "chưa có PR (ATT-e1: mã ở nhánh wip/p38-atte1, chạy test ở máy phụ; ATT-e ~98 giờ ước lượng)",
             "refs": []
           },
           "qa": {
@@ -16205,8 +16205,8 @@
             "note": "ATT-e chưa có PR"
           },
           "pr": {
-            "kind": "wip",
-            "text": "chưa có PR (ATT-e1: nhánh wip/p38-atte1 chạy test ở máy phụ)",
+            "kind": "missing",
+            "text": "chưa có PR (ATT-e; ATT-e1 ở nhánh wip, chạy test ở máy phụ)",
             "refs": []
           },
           "qa": {
