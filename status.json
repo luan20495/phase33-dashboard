@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T12:38:24+07:00",
+  "asOf": "2026-11-13T13:38:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T12:38:24+07:00",
+  "detailUpdatedAt": "2026-11-13T13:38:49+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6439,13 +6439,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại theo Finder (GB, gồm phần thu hồi được)",
-            "value": 67,
+            "value": 61,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "12:38 ICT 13/11: Finder 67 GB khả dụng (tầng 40–70: dọn chủ động)"
+            "evidence": "13:38 ICT 13/11: Finder 61 GB khả dụng (tầng 40–70: dọn chủ động); đã trim cache build Gradle >6 giờ"
           },
           {
             "id": "disk.t_monitor",
@@ -6974,7 +6974,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T12:38:24+07:00",
+    "updatedAt": "2026-11-13T13:38:49+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6985,11 +6985,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T01:40:55+07:00",
-            "result": "changed",
-            "summary": "Đọc review #257 6832062061 (01:16): xác nhận prTable; còn 5 yêu cầu bằng chứng; trả lời ở #257"
-          },
           {
             "at": "2026-11-13T02:08:32+07:00",
             "result": "changed",
@@ -7034,6 +7029,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
             "summary": "Không có comment Owner/ChatGPT mới ở #88 (since 07:46) và #257 (since 11:43)"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "ok",
+            "summary": "Không có comment Owner/ChatGPT mới (#88 since 07:46, #257 since 11:43)"
           }
         ]
       },
@@ -7045,11 +7045,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T23:38:50+07:00",
-            "result": "ok",
-            "summary": "#process khớp thực tế"
-          },
           {
             "at": "2026-11-13T00:38:49+07:00",
             "result": "ok",
@@ -7094,6 +7089,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
             "summary": "#process khớp thực tế"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "ok",
+            "summary": "#process khớp thực tế"
           }
         ]
       },
@@ -7105,11 +7105,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T00:38:49+07:00",
-            "result": "changed",
-            "summary": "ListAgents 00:38: 2 đang chạy; PR mở BE #262,#263,#265,#266,#267,#271,#272 + FE #204 chờ QA; đã merge BE #268/#269/#270, FE #205/#206 sau QA độc lập"
-          },
           {
             "at": "2026-11-13T01:40:55+07:00",
             "result": "changed",
@@ -7154,6 +7149,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "changed",
             "summary": "0 agent máy chính; không PR mới; Oxy xử lý 5 lô test; endpoint riêng + việc ghi thử PASS"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "ok",
+            "summary": "0 agent máy chính; không PR mới; Oxy báo NO-37 212/213 và CTX-b 217/218 (REPORTED), đã sửa 2 test đỏ; chờ FILES-b và các lô nhỏ"
           }
         ]
       },
@@ -7165,11 +7165,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T23:38:50+07:00",
-            "result": "skipped",
-            "summary": "Không đăng báo cáo 19 dòng lên #88; phản hồi ở #257"
-          },
           {
             "at": "2026-11-13T00:38:49+07:00",
             "result": "skipped",
@@ -7214,6 +7209,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "skipped",
             "summary": "Không đăng 19 dòng lên #88: không có Owner decision mới"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "skipped",
+            "summary": "Không đăng 19 dòng lên #88: không có Owner decision mới"
           }
         ]
       },
@@ -7225,11 +7225,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T00:38:49+07:00",
-            "result": "changed",
-            "summary": "Dashboard: bảng PR chuẩn prTable làm nguồn duy nhất cho trạng thái PR/QA; đồng bộ blockers/groups/uiux"
-          },
           {
             "at": "2026-11-13T01:40:55+07:00",
             "result": "changed",
@@ -7274,6 +7269,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "changed",
             "summary": "Dashboard: dòng thời gian Oxy cập nhật (thẻ 10-17, endpoint, việc ghi thử PASS)"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "changed",
+            "summary": "Dashboard: tiến độ lô NO-37/CTX-b, tài nguyên, bản ghi chạy"
           }
         ]
       },
@@ -7285,11 +7285,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T23:38:50+07:00",
-            "result": "ok",
-            "summary": "df 23:38: 36 GiB; không dọn thêm"
-          },
           {
             "at": "2026-11-13T00:38:49+07:00",
             "result": "ok",
@@ -7334,6 +7329,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
             "summary": "Finder 67 GB; không dọn thêm"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "changed",
+            "summary": "Finder 61 GB; trim cache build Gradle >6 giờ (~3 GB, không có build chạy); không đụng Docker"
           }
         ]
       },
@@ -7345,11 +7345,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T23:38:50+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); đã dùng thật 17:46 và 23:31 (Oxy, chỉ đọc)"
-          },
           {
             "at": "2026-11-13T00:38:49+07:00",
             "result": "ok",
@@ -7394,6 +7389,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); đường SSH tới Oxy đứt do đổi mạng (không dùng); chưa dùng SSH máy chủ"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); chưa dùng SSH máy chủ"
           }
         ]
       },
@@ -7405,11 +7405,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T00:38:49+07:00",
-            "result": "skipped",
-            "summary": "2 agent chạy (tải 5.30 6.53 8.91, đĩa 33 GiB, quy tắc QA một lần); làn Oxy chạy việc nặng thay phần tải"
-          },
           {
             "at": "2026-11-13T01:40:55+07:00",
             "result": "changed",
@@ -7454,6 +7449,11 @@
             "at": "2026-11-13T12:38:24+07:00",
             "result": "skipped",
             "summary": "Việc nặng ở Oxy; máy chính nghỉ cho Owner; sẽ bật tối đa 3 agent khi Oxy báo kết quả"
+          },
+          {
+            "at": "2026-11-13T13:38:49+07:00",
+            "result": "skipped",
+            "summary": "Việc nặng ở Oxy; máy chính chưa cần agent cho đến khi có kết quả/QA"
           }
         ]
       }
@@ -7648,10 +7648,15 @@
         "at": "2026-11-13T12:38:24+07:00",
         "by": "C0",
         "note": "Hourly 12:3x: đường endpoint riêng của hub chạy (đọc + việc ghi thử PASS, idempotent), dòng thời gian Oxy cập nhật, máy chính 0 agent"
+      },
+      {
+        "at": "2026-11-13T13:38:49+07:00",
+        "by": "C0",
+        "note": "Hourly 13:3x: không thay đổi lớn; trim cache build Gradle; ghi tiến độ Oxy (NO-37 212/213, CTX-b 217/218, REPORTED)"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T12:38:24+07:00",
+      "checkedAt": "2026-11-13T13:38:49+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7660,7 +7665,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "12:38: đường giao việc qua endpoint riêng của hub chạy thật (đọc + một việc ghi thử PASS, idempotent); Oxy báo lỗi biên dịch thật cho no37/atte1/iso2t2a (đã sửa, chạy lại); máy chính không biên dịch nổi cây test (swap đầy) nên các lô nặng chuyển hết sang Oxy; 0 agent chạy ở máy chính",
+      "changeSincePrev": "13:38: không PR/merge mới; Oxy báo lô NO-37 (212/213, 1 test đỏ do bình luận nhắc tên lớp có cổng: đã sửa 8715c9bf) và CTX-b (217/218, 1 test đỏ do kỳ vọng sai: đã sửa 5491b0a0), đang chạy FILES-b rồi các lô nhỏ, ATT-e1 chạy lại, cô lập 2T2A; PR NO-37/CTX-b/FILES-b mở khi lô nhỏ xanh",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7699,11 +7704,11 @@
         "Mục 07 (ATT-e*) và NO-37 đã được Owner duyệt (07:46) nhưng CHƯA có mã: ATT-e1 và PR NO-37 đang viết; ATT-e2 cần Windows (hạ tầng), ATT-e3/e4/e5/ATT-f xếp sau"
       ],
       "risks": [
-        "Tài nguyên 12:38: máy chính nhẹ (tải 4.75 4.63 5.64); swap đã dùng ~5 GB; việc nặng ở máy phụ",
+        "Tài nguyên 13:38: máy chính nhẹ (tải 3.68 3.41 3.31); Finder 61 GB giảm dần (67→61 trong 1 giờ); đã dọn cache build Gradle cũ; việc nặng ở máy phụ",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy: Docker Desktop đang chạy từ 09:36 (REPORTED); A3 7/7 và A4 154/154 PASS (REPORTED, chưa kiểm sha256 file vì đổi mạng = UNKNOWN xác minh độc lập); cô lập user/VM và Spotlight là việc Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 67 GB (tầng dọn nhẹ; ngưỡng khẩn 30), tải 4.75 4.63 5.64 (uptime 12:38); việc nặng chạy ở máy phụ",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 61 GB (tầng 40–70 = dọn chủ động; ngưỡng khẩn 30), tải 3.68 3.41 3.31 (uptime 13:38); việc nặng ở máy phụ",
       "ownerNeeds": [
         "Không có thẻ quyết định đang mở (NO-36/37/38 đã duyệt A lúc 07:46: đã duyệt, chưa triển khai)",
         "Làn máy phụ: Docker Desktop + giới hạn, cô lập, Cloudflare Access cho máy chính: Owner giao Claude trên Oxy qua thẻ 8 trên #123 (các bước Owner-only Oxy liệt kê lệnh), chờ báo cáo",
