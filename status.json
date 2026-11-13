@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T07:36:04+07:00",
+  "asOf": "2026-11-13T07:38:18+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T07:36:04+07:00",
+  "detailUpdatedAt": "2026-11-13T07:38:18+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6379,13 +6379,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 77,
+            "value": 76,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "07:36 ICT 13/11: Finder 77 GB khả dụng (tầng 70–100: dọn nhẹ); số thật của ổ (diskutil) 18,5 GB chỉ để tham khảo. Đo Finder bằng: osascript -e 'tell application \"Finder\" to get free space of startup disk'",
+            "evidence": "07:38 ICT 13/11: Finder 76 GB khả dụng (tầng 70–100: dọn nhẹ); số thật của ổ ~18 GB chỉ tham khảo",
             "title": "Dung lượng trống hiện tại theo Finder (GB, gồm phần thu hồi được)"
           },
           {
@@ -6917,7 +6917,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T07:36:04+07:00",
+    "updatedAt": "2026-11-13T07:38:18+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6928,11 +6928,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "ok",
-            "summary": "Không có comment [OWNER]/[CHATGPT] mới ở #88 và #257 từ phản hồi gần nhất (#6822806905)"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "changed",
@@ -6977,6 +6972,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "ok",
             "summary": "Không có comment Owner/ChatGPT mới ở #88/#257 từ 02:44; Owner trả lời câu hỏi Docker trong chat"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới ở #88/#257/#123"
           }
         ]
       },
@@ -6988,11 +6988,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:07:04+07:00",
-            "result": "changed",
-            "summary": "#process: quy tắc QA sau tích hợp, nhóm Quản trị AI/USD; nhãn Việt cho ETA"
-          },
           {
             "at": "2026-11-12T19:38:23+07:00",
             "result": "ok",
@@ -7037,6 +7032,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "ok",
             "summary": "#process khớp thực tế"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "ok",
+            "summary": "#process khớp; ngưỡng đĩa 30 GB theo Finder đã áp dụng"
           }
         ]
       },
@@ -7048,11 +7048,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "changed",
-            "summary": "ListAgents 19:38: 6 đang chạy; PR mở: BE #258, #260, #261, #262; FE #200, #201, #202 (đều status:qa, chưa QA độc lập); agent gộp BE T24+T25 và FE T24-6+T25-5 đang chạy"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "changed",
@@ -7097,6 +7092,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "changed",
             "summary": "ListAgents 07:12: 0 agent chạy lúc đầu kỳ → giao 2; QA PAYC xong (GO có điều kiện); #274/#275 merged; audit 3 controller: 0 P0-P2"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "changed",
+            "summary": "FE #204 đổi head (9fa342ac); 2 agent chạy (sửa PAYC, PR theo dõi); chưa có hand-back"
           }
         ]
       },
@@ -7108,11 +7108,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:07:04+07:00",
-            "result": "skipped",
-            "summary": "Không đăng báo cáo 19 dòng: dùng bảng 12 hạng mục ở #88 và phản hồi ở #257"
-          },
           {
             "at": "2026-11-12T19:38:23+07:00",
             "result": "skipped",
@@ -7157,6 +7152,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "skipped",
             "summary": "Không đăng 19 dòng lên #88; không có quyết định mới"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "skipped",
+            "summary": "Không đăng 19 dòng lên #88; không có thay đổi lớn"
           }
         ]
       },
@@ -7168,11 +7168,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "changed",
-            "summary": "Dashboard: hiệu chuẩn PAYC-1 vào ETA mục 06; ước lượng mục 07/12; census agent"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "changed",
@@ -7217,6 +7212,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "changed",
             "summary": "Dashboard: prTable (#274/#275 merged, kết quả QA PAYC), agents, blockers, rủi ro đĩa"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "changed",
+            "summary": "Dashboard: head #204, đĩa Finder, bản ghi chạy"
           }
         ]
       },
@@ -7228,11 +7228,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:07:04+07:00",
-            "result": "changed",
-            "summary": "Đĩa 15 GiB trống (dưới ngưỡng khẩn 20); đã xóa 15 worktree sạch đã merge; lệnh xóa volume Docker bị chặn, chờ Owner"
-          },
           {
             "at": "2026-11-12T19:38:23+07:00",
             "result": "ok",
@@ -7277,6 +7272,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "changed",
             "summary": "diskutil 07:12: 20.9 GB; xóa 39 volume Docker vô danh không dùng (>6h, đã liệt kê trước, Owner cho phép) + cache build Gradle >6h"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "ok",
+            "summary": "Finder 76 GB (tầng dọn nhẹ); không dọn thêm"
           }
         ]
       },
@@ -7288,11 +7288,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:07:04+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH 24 giờ nạp lúc ~16:40, hết ~16:40 ngày 13/11 (REPORTED); đã dùng thật lúc 17:46 để đọc PROD"
-          },
           {
             "at": "2026-11-12T19:38:23+07:00",
             "result": "ok",
@@ -7337,6 +7332,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); kiểm lại trước giờ đó"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED)"
           }
         ]
       },
@@ -7348,11 +7348,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T19:38:23+07:00",
-            "result": "ok",
-            "summary": "6 agent đang chạy (<10); không tăng thêm vì đĩa và 3 chỗ Gradle"
-          },
           {
             "at": "2026-11-12T20:40:13+07:00",
             "result": "skipped",
@@ -7397,6 +7392,11 @@
             "at": "2026-11-13T07:12:28+07:00",
             "result": "changed",
             "summary": "Giao 2 agent (sửa PAYC, PR theo dõi) + thẻ 6 cho làn Oxy; còn thiếu 2 so với mức tối thiểu 4 vì một khe Gradle"
+          },
+          {
+            "at": "2026-11-13T07:38:18+07:00",
+            "result": "ok",
+            "summary": "2 agent chạy; thẻ 6 cho Oxy đang chờ; một khe Gradle"
           }
         ]
       }
@@ -7534,7 +7534,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T07:12:28+07:00",
+      "checkedAt": "2026-11-13T07:38:18+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7543,7 +7543,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "07:12: merge sau QA độc lập BE #274 (sửa 2 test route-list cũ + test chập chờn) và #275 (sửa thứ tự bảo vệ P3-1 + test IAM); dev BE 26555636, FE 7c940a24; QA chuỗi PAYC (BE #271 + FE #204) xong: GO có điều kiện, agent sửa 4 điều kiện đang chạy; audit chỉ-đọc 3 controller bị cờ che: 0 P0-P2, 5 P3; Oxy: thẻ 6 (quét hồi quy trên đỉnh dev) vừa giao; đã xóa 39 volume Docker vô danh không dùng theo ý Owner; bảng PR chuẩn: đã merge 24, đang mở 8",
+      "changeSincePrev": "07:38: FE #204 đổi head (agent sửa điều kiện PAYC đã push, chưa có QA delta); còn lại không đổi so với 07:1x",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7586,7 +7586,7 @@
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy (máy thứ hai): thẻ 1-5 đã có kết quả (FE unit đầy đủ, guard, BE lớp thuần PASS); Docker Desktop chưa khởi động, bước sudo/Docker/cô lập chờ Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa máy chính 20.9 GB trống (diskutil 07:12), tải 11.16 5.13 3.36 (uptime 07:12); làn máy phụ: thẻ 1-5 có kết quả, thẻ 6 đã giao, chưa 'sẵn sàng'",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 76 GB khả dụng (tầng dọn nhẹ; ngưỡng khẩn 30), tải 5.64 9.96 10.29 (uptime 07:38); làn máy phụ: thẻ 6 đã giao, chưa báo",
       "ownerNeeds": [
         "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm, mục 07) và NO-37 (bảo mật nhà cung cấp: paid=false tự khai) ở tab Chờ anh quyết",
         "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
@@ -7688,8 +7688,8 @@
         ]
       },
       "prTable": {
-        "checkedAt": "2026-11-13T07:12:28+07:00",
-        "source": "gh pr view lúc 07:12 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "checkedAt": "2026-11-13T07:38:18+07:00",
+        "source": "gh pr view lúc 07:38 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
         "summary": "24 PR đã merge dev sau QA độc lập; 8 PR đang mở chưa có kết luận QA độc lập",
         "items": [
           {
@@ -7960,11 +7960,11 @@
             "repo": "Xweb01fe",
             "pr": 204,
             "state": "OPEN",
-            "head": "2090b5d8",
+            "head": "9fa342ac",
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "QA GO (cặp PAYC); cần đồng bộ vendored/tài liệu cùng BE #271",
+            "qa": "head đổi sau QA (agent sửa điều kiện đã push); cần QA delta trên head mới",
             "qaReport": "QA-PAYC-PAIR.md"
           },
           {
@@ -8048,8 +8048,8 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T07:12:28+07:00",
-      "source": "ListAgents lúc 07:12 ICT (chụp trực tiếp)",
+      "checkedAt": "2026-11-13T07:38:18+07:00",
+      "source": "ListAgents lúc 07:38 ICT (chụp trực tiếp)",
       "cap": 10,
       "counts": {
         "RUNNING_TOTAL": 2,
@@ -8060,7 +8060,7 @@
         "HUNG_SUSPECTED": 0,
         "FINISHED": 47
       },
-      "resources": "Tải 11.16 5.13 3.36; đĩa 20.9 GB (diskutil 07:12)",
+      "resources": "Tải 5.64 9.96 10.29; Finder 76 GB",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
