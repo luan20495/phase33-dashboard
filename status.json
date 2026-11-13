@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T07:40:53+07:00",
+  "asOf": "2026-11-13T07:43:13+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T07:40:53+07:00",
+  "detailUpdatedAt": "2026-11-13T07:43:13+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6933,7 +6933,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T07:40:53+07:00",
+    "updatedAt": "2026-11-13T07:43:13+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7552,10 +7552,15 @@
         "at": "2026-11-13T07:40:53+07:00",
         "by": "C0",
         "note": "Owner 13/11: tối thiểu 12 / tối đa 20 agent (mỗi máy 6–10); thêm quy tắc kiểm soát review và ghi chú việc nặng vào #process"
+      },
+      {
+        "at": "2026-11-13T07:43:13+07:00",
+        "by": "C0",
+        "note": "Owner yêu cầu tăng tốc: giao 4 agent mới ở máy chính (CTX-b, FILES-b, cô lập 2T2A, QA UI r5) + QA #276; thẻ 7 cho Oxy (đội review chỉ-đọc, tối đa 6 agent phụ); bảng agent ghi tệp khóa và người review"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T07:38:18+07:00",
+      "checkedAt": "2026-11-13T07:43:13+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7629,7 +7634,7 @@
         "proof": "QA vòng 4 độc lập trên c13726b (Pages cùng SHA, byte-identical); các sửa sau đó chỉ có C0 tự chạy (5 bộ test: 4 PASS, shell-ui chỉ còn 2 lỗi nền 06 và 16; kiểm trình duyệt thẻ NO-37 ở 320 px: không tràn). Chưa có QA độc lập trên SHA sửa",
         "open": "QA vòng 5 trên SHA sửa; trạng thái ASSIGNED/EXECUTING của timeline chưa kiểm (dữ liệu chỉ có RESULT/UNASSIGNED); lịch sử git còn chứa tên tài khoản máy và tệp .playwright-cli cũ (cần Owner quyết nếu muốn viết lại lịch sử)"
       },
-      "agentCensus": "2 đang chạy (sửa điều kiện PAYC, PR theo dõi controller), 47 đã xong, 0 nghi treo; có khoảng trống 03:40-07:10 khi chờ Owner trả lời câu hỏi Docker (không agent nào chạy) — dưới mức tối thiểu 4 vì chỉ có một khe Gradle nặng; đĩa 20.9 GB",
+      "agentCensus": "Máy chính: 6 đang chạy (sửa PAYC, QA #276, CTX-b, FILES-b, cô lập 2T2A, QA UI r5), 50 đã xong, 0 nghi treo. Máy phụ: UNKNOWN (thẻ 6 và 7 chờ báo cáo). Mục tiêu Owner: 12–20, mỗi máy 6–10. Việc nặng vẫn qua khe chung.",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -8069,19 +8074,19 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T07:38:18+07:00",
-      "source": "ListAgents lúc 07:38 ICT (chụp trực tiếp)",
+      "checkedAt": "2026-11-13T07:43:13+07:00",
+      "source": "ListAgents lúc 07:43 ICT (chụp trực tiếp)",
       "cap": 10,
       "counts": {
-        "RUNNING_TOTAL": 2,
-        "WORKING": 2,
+        "RUNNING_TOTAL": 6,
+        "WORKING": 6,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 47
+        "FINISHED": 50
       },
-      "resources": "Tải 5.64 9.96 10.29; Finder 76 GB",
+      "resources": "Tải 9.13 7.79 9.12; Finder 76 GB; hạn mức: tối thiểu 12 / tối đa 20 (mỗi máy 6–10)",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
@@ -8091,7 +8096,7 @@
         {
           "alias": "payc-fix",
           "id": "a3565799",
-          "task": "Sửa 4 điều kiện QA chuỗi PAYC: BE #271 (C1 guard, C3 inventory, C4 test HTTP/Postgres, tài liệu) + FE #204 + đồng bộ vendored",
+          "task": "Sửa 4 điều kiện QA chuỗi PAYC: BE #271 + FE #204 + đồng bộ vendored/tài liệu",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
@@ -8099,20 +8104,90 @@
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
           "etaAt": null,
-          "waitReason": null
+          "waitReason": null,
+          "files": "BE #271 (nhánh payc2) + FE #204",
+          "reviewer": "QA delta độc lập sau khi push xong",
+          "machine": "máy chính"
         },
         {
-          "alias": "flagged-fu",
-          "id": "a266cf77",
-          "task": "PR theo dõi: test CSRF không rỗng, P4 SystemCatalog thứ tự bảo vệ, P3-2 compensate",
+          "alias": "qa-276",
+          "id": "ae112c90",
+          "task": "QA+SEC độc lập BE #276 (CSRF không rỗng, SystemCatalog guard-first, compensate luôn chốt trạng thái)",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-13T07:08:00+07:00",
+          "startAt": "2026-11-13T07:42:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
           "etaAt": null,
-          "waitReason": null
+          "waitReason": null,
+          "files": "chỉ đọc (worktree qa-pr276)",
+          "reviewer": "— (là người review)",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "ctx-b",
+          "id": "a7383a30",
+          "task": "CTX-b: ngân sách ngữ cảnh theo cửa sổ của mô hình (cờ mới, mặc định TẮT)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "requestedModel trong log (VERIFIED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T07:42:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "đang chạy lúc chụp",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "code/context/*, CodeAi.kt (nối dây), registry",
+          "reviewer": "QA độc lập sau khi PR mở",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "files-b",
+          "id": "a75d1122",
+          "task": "FILES-b: số tệp tối đa mỗi câu trả lời thành cài đặt (mặc định 10, trần 30)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "requestedModel trong log (VERIFIED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T07:42:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "đang chạy lúc chụp",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "OpenLovableBuilder.kt (FILES_MAX), OlLimits, OlPatchParser, OlAnswerRetry, OlPrompts",
+          "reviewer": "QA độc lập sau khi PR mở",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "iso-2t2a",
+          "id": "aa89b122",
+          "task": "Mục 10: test cô lập 2 tenant × 2 ứng dụng (chỉ test; lỗ hổng nếu có thì báo ngay)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "requestedModel trong log (VERIFIED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T07:42:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "đang chạy lúc chụp",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "tệp test mới",
+          "reviewer": "QA độc lập sau khi PR mở",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "qa-dash-r5",
+          "id": "a9680a08",
+          "task": "QA UI dashboard vòng 5 (độc lập, trên SHA ab78d1c hoặc mới hơn)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "requestedModel trong log (VERIFIED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T07:42:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "đang chạy lúc chụp",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "chỉ đọc (clone riêng)",
+          "reviewer": "— (là người review)",
+          "machine": "máy chính"
         }
       ],
       "finished": [
@@ -8125,7 +8200,12 @@
         "PR #259 + QA",
         "PR #260 T25-3",
         "PR #261 T24-3"
-      ]
+      ],
+      "oxy": {
+        "checkedAt": "2026-11-13T07:43:13+07:00",
+        "status": "Thẻ 7 giao lúc 07:43 (đội review chỉ-đọc, tối đa 6 agent phụ); thẻ 6 (quét hồi quy) giao 07:11; chưa có báo cáo nên số agent ở máy phụ = UNKNOWN (REPORTED khi Oxy báo)",
+        "note": "Việc nặng ở máy phụ vẫn một khe, tải ≤ 4; Docker/giả lập/cô lập là việc Owner"
+      }
     }
   },
   "aiLimits": {
