@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T09:53:44+07:00",
+  "asOf": "2026-11-13T10:23:41+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T09:53:44+07:00",
+  "detailUpdatedAt": "2026-11-13T10:23:41+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6090,6 +6090,17 @@
             "value": "Không động tới PROD ngoài quy trình triển khai đã duyệt; không đổi ngân sách/hard cap USD, IAM, audit, bốn mắt; không xóa dữ liệu/volume hay push --force; không đăng bí mật/IP/hostname/số tiền lên chỗ công khai; không vòng qua Cloudflare Access (cấp danh tính là việc Owner); FileVault/sshd/sudo là việc Owner",
             "state": "applied",
             "evidence": "09:47 ICT 13/11: ghi lại khi Owner mở các chốt vận hành"
+          },
+          {
+            "id": "agents.pause_heavy",
+            "label": "Tạm dừng việc nặng ở máy chính (Owner code Flutter)",
+            "type": "text",
+            "editable": false,
+            "explain": "Owner dùng máy chính để code; việc nặng chuyển sang Oxy.",
+            "impact": "",
+            "value": "TẠM DỪNG từ 10:23 ICT 13/11: không Gradle/Docker/Chrome/npm test ở máy chính; agent chỉ viết code/test/tài liệu và commit cục bộ; chờ Owner báo xong để 'resume'. Việc nặng chạy ở Oxy (thẻ 9/10).",
+            "state": "applied",
+            "evidence": "10:23 ICT 13/11: Owner nhắn 'hạ xuống đê, anh code flutter'; đã dừng 4 job Gradle + daemon Kotlin/Gradle của agent (kill theo pid)"
           }
         ]
       },
@@ -6950,7 +6961,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T09:53:44+07:00",
+    "updatedAt": "2026-11-13T10:23:41+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7604,6 +7615,11 @@
         "at": "2026-11-13T09:53:44+07:00",
         "by": "C0",
         "note": "Merge FE #204 + BE #271 (cả chuỗi PAYC) sau QA delta độc lập GO, cờ TẮT; mục 06 code/qa = một phần; #262-#267 tự MERGED; roster cập nhật"
+      },
+      {
+        "at": "2026-11-13T10:23:41+07:00",
+        "by": "C0",
+        "note": "Owner yêu cầu hạ tải để code Flutter: dừng 4 job Gradle + daemon của agent (kill theo pid), tạm dừng việc nặng ở máy chính; agent chỉ viết/commit cục bộ; kết quả các job bị dừng = NOT_RUN"
       }
     ],
     "summary": {
@@ -7655,7 +7671,7 @@
         "Mục 07 (ATT-e*) và NO-37 đã được Owner duyệt (07:46) nhưng CHƯA có mã: ATT-e1 và PR NO-37 đang viết; ATT-e2 cần Windows (hạ tầng), ATT-e3/e4/e5/ATT-f xếp sau"
       ],
       "risks": [
-        "Tài nguyên (đo 08:41): tải 22.07 32.05 38.25 (đỉnh 62), Finder 71 GB; tiến trình Kotlin compile daemon mồ côi chiếm ~400% CPU phục vụ build của agent QA delta PAYC (không kill); nhiều job Gradle/Testcontainers chờ nhau",
+        "Tài nguyên 10:23: Owner dùng máy chính để code Flutter nên việc nặng tạm dừng; trước đó tải 22-67 và swap gần đầy; kết quả các job bị dừng = NOT_RUN",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy (máy thứ hai): thẻ 1-5 đã có kết quả (FE unit đầy đủ, guard, BE lớp thuần PASS); Docker Desktop chưa khởi động, bước sudo/Docker/cô lập chờ Owner"
       ],
@@ -7683,7 +7699,7 @@
         "proof": "QA vòng 5 độc lập trên ab78d1c; các sửa sau đó chỉ có C0 tự chạy (bộ test + kiểm trình duyệt)",
         "open": "QA vòng 6 trên SHA sửa"
       },
-      "agentCensus": "Máy chính: 6 đang chạy (ctx-b, files-b, iso-2t2a, no37, att-e1, qa-dash-r6); đã xong gồm QA delta PAYC, slot v2, QA #276 chỉ đọc. Máy phụ: thẻ 9 đang chạy (số agent phụ UNKNOWN). Owner đã mở các chốt; giới hạn còn lại là CPU/RAM (tải 18.19 28.36 29.25).",
+      "agentCensus": "10:23: TẠM DỪNG việc nặng ở máy chính theo Owner (code Flutter): 4 job Gradle đã dừng (NOT_RUN: cô lập 2T2A, FILES-b, NO-37, CTX-b); agent chỉ viết/commit cục bộ; ATT-e1, NO-37, CTX-b, FILES-b chưa có PR; việc nặng chuyển cho Oxy",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
