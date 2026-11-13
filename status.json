@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T09:40:49+07:00",
+  "asOf": "2026-11-13T09:47:50+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T09:40:49+07:00",
+  "detailUpdatedAt": "2026-11-13T09:47:50+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -5933,33 +5933,34 @@
             "impact": "Tăng: nhiều việc chạy song song hơn, máy tải cao hơn. Giảm: chậm hơn.",
             "state": "applied",
             "min": 1,
-            "max": 20,
+            "max": 40,
             "evidence": "Owner 07:40 ICT 13/11 (chat): tối thiểu 12 agent, mỗi máy 6"
           },
           {
             "id": "agents.max",
             "label": "Số agent tối đa",
-            "value": 20,
+            "value": 30,
             "type": "number",
             "editable": true,
             "explain": "Trần thông thường.",
             "impact": "Vượt trần làm máy quá tải (Mac dùng chung).",
             "state": "applied",
             "min": 1,
-            "max": 20,
-            "evidence": "Owner 07:40 ICT 13/11 (chat): tối đa 20 agent cho 2 máy, mỗi máy 10"
+            "max": 40,
+            "evidence": "Owner 09:47 ICT 13/11 (chat): 'không cần giới hạn gì, mở hết ra, hai máy làm thoải mái' → trần chính sách nâng lên 30 (mỗi máy tối đa ~15); giới hạn thật còn lại là CPU/RAM"
           },
           {
             "id": "agents.max_extra",
             "label": "Lên tối đa khi máy rảnh và việc không đụng nhau",
-            "value": 20,
+            "value": 30,
             "type": "number",
             "editable": true,
             "explain": "Chỉ dùng khi tải máy thấp và các việc không chung file.",
             "impact": "Cao hơn tăng nguy cơ xung đột file và nghẽn Gradle/trình duyệt.",
             "state": "applied",
             "min": 1,
-            "max": 20
+            "max": 40,
+            "evidence": "Owner 09:47 ICT 13/11 (chat): 'không cần giới hạn gì, mở hết ra, hai máy làm thoải mái' → trần chính sách nâng lên 30 (mỗi máy tối đa ~15); giới hạn thật còn lại là CPU/RAM"
           },
           {
             "id": "agents.heavy_one",
@@ -6070,7 +6071,7 @@
           },
           {
             "id": "agents.heavy_note",
-            "value": "Số agent (đọc/viết/review) tăng lên 12–20, nhưng việc nặng (Gradle, Docker, trình duyệt) vẫn đi qua khe chung: tối đa 1 việc nặng mỗi máy, tối đa 2 nếu tải 1 phút dưới 6 và đĩa Finder trên 50 GB; Oxy: một khe nặng, tải ≤ 4",
+            "value": "Owner 13/11 bỏ các chốt tự đặt. Còn lại là giới hạn vật lý: máy chính tối đa 3 job nặng cùng lúc (giới hạn của script slot; script v2 sẵn sàng); Oxy: tải ≤ 8, RAM ≥ 3 GB, đĩa ≥ 20 GiB, hủy khi tải > 12 liên tục 2 phút, tối đa 2 job nặng (thẻ 9)",
             "state": "applied",
             "evidence": "07:40 ICT 13/11",
             "label": "Agent khác việc nặng",
@@ -6078,6 +6079,17 @@
             "editable": false,
             "explain": "Agent nhiều không có nghĩa việc nặng nhiều.",
             "impact": ""
+          },
+          {
+            "id": "agents.hard_boundaries",
+            "label": "Ranh giới không nới dù 'mở hết'",
+            "type": "text",
+            "editable": false,
+            "explain": "Các bảo vệ của chính Owner, không phải throttle vận hành.",
+            "impact": "",
+            "value": "Không động tới PROD ngoài quy trình triển khai đã duyệt; không đổi ngân sách/hard cap USD, IAM, audit, bốn mắt; không xóa dữ liệu/volume hay push --force; không đăng bí mật/IP/hostname/số tiền lên chỗ công khai; không vòng qua Cloudflare Access (cấp danh tính là việc Owner); FileVault/sshd/sudo là việc Owner",
+            "state": "applied",
+            "evidence": "09:47 ICT 13/11: ghi lại khi Owner mở các chốt vận hành"
           }
         ]
       },
@@ -6938,7 +6950,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T09:40:49+07:00",
+    "updatedAt": "2026-11-13T09:47:50+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7582,6 +7594,11 @@
         "at": "2026-11-13T09:40:49+07:00",
         "by": "C0",
         "note": "Phát hiện đã BỎ SÓT comment Owner 07:46 (duyệt NO-36/37/38 = A) vì đọc #88 không phân trang (chỉ thấy trang đầu); đã sửa cách đọc; đóng 3 thẻ (APPROVED, chưa triển khai), giao ATT-e1 và PR NO-37, đặt danh tính tác giả trung tính cho commit mới"
+      },
+      {
+        "at": "2026-11-13T09:47:50+07:00",
+        "by": "C0",
+        "note": "Owner 13/11: bỏ các chốt tự đặt, hai máy làm thoải mái; nâng trần agent chính sách lên 30; giao thẻ 9 cho Oxy (nới chốt khe nặng, Docker, chạy lớp BE Docker); giữ ranh giới an toàn của Owner; hub-check.sh chỉ đọc đã viết (EDGE_ONLY vì chưa có danh tính Access)"
       }
     ],
     "summary": {
