@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T07:38:18+07:00",
+  "asOf": "2026-11-13T07:40:53+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T07:38:18+07:00",
+  "detailUpdatedAt": "2026-11-13T07:40:53+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -5926,31 +5926,33 @@
           {
             "id": "agents.min",
             "label": "Số agent tối thiểu khi còn việc",
-            "value": 6,
+            "value": 12,
             "type": "number",
             "editable": true,
             "explain": "Luôn duy trì ít nhất số này khi đủ việc và tài nguyên.",
             "impact": "Tăng: nhiều việc chạy song song hơn, máy tải cao hơn. Giảm: chậm hơn.",
             "state": "applied",
             "min": 1,
-            "max": 10
+            "max": 10,
+            "evidence": "Owner 07:40 ICT 13/11 (chat): tối thiểu 12 agent, mỗi máy 6"
           },
           {
             "id": "agents.max",
             "label": "Số agent tối đa",
-            "value": 10,
+            "value": 20,
             "type": "number",
             "editable": true,
             "explain": "Trần thông thường.",
             "impact": "Vượt trần làm máy quá tải (Mac dùng chung).",
             "state": "applied",
             "min": 1,
-            "max": 10
+            "max": 10,
+            "evidence": "Owner 07:40 ICT 13/11 (chat): tối đa 20 agent cho 2 máy, mỗi máy 10"
           },
           {
             "id": "agents.max_extra",
             "label": "Lên tối đa khi máy rảnh và việc không đụng nhau",
-            "value": 10,
+            "value": 20,
             "type": "number",
             "editable": true,
             "explain": "Chỉ dùng khi tải máy thấp và các việc không chung file.",
@@ -6054,6 +6056,20 @@
             "impact": "Xóa bằng chứng làm mất khả năng truy vết nghiệm thu.",
             "state": "applied",
             "evidence": "Dọn chỉ chạm worktree/build; ~/xweb-handoff/agents giữ nguyên"
+          },
+          {
+            "id": "agents.review_control",
+            "title": "Kiểm soát review (tránh loạn khi nhiều agent)",
+            "value": "Mỗi PR đúng 1 agent làm + 1 agent QA độc lập khác; QA một lần sau khi BE+FE+tích hợp xong; khóa tệp: hai agent không sửa cùng tệp (bảng agent ghi tệp); tối đa 2 PR mở cho một hạng mục; mọi push sau QA làm mất hiệu lực QA (QA delta); chỉ C0 merge, bằng --match-head-commit trên head đã QA; agent dừng sau báo cáo cuối (không gửi lại); số liệu agent tự báo = REPORTED cho đến khi C0 kiểm bằng gh",
+            "state": "applied",
+            "evidence": "07:40 ICT 13/11: Owner yêu cầu kiểm soát review kỹ khi tăng lên 12–20 agent"
+          },
+          {
+            "id": "agents.heavy_note",
+            "title": "Agent khác việc nặng",
+            "value": "Số agent (đọc/viết/review) tăng lên 12–20, nhưng việc nặng (Gradle, Docker, trình duyệt) vẫn đi qua khe chung: tối đa 1 việc nặng mỗi máy, tối đa 2 nếu tải 1 phút dưới 6 và đĩa Finder trên 50 GB; Oxy: một khe nặng, tải ≤ 4",
+            "state": "applied",
+            "evidence": "07:40 ICT 13/11"
           }
         ]
       },
@@ -6917,7 +6933,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T07:38:18+07:00",
+    "updatedAt": "2026-11-13T07:40:53+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7531,6 +7547,11 @@
         "at": "2026-11-13T07:36:04+07:00",
         "by": "C0",
         "note": "Owner chốt ngưỡng đĩa theo số Finder: dưới 30 GB = cảnh báo khẩn; cập nhật #process (disk.t_urgent 30, disk.t_aggressive 30–40, nguồn đo Finder)"
+      },
+      {
+        "at": "2026-11-13T07:40:53+07:00",
+        "by": "C0",
+        "note": "Owner 13/11: tối thiểu 12 / tối đa 20 agent (mỗi máy 6–10); thêm quy tắc kiểm soát review và ghi chú việc nặng vào #process"
       }
     ],
     "summary": {
