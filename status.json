@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T08:06:11+07:00",
+  "asOf": "2026-11-13T08:19:24+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T08:06:11+07:00",
+  "detailUpdatedAt": "2026-11-13T08:19:24+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6938,7 +6938,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T08:06:11+07:00",
+    "updatedAt": "2026-11-13T08:19:24+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7567,6 +7567,11 @@
         "at": "2026-11-13T08:06:11+07:00",
         "by": "C0",
         "note": "QA UI r5 (ab78d1c, GO có điều kiện): sửa nhãn #process (P2-F/G), chuỗi trạng thái không ngắt dòng (P2-H), dữ liệu mâu thuẫn (P2-B..E), prTable thêm #276"
+      },
+      {
+        "at": "2026-11-13T08:19:24+07:00",
+        "by": "C0",
+        "note": "Thẻ 6 (PASS, verified) và thẻ 7 (6/6 review, REPORTED) của Oxy ghi vào dashboard; sửa 3 lỗi tài liệu lane theo R5; giao agent làm script slot v2"
       }
     ],
     "summary": {
@@ -7645,7 +7650,7 @@
         "proof": "QA vòng 5 độc lập trên ab78d1c; các sửa sau đó chỉ có C0 tự chạy (bộ test + kiểm trình duyệt)",
         "open": "QA vòng 6 trên SHA sửa"
       },
-      "agentCensus": "Máy chính: 6 đang chạy hoặc vừa xong (QA delta PAYC, QA #276, CTX-b, FILES-b, cô lập 2T2A; QA UI r5 vừa xong), 51 đã xong, 0 nghi treo. Máy phụ: UNKNOWN (thẻ 6 và 7 chờ báo cáo). Mục tiêu Owner: tối thiểu 12 / tối đa 20.",
+      "agentCensus": "Máy chính: 6 đang chạy (QA delta PAYC, QA #276, CTX-b, FILES-b, cô lập 2T2A, script slot v2); đã xong: sửa PAYC, QA UI r5. Máy phụ: thẻ 7 dùng 6 agent phụ (REPORTED, đã xong). Mục tiêu Owner: tối thiểu 12 / tối đa 20.",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7679,8 +7684,8 @@
         "verdict": "SEC GO có điều kiện cho #270 (C1: Owner quyết thẻ NO-37; C2: lá chắn nguồn chỉ là chốt cảnh báo, đang sửa trong PR theo sau; C3: kiểm môi trường DEV trước khi triển khai); chưa deploy; PROD không đổi"
       },
       "oxyLane": {
-        "checkedAt": "2026-11-13T01:38:46+07:00",
-        "status": "Thẻ 1-5 đã THỰC HIỆN và có KẾT QUẢ đã kéo về + sha256; chưa 'sẵn sàng' theo checklist (12 PASS / 10 NOT_RUN trong 22 dòng bắt buộc)",
+        "checkedAt": "2026-11-13T08:19:24+07:00",
+        "status": "Thẻ 1-7 đã THỰC HIỆN và có KẾT QUẢ đã kéo về + sha256; chưa 'sẵn sàng' theo checklist (12 PASS / 10 NOT_RUN / 22 dòng bắt buộc); agent phụ ở máy phụ: thẻ 7 dùng 6 (REPORTED)",
         "facts": "Máy phụ: 16 GiB RAM, SSD 228 GB (86 GiB trống), JDK 21, Node 24; Docker Desktop đã cài nhưng chưa chạy. Trên đỉnh dev: guard 9/7/0 và 168/0/110 khớp máy chính; BE lớp thuần 21 test 0 lỗi (5 phút 22 giây); FE unit đầy đủ 6108 test, 6100 pass, 0 fail, 8 bỏ qua với song song 3 (đỉnh tải 4,44). Script gốc test:unit bị hủy vì tải 10,63 (ABORTED_LOAD, không tính PASS/FAIL).",
         "timeline": [
           {
@@ -7714,15 +7719,32 @@
             "note": "PASS 6108/6100/0/0/8; 4/4 sha256 khớp (máy chính xác minh 01:12)"
           },
           {
+            "card": "Thẻ 6 quét hồi quy trên đỉnh dev",
+            "state": "RESULT",
+            "at": "2026-11-13T08:10:00+07:00",
+            "note": "PASS 5/5; 5/5 sha256 khớp; FE unit 6121/6113/0/0/8, BE lớp thuần BUILD SUCCESSFUL (máy chính xác minh 08:16)"
+          },
+          {
+            "card": "Thẻ 7 đội review chỉ-đọc (6 agent phụ)",
+            "state": "RESULT",
+            "at": "2026-11-13T08:20:00+07:00",
+            "note": "6/6 báo cáo, 6/6 sha256 khớp; mọi phát hiện = REPORTED, đang tái hiện (R4 chuyển cho QA delta PAYC; R3 guard-first = #276; R6 → làm lại script slot v2)"
+          },
+          {
             "card": "Thẻ tiếp theo",
             "state": "UNASSIGNED",
-            "at": "2026-11-13T01:38:46+07:00",
-            "note": "chưa có thẻ; việc đầu tiên đáng giao là QA cặp PAYC BE+FE sau khi tích hợp xong"
+            "at": "2026-11-13T08:19:24+07:00",
+            "note": "chưa có thẻ; việc kế: QA FE/BE lớp thuần cho PR mới khi QA chính cần song song"
           }
         ],
         "ownerNeeded": [
           "Làn máy phụ (chat, chưa là thẻ): mở Docker Desktop + giới hạn tài nguyên, tắt giả lập Android khi chạy việc nặng, cô lập (user/VM riêng). Chưa có các việc này thì lớp BE cần Docker không chạy được ở máy phụ."
-        ]
+        ],
+        "reviewFindings": {
+          "checkedAt": "2026-11-13T08:19:24+07:00",
+          "source": "Thẻ 7 (REPORTED, chưa tái hiện độc lập)",
+          "summary": "R1 FE #207/BE #272: 0 P0/P1, 1 P2; R2 BE #273: 0/0/3 P2 (DNS rebinding đã biết, NAT64 tiền tố riêng, 192.0.0.192); R3 BE #274/#275: 0/0/2 P2 (guard-first SystemCatalog = đã sửa trong #276; đọc body trước guard ở OperationPolicy: đã xác nhận trong mã, mức thấp); R4 FE #204: 0/0/2 P2 (đang kiểm ở QA delta); R5 dashboard: 3 P1 lịch sử git (NO-38), 3 P2 tài liệu (đã sửa 08:3x); R6 script slot: 1 P0 (tin cậy thấp) + 7 P1 (đang tái hiện, làm v2)"
+        }
       },
       "prTable": {
         "checkedAt": "2026-11-13T08:06:11+07:00",
@@ -8096,7 +8118,7 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T07:43:13+07:00",
+      "checkedAt": "2026-11-13T08:19:24+07:00",
       "source": "ListAgents lúc 07:43 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
@@ -8116,22 +8138,6 @@
         "Mục tiêu Owner 13/11: tối thiểu 12 / tối đa 20 (mỗi máy 6–10); số agent máy phụ = UNKNOWN cho tới khi Oxy báo."
       ],
       "items": [
-        {
-          "alias": "payc-fix",
-          "id": "a3565799",
-          "task": "Sửa 4 điều kiện QA chuỗi PAYC: BE #271 + FE #204 + đồng bộ vendored/tài liệu",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "requestedModel trong log (VERIFIED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T07:08:00+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "đang chạy lúc chụp",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "BE #271 (nhánh payc2) + FE #204",
-          "reviewer": "QA delta độc lập sau khi push xong",
-          "machine": "máy chính"
-        },
         {
           "alias": "qa-276",
           "id": "ae112c90",
@@ -8197,18 +8203,34 @@
           "machine": "máy chính"
         },
         {
-          "alias": "qa-dash-r5",
-          "id": "a9680a08",
-          "task": "QA UI dashboard vòng 5 (độc lập, trên SHA ab78d1c hoặc mới hơn)",
+          "alias": "slot-v2",
+          "id": "af23003b",
+          "task": "Tái hiện 8 phát hiện R6 về script slot và viết bản v2 (song song, không đụng bản đang dùng)",
           "model": "claude-sonnet-5-5",
           "modelSource": "requestedModel trong log (VERIFIED)",
           "state": "WORKING",
-          "startAt": "2026-11-13T07:42:00+07:00",
+          "startAt": "2026-11-13T08:25:00+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "đang chạy lúc chụp",
           "etaAt": null,
           "waitReason": null,
-          "files": "chỉ đọc (clone riêng)",
+          "files": "~/xweb-handoff/p38-oxy-lane/slot-v2 (không đụng script đang dùng)",
+          "reviewer": "C0 đọc + tự chạy bộ test trước khi thay",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "qa-delta-payc",
+          "id": "a2d15e66",
+          "task": "QA delta độc lập chuỗi PAYC: BE #271 af0c1847 + FE #204 9fa342ac (+ 2 phát hiện P2 từ review Oxy R4)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "requestedModel trong log (VERIFIED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T07:53:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "đang chạy lúc chụp",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "chỉ đọc",
           "reviewer": "— (là người review)",
           "machine": "máy chính"
         }
@@ -16352,9 +16374,9 @@
   },
   "lane": {
     "title": "Máy phụ (làn build/test)",
-    "updatedAt": "2026-11-13T01:07:37+07:00",
+    "updatedAt": "2026-11-13T08:19:24+07:00",
     "status": "IN_VERIFICATION",
-    "summary": "Đang kiểm chứng, CHƯA tuyên bố sẵn sàng. Việc QA thật đầu tiên đã chạy trên đỉnh dev (thẻ 4 và 5, kết quả kéo bằng SSH chỉ-đọc, sha256 khớp): guard 9/7/0 và 168/0/110 khớp máy chính; BE lớp thuần 21 test, 0 lỗi (5 phút 22 giây); FE unit đầy đủ 6108 test, 6100 pass, 0 fail, 8 bỏ qua (4 phút 46 giây, đỉnh tải 4,44). Chạy script gốc test:unit bị hủy vì tải (đỉnh 10,63), nên dùng lệnh tương đương giới hạn song song 3. Checklist: 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc (dòng 14 chưa tính PASS vì chạy bằng lệnh tương đương). Chưa có: Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner; chưa tăng số agent ở máy phụ.",
+    "summary": "Đang kiểm chứng, CHƯA tuyên bố sẵn sàng. Việc QA thật đã chạy trên đỉnh dev (thẻ 4, 5, 6; thẻ 7 là đội review chỉ-đọc 6 agent phụ, REPORTED, kết quả kéo bằng SSH chỉ-đọc, sha256 khớp): guard 9/7/0 và 168/0/110 khớp máy chính; BE lớp thuần 21 test, 0 lỗi (5 phút 22 giây); FE unit đầy đủ 6108 test, 6100 pass, 0 fail, 8 bỏ qua (4 phút 46 giây, đỉnh tải 4,44). Chạy script gốc test:unit bị hủy vì tải (đỉnh 10,63), nên dùng lệnh tương đương giới hạn song song 3. Checklist: 12 PASS, 0 FAIL, 10 NOT_RUN trong 22 dòng bắt buộc (dòng 14 chưa tính PASS vì chạy bằng lệnh tương đương). Chưa có: Docker/Testcontainers, spec trình duyệt, quyết định cô lập của Owner; chưa tăng số agent ở máy phụ.",
     "links": [
       {
         "label": "Runbook thêm máy mới",

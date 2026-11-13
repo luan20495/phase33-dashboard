@@ -178,7 +178,7 @@ JOB_TIMEOUT=2400 ~/xweb-lane/tools/gradle-slot-lane.sh be-seed ./gradlew compile
 - Mỗi việc có thư mục `results/<UTC>-<nhãn>-<sha12>/` gồm `job.log`, `meta.txt` (giờ UTC và ICT, lệnh, đường dẫn làm việc, kết quả chốt), `SHA256SUMS`. Lưu ý: `meta.txt` chứa đường dẫn đầy đủ (có tên tài khoản): **không đăng nguyên văn lên nơi công khai**.
 - Ưu tiên thấp: `nice -n 15` và `taskpolicy -b` nếu có.
 - **Chốt chỉ kiểm lúc bắt đầu việc.** Trong lúc việc chạy, tải có thể vượt xa 4 (MEASURED: `npm ci` 9,87; đỉnh phiên 10,35). Vì vậy người gọi phải canh (mục 11, khoản 4: quy tắc `ABORTED_LOAD`).
-- Dừng làn: `touch ~/xweb-lane/STOP` (chỉ chặn việc **mới**; Owner, máy chính hoặc người vận hành hub đều được làm). Dừng việc đang chạy: `kill` pid ghi trong `~/xweb-lane/locks/heavy.lock/pid`, rồi `ps` xác nhận không còn tiến trình con; nếu còn thì `kill -TERM -<pgid>`; không bao giờ `pkill` theo tên (cách này ESTIMATE, chưa thử trên máy phụ).
+- Dừng làn: `touch ~/xweb-lane/STOP` (chỉ chặn việc **mới**; Owner, máy chính hoặc người vận hành hub đều được làm). Dừng việc đang chạy: pid ghi trong `~/xweb-lane/locks/heavy.lock/pid` là pid của **script slot**, không phải nhóm tiến trình của job (lock bị bẫy xóa khi script thoát, còn job có thể chạy tiếp): lấy pgid bằng `ps -o pgid= -p <pid>`, `kill -TERM -<pgid>`, rồi `ps` xác nhận không còn tiến trình con; không bao giờ `pkill` theo tên (cách này ESTIMATE, chưa thử trên máy phụ).
 
 ### 7.1 Ngưỡng chốt (chặn việc nặng; biến môi trường đổi được)
 
@@ -203,12 +203,12 @@ Vì sao cần cẩn thận (MEASURED trong sự cố ngày 12/11 trên máy chí
 Quy trình (đã chạy trên máy phụ #1 với các số đo ghi ở mục 7.1 và nhật ký; **offline lần hai từ worktree mới vẫn NOT_RUN**). Bản khuyến nghị dưới đây gộp bước 2 và 3 thành **một lệnh `test` có mạng**, bỏ lần nạp chỉ biên dịch mà máy phụ #1 đã làm (23 phút 38 giây):
 
 1. Cửa sổ yên: làn rảnh, tải hub ≤ 2, không Gradle nào khác của bạn (đếm tiến trình gradle bằng `ps` phải bằng 0).
-2. **Nạp có mạng, chạy một mình:**
+2. **Nạp có mạng bằng MỘT lệnh `test`, chạy một mình** (sửa theo review độc lập R5 của máy phụ: lệnh cũ chỉ biên dịch nên thiếu phụ thuộc test):
    ```bash
    export JAVA_HOME=/opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk/Contents/Home
    export GRADLE_USER_HOME=$HOME/xweb-lane/gradle-home
    cd ~/xweb-lane/work/<be>/backend
-   JOB_TIMEOUT=2400 ~/xweb-lane/tools/gradle-slot-lane.sh be-seed ./gradlew --no-daemon --max-workers=1 --console=plain -Dorg.gradle.parallel=false -Pkotlin.daemon.jvmargs=-Xmx3g compileKotlin compileTestKotlin
+   JOB_TIMEOUT=2400 ~/xweb-lane/tools/gradle-slot-lane.sh be-seed ./gradlew --no-daemon --max-workers=1 --console=plain -Dorg.gradle.parallel=false -Pkotlin.daemon.jvmargs=-Xmx3g test --tests '<các lớp smoke ở mục 8.1>'
    ```
    Nếu gặp `LockOutOfDate ... kotlin-reflect:2.2.21 ... 2.3.21`: thêm `-Pkotlin.version=2.2.21` (ghim BOM về đúng phiên bản khóa; không đổi tập phụ thuộc đã giải), ghi rõ cờ trong báo cáo.
 3. **Nạp phụ thuộc test:** chạy đúng lệnh smoke (mục 8.1) **một lần có mạng** (nhãn `seed-online`). Nếu bước 2 đã là một lệnh `test` có mạng thì bước 3 đã xong.
@@ -366,7 +366,7 @@ Mỗi dòng phải có lệnh, mã thoát và đầu ra thật; `NOT_RUN` không
 | 11 | FE `guard:static` | 9 đạt / 7 bỏ qua / 0 lỗi hoặc có giải thích | lệch không giải thích | PASS (9/7/0, 14 giây) |
 | 12 | FE `guard:test` | 168 đạt / 110 bỏ qua / 0 lỗi hoặc có giải thích | lệch không giải thích | PASS (278 test: 168/0/110, 13 giây) |
 | 13 | FE `typecheck` | rc 0, sạch | lỗi kiểu | PASS (2 phút 49 giây, rc 0) |
-| 14 | FE `test:unit` hiệu chuẩn qua script | khớp 6070 / 6062 / 0 / 8 hoặc liệt kê khác biệt | lệch không giải thích | NOT_RUN qua script gốc: thẻ 4 (13/11 00:34) ABORTED_LOAD vì `scripts/test-unit.mjs` chạy `node --test` không giới hạn song song (đỉnh tải 10,63). Thẻ 5 (01:00) chạy lệnh tương đương `--test-concurrency=3` (587 tệp, bỏ 6 tệp cần backend như script): **6108 test / 6100 pass / 0 fail / 0 cancelled / 8 skipped**, đỉnh tải 4,44, 4 phút 46 giây, MEASURED. Chênh +38 test so với mốc 6070 cũ: dev đã đi tiếp từ lúc hiệu chuẩn, CHƯA đối chiếu từng tệp nên không tính PASS |
+| 14 | FE `test:unit` hiệu chuẩn qua script | khớp 6070 / 6062 / 0 / 8 hoặc liệt kê khác biệt | lệch không giải thích | NOT_RUN qua script gốc: thẻ 4 (13/11 00:34) ABORTED_LOAD vì `scripts/test-unit.mjs` chạy `node --test` không giới hạn song song (đỉnh tải 10,63). Thẻ 5 (01:00) chạy lệnh tương đương `--test-concurrency=3` (587 tệp, bỏ 6 tệp cần backend như script): **6108 test / 6100 pass / 0 fail / 0 cancelled / 8 skipped**, đỉnh tải 4,44, 4 phút 34 giây theo runner (4 phút 46 giây đồng hồ treo tường), MEASURED. Chênh +38 test so với mốc 6070 cũ: dev đã đi tiếp từ lúc hiệu chuẩn, CHƯA đối chiếu từng tệp nên không tính PASS |
 | 15 | Số đo tài nguyên đã có | mỗi việc có thời gian, RSS lớn nhất, RAM trống thấp nhất, tải cao nhất, đĩa sau | thiếu số | NOT_RUN (có thời gian, tải, đĩa; thiếu RSS lớn nhất và RAM trống thấp nhất trong lúc chạy; `be-seed` không có mẫu tải) |
 | 16 | Hub không bị ảnh hưởng | `launchctl` của hub không đổi trước/sau (heartbeat listener `ok:true` suốt: nếu đo được) | dịch vụ hub đổi hoặc chết | PASS (6 dịch vụ cùng PID trước/sau ở thẻ 2 và thẻ 3; chốt từ chối đúng 1 lần là đúng; heartbeat suốt chưa báo) |
 | 17 | `locks` rỗng khi xong | `ls ~/xweb-lane/locks` rỗng | còn khóa của pid sống không việc | PASS (rỗng sau thẻ 2 và thẻ 3) |
