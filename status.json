@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T18:01:02+07:00",
+  "asOf": "2026-11-13T18:01:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T18:01:02+07:00",
+  "detailUpdatedAt": "2026-11-13T18:01:49+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -8353,17 +8353,17 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T18:01:02+07:00",
+      "checkedAt": "2026-11-13T18:01:49+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 4,
-        "WORKING": 4,
+        "RUNNING_TOTAL": 5,
+        "WORKING": 5,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 83
+        "FINISHED": 85
       },
       "resources": "Tải ~7–8, swap đã dùng ~6,5/7 GB (sát giới hạn): chỉ thêm agent chỉ đọc (QA tĩnh), không Gradle/Docker",
       "notes": [
@@ -8437,6 +8437,22 @@
           "files": "worktree p38-s09c",
           "reviewer": "QA độc lập khi có PR",
           "machine": "máy chính"
+        },
+        {
+          "alias": "QA-ATTF1A-S0G-DELTA",
+          "id": "(mới)",
+          "task": "QA bổ sung ATT-f1a f610494d và ATT-s0G 9e7a7cc6 (đọc mã)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T18:01:49+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "chỉ đọc",
+          "reviewer": "là người review (độc lập với tác giả)",
+          "machine": "máy chính"
         }
       ],
       "finished": [
@@ -8478,7 +8494,9 @@
         "QA-ISO2T2A-DELTA (NO-GO trên 94cebc48)",
         "IMPL-ISO2T2A-FIX bản 2 (5ab94059, NOT_RUN)",
         "QA-ATTF1A-S0G (GO có điều kiện)",
-        "QA-ATTE3A (GO có điều kiện, 2 P1)"
+        "QA-ATTE3A (GO có điều kiện, 2 P1)",
+        "IMPL-ATT-F1A bản 2 (f610494d, NOT_RUN)",
+        "IMPL-ATT-S0G bản 2 (9e7a7cc6, NOT_RUN)"
       ],
       "oxy": {
         "checkedAt": "2026-11-13T18:01:02+07:00",
