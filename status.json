@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T20:39:51+07:00",
+  "asOf": "2026-11-13T22:13:40+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T20:39:51+07:00",
+  "detailUpdatedAt": "2026-11-13T22:13:40+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6974,7 +6974,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T20:39:51+07:00",
+    "updatedAt": "2026-11-13T22:13:40+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6985,11 +6985,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "changed",
-            "summary": "Đọc delta ChatGPT 6843999177 (11:29); không có comment Owner mới ở #88 (since 07:46)"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
@@ -7034,6 +7029,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "changed",
             "summary": "ChatGPT INDEPENDENT DELTA 20:13 trên #257: P2 tóm tắt hằng giờ bị cũ sau merge NO-37 — ĐÚNG, đã sửa và trả lời; không có comment mới của Owner; Oxy: #280 gốc xanh + mutant 11/12 (REPORTED), ACK thẻ 40"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "changed",
+            "summary": "Không có comment mới của Owner/ChatGPT trên #88/#257; Owner (chat): dùng thêm agent trên Oxy → thẻ 42; Owner nhắc dự án Văn phòng AI — đã xem (chưa bật); Oxy báo 5 kết quả (REPORTED)"
           }
         ]
       },
@@ -7045,11 +7045,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "ok",
-            "summary": "#process khớp thực tế"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
@@ -7094,6 +7089,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "ok",
             "summary": "Tab Quy trình khớp thực tế: agents.min 12/max 30 áp dụng; 0 agent của C0 chạy vì mọi lát chờ Oxy; Finder ~60 GB (>30 GB), tải ~4,7"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "ok",
+            "summary": "Tab Quy trình khớp thực tế: agents.min 12/max 30 áp dụng; Finder ~61 GB (>30 GB), tải ~9 đỉnh"
           }
         ]
       },
@@ -7105,11 +7105,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "ok",
-            "summary": "2 agent chạy (CTX-b, FILES-b), NO-37 chờ khe; không PR mới; Oxy A4 9/9 PASS (REPORTED)"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "changed",
@@ -7154,6 +7149,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "changed",
             "summary": "PR: #280 MERGED 20:17 sau QA độc lập; mới BE #283 (nháp, test mut10); bảng PR dựng lại từ một lần đọc gh (45 dòng: 39 merged / 6 open)"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "changed",
+            "summary": "PR: không merge mới từ 20:17; #283 mut10 bị diệt (REPORTED); đầu PR không đổi; QA PR #283 đang chạy"
           }
         ]
       },
@@ -7165,11 +7165,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "skipped",
-            "summary": "Không đăng 19 dòng lên #88; phản hồi ở #257"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "skipped",
@@ -7214,6 +7209,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "skipped",
             "summary": "Chưa đăng báo cáo 19 dòng mới: lần 130 (18:50) đã nêu; từ đó chỉ #280 merge và kết quả Oxy (REPORTED) — gộp vào lần 131 khi có thêm kết quả quan trọng"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "skipped",
+            "summary": "Chưa đăng báo cáo 19 dòng mới: gộp kết quả Oxy vào lần 131 sau khi ATT-e1 mutant và QA #283 có kết quả"
           }
         ]
       },
@@ -7225,11 +7225,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "changed",
-            "summary": "Dashboard: sửa dữ liệu lỗi thời (prod, testedPair, Docker Oxy tách trạng thái, risks), UI r6 một phần"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "changed",
@@ -7274,6 +7269,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "changed",
             "summary": "Dashboard: dựng lại MỌI phần hourly.summary từ cùng snapshot (checkedAt, changeSincePrev, blockers, risks, release22.movingDev, agentCensus, providerAudit; uiux gắn nhãn STALE); thêm test tests/summary-consistency.mjs; bản ghi hằng giờ 20:38"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "changed",
+            "summary": "Dashboard: cập nhật bảng PR, tóm tắt, làn máy phụ (4 phần cùng snapshot) và bản ghi hằng giờ 22:1x"
           }
         ]
       },
@@ -7285,11 +7285,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "ok",
-            "summary": "Finder 67 GB; swap gần đầy do biên dịch test; không dọn thêm"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
@@ -7334,6 +7329,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "ok",
             "summary": "Finder trống ~60 GB (>30 GB); không cần dọn"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "ok",
+            "summary": "Finder trống ~61 GB (>30 GB); không cần dọn"
           }
         ]
       },
@@ -7345,11 +7345,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); chưa dùng SSH máy chủ"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "ok",
@@ -7394,6 +7389,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "ok",
             "summary": "Không kiểm khóa SSH máy chủ GCP lần này; đường SSH Mac→Oxy vẫn đứt (UNKNOWN)"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "ok",
+            "summary": "Không kiểm khóa SSH máy chủ GCP lần này; đường SSH Mac→Oxy vẫn đứt (UNKNOWN)"
           }
         ]
       },
@@ -7405,11 +7405,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T11:39:00+07:00",
-            "result": "ok",
-            "summary": "2 agent nặng + 1 chờ khe; Oxy gánh phần Docker nặng"
-          },
           {
             "at": "2026-11-13T12:38:24+07:00",
             "result": "skipped",
@@ -7454,6 +7449,11 @@
             "at": "2026-11-13T20:39:51+07:00",
             "result": "ok",
             "summary": "0 agent đang chạy: mọi lát đã viết + QA độc lập xong, chờ Oxy; sẽ giao QA bổ sung/merge khi Oxy trả kết quả ATT-e1, FE e5a, 2T2A"
+          },
+          {
+            "at": "2026-11-13T22:13:40+07:00",
+            "result": "ok",
+            "summary": "1 agent chạy (QA #283); Oxy được giao 6 việc không Gradle theo lệnh Owner"
           }
         ]
       }
@@ -7661,7 +7661,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T20:39:51+07:00",
+      "checkedAt": "2026-11-13T22:13:40+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7670,7 +7670,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "20:38: từ 14:39 đã merge dev sau QA độc lập: BE #277 (14:42), #278 NO-37 (18:00), #280 chuỗi PAYC (20:17), tài liệu BE #281/FE #209, FE #208, #210, #211; PR nháp mới BE #282/#283 và FE #212 (chỉ test); Oxy (REPORTED): NO-37 gốc 45 test + 9/9 mutant bị diệt, #280 gốc 471 test + 11/12 mutant bị diệt (mut10 sống sót), FE #208 xanh, combined-check XANH; sự cố tải 18:37 → luật một job Gradle một lúc",
+      "changeSincePrev": "22:13: Oxy (REPORTED) 21:23–22:02: #283 mut10 bị diệt; ATT-e1 fe462c8c gốc 51/51 xanh (4 đỏ trước đó đều là lỗi test, đã sửa); 8/8 đầu nhánh (S09-A/B/C, ATT-f1a, ATT-e3a, 2T2A, ATT-s0G, BE #282) biên dịch xanh 0 lỗi; FE ATT-e5a gốc xanh + 9/12 mutant bị diệt (3 patch đỏ tsc cần viết lại); canary hai Gradle song song THẤT BẠI (thrash GC) → vẫn một job Gradle một lúc",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7702,7 +7702,7 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: FE #212, BE #210, BE #276, BE #279, BE #282, BE #283; #276/#279/#282/#283 và FE #212 chờ kết quả Oxy (file kết quả chưa kéo được về: SSH đứt) và QA bổ sung",
+        "PR đang mở chưa merge: FE #212, BE #210, BE #276, BE #279, BE #282, BE #283; chờ kết quả Oxy (file kết quả chưa kéo được về: SSH đứt) và QA bổ sung",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
@@ -7742,7 +7742,7 @@
         "open": "QA vòng 7 trên đúng Pages SHA, 8 viewport × 2 theme, deep link, zoom 200%, contrast/keyboard",
         "staleNote": "STALE: phần UI/UX chưa đo lại từ 11:39 ICT; QA r7 trên Pages SHA hiện tại = UNKNOWN (không suy ra từ các merge hôm nay)"
       },
-      "agentCensus": "20:38: 0 sub-agent của C0 đang chạy (hoàn thành trong ngày: ~35 agent việc nhẹ chỉ-đọc/viết tệp); mọi lát code đã viết chờ Oxy; mức tối thiểu 12 chưa đạt vì không còn việc nhẹ độc lập",
+      "agentCensus": "22:13: 1 sub-agent của C0 chạy (QA PR #283, chỉ đọc); Oxy: 1 agent chỉ đọc + thẻ 42 giao 6 việc không Gradle; nút cổ chai vẫn là CPU Gradle một job một lúc",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7890,8 +7890,8 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-13T20:39:51+07:00",
-        "source": "gh pr view lúc 20:38 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "checkedAt": "2026-11-13T22:13:40+07:00",
+        "source": "gh pr view lúc 22:13 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
         "summary": "39 PR trong bảng đã merge dev sau QA độc lập; 6 PR trong bảng đang mở chưa merge: FE #212, BE #210, BE #276, BE #279, BE #282, BE #283",
         "items": [
           {
@@ -8030,7 +8030,7 @@
             "repo": "Xweb01fe",
             "pr": 212,
             "qaReport": null,
-            "qa": "PR nháp chỉ sửa 2 test thời gian; QA độc lập đọc mã GO có sửa ở head cũ, tác giả đã sửa ở a0043522, CHƯA QA bổ sung; Oxy chạy lại đang xếp; chưa merge",
+            "qa": "QA độc lập đọc mã GO trên a0043522; Oxy (REPORTED 22:02): tsc xanh, prompt-limit 13/13 và svg-attach 18/18 khi có Gradle, 5 lượt máy rảnh chưa chạy; chưa merge",
             "state": "OPEN",
             "head": "a0043522",
             "mergeCommit": null,
@@ -8371,7 +8371,7 @@
             "repo": "xweb01",
             "pr": 282,
             "qaReport": null,
-            "qa": "PR nháp chỉ sửa test thời gian OlRecipeLintTests; QA độc lập đọc mã GO (QA-FLAKY-282-212.md); Oxy chưa chạy (REPORTED khi có); chưa merge",
+            "qa": "QA độc lập đọc mã GO trên 5e7944df; Oxy: biên dịch xanh (REPORTED), chưa chạy test; chưa merge",
             "state": "OPEN",
             "head": "5e7944df",
             "mergeCommit": null,
@@ -8382,9 +8382,9 @@
             "repo": "xweb01",
             "pr": 283,
             "qaReport": null,
-            "qa": "PR nháp chỉ thêm test cho khoảng trống mut10 của #280 (lượt thử lại trên chuỗi đã hủy); tác giả chưa chạy; cần Oxy + QA độc lập",
+            "qa": "PR nháp chỉ thêm test cho khoảng trống mut10 của #280; Oxy (REPORTED 21:23): gốc xanh ×2, mut10 BỊ DIỆT; QA độc lập đọc mã đang chạy trên 71ee6373; chưa merge",
             "state": "OPEN",
-            "head": "5d0af064",
+            "head": "71ee6373",
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa"
@@ -8398,7 +8398,7 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T20:39:51+07:00",
+      "checkedAt": "2026-11-13T22:13:40+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
@@ -8503,26 +8503,25 @@
         "IMPL-ATT-S0G bản 3 (528da7cc, NOT_RUN)"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T20:18:14+07:00",
-        "status": "REPORTED bởi Oxy (#123, 18:38 ICT): sự cố 18:37 — load1 lên 30 do bước npm ci chạy cạnh Gradle, cả hai làn tự dừng (ABORTED_LOAD); PR #280 gốc mất ~45 phút không có kết quả và đã xếp lại; luật mới: npm ci và test:unit giữ khóa Gradle độc quyền; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
+        "checkedAt": "2026-11-13T22:13:40+07:00",
+        "status": "REPORTED bởi Oxy (#123, 22:02 ICT): làn L4 biên dịch song song THẤT BẠI (heap in-process thrash GC) → một job Gradle một lúc; 8/8 đầu nhánh biên dịch xanh; ATT-e1 gốc 51/51 xanh, đang chạy 18 mutant; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
           {
-            "lane": "Gradle",
-            "now": "ATT-e5a vòng 2 (khóa độc quyền cho npm ci/test:unit)",
-            "next": "ATT-e1 → 2T2A → FILES-b mut → #276 → ATT-e3a → suite BE → S09/ATT-f1a/ATT-s0G → BE #282"
+            "lane": "Gradle (L1)",
+            "now": "mutant ATT-e1 fe462c8c (18)",
+            "next": "2T2A → FILES-b mut1–11 → #276 ×2 → ATT-e3a + 30 mutant → suite BE → S09-B/A/C → ATT-f1a → ATT-s0G → BE #282"
           },
           {
-            "lane": "Node/FE",
-            "now": "FE #212 (chờ khóa)",
+            "lane": "Node/FE (L2, L3)",
+            "now": "FE #212 5 lượt máy rảnh, patch mutant FE e5a viết lại",
             "next": "—"
           }
         ],
         "queue": [
-          "Hàng đợi dài (ESTIMATE nhiều giờ): nút cổ chai là Gradle một job một lúc, nay thêm khóa độc quyền cho npm ci/test:unit",
-          "Kết quả Oxy báo trước đó (REPORTED): NO-37 gốc 45 test 0 đỏ và mut1…8 bị diệt; FE #208 unit xanh; combined-check xanh; FECHECK-02 5/5; #279 gốc 463/464"
+          "Hàng Gradle một job một lúc (ESTIMATE nhiều giờ); thẻ 42: 6 việc không Gradle cho agent Oxy (viết lại 3 patch FE e5a, QA #212/#282, tệp mẫu tar/zip thật, bảng phân loại lỗi, kiểm giả định MinIO, giảm CPU nền)"
         ],
-        "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39) | PR #279 FILES-b 6bb3f5d5 bản gốc: biên dịch PASS, 463/464, 1 đỏ là test thời gian tuyệt đối (1736 ms so với trần 1500 ms) khi máy chạy 3 job — chạy lại riêng đang xếp (REPORTED); mutant chưa chạy vì gốc chưa xanh | FE #208 5cc6a3b9 (REPORTED 16:13): guard/tsc PASS, chain-card 45/45, unit 6152/6161, 1 đỏ THẬT (thuật ngữ 'dự án' trong 3 chuỗi mới) — đã sửa ở 102a9ded | combined-check cặp BE 012844dc + FE ba80f451 (REPORTED 16:17): FAIL ở bước 1 vì .gitleaksignore hai repo khác byte; verify-frontend-core PASS; api-contract-check strict PASS (40 điểm gọi chưa phân giải được, không tính pass); inventory QA đã cũ — sửa .gitleaksignore ở FE PR nháp #210 | combined-check --quick cặp BE 012844dc + FE #210 (REPORTED 17:25): XANH 5/5 bước; FE #210 đã merge dev 17:27 sau QA độc lập; qa-inventory chạy trên cây ghép: screens 57,2%, features 3,7%, API 61,6% (chạy riêng BE trước đó cho 0% do thiếu cây FE) | FE #208 102a9ded (REPORTED 17:32): thuật ngữ xanh, chain-card 2 đỏ thật do test còn chữ cũ — đã sửa ở f615a0c0, chờ chạy lại | FE #208 f615a0c0 (REPORTED 17:46): xanh toàn bộ, unit 6161/6153/0 đỏ/8 bỏ qua; spec trình duyệt NOT_RUN | NO-37 PR #278 33748569 (REPORTED 17:57): gốc 45 test 0 đỏ, mut1…8 bị diệt — đã merge dev 18:00 sau QA độc lập | PR #280 bfed0431 (REPORTED 20:16): gốc 42 lớp/471 test 0 đỏ; mut1…9 bị diệt (11/12), mut10 sống sót; đã merge dev 20:17 sau QA độc lập"
+        "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39) | PR #279 FILES-b 6bb3f5d5 bản gốc: biên dịch PASS, 463/464, 1 đỏ là test thời gian tuyệt đối (1736 ms so với trần 1500 ms) khi máy chạy 3 job — chạy lại riêng đang xếp (REPORTED); mutant chưa chạy vì gốc chưa xanh | FE #208 5cc6a3b9 (REPORTED 16:13): guard/tsc PASS, chain-card 45/45, unit 6152/6161, 1 đỏ THẬT (thuật ngữ 'dự án' trong 3 chuỗi mới) — đã sửa ở 102a9ded | combined-check cặp BE 012844dc + FE ba80f451 (REPORTED 16:17): FAIL ở bước 1 vì .gitleaksignore hai repo khác byte; verify-frontend-core PASS; api-contract-check strict PASS (40 điểm gọi chưa phân giải được, không tính pass); inventory QA đã cũ — sửa .gitleaksignore ở FE PR nháp #210 | combined-check --quick cặp BE 012844dc + FE #210 (REPORTED 17:25): XANH 5/5 bước; FE #210 đã merge dev 17:27 sau QA độc lập; qa-inventory chạy trên cây ghép: screens 57,2%, features 3,7%, API 61,6% (chạy riêng BE trước đó cho 0% do thiếu cây FE) | FE #208 102a9ded (REPORTED 17:32): thuật ngữ xanh, chain-card 2 đỏ thật do test còn chữ cũ — đã sửa ở f615a0c0, chờ chạy lại | FE #208 f615a0c0 (REPORTED 17:46): xanh toàn bộ, unit 6161/6153/0 đỏ/8 bỏ qua; spec trình duyệt NOT_RUN | NO-37 PR #278 33748569 (REPORTED 17:57): gốc 45 test 0 đỏ, mut1…8 bị diệt — đã merge dev 18:00 sau QA độc lập | PR #280 bfed0431 (REPORTED 20:16): gốc 42 lớp/471 test 0 đỏ; mut1…9 bị diệt (11/12), mut10 sống sót; đã merge dev 20:17 sau QA độc lập | 21:23–22:02 (REPORTED): #283 mut10 diệt; ATT-e1 fe462c8c 51/51 xanh; 8 đầu nhánh biên dịch xanh; FE e5a gốc xanh + 9/12 mutant; canary L4 thất bại"
       }
     },
     "lastOwnerCommentId": 6840348947
