@@ -66,7 +66,8 @@ selftest() {
   slot=$(cat "$LANE_BASE/locks/light.lock/pid" 2>/dev/null)
   case "$slot" in ''|*[!0-9]*|0|1) echo "  FAIL could not find the holder pid"; fails=$((fails+1));; *) kill -9 "$slot" 2>/dev/null; i=0; while [ $i -lt 80 ] && ps -axo command= | grep '[s]leep 4248' | grep -vq 'perl -e'; do sleep 0.1; i=$((i+1)); done;; esac
   chk "kill -9 of slot script: job group terminated" "$(ps -axo command= | grep '[s]leep 4248' | grep -vc 'perl -e')" 0
-  "$SELF" st-after true >/dev/null 2>&1; rc=$?; chk "no stuck lock after kill -9" "$rc" 0
+  # the lock is released by the kernel when the supervisor dies, but the reaper may still be finishing: allow up to ~10 s of rc 75 before calling it stuck
+  local tries=0; rc=75; while [ "$rc" -eq 75 ] && [ $tries -lt 20 ]; do "$SELF" st-after true >/dev/null 2>&1; rc=$?; [ "$rc" -eq 75 ] && sleep 0.5; tries=$((tries+1)); done; chk "no stuck lock after kill -9" "$rc" 0
   rm -rf "$T"
   if [ $fails -eq 0 ]; then echo "[selftest] ALL PASS"; return 0; else echo "[selftest] $fails FAILED"; return 1; fi
 }
