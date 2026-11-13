@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T07:30:44+07:00",
+  "asOf": "2026-11-13T07:36:04+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T07:30:44+07:00",
+  "detailUpdatedAt": "2026-11-13T07:36:04+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6385,7 +6385,8 @@
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "07:30 ICT 13/11: Finder báo 77 GB khả dụng (gồm phần có thể thu hồi: ảnh chụp cục bộ Time Machine); dung lượng trống thật của ổ (diskutil) 18,5 GB. macOS tự giải phóng ảnh chụp khi ứng dụng cần chỗ (đã thấy 12/11). Theo dõi cả hai số; cảnh báo khi số thật dưới 10 GB hoặc Finder dưới 30 GB"
+            "evidence": "07:36 ICT 13/11: Finder 77 GB khả dụng (tầng 70–100: dọn nhẹ); số thật của ổ (diskutil) 18,5 GB chỉ để tham khảo. Đo Finder bằng: osascript -e 'tell application \"Finder\" to get free space of startup disk'",
+            "title": "Dung lượng trống hiện tại theo Finder (GB, gồm phần thu hồi được)"
           },
           {
             "id": "disk.t_monitor",
@@ -6426,26 +6427,30 @@
           {
             "id": "disk.t_aggressive",
             "label": "20–40: dọn tích cực",
-            "value": 20,
+            "value": 30,
             "type": "number",
             "editable": true,
             "explain": "Thêm snapshot Time Machine cục bộ (giữ 3 bản mới nhất).",
             "impact": "",
             "state": "applied",
             "min": 5,
-            "max": 300
+            "max": 300,
+            "title": "30–40: dọn tích cực",
+            "evidence": "Owner 13/11: ngưỡng theo số Finder"
           },
           {
             "id": "disk.t_urgent",
             "label": "Dưới 20 GB: cảnh báo khẩn cho Owner",
-            "value": 20,
+            "value": 30,
             "type": "number",
             "editable": true,
             "explain": "Báo ngay.",
             "impact": "",
             "state": "applied",
             "min": 5,
-            "max": 300
+            "max": 300,
+            "title": "Dưới 30 GB (theo Finder): cảnh báo khẩn cho Owner",
+            "evidence": "Owner 13/11 chat: 'ngưỡng theo Finder dưới 30 GB là được' (trước đó 20 GB theo df)"
           },
           {
             "id": "disk.safety",
@@ -6912,7 +6917,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T07:30:44+07:00",
+    "updatedAt": "2026-11-13T07:36:04+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7521,6 +7526,11 @@
         "at": "2026-11-13T07:30:44+07:00",
         "by": "C0",
         "note": "Owner thấy 76 GB trống: giải thích chênh lệch (Finder gồm phần thu hồi được; số thật 18,5 GB); cập nhật mục đĩa trong #process để ghi cả hai số"
+      },
+      {
+        "at": "2026-11-13T07:36:04+07:00",
+        "by": "C0",
+        "note": "Owner chốt ngưỡng đĩa theo số Finder: dưới 30 GB = cảnh báo khẩn; cập nhật #process (disk.t_urgent 30, disk.t_aggressive 30–40, nguồn đo Finder)"
       }
     ],
     "summary": {
