@@ -8407,37 +8407,29 @@
         "IMPL-ATT-E3A (head 5bff1734, NOT_RUN)"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T16:21:03+07:00",
-        "status": "REPORTED bởi Oxy (#123, 15:47 ICT): 2 job nặng bị hủy do tải (ABORTED_LOAD, không phải test đỏ); đổi cách chia: chỉ MỘT job dùng Docker/Postgres tại một thời điểm trên cả 3 làn; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
+        "checkedAt": "2026-11-13T17:23:44+07:00",
+        "status": "REPORTED bởi Oxy (#123, 17:22 ICT): 3 job Gradle chạy song song cùng hỏng OOM biên dịch (INFRA_FAIL, không phải lỗi nhánh); luật mới: MỘT job Gradle/BE một lúc trên toàn bộ làn, hai làn còn lại chỉ việc Node/FE; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
           {
-            "lane": "L1",
-            "now": "FILES-b (PR #279) 6bb3f5d5: chạy lại bản gốc (Docker)",
-            "next": "10 mutant"
+            "lane": "Gradle",
+            "now": "NO-37 (PR #278) mutant mut3…8",
+            "next": "PR #280 gốc + mutant → ATT-e1 → ATT-s0G → 2T2A → FILES-b mut1…10 → #276 → S09-B/A → ATT-f1a → S09-C → ATT-e3a → suite BE → phân loại"
           },
           {
-            "lane": "L2",
-            "now": "FE dev ba80f451 (không Docker)",
-            "next": "nhận hàng đợi"
+            "lane": "Node/FE-1",
+            "now": "combined-check với FE #210",
+            "next": "FE ATT-e5a"
           },
           {
-            "lane": "L3",
-            "now": "FE PR #208 5cc6a3b9 (không Docker, chờ FE dev)",
-            "next": "combined-check"
+            "lane": "Node/FE-2",
+            "now": "FE #208 bản mới (102a9ded)",
+            "next": "FECHECK-02, mutant ATT-e5a"
           }
         ],
         "queue": [
-          "Hàng đợi Docker lần lượt: FILES-b mutant → PR #280 mutant → NO-37 mut3…mut8 → ATT-e1 → 2T2A → suite BE (11 nhóm) → PR #276 ×2 → phân loại lớp đỏ",
-          "Ước lượng (ESTIMATE): mỗi job BE 10–60 phút; toàn hàng đợi còn nhiều giờ — nút cổ chai là MỘT job Docker một lúc, thêm agent ở máy chính không làm nhanh hơn phần này",
-          "Thẻ 27 (không Docker, xếp vào làn rảnh): S09-B 076da115, S09-A c2e8614e, ATT-f1a 82e5baad — mọi test/mutant NOT_RUN, tác giả chưa biên dịch",
-          "Thẻ 28: ATT-e1 SHA mới 5d997cf7 (Docker, thay job cũ đã hoãn) và S09-C 30d0ff00 (không Docker) — NOT_RUN",
-          "Thẻ 29: ATT-s0+g af7e50cc (phần lớn không Docker, 1 lớp MinIO cần Docker) — NOT_RUN",
-          "Patch mutant cho thẻ 27–29 đã đẩy lên nhánh patch riêng của kho BE (chỉ tệp patch); Oxy chưa có thư mục impl-*-mut nên mutant S09/ATT-f1a NOT_RUN tới khi lấy patch",
-          "Thẻ 30: FE #208 head mới 102a9ded (chạy lại, không Docker) và 2T2A head mới 94cebc48 (Docker, thay job cũ) — NOT_RUN",
-          "Thẻ 31: FE ATT-e5a 7bbb7891 (không Docker) — tsc/unit/mutant NOT_RUN",
-          "Chạy lại combined-check --quick với nhánh FE #210 gộp cục bộ",
-          "Thẻ 32: ATT-e3a 5bff1734 (không Docker; 4 test CPU nặng) — NOT_RUN"
+          "Hàng Gradle một job một lúc (ESTIMATE: mỗi job 10–60 phút, toàn hàng còn nhiều giờ) — nút cổ chai thật của toàn bộ công việc BE",
+          "Đã gợi ý Oxy dùng worktree cố định + biên dịch tăng dần để rút thời gian (Oxy quyết)"
         ],
         "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39) | PR #279 FILES-b 6bb3f5d5 bản gốc: biên dịch PASS, 463/464, 1 đỏ là test thời gian tuyệt đối (1736 ms so với trần 1500 ms) khi máy chạy 3 job — chạy lại riêng đang xếp (REPORTED); mutant chưa chạy vì gốc chưa xanh | FE #208 5cc6a3b9 (REPORTED 16:13): guard/tsc PASS, chain-card 45/45, unit 6152/6161, 1 đỏ THẬT (thuật ngữ 'dự án' trong 3 chuỗi mới) — đã sửa ở 102a9ded | combined-check cặp BE 012844dc + FE ba80f451 (REPORTED 16:17): FAIL ở bước 1 vì .gitleaksignore hai repo khác byte; verify-frontend-core PASS; api-contract-check strict PASS (40 điểm gọi chưa phân giải được, không tính pass); inventory QA đã cũ — sửa .gitleaksignore ở FE PR nháp #210"
       }
