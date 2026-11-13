@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T08:41:46+07:00",
+  "asOf": "2026-11-13T09:40:49+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T08:41:46+07:00",
+  "detailUpdatedAt": "2026-11-13T09:40:49+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4122,12 +4122,12 @@
         "id": "NO-36",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-12T22:41:16+07:00",
         "title": "Mục 07 (file, ngữ cảnh, đính kèm): 6 quyết định NO-DIR-5 để mở khóa upload lớn, giải nén an toàn và đọc theo phần",
         "detail": "Nguồn: agent nghiên cứu chỉ-đọc ATT-e0 (ADR-ATT-E.md, OWNER-DECISIONS-NO-DIR-5.md trong ~/xweb-handoff/p38-att-e0/; mọi con số là ESTIMATE hoặc VERIFIED kèm file:line trong ADR; không chạm PROD, cờ hay tiền; mọi tính năng ra với cờ TẮT qua quy trình phát hành). Không trả lời = giữ nguyên, không làm gì. (1) Đường upload: A khuyến nghị = trình duyệt tải thẳng lên kho đối tượng theo mảnh 16 MiB (multipart có chữ ký, dùng SDK sẵn có), trần mỗi tệp là bảo vệ ổ đĩa mặc định 1 GiB, không có hạn ngạch theo người/tenant; B = PUT đơn (rẻ, không tiếp tục được, có thể vướng giới hạn 100 MB nếu có Cloudflare phía trước: chưa rõ); C = qua API (không khuyến nghị, quay lại lớp slowloris đã sửa). (2) Định dạng nén bản đầu: A khuyến nghị = zip, tar, tgz, gz, bz2 bằng Commons Compress 1.28.0 đã có sẵn trong jar PROD + ghim phiên bản và thêm kiểm chứng phụ thuộc Gradle; không thêm thư viện bên thứ ba; B = thêm 7z (thêm phụ thuộc mới); C = thêm RAR (không khuyến nghị: thư viện RAR có lỗ hổng duyệt đường dẫn 2026). (3) Nơi giải nén: A khuyến nghị cho bản đầu = trong JVM của API, theo luồng, không bung ra đĩa, trần vận hành gợi ý 64 MiB lưu trữ / 512 MiB luồng đếm / 60 giây / 10.000 mục, cờ TẮT; B = việc mới trên runner build (cần ảnh mới); C = container nạp riêng (thêm dịch vụ). (4) Nơi chạy bài thử 100 MiB và 1 GiB: A khuyến nghị = Mac DEV trong container dùng một lần (không đụng stack DEV XWeb), cộng MỘT cửa sổ chứng minh trên máy chủ PROD lúc rảnh, cần anh duyệt; B = máy Windows; C = chỉ Mac. (5) Văn bản đính kèm được lưu (ATT-f): lưu 30 ngày sau lần dùng cuối hoặc khi xóa dự án (A), ai đọc = thành viên dự án có quyền đọc (A), không đưa vào sao lưu dài hạn (A). (6) Rủi ro kho đối tượng: A khuyến nghị = chấp nhận cho bản đầu, không bao giờ tạo tài khoản S3 cho người dùng, mở việc riêng đánh giá phương án thay thế do bản MinIO cộng đồng đã lưu trữ và ảnh đang ghim có trước bản vá một CVE năm 2025; B = coi thay thế là điều kiện tiên quyết; C = không làm gì.",
         "solution": "Khuyến nghị: A cho cả 6 câu. Giờ công ước lượng cho bản đầu khoảng 120 giờ công + 3–6 giờ máy Windows (tin cậy thấp–trung bình), xem mục 07 ở #roadmap/6.",
-        "link": "",
+        "link": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6840348947",
         "options": [
           {
             "key": "A",
@@ -4146,20 +4146,20 @@
             "desc": "Chưa quyết: các lát phụ thuộc (ATT-e1, e2, e3, e5, ATT-f) chưa bắt đầu; các lát nhỏ ATT-b1/b2, FILES-b, CTX-b vẫn chạy."
           }
         ],
-        "decided": false,
-        "decidedAt": null,
-        "decision": null
+        "decided": "A",
+        "decidedAt": "2026-11-13T07:46:00+07:00",
+        "decision": "Owner 07:46 chọn A theo khuyến nghị cả 6 câu (NO-DIR-5): tải thẳng lên kho đối tượng theo phần 16 MiB, trần 1 GiB mỗi tệp; zip/tar/tgz/gz/bz2 bằng Commons Compress trong JVM của API; kiểm thử 100 MiB/1 GiB trên Mac DEV; lưu văn bản đính kèm (giữ 30 ngày, thành viên dự án đọc, không vào bản sao lưu dài hạn); chấp nhận rủi ro MinIO ở v1 và mở việc đánh giá thay thế. TRẠNG THÁI: ĐÃ DUYỆT, CHƯA triển khai/QA/PROD (ATT-e1 đang viết)."
       },
       {
         "id": "NO-37",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-13T00:21:59+07:00",
         "title": "Bảo mật nhà cung cấp AI: một dòng nhà cung cấp tự khai 'miễn phí' có thể qua mặt sổ cái nếu danh sách chấp nhận bị đặt",
         "detail": "Nguồn: QA+SEC độc lập PR #270 (GO có điều kiện, không P0/P1; đã merge dev). Phát hiện C1: cờ `paid=false` trên một dòng nhà cung cấp loại OPENAI_COMPATIBLE hoặc LOCAL là lời khẳng định của quản trị viên, không được kiểm chứng. QA tạo thử một dòng trỏ tới một địa chỉ https công khai với `paid=false`: được tạo (201) và hệ thống coi là miễn phí. Nếu một dòng như vậy trỏ tới OpenRouter hoặc OpenAI và danh sách nhà cung cấp chấp nhận (một cấu hình vận hành hiện để trống trên PROD) bị đặt thì có thể qua mặt giữ chỗ, hard cap USD và chặn ZDR. Hôm nay PROD được che bởi danh sách trống và lá chắn khởi động mới; nguy cơ chỉ còn khi ai đó đặt danh sách. Các lựa chọn: A (khuyến nghị) = với OPENAI_COMPATIBLE/LOCAL chỉ cho `paid=false` khi địa chỉ là loopback/LAN (không công khai) hoặc cần duyệt hai người (bốn mắt) cho địa chỉ công khai; B = giữ nguyên, chấp nhận rủi ro nhờ lá chắn danh sách trống; C = loại OPENAI_COMPATIBLE khỏi địa chỉ công khai hẳn (xung đột quyết định D-003: máy chủ local loại này được hỗ trợ). Không trả lời = giữ B, không đổi gì.",
         "solution": "Khuyến nghị A: nhỏ, không đổi đường OpenRouter/sổ cái/hard cap; cần một PR BE nhỏ + QA độc lập.",
-        "link": "",
+        "link": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6840348947",
         "options": [
           {
             "key": "A",
@@ -4178,20 +4178,20 @@
             "desc": "Chặn tự khai miễn phí cho loại này; xung đột D-003 (máy chủ local), cần anh quyết lại."
           }
         ],
-        "decided": false,
-        "decidedAt": null,
-        "decision": null
+        "decided": "A",
+        "decidedAt": "2026-11-13T07:46:00+07:00",
+        "decision": "Owner 07:46 chọn A: paid=false tự khai chỉ hợp lệ với địa chỉ loopback/LAN; địa chỉ công khai cần duyệt hai người. TRẠNG THÁI: ĐÃ DUYỆT, CHƯA triển khai/QA/PROD (PR BE nhỏ đang viết)."
       },
       {
         "id": "NO-38",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-13T02:10:39+07:00",
         "title": "Repo dashboard công khai: lịch sử git cũ còn tên tài khoản máy và tệp log trình duyệt đã gỡ khỏi bản hiện tại",
         "detail": "Nguồn: QA UI độc lập vòng 4 (P3 vệ sinh). Bản hiện tại đã gỡ số tiền USD, tên tài khoản máy trong status.json và thư mục log trình duyệt khỏi git. Lịch sử commit cũ vẫn chứa danh tính tác giả mặc định của máy, các tệp log và các con số cũ. Không có token, khóa, mật khẩu hay IP ngoài (QA r4 quét: 0 lần trúng). Viết lại lịch sử cần force-push lên repo công khai nên là quyết định của Owner.",
         "solution": "Khuyến nghị A: giữ lịch sử, đặt danh tính tác giả ẩn danh cho commit mới (không rủi ro).",
-        "link": "",
+        "link": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6840348947",
         "options": [
           {
             "key": "A",
@@ -4210,9 +4210,9 @@
             "desc": "Tạo repo mới từ bản hiện tại, đổi liên kết; tốn công hơn."
           }
         ],
-        "decided": false,
-        "decidedAt": null,
-        "decision": null
+        "decided": "A",
+        "decidedAt": "2026-11-13T07:46:00+07:00",
+        "decision": "Owner 07:46 chọn A: giữ lịch sử, đổi danh tính tác giả cho commit mới của repo dashboard. TRẠNG THÁI: ĐÃ ÁP DỤNG cho commit mới từ lúc này (VERIFIED bằng git log); lịch sử cũ giữ nguyên."
       }
     ]
   },
@@ -6938,7 +6938,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T08:41:46+07:00",
+    "updatedAt": "2026-11-13T09:40:49+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6949,11 +6949,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T21:39:18+07:00",
-            "result": "changed",
-            "summary": "Review ChatGPT #6825376051 (20:47) đã đọc; trả lời ở #257; không có comment [OWNER] mới ở #88"
-          },
           {
             "at": "2026-11-12T22:38:44+07:00",
             "result": "ok",
@@ -6998,6 +6993,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "ok",
             "summary": "Không có comment mới của Owner/ChatGPT ở #88/#257"
+          },
+          {
+            "at": "2026-11-13T09:40:49+07:00",
+            "result": "changed",
+            "summary": "Sửa lỗi đọc #88 (phân trang); thấy comment Owner 07:46 duyệt NO-36/37/38 = A bị bỏ sót ở các kỳ 08:41 và 09:38; đã áp dụng"
           }
         ]
       },
@@ -7577,6 +7577,11 @@
         "at": "2026-11-13T08:41:46+07:00",
         "by": "C0",
         "note": "Hourly 08:4x: QA #276 chỉ đọc mã GO có điều kiện (chưa chạy test do tải 22-62); dừng agent QA #276 lặp báo cáo; không giao thêm việc nặng khi máy quá tải"
+      },
+      {
+        "at": "2026-11-13T09:40:49+07:00",
+        "by": "C0",
+        "note": "Phát hiện đã BỎ SÓT comment Owner 07:46 (duyệt NO-36/37/38 = A) vì đọc #88 không phân trang (chỉ thấy trang đầu); đã sửa cách đọc; đóng 3 thẻ (APPROVED, chưa triển khai), giao ATT-e1 và PR NO-37, đặt danh tính tác giả trung tính cho commit mới"
       }
     ],
     "summary": {
@@ -7622,10 +7627,10 @@
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
         "PR đang mở chưa vào dev, chưa merge: BE #210, #262, #263, #265, #266, #267, #271, #276; FE #204 (bảng prTable). Chuỗi PAYC: #271 + FE #204 đã sửa điều kiện, chờ QA delta",
-        "Thẻ Owner NO-37 (paid=false tự khai) và NO-36 (mục 07) chờ quyết",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
-        "QA #276 cần chạy lại trên máy yên (12 lớp test, RED, mutant) + test nhánh SRC_WRITES_UNAVAILABLE; tải máy 22-62 làm các job chờ nhau — nút cổ chai là CPU/RAM, thêm agent không tăng tốc việc nặng"
+        "QA #276 cần chạy lại trên máy yên (12 lớp test, RED, mutant) + test nhánh SRC_WRITES_UNAVAILABLE; tải máy 22-62 làm các job chờ nhau — nút cổ chai là CPU/RAM, thêm agent không tăng tốc việc nặng",
+        "Mục 07 (ATT-e*) và NO-37 đã được Owner duyệt (07:46) nhưng CHƯA có mã: ATT-e1 và PR NO-37 đang viết; ATT-e2 cần Windows (hạ tầng), ATT-e3/e4/e5/ATT-f xếp sau"
       ],
       "risks": [
         "Tài nguyên (đo 08:41): tải 22.07 32.05 38.25 (đỉnh 62), Finder 71 GB; tiến trình Kotlin compile daemon mồ côi chiếm ~400% CPU phục vụ build của agent QA delta PAYC (không kill); nhiều job Gradle/Testcontainers chờ nhau",
@@ -7634,8 +7639,9 @@
       ],
       "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 71 GB (tầng dọn nhẹ; ngưỡng khẩn 30), tải 22.07 32.05 38.25 (uptime 08:41, đã tới 22-62 từ 07:44); làn máy phụ: thẻ 1-7 có kết quả, chưa 'sẵn sàng'",
       "ownerNeeds": [
-        "Quyết thẻ NO-36 (6 quyết định upload/giải nén/lưu văn bản đính kèm, mục 07) và NO-37 (bảo mật nhà cung cấp: paid=false tự khai) ở tab Chờ anh quyết",
-        "Làn máy phụ (hỏi trong chat, chưa là thẻ): mở Docker Desktop + giới hạn, tắt giả lập Android khi chạy việc nặng, cô lập"
+        "Không có thẻ quyết định đang mở (NO-36/37/38 đã duyệt A lúc 07:46: đã duyệt, chưa triển khai)",
+        "Làn máy phụ: Docker Desktop + giới hạn, cô lập, Cloudflare Access cho máy chính: Owner giao Claude trên Oxy qua thẻ 8 trên #123 (các bước Owner-only Oxy liệt kê lệnh), chờ báo cáo",
+        "BƯỚC 1 CompanySWAI trên máy chính: chưa có xác nhận trực tiếp của Owner trong phiên XWeb (chờ)"
       ],
       "eta": {
         "value": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
@@ -8120,6 +8126,11 @@
             "label": "status:qa"
           }
         ]
+      },
+      "owner07": {
+        "decidedAt": "2026-11-13T07:46:00+07:00",
+        "link": "https://github.com/luan20495/xweb01/issues/88#issuecomment-6840348947",
+        "note": "APPROVED, not IMPLEMENTED/QA/PROD"
       }
     },
     "agents": {
@@ -8240,7 +8251,8 @@
         "status": "Thẻ 7 giao lúc 07:43 (đội review chỉ-đọc, tối đa 6 agent phụ); thẻ 6 (quét hồi quy) giao 07:11; chưa có báo cáo nên số agent ở máy phụ = UNKNOWN (REPORTED khi Oxy báo)",
         "note": "Việc nặng ở máy phụ vẫn một khe, tải ≤ 4; Docker/giả lập/cô lập là việc Owner"
       }
-    }
+    },
+    "lastOwnerCommentId": 6840348947
   },
   "aiLimits": {
     "updatedAt": "2026-11-12T16:15:00+07:00",
@@ -16703,7 +16715,7 @@
       {
         "id": "07",
         "name": "File/context/attachment",
-        "pr": "chưa có PR",
+        "pr": "chưa có PR cho ATT-e/ATT-f/CTX-b (code đang viết); ATT-b đã merge (#272/#207)",
         "done": "Prompt 300.000 byte, tệp 120.000/240.000 ký tự, câu trả lời 48.000 ký tự đã trên PROD (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
         "todo": "Bốn lát tên trong chỉ đạo (ATT-b1/b2, FILES-b, CTX-b) nhỏ (~25 giờ công); phần lớn là ATT-e (~135 giờ công) và lỗ hổng mới: văn bản đính kèm không được lưu và công cụ đọc T23 chỉ đọc kho dự án, nên 'đọc theo phần' chưa có gì để đọc (thêm ATT-f); giải nén cô lập cần mã runner + ảnh + thư viện mới và dùng chung tệp với #258; chưa có PR",
         "code": "✗",
@@ -16711,7 +16723,7 @@
         "deploy": "✗",
         "on": "✗",
         "verified": "✗",
-        "agent": "ATT-b: xong (#272/#207 merged); ATT-e0 (ADR/NO-DIR-5): xong, chờ Owner NO-36",
+        "agent": "ATT-e1 (tải lên nhiều phần, BE) đang viết sau khi Owner duyệt NO-36 (A) 07:46; ATT-e2 cần Windows; e3/e4/e5/ATT-f xếp sau; CTX-b đang chạy test",
         "eta": "~22–27/11 (rất thấp)",
         "etaInfo": {
           "etaAt": null,
@@ -16851,7 +16863,7 @@
         "deploy": "–",
         "on": "–",
         "verified": "✗",
-        "agent": "QA độc lập #276 đang chạy; agent cô lập 2T2A đang chạy; agent PR bảo mật nhà cung cấp (#273) đã xong, đã merge",
+        "agent": "PR NO-37 (paid=false chỉ loopback/LAN) đang viết sau khi Owner duyệt A; agent cô lập 2T2A đang chạy; #276 chờ chạy lại test",
         "eta": "~16/11 (trung bình), cần xác nhận Owner",
         "etaInfo": {
           "etaAt": null,
