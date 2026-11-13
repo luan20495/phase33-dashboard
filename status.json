@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T07:43:13+07:00",
+  "asOf": "2026-11-13T08:06:11+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T07:43:13+07:00",
+  "detailUpdatedAt": "2026-11-13T08:06:11+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -3753,7 +3753,7 @@
         "status": "DONE",
         "since": "2026-11-11T18:26:00+07:00",
         "title": "Giới hạn cho người dùng thật: nâng giới hạn mềm và chốt phần tiền",
-        "detail": "Danh sách giới hạn đã rà (U9). Giới hạn mềm C0 đề xuất nâng: lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3 (không phải tiền, lùi bằng một lệnh). Phần tiền do Owner quyết: trần cửa sổ AI [mức USD nội bộ] (còn ~21), hạn mức tuần của khóa nhà cung cấp, [mức USD nội bộ]/người/tháng và [mức USD nội bộ]/workspace/tháng.",
+        "detail": "Danh sách giới hạn đã rà (U9). Giới hạn mềm C0 đề xuất nâng: lượt AI mỗi người mỗi ngày 100→500, build mỗi người mỗi ngày 60→200, build mỗi dự án mỗi ngày 100→300, build đồng thời mỗi người 2→3 (không phải tiền, lùi bằng một lệnh). Phần tiền do Owner quyết: trần cửa sổ AI [mức USD nội bộ] (số còn lại: xem tài liệu nội bộ), hạn mức tuần của khóa nhà cung cấp, [mức USD nội bộ]/người/tháng và [mức USD nội bộ]/workspace/tháng.",
         "solution": "C0 khuyến nghị A cho giới hạn mềm. Với phần tiền, Owner nhập con số mong muốn (ví dụ tổng mỗi tuần) trong ô ghi chú; C0 đối chiếu với khóa nhà cung cấp rồi báo mức đề xuất.",
         "link": "",
         "options": [
@@ -5887,8 +5887,8 @@
         "closed": false,
         "title": "ƯU TIÊN CAO · Rà các giới hạn còn chặn người dùng thật",
         "titleEn": "TOP PRIORITY · Audit of remaining limits blocking real users",
-        "status": "09:46 12/11: Owner yêu cầu không giới hạn AI chỉ giới hạn tiền: đã đặt 0 cho lượt/ngày và token/ngày/tháng (3 cài đặt + 5 ngoại lệ, REPORTED). Còn trần chung 600 lượt/ngày cần mã. Danh sách 69 giới hạn đã lên tab 'Giới hạn AI Studio' để Owner chọn. | 19:27: Owner: 'khoảng 5 người'. Đề xuất tiền: khóa OpenRouter [mức USD nội bộ]/tuần, trần cửa sổ 150 (cần đổi giá trị gốc cùng bản 21), [mức USD nội bộ]/người/tháng, [mức USD nội bộ]/workspace/tháng; chờ Owner xác nhận. | 18:31: ĐÃ NÂNG giới hạn mềm theo thẻ NO-24 = A (VERIFIED đọc lại): lượt AI/người/ngày 500, build/người/ngày 200, build/dự án/ngày 300, build đồng thời/người 3. Còn chờ Owner: phần tiền. | 18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI [mức USD nội bộ] (còn ~21), hạn mức khóa nhà cung cấp [mức USD nội bộ]/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, [mức USD nội bộ]/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
-        "statusEn": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI [mức USD nội bộ] (còn ~21), hạn mức khóa nhà cung cấp [mức USD nội bộ]/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, [mức USD nội bộ]/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "status": "09:46 12/11: Owner yêu cầu không giới hạn AI chỉ giới hạn tiền: đã đặt 0 cho lượt/ngày và token/ngày/tháng (3 cài đặt + 5 ngoại lệ, REPORTED). Còn trần chung 600 lượt/ngày cần mã. Danh sách 69 giới hạn đã lên tab 'Giới hạn AI Studio' để Owner chọn. | 19:27: Owner: 'khoảng 5 người'. Đề xuất tiền: khóa OpenRouter [mức USD nội bộ]/tuần, trần cửa sổ 150 (cần đổi giá trị gốc cùng bản 21), [mức USD nội bộ]/người/tháng, [mức USD nội bộ]/workspace/tháng; chờ Owner xác nhận. | 18:31: ĐÃ NÂNG giới hạn mềm theo thẻ NO-24 = A (VERIFIED đọc lại): lượt AI/người/ngày 500, build/người/ngày 200, build/dự án/ngày 300, build đồng thời/người 3. Còn chờ Owner: phần tiền. | 18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI [mức USD nội bộ] (số còn lại: xem tài liệu nội bộ), hạn mức khóa nhà cung cấp [mức USD nội bộ]/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, [mức USD nội bộ]/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
+        "statusEn": "18:26: đã liệt kê (đọc từ cài đặt PROD). Chặn nhiều nhất: trần tiền cửa sổ AI [mức USD nội bộ] (số còn lại: xem tài liệu nội bộ), hạn mức khóa nhà cung cấp [mức USD nội bộ]/tuần, 600 lượt AI/ngày toàn hệ thống, 100 lượt/người/ngày, [mức USD nội bộ]/người/tháng, build 60/người/ngày. C0 khuyến nghị nâng: lượt AI/người 100→500, build/người 60→200, build/dự án 100→300, build đồng thời 2→3 (thẻ NO-24). Phần tiền do Owner quyết.",
         "prs": "cài đặt chạy nóng",
         "eta": "chờ Owner",
         "etaFirst": "chờ Owner",
@@ -5933,7 +5933,7 @@
             "impact": "Tăng: nhiều việc chạy song song hơn, máy tải cao hơn. Giảm: chậm hơn.",
             "state": "applied",
             "min": 1,
-            "max": 10,
+            "max": 20,
             "evidence": "Owner 07:40 ICT 13/11 (chat): tối thiểu 12 agent, mỗi máy 6"
           },
           {
@@ -5946,7 +5946,7 @@
             "impact": "Vượt trần làm máy quá tải (Mac dùng chung).",
             "state": "applied",
             "min": 1,
-            "max": 10,
+            "max": 20,
             "evidence": "Owner 07:40 ICT 13/11 (chat): tối đa 20 agent cho 2 máy, mỗi máy 10"
           },
           {
@@ -5959,7 +5959,7 @@
             "impact": "Cao hơn tăng nguy cơ xung đột file và nghẽn Gradle/trình duyệt.",
             "state": "applied",
             "min": 1,
-            "max": 12
+            "max": 20
           },
           {
             "id": "agents.heavy_one",
@@ -6059,17 +6059,25 @@
           },
           {
             "id": "agents.review_control",
-            "title": "Kiểm soát review (tránh loạn khi nhiều agent)",
             "value": "Mỗi PR đúng 1 agent làm + 1 agent QA độc lập khác; QA một lần sau khi BE+FE+tích hợp xong; khóa tệp: hai agent không sửa cùng tệp (bảng agent ghi tệp); tối đa 2 PR mở cho một hạng mục; mọi push sau QA làm mất hiệu lực QA (QA delta); chỉ C0 merge, bằng --match-head-commit trên head đã QA; agent dừng sau báo cáo cuối (không gửi lại); số liệu agent tự báo = REPORTED cho đến khi C0 kiểm bằng gh",
             "state": "applied",
-            "evidence": "07:40 ICT 13/11: Owner yêu cầu kiểm soát review kỹ khi tăng lên 12–20 agent"
+            "evidence": "07:40 ICT 13/11: Owner yêu cầu kiểm soát review kỹ khi tăng lên 12–20 agent",
+            "label": "Kiểm soát review (tránh loạn khi nhiều agent)",
+            "type": "text",
+            "editable": false,
+            "explain": "Quy tắc để nhiều agent không giẫm lên nhau.",
+            "impact": ""
           },
           {
             "id": "agents.heavy_note",
-            "title": "Agent khác việc nặng",
             "value": "Số agent (đọc/viết/review) tăng lên 12–20, nhưng việc nặng (Gradle, Docker, trình duyệt) vẫn đi qua khe chung: tối đa 1 việc nặng mỗi máy, tối đa 2 nếu tải 1 phút dưới 6 và đĩa Finder trên 50 GB; Oxy: một khe nặng, tải ≤ 4",
             "state": "applied",
-            "evidence": "07:40 ICT 13/11"
+            "evidence": "07:40 ICT 13/11",
+            "label": "Agent khác việc nặng",
+            "type": "text",
+            "editable": false,
+            "explain": "Agent nhiều không có nghĩa việc nặng nhiều.",
+            "impact": ""
           }
         ]
       },
@@ -6394,15 +6402,14 @@
         "items": [
           {
             "id": "disk.free_now",
-            "label": "Dung lượng trống hiện tại (GiB)",
-            "value": 76,
+            "label": "Dung lượng trống hiện tại theo Finder (GB, gồm phần thu hồi được)",
+            "value": 74,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "07:38 ICT 13/11: Finder 76 GB khả dụng (tầng 70–100: dọn nhẹ); số thật của ổ ~18 GB chỉ tham khảo",
-            "title": "Dung lượng trống hiện tại theo Finder (GB, gồm phần thu hồi được)"
+            "evidence": "07:38 ICT 13/11: Finder 76 GB khả dụng (tầng 70–100: dọn nhẹ); số thật của ổ ~18 GB chỉ tham khảo"
           },
           {
             "id": "disk.t_monitor",
@@ -6418,7 +6425,7 @@
           },
           {
             "id": "disk.t_light",
-            "label": "70–100: dọn nhẹ",
+            "label": "70–100: dọn nhẹ (theo Finder)",
             "value": 70,
             "type": "number",
             "editable": true,
@@ -6430,7 +6437,7 @@
           },
           {
             "id": "disk.t_active",
-            "label": "40–70: dọn chủ động",
+            "label": "40–70: dọn chủ động (theo Finder)",
             "value": 40,
             "type": "number",
             "editable": true,
@@ -6442,7 +6449,7 @@
           },
           {
             "id": "disk.t_aggressive",
-            "label": "20–40: dọn tích cực",
+            "label": "30–40: dọn tích cực",
             "value": 30,
             "type": "number",
             "editable": true,
@@ -6451,12 +6458,11 @@
             "state": "applied",
             "min": 5,
             "max": 300,
-            "title": "30–40: dọn tích cực",
             "evidence": "Owner 13/11: ngưỡng theo số Finder"
           },
           {
             "id": "disk.t_urgent",
-            "label": "Dưới 20 GB: cảnh báo khẩn cho Owner",
+            "label": "Dưới 30 GB (theo Finder): cảnh báo khẩn cho Owner",
             "value": 30,
             "type": "number",
             "editable": true,
@@ -6465,7 +6471,6 @@
             "state": "applied",
             "min": 5,
             "max": 300,
-            "title": "Dưới 30 GB (theo Finder): cảnh báo khẩn cho Owner",
             "evidence": "Owner 13/11 chat: 'ngưỡng theo Finder dưới 30 GB là được' (trước đó 20 GB theo df)"
           },
           {
@@ -6933,7 +6938,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T07:43:13+07:00",
+    "updatedAt": "2026-11-13T08:06:11+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7557,10 +7562,15 @@
         "at": "2026-11-13T07:43:13+07:00",
         "by": "C0",
         "note": "Owner yêu cầu tăng tốc: giao 4 agent mới ở máy chính (CTX-b, FILES-b, cô lập 2T2A, QA UI r5) + QA #276; thẻ 7 cho Oxy (đội review chỉ-đọc, tối đa 6 agent phụ); bảng agent ghi tệp khóa và người review"
+      },
+      {
+        "at": "2026-11-13T08:06:11+07:00",
+        "by": "C0",
+        "note": "QA UI r5 (ab78d1c, GO có điều kiện): sửa nhãn #process (P2-F/G), chuỗi trạng thái không ngắt dòng (P2-H), dữ liệu mâu thuẫn (P2-B..E), prTable thêm #276"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T07:43:13+07:00",
+      "checkedAt": "2026-11-13T08:06:11+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7601,14 +7611,14 @@
       "prod": "Đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED; bản 22 đóng băng ở dev (BE d430a3e6, FE 29c2f075), CHƯA deploy",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa vào dev, chưa merge: BE #210, #262, #263, #265, #266, #267, #271; FE #204 (bảng prTable). Chuỗi PAYC: #271 mang cả chuỗi, chờ sửa C1-C4 + QA delta",
+        "PR đang mở chưa vào dev, chưa merge: BE #210, #262, #263, #265, #266, #267, #271, #276; FE #204 (bảng prTable). Chuỗi PAYC: #271 + FE #204 đã sửa điều kiện, chờ QA delta",
         "Thẻ Owner NO-37 (paid=false tự khai) và NO-36 (mục 07) chờ quyết",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "Nợ theo dõi: test CSRF rỗng (FC4) + P4 thứ tự bảo vệ SystemCatalog + P3-2 compensate: PR theo dõi đang viết (REPORTED)"
       ],
       "risks": [
-        "Tài nguyên (đo 07:12): tải 11.16 5.13 3.36, đĩa 20.9 GB trống (ngưỡng 20); đã dọn cache build Gradle >6 giờ, bản sao tạm và 39 volume Docker vô danh không dùng (Owner cho phép); file đĩa Docker không co lại nên dung lượng host chưa nhả hết",
+        "Tài nguyên (đo 08:06): tải 45.33 41.79 30.67; đĩa theo Finder 74 GB khả dụng (ngưỡng khẩn 30, tầng dọn nhẹ); số thật của ổ ~20 GB chỉ tham khảo",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy (máy thứ hai): thẻ 1-5 đã có kết quả (FE unit đầy đủ, guard, BE lớp thuần PASS); Docker Desktop chưa khởi động, bước sudo/Docker/cô lập chờ Owner"
       ],
@@ -7624,17 +7634,18 @@
         "change": "Từ 27/11–07/12 sang 20/11–27/11: PAYC-1 thật chỉ ~1 giờ 05 phút so với 14 giờ công thiết kế nên mục 06 ngắn hơn nhiều; đường găng chuyển sang mục 07 và 12"
       },
       "uiux": {
-        "checkedAt": "2026-11-13T02:08:32+07:00",
-        "status": "QA_INDEPENDENT_R4_GO_WITH_CONDITIONS_FIXES_PENDING_R5",
-        "qaSha": "c13726b (vòng 4)",
-        "qaVerdict": "GO có điều kiện (không P0/P1; P2-A..E: tiêu đề thẻ NO-37 tràn trên điện thoại, dữ liệu mâu thuẫn về #258/#254/#252, test đỏ, rủi ro/agent cũ; 28/29 dòng bảng PR khớp gh, dòng lệch do merge sau lúc đọc)",
+        "checkedAt": "2026-11-13T08:06:11+07:00",
+        "status": "QA_INDEPENDENT_R5_GO_WITH_CONDITIONS_FIXES_PENDING_R6",
+        "qaSha": "ab78d1c (vòng 5)",
+        "qaVerdict": "GO có điều kiện (không P0/P1; P2-F/G/H và dữ liệu mâu thuẫn còn lại)",
         "afterQaShas": [
-          "commit hourly 13/11 ~02:00 sửa P2-A..E, bỏ .playwright-cli khỏi repo, ẩn số tiền USD và tên tài khoản máy trong status.json"
+          "461bf8d (dữ liệu)",
+          "commit sửa P2-F/G/H và dữ liệu mâu thuẫn r5"
         ],
-        "proof": "QA vòng 4 độc lập trên c13726b (Pages cùng SHA, byte-identical); các sửa sau đó chỉ có C0 tự chạy (5 bộ test: 4 PASS, shell-ui chỉ còn 2 lỗi nền 06 và 16; kiểm trình duyệt thẻ NO-37 ở 320 px: không tràn). Chưa có QA độc lập trên SHA sửa",
-        "open": "QA vòng 5 trên SHA sửa; trạng thái ASSIGNED/EXECUTING của timeline chưa kiểm (dữ liệu chỉ có RESULT/UNASSIGNED); lịch sử git còn chứa tên tài khoản máy và tệp .playwright-cli cũ (cần Owner quyết nếu muốn viết lại lịch sử)"
+        "proof": "QA vòng 5 độc lập trên ab78d1c; các sửa sau đó chỉ có C0 tự chạy (bộ test + kiểm trình duyệt)",
+        "open": "QA vòng 6 trên SHA sửa"
       },
-      "agentCensus": "Máy chính: 6 đang chạy (sửa PAYC, QA #276, CTX-b, FILES-b, cô lập 2T2A, QA UI r5), 50 đã xong, 0 nghi treo. Máy phụ: UNKNOWN (thẻ 6 và 7 chờ báo cáo). Mục tiêu Owner: 12–20, mỗi máy 6–10. Việc nặng vẫn qua khe chung.",
+      "agentCensus": "Máy chính: 6 đang chạy hoặc vừa xong (QA delta PAYC, QA #276, CTX-b, FILES-b, cô lập 2T2A; QA UI r5 vừa xong), 51 đã xong, 0 nghi treo. Máy phụ: UNKNOWN (thẻ 6 và 7 chờ báo cáo). Mục tiêu Owner: tối thiểu 12 / tối đa 20.",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7655,7 +7666,7 @@
       },
       "providerAudit": {
         "checkedAt": "2026-11-13T00:21:59+07:00",
-        "source": "AUDIT-PROVIDER-PATHS.md (đọc mã, không truy cập PROD) + QA #270 đang chạy",
+        "source": "AUDIT-PROVIDER-PATHS.md (đọc mã, không truy cập PROD); QA #270 đã xong và đã merge; theo dõi tiếp ở #273 (đã merge)",
         "answer": "Không phải mọi đường tới model đều ghi vào sổ cái trả phí trước PR #270: chỉ đường OpenRouter (hàm đo `metered()`) có giữ chỗ, hard cap và chặn ZDR; nhà cung cấp trả phí khác (dòng cấu hình anthropic trên PROD, nhà cung cấp openai/anthropic/gemini từ biến môi trường, BYOK của tenant) không qua sổ cái.",
         "exposure": "Hiện bị chặn ở PROD bởi danh sách nhà cung cấp chấp nhận (đọc chỉ-đọc 17:46: khóa không có trong tệp cấu hình ⇒ trống ⇒ HTTP 451). Nếu danh sách bị đặt, người dùng có quyền AI thật có thể gọi nhà cung cấp đó không qua hard cap (P1 tiềm ẩn, chưa thể khai thác trên PROD hôm nay).",
         "fix": "PR #270 đã merge dev sau QA+SEC độc lập (GO có điều kiện, không P0/P1): mọi đường tới model nay hoặc ghi vào sổ cái trả phí hoặc từ chối trước khi dựng yêu cầu (QA liệt kê mọi chỗ gọi); audit ghi kind/paid, khóa lật paid, siết base_url, không theo chuyển hướng (merge dev: 82ff4e73)",
@@ -7714,9 +7725,9 @@
         ]
       },
       "prTable": {
-        "checkedAt": "2026-11-13T07:38:18+07:00",
-        "source": "gh pr view lúc 07:38 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "24 PR đã merge dev sau QA độc lập; 8 PR đang mở chưa có kết luận QA độc lập",
+        "checkedAt": "2026-11-13T08:06:11+07:00",
+        "source": "gh pr view lúc 08:06 ICT (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "24 PR đã merge dev sau QA độc lập; 9 PR đang mở chưa có kết luận QA độc lập",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -7990,8 +8001,8 @@
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "head đổi sau QA (agent sửa điều kiện đã push); cần QA delta trên head mới",
-            "qaReport": "QA-PAYC-PAIR.md"
+            "qa": "đã sửa 4 điều kiện QA (head mới); QA delta độc lập đang chạy (kết quả chưa có)",
+            "qaReport": "QA-PAYC-PAIR.md (vòng 1)"
           },
           {
             "repo": "xweb01",
@@ -8063,12 +8074,23 @@
             "repo": "xweb01",
             "pr": 271,
             "state": "OPEN",
-            "head": "4239dd16",
+            "head": "af0c1847",
             "mergeCommit": null,
             "mergedAt": null,
             "label": "status:qa",
-            "qa": "QA+SEC độc lập (chuỗi PAYC) GO có điều kiện: C1 test guard đỏ, C2 vendored, C3 inventory, C4 thiếu test HTTP; agent sửa đang chạy",
-            "qaReport": "QA-PAYC-PAIR.md"
+            "qa": "đã sửa 4 điều kiện QA (head mới); QA delta độc lập đang chạy (kết quả chưa có)",
+            "qaReport": "QA-PAYC-PAIR.md (vòng 1)"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 276,
+            "qaReport": null,
+            "qa": "QA+SEC độc lập đang chạy (kết quả chưa có)",
+            "state": "OPEN",
+            "head": "529146cd",
+            "mergeCommit": null,
+            "mergedAt": null,
+            "label": "status:qa"
           }
         ]
       }
@@ -8076,7 +8098,7 @@
     "agents": {
       "checkedAt": "2026-11-13T07:43:13+07:00",
       "source": "ListAgents lúc 07:43 ICT (chụp trực tiếp)",
-      "cap": 10,
+      "cap": 20,
       "counts": {
         "RUNNING_TOTAL": 6,
         "WORKING": 6,
@@ -8088,9 +8110,10 @@
       },
       "resources": "Tải 9.13 7.79 9.12; Finder 76 GB; hạn mức: tối thiểu 12 / tối đa 20 (mỗi máy 6–10)",
       "notes": [
-        "Chỉ đếm sub-agent của phiên C0; đã dừng các agent nhàn rỗi theo yêu cầu Owner (PAYC-6, QA #244/#254, runner, T25-3).",
+        "Chỉ đếm sub-agent của phiên C0; agent xong/nhàn rỗi bị dừng sau báo cáo cuối.",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
-        "Model cả 4 agent: claude-sonnet-5-5 theo log từng agent."
+        "Model các agent: claude-sonnet-5-5 theo log từng agent.",
+        "Mục tiêu Owner 13/11: tối thiểu 12 / tối đa 20 (mỗi máy 6–10); số agent máy phụ = UNKNOWN cho tới khi Oxy báo."
       ],
       "items": [
         {
@@ -10715,7 +10738,7 @@
           },
           "pr": {
             "kind": "refs",
-            "text": "BE #258 71fe0055 (đang mở)",
+            "text": "BE #258 69586bd4 (đã merge dev sau QA độc lập; chưa deploy/ON)",
             "refs": [
               {
                 "repo": "BE",
@@ -14966,7 +14989,7 @@
           },
           "pr": {
             "kind": "refs",
-            "text": "BE #258 71fe0055 (đang mở)",
+            "text": "BE #258 69586bd4 (đã merge dev sau QA độc lập; chưa deploy/ON)",
             "refs": [
               {
                 "repo": "BE",
@@ -14978,7 +15001,7 @@
           },
           "qa": {
             "s": "✗",
-            "note": "Phần #258 chờ QA (status:qa)"
+            "note": "Phần #258 đã merge dev sau QA độc lập; chưa deploy/ON"
           },
           "deploy": {
             "s": "~",
@@ -16609,7 +16632,7 @@
       {
         "id": "06",
         "name": "T22-C / J1 tự tiếp tục",
-        "pr": "BE #262, #263, #265, #266, #267 (PAYC-1,3,4,5,6) chồng nhau, status:qa; FE #204 (PAYC-FE1) status:qa; PAYC-2 chờ dev có #261 (đã có), cần giao",
+        "pr": "BE #271 (mang cả chuỗi PAYC-1..6, MERGEABLE) + FE #204; #262/#263/#265/#266/#267 là PR xếp chồng (một phần xung đột, đề xuất đóng sau khi #271 merge)",
         "done": "Thiết kế xong; 4 lát BE có PR, cờ TẮT (REPORTED, chưa QA độc lập): PAYC-1 bộ cấp phát đầu ra, PAYC-3 phân loại ca cắt + lưu một phần, PAYC-4 chuỗi tiếp tục (xếp hàng J1 idempotent, điều kiện dừng, bộ quét bù), PAYC-5 tiếp tục sau khi có tiền + 'Tiếp tục thêm' qua IAM/bốn mắt + API đọc + hủy chuỗi; chưa chạy trên Postgres/DEV/AI thật",
         "todo": "PAYC-FE1 (đang làm), PAYC-2 (lời nhắc, sau #261), QA một lần cho cả chồng BE+FE, ~6 lượt Haiku thật, deploy, bật cờ trên workspace QA, VERIFIED; khoảng hở TTL, chỉ nối duyệt B3, hằng số ước lượng PAYC-1 chưa hiệu chuẩn",
         "code": "✗",
@@ -16617,7 +16640,7 @@
         "deploy": "~",
         "on": "~",
         "verified": "✗",
-        "agent": "chưa có agent chạy (PAYC-2 chưa giao); PAYC-1/3/4/5/6/FE1 đã xong",
+        "agent": "agent sửa 4 điều kiện QA chuỗi PAYC đã xong (BE #271 af0c1847, FE #204 9fa342ac); QA delta độc lập đang chạy",
         "eta": "~20–26/11 (thấp)",
         "etaInfo": {
           "etaAt": null,
@@ -16740,7 +16763,7 @@
           "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
           "blockers": [
             "QA delta trên cặp SHA cuối (sau khi #258, FE #200, T24/T25 tích hợp xong)",
-            "Test đỏ chỉ có trên dev: 2 cái đã sửa (#261); còn nợ mới trên dev sạch: DataManagementNegativeSecurityTests, ManagementTransportTests (danh sách route), OlDataPromptTests P8 (sửa trong #273, chờ QA) — REPORTED",
+            "Test đỏ chỉ có trên dev: các test cũ đã sửa và merge sau QA độc lập (#261, #270, #273, #274, #275); chưa chạy toàn bộ suite BE",
             "bộ test BE đầy đủ ~3 giờ 15 phút khi tải máy cao"
           ],
           "milestones": [
@@ -16809,7 +16832,7 @@
       {
         "id": "10",
         "name": "IAM/Security",
-        "pr": "agent test 2 tenant × 2 app (DEV) RUNNING",
+        "pr": "BE #276 (follow-up controller: CSRF không rỗng, guard-first, compensate), agent test cô lập 2 tenant × 2 app đang chạy (chưa có PR)",
         "done": "SYSTEM_ADMIN không đọc dữ liệu nghiệp vụ theo thiết kế; 16/16 vai thử bị 404 ở X4; kiểm toán chỉ-đọc đường nhà cung cấp thứ hai xong (AUDIT-PROVIDER-PATHS.md): 13 phát hiện, 0 P0, 1 P1 tiềm ẩn (nhà cung cấp trả phí ngoài OpenRouter không qua sổ cái/hard cap, hiện bị chặn 451 vì danh sách chấp nhận trống trên PROD)",
         "todo": "PR sửa G-01/G-05/G-06 đang làm (chưa có số PR); chuỗi cần runner chưa chạy (ảnh runner bị dọn)",
         "code": "~",
@@ -16817,7 +16840,7 @@
         "deploy": "–",
         "on": "–",
         "verified": "✗",
-        "agent": "agent PR bảo mật nhà cung cấp: xong (#273 mở, QA độc lập đang chạy)",
+        "agent": "QA độc lập #276 đang chạy; agent cô lập 2T2A đang chạy; agent PR bảo mật nhà cung cấp (#273) đã xong, đã merge",
         "eta": "~16/11 (trung bình), cần xác nhận Owner",
         "etaInfo": {
           "etaAt": null,

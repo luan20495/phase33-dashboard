@@ -730,7 +730,7 @@ await T('51 #limits/approved shows the execution board: 69 cards, six-state stri
     for (const l of ['Tất cả', 'Còn chặn AI', 'Cần Owner quyết', 'Đang chờ QA', 'Đã duyệt / chưa thực thi']) ok(labels.includes(l), 'chip ' + l + ' in ' + labels);
     const c = p.locator('.al-xc[data-xid="L21"]'); const t = await c.innerText();
     eq(await c.locator('.al-xstrip li').count(), 6); eq(await c.locator('.al-xstrip li').evaluateAll(l => l.map(e => e.dataset.k + ':' + e.dataset.s)), ['od:✓', 'code:~', 'qa:✗', 'deploy:✗', 'on:~', 'verified:✗']);
-    for (const w of ['Owner duyệt', 'Mã xong', 'QA đạt', 'Lên PROD', 'Cờ/cấu hình ON', 'VERIFIED', 'Hiệu lực cuối', 'Lớp còn chặn', 'PR / SHA', 'BE #258 71fe0055', 'Blocker', 'ETA', 'ESTIMATE', 'Kiểm lúc', 'ICT', 'Bằng chứng']) ok(t.includes(w), 'L21 card shows ' + w);
+    for (const w of ['Owner duyệt', 'Mã xong', 'QA đạt', 'Lên PROD', 'Cờ/cấu hình ON', 'VERIFIED', 'Hiệu lực cuối', 'Lớp còn chặn', 'PR / SHA', 'BE #258 69586bd4', 'Blocker', 'ETA', 'ESTIMATE', 'Kiểm lúc', 'ICT', 'Bằng chứng']) ok(t.includes(w), 'L21 card shows ' + w);
     ok(/900 s/.test(t), 'L21 effective shows the clamp'); ok(/chưa có PR/.test(await p.locator('.al-xc[data-xid="L13"] .al-xpr').innerText()), 'a row without a PR says so'); eq(await c.locator('.al-xlay [data-layer]').evaluateAll(l => l.map(e => e.dataset.layer)), ['runner', 'BE']);
     const c12 = p.locator('.al-xc[data-xid="L12"]'); ok(/BE #254 3d8e6d81/.test(await c12.locator('.al-xpr').innerText()), 'L12 PR/SHA');
     // filters: every bucket chip narrows to exactly its count; the cross chip "Còn chặn AI" combines; "Tất cả" resets
