@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T16:43:32+07:00",
+  "asOf": "2026-11-13T17:27:20+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T16:43:32+07:00",
+  "detailUpdatedAt": "2026-11-13T17:27:20+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7889,9 +7889,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-13T16:38:58+07:00",
-        "source": "gh pr view lúc 16:38 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "34 PR trong bảng đã merge dev sau QA độc lập; 7 PR trong bảng đang mở chưa merge: FE #208, FE #210, BE #210, BE #276, BE #278, BE #279, BE #280",
+        "checkedAt": "2026-11-13T17:27:20+07:00",
+        "source": "gh pr view lúc 17:27 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "35 PR trong bảng đã merge dev sau QA độc lập; 6 PR trong bảng đang mở chưa merge: FE #208, BE #210, BE #276, BE #278, BE #279, BE #280",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -8006,13 +8006,13 @@
           {
             "repo": "Xweb01fe",
             "pr": 210,
-            "qaReport": null,
-            "qa": "chưa QA độc lập (NOT_RUN); sao chép .gitleaksignore của BE (+2 dòng); chặn combined-check theo Oxy (REPORTED)",
-            "state": "OPEN",
+            "qaReport": "QA-FE-PR210.md",
+            "qa": "QA độc lập (đọc mã) GO trên đúng head df2d8602: 1 tệp +2 dòng, sha256 giống hệt .gitleaksignore của BE dev; đã merge dev; combined-check XANH trên nhánh này là REPORTED (Oxy)",
+            "state": "MERGED",
             "head": "df2d8602",
-            "mergeCommit": null,
-            "mergedAt": null,
-            "label": "status:qa"
+            "mergeCommit": "1ab44efc",
+            "mergedAt": "2026-11-13T10:27:01Z",
+            "label": "status:done"
           },
           {
             "repo": "xweb01",
@@ -8407,7 +8407,7 @@
         "IMPL-ATT-E3A (head 5bff1734, NOT_RUN)"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T17:23:44+07:00",
+        "checkedAt": "2026-11-13T17:27:20+07:00",
         "status": "REPORTED bởi Oxy (#123, 17:22 ICT): 3 job Gradle chạy song song cùng hỏng OOM biên dịch (INFRA_FAIL, không phải lỗi nhánh); luật mới: MỘT job Gradle/BE một lúc trên toàn bộ làn, hai làn còn lại chỉ việc Node/FE; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
@@ -8431,7 +8431,7 @@
           "Hàng Gradle một job một lúc (ESTIMATE: mỗi job 10–60 phút, toàn hàng còn nhiều giờ) — nút cổ chai thật của toàn bộ công việc BE",
           "Đã gợi ý Oxy dùng worktree cố định + biên dịch tăng dần để rút thời gian (Oxy quyết)"
         ],
-        "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39) | PR #279 FILES-b 6bb3f5d5 bản gốc: biên dịch PASS, 463/464, 1 đỏ là test thời gian tuyệt đối (1736 ms so với trần 1500 ms) khi máy chạy 3 job — chạy lại riêng đang xếp (REPORTED); mutant chưa chạy vì gốc chưa xanh | FE #208 5cc6a3b9 (REPORTED 16:13): guard/tsc PASS, chain-card 45/45, unit 6152/6161, 1 đỏ THẬT (thuật ngữ 'dự án' trong 3 chuỗi mới) — đã sửa ở 102a9ded | combined-check cặp BE 012844dc + FE ba80f451 (REPORTED 16:17): FAIL ở bước 1 vì .gitleaksignore hai repo khác byte; verify-frontend-core PASS; api-contract-check strict PASS (40 điểm gọi chưa phân giải được, không tính pass); inventory QA đã cũ — sửa .gitleaksignore ở FE PR nháp #210"
+        "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39) | PR #279 FILES-b 6bb3f5d5 bản gốc: biên dịch PASS, 463/464, 1 đỏ là test thời gian tuyệt đối (1736 ms so với trần 1500 ms) khi máy chạy 3 job — chạy lại riêng đang xếp (REPORTED); mutant chưa chạy vì gốc chưa xanh | FE #208 5cc6a3b9 (REPORTED 16:13): guard/tsc PASS, chain-card 45/45, unit 6152/6161, 1 đỏ THẬT (thuật ngữ 'dự án' trong 3 chuỗi mới) — đã sửa ở 102a9ded | combined-check cặp BE 012844dc + FE ba80f451 (REPORTED 16:17): FAIL ở bước 1 vì .gitleaksignore hai repo khác byte; verify-frontend-core PASS; api-contract-check strict PASS (40 điểm gọi chưa phân giải được, không tính pass); inventory QA đã cũ — sửa .gitleaksignore ở FE PR nháp #210 | combined-check --quick cặp BE 012844dc + FE #210 (REPORTED 17:25): XANH 5/5 bước; FE #210 đã merge dev 17:27 sau QA độc lập; qa-inventory chạy trên cây ghép: screens 57,2%, features 3,7%, API 61,6% (chạy riêng BE trước đó cho 0% do thiếu cây FE)"
       }
     },
     "lastOwnerCommentId": 6840348947
