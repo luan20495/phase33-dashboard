@@ -8298,17 +8298,17 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T16:18:09+07:00",
+      "checkedAt": "2026-11-13T16:21:03+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 1,
-        "WORKING": 1,
+        "RUNNING_TOTAL": 0,
+        "WORKING": 0,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 73
+        "FINISHED": 74
       },
       "resources": "Tải ~10, RAM trống thấp: agent máy chính chỉ đọc/viết tệp, không Gradle/Docker (tạm dừng việc nặng theo Owner)",
       "notes": [
@@ -8316,26 +8316,9 @@
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
         "Model các agent: claude-sonnet-5-5 theo log từng agent.",
         "Danh sách agent ở trên chỉ gồm sub-agent Claude của máy chính. Việc nặng (biên dịch/test/mutant/Docker) chạy ở máy phụ theo 3 làn — xem “Làn máy phụ” bên dưới; máy chính không biên dịch nổi cây test BE (hết RAM/swap).",
-        "QA tài liệu xong, PR #281/#209 đã merge dev (16:08–16:09 ICT, đúng head đã QA). Lát wip mới (chưa PR, chưa biên dịch): S09-A/B, ATT-f1a, ATT-e3a, s0+g, FE e5a, sửa ATT-e1, sửa 2T2A; đã xếp S09-A/B và ATT-f1a vào thẻ 27 cho Oxy."
+        "16:35: không còn sub-agent nào chạy trên máy chính; mọi lát (S09-A/B/C, ATT-e1 sửa, ATT-f1a, e3a, s0+g, FE e5a, 2T2A sửa) đã viết xong và đang chờ Oxy chạy (thẻ 27–32), đều NOT_RUN. Giao thêm agent khi Oxy trả kết quả cần sửa hoặc QA bổ sung."
       ],
-      "items": [
-        {
-          "alias": "IMPL-ATT-E3A",
-          "id": "a753d710",
-          "task": "Viết ATT-e3a: lớp bảo vệ archive (zip/tar) thuần",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-13T15:59:44+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "worktree p38-atte3a",
-          "reviewer": "QA độc lập khi có PR",
-          "machine": "máy chính"
-        }
-      ],
+      "items": [],
       "finished": [
         "QA #254",
         "QA #252",
@@ -8365,10 +8348,11 @@
         "IMPL-S09-C (head 30d0ff00, NOT_RUN)",
         "IMPL-ATT-S0G (head af7e50cc, NOT_RUN)",
         "IMPL-ISO2T2A-FIX (head 94cebc48, NOT_RUN)",
-        "IMPL-ATT-E5A (FE 7bbb7891; 53/53 bằng node trên máy chính REPORTED, tsc NOT_RUN)"
+        "IMPL-ATT-E5A (FE 7bbb7891; 53/53 bằng node trên máy chính REPORTED, tsc NOT_RUN)",
+        "IMPL-ATT-E3A (head 5bff1734, NOT_RUN)"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T16:19:30+07:00",
+        "checkedAt": "2026-11-13T16:21:03+07:00",
         "status": "REPORTED bởi Oxy (#123, 15:47 ICT): 2 job nặng bị hủy do tải (ABORTED_LOAD, không phải test đỏ); đổi cách chia: chỉ MỘT job dùng Docker/Postgres tại một thời điểm trên cả 3 làn; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
@@ -8397,7 +8381,8 @@
           "Patch mutant cho thẻ 27–29 đã đẩy lên nhánh patch riêng của kho BE (chỉ tệp patch); Oxy chưa có thư mục impl-*-mut nên mutant S09/ATT-f1a NOT_RUN tới khi lấy patch",
           "Thẻ 30: FE #208 head mới 102a9ded (chạy lại, không Docker) và 2T2A head mới 94cebc48 (Docker, thay job cũ) — NOT_RUN",
           "Thẻ 31: FE ATT-e5a 7bbb7891 (không Docker) — tsc/unit/mutant NOT_RUN",
-          "Chạy lại combined-check --quick với nhánh FE #210 gộp cục bộ"
+          "Chạy lại combined-check --quick với nhánh FE #210 gộp cục bộ",
+          "Thẻ 32: ATT-e3a 5bff1734 (không Docker; 4 test CPU nặng) — NOT_RUN"
         ],
         "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39) | PR #279 FILES-b 6bb3f5d5 bản gốc: biên dịch PASS, 463/464, 1 đỏ là test thời gian tuyệt đối (1736 ms so với trần 1500 ms) khi máy chạy 3 job — chạy lại riêng đang xếp (REPORTED); mutant chưa chạy vì gốc chưa xanh | FE #208 5cc6a3b9 (REPORTED 16:13): guard/tsc PASS, chain-card 45/45, unit 6152/6161, 1 đỏ THẬT (thuật ngữ 'dự án' trong 3 chuỗi mới) — đã sửa ở 102a9ded | combined-check cặp BE 012844dc + FE ba80f451 (REPORTED 16:17): FAIL ở bước 1 vì .gitleaksignore hai repo khác byte; verify-frontend-core PASS; api-contract-check strict PASS (40 điểm gọi chưa phân giải được, không tính pass); inventory QA đã cũ — sửa .gitleaksignore ở FE PR nháp #210"
       }
