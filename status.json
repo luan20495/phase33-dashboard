@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T17:33:08+07:00",
+  "asOf": "2026-11-13T17:38:10+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T17:33:08+07:00",
+  "detailUpdatedAt": "2026-11-13T17:38:10+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6974,7 +6974,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T16:43:32+07:00",
+    "updatedAt": "2026-11-13T17:38:10+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6985,11 +6985,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:38:18+07:00",
-            "result": "ok",
-            "summary": "Không có comment mới ở #88/#257/#123"
-          },
           {
             "at": "2026-11-13T08:41:46+07:00",
             "result": "ok",
@@ -7034,6 +7029,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "changed",
             "summary": "Comment mới: ChatGPT INDEPENDENT DELTA 16:30 trên #88 (P2 snapshot dashboard mâu thuẫn) — đã sửa và trả lời trên #257; Oxy: ACK thẻ 28–32, kết quả FE #208 và combined-check (REPORTED); không có comment mới của Owner kể từ 07:46"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "ok",
+            "summary": "Không có comment mới của Owner/ChatGPT trên #88/#257 kể từ báo cáo lần 129; Oxy #123: chỉ ACK FE #208 f615a0c0 (đọc có phân trang + since)"
           }
         ]
       },
@@ -7045,11 +7045,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:12:28+07:00",
-            "result": "ok",
-            "summary": "#process khớp thực tế"
-          },
           {
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
@@ -7094,6 +7089,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "ok",
             "summary": "Tab Quy trình: agents.min 12 / max 30 đã áp dụng; thực tế 0 agent trên máy chính vì mọi lát đang chờ Oxy; Finder 65 GB (>30 GB)"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "ok",
+            "summary": "Tab Quy trình khớp thực tế: agents.min 12/max 30 áp dụng; 0 agent trên máy chính vì mọi lát chờ Oxy (luật mới: một job Gradle một lúc); Finder ~62 GB (>30 GB)"
           }
         ]
       },
@@ -7105,11 +7105,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:12:28+07:00",
-            "result": "changed",
-            "summary": "ListAgents 07:12: 0 agent chạy lúc đầu kỳ → giao 2; QA PAYC xong (GO có điều kiện); #274/#275 merged; audit 3 controller: 0 P0-P2"
-          },
           {
             "at": "2026-11-13T07:38:18+07:00",
             "result": "changed",
@@ -7154,6 +7149,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "changed",
             "summary": "Đầu PR đối chiếu: #277 MERGED (bảng cũ ghi OPEN là sai), #279 đã đổi head 6bb3f5d5, FE #208 102a9ded, FE #210 mới; 5 PR PAYC chồng sửa nhãn status:done; 10 agent việc nhẹ đã xong"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "changed",
+            "summary": "Đầu PR: FE #210 merged 17:27 sau QA độc lập GO (QA-FE-PR210), FE #208 head f615a0c0; BE #276/#278/#279/#280 không đổi, chờ Oxy; 0 agent chạy"
           }
         ]
       },
@@ -7165,11 +7165,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:12:28+07:00",
-            "result": "skipped",
-            "summary": "Không đăng 19 dòng lên #88; không có quyết định mới"
-          },
           {
             "at": "2026-11-13T07:38:18+07:00",
             "result": "skipped",
@@ -7214,6 +7209,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "changed",
             "summary": "Đã đăng báo cáo 19 dòng lần 129 lên #88 (6849482731)"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "skipped",
+            "summary": "Chưa đăng báo cáo 19 dòng mới: lần 129 (16:57) đã nêu; từ đó chỉ có FE #210 merge, combined-check XANH và INFRA_FAIL của Oxy (REPORTED) — sẽ gộp vào lần 130"
           }
         ]
       },
@@ -7225,11 +7225,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:12:28+07:00",
-            "result": "changed",
-            "summary": "Dashboard: prTable (#274/#275 merged, kết quả QA PAYC), agents, blockers, rủi ro đĩa"
-          },
           {
             "at": "2026-11-13T07:38:18+07:00",
             "result": "changed",
@@ -7274,6 +7269,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "changed",
             "summary": "Dựng lại bảng PR từ một lần đọc gh (41 dòng), asOf/detailUpdatedAt = giờ thật, thêm test pr-table-consistency; roster agent và làn máy phụ cập nhật"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "changed",
+            "summary": "Dashboard: bảng PR (35 merged / 6 open), làn máy phụ theo luật mới, FE #208 f615a0c0, bản ghi hằng giờ 17:38"
           }
         ]
       },
@@ -7285,11 +7285,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:12:28+07:00",
-            "result": "changed",
-            "summary": "diskutil 07:12: 20.9 GB; xóa 39 volume Docker vô danh không dùng (>6h, đã liệt kê trước, Owner cho phép) + cache build Gradle >6h"
-          },
           {
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
@@ -7334,6 +7329,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "ok",
             "summary": "Finder trống ~65 GB (>30 GB); không cần dọn"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "ok",
+            "summary": "Finder trống ~62 GB (>30 GB); không cần dọn"
           }
         ]
       },
@@ -7345,11 +7345,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:12:28+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); kiểm lại trước giờ đó"
-          },
           {
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
@@ -7394,6 +7389,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "ok",
             "summary": "Không kiểm khóa SSH máy chủ GCP lần này; đường SSH Mac→Oxy vẫn đứt (UNKNOWN)"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "ok",
+            "summary": "Không kiểm khóa SSH máy chủ GCP lần này; đường SSH Mac→Oxy vẫn đứt (UNKNOWN)"
           }
         ]
       },
@@ -7405,11 +7405,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-13T07:12:28+07:00",
-            "result": "changed",
-            "summary": "Giao 2 agent (sửa PAYC, PR theo dõi) + thẻ 6 cho làn Oxy; còn thiếu 2 so với mức tối thiểu 4 vì một khe Gradle"
-          },
           {
             "at": "2026-11-13T07:38:18+07:00",
             "result": "ok",
@@ -7454,6 +7449,11 @@
             "at": "2026-11-13T16:43:32+07:00",
             "result": "ok",
             "summary": "Giao 10 agent việc nhẹ trong giờ qua (QA tĩnh, kế hoạch, viết lát wip); hiện 0 chạy vì mọi lát chờ Oxy chạy test; sẽ giao QA bổ sung khi có kết quả Oxy"
+          },
+          {
+            "at": "2026-11-13T17:38:10+07:00",
+            "result": "ok",
+            "summary": "0 agent chạy: không có việc nhẹ không phụ thuộc Oxy còn lại; sẽ giao QA bổ sung #208/#278/#279/#280 khi Oxy trả kết quả (hàng Gradle một job một lúc)"
           }
         ]
       }
@@ -7889,7 +7889,7 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-13T17:33:08+07:00",
+        "checkedAt": "2026-11-13T17:38:10+07:00",
         "source": "gh pr view lúc 17:27 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
         "summary": "35 PR trong bảng đã merge dev sau QA độc lập; 6 PR trong bảng đang mở chưa merge: FE #208, BE #210, BE #276, BE #278, BE #279, BE #280",
         "items": [
@@ -8353,7 +8353,7 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T16:43:32+07:00",
+      "checkedAt": "2026-11-13T17:38:10+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
