@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-13T10:27:17+07:00",
+  "asOf": "2026-11-13T10:38:29+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-13T10:27:17+07:00",
+  "detailUpdatedAt": "2026-11-13T10:38:29+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6439,13 +6439,13 @@
           {
             "id": "disk.free_now",
             "label": "Dung lượng trống hiện tại theo Finder (GB, gồm phần thu hồi được)",
-            "value": 71,
+            "value": 70,
             "type": "number",
             "editable": false,
             "explain": "Giá trị đo gần nhất trên Mac.",
             "impact": "Chỉ đọc.",
             "state": "verified",
-            "evidence": "08:41 ICT 13/11: Finder 71 GB khả dụng (tầng 70–100: dọn nhẹ)"
+            "evidence": "10:38 ICT 13/11: Finder 70 GB khả dụng (tầng 40–70: dọn chủ động sát; hiện 70≥70 = dọn nhẹ)"
           },
           {
             "id": "disk.t_monitor",
@@ -6974,7 +6974,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-13T10:27:17+07:00",
+    "updatedAt": "2026-11-13T10:38:29+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -6985,11 +6985,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T22:38:44+07:00",
-            "result": "ok",
-            "summary": "Không có comment [OWNER]/[CHATGPT] mới ở #88 và #257 từ phản hồi #6826653073"
-          },
           {
             "at": "2026-11-12T23:38:50+07:00",
             "result": "changed",
@@ -7034,6 +7029,11 @@
             "at": "2026-11-13T09:40:49+07:00",
             "result": "changed",
             "summary": "Sửa lỗi đọc #88 (phân trang); thấy comment Owner 07:46 duyệt NO-36/37/38 = A bị bỏ sót ở các kỳ 08:41 và 09:38; đã áp dụng"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "ok",
+            "summary": "Không có comment Owner/ChatGPT mới ở #88 (since 07:46) và #257 (since 09:44)"
           }
         ]
       },
@@ -7045,11 +7045,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "ok",
-            "summary": "#process khớp thực tế; quy tắc QA một lần áp dụng cho cặp #264/#203 và cụm T24+T25"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "ok",
@@ -7094,6 +7089,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "ok",
             "summary": "#process khớp; min 12 / max 20 đã áp dụng"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "ok",
+            "summary": "#process khớp thực tế; quy tắc 3 agent khi nặng đã áp dụng"
           }
         ]
       },
@@ -7105,11 +7105,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T21:39:18+07:00",
-            "result": "changed",
-            "summary": "ListAgents 21:39: 2 đang chạy; PR mới #265 (PAYC-4), #266 (PAYC-5); #261+#202 tích hợp (combined-check xanh); QA T24+T25 đang chạy; #264/#203 merge sau QA"
-          },
           {
             "at": "2026-11-12T22:38:44+07:00",
             "result": "changed",
@@ -7154,6 +7149,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "changed",
             "summary": "QA #276 (chỉ đọc) GO có điều kiện, chưa merge; 5 agent chạy; tải 24-42"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "ok",
+            "summary": "0 agent chạy (đã dọn theo Owner); không PR mới; 5 lát việc ở nhánh wip/*; Oxy thẻ 9-12 đang xử lý"
           }
         ]
       },
@@ -7165,11 +7165,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "skipped",
-            "summary": "Không đăng báo cáo 19 dòng lên #88; phản hồi chi tiết ở #257"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "skipped",
@@ -7214,6 +7209,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "skipped",
             "summary": "Không đăng 19 dòng lên #88"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "skipped",
+            "summary": "Không đăng 19 dòng lên #88: không có thay đổi mới"
           }
         ]
       },
@@ -7225,11 +7225,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T21:39:18+07:00",
-            "result": "changed",
-            "summary": "Dashboard: mục 06 đổi nhãn mốc (QA vs VERIFIED), đĩa 13 GiB, roster"
-          },
           {
             "at": "2026-11-12T22:38:44+07:00",
             "result": "changed",
@@ -7274,6 +7269,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "changed",
             "summary": "Dashboard: QA #276, roster, tải/rủi ro"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "changed",
+            "summary": "Dashboard: dòng thời gian Oxy (thẻ 8-12), tải/đĩa, bản ghi chạy"
           }
         ]
       },
@@ -7285,11 +7285,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "ok",
-            "summary": "df 20:40: 18 GiB trống (dưới ngưỡng 20); không xóa thêm, chờ Owner cho volume/snapshot"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "changed",
@@ -7334,6 +7329,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "ok",
             "summary": "Finder 71 GB (tầng dọn nhẹ); không dọn"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "ok",
+            "summary": "Finder 70 GB; không dọn thêm"
           }
         ]
       },
@@ -7345,11 +7345,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T20:40:13+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH nạp ~16:40 hết ~16:40 ngày 13/11 (REPORTED); cần ≥30 phút biên khi deploy bản gộp"
-          },
           {
             "at": "2026-11-12T21:39:18+07:00",
             "result": "ok",
@@ -7394,6 +7389,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "ok",
             "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); sẽ kiểm trước giờ đó"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH hết ~16:40 ngày 13/11 (REPORTED); chưa dùng SSH máy chủ trong kỳ này"
           }
         ]
       },
@@ -7405,11 +7405,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-12T21:39:18+07:00",
-            "result": "skipped",
-            "summary": "Chỉ 2 agent chạy: đĩa 13 GiB dưới ngưỡng khẩn, không giao thêm việc build nặng"
-          },
           {
             "at": "2026-11-12T22:38:44+07:00",
             "result": "ok",
@@ -7454,6 +7449,11 @@
             "at": "2026-11-13T08:41:46+07:00",
             "result": "changed",
             "summary": "Không giao thêm việc nặng: máy chính quá tải (tải 24-42); QA #276 chạy lại khi máy yên"
+          },
+          {
+            "at": "2026-11-13T10:38:29+07:00",
+            "result": "skipped",
+            "summary": "Owner: việc nặng giữ 3 agent; hiện việc nặng ở Oxy nên chưa giao agent ở máy chính"
           }
         ]
       }
@@ -7641,7 +7641,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-13T09:53:44+07:00",
+      "checkedAt": "2026-11-13T10:38:29+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7689,11 +7689,11 @@
         "Mục 07 (ATT-e*) và NO-37 đã được Owner duyệt (07:46) nhưng CHƯA có mã: ATT-e1 và PR NO-37 đang viết; ATT-e2 cần Windows (hạ tầng), ATT-e3/e4/e5/ATT-f xếp sau"
       ],
       "risks": [
-        "Tài nguyên 10:23: Owner dùng máy chính để code Flutter nên việc nặng tạm dừng; trước đó tải 22-67 và swap gần đầy; kết quả các job bị dừng = NOT_RUN",
+        "Tài nguyên 10:38: việc nặng ở máy chính tạm dừng theo Owner (code Flutter); tải 3.32 5.23 12.04, Finder 70 GB",
         "Bản 22 NO-GO nguyên trạng: chưa có SHA đóng băng mới và QA delta trên cặp cuối",
         "Làn Oxy (máy thứ hai): thẻ 1-5 đã có kết quả (FE unit đầy đủ, guard, BE lớp thuần PASS); Docker Desktop chưa khởi động, bước sudo/Docker/cô lập chờ Owner"
       ],
-      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 73 GB (tầng dọn nhẹ; ngưỡng khẩn 30), tải 18.19 28.36 29.25 (uptime 09:53); làn máy phụ: thẻ 1-8 có kết quả, thẻ 9 đã giao",
+      "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 70 GB (tầng dọn nhẹ; ngưỡng khẩn 30), tải 3.32 5.23 12.04 (uptime 10:38, đã hạ sau khi dừng việc nặng); làn máy phụ: thẻ 9 A3 PASS (REPORTED), A4 bị hủy vì tải; đường SSH/rsync tới máy phụ đứt do đổi mạng (GitHub #123 vẫn thông)",
       "ownerNeeds": [
         "Không có thẻ quyết định đang mở (NO-36/37/38 đã duyệt A lúc 07:46: đã duyệt, chưa triển khai)",
         "Làn máy phụ: Docker Desktop + giới hạn, cô lập, Cloudflare Access cho máy chính: Owner giao Claude trên Oxy qua thẻ 8 trên #123 (các bước Owner-only Oxy liệt kê lệnh), chờ báo cáo",
@@ -7751,8 +7751,8 @@
         "verdict": "SEC GO có điều kiện cho #270 (đã merge). C1 (paid=false tự khai): Owner đã duyệt A (NO-37) lúc 07:46: mã đang viết (nhánh wip/p38-no37, chưa biên dịch/chạy test, chưa PR); C2: lá chắn nguồn chỉ là chốt cảnh báo, đã sửa ở #273/#276; C3: kiểm môi trường DEV chưa chạy; DNS rebinding/egress NOT_RUN"
       },
       "oxyLane": {
-        "checkedAt": "2026-11-13T08:19:24+07:00",
-        "status": "Thẻ 1-7 đã THỰC HIỆN và có KẾT QUẢ đã kéo về + sha256; chưa 'sẵn sàng' theo checklist (12 PASS / 10 NOT_RUN / 22 dòng bắt buộc); agent phụ ở máy phụ: thẻ 7 dùng 6 (REPORTED)",
+        "checkedAt": "2026-11-13T10:38:29+07:00",
+        "status": "Thẻ 1-9 có kết quả (thẻ 9: A3 PASS, A4 hủy vì tải; REPORTED); thẻ 10-12 đang làm; chưa 'sẵn sàng' cho QA BE Docker",
         "facts": "Máy phụ: 16 GiB RAM, SSD 228 GB (86 GiB trống), JDK 21, Node 24; Docker Desktop đã cài nhưng chưa chạy. Trên đỉnh dev: guard 9/7/0 và 168/0/110 khớp máy chính; BE lớp thuần 21 test 0 lỗi (5 phút 22 giây); FE unit đầy đủ 6108 test, 6100 pass, 0 fail, 8 bỏ qua với song song 3 (đỉnh tải 4,44). Script gốc test:unit bị hủy vì tải 10,63 (ABORTED_LOAD, không tính PASS/FAIL).",
         "timeline": [
           {
@@ -7798,10 +7798,34 @@
             "note": "6/6 báo cáo, 6/6 sha256 khớp; mọi phát hiện = REPORTED, đang tái hiện (R4 chuyển cho QA delta PAYC; R3 guard-first = #276; R6 → làm lại script slot v2)"
           },
           {
-            "card": "Thẻ tiếp theo",
-            "state": "UNASSIGNED",
-            "at": "2026-11-13T08:19:24+07:00",
-            "note": "chưa có thẻ; việc kế: QA FE/BE lớp thuần cho PR mới khi QA chính cần song song"
+            "card": "Thẻ 8 Docker + endpoint + khởi động lại",
+            "state": "RESULT",
+            "at": "2026-11-13T09:45:00+07:00",
+            "note": "REPORTED; sha256 khớp (máy chính kéo được 09:4x)"
+          },
+          {
+            "card": "Thẻ 9 nới chốt + Docker + A3/A4",
+            "state": "RESULT",
+            "at": "2026-11-13T10:32:00+07:00",
+            "note": "A3 PASS 7/7 (REPORTED, dựa log 20 dòng Oxy dán; chưa kéo được file do đổi mạng); A4 ABORTED_LOAD"
+          },
+          {
+            "card": "Thẻ 10 PR từ Oxy + route intake có chữ ký + tự chạy lại",
+            "state": "EXECUTING",
+            "at": "2026-11-13T09:50:00+07:00",
+            "note": "giao 09:50, chưa có báo cáo"
+          },
+          {
+            "card": "Thẻ 11 năm lô test nặng (wip/*)",
+            "state": "ASSIGNED",
+            "at": "2026-11-13T10:22:00+07:00",
+            "note": "giao 10:22; Oxy xếp sau A4"
+          },
+          {
+            "card": "Thẻ 12 slot v2 + kế hoạch A4 từng lớp",
+            "state": "EXECUTING",
+            "at": "2026-11-13T10:34:00+07:00",
+            "note": "Oxy đã trả lời phần (a)(b) 10:36; cài v2 đang làm"
           }
         ],
         "ownerNeeded": [
@@ -8190,8 +8214,8 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T09:53:44+07:00",
-      "source": "ListAgents lúc 08:41 ICT (chụp trực tiếp)",
+      "checkedAt": "2026-11-13T10:38:29+07:00",
+      "source": "ListAgents lúc 10:38 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
         "RUNNING_TOTAL": 0,
@@ -8202,7 +8226,7 @@
         "HUNG_SUSPECTED": 0,
         "FINISHED": 53
       },
-      "resources": "Tải 22.07 32.05 38.25; Finder 71 GB",
+      "resources": "Tải 3.32 5.23 12.04; Finder 70 GB",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; agent xong/nhàn rỗi bị dừng sau báo cáo cuối.",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
