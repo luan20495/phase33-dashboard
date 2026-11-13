@@ -8298,27 +8298,188 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-13T15:38:00+07:00",
+      "checkedAt": "2026-11-13T16:05:00+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 0,
-        "WORKING": 0,
+        "RUNNING_TOTAL": 10,
+        "WORKING": 10,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
         "FINISHED": 54
       },
-      "resources": "Tải 10.91 5.67 4.92; Finder 65 GB",
+      "resources": "Tải ~10, RAM trống thấp: agent máy chính chỉ đọc/viết tệp, không Gradle/Docker (tạm dừng việc nặng theo Owner)",
       "notes": [
         "Chỉ đếm sub-agent của phiên C0; agent xong/nhàn rỗi bị dừng sau báo cáo cuối.",
         "Phiên ngang hàng e4 (tương tác) không phải agent của C0, không tính.",
         "Model các agent: claude-sonnet-5-5 theo log từng agent.",
         "Danh sách agent ở trên chỉ gồm sub-agent Claude của máy chính. Việc nặng (biên dịch/test/mutant/Docker) chạy ở máy phụ theo 3 làn — xem “Làn máy phụ” bên dưới; máy chính không biên dịch nổi cây test BE (hết RAM/swap).",
-        "Máy chính 15:35: 0 sub-agent đang chạy (QA bổ sung #277 đã xong); chờ kết quả Oxy để chạy QA bổ sung #278/#279/#280/#208."
+        "16:05: Owner yêu cầu tăng agent theo cấu hình (tối thiểu 12 / tối đa 30): giao 10 agent việc nhẹ không đụng tệp nhau. Còn thiếu so với mức tối thiểu 12 vì chưa có thêm việc nhẹ không cần Owner và không tranh tệp; sẽ giao thêm khi Oxy trả kết quả (QA bổ sung #278/#279/#280/#208)."
       ],
-      "items": [],
+      "items": [
+        {
+          "alias": "QA-ATTE1",
+          "id": "a525cc34",
+          "task": "QA tĩnh ATT-e1 (be1eb362) + 10 mutant cho Oxy",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "chỉ đọc; ghi ~/xweb-handoff/agents/QA-ATTE1",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "QA-ISO2T2A",
+          "id": "a4e53267",
+          "task": "QA tĩnh cô lập 2 tenant × 2 app (5f748a52) + 8 mutant",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "chỉ đọc; QA-ISO2T2A",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "PREP12-A",
+          "id": "a2c306f5",
+          "task": "Mục 12: chuẩn bị P4–P6 (spec trình duyệt, app mẫu có mutant, gói API/DB) — chỉ viết tệp",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "p12/prep-a",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "PREP12-B",
+          "id": "aae614c1",
+          "task": "Mục 12: chuẩn bị P9–P11 (kịch bản lỗi, bảng chi phí, mẫu báo cáo) — chỉ viết tệp",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "p12/prep-b",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "PLAN-09",
+          "id": "a883c5b8",
+          "task": "Mục 09: kế hoạch AI tự thiết kế schema/migration/CRUD (phân tích, không mã)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "PLAN-09-AI-SCHEMA.md",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "RUNBOOK-252",
+          "id": "aab7b48f",
+          "task": "Mục 11: quy trình chứng minh #252 trên DEV (chỉ viết, không chạy)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "RUNBOOK-252-DEV-PROOF.md",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "FECHECK-02",
+          "id": "a154aa21",
+          "task": "Mục 02: kiểm FE có phản chiếu trần 128.000 token không (đọc mã)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "FECHECK-02.md",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "PLAN-ATT",
+          "id": "a876fd53",
+          "task": "Mục 07: kế hoạch lát ATT-f / ATT-e3 (phân tích, không mã)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "PLAN-ATT-NEXT.md",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "F7-AUDIT",
+          "id": "abc7da59",
+          "task": "Mục 10: kế hoạch kiểm trước deploy hàng paid=false (SQL chỉ đọc, chưa chạy)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "F7-AUDIT-PLAN.md",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        },
+        {
+          "alias": "DOCS-OWED",
+          "id": "a34476fd",
+          "task": "Tài liệu còn nợ cho các tính năng đã merge dev (PR nháp tài liệu)",
+          "model": "claude-sonnet-5-5",
+          "modelSource": "yêu cầu giao việc (REPORTED)",
+          "state": "WORKING",
+          "startAt": "2026-11-13T16:05:00+07:00",
+          "lastProgressAgoSec": null,
+          "lastOutput": "vừa giao",
+          "etaAt": null,
+          "waitReason": null,
+          "files": "nhánh docs/owed-20261113",
+          "reviewer": "C0 + QA độc lập khi có PR",
+          "machine": "máy chính"
+        }
+      ],
       "finished": [
         "QA #254",
         "QA #252",
@@ -8332,31 +8493,29 @@
         "QA bổ sung #277"
       ],
       "oxy": {
-        "checkedAt": "2026-11-13T15:35:00+07:00",
-        "status": "REPORTED bởi Oxy (comment #123 lúc 14:49 và 15:20 ICT): 3 làn nặng đang chạy; chưa kéo được file kết quả về máy chính (SSH đứt do đổi mạng) nên chưa VERIFIED",
+        "checkedAt": "2026-11-13T16:05:00+07:00",
+        "status": "REPORTED bởi Oxy (#123, 15:47 ICT): 2 job nặng bị hủy do tải (ABORTED_LOAD, không phải test đỏ); đổi cách chia: chỉ MỘT job dùng Docker/Postgres tại một thời điểm trên cả 3 làn; chưa kéo được file kết quả (SSH đứt) nên chưa VERIFIED",
         "note": "Đây là làn chạy test (script slot v2), không phải sub-agent Claude; mỗi làn một việc nặng một lúc. Số sub-agent phụ chỉ-đọc của Oxy: 6 (R1–R6) đã xong.",
         "lanes": [
           {
             "lane": "L1",
-            "now": "FILES-b (PR #279) 6bb3f5d5: chạy lại bản gốc rồi 10 mutant",
-            "next": "nhận hàng đợi"
+            "now": "FILES-b (PR #279) 6bb3f5d5: chạy lại bản gốc (Docker)",
+            "next": "10 mutant"
           },
           {
             "lane": "L2",
-            "now": "NO-37 (PR #278) 33748569: mutant",
-            "next": "ATT-e1 be1eb362 → cô lập 2T2A 5f748a52 → nhận hàng đợi"
+            "now": "FE dev ba80f451 (không Docker)",
+            "next": "nhận hàng đợi"
           },
           {
             "lane": "L3",
-            "now": "suite BE đầy đủ trên dev 012844dc, nhóm code.* (bắt đầu 14:47)",
-            "next": "các nhóm còn lại (9 nhóm, 1207 lớp)"
+            "now": "FE PR #208 5cc6a3b9 (không Docker, chờ FE dev)",
+            "next": "combined-check"
           }
         ],
         "queue": [
-          "PR #280 (chuỗi PAYC) bfed0431: bản gốc + 10 mutant — đứng đầu hàng đợi",
-          "PR #276 trên bản hợp nhất tạm với dev + bằng chứng ĐỎ",
-          "FE dev + PR #208 5cc6a3b9 (guard, tsc, unit; spec trình duyệt chưa chạy được: Oxy chưa có Playwright)",
-          "combined-check + verify-frontend-core + api-contract-check"
+          "Hàng đợi Docker lần lượt: FILES-b mutant → PR #280 mutant → NO-37 mut3…mut8 → ATT-e1 → 2T2A → suite BE (11 nhóm) → PR #276 ×2 → phân loại lớp đỏ",
+          "Ước lượng (ESTIMATE): mỗi job BE 10–60 phút; toàn hàng đợi còn nhiều giờ — nút cổ chai là MỘT job Docker một lúc, thêm agent ở máy chính không làm nhanh hơn phần này"
         ],
         "done": "PR #277 (CTX-b): bản gốc 114/114 và 5/5 mutant bị diệt (REPORTED 14:39)"
       }
