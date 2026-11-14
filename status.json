@@ -7832,7 +7832,7 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: BE #210, #276, #279, #282, #295, #300, #301, #302, #303, FE #212; slice Oxy chờ áp: bó e1, f2, f3, e3c, e4b-wire, FE e5c, FE S09-G mount, docs; chưa PR: ATT-e4a/e4b, FE e5b, FE S09-G; s0G, e1, f1b, e3b, S09-D đã merge",
+        "PR đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #295, BE #300, BE #301, BE #302, BE #303, FE #212; slice Oxy chờ áp: bó e1, f2, f3, e3c, e4b-wire, FE e5c, FE S09-G mount, docs; chưa PR: ATT-e4a/e4b, FE e5b, FE S09-G; s0G, e1, f1b, e3b, S09-D đã merge",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
