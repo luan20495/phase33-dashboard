@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-14T15:39:41+07:00",
+  "asOf": "2026-11-14T15:57:36+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-14T15:39:41+07:00",
+  "detailUpdatedAt": "2026-11-14T15:57:36+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7791,7 +7791,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-14T15:39:41+07:00",
+      "checkedAt": "2026-11-14T15:57:36+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7832,7 +7832,7 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #295, BE #300, BE #301, BE #302, BE #303, FE #212; slice Oxy chờ áp: bó e1, f2, f3, e3c, e4b-wire, FE e5c, FE S09-G mount, docs; chưa PR: ATT-e4a/e4b, FE e5b, FE S09-G; s0G, e1, f1b, e3b, S09-D đã merge",
+        "PR đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #295, BE #300, BE #301, BE #303, BE #304, FE #212; slice Oxy chờ áp: bó e1, f2, f3, e3c, e4b-wire, FE e5c, FE S09-G mount, docs; chưa PR: ATT-e4a/e4b, FE e5b, FE S09-G; s0G, e1, f1b, e3b, S09-D đã merge",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
@@ -8026,9 +8026,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-14T15:39:41+07:00",
+        "checkedAt": "2026-11-14T15:57:36+07:00",
         "source": "gh pr view lúc 15:39 ICT, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "57 PR trong bảng đã merge dev sau QA độc lập; 10 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #295, BE #300, BE #301, BE #302, BE #303, FE #212",
+        "summary": "58 PR trong bảng đã merge dev sau QA độc lập; 10 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #295, BE #300, BE #301, BE #303, BE #304, FE #212",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -8742,11 +8742,13 @@
           {
             "repo": "xweb01",
             "pr": 302,
-            "state": "OPEN",
+            "state": "MERGED",
             "head": "d72f6368",
-            "label": "status:qa",
-            "qa": "QA delta GO (Oxy diff AB/BN); Oxy BASE đang chạy d72f6368",
-            "qaReport": "QA-OXYDIFFS-5LOTS-20261114.md"
+            "label": "status:done",
+            "qa": "QA độc lập GO (QA-S09F + delta test-only GO trên đúng head d72f6368); Oxy REPORTED BASE GREEN 173/173, race 3×8/8, mut19/mut24 đỏ đúng kỳ vọng; merge ghim head d72f6368",
+            "qaReport": "QA-S09F.md; QA-OXYDIFFS-5LOTS-20261114.md",
+            "mergeCommit": "52a314c2",
+            "mergedAt": "2026-11-14T08:53:16Z"
           },
           {
             "repo": "xweb01",
@@ -8756,6 +8758,15 @@
             "label": "status:qa",
             "qa": "QA delta GO; Oxy REPORTED BASE xanh theo thẻ 70 (58/58, 135/135, 3/3, 1/1); chờ E xanh (chứa E)",
             "qaReport": "QA-S09H2-DELTA-11af2ec1.md"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 304,
+            "state": "OPEN",
+            "head": "7b7f629f",
+            "label": "status:qa",
+            "qa": "QA độc lập (đọc code) GO có điều kiện, không P0/P1, chưa biên dịch/chạy (NOT_RUN); chờ Oxy BASE trên đúng head + sinh mutant",
+            "qaReport": "QA-ATTE1-FU-PR304-7b7f629f.md"
           }
         ]
       },
