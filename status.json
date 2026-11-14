@@ -8099,8 +8099,8 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-15T00:38:56+07:00",
-        "source": "gh pr list lúc 00:37 ICT 15/11, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "checkedAt": "2026-11-15T01:39:15+07:00",
+        "source": "gh pr list lúc 01:37 ICT 15/11, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
         "summary": "68 PR trong bảng đã merge dev sau QA độc lập; 17 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, FE #216, FE #217, BE #309, BE #311, BE #312, BE #313, BE #314, FE #220, BE #316, BE #317, BE #318, BE #319, BE #320",
         "items": [
           {
