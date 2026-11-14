@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-14T08:39:54+07:00",
+  "asOf": "2026-11-14T08:43:56+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-14T08:39:54+07:00",
+  "detailUpdatedAt": "2026-11-14T08:43:56+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7006,7 +7006,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-14T08:39:54+07:00",
+    "updatedAt": "2026-11-14T08:43:56+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7735,10 +7735,15 @@
         "at": "2026-11-14T08:39:54+07:00",
         "by": "C0",
         "note": "Hourly 08:39: mở PR #293/#294, s0G xanh ở Oxy, neutralize đo Mac, báo cáo lần 141"
+      },
+      {
+        "at": "2026-11-14T08:43:56+07:00",
+        "by": "C0",
+        "note": "08:43: merge BE #293 + #294 sau QA đúng head"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-14T08:39:54+07:00",
+      "checkedAt": "2026-11-14T08:43:56+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7747,7 +7752,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "08:39: mở PR nháp BE #293 (ATT-s0G + ATT-g) và #294 (ATT-e1, V102); ATT-s0G xanh ở Oxy sau sửa fixture (3 lượt gốc thật 20/20, 21/21 mutant diệt, REPORTED); Mac (MEASURED): bản sửa neutralize 342025f9 gốc xanh, đảo về dev thì test đỏ, 22/22 mutant diệt; QA trên đúng head #293 và QA + SEC neutralize đang chạy; báo cáo #88 lần 141",
+      "changeSincePrev": "08:43: MERGE dev BE #293 (ATT-s0G + ATT-g, 08:42) và BE #294 (ATT-e1, V102, 08:43) sau QA độc lập đúng head, cờ TẮT, dormant, chưa lên PROD; bản sửa neutralize bị QA + SEC NO-GO tạm (hồi quy P2-1) → author đang sửa; báo cáo #88 lần 141",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -7779,7 +7784,7 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #293, BE #294, FE #212; các lát f1b, e3b, S09-D, S09-F, S09-E, S09-H, S09-H2, 2T2A, ATT-e4a, ATT-e4b, FE e5b, FE S09-G chưa có PR (chờ Oxy Docker và QA delta cuối; s0G và e1 đã có PR nháp, merge sau QA đúng head)",
+        "PR đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, FE #212; các lát f1b, e3b, S09-D, S09-F, S09-E, S09-H, S09-H2, 2T2A, ATT-e4a, ATT-e4b, neutharden, FE e5b, FE S09-G chưa có PR (chờ Oxy Docker và QA delta cuối); s0G và e1 đã merge",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
@@ -7823,7 +7828,7 @@
         "open": "QA vòng 7 trên đúng Pages SHA, 8 viewport × 2 theme, deep link, zoom 200%, contrast/keyboard",
         "staleNote": "STALE: phần UI/UX chưa đo lại từ 11:39 ICT; QA r7 trên Pages SHA hiện tại = UNKNOWN (không suy ra từ các merge hôm nay)"
       },
-      "agentCensus": "08:39: 2 sub-agent chạy (QA trên đúng head #293, QA + SEC neutralize); việc không phụ thuộc đã hết, các slice chờ Oxy Docker hoặc #279/#293/#294 merge; Mac rảnh",
+      "agentCensus": "08:43: 1 sub-agent chạy (sửa hồi quy P2-1 của neutralize); việc không phụ thuộc đã hết; Mac rảnh; Oxy: f1b rồi S09-F",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -7971,9 +7976,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-14T08:39:54+07:00",
-        "source": "gh pr view lúc 08:39 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "52 PR trong bảng đã merge dev sau QA độc lập; 7 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #293, BE #294, FE #212",
+        "checkedAt": "2026-11-14T08:43:56+07:00",
+        "source": "gh pr view lúc 08:43 ICT, một lần đọc cho toàn bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "54 PR trong bảng đã merge dev sau QA độc lập; 5 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, FE #212",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -8605,20 +8610,24 @@
           {
             "repo": "xweb01",
             "pr": 293,
-            "state": "OPEN",
+            "state": "MERGED",
             "head": "256a964b",
-            "label": "status:qa",
-            "qa": "QA độc lập GO ở 4d7804f6; QA trên đúng head 256a964b đang chạy",
-            "qaReport": "QA-ATTS0G-DELTA3-4d7804f6.md"
+            "label": "status:done",
+            "qa": "QA độc lập GO (dormant) trên đúng head 256a964b; Oxy REPORTED 3 lượt gốc 20/20 + 21/21 mutant",
+            "qaReport": "QA-ATTS0G-PR293-256a964b.md",
+            "mergeCommit": "46a0189f",
+            "mergedAt": "2026-11-14T01:42:11Z"
           },
           {
             "repo": "xweb01",
             "pr": 294,
-            "state": "OPEN",
+            "state": "MERGED",
             "head": "0aeac927",
-            "label": "status:qa",
-            "qa": "QA độc lập GO trên đúng head 0aeac927 (dormant, cờ OFF)",
-            "qaReport": "QA-ATTE1-DELTA2-0aeac927.md"
+            "label": "status:done",
+            "qa": "QA độc lập GO (dormant, cờ OFF) trên đúng head 0aeac927; Oxy REPORTED 82/82 + 18/18 mutant",
+            "qaReport": "QA-ATTE1-DELTA2-0aeac927.md",
+            "mergeCommit": "72a5a85e",
+            "mergedAt": "2026-11-14T01:43:08Z"
           }
         ]
       },
@@ -8629,17 +8638,17 @@
       }
     },
     "agents": {
-      "checkedAt": "2026-11-14T08:39:54+07:00",
+      "checkedAt": "2026-11-14T08:43:56+07:00",
       "source": "ListAgents lúc 14:39 ICT (chụp trực tiếp)",
       "cap": 20,
       "counts": {
-        "RUNNING_TOTAL": 2,
-        "WORKING": 2,
+        "RUNNING_TOTAL": 1,
+        "WORKING": 1,
         "WAITING": 0,
         "BLOCKED": 0,
         "IDLE": 0,
         "HUNG_SUSPECTED": 0,
-        "FINISHED": 134
+        "FINISHED": 136
       },
       "resources": "08:39: tải ~3,7; đĩa trống thật ~15,2 GB (dưới ngưỡng 20 GiB); Mac rảnh Gradle",
       "notes": [
@@ -8651,35 +8660,19 @@
       ],
       "items": [
         {
-          "alias": "QA-NEUTHARDEN",
-          "id": "qa-neutharden",
-          "task": "QA + SEC OlDocuments.neutralize 342025f9",
+          "alias": "IMPL-NEUT-HARDEN-FIX1",
+          "id": "impl-neut-harden-fix1",
+          "task": "Sửa hồi quy P2-1 của neutralize (QA + SEC NO-GO tạm)",
           "model": "claude-sonnet-5-5",
           "modelSource": "yêu cầu giao việc (REPORTED)",
           "state": "WORKING",
-          "startAt": "2026-11-14T08:39:54+07:00",
+          "startAt": "2026-11-14T08:43:56+07:00",
           "lastProgressAgoSec": null,
           "lastOutput": "vừa giao",
           "etaAt": null,
           "waitReason": null,
-          "files": "đọc-chỉ",
-          "reviewer": "C0",
-          "machine": "máy chính"
-        },
-        {
-          "alias": "QA-PR293",
-          "id": "qa-pr293",
-          "task": "QA trên đúng head PR #293 (ATT-s0G) 256a964b",
-          "model": "claude-sonnet-5-5",
-          "modelSource": "yêu cầu giao việc (REPORTED)",
-          "state": "WORKING",
-          "startAt": "2026-11-14T08:39:54+07:00",
-          "lastProgressAgoSec": null,
-          "lastOutput": "vừa giao",
-          "etaAt": null,
-          "waitReason": null,
-          "files": "đọc-chỉ",
-          "reviewer": "C0",
+          "files": "worktree p38-neutharden",
+          "reviewer": "QA + SEC độc lập + Mac",
           "machine": "máy chính"
         }
       ],
@@ -8775,7 +8768,9 @@
         "IMPL-FE-S09G-FIX2 (a4ad4731) + QA delta",
         "IMPL-ATTF1B-MUT10 (1679528b)",
         "IMPL-SYNC-S09G lần 2 (c4c01d3f)",
-        "IMPL-NEUT-HARDEN (342025f9)"
+        "IMPL-NEUT-HARDEN (342025f9)",
+        "QA-PR293 (256a964b)",
+        "QA-NEUTHARDEN (NO-GO tạm)"
       ],
       "oxy": {
         "checkedAt": "2026-11-14T08:39:54+07:00",
