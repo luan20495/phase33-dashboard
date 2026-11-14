@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T05:38:17+07:00",
+  "asOf": "2026-11-15T06:38:38+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T05:38:17+07:00",
+  "detailUpdatedAt": "2026-11-15T06:38:38+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7109,7 +7109,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T05:38:17+07:00",
+    "updatedAt": "2026-11-15T06:38:38+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7120,11 +7120,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "Đọc comment Oxy #123 (BASE cuối #308, thẻ chờ C0); không comment mới Owner/ChatGPT trên #88/#257"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7169,6 +7164,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "ok",
             "summary": "Không comment mới của Oxy/Owner/ChatGPT từ 05:21 đến 05:37; không có lệnh Owner mới"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "ok",
+            "summary": "Không comment mới của Oxy (ngoài Lane Reporter 06:14), Owner hay ChatGPT từ 05:30"
           }
         ]
       },
@@ -7180,11 +7180,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "Áp cấu hình quy trình: giữ nguyên, không thay đổi"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7229,6 +7224,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "ok",
             "summary": "Không đổi cấu hình tab Quy trình; agents.min=2 giữ; 2 agent C0 chạy"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "ok",
+            "summary": "Không đổi cấu hình tab Quy trình; agents.min=2 giữ; 1–2 agent C0 chạy"
           }
         ]
       },
@@ -7240,11 +7240,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "Merge #308; QA độc lập #308 final (GO có điều kiện); áp fe217-ts-fix; Mac C0 tắt 19:48–20:29 theo Owner"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7289,6 +7284,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "changed",
             "summary": "Merge docs FE #223 (guide #216; QA độc lập GO có điều kiện); mở #224 (sửa P3 docs) và cập nhật #222 `1206f5ab`; chưa PR mã BE nào merge (chờ BASE BE)"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "changed",
+            "summary": "Merge docs FE #224; runner #322 QA/SEC GO có điều kiện (1 P2 hồi quy đã giao sửa); bộ công cụ nghiệm thu 334 test PASS; chưa PR mã BE nào merge"
           }
         ]
       },
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo 19 dòng lần 153 lên #88 (20:41)"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "ok",
             "summary": "Không đăng báo cáo 19 dòng mới: lần 161 đăng cách đây dưới 10 phút, thay đổi nhỏ (docs)"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo 19 dòng lần 163 lên #88 (comment 6886007458)"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "Đồng bộ status.json: bảng PR (64 merged), blockers; 5 test sau cập nhật"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "changed",
             "summary": "Đồng bộ dashboard: prTable (+#223 MERGED, +#224, #222 head), runs"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "changed",
+            "summary": "Đồng bộ dashboard: prTable (#224 MERGED, #322 head), runs"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "Đĩa 16 GiB (<20), 97%; worktree sạch đã gỡ ở lần 152; cần Owner dọn cache ngoài XWeb"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "ok",
             "summary": "Đĩa 15 GiB trống (<20 GiB); không dọn thêm (chờ Owner duyệt danh sách DISK-SURVEY)"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "ok",
+            "summary": "Đĩa 14 GiB trống (<20 GiB); không dọn thêm (chờ Owner duyệt danh sách DISK-SURVEY)"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "SSH tới Oxy vẫn tắt (Owner-only); không kiểm được trực tiếp"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "ok",
             "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt)"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "ok",
+            "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt)"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T20:38:24+07:00",
-            "result": "changed",
-            "summary": "Giữ ≥4 agent: 3 agent áp/QA trong giờ (≤2 cùng lúc theo tải Mac); Oxy giữ 10 agent"
-          },
           {
             "at": "2026-11-14T22:03:27+07:00",
             "result": "changed",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-15T05:38:17+07:00",
             "result": "ok",
             "summary": "2 agent C0 chạy (sửa lỗi bộ công cụ nghiệm thu lần 2; QA docs sắp giao), Oxy 10/10"
+          },
+          {
+            "at": "2026-11-15T06:38:38+07:00",
+            "result": "ok",
+            "summary": "Giữ tối thiểu 2 agent mỗi Mac (Owner 23:40): 1–2 agent C0 chạy; Oxy 10/10 (nhưng lane FE L2/L3 rảnh, đã nhắc Oxy xếp job)"
           }
         ]
       }
@@ -7886,7 +7886,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-15T05:38:17+07:00",
+      "checkedAt": "2026-11-15T06:38:38+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7927,7 +7927,7 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, BE #322, FE #222, FE #224; chưa có BASE BE xanh: integbe2c (8 phần) phần 1/8 284 test 6 đỏ do giới hạn đồng hồ thực/race test (REPORTED, đã phân loại), 7 phần còn lại chạy; V106 chặn BẬT cờ (P1 phục hồi runner, đã chọn hướng sửa); runner #322 chờ chạy chéo BE V106 và kill -9; FE #222 chờ Oxy test:unit đầy đủ; 08(c) chỉ PARTIAL; đĩa Mac 15 GiB (<20)",
+        "PR đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, BE #322, FE #222; chưa có BASE BE xanh: integbe2c (8 phần) phần 1/8 284 test 6 đỏ do giới hạn đồng hồ thực/race test (REPORTED, đã phân loại), 7 phần còn lại chạy; V106 chặn BẬT cờ (P1 phục hồi runner, đã chọn hướng sửa); runner #322 chờ chạy chéo BE V106 và kill -9; FE #222 chờ Oxy test:unit đầy đủ; 08(c) chỉ PARTIAL; đĩa Mac 15 GiB (<20)",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
@@ -8123,9 +8123,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-15T05:38:17+07:00",
-        "source": "gh pr list lúc 05:37 ICT 15/11, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "75 PR trong bảng đã merge dev sau QA độc lập; 17 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, BE #322, FE #222, FE #224",
+        "checkedAt": "2026-11-15T06:38:38+07:00",
+        "source": "gh pr list lúc 06:37 ICT 15/11, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "76 PR trong bảng đã merge dev sau QA độc lập; 16 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, BE #322, FE #222",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -9033,9 +9033,9 @@
             "repo": "xweb01",
             "pr": 322,
             "state": "OPEN",
-            "head": "94c8e15d",
+            "head": "6a74ae60",
             "label": "status:qa",
-            "qa": "Client runner (X-Runner-Name/X-Runner-Lease) + chính sách địa chỉ chống SSRF (ghim IP, cap 200 MiB, cổng, artifactUrl): 236 test node PASS (C0 đo); QA/SEC độc lập GO có điều kiện (5 vòng); kill -9 E2E và BE V106 NOT_RUN; điều kiện triển khai C1 (origin BUILD_API_BASE = origin RUNNER_API)",
+            "qa": "Client runner + chính sách SSRF + phục hồi sau restart (marker 0600 chứa token; 409 = kết thúc): 258 test node PASS (C0 đo); QA/SEC độc lập GO có điều kiện: 1 P2 hồi quy (dòng armDrainLimit bị nuốt vào comment) đã giao sửa; kill -9, BE V106, Caddy NOT_RUN; điều kiện triển khai C1",
             "qaReport": "QA-RUNNERNAME-0106.md; QA-RUNNERLEASE-0131.md; QA-RUNNERP3B-0212.md; QA-RUNNERP3C-1830.md"
           },
           {
@@ -9094,10 +9094,13 @@
           {
             "repo": "Xweb01fe",
             "pr": 224,
-            "state": "OPEN",
+            "state": "MERGED",
             "head": "25a83743",
-            "label": "status:qa",
-            "qa": "Sửa 6 P3 của guide #223 (docs); chưa QA độc lập trên đúng head"
+            "label": "status:done",
+            "qa": "6 sửa P3 của guide #223 (docs): QA độc lập GO trên đúng head 25a83743; đối chiếu mã thật; merge ghim head",
+            "mergeCommit": "ae1b632a",
+            "mergedAt": "2026-11-14T22:50:00Z",
+            "qaReport": "QA-DOCS224-0540.md"
           }
         ]
       },
