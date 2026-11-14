@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-14T18:38:12+07:00",
+  "asOf": "2026-11-14T18:55:15+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-14T18:38:12+07:00",
+  "detailUpdatedAt": "2026-11-14T18:55:15+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -2345,7 +2345,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-14T16:39:15+07:00",
+    "updatedAt": "2026-11-14T18:55:15+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
@@ -4271,6 +4271,34 @@
             "key": "C",
             "label": "Bỏ f2/f3 khỏi bản 22",
             "desc": "Không lưu toàn văn; tính năng đọc phần sau điểm cắt không có ở bản này."
+          }
+        ]
+      },
+      {
+        "id": "NO-41",
+        "kind": "DECISION",
+        "priority": "P2",
+        "status": "OPEN",
+        "since": "2026-11-14T18:55:15+07:00",
+        "title": "6 lát mã đang chờ Owner: S09-K, S09-L, S09-M, S09-N, runner build thứ hai, 08(c) hướng B (cần V106)",
+        "detail": "Oxy đã viết xong mọi lát DEV đã duyệt; các lát dưới đây chưa ai viết vì cần quyết định của anh. S09-K: xóa mềm bảng/trường (ngừng dùng), cần migration expand-only, ước 8–12 giờ. S09-L: bảng dùng chung trong tenant, chạm nguyên tắc cách ly giữa các app, ADR 6 giờ rồi 30–45 giờ. S09-M: nhập CSV/XLSX vào dữ liệu TEST, cần quyết trần số dòng, ai được nhập, và có cho LIVE không; ước 10–14 giờ. S09-N: AI viết DDL cho CSDL riêng của app, rủi ro SQL injection cao, ước 60–90 giờ chưa tính hạ tầng; Claude khuyến nghị KHÔNG làm giai đoạn này. Runner build thứ hai: cần thêm máy/CPU/RAM/đĩa và chi phí hằng tháng, nên làm 08(c) trước; ước 4–8 giờ. 08(c) hướng B: lưu lease token thật trong build_jobs (cần số migration V106 và sửa client runner phía Windows); hướng A (tên runner tùy chọn, không migration) đã viết nhưng CHƯA đóng lỗ hổng cho tới khi runner client gửi holder. Không lát nào thuộc đường găng của 12 mục ngoài 08(c).",
+        "solution": "Khuyến nghị A: hoãn S09-K..N sau bản 22; cấp V106 và làm 08(c) hướng B cùng bước sửa client runner (Windows); runner thứ hai chỉ khi anh duyệt thêm máy và chi phí.",
+        "options": [
+          {
+            "key": "A",
+            "label": "Hoãn S09-K..N; làm 08(c) hướng B (cấp V106); runner thứ hai khi anh cấp máy",
+            "desc": "Giữ 12 mục gọn; đóng lỗ hổng runner thật sự; không thêm rủi ro cách ly dữ liệu.",
+            "recommended": true
+          },
+          {
+            "key": "B",
+            "label": "Như A và viết thêm S09-K (xóa mềm) + S09-M (nhập TEST, không LIVE)",
+            "desc": "Thêm 18–26 giờ viết; cần anh chốt trần số dòng và thời gian giữ dữ liệu bảng ngừng dùng."
+          },
+          {
+            "key": "C",
+            "label": "Hoãn tất cả sau bản 22, kể cả 08(c) hướng B",
+            "desc": "Không cấp V106 lúc này; 08(c) vẫn PARTIAL; runner thứ hai không làm."
           }
         ]
       }
@@ -7047,7 +7075,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-14T18:38:12+07:00",
+    "updatedAt": "2026-11-14T18:55:15+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7819,7 +7847,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-14T18:38:12+07:00",
+      "checkedAt": "2026-11-14T18:55:15+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7860,7 +7888,7 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #300, BE #303, BE #308, BE #309, BE #310, BE #311, BE #312, BE #313, BE #314, FE #216, FE #217, FE #220; MỚI: OlPatchCodeNamesTests đỏ trên dev da2ccdfd (cần PR dev-only OVER_LIMIT) + chạy toàn cây devbase; 08(c) chỉ PARTIAL (runner client + V106); chưa PR: ATT-e4a/e4b (trong stack #308), FE e5b (trong FE #217)",
+        "PR đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #300, BE #303, BE #308, BE #309, BE #310, BE #311, BE #312, BE #313, BE #314, BE #315, BE #316, BE #317, FE #216, FE #217, FE #220; OlPatchCodeNamesTests đỏ trên dev da2ccdfd (PR dev-only BE #315); 08(c) chỉ PARTIAL (runner client + V106); chưa PR: ATT-e4a/e4b (trong stack #308), FE e5b (trong FE #217)",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
@@ -7879,6 +7907,7 @@
       ],
       "budgetRunner": "Trần USD và hard cap giữ nguyên (con số nằm ở tài liệu nội bộ); đĩa theo Finder 65 GB (tầng dọn chủ động), tải 10.91 5.67 4.92 (uptime 14:39); việc nặng ở máy phụ",
       "ownerNeeds": [
+        "MỚI NO-41: 6 lát chờ anh (S09-K..N, runner thứ hai, 08(c) hướng B/V106) — chọn phương án trên thẻ",
         "MỚI NO-40 (LL-08): f2 lưu toàn văn tài liệu CHƯA CHE trong object store — chọn phương án trên thẻ; trong lúc chờ cờ text-store giữ TẮT",
         "Không có thẻ quyết định đang mở (NO-36/37/38 đã duyệt A lúc 07:46: đã duyệt, chưa triển khai)",
         "Làn máy phụ: Docker Desktop + giới hạn, cô lập, Cloudflare Access cho máy chính: Owner giao Claude trên Oxy qua thẻ 8 trên #123 (các bước Owner-only Oxy liệt kê lệnh), chờ báo cáo",
@@ -8055,9 +8084,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-14T18:38:12+07:00",
+        "checkedAt": "2026-11-14T18:55:15+07:00",
         "source": "gh pr view lúc 15:39 ICT, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "62 PR trong bảng đã merge dev sau QA độc lập; 16 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #300, BE #303, BE #308, BE #309, BE #310, BE #311, BE #312, BE #313, BE #314, FE #216, FE #217, FE #220",
+        "summary": "62 PR trong bảng đã merge dev sau QA độc lập; 19 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #279, BE #282, BE #300, BE #303, BE #308, BE #309, BE #310, BE #311, BE #312, BE #313, BE #314, BE #315, BE #316, BE #317, FE #216, FE #217, FE #220",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -8807,9 +8836,9 @@
             "repo": "xweb01",
             "pr": 308,
             "state": "OPEN",
-            "head": "0013372e",
+            "head": "5534e6b9",
             "label": "status:qa",
-            "qa": "QA độc lập GO có điều kiện (delta đến a75635c4); head 0013372e = +P2-B1 vá + test echo + config archives (Oxy A2); compile toàn cây XANH ở 0205de3f (Oxy REPORTED); 7 test đỏ chẩn đoán (REPORTED): 3 do stack (sửa pr308-red-fix), 3 flake tải, 1 đỏ SẴN TRÊN DEV (OlPatchCodeNamesTests); chờ BASE 09c7j771",
+            "qa": "QA độc lập GO có điều kiện (đến a75635c4); head 5534e6b9 = +P2-B1 vá, config archives, sửa test đỏ (red-fix-tests, G2, R8, C10 test); compile XANH ở 0205de3f (Oxy REPORTED); chờ BASE cuối",
             "qaReport": "QA-ATTE3CV4-E4BWIREV3-PR308-ae407212.md; QA-PR308DELTA-PR304FIX3.md; QA-PR309-PR308FINAL.md"
           },
           {
@@ -8825,18 +8854,18 @@
             "repo": "Xweb01fe",
             "pr": 217,
             "state": "OPEN",
-            "head": "efdc39cc",
+            "head": "43a1b385",
             "label": "status:qa",
-            "qa": "QA độc lập GO có điều kiện (b59e0958) + i18n/tray polish Oxy A4 (efdc39cc) chưa QA; cần sync-frontend-core một lần + tsc/unit/gate/browser (NOT_RUN); Oxy job 09f1-fe217-efdc39cc đã xếp",
+            "qa": "QA độc lập GO có điều kiện (b59e0958); QA chéo Oxy A4 (REPORTED) NO-GO tới P1-1 (upload-tray-e5c.test.tsx:142) + 5 P2; A6 viết fe-e5-picker-fix1; cần sync-frontend-core + tsc/unit/gate/browser",
             "qaReport": "QA-FU304DELTA-FE216-217.md"
           },
           {
             "repo": "xweb01",
             "pr": 309,
             "state": "OPEN",
-            "head": "a9214140",
+            "head": "dea1da5a",
             "label": "status:qa",
-            "qa": "QA độc lập GO có điều kiện (không P0-P2): ExtractionLedger.abandoned() ANY(ARRAY(SELECT…)); chờ Oxy BASE JdbcExtractionLedgerTests + source guard",
+            "qa": "QA độc lập GO có điều kiện (a9214140) + test L17 (dea1da5a); chờ Oxy BASE JdbcExtractionLedgerTests + mutant",
             "qaReport": "QA-PR309-PR308FINAL.md"
           },
           {
@@ -8851,17 +8880,17 @@
             "repo": "xweb01",
             "pr": 311,
             "state": "OPEN",
-            "head": "1b8d2f72",
+            "head": "0a048c3f",
             "label": "status:qa",
-            "qa": "Script E2E S09-J (Oxy R1), CHỈ VIẾT KHÔNG CHẠY; node --check đạt; tối đa 3 lượt trả phí, cần S09J_CONFIRM_DEV=yes; P3 thiếu host-guard DEV; QA độc lập chưa"
+            "qa": "Script E2E S09-J + host-guard DEV-only; CHỈ VIẾT KHÔNG CHẠY; QA độc lập chưa"
           },
           {
             "repo": "xweb01",
             "pr": 312,
             "state": "OPEN",
-            "head": "d7a543a0",
+            "head": "b77a721d",
             "label": "status:qa",
-            "qa": "Script Haiku f3 (Oxy A3), CHỈ VIẾT KHÔNG CHẠY; dry-run miễn phí, 4 lượt trả phí; P3 thiếu host-guard DEV; QA độc lập chưa"
+            "qa": "Script Haiku f3 + host-guard DEV-only; CHỈ VIẾT KHÔNG CHẠY; QA độc lập chưa"
           },
           {
             "repo": "xweb01",
@@ -8869,23 +8898,47 @@
             "state": "OPEN",
             "head": "0bf81977",
             "label": "status:qa",
-            "qa": "ATT-f1c member routes GET/DELETE stored (Oxy R2), creator-only, cờ TẮT = 404; chưa compile; QA độc lập chưa"
+            "qa": "QA chéo của Oxy (A6, REPORTED): GO cờ TẮT, P2-1 audit retry cần delta trước khi bật; QA độc lập C0 chưa"
           },
           {
             "repo": "xweb01",
             "pr": 314,
             "state": "OPEN",
-            "head": "c9f32bd9",
+            "head": "da36cc7a",
             "label": "status:qa",
-            "qa": "Item 08(c) lease-holder PARTIAL (Oxy P1): tham số holder tuỳ chọn, 409 LEASE_LOST, không migration; KHÔNG đóng lỗ hổng cho tới khi runner client gửi holder; PROD Caddy gate chặn query; chưa compile; QA độc lập chưa"
+            "qa": "08(c) PARTIAL: lease-holder + header X-Runner-Name + test M10; QA chéo Oxy GO mức PARTIAL (REPORTED); QA độc lập C0 chưa; không đóng lỗ hổng cho tới khi runner client gửi holder"
           },
           {
             "repo": "Xweb01fe",
             "pr": 220,
             "state": "OPEN",
-            "head": "f4340f22",
+            "head": "b23537d1",
             "label": "status:qa",
-            "qa": "Specs Playwright gộp (Oxy A5 harness + A1 smoke + libdelta), CHỈ VIẾT KHÔNG CHẠY; node --check đạt 11 .mjs; spec att-archive-select tự bỏ qua khi thiếu env; Playwright chưa cài; QA độc lập chưa"
+            "qa": "Specs Playwright gộp + host-guard DEV-only; CHỈ VIẾT KHÔNG CHẠY; Playwright chưa cài; QA độc lập chưa"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 315,
+            "state": "OPEN",
+            "head": "48a74144",
+            "label": "status:qa",
+            "qa": "PR dev-only sửa OlPatchCodeNamesTests đỏ trên dev (OlPatch.LIMIT→OVER_LIMIT); mô phỏng census 0 trùng (Mac); chờ Oxy job devred; QA độc lập chưa"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 316,
+            "state": "OPEN",
+            "head": "aea8e440",
+            "label": "status:qa",
+            "qa": "item 01 trần cấu hình (chỉ hạ, mặc định giữ nguyên) + fix1; QA chéo Oxy GO (REPORTED); QA độc lập C0 chưa"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 317,
+            "state": "OPEN",
+            "head": "1d20dd8d",
+            "label": "status:qa",
+            "qa": "S10 meta-test regex S9 (test-only); chờ Oxy chạy (Docker); QA độc lập chưa"
           }
         ]
       },
