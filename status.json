@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T00:38:56+07:00",
+  "asOf": "2026-11-15T01:39:15+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T00:38:56+07:00",
+  "detailUpdatedAt": "2026-11-15T01:39:15+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7085,7 +7085,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T00:38:56+07:00",
+    "updatedAt": "2026-11-15T01:39:15+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7096,11 +7096,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "changed",
-            "summary": "Đọc TOÀN BỘ ~70 comment Oxy #123 (6 slice + bó e1 + docs; BASE GREEN S09-D; S09-H2 5/6); không comment mới của Owner/ChatGPT trên #88/#257 — REPORTED"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7145,6 +7140,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "ok",
             "summary": "Đọc toàn bộ comment Oxy #123 (đến 17:35Z) và #88/#257; không comment Owner/ChatGPT mới; chat Owner 23:40 (min 2 agent mỗi máy) và 23:55 (cho phép merge #310) đã áp"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "ok",
+            "summary": "Đọc toàn bộ comment Oxy #123 (đến 18:35Z), #88 và #257: ChatGPT delta 01:17 đã trả lời (comment 6882360165); chỉ đạo Owner 00:45 (dev hết 12 mục, test sau) đã áp và đăng thẻ 144"
           }
         ]
       },
@@ -7156,11 +7156,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "ok",
-            "summary": "Tab Quy trình khớp thực tế; không thẻ Owner mới"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7205,6 +7200,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "ok",
             "summary": "agents.min=2 (đã áp 23:42); đối chiếu: 1–2 agent C0 đang chạy, Oxy 10/10"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "ok",
+            "summary": "agents.min=2 giữ; đối chiếu: 4 agent C0 chạy (trần 4), Oxy 10/10"
           }
         ]
       },
@@ -7216,11 +7216,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "changed",
-            "summary": "Mở PR nháp #301, #302, #303; giao agent áp bó e1; thẻ 71/72 cho Oxy; bảng PR làm mới từ gh (retry)"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7265,6 +7260,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "changed",
             "summary": "Merge #310 và #321 (docs, QA độc lập trên đúng head); 17 PR mở, 16/17 có QA trên đúng head, chưa PR nào đủ BASE/toàn cây; integbe2 báo sớm 2 đỏ"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "changed",
+            "summary": "Không PR merge mới; 17 PR mở, 16/17 có QA trên đúng head, chưa PR nào đủ BASE/toàn cây; integbe2 (từ 22:53) chưa xong, 2 đỏ sớm; nhánh wip chưa PR: runner-send-name c5e87b36, fe-att-e7 ccc28aa6, fe216-import-fix, docs-p3-321"
           }
         ]
       },
@@ -7276,11 +7276,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "changed",
-            "summary": "Đã đăng báo cáo 19 dòng lần 148 lên #88"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7325,6 +7320,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo 19 dòng lần 157 lên #88 (comment 6881582052)"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo 19 dòng lần 158 lên #88 (comment 6882368408)"
           }
         ]
       },
@@ -7336,11 +7336,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "changed",
-            "summary": "Dashboard: bảng PR (#299 merged, +#301..#303), tóm tắt, agent, làn Mac/Oxy, bản ghi hằng giờ"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7385,6 +7380,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "changed",
             "summary": "Đồng bộ dashboard: prTable (#310, #321 merged; heads #311/#312/#220), NO-40/NO-41 phân tích, runs"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "changed",
+            "summary": "Đồng bộ dashboard: runs, summary checkedAt"
           }
         ]
       },
@@ -7396,11 +7396,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "changed",
-            "summary": "Dừng 11 container Plane theo Owner (restart=no, volume giữ); đĩa ~13,6 GB (<20 GiB); swap Mac vẫn gần đầy"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7445,6 +7440,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "changed",
             "summary": "Đĩa 11–14 GiB (<20 GiB); dọn cache npm ~1,4 GiB; khảo sát chỉ đọc, phần còn lại chờ Owner duyệt"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "ok",
+            "summary": "Đĩa 12–13 GiB (<20 GiB); đã dọn cache npm 15/11 00:34 (~1,4 GiB); khảo sát chỉ đọc, phần còn lại chờ Owner duyệt"
           }
         ]
       },
@@ -7456,11 +7456,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "ok",
-            "summary": "Không kiểm khóa SSH máy chủ GCP lần này; SSH Mac→Oxy vẫn đứt (UNKNOWN)"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7505,6 +7500,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "ok",
             "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt); không phát hiện hết hạn"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "ok",
+            "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt); không phát hiện hết hạn"
           }
         ]
       },
@@ -7516,11 +7516,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T15:39:41+07:00",
-            "result": "changed",
-            "summary": "Oxy 6 tác giả + 4 review/QA theo Owner; C0 1 agent áp bó e1 (Mac quá tải)"
-          },
           {
             "at": "2026-11-14T16:39:15+07:00",
             "result": "changed",
@@ -7565,6 +7560,11 @@
             "at": "2026-11-15T00:38:56+07:00",
             "result": "ok",
             "summary": "Giữ tối thiểu 2 agent mỗi Mac theo Owner 23:40: 2 agent C0 chạy liên tục (QA delta, áp diff, SEC/phân tích, khảo sát đĩa)"
+          },
+          {
+            "at": "2026-11-15T01:39:15+07:00",
+            "result": "ok",
+            "summary": "Giữ tối thiểu 2 agent mỗi Mac (Owner 23:40): 4 agent C0 chạy liên tục (QA delta, FE ATT-e7/S09-M, P4, runner), Oxy 10/10 viết mã DEV"
           }
         ]
       }
@@ -7862,7 +7862,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-15T00:38:56+07:00",
+      "checkedAt": "2026-11-15T01:39:15+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
