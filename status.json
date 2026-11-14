@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-14T23:39:27+07:00",
+  "asOf": "2026-11-15T00:38:56+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-14T23:39:27+07:00",
+  "detailUpdatedAt": "2026-11-15T00:38:56+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -4253,7 +4253,7 @@
         "status": "OPEN",
         "since": "2026-11-14T16:39:15+07:00",
         "title": "Lưu toàn văn tài liệu đính kèm (f2) chưa che trong object store: chấp nhận hay đổi hợp đồng LL-08?",
-        "detail": "QA độc lập (đọc code) phát hiện f2 lưu toàn văn tài liệu nguyên bản (chưa che bí mật) trong object store để công cụ đọc f3 đọc phần sau điểm cắt; hợp đồng cũ LL-08 nói văn bản vào prompt/lưu phải qua che. Cờ text-store TẮT mặc định và sẽ giữ TẮT ở môi trường dùng chung. Oxy đã sửa chữ trong mã/doc cho đúng hiện trạng, thêm audit ATTACHMENT_TEXT_STORED, sweeper, hạn mức (f2b). Công cụ đọc đã giới hạn chỉ người tạo (C0 quyết).",
+        "detail": "QA độc lập (đọc code) phát hiện f2 lưu toàn văn tài liệu nguyên bản (chưa che bí mật) trong object store để công cụ đọc f3 đọc phần sau điểm cắt; hợp đồng cũ LL-08 nói văn bản vào prompt/lưu phải qua che. Cờ text-store TẮT mặc định và sẽ giữ TẮT ở môi trường dùng chung. Oxy đã sửa chữ trong mã/doc cho đúng hiện trạng, thêm audit ATTACHMENT_TEXT_STORED, sweeper, hạn mức (f2b). Công cụ đọc đã giới hạn chỉ người tạo (C0 quyết). PHÂN TÍCH SEC ĐỘC LẬP 15/11 (đọc mã, test NOT_RUN): khuyến nghị A có điều kiện kèm \"che khi ghi\" (A+); rủi ro P1 nếu bật: (1) bản sao lưu kho đối tượng giữ cả bản đã xóa nên \"xóa sau 7 ngày\" không đúng với sao lưu (PROD có chạy sao lưu không: chưa rõ), (2) bộ lọc bí mật lúc nhận hẹp hơn bộ che lúc đọc, (3) thông tin cá nhân không được che. Nếu không muốn thêm thiết kế: chỉ bật A cho DEV với dữ liệu giả, hoặc chọn C. Chi tiết: SEC-NO40 (hồ sơ nội bộ).",
         "solution": "Khuyến nghị A: chấp nhận lưu chưa che nhưng chỉ sau f2b (dọn, hạn mức, audit), TTL ngắn, truy cập chỉ người tạo; sửa hợp đồng LL-08 cho đúng hiện trạng.",
         "options": [
           {
@@ -4281,7 +4281,7 @@
         "status": "OPEN",
         "since": "2026-11-14T18:55:15+07:00",
         "title": "6 lát mã đang chờ Owner: S09-K, S09-L, S09-M, S09-N, runner build thứ hai, 08(c) hướng B (cần V106)",
-        "detail": "Oxy đã viết xong mọi lát DEV đã duyệt; các lát dưới đây chưa ai viết vì cần quyết định của anh. S09-K: xóa mềm bảng/trường (ngừng dùng), cần migration expand-only, ước 8–12 giờ. S09-L: bảng dùng chung trong tenant, chạm nguyên tắc cách ly giữa các app, ADR 6 giờ rồi 30–45 giờ. S09-M: nhập CSV/XLSX vào dữ liệu TEST, cần quyết trần số dòng, ai được nhập, và có cho LIVE không; ước 10–14 giờ. S09-N: AI viết DDL cho CSDL riêng của app, rủi ro SQL injection cao, ước 60–90 giờ chưa tính hạ tầng; Claude khuyến nghị KHÔNG làm giai đoạn này. Runner build thứ hai: cần thêm máy/CPU/RAM/đĩa và chi phí hằng tháng, nên làm 08(c) trước; ước 4–8 giờ. 08(c) hướng B: lưu lease token thật trong build_jobs (cần số migration V106 và sửa client runner phía Windows); hướng A (tên runner tùy chọn, không migration) đã viết nhưng CHƯA đóng lỗ hổng cho tới khi runner client gửi holder. Không lát nào thuộc đường găng của 12 mục ngoài 08(c).",
+        "detail": "Oxy đã viết xong mọi lát DEV đã duyệt; các lát dưới đây chưa ai viết vì cần quyết định của anh. S09-K: xóa mềm bảng/trường (ngừng dùng), cần migration expand-only, ước 8–12 giờ. S09-L: bảng dùng chung trong tenant, chạm nguyên tắc cách ly giữa các app, ADR 6 giờ rồi 30–45 giờ. S09-M: nhập CSV/XLSX vào dữ liệu TEST, cần quyết trần số dòng, ai được nhập, và có cho LIVE không; ước 10–14 giờ. S09-N: AI viết DDL cho CSDL riêng của app, rủi ro SQL injection cao, ước 60–90 giờ chưa tính hạ tầng; Claude khuyến nghị KHÔNG làm giai đoạn này. Runner build thứ hai: cần thêm máy/CPU/RAM/đĩa và chi phí hằng tháng, nên làm 08(c) trước; ước 4–8 giờ. 08(c) hướng B: lưu lease token thật trong build_jobs (cần số migration V106 và sửa client runner phía Windows); hướng A (tên runner tùy chọn, không migration) đã viết nhưng CHƯA đóng lỗ hổng cho tới khi runner client gửi holder. Không lát nào thuộc đường găng của 12 mục ngoài 08(c). PHÂN TÍCH ĐỘC LẬP 15/11 (đọc mã): lỗ hổng 08(c) chỉ bật khi có runner thứ hai hoặc hai runner trùng tên (số runner PROD: chưa rõ); khuyến nghị A làm hai bước: (1) client runner gửi tên và dừng job khi mất lease (C0 đã viết nhánh DEV, test node 150 PASS, QA độc lập đang chạy; Windows triển khai), (2) V106 sau để đóng các kịch bản còn lại. S09-L/N không nằm trên đường găng. Chi tiết: ANALYSIS-NO41 (hồ sơ nội bộ).",
         "solution": "Khuyến nghị A: hoãn S09-K..N sau bản 22; cấp V106 và làm 08(c) hướng B cùng bước sửa client runner (Windows); runner thứ hai chỉ khi anh duyệt thêm máy và chi phí.",
         "options": [
           {
@@ -7085,7 +7085,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-14T23:39:27+07:00",
+    "updatedAt": "2026-11-15T00:38:56+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7096,11 +7096,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "changed",
-            "summary": "Đọc TOÀN BỘ comment Oxy #123 (BASE GREEN S09-D 49f1aae6); không comment mới của Owner/ChatGPT trên #88/#257 — REPORTED"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "changed",
@@ -7145,6 +7140,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "ok",
             "summary": "Đọc toàn bộ comment Oxy #123 và #88/#257; không comment Owner mới ngoài chat 23:40 (min 2 agent mỗi máy)"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "ok",
+            "summary": "Đọc toàn bộ comment Oxy #123 (đến 17:35Z) và #88/#257; không comment Owner/ChatGPT mới; chat Owner 23:40 (min 2 agent mỗi máy) và 23:55 (cho phép merge #310) đã áp"
           }
         ]
       },
@@ -7156,11 +7156,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "ok",
-            "summary": "Tab Quy trình khớp thực tế; không thẻ Owner mới"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "ok",
@@ -7205,6 +7200,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "changed",
             "summary": "agents.min 3→2 (Owner 23:40); đối chiếu: 1 agent C0 đang chạy, Oxy 10/10"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "ok",
+            "summary": "agents.min=2 (đã áp 23:42); đối chiếu: 1–2 agent C0 đang chạy, Oxy 10/10"
           }
         ]
       },
@@ -7216,11 +7216,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "changed",
-            "summary": "MERGE BE #298 (e3b V104); mở PR nháp #299 (S09-D) và #300 (2T2A); QA đúng head #299 giao; bảng PR làm mới từ gh (có retry do lỗi TLS)"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "changed",
@@ -7265,6 +7260,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "ok",
             "summary": "PR: không merge mới; integbe2 và integ/fe-1 chờ Oxy; FE #216 đỏ guard import (REPORTED), Oxy viết fe216-import-fix"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "changed",
+            "summary": "Merge #310 và #321 (docs, QA độc lập trên đúng head); 17 PR mở, 16/17 có QA trên đúng head, chưa PR nào đủ BASE/toàn cây; integbe2 báo sớm 2 đỏ"
           }
         ]
       },
@@ -7276,11 +7276,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "changed",
-            "summary": "Đã đăng báo cáo 19 dòng lần 147 lên #88"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "changed",
@@ -7325,6 +7320,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo 19 dòng lần 156 lên #88 (comment 6880820925)"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo 19 dòng lần 157 lên #88 (comment 6881582052)"
           }
         ]
       },
@@ -7336,11 +7336,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "changed",
-            "summary": "Dashboard: bảng PR (#298 merged, +#299, +#300), tóm tắt, agent, làn Mac/Oxy, bản ghi hằng giờ"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "changed",
@@ -7385,6 +7380,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "changed",
             "summary": "Đồng bộ dashboard: process.agents.min, hourly runs"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "changed",
+            "summary": "Đồng bộ dashboard: prTable (#310, #321 merged; heads #311/#312/#220), NO-40/NO-41 phân tích, runs"
           }
         ]
       },
@@ -7396,11 +7396,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "ok",
-            "summary": "Đĩa trống thật ~15,7 GB (<20 GiB); NO-39 đã áp dụng; swap Mac gần đầy do phiên khác của Owner (không dọn được từ phía C0)"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "changed",
@@ -7445,6 +7440,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "ok",
             "summary": "Đĩa 12 GiB trống (<20 GiB); không dọn thêm (không có thứ an toàn mới); cần Owner dọn cache ngoài XWeb"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "changed",
+            "summary": "Đĩa 11–14 GiB (<20 GiB); dọn cache npm ~1,4 GiB; khảo sát chỉ đọc, phần còn lại chờ Owner duyệt"
           }
         ]
       },
@@ -7456,11 +7456,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "ok",
-            "summary": "Không kiểm khóa SSH máy chủ GCP lần này; SSH Mac→Oxy vẫn đứt (UNKNOWN)"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "ok",
@@ -7505,6 +7500,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "ok",
             "summary": "Không đo lại hôm nay (SSH tới máy chủ chưa dùng; không có việc cần SSH); không phát hiện hết hạn"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "ok",
+            "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt); không phát hiện hết hạn"
           }
         ]
       },
@@ -7516,11 +7516,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T14:46:08+07:00",
-            "result": "ok",
-            "summary": "C0 chỉ 1 agent đọc-chỉ (Mac quá tải); Oxy giữ 10 agent không-Gradle; việc nặng ở Oxy"
-          },
           {
             "at": "2026-11-14T15:39:41+07:00",
             "result": "changed",
@@ -7565,6 +7560,11 @@
             "at": "2026-11-14T23:39:27+07:00",
             "result": "ok",
             "summary": "Mac chính: 1 agent (áp docs-310-fix4), hết việc đọc-chỉ khác; min mới = 2, sẽ giao thêm khi Oxy có diff sẵn sàng áp"
+          },
+          {
+            "at": "2026-11-15T00:38:56+07:00",
+            "result": "ok",
+            "summary": "Giữ tối thiểu 2 agent mỗi Mac theo Owner 23:40: 2 agent C0 chạy liên tục (QA delta, áp diff, SEC/phân tích, khảo sát đĩa)"
           }
         ]
       }
@@ -7862,7 +7862,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-14T22:40:15+07:00",
+      "checkedAt": "2026-11-15T00:38:56+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -7903,7 +7903,7 @@
       "prod": "PROD = đợt 21 (BE 4a400ed0cc75, FE 449621de3b4a) — VERIFIED. Bản 22: NO-GO, CHƯA deploy. Cặp đóng băng cũ d430a3e6/29c2f075 ĐÃ LỖI THỜI (dev đã đi tiếp: BE 333040bf, FE ba80f451 đo 11:39); chưa có cặp đóng băng mới + QA tích hợp/SEC delta + rollback",
       "blockers": [
         "Bản 22: NO-GO nguyên trạng; cần đóng băng lại cặp SHA cuối + QA delta (V101, bản sao tài liệu FE khớp BE, lõi FE vendored đồng bộ) + rollback; chưa có SHA đóng băng mới",
-        "PR đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #310, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, FE #216, FE #217, FE #220; #314 test không compile (cần item08c-compile-fix); chưa có kết quả test toàn cây (integ/be-1-v2 chưa dựng); 08(c) chỉ PARTIAL; đĩa Mac 13 GiB (<20)",
+        "PR đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, FE #216, FE #217, BE #309, BE #311, BE #312, BE #313, BE #314, FE #220, BE #316, BE #317, BE #318, BE #319, BE #320; chưa có kết quả test toàn cây (integbe2 trên integ/be-1-v2 đang chạy, báo sớm 2 đỏ: L16 do test #309, R12 chưa phân loại; 09f81 trên integ/fe-2 chờ khóa); #216 guard import-spelling đỏ ở head PR (bản sửa fe216-import-fix chưa vào head); 08(c) chỉ PARTIAL; đĩa Mac 11–14 GiB (<20)",
         "Giữ chỗ cũ Redis (NO-28) cần quyết định bốn mắt",
         "Chưa deploy; PROD vẫn wave 21",
         "NO-37 (#278) đã merge dev nhưng còn điều kiện: kiểm F7 các dòng paid=false trước khi deploy; rủi ro dư F2/F3/N2 chưa được Owner chấp nhận; DNS rebinding/egress NOT_RUN",
@@ -8099,9 +8099,9 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-14T22:40:15+07:00",
-        "source": "gh pr view lúc 15:39 ICT, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
-        "summary": "66 PR trong bảng đã merge dev sau QA độc lập; 18 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #310, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, FE #216, FE #217, FE #220",
+        "checkedAt": "2026-11-15T00:38:56+07:00",
+        "source": "gh pr list lúc 00:37 ICT 15/11, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
+        "summary": "68 PR trong bảng đã merge dev sau QA độc lập; 17 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, FE #216, FE #217, BE #309, BE #311, BE #312, BE #313, BE #314, FE #220, BE #316, BE #317, BE #318, BE #319, BE #320",
         "items": [
           {
             "repo": "Xweb01fe",
@@ -8890,26 +8890,28 @@
           {
             "repo": "xweb01",
             "pr": 310,
-            "state": "OPEN",
-            "head": "b47303a7",
-            "label": "status:qa",
-            "qa": "QA độc lập docs GO có điều kiện (3 P2: lỗi thời sau #303, nhãn audit FE, \"không đi sau cờ\" chưa đủ); chờ docs-310-fix4"
+            "state": "MERGED",
+            "head": "25e172c8",
+            "label": "status:done",
+            "qa": "QA độc lập docs GO có điều kiện (3 P2) → docs-310-fix4 áp (C0, sha256 khớp) → QA chéo Oxy GO trên đúng head 25e172c8; merge ghim head theo phép Owner 23:55; chỉ docs",
+            "mergeCommit": "27c56d3a",
+            "mergedAt": "2026-11-14T16:51:15Z"
           },
           {
             "repo": "xweb01",
             "pr": 311,
             "state": "OPEN",
-            "head": "0a048c3f",
+            "head": "cfe7d336",
             "label": "status:qa",
-            "qa": "QA độc lập GO có điều kiện (node mạng chặn: host-guard 34 URL không bypass, đúng 3 POST); sửa P2-1/P2-2 trước khi chạy thật"
+            "qa": "QA delta độc lập GO trên cfe7d336 (s09j-fix2 + tag @class; đo node: MAX_TURNS>3 bị từ chối, tối đa 3 lượt AI); chờ cửa sổ AI Owner"
           },
           {
             "repo": "xweb01",
             "pr": 312,
             "state": "OPEN",
-            "head": "b77a721d",
+            "head": "7f629962",
             "label": "status:qa",
-            "qa": "QA độc lập GO có điều kiện (đúng 4 POST, dry-run 0); sửa P2-3 và P3-6b"
+            "qa": "QA GO có điều kiện trên 66e1af09; thay đổi sau đó chỉ thêm dòng tag @class (head 7f629962); chờ cửa sổ AI Owner"
           },
           {
             "repo": "xweb01",
@@ -8931,9 +8933,9 @@
             "repo": "Xweb01fe",
             "pr": 220,
             "state": "OPEN",
-            "head": "f2166995",
+            "head": "7f06a615",
             "label": "status:qa",
-            "qa": "Specs Playwright CHỈ VIẾT KHÔNG CHẠY; QA độc lập GO có điều kiện; fix1 (2 P2) đã áp; ngoài tập đóng băng"
+            "qa": "QA độc lập: P1 harness s09g-mount hỏng (f2166995) → fe220-fix2 áp → QA delta GO trên 7f06a615; còn cần #216/#217 vào trước và tsc/browser NOT_RUN"
           },
           {
             "repo": "xweb01",
@@ -8985,6 +8987,17 @@
             "head": "87b38473",
             "label": "status:qa",
             "qa": "QA độc lập GO có điều kiện (5 trần chỉ hạ; merge SAU #316)"
+          },
+          {
+            "repo": "xweb01",
+            "pr": 321,
+            "state": "MERGED",
+            "head": "7baf1ac2",
+            "label": "status:done",
+            "mergeCommit": "7e07da5d",
+            "mergedAt": "2026-11-14T17:02:52Z",
+            "qa": "QA độc lập C0 GO có điều kiện (2 P2) → 5 sửa → QA delta độc lập GO trên đúng head 7baf1ac2; chỉ AGENTSXWeb.md; merge ghim head",
+            "qaReport": "QA-PR321-2358.md; QA-PR321-delta-0001.md"
           }
         ]
       },
