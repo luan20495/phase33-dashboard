@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-14T22:03:27+07:00",
+  "asOf": "2026-11-14T22:20:03+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-14T22:03:27+07:00",
+  "detailUpdatedAt": "2026-11-14T22:20:03+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -6013,8 +6013,8 @@
         "items": [
           {
             "id": "agents.min",
-            "label": "Số agent tối thiểu khi còn việc",
-            "value": 12,
+            "label": "Số agent C0 tối thiểu trên máy chính khi còn việc (Owner 14/11 22:20)",
+            "value": 3,
             "type": "number",
             "editable": true,
             "explain": "Luôn duy trì ít nhất số này khi đủ việc và tài nguyên.",
@@ -6026,8 +6026,8 @@
           },
           {
             "id": "agents.max",
-            "label": "Số agent tối đa",
-            "value": 30,
+            "label": "Số agent C0 tối đa trên máy chính (Owner 14/11 22:20)",
+            "value": 4,
             "type": "number",
             "editable": true,
             "explain": "Trần thông thường.",
@@ -6039,8 +6039,8 @@
           },
           {
             "id": "agents.max_extra",
-            "label": "Lên tối đa khi máy rảnh và việc không đụng nhau",
-            "value": 30,
+            "label": "Không vượt 4 kể cả khi máy rảnh (Owner 14/11 22:20)",
+            "value": 4,
             "type": "number",
             "editable": true,
             "explain": "Chỉ dùng khi tải máy thấp và các việc không chung file.",
@@ -7011,6 +7011,11 @@
         "id": "git.qa_after_integration",
         "note": "Owner 17:5x: bổ sung quy tắc QA một lần sau tích hợp (BE xong, FE xong, tích hợp xong, kiểm chéo và happy case trước); git.flow cập nhật; PR đang QA giữ nguyên",
         "state": "applied"
+      },
+      {
+        "at": "2026-11-14T22:20:03+07:00",
+        "by": "C0",
+        "summary": "Owner 22:20 chat: duy trì min 3 / max 4 agent (áp cho agent C0 trên máy chính; agent Oxy giữ 10 cho tới khi Owner nói khác)"
       }
     ]
   },
@@ -7844,6 +7849,11 @@
         "at": "2026-11-14T15:39:41+07:00",
         "by": "C0",
         "note": "Hourly 15:39: PR #301–#303, Oxy 6 tác giả đăng slice, Plane dừng, báo cáo lần 148"
+      },
+      {
+        "at": "2026-11-14T22:20:03+07:00",
+        "by": "C0",
+        "summary": "Owner 22:20 chat: duy trì min 3 / max 4 agent (áp cho agent C0 trên máy chính; agent Oxy giữ 10 cho tới khi Owner nói khác)"
       }
     ],
     "summary": {
