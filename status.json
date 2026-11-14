@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T04:34:56+07:00",
+  "asOf": "2026-11-15T04:38:17+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T04:34:56+07:00",
+  "detailUpdatedAt": "2026-11-15T04:38:17+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7109,7 +7109,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T04:34:56+07:00",
+    "updatedAt": "2026-11-15T04:38:17+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7120,11 +7120,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "Đọc toàn bộ comment Oxy #123 qua monitor; ChatGPT #257 delta 17:10 → đã trả lời [CLAUDE RESPONSE]; không comment mới của Owner trên #88"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7169,6 +7164,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "ok",
             "summary": "Đọc toàn bộ comment Oxy #123 đến 04:14 và #88/#257: ChatGPT delta 03:47 (PR #322) đã trả lời; Owner không có lệnh mới ngoài chỉ đạo 00:45"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "ok",
+            "summary": "Đọc #88/#257/#123 (đến 21:35Z): không comment Owner/ChatGPT mới; Oxy đăng lại patch V và AL cho #276 (sẵn sàng áp) và xác nhận kết quả FE áp dụng cho cây c118aeb5"
           }
         ]
       },
@@ -7180,11 +7180,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "Áp cấu hình quy trình: giữ nguyên, không thay đổi"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7229,6 +7224,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "ok",
             "summary": "agents.min=2 giữ; đối chiếu: 4 agent C0 chạy sau khi hết giới hạn 5 giờ (02:45–04:30 không agent nào), Oxy 10/10"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "ok",
+            "summary": "Không đổi cấu hình tab Quy trình; agents.min=2 giữ; 4 agent C0 chạy"
           }
         ]
       },
@@ -7240,11 +7240,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "Merge #301, #304, FE #212; mở #309; gộp dev vào #303/#308; QA độc lập #308 delta, #309, #304 fix3/fix4; 10 agent áp/QA trong giờ"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7289,6 +7284,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "changed",
             "summary": "Không merge; mở PR #322 (runner) và #221 (tích hợp FE); integbe2 NOT_RUN timeout, Oxy chạy lại 8 phần; FE integ/fe-2 xanh REPORTED; lỡ 2 lần báo giờ (giới hạn tài khoản)"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "ok",
+            "summary": "Báo cáo lần 159 đăng 04:34 (3 phút trước); không merge; 19 PR mở; chờ áp V/AL lên #276 khi có chỗ agent (trần 4)"
           }
         ]
       },
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo 19 dòng lần 150 lên #88 (17:40)"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo 19 dòng lần 159 lên #88 (comment 6884543522)"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "ok",
+            "summary": "Không đăng báo cáo mới: không thay đổi đáng kể từ lần 159 (04:34)"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "Đồng bộ status.json: bảng PR (62 merged), NO-40 giữ OPEN; 5 test sau cập nhật"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "changed",
             "summary": "Đồng bộ dashboard: prTable (+#322, +#221), blockers, thẻ NO-42, runs"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "changed",
+            "summary": "Chỉ ghi runs; dashboard giữ nguyên số liệu lần 159"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "Đĩa/dọn: không dọn thêm; swap cấp 7–8 GB nhưng RAM trống 65%; Docker Mac tắt theo Owner"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "ok",
             "summary": "Đĩa 19 GiB trống (<20 GiB); không dọn thêm (chờ Owner duyệt danh sách DISK-SURVEY)"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "ok",
+            "summary": "Đĩa 18 GiB trống (<20 GiB); không dọn thêm (chờ Owner duyệt danh sách DISK-SURVEY)"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "SSH tới Oxy vẫn tắt (Owner-only); không kiểm được trực tiếp"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "ok",
             "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt)"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "ok",
+            "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt)"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-14T17:38:05+07:00",
-            "result": "changed",
-            "summary": "Giữ ≥4 agent: nhiều agent áp/QA chạy trong giờ (≤2 cùng lúc theo tải Mac); Oxy giữ 10"
-          },
           {
             "at": "2026-11-14T18:38:12+07:00",
             "result": "changed",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-15T04:34:56+07:00",
             "result": "ok",
             "summary": "Giữ tối thiểu 2 agent mỗi Mac (Owner 23:40): 4 agent C0 chạy (tsc ATT-e7, SSRF runner, BOM S09-M, QA/SEC P4–P9), Oxy 10/10"
+          },
+          {
+            "at": "2026-11-15T04:38:17+07:00",
+            "result": "ok",
+            "summary": "4 agent C0 chạy (tsc ATT-e7, SSRF runner, QA/SEC P4–P9, QA tích hợp FE #221), Oxy 10/10"
           }
         ]
       }
