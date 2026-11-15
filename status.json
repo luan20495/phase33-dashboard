@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T15:02:12+07:00",
+  "asOf": "2026-11-15T15:39:52+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T15:02:12+07:00",
+  "detailUpdatedAt": "2026-11-15T15:39:52+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -2345,7 +2345,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-15T11:39:28+07:00",
+    "updatedAt": "2026-11-15T15:39:52+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
@@ -4459,6 +4459,31 @@
           {
             "id": "B",
             "label": "B: che khi ghi (A+)"
+          }
+        ],
+        "decided": false
+      },
+      {
+        "id": "NO-48",
+        "kind": "DECISION",
+        "priority": "P1",
+        "status": "OPEN",
+        "since": "2026-11-15T15:39:52+07:00",
+        "title": "Mở giai đoạn QA/BASE/merge cho 12 mục AI Agent? (mã DEV gần như xong)",
+        "detail": "Hiện Oxy báo hết lát mã không bị chặn (0/5 agent, 3 làn compile rảnh). Mã nằm ở các nhánh wip/*: BE wip/s09ln-code 9c9f9a45, wip/r22-stack ba01d7c0, wip/fu-stack13 67f8155a, wip/payc-f3-f4 bea5776b, wip/no40-delete-hooks db26a37d, wip/runner-ops2 9a3e581f; FE nền chung wip/fe-r22-e7merge 668b0ce9, wip/fe-s09l 0c9d4672, wip/fe-s09n e4ae0dd4. Còn RED chưa rõ nguyên nhân: ccs09l8, febuild (668b0ce9), FE #228 6a52506a, runnernode. Chưa có QA độc lập nào trên các nhánh mới; luật merge vẫn là QA độc lập trên đúng head + BASE xanh. Cổng tổng vẫn CODE 6/12, QA 4/12, VERIFIED 0/12.",
+        "solution": "Khuyến nghị A: mở giai đoạn QA sau khi Oxy compile xanh wip/s09ln-code và nền FE chung (làm rõ các RED trước); thứ tự: PAYC → FE chung → BE bản 22 → S09-L/N; mọi merge vẫn cần QA độc lập trên đúng head, cờ TẮT, không deploy.",
+        "options": [
+          {
+            "id": "A",
+            "label": "A: mở QA sau khi Oxy compile xanh các nhánh chính (khuyến nghị)"
+          },
+          {
+            "id": "B",
+            "label": "B: mở QA ngay, song song sửa RED"
+          },
+          {
+            "id": "C",
+            "label": "C: chưa mở; tiếp tục chờ quyết NO-43..NO-47 và code thêm"
           }
         ],
         "decided": false
@@ -7264,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T15:02:12+07:00",
+    "updatedAt": "2026-11-15T15:39:52+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7275,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "ok",
-            "summary": "Không comment mới của Oxy/Owner/ChatGPT từ 05:21 đến 05:37; không có lệnh Owner mới"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "ok",
@@ -7324,6 +7344,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy 1/5, ccs09l6 đỏ test N6"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy lane reporter 15:38: hết lát mã, 3 làn rảnh"
           }
         ]
       },
@@ -7335,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "ok",
-            "summary": "Không đổi cấu hình tab Quy trình; agents.min=2 giữ; 2 agent C0 chạy"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "ok",
@@ -7384,6 +7404,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; Oxy 1/5 dưới min 3 vì hết lát mã, đã giao 4 lát (thẻ 202)"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; Mac/Oxy dưới min do hết việc code thật, không giao agent lấp chỗ"
           }
         ]
       },
@@ -7395,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "changed",
-            "summary": "Merge docs FE #223 (guide #216; QA độc lập GO có điều kiện); mở #224 (sửa P3 docs) và cập nhật #222 `1206f5ab`; chưa PR mã BE nào merge (chờ BASE BE)"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "changed",
@@ -7444,6 +7464,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "changed",
             "summary": "Không merge mới; s09ln-code c34e2853, fe-s09l 0c9d4672; Oxy compile: r22 và fu-stack13 GREEN, ccs09l6 RED (đã có sửa); QA độc lập: không giao (code only)"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "changed",
+            "summary": "Không merge mới; s09ln-code 9c9f9a45, fe-s09n e4ae0dd4; Oxy RED chưa rõ nguyên nhân: ccs09l8, febuild, FE #228 6a52506a, runnernode; QA độc lập: không giao (code only)"
           }
         ]
       },
@@ -7455,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "ok",
-            "summary": "Không đăng báo cáo 19 dòng mới: lần 161 đăng cách đây dưới 10 phút, thay đổi nhỏ (docs)"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "changed",
@@ -7504,6 +7524,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "changed",
             "summary": "Đã đăng báo cáo 19 dòng lần 171 lên #88"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "changed",
+            "summary": "Đã đăng báo cáo 19 dòng lần 172 lên #88"
           }
         ]
       },
@@ -7515,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "changed",
-            "summary": "Đồng bộ dashboard: prTable (+#223 MERGED, +#224, #222 head), runs"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "changed",
@@ -7564,6 +7584,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "changed",
             "summary": "Cập nhật changeSincePrev, agentCensus"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "changed",
+            "summary": "Cập nhật changeSincePrev, agentCensus; thêm thẻ NO-48"
           }
         ]
       },
@@ -7575,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "ok",
-            "summary": "Đĩa 15 GiB trống (<20 GiB); không dọn thêm (chờ Owner duyệt danh sách DISK-SURVEY)"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "ok",
@@ -7624,6 +7644,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "ok",
             "summary": "Đĩa 23 GiB trống (>20 GiB); không dọn"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "changed",
+            "summary": "Đĩa 20-21 GiB (sát ngưỡng 20): dọn scratch agent đã xong ~2,4 GB và 1 worktree sạch đã đẩy; không đụng Gradle/Docker"
           }
         ]
       },
@@ -7635,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "ok",
-            "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt)"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "ok",
@@ -7684,6 +7704,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "skipped",
             "summary": "SSH tới máy chủ không thuộc việc Mac DEV hôm nay"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "skipped",
+            "summary": "SSH tới máy chủ không thuộc việc Mac DEV hôm nay"
           }
         ]
       },
@@ -7695,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T05:38:17+07:00",
-            "result": "ok",
-            "summary": "2 agent C0 chạy (sửa lỗi bộ công cụ nghiệm thu lần 2; QA docs sắp giao), Oxy 10/10"
-          },
           {
             "at": "2026-11-15T06:38:38+07:00",
             "result": "ok",
@@ -7744,6 +7764,11 @@
             "at": "2026-11-15T15:02:12+07:00",
             "result": "ok",
             "summary": "1 agent Mac chạy ngay sau báo cáo; Oxy 1/5 đã nhắc giao việc"
+          },
+          {
+            "at": "2026-11-15T15:39:52+07:00",
+            "result": "ok",
+            "summary": "0 agent Mac chạy vì hết việc code không bị chặn; đã hỏi Owner mở QA (NO-48)"
           }
         ]
       }
@@ -8063,10 +8088,15 @@
         "at": "2026-11-15T11:39:28+07:00",
         "by": "C0",
         "summary": "Thêm thẻ quyết định: NO-43, NO-44, NO-45, NO-46, NO-47 (S09-L/N ADR, runner A/B/C, NO-40 lọc, mục 01 mở rộng); mặc định fail-closed đang áp"
+      },
+      {
+        "at": "2026-11-15T15:39:52+07:00",
+        "by": "C0",
+        "summary": "Thêm thẻ NO-48 (mở giai đoạn QA?) vì Oxy hết lát mã; dọn đĩa scratch ~2,4 GB"
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-15T15:02:12+07:00",
+      "checkedAt": "2026-11-15T15:39:52+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -8075,7 +8105,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "15:01: Oxy 1/5 (AGENTS-ALERT), ccs09l6 RED 3 lỗi test N6 (đã có sửa), bản 22 và fu-stack13 compile GREEN; C0: s09ln-code c34e2853 (sửa P0/P2 + 11 hàng QA master), fe-s09l 0c9d4672 khớp hợp đồng BE; kế hoạch đồng bộ lõi FE; giao Oxy 4 lát tiếp (thẻ 202); hạn mức tài khoản C0 dừng ngắn 14:00-15:00",
+      "changeSincePrev": "15:39: Oxy hết lát mã không bị chặn (0/5, 3 làn rảnh); RED chưa rõ nguyên nhân: ccs09l8, febuild 668b0ce9, FE #228 6a52506a, runnernode; GREEN ccno40d; C0: s09ln-code 9c9f9a45 (+6 hàng QA master DDL), fe-s09n e4ae0dd4; dọn đĩa scratch; thẻ NO-48 (mở giai đoạn QA?)",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -8155,7 +8185,7 @@
         "open": "QA vòng 7 trên đúng Pages SHA, 8 viewport × 2 theme, deep link, zoom 200%, contrast/keyboard",
         "staleNote": "STALE: phần UI/UX chưa đo lại từ 11:39 ICT; QA r7 trên Pages SHA hiện tại = UNKNOWN (không suy ra từ các merge hôm nay)"
       },
-      "agentCensus": "15:01: C0 1 sub-agent (áp lô S09-L/N đợt 4 + FE N11); Oxy 1/5 (REPORTED, AGENTS-ALERT: hết lát mã biết); Mac tải thấp, đĩa 23 GiB",
+      "agentCensus": "15:39: C0 0 sub-agent (hết việc code không chặn); Oxy 0/5 (REPORTED, hết lát mã); Mac tải thấp, đĩa 21 GiB",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -8303,7 +8333,7 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-15T15:02:12+07:00",
+        "checkedAt": "2026-11-15T15:39:52+07:00",
         "source": "gh pr list lúc 08:37 ICT 15/11, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
         "summary": "78 PR trong bảng đã merge dev sau QA độc lập; 19 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, BE #322, FE #222, FE #226, FE #227, FE #228",
         "items": [
