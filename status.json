@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T18:39:57+07:00",
+  "asOf": "2026-11-15T19:38:42+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T18:39:57+07:00",
+  "detailUpdatedAt": "2026-11-15T19:38:42+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T18:39:57+07:00",
+    "updatedAt": "2026-11-15T19:38:42+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "ok",
-            "summary": "Đọc #88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy 0/5 tới 12:30, đăng bản 22 (18 diff), fu-stack10..13, dev batch, 3 patch FE; Owner duyệt merge #225+#325"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "ok",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy báo S09-M BE compile xanh 58/58 (REPORTED) + bản sửa I6"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy xác nhận cây ad30be96 = ccs09m3 (58/58 REPORTED), FE S09-L bb128f9d BASE xanh ngoài flake owned-process"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình: Mac 2–4 agent, Oxy 3–5; không đổi mục nào"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "ok",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; Oxy 0/5, Mac C0 0 agent (hết việc code thật)"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; Oxy 0/5, Mac C0 0 agent"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "changed",
-            "summary": "FE #225 + BE #325 MERGED (09:26); PR mới FE #226/#227/#228; #322 head 058be70b; nhánh wip/r22-stack, fu-stack12, oxy-dev-batch, runner-ops đã đẩy; QA độc lập: không giao mới (Owner: code trước)"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "changed",
             "summary": "Không merge mới; C0 áp 2 diff S09-M lên wip/s09m-be ad30be96 (NOT compiled); QA độc lập: không giao (chờ NO-48)"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "changed",
+            "summary": "Không merge mới; không đổi head nhánh C0; giao Oxy 2 lát mã (thẻ 209); QA độc lập: không giao (chờ NO-48)"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "changed",
-            "summary": "Đã đăng báo cáo 19 dòng lần 166 lên #88 (09:38)"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 175 lên #88 (comment 6893755073)"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 176 lên #88"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "changed",
-            "summary": "Cập nhật prTable (#225/#325 MERGED, #226–#228, #322), changeSincePrev, agentCensus"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "changed",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "ok",
             "summary": "Dashboard cập nhật lần 175"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "ok",
+            "summary": "Dashboard cập nhật lần 176"
           }
         ]
       },
@@ -7600,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "ok",
-            "summary": "Đĩa 21 GiB trống (>20 GiB); không dọn"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "ok",
@@ -7649,6 +7644,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "ok",
             "summary": "diskutil: 17,3 GB trống (<20); không xóa snapshot/cache khi chưa có Owner cho phép"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "ok",
+            "summary": "diskutil: 16,2 GB trống (<20); không xóa snapshot/cache khi chưa có Owner cho phép"
           }
         ]
       },
@@ -7660,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "skipped",
-            "summary": "SSH tới máy chủ không thuộc việc Mac DEV hôm nay; khóa cần Owner ssh-add (giữ nguyên ghi chú)"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "skipped",
@@ -7709,6 +7704,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "skipped",
             "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "skipped",
+            "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
           }
         ]
       },
@@ -7720,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T09:39:20+07:00",
-            "result": "ok",
-            "summary": "2 agent Mac chạy (áp FE; gộp docs runner) — đạt min 2 của Owner; Oxy 0/5 do tài khoản"
-          },
           {
             "at": "2026-11-15T10:41:54+07:00",
             "result": "ok",
@@ -7769,6 +7764,11 @@
             "at": "2026-11-15T18:39:57+07:00",
             "result": "ok",
             "summary": "Oxy 0/5 (hết lát mã), Mac C0 0: không có việc code thật không cần Owner; 1 agent áp S09-M đã xong"
+          },
+          {
+            "at": "2026-11-15T19:38:42+07:00",
+            "result": "ok",
+            "summary": "Oxy 0/5 (đã giao 2 lát mã thẻ 209), Mac C0 0: không có việc code thật"
           }
         ]
       }
