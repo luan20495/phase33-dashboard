@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T21:39:46+07:00",
+  "asOf": "2026-11-15T23:23:44+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T21:39:46+07:00",
+  "detailUpdatedAt": "2026-11-15T23:23:44+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T21:39:46+07:00",
+    "updatedAt": "2026-11-15T23:23:44+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy chỉ lane reporter từ 12:07"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "ok",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới (chỉ đạo chat: dev only không QA, min 3 agent code, 10 giờ); #123: Oxy BE c0b66c0d compile 5 lỗi đã sửa ở d94bdbc1, FE e2c76a68 tsc xanh, N9 502/502, U9-a 39 xanh (REPORTED)"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy BE sync11 compile xanh 0 lỗi, FE sync6+tsc-fix xanh, item12-extras 143/143, e2e-ent 506/508 (REPORTED)"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình: Mac 2–4 agent, Oxy 3–5 (5/5 REPORTED)"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "ok",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; cron CODE-KEEPER giữ >=3 agent code mỗi máy; agents.min theo chỉ đạo mới là 3 (cần Owner/ghi nhận khi cập nhật tab Quy trình)"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; chỉ đạo Owner: min 3 agent code mỗi máy (agents.min theo chỉ đạo là 3); Mac không có agent 22:25-23:20 do giới hạn sử dụng tài khoản, đã chạy lại 4 agent"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "changed",
-            "summary": "Không merge mới; Oxy RED: FE #228 6a52506a (unit=1), runnernode; GREEN: payc-f3-f4, nền FE 668b0ce9; QA độc lập: không giao (code only)"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "changed",
             "summary": "Không merge; 11 nhánh wip mới (integ-be-sync4 23793572, integ-fe-sync4 0e6ae0e6, s09m-xlsx, fe-s09m-xlsx, guard-constants-parity,...); đo code: 31 commit +8765/-154 so với nhánh cha (MEASURED); QA độc lập: không giao (Owner: dev only)"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "changed",
+            "summary": "Không merge; nhánh mới: integ-be-sync12 3960eca1, item01-mx-g5a c02e0497, g5b fd6ae5a8, docs-12items3 0d2eb30b...; đo code 687 commit +35043/-1416 (MEASURED); QA độc lập: không giao (Owner: dev only)"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "changed",
-            "summary": "Đã đăng báo cáo 19 dòng lần 169 lên #88"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 178 lên #88"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 179 lên #88 (comment 6897570518); lần 22:38 bị lỡ do giới hạn sử dụng"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "changed",
-            "summary": "Cập nhật prTable (#222/#228), changeSincePrev, agentCensus"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "changed",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "ok",
             "summary": "Dashboard cập nhật lần 178"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "ok",
+            "summary": "Dashboard cập nhật lần 179"
           }
         ]
       },
@@ -7600,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "ok",
-            "summary": "Đĩa 26 GiB trống (>20 GiB); không dọn; tải Mac thấp"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "ok",
@@ -7649,6 +7644,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "ok",
             "summary": "diskutil: 12,1 GB trống (<20; tụt từ 17,3); không xóa snapshot/cache khi chưa có Owner cho phép; agent dừng nếu <10 GB"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "ok",
+            "summary": "diskutil: 16,3 GB trống (<20); không xóa snapshot/cache khi chưa có Owner cho phép"
           }
         ]
       },
@@ -7660,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "skipped",
-            "summary": "SSH tới máy chủ không thuộc việc Mac DEV hôm nay"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "skipped",
@@ -7709,6 +7704,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "skipped",
             "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "skipped",
+            "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
           }
         ]
       },
@@ -7720,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T13:22:13+07:00",
-            "result": "ok",
-            "summary": "2 agent Mac chạy ngay sau báo cáo; hạn mức C0 reset 13:20"
-          },
           {
             "at": "2026-11-15T13:39:08+07:00",
             "result": "ok",
@@ -7769,6 +7764,11 @@
             "at": "2026-11-15T21:39:46+07:00",
             "result": "ok",
             "summary": "Mac C0 3 agent code, Oxy 2-5 (REPORTED); việc theo kiểm kê INVENTORY-CODE-2200"
+          },
+          {
+            "at": "2026-11-15T23:23:44+07:00",
+            "result": "ok",
+            "summary": "Mac 4 agent code (G5 ghép, áp sửa FE, tài liệu, báo cáo G5b); Oxy báo n/5 qua Lane Reporter, đã nhắc giữ >=3"
           }
         ]
       }
