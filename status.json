@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T11:39:28+07:00",
+  "asOf": "2026-11-15T13:22:13+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T11:39:28+07:00",
+  "detailUpdatedAt": "2026-11-15T13:22:13+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7264,7 +7264,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T11:39:28+07:00",
+    "updatedAt": "2026-11-15T13:22:13+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7275,11 +7275,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "ok",
-            "summary": "Đọc toàn bộ comment Oxy #123 đến 04:14 và #88/#257: ChatGPT delta 03:47 (PR #322) đã trả lời; Owner không có lệnh mới ngoài chỉ đạo 00:45"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "ok",
@@ -7324,6 +7319,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "ok",
             "summary": "#88: không có bình luận Owner mới; #257: ChatGPT delta 11:22 → đã trả lời [CLAUDE RESPONSE]; chat: S09-L/N làm, máy Oxy có agent, hỏi máy nhẹ chưa"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy chỉ lane reporter từ 12:07"
           }
         ]
       },
@@ -7335,11 +7335,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "ok",
-            "summary": "agents.min=2 giữ; đối chiếu: 4 agent C0 chạy sau khi hết giới hạn 5 giờ (02:45–04:30 không agent nào), Oxy 10/10"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "ok",
@@ -7384,6 +7379,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình: Mac 2–4 agent (bộ đo gợi ý 4 khi tải thấp), Oxy 3–5 (4/5 REPORTED)"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình: Mac 2–4 agent, Oxy 3–5 (5/5 REPORTED)"
           }
         ]
       },
@@ -7395,11 +7395,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "changed",
-            "summary": "Không merge; mở PR #322 (runner) và #221 (tích hợp FE); integbe2 NOT_RUN timeout, Oxy chạy lại 8 phần; FE integ/fe-2 xanh REPORTED; lỡ 2 lần báo giờ (giới hạn tài khoản)"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "ok",
@@ -7444,6 +7439,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "changed",
             "summary": "Không merge mới; nhánh/PR: #228 6a52506a, r22-stack 4eafe807, fu-stack13 67f8155a, payc-f3-f4 bea5776b, no40-delete-hooks db26a37d, runner-ops2 9a3e581f, fe-r22-base e7bceca6; QA độc lập: không giao (Owner: code only)"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "changed",
+            "summary": "Không merge mới; Oxy RED: FE #228 6a52506a (unit=1), runnernode; GREEN: payc-f3-f4, nền FE 668b0ce9; QA độc lập: không giao (code only)"
           }
         ]
       },
@@ -7455,11 +7455,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo 19 dòng lần 159 lên #88 (comment 6884543522)"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "ok",
@@ -7504,6 +7499,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "changed",
             "summary": "Đã đăng báo cáo 19 dòng lần 168 lên #88"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "changed",
+            "summary": "Đã đăng báo cáo 19 dòng lần 169 lên #88"
           }
         ]
       },
@@ -7515,11 +7515,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "changed",
-            "summary": "Đồng bộ dashboard: prTable (+#322, +#221), blockers, thẻ NO-42, runs"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "changed",
@@ -7564,6 +7559,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "changed",
             "summary": "Cập nhật prTable, changeSincePrev, agentCensus; thêm thẻ NO-43..NO-47"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "changed",
+            "summary": "Cập nhật prTable (#222/#228), changeSincePrev, agentCensus"
           }
         ]
       },
@@ -7575,11 +7575,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "ok",
-            "summary": "Đĩa 19 GiB trống (<20 GiB); không dọn thêm (chờ Owner duyệt danh sách DISK-SURVEY)"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "ok",
@@ -7624,6 +7619,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "ok",
             "summary": "Đĩa 29 GiB trống (>20 GiB); không dọn; tải Mac đã giảm"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "ok",
+            "summary": "Đĩa 26 GiB trống (>20 GiB); không dọn; tải Mac thấp"
           }
         ]
       },
@@ -7635,11 +7635,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "ok",
-            "summary": "Không đo lại khóa SSH hôm nay (SSH tới Oxy vẫn tắt)"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "ok",
@@ -7684,6 +7679,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "skipped",
             "summary": "SSH tới máy chủ không thuộc việc Mac DEV hôm nay"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "skipped",
+            "summary": "SSH tới máy chủ không thuộc việc Mac DEV hôm nay"
           }
         ]
       },
@@ -7695,11 +7695,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T04:34:56+07:00",
-            "result": "ok",
-            "summary": "Giữ tối thiểu 2 agent mỗi Mac (Owner 23:40): 4 agent C0 chạy (tsc ATT-e7, SSRF runner, BOM S09-M, QA/SEC P4–P9), Oxy 10/10"
-          },
           {
             "at": "2026-11-15T04:38:17+07:00",
             "result": "ok",
@@ -7744,6 +7739,11 @@
             "at": "2026-11-15T11:39:28+07:00",
             "result": "ok",
             "summary": "Mac: giao việc ngay sau báo cáo (tải thấp); Oxy 4/5"
+          },
+          {
+            "at": "2026-11-15T13:22:13+07:00",
+            "result": "ok",
+            "summary": "2 agent Mac chạy ngay sau báo cáo; hạn mức C0 reset 13:20"
           }
         ]
       }
@@ -8066,7 +8066,7 @@
       }
     ],
     "summary": {
-      "checkedAt": "2026-11-15T11:39:28+07:00",
+      "checkedAt": "2026-11-15T13:22:13+07:00",
       "sources": [
         "GitHub PR BE/FE (gh)",
         "QA/SEC trong ~/xweb-handoff/agents",
@@ -8075,7 +8075,7 @@
         "Master #88",
         "status.json aiAgent12"
       ],
-      "changeSincePrev": "11:38: Owner xác nhận lần hai làm S09-L/N (11:15), Oxy 4/5 agent từ 11:22; ADR S09-L/N (153–225 agent-giờ, mốc cũ không còn); PAYC F3/F4 BE+FE, NO-40 móc xóa, fu-stack13, runner-ops2 9a3e581f, nền FE bản 22 (e7 xung đột đang giải); Oxy: ccr22b main xanh + 2 lỗi test → r22-20 (wip/r22-stack 4eafe807), no40-ttl-hours BASE GREEN, FE #222 BASE GREEN; Mac tải đã giảm (~15)",
+      "changeSincePrev": "13:21: không có comment Owner/ChatGPT mới; thẻ NO-43..47 chờ Owner; Oxy 5/5 nhưng không đăng diff mới từ 12:07 (đã áp lô L5/L6/N1/N2/N5/N6/N10-fix); GREEN: payc-f3-f4, no40-ttl-hours, nền FE 668b0ce9, fe-att-e7; RED: FE #228 6a52506a (unit=1), runnernode; C0: s09ln-code 840e3a6d, r22-stack ba01d7c0, fe-s09n 82fcc36f; Mac tải thấp; hạn mức C0 reset 13:20",
       "doneVerified": "0/12",
       "groups": {
         "CODE": {
@@ -8155,7 +8155,7 @@
         "open": "QA vòng 7 trên đúng Pages SHA, 8 viewport × 2 theme, deep link, zoom 200%, contrast/keyboard",
         "staleNote": "STALE: phần UI/UX chưa đo lại từ 11:39 ICT; QA r7 trên Pages SHA hiện tại = UNKNOWN (không suy ra từ các merge hôm nay)"
       },
-      "agentCensus": "11:38: C0 1–2 sub-agent (giải xung đột e7); Oxy 4/5 (REPORTED, S09-L/N theo ADR); Mac tải ~15, swap ~3 GB, đĩa 29 GiB",
+      "agentCensus": "13:21: C0 2 sub-agent (áp S09-L/N lô 2 + FE N10-fix; FE S09-L nối lại); Oxy 5/5 (REPORTED, 12:07–13:20 không đăng diff); Mac tải ~2, swap ~2,9 GB, đĩa 26 GiB",
       "release22": {
         "status": "NO-GO nguyên trạng",
         "testedPair": {
@@ -8303,7 +8303,7 @@
         }
       },
       "prTable": {
-        "checkedAt": "2026-11-15T11:39:28+07:00",
+        "checkedAt": "2026-11-15T13:22:13+07:00",
         "source": "gh pr list lúc 08:37 ICT 15/11, một lần đọc cho toàn bộ bảng (nguồn duy nhất cho mọi trường nói về PR/QA)",
         "summary": "78 PR trong bảng đã merge dev sau QA độc lập; 19 PR trong bảng đang mở chưa merge: BE #210, BE #276, BE #282, BE #300, BE #309, BE #311, BE #312, BE #313, BE #314, BE #316, BE #317, BE #318, BE #319, BE #320, BE #322, FE #222, FE #226, FE #227, FE #228",
         "items": [
@@ -9257,7 +9257,7 @@
             "state": "OPEN",
             "head": "ed21a16e",
             "label": "status:qa",
-            "qa": "Lô 10 diff Oxy + sửa P1 text-guard + sửa tên file docs: QA độc lập C0 GO có điều kiện; Oxy IQ review độc lập 0 P0/P1; chờ Oxy npm run test:unit đầy đủ trên đúng sha | 09:38: thêm diff Oxy fe222-fix (ed21a16e): tsc đúng baseline, 4 fail baseline; BASE GREEN của Oxy cũ trên 1206f5ab, head đã đổi ⇒ cần BASE mới | 11:3x: Oxy BASE GREEN trên ed21a16e (REPORTED)",
+            "qa": "Lô 10 diff Oxy + sửa P1 text-guard + sửa tên file docs: QA độc lập C0 GO có điều kiện; Oxy IQ review độc lập 0 P0/P1; chờ Oxy npm run test:unit đầy đủ trên đúng sha | 09:38: thêm diff Oxy fe222-fix (ed21a16e): tsc đúng baseline, 4 fail baseline; BASE GREEN của Oxy cũ trên 1206f5ab, head đã đổi ⇒ cần BASE mới | 11:3x: Oxy BASE GREEN trên ed21a16e (REPORTED) | 13:07: nền chung fe-r22-e7merge 668b0ce9 (chứa #222 ed21a16e) BASE GREEN (REPORTED)",
             "qaReport": "QA-PR222-0508.md; QA-PR222B-0522.md"
           },
           {
@@ -9328,7 +9328,7 @@
             "state": "OPEN",
             "head": "6a52506a",
             "label": "status:qa",
-            "qa": "ATT-c2 đồng hồ ngữ cảnh + fe-attc1-map (cờ TẮT, CODE ONLY): tsc đúng baseline, test studio/builder 4 lỗi cũ sau khi C0 sửa lệch locale (getIntl→useIntl) và test; CHƯA QA độc lập (REPORTED)",
+            "qa": "ATT-c2 đồng hồ ngữ cảnh + fe-attc1-map (cờ TẮT, CODE ONLY): tsc đúng baseline, test studio/builder 4 lỗi cũ sau khi C0 sửa lệch locale (getIntl→useIntl) và test; CHƯA QA độc lập (REPORTED) | 13:07 Oxy (REPORTED): fe228b BASE RED trên 6a52506a (unit=1 đỏ, chưa có tên test); nền chung 668b0ce9 GREEN",
             "qaReport": "APPLY-FEATTC2.md"
           }
         ]
