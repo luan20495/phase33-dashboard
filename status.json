@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T07:29:37+07:00",
+  "asOf": "2026-11-15T07:30:25+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T07:29:37+07:00",
+  "detailUpdatedAt": "2026-11-15T07:30:25+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -2345,7 +2345,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-15T07:29:37+07:00",
+    "updatedAt": "2026-11-15T07:30:25+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
@@ -4314,7 +4314,7 @@
         "id": "NO-42",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-15T04:34:56+07:00",
         "title": "Mount HybridDataHub vào Studio shell (màn nhập CSV S09-M và khu dữ liệu managed)",
         "detail": "FE S09-M (nhập CSV) và khu quản lý dữ liệu managed nằm trong HybridDataHub, hiện chỉ được dùng trong harness trình duyệt, KHÔNG được mount ở đâu trong app: dù bật cờ phía server, người dùng chưa vào được màn hình. C0 không tự mount vì cần quyết định: mount ở đâu trong Studio shell, ai thấy tab \"designer\" (quyền can.manage), và có mount trước khi S09-M được QA trên trình duyệt thật không (Playwright chưa cài trên Oxy). Mã chỉ ở nhánh DEV, cờ TẮT, không đổi PROD.",
@@ -4332,7 +4332,11 @@
             "id": "C",
             "label": "C: hủy S09-M FE"
           }
-        ]
+        ],
+        "decided": true,
+        "decidedOption": "A",
+        "decidedAt": "2026-11-15T07:30:25+07:00",
+        "decision": "Owner (dán thẻ lúc ~07:45 ICT 15/11): chọn A — mount HybridDataHub vào Studio shell sau cờ riêng (mặc định TẮT), chỉ cho vai có quyền quản lý dữ liệu, sau khi FE #221 vào dev (đã vào: dev ae1b632a). C0 giao agent viết PR mount (DEV, cờ TẮT, không đổi PROD). Lưu ý: S09-M bị NO-41 A hoãn khỏi bản 22; PR mount chỉ đưa khu dữ liệu managed vào shell sau cờ, màn CSV vẫn cần cờ server csvImport."
       }
     ]
   },
