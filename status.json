@@ -7928,6 +7928,11 @@
         "at": "2026-11-15T10:41:54+07:00",
         "by": "C0",
         "summary": "Owner 10:05–10:25: code only cả 2 Mac; chuyển việc nặng sang Oxy; khai thác GitHub Actions self-hosted/công cụ Oxy (Oxy đề xuất giữ lane script, A/B chờ Owner); thẻ #123 177–180"
+      },
+      {
+        "at": "2026-11-15T11:12:04+07:00",
+        "by": "C0",
+        "summary": "Owner chat ~11:15 xác nhận lần hai \"làm cả S09-L và S09-N\": gỡ tạm dừng; DEV code only, cờ TẮT, S09-N executor NOT_IMPLEMENTED; NO-41 A vẫn áp cho 08(c) và S09-K; thẻ #123 184"
       }
     ],
     "summary": {
