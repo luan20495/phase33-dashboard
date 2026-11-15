@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T23:39:44+07:00",
+  "asOf": "2026-11-16T00:41:34+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T23:39:44+07:00",
+  "detailUpdatedAt": "2026-11-16T00:41:34+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-15T23:39:44+07:00",
+    "updatedAt": "2026-11-16T00:41:34+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy 1/5, ccs09l6 đỏ test N6"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "ok",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy dừng G5 theo thẻ 235, phiên điều phối Oxy sắp chạm giới hạn sử dụng (AGENTS 0/5), lane vẫn chạy ccibe12 compile (REPORTED)"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy vắng từ 23:31 (giới hạn sử dụng), chỉ còn Lane Reporter 00:09, lane rảnh, không có kết quả compile mới"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình; Oxy 1/5 dưới min 3 vì hết lát mã, đã giao 4 lát (thẻ 202)"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "ok",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; chỉ đạo Owner: min 3 agent code mỗi máy; Mac 3 agent; Oxy tạm vắng do giới hạn sử dụng (ngoài tầm kiểm soát C0)"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; chỉ đạo Owner: min 3 agent code mỗi máy; Mac hết việc mã có thật không cần Owner quyết nên 0 agent (không giao việc cho có)"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "changed",
-            "summary": "Không merge mới; s09ln-code c34e2853, fe-s09l 0c9d4672; Oxy compile: r22 và fu-stack13 GREEN, ccs09l6 RED (đã có sửa); QA độc lập: không giao (code only)"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "changed",
             "summary": "Không merge; BE integ-be-sync15 3e589bb1, FE integ-fe-sync8 a6c0996b (assemble 4->0 xung đột phát lại, chưa chạy thật), runbook 05e06cc1; đo code 2138 commit +86871/-3401 (MEASURED, gồm merge); QA độc lập: không giao (Owner: dev only)"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "changed",
+            "summary": "Không merge; BE integ-be-sync20 bb558301 (START 115, 0 trùng thuộc tính), 7 nhánh prop-* chờ Owner; đo code đã sửa phương pháp: 464 commit +38296/-1417 vs nhánh cha (MEASURED); QA độc lập: không giao (Owner: dev only)"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "changed",
-            "summary": "Đã đăng báo cáo 19 dòng lần 171 lên #88"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 180 lên #88 (comment 6897774702)"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 181 lên #88 (comment 6898581902), sửa số đo code các lần 179-180"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "changed",
-            "summary": "Cập nhật changeSincePrev, agentCensus"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "changed",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "ok",
             "summary": "Dashboard cập nhật lần 180"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "ok",
+            "summary": "Dashboard cập nhật lần 181"
           }
         ]
       },
@@ -7600,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "ok",
-            "summary": "Đĩa 23 GiB trống (>20 GiB); không dọn"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "changed",
@@ -7649,6 +7644,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "ok",
             "summary": "diskutil: 16,2 GB trống (<20); không xóa snapshot/cache khi chưa có Owner cho phép"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "ok",
+            "summary": "diskutil: 15,1 GB trống (<20); không xóa snapshot/cache khi chưa có Owner cho phép"
           }
         ]
       },
@@ -7660,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "skipped",
-            "summary": "SSH tới máy chủ không thuộc việc Mac DEV hôm nay"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "skipped",
@@ -7709,6 +7704,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "skipped",
             "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "skipped",
+            "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
           }
         ]
       },
@@ -7720,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-15T15:02:12+07:00",
-            "result": "ok",
-            "summary": "1 agent Mac chạy ngay sau báo cáo; Oxy 1/5 đã nhắc giao việc"
-          },
           {
             "at": "2026-11-15T15:39:52+07:00",
             "result": "ok",
@@ -7769,6 +7764,11 @@
             "at": "2026-11-15T23:39:44+07:00",
             "result": "ok",
             "summary": "Mac 3 agent code (G5c, G8ef, runbook refresh); Oxy 0/5 do giới hạn sử dụng"
+          },
+          {
+            "at": "2026-11-16T00:41:34+07:00",
+            "result": "ok",
+            "summary": "Mac 0 agent (hết việc mã không cần Owner); Oxy vắng do giới hạn sử dụng, ngoài tầm kiểm soát C0"
           }
         ]
       }
