@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-15T06:38:38+07:00",
+  "asOf": "2026-11-15T07:29:37+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-15T06:38:38+07:00",
+  "detailUpdatedAt": "2026-11-15T07:29:37+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -2345,7 +2345,7 @@
     }
   },
   "ownerActions": {
-    "updatedAt": "2026-11-14T18:55:15+07:00",
+    "updatedAt": "2026-11-15T07:29:37+07:00",
     "note": "Việc cần Owner thao tác hoặc quyết định. Không có thông tin bí mật hoặc tài chính ở đây. C0 chỉ merge PR có base dev khi đủ điều kiện; Ready, đổi base, ngân sách, quyền, cờ và PROD luôn cần Owner. | Thẻ có phương án: chọn phương án rồi bấm “Duyệt” để gửi một tin tổng hợp lên GitHub #88 hoặc sao chép cho Claude.",
     "items": [
       {
@@ -4250,7 +4250,7 @@
         "id": "NO-40",
         "kind": "DECISION",
         "priority": "P1",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-14T16:39:15+07:00",
         "title": "Lưu toàn văn tài liệu đính kèm (f2) chưa che trong object store: chấp nhận hay đổi hợp đồng LL-08?",
         "detail": "QA độc lập (đọc code) phát hiện f2 lưu toàn văn tài liệu nguyên bản (chưa che bí mật) trong object store để công cụ đọc f3 đọc phần sau điểm cắt; hợp đồng cũ LL-08 nói văn bản vào prompt/lưu phải qua che. Cờ text-store TẮT mặc định và sẽ giữ TẮT ở môi trường dùng chung. Oxy đã sửa chữ trong mã/doc cho đúng hiện trạng, thêm audit ATTACHMENT_TEXT_STORED, sweeper, hạn mức (f2b). Công cụ đọc đã giới hạn chỉ người tạo (C0 quyết). PHÂN TÍCH SEC ĐỘC LẬP 15/11 (đọc mã, test NOT_RUN): khuyến nghị A có điều kiện kèm \"che khi ghi\" (A+); rủi ro P1 nếu bật: (1) bản sao lưu kho đối tượng giữ cả bản đã xóa nên \"xóa sau 7 ngày\" không đúng với sao lưu (PROD có chạy sao lưu không: chưa rõ), (2) bộ lọc bí mật lúc nhận hẹp hơn bộ che lúc đọc, (3) thông tin cá nhân không được che. Nếu không muốn thêm thiết kế: chỉ bật A cho DEV với dữ liệu giả, hoặc chọn C. Chi tiết: SEC-NO40 (hồ sơ nội bộ).",
@@ -4272,13 +4272,17 @@
             "label": "Bỏ f2/f3 khỏi bản 22",
             "desc": "Không lưu toàn văn; tính năng đọc phần sau điểm cắt không có ở bản này."
           }
-        ]
+        ],
+        "decided": true,
+        "decision": "Owner 07:28 ICT 15/11 (duyệt từ dashboard): chọn A — chấp nhận lưu chưa che, CHỈ bật sau f2b (sweeper, hạn mức, audit); cờ giữ TẮT tới khi có f2b + QA độc lập. Ghi chú C0: phân tích SEC độc lập khuyến nghị A+ (che khi ghi) và nêu 3 rủi ro P1 nếu bật (sao lưu giữ bản đã xóa; bộ lọc bí mật lúc nhận hẹp hơn lúc đọc; PII không che) — các điều kiện này vẫn phải xử lý trước khi bật.",
+        "decidedAt": "2026-11-15T07:29:37+07:00",
+        "decidedOption": "A"
       },
       {
         "id": "NO-41",
         "kind": "DECISION",
         "priority": "P2",
-        "status": "OPEN",
+        "status": "DONE",
         "since": "2026-11-14T18:55:15+07:00",
         "title": "6 lát mã đang chờ Owner: S09-K, S09-L, S09-M, S09-N, runner build thứ hai, 08(c) hướng B (cần V106)",
         "detail": "Oxy đã viết xong mọi lát DEV đã duyệt; các lát dưới đây chưa ai viết vì cần quyết định của anh. S09-K: xóa mềm bảng/trường (ngừng dùng), cần migration expand-only, ước 8–12 giờ. S09-L: bảng dùng chung trong tenant, chạm nguyên tắc cách ly giữa các app, ADR 6 giờ rồi 30–45 giờ. S09-M: nhập CSV/XLSX vào dữ liệu TEST, cần quyết trần số dòng, ai được nhập, và có cho LIVE không; ước 10–14 giờ. S09-N: AI viết DDL cho CSDL riêng của app, rủi ro SQL injection cao, ước 60–90 giờ chưa tính hạ tầng; Claude khuyến nghị KHÔNG làm giai đoạn này. Runner build thứ hai: cần thêm máy/CPU/RAM/đĩa và chi phí hằng tháng, nên làm 08(c) trước; ước 4–8 giờ. 08(c) hướng B: lưu lease token thật trong build_jobs (cần số migration V106 và sửa client runner phía Windows); hướng A (tên runner tùy chọn, không migration) đã viết nhưng CHƯA đóng lỗ hổng cho tới khi runner client gửi holder. Không lát nào thuộc đường găng của 12 mục ngoài 08(c). PHÂN TÍCH ĐỘC LẬP 15/11 (đọc mã): lỗ hổng 08(c) chỉ bật khi có runner thứ hai hoặc hai runner trùng tên (số runner PROD: chưa rõ); khuyến nghị A làm hai bước: (1) client runner gửi tên và dừng job khi mất lease (C0 đã viết nhánh DEV, test node 150 PASS, QA độc lập đang chạy; Windows triển khai), (2) V106 sau để đóng các kịch bản còn lại. S09-L/N không nằm trên đường găng. Chi tiết: ANALYSIS-NO41 (hồ sơ nội bộ).",
@@ -4300,7 +4304,11 @@
             "label": "Hoãn tất cả sau bản 22, kể cả 08(c) hướng B",
             "desc": "Không cấp V106 lúc này; 08(c) vẫn PARTIAL; runner thứ hai không làm."
           }
-        ]
+        ],
+        "decided": true,
+        "decision": "Owner 07:28 ICT 15/11 (duyệt từ dashboard): chọn A — hoãn S09-K..N; làm 08(c) hướng B (cấp V106); runner thứ hai khi Owner cấp máy.",
+        "decidedAt": "2026-11-15T07:29:37+07:00",
+        "decidedOption": "A"
       },
       {
         "id": "NO-42",
@@ -7883,6 +7891,11 @@
         "at": "2026-11-14T22:20:03+07:00",
         "by": "C0",
         "summary": "Owner 22:20 chat: duy trì min 3 / max 4 agent (áp cho agent C0 trên máy chính; agent Oxy giữ 10 cho tới khi Owner nói khác)"
+      },
+      {
+        "at": "2026-11-15T07:29:37+07:00",
+        "by": "C0",
+        "summary": "Owner 07:28 duyệt từ dashboard: NO-40 A, NO-41 A; thẻ đã đóng DONE; chỉ đạo chat 07:25 \"làm cả S09-L và S09-N\" xung đột với NO-41 A: giữ S09-L/N tạm dừng chờ Owner xác nhận"
       }
     ],
     "summary": {
