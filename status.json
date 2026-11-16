@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-16T22:02:28+07:00",
+  "asOf": "2026-11-16T22:39:01+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-16T22:02:28+07:00",
+  "detailUpdatedAt": "2026-11-16T22:39:01+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-16T14:38:43+07:00",
+    "updatedAt": "2026-11-16T22:39:01+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy chỉ còn Lane Reporter (05:09), không có diff/kết quả mới"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "ok",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy hoạt động lại 14:32, đăng tiến độ QA dev 14:33 (REPORTED): BE khúc 1 có 23 test đỏ, khúc 2 GREEN, test node 7 đỏ thật"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy nhận chỉ đạo (không làn Windows; deploy PROD sau QA dev; bật hết cờ nếu không blocker), đồng ý chia tải test, đăng sửa PROD #1; Lane Reporter 22:33"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình; Mac 0 agent (hết việc mã có thật không cần Owner quyết); Oxy lane rảnh"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "ok",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; luật Owner (merge hết vào dev, một lượt QA, chỉ làm việc trong thư mục local) không đổi"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "changed",
+            "summary": "Cập nhật luật: không có làn Windows, Mac + Oxy làm hết; C0 deploy PROD sau QA dev ổn, bật cờ từng cái; Owner đã nạp khóa PROD 24 giờ; Mac/Oxy chia tải test"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "ok",
-            "summary": "Không merge, không nhánh mới, không đổi head (111 nhánh wip BE, 41 FE); QA độc lập: không giao (Owner: dev only)"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "ok",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "changed",
             "summary": "Không merge mới (BE dev 1b86e97e, FE dev 9f96617b; 18 PR BE, 10 PR FE mở). Oxy QA dev (REPORTED): BE khúc 1 `code.*` 3689 test, 23 đỏ ở 13 lớp (đang phân loại); khúc 2 `data.*` GREEN; khúc 3–8 chạy; node 80 lượt, 14 lỗi (1 dự kiến, 3 hết giờ, 7 đỏ thật); FE xong sau sửa #1. Dev chưa sạch, chưa deploy/bật cờ. QA 4/12, VERIFIED 0/12"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "changed",
+            "summary": "Merge (Owner, không QA độc lập của riêng PR, cờ TẮT, chưa deploy): BE #331/#332/#333/#334, FE #233/#234; BE dev f96244b5, FE dev e19f35b2; 18 PR BE + 10 PR FE mở. Oxy QA (REPORTED): BE 8 khúc 33 đỏ đã phân loại, không hồi quy, đã sửa; trình duyệt 237/270; còn E2E + runner, ETA 02:00–03:30. Mac (MEASURED): gate:frontend GREEN 46 bước sau sửa allow-list; node BE 40/79, 0 lỗi. QA 4/12, VERIFIED 0/12"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "skipped",
-            "summary": "Không đăng báo cáo lần 186: không có thay đổi từ lần 184"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "skipped",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 194 lên #88 (comment 6910400700): kết quả QA BE đầu tiên (23 đỏ khúc 1), dev chưa sạch, câu hỏi chờ Owner"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 195 lên #88 (comment 6921055468)"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "ok",
-            "summary": "Dashboard cập nhật bản ghi chạy lần 186"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "ok",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "ok",
             "summary": "Dashboard cập nhật bản ghi chạy + lịch sử"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "ok",
+            "summary": "Dashboard cập nhật bản ghi chạy + lịch sử"
           }
         ]
       },
@@ -7600,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "ok",
-            "summary": "diskutil: 17,3 GB trống (<20); không xóa snapshot/cache khi chưa có Owner cho phép"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "ok",
@@ -7649,6 +7644,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "ok",
             "summary": "diskutil ~28,2 GB trống thật; không xóa snapshot/cache"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "ok",
+            "summary": "diskutil ~13,7 GB trống thật (giảm từ ~28 GB do build dự án khác + test Mac; trên ngưỡng 10 GB); không xóa snapshot/cache; đã báo Owner"
           }
         ]
       },
@@ -7660,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "skipped",
-            "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "skipped",
@@ -7709,6 +7704,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "skipped",
             "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "ok",
+            "summary": "Khóa truy cập máy PROD do Owner nạp ~22:15 (hiệu lực 24 giờ, tới ~22:15 17/11); đã dùng thử chỉ-đọc: kết nối được, PROD đợt 21 khỏe (REPORTED→MEASURED lúc 22:1x)"
           }
         ]
       },
@@ -7720,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T05:38:06+07:00",
-            "result": "ok",
-            "summary": "Mac 0 agent (không giao việc cho có); Oxy lane rảnh"
-          },
           {
             "at": "2026-11-16T06:39:20+07:00",
             "result": "ok",
@@ -7769,6 +7764,11 @@
             "at": "2026-11-16T14:38:43+07:00",
             "result": "ok",
             "summary": "Oxy 4/5 agent (V4 sửa BE, V5 sửa test node, V3 FE trực, V2 QA); Mac 0 agent (không có việc mã, chờ bản sửa của Oxy; không tạo agent đệm)"
+          },
+          {
+            "at": "2026-11-16T22:39:01+07:00",
+            "result": "ok",
+            "summary": "Mac 0 agent mã (chạy test tự thân theo chia tải); Oxy 3/5 agent; theo dõi Oxy hai đường (#123 + mạng nội bộ chỉ-đọc)"
           }
         ]
       }
@@ -8133,6 +8133,11 @@
         "at": "2026-11-16T22:02:28+07:00",
         "by": "C0",
         "summary": "Owner 16/11 ~22:00: không có làn Windows; Mac (C0) + Oxy làm hết, gồm deploy PROD trên máy Google Cloud sau khi QA dev trên Oxy ổn; nếu không có lỗi nghiêm trọng/blocker thì bật hết cờ. Đã bỏ chỉ trách nhiệm \"Windows\" khỏi dashboard (giữ nguyên thuật ngữ kỹ thuật như PowerShell, Windows-1258). QA 4/12, VERIFIED 0/12 không đổi; chưa deploy."
+      },
+      {
+        "at": "2026-11-16T22:39:01+07:00",
+        "by": "C0",
+        "summary": "Owner: không làn Windows; deploy PROD sau QA dev ở Oxy; bật hết cờ nếu không blocker; chia tải test Mac/Oxy; khóa PROD đã nạp (24 giờ). Merge BE #331-#334, FE #233-#234 vào dev (BE f96244b5, FE e19f35b2). Mac: gate FE GREEN sau sửa allow-list; node BE 40/79. Oxy: BE 8 khúc 33 đỏ đã sửa; trình duyệt 237/270. QA 4/12, VERIFIED 0/12 không đổi; chưa deploy, chưa bật cờ."
       }
     ],
     "summary": {
