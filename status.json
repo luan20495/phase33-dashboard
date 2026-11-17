@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-17T17:38:19+07:00",
+  "asOf": "2026-11-17T18:40:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1834,7 +1834,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-17T17:38:19+07:00",
+  "detailUpdatedAt": "2026-11-17T18:40:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7307,7 +7307,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-17T17:38:19+07:00",
+    "updatedAt": "2026-11-17T18:40:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7318,11 +7318,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy báo 3 spec layout còn mở (2 lỗi CSS thấp, không chặn) + bản sửa feb5fix, Lane Reporter 07:04/07:34"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "ok",
@@ -7367,6 +7362,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới. Chỉ đạo qua chat: deploy giao diện lên PROD (đã làm), làm cùng Oxy tăng tốc, nhắc kiểm giới hạn issue, câu hỏi về năng lực web app phức tạp"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "ok",
+            "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257; Owner chỉ đạo qua chat (đợt 1 rồi 5 đợt còn lại, chia với Oxy)."
           }
         ]
       },
@@ -7378,11 +7378,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình; không có thông điệp cấu hình mới của Owner"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "ok",
@@ -7427,6 +7422,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; không có thông điệp cấu hình mới"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "ok",
+            "summary": "Không có cấu hình tab Quy trình mới; đối chiếu: đĩa Mac 63 GB trống, SSH hết hạn ~22:15."
           }
         ]
       },
@@ -7438,11 +7438,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "changed",
-            "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035; 18 PR BE + 10 PR FE mở). PHÁT HIỆN VÀ SỬA lỗi PROD: cờ BUILD_LEASE_TOKEN (đợt 1) làm bản dựng xem trước kẹt (409); đã gỡ cờ, khởi động lại API 07:35, bản dựng chạy lại bình thường (VERIFIED). Haiku thật 5/20 lượt đạt, sổ chi tiêu đúng"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "changed",
@@ -7487,6 +7482,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "changed",
             "summary": "GIAO DIỆN PROMPT LÊN PROD 17:12:42 (FE main f9c746de, API không đổi; 5 cổng 200, 0 lỗi). PR #237, #238 (tài liệu FE), #340 (tài liệu BE), #341 (ghim lõi FE) đã merge. Đợt 23: PR #339 đầu f1813b69 (hợp nhất được); C0 chạy test hạ tầng Node 3 luồng, Oxy chạy hồi quy BE 8 khúc"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "changed",
+            "summary": "Hồi quy BE đợt 23: Oxy khúc 1-4 PASS, C0 c7aoa PASS, c8rest sửa 2 test (đầu #339 = 23b3506a); QA PROD UI (P2 dock) và AI (allow-list trống, đã bật cho workspace QA); apply agent chạy diff đợt 1 của Oxy."
           }
         ]
       },
@@ -7498,11 +7498,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo lần 201 lên #88 (lỗi dựng do cờ và cách sửa, lượt Haiku thật)"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "changed",
@@ -7547,6 +7542,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 210 lên #88 + #257"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 211 lên #88 (comment 6946976322) và con trỏ #257."
           }
         ]
       },
@@ -7558,11 +7558,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "changed",
-            "summary": "Dashboard cập nhật: lỗi dựng do cờ đợt 1 và sửa, lượt Haiku, lịch sử"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "changed",
@@ -7607,6 +7602,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "changed",
             "summary": "Dashboard: thêm đợt 22 và đợt 22-FE vào danh sách phát hành; giao diện prompt đã lên PROD"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "changed",
+            "summary": "Dashboard: hạng mục AI Agent 12 mục làm mới (18:15), bản ghi hằng giờ."
           }
         ]
       },
@@ -7618,11 +7618,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "ok",
-            "summary": "Đĩa Mac trống ~48 GB; không dọn"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "ok",
@@ -7667,6 +7662,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "ok",
             "summary": "Đĩa Mac ~65 GB trống; đĩa máy chủ PROD ~85 GB trống"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac 63 GB trống (17% dùng); không dọn thêm."
           }
         ]
       },
@@ -7678,11 +7678,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "ok",
@@ -7727,6 +7722,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "ok",
             "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11); sẽ hết hạn trước khi đợt 23 deploy nếu muộn: nhắc Owner ssh-add lại trước 22:00"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH còn nạp; hết hạn ~22:15, nhắc Owner trước 22:00."
           }
         ]
       },
@@ -7738,11 +7738,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T07:42:29+07:00",
-            "result": "skipped",
-            "summary": "Mac không chạy code agent có chủ ý (đang test PROD); Oxy tự giữ agent của mình"
-          },
           {
             "at": "2026-11-17T08:44:07+07:00",
             "result": "skipped",
@@ -7787,6 +7782,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "ok",
             "summary": "Không có agent chạy (đã xong, đã dọn); test hạ tầng đợt 23 chạy nền trên Mac, Oxy chạy hồi quy BE"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "ok",
+            "summary": "Agent đang chạy: QA AI vòng 2, apply diff Oxy; Oxy 5 agent đợt 1/3; tải Mac ~4,7 nên chưa thêm agent nặng."
           }
         ]
       },
@@ -7808,6 +7808,11 @@
             "at": "2026-11-17T17:38:19+07:00",
             "result": "ok",
             "summary": "#126 có 49 bình luận (~8 mỗi giờ), còn xa ngưỡng 2.000"
+          },
+          {
+            "at": "2026-11-17T18:40:00+07:00",
+            "result": "ok",
+            "summary": "#126 có 67 bình luận (ngưỡng cảnh báo 2.000)."
           }
         ]
       }
@@ -8249,6 +8254,10 @@
       {
         "at": "2026-11-17T17:38:19+07:00",
         "summary": "GIAO DIỆN PROMPT STUDIO LÊN PROD 17:12:42 ICT (chỉ FE, FE main f9c746de, API không đổi, kiểm sau deploy đạt); tài liệu + RELEASE_LOG + ghim lõi FE đã merge; đợt 23 chia việc C0 (test hạ tầng) / Oxy (hồi quy BE)"
+      },
+      {
+        "at": "2026-11-17T18:40:00+07:00",
+        "summary": "Hồi quy BE đợt 23 (Oxy 4/8 + C0 2 khúc PASS; sửa 2 test, đầu PR #339 = 23b3506a662d); QA PROD UI/AI chạy (lỗi P2 dock; allow-list T23/T24/T25 trống, đã bật cho workspace QA 18:37, vòng 2 đang chạy); chia lộ trình 6 đợt với Oxy; hạng mục AI Agent 12 mục làm mới"
       }
     ],
     "summary": {
