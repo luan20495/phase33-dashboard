@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-17T19:40:00+07:00",
+  "asOf": "2026-11-17T20:25:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -128,6 +128,15 @@
       "backendSha": "240618dd023e",
       "frontendSha": "f9c746dec4a6",
       "notes": "Chỉ FE (BE và API không đổi, không khởi động lại): khung chat có vùng dock (danh sách tin ~65% khung ở 1280×720), tin dài thu gọn, thẻ rỗng ẩn, nút \"Xem thay đổi\" 24/44 px, kế hoạch chia bước đọc được dòng cuối; bộ chọn model \"Đề xuất\", số nhiều, một đơn vị tiền, tên dự án không dính chữ; ô soạn mới (\"Xếp hàng\" + chip hàng đợi, nút Dừng, menu \"+\"). Oxy QA: gate build đạt, combined-check chỉ F-08 cũ, tập dock đạt (REPORTED). Sau deploy C0 kiểm: 5 cổng 200, 17 container khỏe, 0 lỗi API/5xx (REPORTED). Chưa có kiểm tra độc lập sau deploy (Văn phòng AI sẽ kiểm lại). Đường lùi: ảnh -prefe."
+    },
+    {
+      "id": "R23",
+      "label": "Đợt 23 (BE: đính kèm lưu văn bản/giải nén, cờ chuyển tiếp cap AI, sửa pin test)",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-17T20:08:16+07:00",
+      "backendSha": "d5c00cef0e32",
+      "frontendSha": "642c026aa1dd",
+      "notes": "BE d5c00cef (PR #339 + #342), FE main chỉ thêm tài liệu; Flyway 112|99|0 (không migration); 17 container khỏe, 0 lỗi khởi động/API, danh sách 67 khóa cờ bật giống hệt trước deploy (C0 đo). Hồi quy BE 8/8 khúc PASS (REPORTED), review độc lập phần test đổi GO có điều kiện. Sau deploy bật ATTACHMENT_ARCHIVES 20:12, ARCHIVE_SELECT 20:24, TENANT_AI_DAILY_CAP 20:21. Smoke ZIP độc lập PASS (REPORTED). Đường lùi: ảnh 240618dd023e + sao lưu env."
     }
   ],
   "features": [
@@ -1834,7 +1843,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-17T19:40:00+07:00",
+  "detailUpdatedAt": "2026-11-17T20:25:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -18139,16 +18148,16 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-17T17:38:19+07:00",
+    "updatedAt": "2026-11-17T20:25:00+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
-      "be": "240618dd023e",
-      "fe": "a2c63035703e"
+      "be": "d5c00cef0e32",
+      "fe": "642c026aa1dd (mã giao diện = f9c746de)"
     },
     "total": 68,
-    "on": 63,
-    "off": 5,
+    "on": 66,
+    "off": 2,
     "note": "Nhãn: VERIFIED = C0 đã kiểm trong container API sau khi bật (cờ = true, guard đạt, Flyway 112|99|0, 0 lỗi). Bật không có nghĩa là xong: chưa có QA độc lập hay Owner UAT cho từng tính năng. Chi phí: không phát sinh dịch vụ hoặc máy chủ trả phí mới; xem báo cáo chi phí 13 nhóm.",
     "noteEn": "VERIFIED = C0 checked inside the API container after switching (flag true, guard passed, Flyway 112|99|0, 0 errors). ON does not mean DONE: no independent QA or Owner UAT per feature yet.",
     "groups": [
@@ -18504,18 +18513,21 @@
       },
       {
         "name": "ATTACHMENT_ARCHIVES",
-        "state": "OFF",
-        "note": "chưa bật"
+        "state": "ON",
+        "note": "bật 17/11 20:12 (đợt 23; QA độc lập smoke ZIP PASS, REPORTED)",
+        "at": "20:12"
       },
       {
         "name": "ATTACHMENT_ARCHIVE_SELECT",
-        "state": "OFF",
-        "note": "chưa bật"
+        "state": "ON",
+        "note": "bật 17/11 20:24 (sau smoke ZIP)",
+        "at": "20:24"
       },
       {
         "name": "TENANT_AI_DAILY_CAP",
-        "state": "OFF",
-        "note": "chưa bật"
+        "state": "ON",
+        "note": "bật 17/11 20:21 theo lệnh Owner: 1.000.000/công ty/ngày, cảnh báo 5.000; kéo theo TENANT_AI_ENABLED",
+        "at": "20:21"
       },
       {
         "name": "AI_GATEWAY_PAID_REQUIRES_WORKSPACE",
@@ -18536,9 +18548,9 @@
         "id": "G02",
         "name": "ARCHIVE_SELECT",
         "phase": "P1",
-        "state": "Chờ ARCHIVES",
-        "detail": "Bật sau khi ARCHIVES chạy sạch",
-        "kind": "wait"
+        "state": "ĐÃ BẬT 20:24",
+        "detail": "Bật sau smoke giải nén ZIP của QA độc lập (PASS, REPORTED); lưu ý P2: công cụ đọc đính kèm đã lưu vẫn đọc được nội dung ZIP khi chưa chọn tệp",
+        "kind": "on"
       },
       {
         "id": "G03",
@@ -18629,8 +18641,8 @@
         "kind": "wait"
       }
     ],
-    "target13On": 5,
-    "target13Result": "Kết quả PROD: 5/13 đã bật (TEXT_STORE 09:40, Auto-repair 10:00, Reference Images 10:27, TEXT_TOOLS 10:31, X1 STRICT 11:03); kiểm container/cấu hình đạt, 0 lỗi API. Ràng buộc Owner: chỉ 1 máy chủ, không ngân sách, 0 USD.",
+    "target13On": 6,
+    "target13Result": "Kết quả PROD 20:25: 6/13 mục đã bật (thêm ARCHIVES 20:12, ARCHIVE_SELECT 20:24); TENANT_AI_DAILY_CAP bật 20:21 theo lệnh Owner (1.000.000 mỗi công ty mỗi ngày, cảnh báo 5.000). Còn tắt 2/68 nhóm: BUILD_LEASE_TOKEN (cần nâng máy dựng + OWNER_ACTION) và AI_GATEWAY_PAID_REQUIRES_WORKSPACE (cần cổng AI agent bật, PROD chưa truyền cờ này). Ràng buộc Owner: chỉ 1 máy chủ, không ngân sách.",
     "uiPrompt": [
       {
         "id": "U1",
