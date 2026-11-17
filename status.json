@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-17T07:42:29+07:00",
+  "asOf": "2026-11-17T08:44:07+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-17T07:42:29+07:00",
+  "detailUpdatedAt": "2026-11-17T08:44:07+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-17T07:42:29+07:00",
+    "updatedAt": "2026-11-17T08:44:07+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy hoạt động lại 14:32, đăng tiến độ QA dev 14:33 (REPORTED): BE khúc 1 có 23 test đỏ, khúc 2 GREEN, test node 7 đỏ thật"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "ok",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy báo 3 spec layout còn mở (2 lỗi CSS thấp, không chặn) + bản sửa feb5fix, Lane Reporter 07:04/07:34"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; chỉ đạo qua chat: \"xong cái nào thì on cái đó\". #123: Oxy chỉ đăng Lane Reporter 08:04/08:34"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình; luật Owner (merge hết vào dev, một lượt QA, chỉ làm việc trong thư mục local) không đổi"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "changed",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; không có thông điệp cấu hình mới của Owner"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; không có thông điệp cấu hình mới của Owner"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "changed",
-            "summary": "Không merge mới (BE dev 1b86e97e, FE dev 9f96617b; 18 PR BE, 10 PR FE mở). Oxy QA dev (REPORTED): BE khúc 1 `code.*` 3689 test, 23 đỏ ở 13 lớp (đang phân loại); khúc 2 `data.*` GREEN; khúc 3–8 chạy; node 80 lượt, 14 lỗi (1 dự kiến, 3 hết giờ, 7 đỏ thật); FE xong sau sửa #1. Dev chưa sạch, chưa deploy/bật cờ. QA 4/12, VERIFIED 0/12"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "changed",
             "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035; 18 PR BE + 10 PR FE mở). PHÁT HIỆN VÀ SỬA lỗi PROD: cờ BUILD_LEASE_TOKEN (đợt 1) làm bản dựng xem trước kẹt (409); đã gỡ cờ, khởi động lại API 07:35, bản dựng chạy lại bình thường (VERIFIED). Haiku thật 5/20 lượt đạt, sổ chi tiêu đúng"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "changed",
+            "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035; 18 PR BE + 10 PR FE mở). 20 lượt Haiku thật xong (14 cập nhật, 4 không đổi, 2 hủy; hủy giữa chừng bị tính đủ số giữ); thêm 4 nhóm cờ BẬT: API ngoài, tham chiếu trang (kiểm bằng 1 lượt thật), tham chiếu hàng đợi, ghi nguồn dữ liệu (một nguồn thử, vẫn từ chối mặc định); VERIFIED trong container, 0 lỗi/5xx"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo lần 194 lên #88 (comment 6910400700): kết quả QA BE đầu tiên (23 đỏ khúc 1), dev chưa sạch, câu hỏi chờ Owner"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 201 lên #88 (lỗi dựng do cờ và cách sửa, lượt Haiku thật)"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 202 lên #88"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "ok",
-            "summary": "Dashboard cập nhật bản ghi chạy + lịch sử"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "ok",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "changed",
             "summary": "Dashboard cập nhật: lỗi dựng do cờ đợt 1 và sửa, lượt Haiku, lịch sử"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "changed",
+            "summary": "Dashboard cập nhật: kết quả 20 lượt Haiku, 4 nhóm cờ mới, còn lại để bật hết"
           }
         ]
       },
@@ -7600,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "ok",
-            "summary": "diskutil ~28,2 GB trống thật; không xóa snapshot/cache"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "ok",
@@ -7649,6 +7644,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
             "summary": "Đĩa Mac trống ~48 GB; không dọn"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac trống ~45 GB; không dọn"
           }
         ]
       },
@@ -7660,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "skipped",
-            "summary": "Không kiểm khóa SSH (SSH tới máy chủ tắt)"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "ok",
@@ -7709,6 +7704,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
             "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
           }
         ]
       },
@@ -7720,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T14:38:43+07:00",
-            "result": "ok",
-            "summary": "Oxy 4/5 agent (V4 sửa BE, V5 sửa test node, V3 FE trực, V2 QA); Mac 0 agent (không có việc mã, chờ bản sửa của Oxy; không tạo agent đệm)"
-          },
           {
             "at": "2026-11-16T22:39:01+07:00",
             "result": "ok",
@@ -7769,6 +7764,11 @@
             "at": "2026-11-17T07:42:29+07:00",
             "result": "skipped",
             "summary": "Mac không chạy code agent có chủ ý (đang test PROD); Oxy tự giữ agent của mình"
+          },
+          {
+            "at": "2026-11-17T08:44:07+07:00",
+            "result": "skipped",
+            "summary": "Mac không chạy code agent có chủ ý (đang bật cờ và test PROD); Oxy tự giữ agent của mình"
           }
         ]
       }
@@ -8170,6 +8170,10 @@
       {
         "at": "2026-11-17T07:42:29+07:00",
         "summary": "Lỗi PROD do cờ đợt 1: BUILD_LEASE_TOKEN làm bản dựng xem trước kẹt (máy dựng chưa hỗ trợ token thuê việc, 409). Đã gỡ cờ đó (có sao lưu), khởi động lại API 07:35, bản dựng thử xong ~15 giây, VERIFIED. Haiku thật: 5/20 lượt đạt, sổ chi tiêu chốt đúng. Bài học: cờ chạm đường dựng cần 1 lượt dựng thật khi bật"
+      },
+      {
+        "at": "2026-11-17T08:44:07+07:00",
+        "summary": "20 lượt Haiku thật trên PROD xong, 0 lỗi 5xx, sổ chi tiêu đúng (hủy giữa chừng bị tính đủ số giữ). Bật thêm 4 nhóm cờ từng cái một: API ngoài, tham chiếu trang (VERIFIED bằng 1 lượt thật), tham chiếu hàng đợi, ghi nguồn dữ liệu (một nguồn thử, từ chối mặc định). Còn 7 nhóm: 4 đính kèm + cổng AI Agent + hạn mức theo ngày (cần mã/đợt 23) và BUILD_LEASE_TOKEN (cần nâng máy dựng)"
       }
     ],
     "summary": {
