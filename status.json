@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-18T05:40:00+07:00",
+  "asOf": "2026-11-18T06:38:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1843,7 +1843,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-18T05:40:00+07:00",
+  "detailUpdatedAt": "2026-11-18T06:38:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7316,7 +7316,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-18T05:40:00+07:00",
+    "updatedAt": "2026-11-18T06:38:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7327,11 +7327,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "ok",
-            "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257; Owner chỉ đạo qua chat (GO bật nhóm 3/4 và các cờ còn lại)."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "ok",
@@ -7376,6 +7371,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "ok",
             "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "ok",
+            "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257 (chỉ có lệnh trực tiếp \"deploy đợt 24 khi Oxy xanh\")."
           }
         ]
       },
@@ -7387,11 +7387,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "ok",
-            "summary": "Không có cấu hình tab Quy trình mới; đĩa Mac 63 GB trống, SSH hết hạn ~22:15."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "ok",
@@ -7436,6 +7431,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "ok",
             "summary": "Không có cấu hình Quy trình mới; thực tế khớp (đợt 23, 67/68 cờ)."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "ok",
+            "summary": "Không có cấu hình Quy trình mới; thực tế khớp (đợt 23, 67/68 cờ)."
           }
         ]
       },
@@ -7447,11 +7447,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "changed",
-            "summary": "Đợt 23 lên PROD 20:08; bật ARCHIVES, TENANT_AI_DAILY_CAP, ARCHIVE_SELECT, PDF, webhook; nâng client runner; QA smoke ZIP PASS; Oxy rà LEG-01..05."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "changed",
@@ -7496,6 +7491,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "changed",
             "summary": "Oxy: FE unit 7.145/0 đỏ (REPORTED), thêm 1 test P7 đỏ mới đã sửa; C0 merge FE #246 (dev BE ffcd5d75, FE 96c057a9); infra 70/80 xong 0 đỏ."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "changed",
+            "summary": "Rà soát bảo mật F1-F4: 3 đóng, N1 đã sửa (BE #351, FE #247); dev BE c4226dd2 / FE a47f9496; Oxy chưa báo QA xanh."
           }
         ]
       },
@@ -7507,11 +7507,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo lần 213 lên #88 (comment 6949705360) và con trỏ #257."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "changed",
@@ -7556,6 +7551,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 221 (#88) + con trỏ #257."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 222 (#88) + con trỏ #257."
           }
         ]
       },
@@ -7567,11 +7567,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "changed",
-            "summary": "Dashboard: đợt 23, 66/68 nhóm, bản ghi hằng giờ."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "changed",
@@ -7616,6 +7611,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "changed",
             "summary": "Cập nhật hourly, asOf, dev BE ffcd5d75 / FE 96c057a9."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "changed",
+            "summary": "Cập nhật hourly, asOf, dev BE c4226dd2 / FE a47f9496."
           }
         ]
       },
@@ -7627,11 +7627,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "ok",
-            "summary": "Đĩa Mac 63 GB trống; đĩa máy chủ PROD 75 GB trống sau build đợt 23; không dọn thêm."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "ok",
@@ -7676,6 +7671,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "ok",
             "summary": "Đĩa Mac ~58 GB trống; không cần dọn."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac ~57 GB trống; không cần dọn."
           }
         ]
       },
@@ -7687,11 +7687,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH còn nạp; hết hạn ~22:15; Owner nạp lại nếu cần việc sau giờ đó."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "ok",
@@ -7736,6 +7731,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "ok",
             "summary": "Khóa SSH của Owner vẫn hết hạn (ssh-add -l: không có khóa); cần nạp lại trước khi deploy đợt 24."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "changed",
+            "summary": "Owner đã nạp lại khóa SSH 06:20, hiệu lực 24 giờ (đến ~06:20 19/11); em dùng chỉ-đọc + 1 lượt build."
           }
         ]
       },
@@ -7747,11 +7747,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "ok",
-            "summary": "Agent C0: QA smoke PDF/webhook, phân tích cổng AI agent; Oxy ~4-5 agent dev theo chỉ đạo Owner."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "ok",
@@ -7796,6 +7791,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "changed",
             "summary": "Giao 1 agent rà soát bảo mật tĩnh F1-F4 (tải Mac ~1,6); Oxy chạy infra từng bộ + giao chạy lại unit FE trên FE 96c057a9."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "changed",
+            "summary": "Giao 1 agent rà soát bảo mật tĩnh (xong); đặt bộ theo dõi #126 chờ Oxy QA xanh (tải Mac ~2,3)."
           }
         ]
       },
@@ -7808,11 +7808,6 @@
         "createdBy": "C0 (theo nhắc của Owner 17/11)",
         "titleEn": "Check the comment limit of the C0 ↔ Oxy coordination issue (GitHub limit 2,500)",
         "runs": [
-          {
-            "at": "2026-11-17T20:40:00+07:00",
-            "result": "ok",
-            "summary": "#126 có 155 bình luận (ngưỡng cảnh báo 2.000)."
-          },
           {
             "at": "2026-11-17T21:39:00+07:00",
             "result": "ok",
@@ -7857,6 +7852,11 @@
             "at": "2026-11-18T05:40:00+07:00",
             "result": "ok",
             "summary": "#126 có 352 bình luận; chưa tới ngưỡng 2.000."
+          },
+          {
+            "at": "2026-11-18T06:38:00+07:00",
+            "result": "ok",
+            "summary": "#126 có 357 bình luận; chưa tới ngưỡng 2.000."
           }
         ]
       }
@@ -8334,6 +8334,10 @@
       {
         "at": "2026-11-18T05:40:00+07:00",
         "summary": "Báo cáo lần 221: FE unit trọn bộ 7.145/0 đỏ (Oxy báo), merge FE #246; dev BE ffcd5d75 / FE 96c057a9; giao rà soát bảo mật tĩnh F1-F4; PROD không đổi"
+      },
+      {
+        "at": "2026-11-18T06:38:00+07:00",
+        "summary": "Báo cáo lần 222: rà soát bảo mật F1-F4 (N1 đã sửa), kiểm PROD chỉ-đọc + 1 lượt build thật OK, Owner GO deploy đợt 24 khi Oxy xanh; dev BE c4226dd2 / FE a47f9496"
       }
     ],
     "summary": {
