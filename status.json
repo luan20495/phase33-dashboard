@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-17T16:55:13+07:00",
+  "asOf": "2026-11-17T17:38:19+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -110,6 +110,24 @@
       "backendSha": "4a400ed0cc75",
       "frontendSha": "449621de3b4a",
       "notes": "Chỉ FE (BE chỉ ghim lại mirror): đính kèm SVG (chuyển sang PNG trong trình duyệt, FE #187) và thẻ kế hoạch chia bước xong thì vào luồng chat (FE #189). Không migration, Flyway 100|88|0, 0 lỗi 5xx, cờ không đổi, FE_ENTERPRISE_UI để trống. QA/SEC độc lập từng PR + QA tích hợp GO-WITH-CONDITIONS (VERIFIED). Chưa kiểm bằng lượt thật trên PROD: Owner thử."
+    },
+    {
+      "id": "R22",
+      "label": "Đợt 22",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-17T03:05:00+07:00",
+      "backendSha": "240618dd023e",
+      "frontendSha": "a2c63035703e",
+      "notes": "Đợt 22 (BE + FE) lên PROD 03:05 ICT 17/11; Flyway 112|99|0; 17 container khỏe. Từ đó bật cờ từng nhóm (63/68 nhóm bật). VERIFIED bằng kiểm tra của C0; chưa có QA độc lập cho từng tính năng."
+    },
+    {
+      "id": "R22FE",
+      "label": "Đợt 22-FE (giao diện prompt Studio)",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-17T17:12:42+07:00",
+      "backendSha": "240618dd023e",
+      "frontendSha": "f9c746dec4a6",
+      "notes": "Chỉ FE (BE và API không đổi, không khởi động lại): khung chat có vùng dock (danh sách tin ~65% khung ở 1280×720), tin dài thu gọn, thẻ rỗng ẩn, nút \"Xem thay đổi\" 24/44 px, kế hoạch chia bước đọc được dòng cuối; bộ chọn model \"Đề xuất\", số nhiều, một đơn vị tiền, tên dự án không dính chữ; ô soạn mới (\"Xếp hàng\" + chip hàng đợi, nút Dừng, menu \"+\"). Oxy QA: gate build đạt, combined-check chỉ F-08 cũ, tập dock đạt (REPORTED). Sau deploy C0 kiểm: 5 cổng 200, 17 container khỏe, 0 lỗi API/5xx (REPORTED). Chưa có kiểm tra độc lập sau deploy (Văn phòng AI sẽ kiểm lại). Đường lùi: ảnh -prefe."
     }
   ],
   "features": [
@@ -1816,7 +1834,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-17T16:55:13+07:00",
+  "detailUpdatedAt": "2026-11-17T17:38:19+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7307,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-17T16:55:13+07:00",
+    "updatedAt": "2026-11-17T17:38:19+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7318,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; chỉ đạo qua chat: chạy 20 lượt Haiku thật, bật hết khi xong, nguồn/dữ liệu test C0 tự chọn, việc có thể tàn phá hệ thống thì hỏi Owner trước. #123: Oxy báo sửa test PD02 đã kiểm thật trên DEV: PASS, Lane Reporter 06:04/06:34"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
@@ -7349,6 +7362,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #126: Oxy báo tạm 16:40 không có blocker trong tập dock trên v5"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới. Chỉ đạo qua chat: deploy giao diện lên PROD (đã làm), làm cùng Oxy tăng tốc, nhắc kiểm giới hạn issue, câu hỏi về năng lực web app phức tạp"
           }
         ]
       },
@@ -7360,11 +7378,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình; thêm quy tắc Owner 17/11: việc có thể tàn phá hệ thống phải hỏi trước"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
@@ -7409,6 +7422,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; không có thông điệp cấu hình mới"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; không có thông điệp cấu hình mới"
           }
         ]
       },
@@ -7420,11 +7438,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "changed",
-            "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035; 18 PR BE + 10 PR FE mở). Bắt đầu 20 lượt Haiku thật trên PROD (dự án thử): 4 lượt đầu đạt, sổ chi tiêu chốt đúng, chi ~0,003 USD mỗi lượt trên ~0,11 USD đã giữ, 0 lỗi 5xx; chạy tiếp các lượt còn lại"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "changed",
@@ -7469,6 +7482,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "changed",
             "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035). FE bản gộp đóng băng v5 (1750bd3a); Oxy: gate:frontend đạt, combined-check chỉ F-08 cũ, chat-dock 50/50, lovable và lovable-steps đạt; còn studio-queue-fab (nghi hồi quy dock ở 375px). PR #339 đợt 23 không đổi. Dọn máy chủ PROD xong: đĩa trống 29 lên 95 GB"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "changed",
+            "summary": "GIAO DIỆN PROMPT LÊN PROD 17:12:42 (FE main f9c746de, API không đổi; 5 cổng 200, 0 lỗi). PR #237, #238 (tài liệu FE), #340 (tài liệu BE), #341 (ghim lõi FE) đã merge. Đợt 23: PR #339 đầu f1813b69 (hợp nhất được); C0 chạy test hạ tầng Node 3 luồng, Oxy chạy hồi quy BE 8 khúc"
           }
         ]
       },
@@ -7480,11 +7498,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "skipped",
-            "summary": "Chờ xong 20 lượt Haiku rồi đăng báo cáo lần 201"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "changed",
@@ -7529,6 +7542,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 209 lên #88 + #257"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 210 lên #88 + #257"
           }
         ]
       },
@@ -7540,11 +7558,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "ok",
-            "summary": "Chỉ cập nhật bản ghi chạy hằng giờ"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "changed",
@@ -7589,6 +7602,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "changed",
             "summary": "Dashboard: cập nhật giao diện prompt U1, U4"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "changed",
+            "summary": "Dashboard: thêm đợt 22 và đợt 22-FE vào danh sách phát hành; giao diện prompt đã lên PROD"
           }
         ]
       },
@@ -7600,11 +7618,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "ok",
-            "summary": "Đĩa Mac trống ~46 GB; không dọn"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
@@ -7649,6 +7662,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "changed",
             "summary": "Đĩa máy chủ PROD sau dọn: 95 GB trống (35% đã dùng), 222 ảnh Docker đợt cũ xóa (giữ 22, 21, 20), PROD nguyên vẹn. Đĩa Mac ~62 GB"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac ~65 GB trống; đĩa máy chủ PROD ~85 GB trống"
           }
         ]
       },
@@ -7660,11 +7678,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "ok",
@@ -7709,6 +7722,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "ok",
             "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11); sẽ hết hạn trước khi đợt 23 deploy nếu muộn: nhắc Owner ssh-add lại trước 22:00"
           }
         ]
       },
@@ -7720,11 +7738,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T06:39:18+07:00",
-            "result": "skipped",
-            "summary": "Mac không chạy code agent có chủ ý (đang test PROD và bật cờ); Oxy tự giữ agent của mình"
-          },
           {
             "at": "2026-11-17T07:42:29+07:00",
             "result": "skipped",
@@ -7769,6 +7782,11 @@
             "at": "2026-11-17T16:38:46+07:00",
             "result": "changed",
             "summary": "Agent A kiểm chứng và pre-check queue-fab; Oxy QA v5"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "ok",
+            "summary": "Không có agent chạy (đã xong, đã dọn); test hạ tầng đợt 23 chạy nền trên Mac, Oxy chạy hồi quy BE"
           }
         ]
       },
@@ -7785,6 +7803,11 @@
             "at": "2026-11-17T16:55:13+07:00",
             "result": "ok",
             "summary": "#126 có 39 bình luận (~7 mỗi giờ), còn xa ngưỡng 2.000; #123 đã đầy 2.500"
+          },
+          {
+            "at": "2026-11-17T17:38:19+07:00",
+            "result": "ok",
+            "summary": "#126 có 49 bình luận (~8 mỗi giờ), còn xa ngưỡng 2.000"
           }
         ]
       }
@@ -8222,6 +8245,10 @@
       {
         "at": "2026-11-17T16:55:13+07:00",
         "summary": "Thêm việc hằng giờ H9: kiểm giới hạn bình luận 2.500 của issue phối hợp C0 ↔ Oxy (Owner nhắc 17/11 sau khi #123 đầy làm hai bên mất liên lạc)"
+      },
+      {
+        "at": "2026-11-17T17:38:19+07:00",
+        "summary": "GIAO DIỆN PROMPT STUDIO LÊN PROD 17:12:42 ICT (chỉ FE, FE main f9c746de, API không đổi, kiểm sau deploy đạt); tài liệu + RELEASE_LOG + ghim lõi FE đã merge; đợt 23 chia việc C0 (test hạ tầng) / Oxy (hồi quy BE)"
       }
     ],
     "summary": {
@@ -18488,7 +18515,7 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-17T16:38:46+07:00",
+    "updatedAt": "2026-11-17T17:38:19+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
@@ -18984,37 +19011,37 @@
       {
         "id": "U1",
         "name": "Khung chat chật, vùng dock, thẻ \"Bản lưu văn bản\" rỗng, tin dài thu gọn, nút \"Xem thay đổi\", kế hoạch chia bước không cuộn được dòng cuối",
-        "state": "Hồi quy dock đã sửa; còn kiểm 1 spec (nút báo lỗi che điều khiển ở 375px)",
-        "detail": "Oxy xác nhận trên bản gốc: nút \"Dùng Tự động\" bị che và nút Gửi mất tầm nhìn với lời nhắc dài là hồi quy đợt 1; đã sửa, `studio-prompt-limit` và `studio-queue-modes` đạt trên v4/v5. Còn `studio-queue-fab` (đạt 138/138 trên bản gốc, đỏ trên v3): nếu v5 vẫn đỏ thì sửa tiếp",
-        "kind": "test"
+        "state": "ĐÃ LÊN PROD 17:12",
+        "detail": "Hồi quy dock đã sửa; kiểm trên PROD (C0, tài khoản thử, 1280×720): danh sách tin 65,2% khung. Còn lỗi nhẹ để lượt sau: queue-fab ở 360×640 với 12 lệnh chờ",
+        "kind": "on"
       },
       {
         "id": "U2",
         "name": "Bộ chọn model mặc định \"Recommended\", số nhiều \"Changed 1 files\", đơn vị tiền, tên dự án dính chữ, lỗi 404 /studio",
-        "state": "Đã nộp (nhánh B)",
+        "state": "ĐÃ LÊN PROD 17:12",
         "detail": "Bộ chọn model \"Đề xuất\", số nhiều, một đơn vị tiền, tên dự án không dính chữ; lỗi 404 /studio chưa tìm ra nguồn (P3)",
-        "kind": "test"
+        "kind": "on"
       },
       {
         "id": "U3",
         "name": "Deploy đường chỉ-FE (không đụng API)",
-        "state": "Công cụ đã sẵn",
-        "detail": "Gói FE tăng dần, giữ ảnh cũ để lùi, build 5 ảnh cổng thông tin chạy nền, thay container; chưa chạy thật lần nào",
-        "kind": "ready"
+        "state": "Đã chạy thật 17:12",
+        "detail": "Đường deploy chỉ-FE: build trước 5 ảnh, thay container 17:12:42, API không khởi động lại; ảnh cũ giữ làm đường lùi",
+        "kind": "on"
       },
       {
         "id": "U4",
         "name": "Lên PROD đợt 1 giao diện",
-        "state": "Dự kiến 19:00–21:00 ICT 17/11",
-        "detail": "Mã đóng băng ở v5 (`wip/ux-final` 1750bd3a); Oxy: `gate:frontend` đạt, kiểm tra tổng hợp chỉ F-08 (lỗi cũ), tập dock đang chạy lại, kết luận chậm nhất 17:30; rồi tài liệu, merge, promote, deploy chỉ-FE, Văn phòng AI kiểm lại",
-        "kind": "test"
+        "state": "ĐÃ LÊN PROD 17:12:42 ICT 17/11",
+        "detail": "FE main f9c746de (PR #237), tài liệu (kho FE #238, kho BE #340, RELEASE_LOG), ghim lõi FE (#341). Chưa có kiểm tra độc lập sau deploy: nhờ Văn phòng AI kiểm lại",
+        "kind": "on"
       },
       {
         "id": "U5",
         "name": "Đợt 2 giao diện (gom trạng thái AI, nút Dừng, menu \"+\")",
-        "state": "Ô soạn (C) đã nộp, nằm trong bản gộp; trạng thái/đầu trang (D) để lượt sau",
+        "state": "Ô soạn đã lên PROD; trạng thái/đầu trang để lượt sau",
         "detail": "C: nút \"Xếp hàng\" + chip hàng đợi, nút Dừng, menu \"+\", bỏ dòng Enter; ô soạn rỗng thấp hơn (1280×720: 203 so với 230 px; 390×844: 142 so với 257 px); còn 1 spec đỏ của C (W375-mini) trong phạm vi sửa dock. D: nộp nhưng chưa kiểm chứng, lợi ích đo được nhỏ",
-        "kind": "test"
+        "kind": "wait"
       }
     ],
     "uiPromptNote": "Nguồn lỗi: báo cáo QA và review UX/UI của Văn phòng AI trên PROD (21 ảnh). FE_EDIT_LAYOUT_UI và FE_EDIT_PANES_UI đang bật trên PROD."
