@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-17T20:40:00+07:00",
+  "asOf": "2026-11-17T20:49:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1843,7 +1843,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-17T20:40:00+07:00",
+  "detailUpdatedAt": "2026-11-17T20:49:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -18157,7 +18157,7 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-17T20:25:00+07:00",
+    "updatedAt": "2026-11-17T20:49:00+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
@@ -18165,8 +18165,8 @@
       "fe": "642c026aa1dd (mã giao diện = f9c746de)"
     },
     "total": 68,
-    "on": 66,
-    "off": 2,
+    "on": 67,
+    "off": 1,
     "note": "Nhãn: VERIFIED = C0 đã kiểm trong container API sau khi bật (cờ = true, guard đạt, Flyway 112|99|0, 0 lỗi). Bật không có nghĩa là xong: chưa có QA độc lập hay Owner UAT cho từng tính năng. Chi phí: không phát sinh dịch vụ hoặc máy chủ trả phí mới; xem báo cáo chi phí 13 nhóm.",
     "noteEn": "VERIFIED = C0 checked inside the API container after switching (flag true, guard passed, Flyway 112|99|0, 0 errors). ON does not mean DONE: no independent QA or Owner UAT per feature yet.",
     "groups": [
@@ -18426,9 +18426,10 @@
       },
       {
         "name": "BUILD_LEASE_TOKEN",
-        "state": "OFF",
-        "note": "bật 03:45 rồi GỠ 07:35 (làm kẹt bản dựng xem trước); chờ nâng máy dựng",
-        "phase": "P3"
+        "state": "ON",
+        "note": "bật lại 17/11 20:47 sau khi nâng client runner (đợt 23): 2 bản dựng thật SUCCEEDED (1 khi cờ tắt, 1 khi cờ bật), 0 lỗi; C0 đo, chưa có QA độc lập",
+        "phase": "P3",
+        "at": "20:47"
       },
       {
         "name": "AI_PAID_HTTP_5XX_WORST_CASE",
@@ -18541,7 +18542,8 @@
       {
         "name": "AI_GATEWAY_PAID_REQUIRES_WORKSPACE",
         "state": "OFF",
-        "note": "chưa bật"
+        "note": "KHÔNG bật: nhóm chỉ là \"văn siết\" cho cổng AI agent, mà cổng này bị cấm trên PROD theo thiết kế (khóa cứng DEV-only) và loại trừ với sửa mã trả phí đang bật; chờ Owner quyết (xem PLAN-AGENT-GATEWAY)",
+        "at": ""
       }
     ],
     "target13": [
@@ -18651,7 +18653,7 @@
       }
     ],
     "target13On": 6,
-    "target13Result": "Kết quả PROD 20:25: 6/13 mục đã bật (thêm ARCHIVES 20:12, ARCHIVE_SELECT 20:24); TENANT_AI_DAILY_CAP bật 20:21 theo lệnh Owner (1.000.000 mỗi công ty mỗi ngày, cảnh báo 5.000). Còn tắt 2/68 nhóm: BUILD_LEASE_TOKEN (cần nâng máy dựng + OWNER_ACTION) và AI_GATEWAY_PAID_REQUIRES_WORKSPACE (cần cổng AI agent bật, PROD chưa truyền cờ này). Ràng buộc Owner: chỉ 1 máy chủ, không ngân sách.",
+    "target13Result": "Kết quả PROD 20:25: 6/13 mục đã bật (thêm ARCHIVES 20:12, ARCHIVE_SELECT 20:24); TENANT_AI_DAILY_CAP bật 20:21 theo lệnh Owner (1.000.000 mỗi công ty mỗi ngày, cảnh báo 5.000). Còn tắt 1/68 nhóm: AI_GATEWAY_PAID_REQUIRES_WORKSPACE (chờ Owner quyết, xem ghi chú). Ngoài nhóm: đọc PDF bật 20:32 (QA smoke PASS), webhook dữ liệu bật 20:35 (chưa có handler trên PROD, đang chờ mã). Ràng buộc Owner: chỉ 1 máy chủ, không ngân sách.",
     "uiPrompt": [
       {
         "id": "U1",
