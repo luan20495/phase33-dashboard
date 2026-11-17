@@ -17848,542 +17848,181 @@
     ]
   },
   "aiAgent12": {
-    "updatedAt": "2026-11-13T23:39:37+07:00",
-    "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 20/11–27/11/2026 (tin cậy thấp)",
+    "updatedAt": "2026-11-17T18:15:00+07:00",
+    "overallEta": "Chưa xác định giờ. Khoảng ESTIMATE: 24/11–28/11/2026 để VERIFIED đủ 12 mục (tin cậy thấp); tối 17/11 chỉ đợt 23 + 2 cờ đính kèm.",
     "note": "CODE/QA/DEPLOY/ON/VERIFIED: ✓ có, ~ một phần, ✗ chưa. VERIFIED chỉ khi QA độc lập hoặc kiểm trên PROD. Tính năng AI mới giữ cờ TẮT đến khi nghiệm thu.",
     "items": [
       {
         "id": "01",
         "name": "Quota/giới hạn L01–L69",
         "pr": "BE #259 (trần lượt, merge dev), #258 (runner, merge dev sau QA r2), FE #200 (merge dev); còn chồng PAYC/ATT/bảo mật chờ QA",
-        "done": "Audit 69/69; 37 hàng Owner duyệt bỏ; chia bước bật lại 15:19; build 3.600 s, hàng đợi 100/500/72 h (REPORTED)",
-        "todo": "69 giới hạn: 29 hàng còn chặn AI (xem #limits/approved). Trần lượt chỉ là L06/L07 (#259 đã merge dev, PROD vẫn 600/ngày); L12 #254 merge dev, PROD vẫn 16.000; L21/L58 #258 merge dev (QA độc lập r2: GO có điều kiện), PROD vẫn 900 giây cho đến khi deploy + gói runner + biến môi trường; chưa xác minh giá trị hiệu lực xuyên FE→API→BE→Agent→Model→Runner→Proxy; bản 22 (đỉnh đóng băng d430a3e6): QA tích hợp NO-GO nguyên trạng, cần đóng băng lại và QA delta",
+        "done": "17/11: mã đợt 22 (BE 240618dd) đã lên PROD 03:05; AI_SPEND_RELEASE bật 04:08. TENANT_AI_DAILY_CAP vẫn TẮT (Owner: sau tính tiếp; nếu buộc: 1.000.000/công ty/ngày, cảnh báo 5.000). | Audit 69/69; 37 hàng Owner duyệt bỏ; chia bước bật lại 15:19; build 3.600 s, hàng đợi 100/500/72 h (REPORTED)",
+        "todo": "Còn: QA độc lập các giới hạn còn chặn AI; TENANT_AI_DAILY_CAP chờ Owner; giá trị env thật trên PROD chưa kiểm lại hôm nay.",
         "code": "~",
         "qa": "✗",
-        "deploy": "✗",
+        "deploy": "✓",
         "on": "~",
         "verified": "✗",
         "agent": "không có agent chạy cho mục này lúc chụp (PR trần lượt, FE nâng trần và QA #258 đã xong)",
-        "eta": "PR ~13/11, bản gộp ~15/11 (trung bình)",
-        "etaInfo": {
-          "etaAt": "2026-11-13T12:00:00+07:00",
-          "etaRange": [
-            "2026-11-13T10:00:00+07:00",
-            "2026-11-13T18:00:00+07:00"
-          ],
-          "remainingEffortHours": 8,
-          "remainingElapsedHours": 8.6,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "QA delta trên cặp SHA cuối (sau khi #258, FE #200, T24/T25 tích hợp xong)",
-            "bộ test BE đầy đủ ~3 giờ 15 phút khi tải máy cao"
-          ],
-          "milestones": [
-            {
-              "label": "PR trần lượt mở (mốc PR, chưa phải nghiệm thu)",
-              "etaAt": "2026-11-12T18:30:00+07:00"
-            },
-            {
-              "label": "QA #258 xong và merge dev (đã xong)",
-              "etaAt": "2026-11-12T19:30:00+07:00",
-              "done": true
-            },
-            {
-              "label": "deploy bản gộp",
-              "etaAt": "2026-11-13T11:00:00+07:00"
-            }
-          ],
-          "unknownReason": null,
-          "startAt": "2026-11-12T16:49:00+07:00",
-          "prevEta": "13/11 06:30–08:00",
-          "waits": [
-            {
-              "from": "2026-11-12T19:30:00+07:00",
-              "to": "2026-11-12T21:30:00+07:00",
-              "hours": 2,
-              "reason": "PR FE nâng trần (#200) và QA #258 đã xong; còn lại chờ QA delta trên cặp SHA cuối"
-            },
-            {
-              "from": "2026-11-12T21:30:00+07:00",
-              "to": "2026-11-13T00:30:00+07:00",
-              "hours": 3,
-              "reason": "QA tích hợp trên đúng SHA cuối của bản gộp"
-            },
-            {
-              "from": "2026-11-13T00:30:00+07:00",
-              "to": "2026-11-13T03:30:00+07:00",
-              "hours": 3,
-              "reason": "deploy + gói runner + env 2 phía + đọc lại"
-            }
-          ],
-          "removedWait": "Lùi ~8,5 giờ: QA tích hợp bản 22 trả NO-GO cho đỉnh dev đã đóng băng vì dev đã di chuyển sau 16:22 (#252 có V101, #259) và có 2 test đỏ chỉ có trên dev; cần QA delta trên cặp SHA cuối (bộ test BE đầy đủ đo thật 3 giờ 15 phút), Flyway kỳ vọng 101|89|0",
-          "note": "Mục 01 là 69 giới hạn: trần lượt chỉ là 2/69 hàng (L06, L07); 29 hàng còn chặn AI theo bảng #limits/approved; ETA này là mốc nâng L06/L07/L12/L21/L58 + env, không phải 69/69 Điều kiện: mốc 13/11 chỉ đúng nếu QA delta trên cặp SHA cuối đạt GO (bản 22 đang NO-GO nguyên trạng); nếu NO-GO thì chưa xác định giờ."
-        }
+        "eta": "Phần mã đã lên PROD; đóng VERIFIED cùng QA độc lập ~20–24/11 (thấp)",
+        "etaInfo": null
       },
       {
         "id": "02",
         "name": "Model/token (#254)",
         "pr": "BE #254 3d8e6d81 (dev)",
-        "done": "Trần mỗi lượt theo model đến 128.000 trong mã; giữ chỗ = trần gửi; QA GO / SEC GO có điều kiện (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
-        "todo": "PROD vẫn 16.000 đến khi deploy + env 32.768 → 64.000 → 128.000 từng bước riêng; FE phản chiếu chưa kiểm",
+        "done": "17/11: mã #254 đã lên PROD trong đợt 22; các bước env 32.768 → 64.000 → 128.000 CHƯA kiểm lại hôm nay. | Trần mỗi lượt theo model đến 128.000 trong mã; giữ chỗ = trần gửi; QA GO / SEC GO có điều kiện (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
+        "todo": "Còn: kiểm giá trị env thật trên PROD, rồi từng bước nâng; FE phản chiếu chưa kiểm độc lập.",
         "code": "✓",
         "qa": "✓",
-        "deploy": "✗",
-        "on": "✗",
+        "deploy": "✓",
+        "on": "~",
         "verified": "✗",
         "agent": "22:xx: FE phản chiếu 128.000: test FE #211 đã merge (Oxy REPORTED 5/5 xanh); PROD vẫn 16.000 cho tới deploy",
-        "eta": "Sau deploy ~15/11; 128.000 sau #252 bật (trung bình)",
-        "etaInfo": {
-          "etaAt": null,
-          "etaRange": null,
-          "remainingEffortHours": 2,
-          "remainingElapsedHours": null,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "128.000 chỉ sau khi #252 chứng minh trên DEV và bật",
-            "bước 64.000 cần đọc số liệu ngân sách"
-          ],
-          "milestones": [
-            {
-              "label": "đạt 32.768 trên PROD (mốc con, không phải 128.000)",
-              "etaAt": "2026-11-13T12:00:00+07:00"
-            }
-          ],
-          "unknownReason": "Chưa xác định giờ: nghiệm thu 128.000 phụ thuộc bằng chứng DEV của #252 và đọc ngân sách; mốc con 32.768 ~13/11 06:30–08:00",
-          "startAt": "2026-11-12T17:00:00+07:00",
-          "prevEta": "13/11 14:00 (chỉ 32.768)",
-          "waits": [],
-          "removedWait": "Mốc con: đạt 32.768 trên PROD ~13/11 06:30–08:00 cùng bước deploy (không phải 128.000)",
-          "note": "Điều kiện: mốc 13/11 chỉ đúng nếu QA delta trên cặp SHA cuối đạt GO (bản 22 đang NO-GO nguyên trạng); nếu NO-GO thì chưa xác định giờ."
-        }
+        "eta": "~20/11 (thấp–trung bình)",
+        "etaInfo": null
       },
       {
         "id": "03",
         "name": "T23 Tool Loop",
         "pr": "BE #165 (c43ff0cc), FE #114, #239, #248, docs #242",
-        "done": "Vòng đọc có giới hạn đã merge, cờ TẮT; QA-ON trên DEV có báo cáo",
-        "todo": "12 lượt Haiku thật chưa chạy (Owner GO); dự án nhiều nghìn file cần đo; bật theo allow-list QA",
+        "done": "17/11: BUILDER_TOOL_LOOP bật 04:19, INTERRUPT 04:23, CALLS_PER_ROUND 04:26 (kiểm trong container). | Vòng đọc có giới hạn đã merge, cờ TẮT; QA-ON trên DEV có báo cáo",
+        "todo": "Còn: 12 lượt Haiku thật cho T23 và đo dự án nhiều nghìn file; QA độc lập trên PROD.",
         "code": "✓",
         "qa": "~",
-        "deploy": "✗",
-        "on": "✗",
+        "deploy": "✓",
+        "on": "✓",
         "verified": "✗",
         "agent": "chưa giao (sau deploy)",
-        "eta": "~18–19/11 (thấp–trung bình)",
-        "etaInfo": {
-          "etaAt": "2026-11-13T22:00:00+07:00",
-          "etaRange": [
-            "2026-11-13T18:00:00+07:00",
-            "2026-11-14T10:00:00+07:00"
-          ],
-          "remainingEffortHours": 6,
-          "remainingElapsedHours": 10,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "deploy bản gộp",
-            "bật allow-list QA là bước cấu hình PROD riêng"
-          ],
-          "milestones": [
-            {
-              "label": "12 lượt Haiku xong (mốc test)",
-              "etaAt": "2026-11-13T06:30:00+07:00"
-            }
-          ],
-          "unknownReason": null,
-          "startAt": "2026-11-13T03:30:00+07:00",
-          "prevEta": "2026-11-13T13:30:00+07:00 (trước NO-GO bản 22)",
-          "waits": [
-            {
-              "from": "2026-11-13T03:30:00+07:00",
-              "to": "2026-11-13T13:30:00+07:00",
-              "hours": 10,
-              "reason": "chờ nối tiếp sau deploy bản gộp (12 lượt Haiku ~3 giờ → QA độc lập kết quả ~3 giờ → đo dự án lớn ~4 giờ)"
-            }
-          ],
-          "removedWait": "Dời ~8,5 giờ theo đường găng mới: bản gộp deploy ~13/11 06:30–08:00 (sau QA delta trên SHA cuối), rồi thử thật trên PROD; mốc phụ không phải nghiệm thu"
-        }
+        "eta": "~20/11 đo thật; VERIFIED sau QA độc lập (thấp–trung bình)",
+        "etaInfo": null
       },
       {
         "id": "04",
         "name": "T24 Structured Patch",
         "pr": "BE #261 (merge dev, T24-3+T25-3 tích hợp) + FE #202 (merge dev, T24-6+T25-5); PR sửa điều kiện QA đang làm",
-        "done": "T24-3 nối vào builder (patch tất cả-hoặc-không, chống xung đột, hoàn tác từng byte) và FE hiển thị trạng thái patch: QA+SEC độc lập một lần trên cặp BE #261 + FE #202: GO có điều kiện, 0 P0/P1; cờ TẮT, prompt cờ TẮT giống hệt (golden 288 tổ hợp); đã merge dev",
-        "todo": "Trước khi bật cờ: sửa P2-1 (bước × patch không đánh dấu PLAN.md xong) và P2-2 (UTF-8 sai bị ghi đè U+FFFD) + P3 (đang làm trong PR sửa); chưa deploy; chưa có lượt AI thật nhiều file",
+        "done": "17/11: BUILDER_PATCH_LARGE_FILES bật 04:30; mã T24 trong đợt 22. | T24-3 nối vào builder (patch tất cả-hoặc-không, chống xung đột, hoàn tác từng byte) và FE hiển thị trạng thái patch: QA+SEC độc lập một lần trên cặp BE #261 + FE #202: GO có điều kiện, 0 P0/P1; cờ TẮT, prompt cờ TẮT giống hệt (golden 288 tổ hợp); đã merge dev",
+        "todo": "Còn: lượt AI thật nhiều file để đo; QA độc lập trên PROD (P2-1/P2-2 đã sửa trong dev).",
         "code": "✓",
         "qa": "✓",
-        "deploy": "✗",
-        "on": "✗",
+        "deploy": "✓",
+        "on": "✓",
         "verified": "✗",
         "agent": "agent sửa BE theo điều kiện QA: đã xong (PR #272 merged); agent sửa FE khóa nguyên mẫu: đã xong",
-        "eta": "PR ~14/11, merge ~16/11 (trung bình)",
-        "etaInfo": {
-          "etaAt": "2026-11-13T18:30:00+07:00",
-          "etaRange": [
-            "2026-11-13T14:00:00+07:00",
-            "2026-11-14T18:00:00+07:00"
-          ],
-          "remainingEffortHours": 2,
-          "remainingElapsedHours": 15,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "tích hợp T24+T25 và FE T24-6 chưa xong",
-            "QA độc lập một lần chưa chạy"
-          ],
-          "milestones": [
-            {
-              "label": "PR #261 đã mở (mốc PR)",
-              "etaAt": "2026-11-12T18:36:00+07:00",
-              "done": true
-            }
-          ],
-          "unknownReason": null,
-          "startAt": "2026-11-12T17:15:00+07:00",
-          "prevEta": "2026-11-13T10:00:00+07:00 (trước NO-GO bản 22)",
-          "waits": [
-            {
-              "from": "2026-11-12T21:00:00+07:00",
-              "to": "2026-11-13T00:00:00+07:00",
-              "hours": 3,
-              "reason": "QA một lần sau khi BE (#261) + FE (T24-6) + tích hợp xong"
-            }
-          ],
-          "removedWait": "Dời ~8,5 giờ theo đường găng mới: bản gộp deploy ~13/11 06:30–08:00 (sau QA delta trên SHA cuối), rồi thử thật trên PROD; mốc phụ không phải nghiệm thu"
-        }
+        "eta": "~20/11 (thấp–trung bình)",
+        "etaInfo": null
       },
       {
         "id": "05",
         "name": "T25 Skill Library",
         "pr": "BE #260 (trong #261) + FE #201 (trong #202), đã merge dev",
-        "done": "Gói kỹ năng (8 gói mới + 3 cũ, chọn tất định, ≤2 gói, ≤6000 byte, danh sách workspace) nối vào builder và FE hiển thị gói đã dùng + turns[].recipes: QA+SEC độc lập GO có điều kiện, 0 P0/P1; cờ TẮT; đã merge dev",
-        "todo": "Trước khi bật cờ: cờ recipes.enabled phải đúng chữ true (hiện nhận TRUE/tRuE), tài liệu lỗi thời, chip nhãn khóa nguyên mẫu (đang sửa); đo hiệu quả bằng 8 lượt AI thật sau deploy; chưa deploy",
+        "done": "17/11: mã gói kỹ năng trong đợt 22 (cờ recipes là cấu hình, chưa xác nhận trạng thái trên PROD). | Gói kỹ năng (8 gói mới + 3 cũ, chọn tất định, ≤2 gói, ≤6000 byte, danh sách workspace) nối vào builder và FE hiển thị gói đã dùng + turns[].recipes: QA+SEC độc lập GO có điều kiện, 0 P0/P1; cờ TẮT; đã merge dev",
+        "todo": "Còn: xác nhận cấu hình recipes trên PROD; đo hiệu quả bằng 8 lượt AI thật; QA độc lập.",
         "code": "✓",
         "qa": "✓",
-        "deploy": "✗",
-        "on": "✗",
+        "deploy": "✓",
+        "on": "~",
         "verified": "✗",
         "agent": "cùng PR sửa điều kiện QA (BE #272 + FE #207): đã merge sau QA độc lập, không còn agent chạy",
-        "eta": "PR ~14/11, đo thật ~20/11 (thấp–trung bình)",
-        "etaInfo": {
-          "etaAt": "2026-11-13T22:30:00+07:00",
-          "etaRange": [
-            "2026-11-13T18:00:00+07:00",
-            "2026-11-14T22:00:00+07:00"
-          ],
-          "remainingEffortHours": 2,
-          "remainingElapsedHours": 16,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "FE T25-5 chưa xong",
-            "tích hợp với T24",
-            "QA một lần",
-            "lượt AI thật tốn USD"
-          ],
-          "milestones": [
-            {
-              "label": "PR #260 đã mở (mốc PR)",
-              "etaAt": "2026-11-12T18:30:00+07:00",
-              "done": true
-            }
-          ],
-          "unknownReason": null,
-          "startAt": "2026-11-12T17:15:00+07:00",
-          "prevEta": "2026-11-13T14:00:00+07:00 (trước NO-GO bản 22)",
-          "waits": [],
-          "removedWait": "Dời ~8,5 giờ theo đường găng mới: bản gộp deploy ~13/11 06:30–08:00 (sau QA delta trên SHA cuối), rồi thử thật trên PROD; mốc phụ không phải nghiệm thu"
-        }
+        "eta": "~20–24/11 (thấp)",
+        "etaInfo": null
       },
       {
         "id": "06",
         "name": "T22-C / J1 tự tiếp tục",
         "pr": "BE #271 (mang cả chuỗi PAYC-1..6) và FE #204 ĐÃ MERGE dev sau QA độc lập (QA-PAYC-PAIR.md + QA-PAYC-DELTA.md, đúng head af0c1847 / 9fa342ac); #262/#263/#265/#266/#267 tự chuyển MERGED (head là tổ tiên của #271). Cờ TẮT, chưa deploy",
-        "done": "Chuỗi PAYC-1..6 + thẻ FE PAYC-FE1 trên dev, cờ TẮT, byte-identical khi tắt (288 tổ hợp + golden); QA+SEC độc lập GO cả BE và FE (1441 test BE 0 lỗi, 6140 test FE pass, 9 ca SEC trên Postgres thật, 10/10 phản hồi BE vào bộ đọc FE khớp); NOT_RUN: lượt AI thật, E2E DEV, PROD, mutant C4/F1",
-        "todo": "Trước khi bật cờ: sửa R4-1 (chữ hướng dẫn trỏ tới nút không có) và R4-2 (mất focus) trên thẻ FE; F3 (cùng người duyệt gia hạn 2-3), F4 (chỉ mục chainId cần migration), khoảng hở hủy sau khi claim; ~6 lượt Haiku thật, deploy, bật cờ trên workspace QA, VERIFIED",
+        "done": "17/11: BUILDER_QUEUE_MONEY_RESUME bật 04:15, AI_SPEND_RELEASE 04:08 (kiểm container). | Chuỗi PAYC-1..6 + thẻ FE PAYC-FE1 trên dev, cờ TẮT, byte-identical khi tắt (288 tổ hợp + golden); QA+SEC độc lập GO cả BE và FE (1441 test BE 0 lỗi, 6140 test FE pass, 9 ca SEC trên Postgres thật, 10/10 phản hồi BE vào bộ đọc FE khớp); NOT_RUN: lượt AI thật, E2E DEV, PROD, mutant C4/F1",
+        "todo": "Còn: ~6 lượt Haiku thật cho chuỗi tự tiếp tục; sửa R4-1/R4-2, F3, F4; QA độc lập.",
         "code": "~",
         "qa": "~",
-        "deploy": "~",
-        "on": "~",
+        "deploy": "✓",
+        "on": "✓",
         "verified": "✗",
         "agent": "22:xx: chuỗi PAYC BE #280 + FE #208 đã merge dev (cờ TẮT); còn spec trình duyệt (NOT_RUN) và R4 follow-up; chưa deploy",
-        "eta": "~20–26/11 (thấp)",
-        "etaInfo": {
-          "etaAt": null,
-          "etaRange": [
-            "2026-11-15T00:00:00+07:00",
-            "2026-11-16T23:00:00+07:00"
-          ],
-          "remainingEffortHours": 16,
-          "remainingElapsedHours": null,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Hiệu chuẩn 2 điểm: PAYC-1 14 giờ thiết kế → 1 giờ 05 phút; PAYC-3 20 giờ thiết kế → 56 phút (gồm chờ Gradle và 3 lần biên dịch lỗi). PAYC-4/2/5/FE1 ước ~1–2 giờ mỗi lát + QA một lần trên cả chồng ~4 giờ + ~6 lượt Haiku thật; chỉ hai điểm hiệu chuẩn, còn rủi ro xung đột với tích hợp T24/T25 trong CodeAi.kt",
-          "blockers": [
-            "PAYC-2 chờ tích hợp T24/T25 (đổi prompt)",
-            "xung đột CodeAi.kt với #261",
-            "QA một lần cho cả chồng + 6 lượt Haiku thật",
-            "hằng số ước lượng PAYC-1 chưa hiệu chuẩn"
-          ],
-          "milestones": [
-            {
-              "label": "4 lát BE PAYC có PR (mốc PR, xong 21:25)",
-              "etaAt": "2026-11-12T21:25:00+07:00",
-              "done": true
-            },
-            {
-              "label": "PAYC-FE1 PR (mốc PR, dự kiến)",
-              "etaAt": "2026-11-12T23:00:00+07:00",
-              "done": true
-            },
-            {
-              "label": "QA độc lập một lần cho cả chồng xong (mốc QA, chưa nghiệm thu)",
-              "etaAt": "2026-11-13T12:00:00+07:00"
-            }
-          ],
-          "unknownReason": "Chưa xác định giờ cho 'T22-C/J1 VERIFIED toàn mục': cần deploy bản sau, bật cờ, 6 lượt Haiku thật, QA độc lập trên PROD; chỉ có MỐC CON (không phải nghiệm thu): mã BE+FE của chồng PAYC xong để QA ~13/11 00:00, QA một lần xong ~13/11 12:00 nếu không có phát hiện lớn",
-          "startAt": "2026-11-12T18:41:00+07:00",
-          "prevEta": "Chưa xác định giờ (17–20/11)",
-          "waits": [
-            {
-              "from": "2026-11-13T08:00:00+07:00",
-              "to": "2026-11-13T12:00:00+07:00",
-              "hours": 4,
-              "reason": "QA độc lập một lần trên bản tích hợp PAYC-1..5"
-            }
-          ],
-          "removedWait": "Đổi nhãn: 13/11 12:00 trước đây ghi như ETA mục là MỐC QA của chồng, không phải VERIFIED toàn T22-C/J1; toàn mục để chưa xác định giờ, khoảng ESTIMATE 15–16/11"
-        }
+        "eta": "VERIFIED sau QA độc lập ~20–26/11 (thấp)",
+        "etaInfo": null
       },
       {
         "id": "07",
         "name": "File/context/attachment",
         "pr": "chưa có PR cho ATT-e/ATT-f/CTX-b (code đang viết); ATT-b đã merge (#272/#207)",
-        "done": "Prompt 300.000 byte, tệp 120.000/240.000 ký tự, câu trả lời 48.000 ký tự đã trên PROD (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
-        "todo": "Bốn lát tên trong chỉ đạo (ATT-b1/b2, FILES-b, CTX-b) nhỏ (~25 giờ công); phần lớn là ATT-e (~135 giờ công) và lỗ hổng mới: văn bản đính kèm không được lưu và công cụ đọc T23 chỉ đọc kho dự án, nên 'đọc theo phần' chưa có gì để đọc (thêm ATT-f); giải nén cô lập cần mã runner + ảnh + thư viện mới và dùng chung tệp với #258; chưa có PR",
+        "done": "17/11: ATTACHMENT_UPLOADS 03:27, IMAGE_REFS 03:31, TEXT_STORE 09:40, TEXT_TOOLS 10:31 đã bật; QA độc lập attachment: PASS có điều kiện, SEC GO có điều kiện. | Prompt 300.000 byte, tệp 120.000/240.000 ký tự, câu trả lời 48.000 ký tự đã trên PROD (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
+        "todo": "Còn: đợt 23 (PR #339) deploy rồi bật ATTACHMENT_ARCHIVES, sau đó ATTACHMENT_ARCHIVE_SELECT (mỗi cái kèm smoke); chưa xong ATT-e đầy đủ.",
         "code": "✗",
         "qa": "✗",
-        "deploy": "✗",
-        "on": "✗",
+        "deploy": "~",
+        "on": "~",
         "verified": "✗",
         "agent": "23:xx: BE đã vào dev (dormant): ATT-e3a, ATT-f1a, FE e5a; chờ Oxy Docker: ATT-e1 (gốc 51/51, 17/18 mutant), s0G, f1b, e3b; FE e5b đang sửa tsc; chưa nối vào sản phẩm (e3b, f2/f3, e5c chưa xong)",
-        "eta": "~22–27/11 (rất thấp)",
-        "etaInfo": {
-          "etaAt": null,
-          "etaRange": [
-            "2026-11-19",
-            "2026-11-24"
-          ],
-          "remainingEffortHours": 232,
-          "remainingElapsedHours": null,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T10:27:17+07:00",
-          "basis": "Agent ước lượng chỉ-đọc (ESTIMATE-07-12.md): ~232 giờ công (180–310); kế hoạch cũ cộng ~160 nhưng thiếu ATT-f (lưu văn bản đính kèm + công cụ đọc theo phần) và ATT-e3 (giải nén cô lập) lớn hơn dự tính. Hiệu chuẩn: lát ≤300 dòng cần 2–4 giờ viết + 2–3 giờ QA độc lập; QA, tranh chấp chỗ Gradle (tải 19–20) và chờ bên ngoài là đường găng chứ không phải viết mã",
-          "blockers": [
-            "Windows (hạ tầng upload ATT-e2)",
-            "nơi chạy bài thử 1 GB (Mac DEV đã duyệt: A)",
-            "chỗ chạy việc nặng: máy chính đang nghỉ cho Owner code Flutter, việc nặng chuyển sang Oxy",
-            "ATT-e1 chưa biên dịch/chạy test lần nào"
-          ],
-          "milestones": [
-            {
-              "label": "4 lát nhỏ ATT-b1, ATT-b2, FILES-b, CTX-b (~25 giờ công) xong trên dev",
-              "etaAt": "2026-11-14T06:00:00+07:00"
-            },
-            {
-              "label": "ATT-e (giải nén cô lập, upload trực tiếp) xong trên dev (mốc dev, chưa phải nghiệm thu)",
-              "etaAt": "2026-11-16T22:00:00+07:00"
-            }
-          ],
-          "unknownReason": "Chưa xác định giờ nghiệm thu (PROD ON): xong trên dev sau ~85–125 giờ thực tế (3,5–5 ngày liên tục), lên PROD ON ~7–12 ngày kể từ lúc bắt đầu; (Owner đã duyệt NO-DIR-5 = A lúc 07:46) còn chờ NO-DIR-5 của Owner, máy Windows và nơi chạy bài thử 1 GB",
-          "startAt": "2026-11-12T19:00:00+07:00",
-          "prevEta": "Chưa xác định giờ",
-          "waits": [],
-          "removedWait": "Agent ước lượng chỉ-đọc đang chạy từ 18:50; kết quả dự kiến ~19:45"
-        }
+        "eta": "ARCHIVES + ARCHIVE_SELECT: tối nay 22:00–23:30 nếu Oxy xanh hết (nếu không: sáng 18/11); phần còn lại ~22–27/11 (thấp)",
+        "etaInfo": null
       },
       {
         "id": "08",
         "name": "Runner/build",
         "pr": "BE #258 69586bd4 (merge dev sau QA độc lập r2: QA GO có điều kiện, SEC GO); runner 2: chỉ kế hoạch + làn Oxy đang dựng",
-        "done": "PR #258: trần dòng AI cấu hình được (mặc định 900 không đổi), nhịp tim gia hạn lease, chạy test cục bộ (REPORTED: 419 test Kotlin + 134 Node, mutant bị diệt); build 3.600 s và hàng đợi T10 PASS (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
-        "todo": "Sau merge cần deploy API + gói runner + biến môi trường 2 phía mới có tác dụng trên PROD (cổng runner PROD đã có luật heartbeat trong PR); điểm còn lại: runner nhận 409 không hủy bước build đang chạy (P2 theo dõi); runner thứ hai cần đo tài nguyên/chi phí",
+        "done": "17/11: #258 đã lên PROD (đợt 22). BUILD_LEASE_TOKEN bật 03:45 rồi gỡ 07:35 vì làm kẹt bản dựng xem trước (máy dựng PROD cài 03/11 không gửi token thuê việc). | PR #258: trần dòng AI cấu hình được (mặc định 900 không đổi), nhịp tim gia hạn lease, chạy test cục bộ (REPORTED: 419 test Kotlin + 134 Node, mutant bị diệt); build 3.600 s và hàng đợi T10 PASS (đã kiểm riêng phần này; chưa đủ VERIFIED cho cả mục)",
+        "todo": "Còn: nâng máy dựng theo docs/PROD_DEPLOY.md 12.12 (cần OWNER_ACTION + red-team) rồi mới bật lại BUILD_LEASE_TOKEN; runner thứ hai chưa làm.",
         "code": "✓",
         "qa": "✓",
-        "deploy": "✗",
+        "deploy": "✓",
         "on": "~",
         "verified": "~",
         "agent": "không có agent chạy cho mục này (QA #258 đã xong)",
-        "eta": "PR ~14/11; runner 2 ~20–24/11 (thấp)",
-        "etaInfo": {
-          "etaAt": "2026-11-13T12:00:00+07:00",
-          "etaRange": [
-            "2026-11-13T10:00:00+07:00",
-            "2026-11-13T18:00:00+07:00"
-          ],
-          "remainingEffortHours": 6,
-          "remainingElapsedHours": 8.6,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "QA delta trên cặp SHA cuối (sau khi #258, FE #200, T24/T25 tích hợp xong)",
-            "Test đỏ chỉ có trên dev: các test cũ đã sửa và merge sau QA độc lập (#261, #270, #273, #274, #275); chưa chạy toàn bộ suite BE",
-            "bộ test BE đầy đủ ~3 giờ 15 phút khi tải máy cao"
-          ],
-          "milestones": [
-            {
-              "label": "runner sửa lease VERIFIED (cùng bước deploy bản gộp)",
-              "etaAt": "2026-11-13T03:30:00+07:00"
-            },
-            {
-              "label": "runner thứ hai VERIFIED",
-              "etaAt": "chưa xác định"
-            }
-          ],
-          "unknownReason": null,
-          "startAt": "2026-11-12T16:49:00+07:00",
-          "prevEta": "13/11 06:30–08:00",
-          "waits": [
-            {
-              "from": "2026-11-12T19:30:00+07:00",
-              "to": "2026-11-12T21:30:00+07:00",
-              "hours": 2,
-              "reason": "cùng cửa QA delta trên cặp SHA cuối"
-            }
-          ],
-          "removedWait": "Lùi ~8,5 giờ: QA tích hợp bản 22 trả NO-GO cho đỉnh dev đã đóng băng vì dev đã di chuyển sau 16:22 (#252 có V101, #259) và có 2 test đỏ chỉ có trên dev; cần QA delta trên cặp SHA cuối (bộ test BE đầy đủ đo thật 3 giờ 15 phút), Flyway kỳ vọng 101|89|0",
-          "note": "Điều kiện: mốc 13/11 chỉ đúng nếu QA delta trên cặp SHA cuối đạt GO (bản 22 đang NO-GO nguyên trạng); nếu NO-GO thì chưa xác định giờ."
-        }
+        "eta": "Phần máy dựng thứ hai: chờ Owner (OWNER_ACTION)",
+        "etaInfo": null
       },
       {
         "id": "09",
         "name": "Database / Data Sources",
         "pr": "X2 (ON), X3, X4 (OFF), X5",
-        "done": "Catalog hệ thống đọc-chỉ qua gateway/IAM; DB riêng mỗi app; AI builder không nhận dòng dữ liệu",
-        "todo": "AI tự thiết kế schema/migration/API/CRUD; dùng lại dữ liệu chung; test cách ly thực chưa chạy",
+        "done": "17/11: SCHEMA_PROPOSALS 03:34, SCHEMA_TYPES 03:38, SHARED_TABLES 03:41, SHARED_TABLES_BRIDGE 03:45, CODE_EXTERNAL_API 08:22 (chỉ máy chủ Open-Meteo), CODE_SOURCE_WRITES 08:43 (một nguồn thử). | Catalog hệ thống đọc-chỉ qua gateway/IAM; DB riêng mỗi app; AI builder không nhận dòng dữ liệu",
+        "todo": "Còn: kịch bản đầu-cuối (\"Đặt phòng họp\" đề xuất, chờ Owner chọn), Odoo chưa thử, test cách ly thực; QA độc lập.",
         "code": "~",
         "qa": "~",
-        "deploy": "~",
-        "on": "~",
+        "deploy": "✓",
+        "on": "✓",
         "verified": "✗",
         "agent": "23:xx: S09-A/B/C đã vào dev (dormant, Mac đo xanh + mutant diệt hết); S09-D (không Docker 7/7) và S09-F chờ Oxy Docker; chưa nối vào builder (slice E chưa viết)",
-        "eta": "~20/11 (thấp–trung bình)",
-        "etaInfo": {
-          "etaAt": null,
-          "etaRange": null,
-          "remainingEffortHours": 12,
-          "remainingElapsedHours": null,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "chuỗi cần runner chưa chạy (ảnh runner bị dọn)",
-            "phần thiết kế schema chưa có kế hoạch"
-          ],
-          "milestones": [
-            {
-              "label": "kết quả test cách ly 2 tenant × 2 app (mốc test)",
-              "etaAt": "2026-11-12T20:30:00+07:00"
-            }
-          ],
-          "unknownReason": "Chưa xác định giờ: phần AI tự thiết kế schema/migration/CRUD chưa có ước lượng (sẽ giao ước lượng sau agent 07/12)",
-          "startAt": "2026-11-12T17:05:00+07:00",
-          "prevEta": "Chưa xác định giờ",
-          "waits": [],
-          "removedWait": "Test cách ly DEV 2 tenant × 2 app đã xong 18:xx (SEC độc lập: 0 P0–P2); còn phần AI tự thiết kế schema/migration/CRUD chưa ước lượng"
-        }
+        "eta": "VERIFIED sau QA độc lập ~20–24/11 (thấp–trung bình)",
+        "etaInfo": null
       },
       {
         "id": "10",
         "name": "IAM/Security",
         "pr": "BE #276 (follow-up controller: CSRF không rỗng, guard-first, compensate), agent test cô lập 2 tenant × 2 app đang chạy (chưa có PR)",
-        "done": "SYSTEM_ADMIN không đọc dữ liệu nghiệp vụ theo thiết kế; 16/16 vai thử bị 404 ở X4; kiểm toán chỉ-đọc đường nhà cung cấp thứ hai xong (AUDIT-PROVIDER-PATHS.md): 13 phát hiện, 0 P0, 1 P1 tiềm ẩn (nhà cung cấp trả phí ngoài OpenRouter không qua sổ cái/hard cap, hiện bị chặn 451 vì danh sách chấp nhận trống trên PROD)",
-        "todo": "PR sửa G-01/G-05/G-06 đang làm (chưa có số PR); chuỗi cần runner chưa chạy (ảnh runner bị dọn)",
+        "done": "17/11: AI_GATEWAY_PAID_REQUIRES_WORKSPACE vẫn TẮT (Owner: sau tính tiếp); SEC GO có điều kiện cho nhóm đính kèm. | SYSTEM_ADMIN không đọc dữ liệu nghiệp vụ theo thiết kế; 16/16 vai thử bị 404 ở X4; kiểm toán chỉ-đọc đường nhà cung cấp thứ hai xong (AUDIT-PROVIDER-PATHS.md): 13 phát hiện, 0 P0, 1 P1 tiềm ẩn (nhà cung cấp trả phí ngoài OpenRouter không qua sổ cái/hard cap, hiện bị chặn 451 vì danh sách chấp nhận trống trên PROD)",
+        "todo": "Còn: quyết định cổng AI trả phí; PR sửa G-01/G-05/G-06 của kiểm toán nhà cung cấp; Owner đổi mật khẩu QA.",
         "code": "~",
         "qa": "✗",
-        "deploy": "–",
-        "on": "–",
+        "deploy": "✓",
+        "on": "~",
         "verified": "✗",
         "agent": "23:xx: NO-37 BE #278 trong dev; 2T2A đỏ 4/5 lớp do kỳ vọng sai (không rò rỉ chéo tenant, Oxy REPORTED), đang sửa; #276 chờ Oxy; F7 và rủi ro dư chờ Owner",
-        "eta": "~16/11 (trung bình), cần xác nhận Owner",
-        "etaInfo": {
-          "etaAt": null,
-          "etaRange": null,
-          "remainingEffortHours": 10,
-          "remainingElapsedHours": null,
-          "confidence": "medium",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "đường nhà cung cấp thứ hai chưa kiểm",
-            "chuỗi cần runner cần dựng lại ảnh (nặng, tải máy cao)"
-          ],
-          "milestones": [
-            {
-              "label": "kết quả test cách ly DEV (mốc test)",
-              "etaAt": "2026-11-12T20:30:00+07:00"
-            }
-          ],
-          "unknownReason": "Chưa xác định giờ: chưa giao việc kiểm đường nhà cung cấp thứ hai; chuỗi cần runner chờ ảnh runner và tải máy",
-          "startAt": "2026-11-12T17:05:00+07:00",
-          "prevEta": "13/11 12:00",
-          "waits": [],
-          "removedWait": "Mâu thuẫn đã sửa: đọc PROD (chế độ AI thật, quyền SYSTEM_ADMIN) XONG 17:48 VERIFIED; test cách ly DEV XONG; còn đường nhà cung cấp thứ hai và chuỗi cần runner"
-        }
+        "eta": "~20–24/11 (thấp)",
+        "etaInfo": null
       },
       {
         "id": "11",
         "name": "USD Budget/Ledger",
         "pr": "B1 #148 (PROD), #252 merge dev 524cfab9 (cờ TẮT, V101), #253 và #251 merge dev sau QA độc lập (#253: GO có điều kiện, cờ TẮT), #264 + FE #203 merge dev sau QA độc lập",
-        "done": "Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS; #252: QA GO có điều kiện + SEC GO trên đúng head 360dd9b5 (đã kiểm, 34 test của PR + 116 hồi quy, 13/15 mutant bị diệt), đã merge dev, cờ TẮT; đọc-chỉ PROD 17:48: sổ cái 113 dòng đều SETTLED (110 REPORTED + 3 WORST_CASE), 0 RESERVED; còn một khoản giữ chỗ cũ trong bộ đếm Redis không có dòng sổ cái tương ứng (không xóa, không đổi)",
-        "todo": "Chưa deploy; trước khi bật cờ #252 phải chứng minh trên DEV (hạ đúng số thật của nhà cung cấp, 5 nơi cùng giảm, khởi động lại không giảm đôi, tắt cờ dừng); ca hủy-sau-chữ-đầu vẫn bị tính cả khoản giữ chỗ trên PROD (dòng WORST_CASE mới nhất cách đây ~6 giờ); NO-28: cần số ngân sách B1/B3 + quyết định bốn mắt để giải phóng; #253: 4 điều kiện P2 (đếm người đọc, giới hạn 2000 dòng, chính sách chưa duyệt, đếm theo gán quyền) chờ lát B2/B3 trước khi bật cờ",
+        "done": "17/11: sổ cái/hard cap/cửa sổ trả phí dùng được; 20 lượt Haiku thật trên QA project, 0 lỗi 5xx, charged ≤ reserved; hủy giữa chừng bị tính đủ giữ chỗ (WORST_CASE). | Ledger, giữ chỗ, hard cap, cửa sổ ON; B1 GATE-PASS; #252: QA GO có điều kiện + SEC GO trên đúng head 360dd9b5 (đã kiểm, 34 test của PR + 116 hồi quy, 13/15 mutant bị diệt), đã merge dev, cờ TẮT; đọc-chỉ PROD 17:48: sổ cái 113 dòng đều SETTLED (110 REPORTED + 3 WORST_CASE), 0 RESERVED; còn một khoản giữ chỗ cũ trong bộ đếm Redis không có dòng sổ cái tương ứng (không xóa, không đổi)",
+        "todo": "Còn: TENANT_AI_DAILY_CAP; ca hủy-sau-chữ-đầu tính cả giữ chỗ; QA độc lập; Owner còn 47/50 lượt Haiku.",
         "code": "✓",
         "qa": "~",
-        "deploy": "~",
+        "deploy": "✓",
         "on": "~",
         "verified": "✗",
         "agent": "agent QA #252 đã xong",
-        "eta": "QA #252 ~13/11; NO-28 sau khi Owner xác nhận",
-        "etaInfo": {
-          "etaAt": null,
-          "etaRange": null,
-          "remainingEffortHours": 8,
-          "remainingElapsedHours": null,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "Vận hành 24/7 (không giả định nghỉ đêm: bản 6 từng lên PROD lúc 01:42). Ràng buộc thật: QA độc lập trên đúng SHA cuối ~2–3 giờ (QA tích hợp bản 22 đã chạy >2 giờ), tối đa 3 chỗ Gradle toàn máy (tải 19–20), khóa SSH tới ~16:40 13/11, deploy cần ≥30 phút biên.",
-          "blockers": [
-            "Owner: số ngân sách B1/B3 và quyết định bốn mắt",
-            "chứng minh #252 trên DEV trước khi bật"
-          ],
-          "milestones": [
-            {
-              "label": "QA #252 xong và merge dev (đã xong 17:55)",
-              "etaAt": "2026-11-12T17:55:00+07:00",
-              "done": true
-            }
-          ],
-          "unknownReason": "Chưa xác định giờ: cần Owner quyết số ngân sách và cách giải phóng; chứng minh #252 trên DEV sau deploy",
-          "startAt": "2026-11-12T17:00:00+07:00",
-          "prevEta": "Chưa xác định giờ",
-          "waits": [],
-          "removedWait": "#252 đã merge dev (cờ TẮT); NO-28 phân biệt: ban đầu '8 khoản', kết quả đọc PROD: 1 bộ đếm Redis giữ chỗ cũ, 0 dòng RESERVED trong sổ cái, chưa xóa/giải quyết"
-        }
+        "eta": "VERIFIED sau QA độc lập ~20–24/11 (thấp)",
+        "etaInfo": null
       },
       {
         "id": "12",
         "name": "QA/E2E/nghiệm thu",
         "pr": "Đợt 3: 0/19",
-        "done": "Chuẩn bị song song bắt đầu (REPORTED, chưa độc lập): kho prompt (tiny/small/medium/đầy đủ VI+EN, 10 sửa tiếp theo, 8 đầu vào xấu, 9 mức đính kèm), tiêu chí 91 kiểm tra (73 cứng, 18 mềm) + ma trận quyền 132 ô, ma trận persona dạng mẫu, kịch bản lỗi F1–F6 (48 bước), mẫu báo cáo chi phí (chỉ trường); chưa có PASS/FAIL nào; T30-lite, BROWSER-TEST, RECIPES-ENT, E1-b ghi NOT_IMPLEMENTED",
-        "todo": "Chuẩn bị song song ngay: kho prompt, rubric, persona, bộ trình duyệt, app mẫu, gói API/DB, kịch bản lỗi, đồng hồ chi phí (chưa giao); chạy đầy đủ chỉ sau mục 06 và 01–11; khoảng hở: T30-lite, BROWSER-TEST, RECIPES-ENT, E1-b ngoài mục 01–11",
+        "done": "17/11: Văn phòng AI QA giao diện Studio trên PROD (UI prompt đã sửa + deploy FE 17:12); QA độc lập attachment xong; đợt 3 mới 0/19. | Chuẩn bị song song bắt đầu (REPORTED, chưa độc lập): kho prompt (tiny/small/medium/đầy đủ VI+EN, 10 sửa tiếp theo, 8 đầu vào xấu, 9 mức đính kèm), tiêu chí 91 kiểm tra (73 cứng, 18 mềm) + ma trận quyền 132 ô, ma trận persona dạng mẫu, kịch bản lỗi F1–F6 (48 bước), mẫu báo cáo chi phí (chỉ trường); chưa có PASS/FAIL nào; T30-lite, BROWSER-TEST, RECIPES-ENT, E1-b ghi NOT_IMPLEMENTED",
+        "todo": "Còn: bộ nghiệm thu đầy đủ chỉ chạy sau các mục 01–11; yêu cầu Văn phòng AI kiểm lại UI đã deploy.",
         "code": "✗",
         "qa": "✗",
         "deploy": "✗",
@@ -18391,40 +18030,7 @@
         "verified": "✗",
         "agent": "22:xx: bộ chuẩn bị P4–P9 viết xong (NOT_RUN); cần Playwright trên Oxy (Owner)",
         "eta": "~24–28/11 (thấp)",
-        "etaInfo": {
-          "etaAt": null,
-          "etaRange": [
-            "2026-11-20",
-            "2026-11-27"
-          ],
-          "remainingEffortHours": 230,
-          "remainingElapsedHours": null,
-          "confidence": "low",
-          "updatedAt": "2026-11-13T00:03:28+07:00",
-          "basis": "ESTIMATE-07-12.md: chuẩn bị song song ngay (11 lát P1–P11: kho prompt, rubric, persona, bộ trình duyệt, app mẫu có mutant, gói API+DB, kịch bản lỗi F1–F6, đồng hồ chi phí, báo cáo) ~125 giờ công, 30–45 giờ thực tế; chạy đầy đủ (bậc A mechanism, B app nhỏ, C app đầy đủ + lỗi, bảo mật, PROD) ~80–130 giờ công gồm 2–3 vòng sửa (mỗi vòng 8–12 giờ), ~100–120 giờ thực tế SAU khi mục 06 sẵn sàng trên DEV",
-          "blockers": [
-            "mục 06 chưa có ETA",
-            "ảnh runner bị dọn nên chưa có prompt→preview trên DEV Mac",
-            "đĩa gần đầy và 3 chỗ Gradle",
-            "quyền persona PROD (Owner)",
-            "T30-lite, BROWSER-TEST, RECIPES-ENT, E1-b chưa thuộc mục 01–11: hàng rubric ghi NOT_IMPLEMENTED"
-          ],
-          "milestones": [
-            {
-              "label": "P1–P3, P7, P8 (phần nhẹ) xong, chưa có người đọc độc lập",
-              "etaAt": "2026-11-12T19:07:04+07:00"
-            },
-            {
-              "label": "Hạ tầng nghiệm thu P4–P11 xong",
-              "etaAt": "2026-11-14T08:00:00+07:00"
-            }
-          ],
-          "unknownReason": "Chưa xác định giờ: lần chạy đầy đủ chờ mục 06 (đã hiệu chuẩn 3 lát ~1 giờ/lát, DEV-sẵn-sàng dự kiến ~13/11 12:00) rồi ~100–120 giờ thực tế; khoảng ESTIMATE lên PROD 20–27/11; mô hình chi phí AI nằm ở file nội bộ (không công khai)",
-          "startAt": null,
-          "prevEta": "Chưa xác định giờ (24–28/11)",
-          "waits": [],
-          "removedWait": "Đề xuất chuẩn bị song song ngay (fixture, kịch bản, tiêu chí, ca lỗi, mô hình chi phí); chỉ chạy nghiệm thu đầy đủ sau mục 01–11; breakdown giờ công do agent ước lượng 07/12"
-        }
+        "etaInfo": null
       }
     ],
     "overallEtaInfo": {
