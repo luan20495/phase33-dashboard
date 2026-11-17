@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-17T09:46:03+07:00",
+  "asOf": "2026-11-17T10:38:24+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-17T09:46:03+07:00",
+  "detailUpdatedAt": "2026-11-17T10:38:24+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-17T09:46:03+07:00",
+    "updatedAt": "2026-11-17T10:38:24+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy đăng gói sửa FE trình duyệt, gói đợt 22 PROD, báo lượt browser đầu không đáng tin (mã cũ), chạy lại 270 spec; E2E backend thật đang chạy"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "ok",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới. Chỉ đạo qua chat: GO 13 nhóm (3 phần), duyệt B6/B7, \"báo lên issue cho ChatGPT\"; #123: Oxy trả lời thẻ đính kèm (4 lớp Docker đạt trên 240618dd)"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới. Chỉ đạo qua chat: tối ưu chi phí 13 nhóm (không phát sinh dịch vụ/máy chủ trả phí mới), chia tải test cho Oxy, không chờ Owner khi bật cờ. #123: Oxy báo test Docker đợt 23: 745/747 đạt, 2 đỏ"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình; luật Owner (không làn Windows; deploy PROD sau QA dev; bật hết cờ nếu không blocker; chia tải test) không đổi"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "ok",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; thêm bảng \"Cờ PROD\" trên dashboard theo yêu cầu Owner"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; không có thông điệp cấu hình mới"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "changed",
-            "summary": "Merge (Owner, không QA độc lập của riêng PR, cờ TẮT, chưa deploy): BE #335 (sửa hồi quy do #333: kế hoạch lùi in trùng dịch vụ), FE #235 (22 tệp: 2 lỗi FE thật + 16 spec cũ); BE dev 5229e17a, FE dev 625077a8; 18 PR BE + 10 PR FE mở. Mac (MEASURED): gate FE GREEN 46 bước; node BE 76/79 0 lỗi trừ 2 đỏ đã xử lý; chr-selfcheck 248/0; chr-redteam 127/1 (chạy lại); prod-enablement 6 phần đang chạy. QA 4/12, VERIFIED 0/12"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "changed",
             "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035). Bật ATTACHMENT_TEXT_STORE 09:40 (VERIFIED trong container); 4 agent độc lập đang chạy: đính kèm/ZIP, auto-repair+ảnh+X1 STRICT, máy dựng+cổng AI Agent+hạn mức ngày, Web Search+YouTube+Reader"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "changed",
+            "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035). Bật thêm: Auto-repair 10:00, Reference Images 10:27, ATTACHMENT_TEXT_TOOLS 10:31 (VERIFIED). Nhánh tích hợp đợt 23 đã sửa 2 test đỏ, chờ Oxy chạy lại; rà an ninh độc lập ZIP đạt có điều kiện"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo lần 196 lên #88 (comment 6922650706)"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 203 lên #88 + dòng trỏ sang #257"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 204 lên #88 + #257"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "ok",
-            "summary": "Dashboard cập nhật bản ghi chạy + lịch sử"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "ok",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "changed",
             "summary": "Dashboard: thêm bảng Cờ PROD (68 nhóm: 62 bật, 6 tắt) và theo dõi 13 nhóm của Owner"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "changed",
+            "summary": "Dashboard: bảng Cờ PROD 63/68 bật; theo dõi 13 nhóm 4/13 đã bật"
           }
         ]
       },
@@ -7600,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "ok",
-            "summary": "diskutil ~16,2 GB trống thật (phục hồi từ ~13 GB); không xóa snapshot/cache"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "ok",
@@ -7649,6 +7644,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "ok",
             "summary": "Đĩa Mac trống ~43 GB; không dọn"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac trống ~38 GB (agent build Gradle); trên ngưỡng 10 GB"
           }
         ]
       },
@@ -7660,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "ok",
-            "summary": "Khóa truy cập máy PROD do Owner nạp ~22:15 hiệu lực 24 giờ (tới ~22:15 17/11); chưa dùng thêm kể từ lần kiểm chỉ-đọc 22:1x"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "ok",
@@ -7709,6 +7704,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "ok",
             "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
           }
         ]
       },
@@ -7720,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-16T23:38:45+07:00",
-            "result": "ok",
-            "summary": "Mac 0 agent mã (chạy test tự thân); Oxy 0/5 (chờ lane, đỏ mới sẽ giao ngay); theo dõi Oxy hai đường (#123 + mạng nội bộ chỉ-đọc)"
-          },
           {
             "at": "2026-11-17T00:38:47+07:00",
             "result": "ok",
@@ -7769,6 +7764,11 @@
             "at": "2026-11-17T09:46:03+07:00",
             "result": "changed",
             "summary": "4 agent độc lập đang chạy (đúng giới hạn 3–4 của C0) cho 13 nhóm của Owner; Oxy tự giữ agent của mình"
+          },
+          {
+            "at": "2026-11-17T10:38:24+07:00",
+            "result": "changed",
+            "summary": "2–3 agent độc lập chạy theo chỉ đạo 13 nhóm (đính kèm/ZIP, an ninh ZIP, chi phí 0 USD, máy dựng/hạn mức); Oxy chạy test Docker đợt 23"
           }
         ]
       }
@@ -8178,6 +8178,10 @@
       {
         "at": "2026-11-17T09:46:03+07:00",
         "summary": "Owner GO 13 nhóm (P1/P2/P3): giao 4 agent độc lập; bật ATTACHMENT_TEXT_STORE 09:40 (62/68 nhóm bật, VERIFIED); dashboard thêm bảng Cờ PROD và theo dõi 13 nhóm"
+      },
+      {
+        "at": "2026-11-17T10:38:24+07:00",
+        "summary": "Bật thêm 3 cờ trên PROD (Auto-repair 10:00, Reference Images 10:27, ATTACHMENT_TEXT_TOOLS 10:31; VERIFIED); 63/68 nhóm bật, 4/13 nhóm của Owner đã bật. Báo cáo chi phí 0 USD cho Web Search/YouTube/Reader. Oxy chạy test Docker đợt 23: 2 test đỏ do nhánh, đã sửa. Rà an ninh độc lập ZIP đạt có điều kiện"
       }
     ],
     "summary": {
@@ -18444,7 +18448,7 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-17T09:46:03+07:00",
+    "updatedAt": "2026-11-17T10:38:24+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
@@ -18452,9 +18456,9 @@
       "fe": "a2c63035703e"
     },
     "total": 68,
-    "on": 62,
-    "off": 6,
-    "note": "Nhãn: VERIFIED = C0 đã kiểm trong container API sau khi bật (cờ = true, guard đạt, Flyway 112|99|0, 0 lỗi). Bật không có nghĩa là xong: chưa có QA độc lập hay Owner UAT cho từng tính năng.",
+    "on": 63,
+    "off": 5,
+    "note": "Nhãn: VERIFIED = C0 đã kiểm trong container API sau khi bật (cờ = true, guard đạt, Flyway 112|99|0, 0 lỗi). Bật không có nghĩa là xong: chưa có QA độc lập hay Owner UAT cho từng tính năng. Chi phí: không phát sinh dịch vụ hoặc máy chủ trả phí mới; xem báo cáo chi phí 13 nhóm.",
     "noteEn": "VERIFIED = C0 checked inside the API container after switching (flag true, guard passed, Flyway 112|99|0, 0 errors). ON does not mean DONE: no independent QA or Owner UAT per feature yet.",
     "groups": [
       {
@@ -18803,8 +18807,9 @@
       },
       {
         "name": "ATTACHMENT_TEXT_TOOLS",
-        "state": "OFF",
-        "note": "chưa bật"
+        "state": "ON",
+        "note": "bật 17/11 10:31 (VERIFIED trong container)",
+        "at": "10:31"
       },
       {
         "name": "ATTACHMENT_ARCHIVES",
@@ -18832,32 +18837,32 @@
         "id": "G01",
         "name": "TEXT_TOOLS",
         "phase": "P1",
-        "state": "Sẵn sàng bật tiếp",
-        "detail": "Cần TEXT_STORE (đã bật) + 1 lượt Haiku thử; tốn thêm tiền AI mỗi vòng đọc",
-        "kind": "ready"
+        "state": "ĐÃ BẬT 10:31",
+        "detail": "Bật sau TEXT_STORE; VERIFIED trong container; còn smoke thật với tài liệu dài (Oxy/C0)",
+        "kind": "on"
       },
       {
         "id": "G02",
         "name": "ARCHIVE_SELECT",
         "phase": "P1",
-        "state": "Chờ nhóm phụ thuộc",
-        "detail": "Cần ARCHIVES bật trước",
+        "state": "Chờ ARCHIVES",
+        "detail": "Bật sau khi ARCHIVES chạy sạch",
         "kind": "wait"
       },
       {
         "id": "G03",
         "name": "Web Search",
         "phase": "P1",
-        "state": "Chờ Owner cấp khóa",
-        "detail": "Cần khóa dịch vụ tìm kiếm (trả phí); agent đang xác định nhà cung cấp, chi phí, cách đặt khóa an toàn",
+        "state": "Chờ Owner: giữ tắt (0 USD) hay mở Brave",
+        "detail": "Mã chỉ gọi Brave; có tín dụng miễn phí hàng tháng nhưng cần thẻ; khuyến nghị giữ tắt cho tới khi Owner muốn (xem báo cáo chi phí)",
         "kind": "owner"
       },
       {
         "id": "G04",
         "name": "YouTube",
         "phase": "P1",
-        "state": "Chờ Owner cấp khóa",
-        "detail": "Cần khóa YouTube API; agent đang chuẩn bị cách đặt khóa không qua chat",
+        "state": "Chờ Owner tạo khóa (0 USD)",
+        "detail": "Dùng hạn mức mặc định, mỗi lượt 1 đơn vị, tối đa 3 địa chỉ mỗi lượt; khóa phải giới hạn đúng; C0 không tạo khóa khi chưa có phép",
         "kind": "owner"
       },
       {
@@ -18865,63 +18870,63 @@
         "name": "TEXT_STORE",
         "phase": "P2",
         "state": "ĐÃ BẬT 09:40",
-        "detail": "Owner chấp nhận B6/B7; QA độc lập đạt có điều kiện + Oxy Docker 4/4 đạt; còn smoke thật trên PROD",
+        "detail": "Owner chấp nhận B6/B7; QA độc lập đạt có điều kiện + Oxy Docker 4/4 đạt; còn smoke thật",
         "kind": "on"
       },
       {
         "id": "G06",
         "name": "Auto-repair",
         "phase": "P2",
-        "state": "Đang phân tích/sửa",
-        "detail": "Agent độc lập: bật/tắt đổi gì, tốn tiền thế nào, còn thiếu đầu nối gì",
-        "kind": "test"
+        "state": "ĐÃ BẬT 10:00",
+        "detail": "Bật trên bản đang chạy (VERIFIED: cấu hình tính năng báo autoRepair=true); thêm tối đa 3 lượt AI trả phí khi một lượt lỗi, đi qua cổng/hạn mức bình thường; mã chốt thêm nằm ở đợt 23",
+        "kind": "on"
       },
       {
         "id": "G07",
         "name": "Reference Images",
         "phase": "P2",
-        "state": "Đang phân tích/sửa",
-        "detail": "Agent độc lập: giới hạn ảnh, đầu nối cấu hình, test",
-        "kind": "test"
+        "state": "ĐÃ BẬT 10:27",
+        "detail": "VERIFIED: cấu hình báo assetsEnabled=true; còn smoke bắt buộc (tải ảnh, dựng, xuất bản, trang xuất bản hiện ảnh) do Oxy/C0",
+        "kind": "on"
       },
       {
         "id": "G08",
         "name": "X1 STRICT",
         "phase": "P2",
-        "state": "Đang phân tích/sửa",
-        "detail": "Agent độc lập: chứng minh không làm hỏng app đang chạy trước khi bật",
+        "state": "Chờ đợt 23 + kiểm kê",
+        "detail": "Mã đã viết (chỉ thêm cách xem app nào sẽ mất cột); cần chạy câu SQL chỉ-đọc kiểm kê trước khi bật",
         "kind": "test"
       },
       {
         "id": "G09",
         "name": "ARCHIVES",
         "phase": "P3",
-        "state": "Đang rà an ninh + sửa P2",
-        "detail": "Agent: sửa bộ dọn bản lưu (P2-1), rà an ninh giải nén ZIP, quy trình bật",
+        "state": "Đã sửa mã; chờ Oxy chạy lại test Docker",
+        "detail": "Rà an ninh độc lập: đạt có điều kiện (0 P0/P1/P2); Oxy phát hiện 2 test đỏ, đã sửa; cần đợt 23 (chỉ backend, không migration)",
         "kind": "test"
       },
       {
         "id": "G10",
         "name": "BUILD_LEASE_TOKEN",
         "phase": "P3",
-        "state": "Tắt (gỡ 07:35) – đang lập quy trình nâng máy dựng",
-        "detail": "Cần nâng máy dựng PROD + kiểm đỏ-xanh + đường lùi; đã từng làm kẹt bản dựng",
-        "kind": "test"
+        "state": "Tắt; có quy trình nâng máy dựng",
+        "detail": "Máy dựng PROD phải nâng trước; cần OWNER_ACTION bằng văn bản + khung giờ ~30 phút + red-team; đã có quy trình có đường lùi 2–3 phút",
+        "kind": "owner"
       },
       {
         "id": "G11",
         "name": "AI_GATEWAY_PAID_REQUIRES_WORKSPACE",
         "phase": "P3",
-        "state": "Đang phân tích an ninh",
-        "detail": "Cần gỡ chốt \"không bao giờ truyền\" của cổng AI Agent; cần QA/SEC độc lập",
-        "kind": "test"
+        "state": "Khuyến nghị không bật",
+        "detail": "Cổng AI Agent không có ai dùng trên PROD; bật chỉ thêm bề mặt tấn công; chờ Owner quyết",
+        "kind": "owner"
       },
       {
         "id": "G12",
         "name": "Dynamic Reader",
         "phase": "P3",
-        "state": "Đang thiết kế",
-        "detail": "Cần máy riêng (hợp đồng): chi phí máy ảo cần Owner duyệt",
+        "state": "Khuyến nghị không bật (0 USD)",
+        "detail": "Dịch vụ đã viết trong repo nhưng cần máy riêng; không bật thì trang cần JavaScript chỉ rơi về bản tóm tắt thường",
         "kind": "owner"
       },
       {
@@ -18929,11 +18934,11 @@
         "name": "TENANT_AI_DAILY_CAP",
         "phase": "P3",
         "state": "Chờ Owner duyệt mức trần",
-        "detail": "Chỉ bật với mức Owner phê duyệt; agent đề xuất vài mức",
+        "detail": "Đầu nối cấu hình đã viết (mặc định tắt); bật cờ cũng bật cả tính năng AI nhà cung cấp riêng của công ty; khuyến nghị để tắt",
         "kind": "owner"
       }
     ],
-    "target13On": 1,
-    "target13Result": "Kết quả PROD: TEXT_STORE bật 09:40 ICT (bản 240618dd023e), kiểm container đạt, 0 lỗi API."
+    "target13On": 4,
+    "target13Result": "Kết quả PROD: 4/13 đã bật (TEXT_STORE 09:40, Auto-repair 10:00, Reference Images 10:27, TEXT_TOOLS 10:31), kiểm cấu hình tính năng/container đạt, 0 lỗi API. Đợt 23 (mã mới) đang chờ Oxy chạy test Docker."
   }
 }
