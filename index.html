@@ -1246,6 +1246,12 @@ function renderProdFlags(){
   const tb=document.createElement('tbody');for(const r of P.target13){const tr_=document.createElement('tr');tr_.append(el('td','',r.id+' '+r.phase),el('td','',r.name));const td=document.createElement('td');td.append(el('span','pf-k pf-k-'+(r.kind||'wait'),r.state));tr_.append(td,el('td','',r.detail||''));tb.append(tr_)}
   t.append(tb);const wrap=el('div','pf-wrap');wrap.append(t);sec.append(wrap);if(P.target13Result)sec.append(el('p','a12-note',P.target13Result));
  }
+if(Array.isArray(P.uiPrompt)){
+  sec.append(el('h3','',tr?'Giao diện prompt Studio (ưu tiên số 1 của Owner)':'Studio prompt UI (Owner priority 1)'));
+  const t2=document.createElement('table');const th2=document.createElement('thead');const hr2=document.createElement('tr');for(const h of ['#',tr?'Hạng mục':'Item',tr?'Trạng thái':'State',tr?'Chi tiết':'Detail'])hr2.append(el('th','',h));th2.append(hr2);t2.append(th2);
+  const tb2=document.createElement('tbody');for(const r of P.uiPrompt){const tr2=document.createElement('tr');tr2.append(el('td','',r.id),el('td','',r.name));const td2=document.createElement('td');td2.append(el('span','pf-k pf-k-'+(r.kind||'wait'),r.state));tr2.append(td2,el('td','',r.detail||''));tb2.append(tr2)}
+  t2.append(tb2);const w2=el('div','pf-wrap');w2.append(t2);sec.append(w2);if(P.uiPromptNote)sec.append(el('p','a12-note',P.uiPromptNote));
+ }
  const d=document.createElement('details');const sm=document.createElement('summary');sm.textContent=(tr?'Danh sách ':'All ')+P.total+(tr?' nhóm cờ (đang bật '+P.on+', tắt '+P.off+')':' groups (ON '+P.on+', OFF '+P.off+')');d.append(sm);
  const ul=el('ul','pf-list');for(const g of P.groups){const li=el('li',g.state==='ON'?'':'off',g.name+(g.state==='ON'?'':' · OFF'));if(g.note)li.title=g.note;ul.append(li)}d.append(ul);sec.append(d);
  const anchor=document.getElementById('prodOnNote');if(anchor&&anchor.nextSibling)host.insertBefore(sec,anchor.nextSibling);else host.append(sec)
