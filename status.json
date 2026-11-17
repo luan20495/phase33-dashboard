@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-17T11:39:16+07:00",
+  "asOf": "2026-11-17T13:38:30+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1816,7 +1816,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-17T11:39:16+07:00",
+  "detailUpdatedAt": "2026-11-17T13:38:30+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7289,7 +7289,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-17T11:39:16+07:00",
+    "updatedAt": "2026-11-17T13:38:30+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7300,11 +7300,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "ok",
-            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới; #123: Oxy báo QA tạm 01:20 không blocker; L9 (CPU, có sẵn từ nền cũ) không chặn"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "ok",
@@ -7349,6 +7344,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "ok",
             "summary": "#88/#257: không có bình luận Owner/ChatGPT mới. Chỉ đạo qua chat: ưu tiên số 1 là giao diện prompt Studio lên PROD; chỉ có 1 máy, không ngân sách; trần hạn mức ngày 1.000.000 nếu buộc; YouTube thiết kế lại bền vững; để sau các nhóm rủi ro. #123 ĐÃ ĐẦY 2.500 bình luận, chuyển sang issue #126"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "ok",
+            "summary": "#88/#257: không có bình luận Owner/ChatGPT mới. #126 (kênh mới thay #123): Oxy đã chuyển kênh, báo đợt 23 mục 1+2 đạt, nhận nhánh FE B"
           }
         ]
       },
@@ -7360,11 +7360,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "ok",
-            "summary": "Giữ cấu hình; luật Owner (không làn Windows; deploy PROD khi QA tạm không blocker; bật hết cờ nếu không blocker) đã thực hiện đến bước deploy"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "ok",
@@ -7409,6 +7404,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "ok",
             "summary": "Giữ cấu hình; không có thông điệp cấu hình mới"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "ok",
+            "summary": "Giữ cấu hình; không có thông điệp cấu hình mới"
           }
         ]
       },
@@ -7420,11 +7420,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "changed",
-            "summary": "ĐỢT 22 LÊN PROD 03:05 ICT: BE 240618dd023e, FE a2c63035703e; Flyway 112|99|0 đúng kỳ vọng; 17 container khỏe; 0 lỗi/5xx; tên cờ bật 39 trước và sau (không đổi); thử 11 migration trên bản khôi phục đạt. Cờ mới đều TẮT. QA độc lập chưa có: QA 4/12, VERIFIED 0/12 cho từng mục"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "changed",
@@ -7469,6 +7464,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "changed",
             "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035). Bật X1 STRICT 11:03 (VERIFIED; kiểm kê trước: chỉ 3 slot thử). 4 agent: 2 FE giao diện prompt, 1 YouTube bền vững, (khảo sát mã nguồn mở xong). Oxy không đăng được vì #123 đầy"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "changed",
+            "summary": "Không merge mới (BE dev=main=240618dd, FE dev=main=a2c63035). PR #339 (đợt 23, nháp, status:qa): Oxy Docker mục 1 đạt 749 test, mục 2 đạt 135 test; mục 3 và hồi quy toàn BE đang chờ. FE nhánh B đã đẩy (4/6 mục giao diện), nhánh A đang hoàn tất. YouTube bền vững: thiết kế + mã lõi trên nhánh (107 test đạt), mặc định tắt"
           }
         ]
       },
@@ -7480,11 +7480,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo lần 198 lên #88 (comment 6927814894): đợt 22 lên PROD"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "changed",
@@ -7529,6 +7524,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 205 lên #88 + #257"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 206 lên #88 + #257"
           }
         ]
       },
@@ -7540,11 +7540,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "changed",
-            "summary": "Dashboard cập nhật: PROD = đợt 22 (cờ tắt), lịch sử"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "changed",
@@ -7589,6 +7584,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "changed",
             "summary": "Dashboard: 5/13 nhóm đã bật, thêm mục Giao diện prompt Studio và các quyết định hoãn"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "changed",
+            "summary": "Dashboard: cập nhật tiến độ giao diện prompt (U1, U2, U4)"
           }
         ]
       },
@@ -7600,11 +7600,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "ok",
-            "summary": "diskutil ~14,8 GB trống thật; không xóa snapshot/cache; máy PROD còn ~28 GB"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "ok",
@@ -7649,6 +7644,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "ok",
             "summary": "Đĩa Mac trống ~36 GB; trên ngưỡng 10 GB"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac trống ~70 GB; trên ngưỡng 10 GB"
           }
         ]
       },
@@ -7660,11 +7660,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "ok",
-            "summary": "Khóa truy cập máy PROD (Owner nạp ~22:15 16/11, 24 giờ) còn hiệu lực tới ~22:15 17/11; đã dùng để deploy đợt 22"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "ok",
@@ -7709,6 +7704,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "ok",
             "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH còn hạn (hiệu lực tới ~22:15 17/11)"
           }
         ]
       },
@@ -7720,11 +7720,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-17T03:07:41+07:00",
-            "result": "ok",
-            "summary": "Mac là bên vận hành release (0 agent mã); Oxy chạy trình duyệt còn lại; theo dõi Oxy hai đường"
-          },
           {
             "at": "2026-11-17T03:38:37+07:00",
             "result": "ok",
@@ -7769,6 +7764,11 @@
             "at": "2026-11-17T11:39:16+07:00",
             "result": "changed",
             "summary": "3–4 agent chạy: 2 FE giao diện, 1 YouTube; Oxy chưa liên lạc được (kênh #123 đầy, đã mở #126)"
+          },
+          {
+            "at": "2026-11-17T13:38:30+07:00",
+            "result": "changed",
+            "summary": "1 agent FE chạy (nhánh A), 2 agent FE trước đó bị ngắt bởi lỗi kết nối API và đã được đánh thức; Oxy chạy cổng FE"
           }
         ]
       }
@@ -8186,6 +8186,10 @@
       {
         "at": "2026-11-17T11:39:16+07:00",
         "summary": "Owner: ưu tiên số 1 giao diện prompt Studio lên PROD; chỉ có 1 máy, không ngân sách (0 USD); hoãn các nhóm rủi ro. Bật X1 STRICT 11:03 (5/13). Dashboard thêm mục Giao diện prompt. Kênh #123 đầy 2.500 bình luận, chuyển #126"
+      },
+      {
+        "at": "2026-11-17T13:38:30+07:00",
+        "summary": "Giao diện prompt: nhánh B đã nộp (4/6 mục), nhánh A đang hoàn tất; mốc lên PROD dời sang 16:00–18:00 do lỗi kết nối API gián đoạn hai agent FE. PR #339 đợt 23: Oxy Docker mục 1+2 đạt. Kênh Oxy chuyển #123 -> #126"
       }
     ],
     "summary": {
@@ -18452,7 +18456,7 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-17T11:39:16+07:00",
+    "updatedAt": "2026-11-17T13:38:30+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
@@ -18948,15 +18952,15 @@
       {
         "id": "U1",
         "name": "Khung chat chật, vùng dock, thẻ \"Bản lưu văn bản\" rỗng, tin dài thu gọn, nút \"Xem thay đổi\", kế hoạch chia bước không cuộn được dòng cuối",
-        "state": "Đang viết mã (agent A)",
-        "detail": "Mục tiêu danh sách tin > 55% màn hình ở 1280×720 và 390×844; đo thật trên trình duyệt",
+        "state": "Đang hoàn tất (agent A, chưa đẩy nhánh)",
+        "detail": "14 tệp + test mới trong thư mục làm việc; agent bị ngắt vì lỗi kết nối API lúc ~12:20 và đã được đánh thức lại 13:12",
         "kind": "test"
       },
       {
         "id": "U2",
         "name": "Bộ chọn model mặc định \"Recommended\", số nhiều \"Changed 1 files\", đơn vị tiền, tên dự án dính chữ, lỗi 404 /studio",
-        "state": "Đang viết mã (agent B)",
-        "detail": "FE-only; kiểm cú 500 auth/me (nhiều khả năng lúc C0 khởi động lại API)",
+        "state": "Đã nộp (nhánh B); Oxy đang chạy cổng build",
+        "detail": "Sửa xong: bộ chọn model mặc định \"Đề xuất\", số nhiều, một đơn vị tiền, tên dự án không dính chữ; kiểm cú 500 không cần sửa; lỗi 404 /studio chưa tìm ra nguồn (P3). Tác giả: 7.105/7.113 test đơn vị, các spec trình duyệt đạt; còn chạy gate build 4 cổng + kiểm tra tổng hợp (Oxy)",
         "kind": "test"
       },
       {
@@ -18969,8 +18973,8 @@
       {
         "id": "U4",
         "name": "Lên PROD đợt 1 giao diện",
-        "state": "Dự kiến 14:00–16:00 ICT 17/11",
-        "detail": "Sau khi agent nộp mã, QA FE độc lập (agent khác tác giả) + soát của C0, merge dev, promote main, deploy; sau đó Văn phòng AI kiểm lại",
+        "state": "Dự kiến 16:00–18:00 ICT 17/11 (trễ ~2 giờ)",
+        "detail": "Trễ do lỗi kết nối API làm gián đoạn hai agent FE; còn: nhánh A, gộp, cổng build, QA độc lập, deploy chỉ-FE",
         "kind": "test"
       },
       {
