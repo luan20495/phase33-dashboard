@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-19T03:38:00+07:00",
+  "asOf": "2026-11-19T04:39:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1870,7 +1870,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-19T03:38:00+07:00",
+  "detailUpdatedAt": "2026-11-19T04:39:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7347,7 +7347,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-19T03:38:00+07:00",
+    "updatedAt": "2026-11-19T04:39:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7358,11 +7358,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "ok",
-            "summary": "Không có tin mới Owner/ChatGPT trên #88 (Owner nhắn trực tiếp: deploy khi test BE xanh, ghi xác nhận ghi mã nguồn đợt 26)."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "ok",
@@ -7407,6 +7402,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Không có tin mới Owner/ChatGPT trên #88 và #257."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "ok",
+            "summary": "Không có tin mới Owner/ChatGPT trên #88 và #257."
           }
         ]
       },
@@ -7418,11 +7418,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "ok",
-            "summary": "Tab Quy trình không đổi; một việc nặng (Gradle) một lúc."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "ok",
@@ -7467,6 +7462,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Không có cấu hình mới từ tab Quy trình."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "ok",
+            "summary": "Không có cấu hình mới từ tab Quy trình."
           }
         ]
       },
@@ -7478,11 +7478,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "changed",
-            "summary": "PR đợt 26 đã gộp vào dev; PR nháp: BE #368/#371, FE #262/#263 (chưa gộp). Không có subagent chạy lúc kiểm; test BE đầy đủ đang chạy."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "ok",
@@ -7527,6 +7522,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Không PR mới hay đã gộp từ lần 241; không có agent chạy."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "ok",
+            "summary": "Không PR mới hay đã gộp từ lần 241; PROD vẫn đợt 26 (7 ảnh a7fadef7140d)."
           }
         ]
       },
@@ -7538,11 +7538,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "changed",
-            "summary": "Đăng báo cáo lần 233."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "changed",
@@ -7587,6 +7582,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "skipped",
             "summary": "Không có thay đổi từ lần 241 nên không đăng báo cáo mới."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "skipped",
+            "summary": "Không có thay đổi PROD/mã từ lần 241 nên không đăng báo cáo mới."
           }
         ]
       },
@@ -7598,11 +7598,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "changed",
-            "summary": "Cập nhật dashboard: lần chạy giờ."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "changed",
@@ -7647,6 +7642,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Chỉ cập nhật bản ghi chạy hằng giờ."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "ok",
+            "summary": "Chỉ cập nhật bản ghi chạy hằng giờ."
           }
         ]
       },
@@ -7658,11 +7658,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "ok",
-            "summary": "Đĩa 50 GB trống, không cần dọn."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "ok",
@@ -7707,6 +7702,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Đĩa Mac 16 GiB trống; volume Docker có thể thu hồi chỉ 1,3 GB nên chưa dọn."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac còn khoảng 16 GiB; chưa cần dọn."
           }
         ]
       },
@@ -7718,11 +7718,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH nạp lại 17:20 18/11, hạn khoảng 17:20 19/11."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "ok",
@@ -7767,6 +7762,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Khóa SSH còn hạn (đến khoảng 17:20 ICT 19/11)."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH còn hạn (đến khoảng 17:20 ICT 19/11)."
           }
         ]
       },
@@ -7778,11 +7778,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "ok",
-            "summary": "Agent: đang dành tài nguyên cho test BE đầy đủ; giao thêm agent nhẹ khi Gradle xong."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "ok",
@@ -7827,6 +7822,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Đợt 27 chờ tin Owner để ghi ack CODE_SOURCE_WRITES; đợt 28 chờ quyết định Owner; không còn việc không cần duyệt để giao agent."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "changed",
+            "summary": "Giao 2 agent không cần duyệt: gói runbook/RELEASE_LOG đợt 28 và bản sửa mã cho các phát hiện P2/P3 của rà soát bảo mật đợt 28 (chỉ cục bộ, không đẩy). Đợt 27 vẫn chờ ack của Owner."
           }
         ]
       },
@@ -7839,11 +7839,6 @@
         "createdBy": "C0 (theo nhắc của Owner 17/11)",
         "titleEn": "Check the comment limit of the C0 ↔ Oxy coordination issue (GitHub limit 2,500)",
         "runs": [
-          {
-            "at": "2026-11-18T17:38:00+07:00",
-            "result": "ok",
-            "summary": "Issue phối hợp khoảng 490/2.500 bình luận."
-          },
           {
             "at": "2026-11-18T18:38:00+07:00",
             "result": "ok",
@@ -7888,6 +7883,11 @@
             "at": "2026-11-19T03:38:00+07:00",
             "result": "ok",
             "summary": "Issue phối hợp #126 ở 715 bình luận, dưới ngưỡng 2.300."
+          },
+          {
+            "at": "2026-11-19T04:39:00+07:00",
+            "result": "ok",
+            "summary": "Issue phối hợp #126 dưới ngưỡng 2.300 (715 bình luận lúc 03:09)."
           }
         ]
       }
