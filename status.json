@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-18T10:41:00+07:00",
+  "asOf": "2026-11-18T11:42:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1852,7 +1852,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-18T10:41:00+07:00",
+  "detailUpdatedAt": "2026-11-18T11:42:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7325,7 +7325,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-18T10:41:00+07:00",
+    "updatedAt": "2026-11-18T11:42:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7336,11 +7336,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "ok",
@@ -7385,6 +7380,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "ok",
             "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257 (Owner nhắn trực tiếp: cho C0 vào phòng chung MCP)."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "ok",
+            "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257; Owner nhắn trong phòng chung (song song luôn; Kế hoạch)."
           }
         ]
       },
@@ -7396,11 +7396,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "Không có cấu hình Quy trình mới; thực tế khớp (đợt 23, 67/68 cờ)."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "ok",
@@ -7445,6 +7440,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "ok",
             "summary": "Không có cấu hình Quy trình mới; PROD vẫn đợt 24, cờ không đổi (67/68)."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "ok",
+            "summary": "Không có cấu hình Quy trình mới; PROD đợt 24, cờ không đổi (67/68)."
           }
         ]
       },
@@ -7456,11 +7456,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "QA một lần BE 8/8 khúc xong (REPORTED); C0 áp diff T4 + tài liệu NO43, merge BE #349; FE 6 spec đỏ chờ Oxy phân loại."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "ok",
@@ -7505,6 +7500,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "changed",
             "summary": "dev nhận BE #354 (V114), BE #355 + FE #249 (Caddy 408/413) cho đợt 25; chưa có QA một lần cho đợt 25."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "changed",
+            "summary": "T25 chạy xong (REPORTED); dev BE 92f30ef1 / FE 7ff8e1c7 (KL-OPS-13, V114, Caddy 408); Oxy bắt đầu QA một lần đợt 25; 4 agent chỉ-đọc của C0 đang chạy."
           }
         ]
       },
@@ -7516,11 +7516,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "Đăng báo cáo lần 218 (#88) + con trỏ #257."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "changed",
@@ -7565,6 +7560,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 226 (#88) + con trỏ #257."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 227 (#88) + con trỏ #257."
           }
         ]
       },
@@ -7576,11 +7576,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "Cập nhật hourly, asOf, dev BE 7805898d / FE 583ecedc."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "ok",
@@ -7625,6 +7620,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "changed",
             "summary": "Cập nhật hourly, asOf (dev BE 747d1ca7 / FE 8f6c240c)."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "changed",
+            "summary": "Cập nhật hourly, asOf; chưa đổi releases (đợt 25 chưa deploy)."
           }
         ]
       },
@@ -7636,11 +7636,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "Đĩa Mac còn ~62 GB trống; không cần dọn."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "ok",
@@ -7685,6 +7680,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "ok",
             "summary": "Đĩa Mac ~58 GB trống; không cần dọn."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac ~59 GB trống; tải Mac cao (~22) do 4 agent + phiên khác, theo dõi, chưa dọn gì."
           }
         ]
       },
@@ -7696,11 +7696,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "changed",
-            "summary": "Khóa SSH của Owner đã hết hạn 22:15 17/11 (ssh-add -l: không có khóa); cần nạp lại trước khi deploy đợt 24."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "ok",
@@ -7745,6 +7740,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "ok",
             "summary": "Khóa SSH Owner hiệu lực đến ~06:20 19/11."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH Owner hiệu lực đến ~06:20 19/11."
           }
         ]
       },
@@ -7756,11 +7756,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "Mac: không có agent con; Oxy: QA chạy 1 Gradle tại một thời điểm; tải Mac ~5."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "changed",
@@ -7805,6 +7800,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "changed",
             "summary": "Mac: không có agent con (tải ~2,6; C0 tự áp diff); Oxy: D30/D31 giao diff đợt 25, thẻ mới về portal chung 120 s."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "changed",
+            "summary": "C0: 4 agent chỉ-đọc (LEG-12/13, LEG-14/17, UAT 19, P4-04) đăng ký trong phòng chung; Oxy: 5 agent (T25A, VP-dev, Q5, Q6, Q7) + QA-lane."
           }
         ]
       },
@@ -7817,11 +7817,6 @@
         "createdBy": "C0 (theo nhắc của Owner 17/11)",
         "titleEn": "Check the comment limit of the C0 ↔ Oxy coordination issue (GitHub limit 2,500)",
         "runs": [
-          {
-            "at": "2026-11-18T01:43:00+07:00",
-            "result": "ok",
-            "summary": "#126 có 317 bình luận; chưa tới ngưỡng 2.000."
-          },
           {
             "at": "2026-11-18T02:39:00+07:00",
             "result": "ok",
@@ -7866,6 +7861,11 @@
             "at": "2026-11-18T10:41:00+07:00",
             "result": "ok",
             "summary": "#126 có ~390 bình luận; chưa tới ngưỡng 2.000."
+          },
+          {
+            "at": "2026-11-18T11:42:00+07:00",
+            "result": "ok",
+            "summary": "#126 có ~394 bình luận; chưa tới ngưỡng 2.000."
           }
         ]
       }
@@ -8363,6 +8363,10 @@
       {
         "at": "2026-11-18T10:41:00+07:00",
         "summary": "Báo cáo lần 226: dev nhận V114 + sửa rìa Caddy 408/413 cho đợt 25; Owner cho C0 vào phòng chung MCP (chờ link mời); PROD vẫn đợt 24"
+      },
+      {
+        "at": "2026-11-18T11:42:00+07:00",
+        "summary": "Báo cáo lần 227: C0 vào phòng chung MCP (Kế hoạch); T25 đã chạy trên PROD; dev gom đợt 25 (KL-OPS-13, V114, Caddy 408); 4 agent chỉ-đọc chạy song song"
       }
     ],
     "summary": {
