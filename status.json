@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-18T11:42:00+07:00",
+  "asOf": "2026-11-18T12:39:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -701,7 +701,7 @@
       "integrated": true,
       "qa": "QA đóng việc độc lập 07/11 (VERIFIED, PROD): 15/24 PASS, 1 FAIL, 4 BLOCKED, 3 NOT_RUN. Hành vi LEGACY khi STRICT=false đúng. Sự cố QA P2 (CQB-1) lúc 08:03 làm đóng một thao tác của nguồn QA; đang chờ Owner chọn cách sửa. Báo cáo ảnh hưởng STRICT chưa đủ (thiếu danh sách thao tác chưa có chính sách được duyệt)",
       "prs": "BE #100/#113 · FE #71",
-      "summary": "Field Policy đã ON nhưng STRICT=false; chưa có đánh giá tác động ứng dụng cũ nếu bật STRICT=true, đồng thời phải giữ thao tác từ chối đúng quyền.",
+      "summary": "Field Policy đã ON; STRICT hiện BẬT (C0 đọc cấu hình PROD 18/11, VERIFIED; ghi nhận bật 17/11). Chưa có đánh giá tác động đầy đủ lên ứng dụng cũ và chưa có QA độc lập sau khi bật STRICT.",
       "next": "Người không có quyền đọc/ghi trường bị từ chối kể cả gọi API trực tiếp.",
       "work": {
         "problem": "Field Policy đã ON nhưng STRICT=false; chưa có đánh giá tác động ứng dụng cũ nếu bật STRICT=true, đồng thời phải giữ thao tác từ chối đúng quyền.",
@@ -1339,12 +1339,12 @@
       "name": "Ghi dữ liệu qua REST",
       "batch": "Unassigned",
       "stage": "PROD_DEPLOYED",
-      "flag": "OFF (PROD đóng cứng bằng mã)",
+      "flag": "BẬT cho một nguồn thử (danh sách cho phép một nguồn, mặc định từ chối, chưa ghi thật); giao diện ghi TẮT trong bản PROD",
       "risk": "HIGH",
       "integrated": true,
       "qa": "QA/SEC độc lập cho gỡ sàn có điều kiện (BE #175 + FE #132): PASS/PASS, GO merge dev, không P0–P2 (VERIFIED): mặc định đóng chứng minh bằng 44 cấu hình sai, bốn mắt và danh sách nguồn được phép đúng. Còn 1 P3 (tên hồ sơ production) đang sửa. NOT_RUN: E2E nguồn HTTPS thử cô lập, PowerShell trên Windows, công tắc FE. Delta sau rebase: PASS/PASS; tạm dừng mặc định trên production chứng minh trên Postgres thật; cả file prod-enablement 88/88.",
       "prs": "Mã X4 hoàn chỉnh trên PROD từ đợt 3 (cờ TẮT, sàn mã). Gỡ sàn có điều kiện (BE #175 + FE #132) QA/SEC độc lập PASS/PASS, đã MERGE dev 08/11 23:01 ICT; chưa lên PROD.",
-      "summary": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
+      "summary": "Nhóm ghi dữ liệu REST đã BẬT trên PROD từ 17/11 cho đúng một nguồn thử (C0 đo trong container); chưa có lần ghi thật, chưa có QA độc lập trên PROD, giao diện ghi tắt trong bản PROD. (Cập nhật 18/11 theo cờ PROD và nhật ký đợt 22.)",
       "next": "Công tắc FE (8–10 giờ), E2E thật với nguồn HTTPS thử cô lập, chạy PowerShell trên Windows, thử chuẩn bị trên máy PROD, Owner duyệt riêng khi bật cờ.",
       "work": {
         "problem": "Hiện connector Phase 3.2 chỉ hỗ trợ đọc (REST GET / GraphQL query). Chưa có bằng chứng đường ghi được phê duyệt cho POST/PUT/PATCH/DELETE từ web AI, nên X4 chưa thể nghiệm thu. Rủi ro: app ghi sai bản ghi, vượt quyền, xóa không xác nhận, gọi trùng sau retry và rò secret API.",
@@ -1852,7 +1852,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-18T11:42:00+07:00",
+  "detailUpdatedAt": "2026-11-18T12:39:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -2126,7 +2126,8 @@
         "coverageNote": "Import Excel/CSV và API sync Org/Company đã được thêm vào X2/UX13; không chia công việc hai nơi.",
         "coverageNoteEn": "Org sync/Excel/API mapping already belongs to X2/UX13.",
         "batch": 3,
-        "closed": false
+        "closed": false,
+        "audit18_11": "Rà soát chỉ-đọc 18/11 (agent, REPORTED, chưa chạy test): CSV đơn vị, xuất CSV, xóa mềm, nhật ký, tenancy đạt; GAP: nhập Excel chưa nối, API/HRM chỉ DEV, nguồn chuẩn tổ chức chưa chốt, chưa có test đồng bộ → quyền."
       },
       {
         "id": "LEG-13",
@@ -2147,7 +2148,8 @@
         "coverageNote": "External App Hub/provisioning khác XApp/SSO nội bộ; kiểm chứng tích hợp ngoài riêng.",
         "coverageNoteEn": "External app provisioning is separate from XApp.",
         "batch": 4,
-        "closed": false
+        "closed": false,
+        "audit18_11": "Rà soát chỉ-đọc 18/11 (agent, REPORTED): mới slice 1 chỉ-liên-kết (đăng ký, mở liên kết, hiển thị theo quyền, nhật ký); SSO, cấp tài khoản, thu hồi phía nhà cung cấp chưa có; chưa chạy thật; cờ tắt và không bật được trên PROD như hiện hành."
       },
       {
         "id": "LEG-14",
@@ -2167,7 +2169,8 @@
         "coverageNoteEn": "Share operational DR evidence with P4-04.",
         "sharedGate": "OPERATIONS_DR",
         "batch": 4,
-        "closed": false
+        "closed": false,
+        "audit18_11": "Rà soát chỉ-đọc 18/11 (agent, REPORTED): có dump trước deploy; chưa chứng minh khôi phục trên PROD, chưa có bản sao ngoài máy chủ, chưa có RPO/RTO, cảnh báo chưa nối; bộ R1 (BE #48) nháp/bị chặn."
       },
       {
         "id": "LEG-15",
@@ -2228,7 +2231,8 @@
         "coverageNote": "Đây là gate đối soát acceptance lịch sử, không phải hạng mục code để đếm trùng.",
         "coverageNoteEn": "Historical acceptance reconciliation is its own audit gate.",
         "batch": 4,
-        "closed": false
+        "closed": false,
+        "audit18_11": "Rà soát chỉ-đọc 18/11 (agent, REPORTED): chưa có ma trận thống nhất, lịch sử phát hành 2-3/11 chưa nằm trong RELEASE_LOG; giữ mở."
       },
       {
         "id": "P4-01",
@@ -7325,7 +7329,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-18T11:42:00+07:00",
+    "updatedAt": "2026-11-18T12:39:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -7336,11 +7340,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "ok",
-            "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "ok",
@@ -7385,6 +7384,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "ok",
             "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257; Owner nhắn trong phòng chung (song song luôn; Kế hoạch)."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "ok",
+            "summary": "Không có bình luận mới của Owner/ChatGPT trên #88/#257; Owner nhắn trong phòng chung."
           }
         ]
       },
@@ -7396,11 +7400,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "ok",
-            "summary": "Không có cấu hình Quy trình mới; thực tế khớp (đợt 23, 67/68 cờ)."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "ok",
@@ -7445,6 +7444,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "ok",
             "summary": "Không có cấu hình Quy trình mới; PROD đợt 24, cờ không đổi (67/68)."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "ok",
+            "summary": "Không có cấu hình Quy trình mới; PROD đợt 24, cờ không đổi (67/68)."
           }
         ]
       },
@@ -7456,11 +7460,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "ok",
-            "summary": "PR mở BE 18 / FE 12, dev không đổi (BE 7805898d, FE 583ecedc); Oxy chưa đăng \"QA MỘT LẦN XANH\"."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "changed",
@@ -7505,6 +7504,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "changed",
             "summary": "T25 chạy xong (REPORTED); dev BE 92f30ef1 / FE 7ff8e1c7 (KL-OPS-13, V114, Caddy 408); Oxy bắt đầu QA một lần đợt 25; 4 agent chỉ-đọc của C0 đang chạy."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "changed",
+            "summary": "Đợt 25: Oxy QA một lần (xanh ~14:00 dự kiến); C0 giữ PR #357, #358 (sửa PDF), #359, FE #251; rà LEG-12/13/14/17 + P4-04 + UAT 19 xong (chỉ đọc, REPORTED)."
           }
         ]
       },
@@ -7516,11 +7520,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "changed",
-            "summary": "Không đăng báo cáo mới (không có thay đổi thật); sửa báo cáo 218 và thẻ 220 bị đăng lỗi (chỉ hiện tên tệp) bằng PATCH."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "changed",
@@ -7565,6 +7564,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "changed",
             "summary": "Đăng báo cáo lần 227 (#88) + con trỏ #257."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "changed",
+            "summary": "Đăng báo cáo lần 228 (#88; bảng 19 dòng viết lại) + con trỏ #257; bỏ số tiền khỏi báo cáo 227."
           }
         ]
       },
@@ -7576,11 +7580,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "ok",
-            "summary": "Cập nhật hourly, asOf."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "changed",
@@ -7625,6 +7624,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "changed",
             "summary": "Cập nhật hourly, asOf; chưa đổi releases (đợt 25 chưa deploy)."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "changed",
+            "summary": "Cập nhật hourly, asOf; features X4/X1+F6 theo cờ PROD; audit LEG-12/13/14/17."
           }
         ]
       },
@@ -7636,11 +7640,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "ok",
-            "summary": "Đĩa Mac còn ~62 GB trống; không cần dọn."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "ok",
@@ -7685,6 +7684,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "ok",
             "summary": "Đĩa Mac ~59 GB trống; tải Mac cao (~22) do 4 agent + phiên khác, theo dõi, chưa dọn gì."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "ok",
+            "summary": "Đĩa Mac 56 GB trống, tải ~3."
           }
         ]
       },
@@ -7696,11 +7700,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "ok",
-            "summary": "Khóa SSH của Owner vẫn hết hạn (ssh-add -l: không có khóa); cần nạp lại trước khi deploy đợt 24."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "ok",
@@ -7745,6 +7744,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "ok",
             "summary": "Khóa SSH Owner hiệu lực đến ~06:20 19/11."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "ok",
+            "summary": "Khóa SSH Owner hiệu lực đến ~06:20 19/11."
           }
         ]
       },
@@ -7756,11 +7760,6 @@
         "createdAt": "2026-11-12T08:50:00+07:00",
         "createdBy": "C0",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "changed",
-            "summary": "Mac: không có agent con (tải ~4); Oxy: 3 làn rảnh theo Lane Reporter 02:11, đã nhắc chạy lại QA trên cặp dev mới."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "ok",
@@ -7805,6 +7804,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "changed",
             "summary": "C0: 4 agent chỉ-đọc (LEG-12/13, LEG-14/17, UAT 19, P4-04) đăng ký trong phòng chung; Oxy: 5 agent (T25A, VP-dev, Q5, Q6, Q7) + QA-lane."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "ok",
+            "summary": "C0: 5 agent chỉ-đọc đã xong, không giao thêm (Owner: đỡ tốn token); Oxy: Q5-Q8, T25A, VP-dev/VP-goi-ten."
           }
         ]
       },
@@ -7817,11 +7821,6 @@
         "createdBy": "C0 (theo nhắc của Owner 17/11)",
         "titleEn": "Check the comment limit of the C0 ↔ Oxy coordination issue (GitHub limit 2,500)",
         "runs": [
-          {
-            "at": "2026-11-18T02:39:00+07:00",
-            "result": "ok",
-            "summary": "#126 có 324 bình luận; chưa tới ngưỡng 2.000."
-          },
           {
             "at": "2026-11-18T03:42:00+07:00",
             "result": "ok",
@@ -7866,6 +7865,11 @@
             "at": "2026-11-18T11:42:00+07:00",
             "result": "ok",
             "summary": "#126 có ~394 bình luận; chưa tới ngưỡng 2.000."
+          },
+          {
+            "at": "2026-11-18T12:39:00+07:00",
+            "result": "ok",
+            "summary": "#126 ~410 bình luận; chưa tới ngưỡng 2.000."
           }
         ]
       }
@@ -8367,6 +8371,10 @@
       {
         "at": "2026-11-18T11:42:00+07:00",
         "summary": "Báo cáo lần 227: C0 vào phòng chung MCP (Kế hoạch); T25 đã chạy trên PROD; dev gom đợt 25 (KL-OPS-13, V114, Caddy 408); 4 agent chỉ-đọc chạy song song"
+      },
+      {
+        "at": "2026-11-18T12:39:00+07:00",
+        "summary": "Báo cáo lần 228: bảng 19 dòng viết lại; sửa nhãn X4, X1 STRICT, LEG-12/13/14/17 (rà soát chỉ-đọc); đợt 25 chờ Oxy QA"
       }
     ],
     "summary": {
