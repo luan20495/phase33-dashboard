@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-19T08:55:00+07:00",
+  "asOf": "2026-11-20T14:05:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -164,6 +164,33 @@
       "backendSha": "a7fadef7140d",
       "frontendSha": "affd2f18e97e",
       "notes": "BE a7fadef7 (main tiến nhanh từ 904fef7a, 33 commit), FE affd2f18 (26 commit); không migration, Flyway 114|101|0; 17 container khỏe, 7 ảnh bản mới, 0 lỗi khởi động/ERROR API, 0 lỗi 5xx biên, danh sách cờ ON trước = sau, 67 ack nhóm đổi SHA (C0 đo, vm-post 22/22). Ack ghi mã nguồn ghi tay theo lệnh Owner. Test BE đầy đủ: 5 lớp đỏ đều là test (đã sửa hoặc chạy riêng xanh), combined-check xanh trên đúng cặp. Kiểm sau deploy do C0 đo (chưa QA độc lập): cấu hình PDF + trần 1.000, hộp chọn tệp, nhật ký quyền AI, màn ngân sách, hạn giữ 168 giờ, webhook 15/16 (1 kỳ vọng script sai), 1 lượt build Haiku thật SUCCEEDED. NOT_RUN: đồng hồ 16.000 (cờ hiển thị tắt), PDF thật qua giao diện, thử lùi. Còn mở: F1, Q1. Đường lùi: ảnh 904fef7ace55 + dump DB + sao lưu env; chưa diễn tập lùi."
+    },
+    {
+      "id": "R27",
+      "label": "Đợt 27 (kho tri thức P1, V115)",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-19T06:54:49+07:00",
+      "backendSha": "ed711d06c208",
+      "frontendSha": "dbab254fbce7",
+      "notes": "V115 (ba bảng kho tri thức, chỉ tạo thêm), Flyway 115|102|0 sau đợt; mọi cờ mới TẮT. C0 đo trực tiếp (chưa QA độc lập). Chi tiết: RELEASE_LOG."
+    },
+    {
+      "id": "R28",
+      "label": "Đợt 28 (F1 v2, Q1DEL/Q1DEL2, sửa bảo mật SEC-R28, sidecar v2 và DR v2 dạng script tắt)",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-19T08:01:20+07:00",
+      "backendSha": "30b84799c3de",
+      "frontendSha": "437b408a6b61",
+      "notes": "Không migration, Flyway giữ 115|102|0; vm-post 22/22; ack CODE_SOURCE_WRITES theo lệnh Owner. Sau đó 6 cờ bật từng cái 08:07–08:28 ICT trở đi (AI_ENTITLEMENTS_UNIFIED, APP_ACCESS_POSITION_IN_ORG, APP_ACCESS_VALIDITY, tải tài liệu, giao diện Data helper, giao diện Enterprise)."
+    },
+    {
+      "id": "R29-31",
+      "label": "Đợt 29–31 gộp một lần deploy (d0–d3, d4a/d4b, d5 AI Studio chế độ mạnh nhất, d6 VNPay/Turnstile/tệp lớn, d7 xóa cứng dữ liệu công ty, SECFIX)",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-20T13:44:05+07:00",
+      "backendSha": "6a0768e1c584",
+      "frontendSha": "206eac01fc5a",
+      "notes": "23 migration (V117, V118, V120–V134, V136, V139–V143), Flyway 115|102|0 → 143|125|0; 26 nhóm ProdFeature mới, TẤT CẢ TẮT; vm-post 22/22, 59 kiểm preflight đạt, 17 container khỏe, 0 lỗi 5xx biên. Giá trị mặc định mới của giới hạn AI có hiệu lực ngay theo chỉ đạo Owner 19/11. Sự cố build api (resolveMainClassName) đã sửa trước khi chuyển (BE #388). Test: Gradle đầy đủ 16.288 test (25 đỏ đã sửa, chạy lại 0 đỏ), FE 7.880/0, combined-check 7/7, SEC P0 0 / P1 0 / P2 5 / P3 11. Đường lui cần ALLOW_NEWER_SCHEMA; chưa diễn tập lùi. C0 đo trực tiếp, chưa QA độc lập. RELEASE_LOG: BE #389 + FE #274."
     }
   ],
   "features": [
@@ -1870,7 +1897,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-19T08:55:00+07:00",
+  "detailUpdatedAt": "2026-11-20T14:05:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7347,7 +7374,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-19T08:55:00+07:00",
+    "updatedAt": "2026-11-20T14:05:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -8401,6 +8428,10 @@
       {
         "at": "2026-11-18T14:39:00+07:00",
         "summary": "Báo cáo lần 230: đợt 25 lên PROD 13:57 (kiểm trực tiếp OK); nâng số tệp mỗi lượt lên 10; T25 A/B xong; kho tri thức duyệt thiết kế; QD1-4 = A; quy trình CTO tự quyết"
+      },
+      {
+        "at": "2026-11-20T14:05:00+07:00",
+        "summary": "Đợt 29–31 lên PROD 13:44 (BE 6a0768e1c584 / FE 206eac01fc5a, Flyway 143|125|0, vm-post 22/22, mọi cờ mới TẮT); RELEASE_LOG BE #389 + FE #274; dev BE 7c66d571c108 / FE ddc82ea29258; bước kế: bật cờ an toàn từng cái, Oxy sửa P2 xóa cứng/MFA/xác thực lại"
       }
     ],
     "summary": {
