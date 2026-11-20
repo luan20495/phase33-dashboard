@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-20T14:05:00+07:00",
+  "asOf": "2026-11-20T17:15:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -190,7 +190,7 @@
       "actualAt": "2026-11-20T13:44:05+07:00",
       "backendSha": "6a0768e1c584",
       "frontendSha": "206eac01fc5a",
-      "notes": "23 migration (V117, V118, V120–V134, V136, V139–V143), Flyway 115|102|0 → 143|125|0; 26 nhóm ProdFeature mới, TẤT CẢ TẮT; vm-post 22/22, 59 kiểm preflight đạt, 17 container khỏe, 0 lỗi 5xx biên. Giá trị mặc định mới của giới hạn AI có hiệu lực ngay theo chỉ đạo Owner 19/11. Sự cố build api (resolveMainClassName) đã sửa trước khi chuyển (BE #388). Test: Gradle đầy đủ 16.288 test (25 đỏ đã sửa, chạy lại 0 đỏ), FE 7.880/0, combined-check 7/7, SEC P0 0 / P1 0 / P2 5 / P3 11. Đường lui cần ALLOW_NEWER_SCHEMA; chưa diễn tập lùi. C0 đo trực tiếp, chưa QA độc lập. RELEASE_LOG: BE #389 + FE #274."
+      "notes": "23 migration (V117, V118, V120–V134, V136, V139–V143), Flyway 115|102|0 → 143|125|0; 26 nhóm ProdFeature mới, TẤT CẢ TẮT; vm-post 22/22, 59 kiểm preflight đạt, 17 container khỏe, 0 lỗi 5xx biên. Giá trị mặc định mới của giới hạn AI có hiệu lực ngay theo chỉ đạo Owner 19/11. Sự cố build api (resolveMainClassName) đã sửa trước khi chuyển (BE #388). Test: Gradle đầy đủ 16.288 test (25 đỏ đã sửa, chạy lại 0 đỏ), FE 7.880/0, combined-check 7/7, SEC P0 0 / P1 0 / P2 5 / P3 11. Đường lui cần ALLOW_NEWER_SCHEMA; chưa diễn tập lùi. C0 đo trực tiếp, chưa QA độc lập. RELEASE_LOG: BE #389 + FE #274. Sau deploy (13:55–17:09 ICT 20/11): 37 cờ mới bật từng cái, mỗi bước vm-post58 22/22 (hai bước giao diện đầu 21/22 do 2 dòng 502 lúc restart portal studio); chi tiết RELEASE_LOG và #88 (comment 7036849914)."
     }
   ],
   "features": [
@@ -1897,7 +1897,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-20T14:05:00+07:00",
+  "detailUpdatedAt": "2026-11-20T17:15:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7374,7 +7374,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-20T14:05:00+07:00",
+    "updatedAt": "2026-11-20T17:15:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -8432,6 +8432,10 @@
       {
         "at": "2026-11-20T14:05:00+07:00",
         "summary": "Đợt 29–31 lên PROD 13:44 (BE 6a0768e1c584 / FE 206eac01fc5a, Flyway 143|125|0, vm-post 22/22, mọi cờ mới TẮT); RELEASE_LOG BE #389 + FE #274; dev BE 7c66d571c108 / FE ddc82ea29258; bước kế: bật cờ an toàn từng cái, Oxy sửa P2 xóa cứng/MFA/xác thực lại"
+      },
+      {
+        "at": "2026-11-20T17:15:00+07:00",
+        "summary": "37 cờ mới bật sau đợt 29–31 (13:55–17:09 ICT, từng cái, vm-post58 22/22 mỗi bước): 3+11 công tắc giao diện, 18 nhóm có ack, 8 công tắc thường; Owner 'đừng bảo mật quá': OPERATION_SCOPE, END_USER_RUNTIME, SESSION_ABSOLUTE đã bật; còn tắt: chờ Owner (COMMERCIAL, VNPay, DR v2, mail, khóa ký template), chờ Oxy (MFA, xác thực lại, xóa cứng, chế độ mạnh nhất, Tika, media, KB P5)"
       }
     ],
     "summary": {
@@ -18304,18 +18308,18 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-17T20:49:00+07:00",
+    "updatedAt": "2026-11-20T17:15:00+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
-      "be": "d5c00cef0e32",
-      "fe": "642c026aa1dd (mã giao diện = f9c746de)"
+      "be": "6a0768e1c584",
+      "fe": "206eac01fc5a"
     },
-    "total": 68,
-    "on": 67,
+    "total": 105,
+    "on": 104,
     "off": 1,
-    "note": "Nhãn: VERIFIED = C0 đã kiểm trong container API sau khi bật (cờ = true, guard đạt, Flyway 112|99|0, 0 lỗi). Bật không có nghĩa là xong: chưa có QA độc lập hay Owner UAT cho từng tính năng. Chi phí: không phát sinh dịch vụ hoặc máy chủ trả phí mới; xem báo cáo chi phí 13 nhóm.",
-    "noteEn": "VERIFIED = C0 checked inside the API container after switching (flag true, guard passed, Flyway 112|99|0, 0 errors). ON does not mean DONE: no independent QA or Owner UAT per feature yet.",
+    "note": "Cập nhật 20/11 17:15 ICT: 37 cờ mới bật sau đợt 29–31 (18 nhóm có ack, 8 công tắc thường, 11 công tắc giao diện), mỗi cờ qua vm-post58 22/22; kiểm hành vi riêng NOT_RUN trừ nhịp đập API và KB_PROJECT_MEMORY (đo số đếm). Danh sách nhóm dừng ở 17/11 cho các đợt 24–28 (chưa nạp lại), nên tổng ở đây không phải tổng ProdFeature trong mã (101 nhóm; 26 nhóm mới của đợt 29–31). Còn TẮT: chờ Owner (COMMERCIAL, tự đăng ký, VNPay, khóa ký template, đọc nền KB, DR v2, mail); chờ Oxy sửa (MFA, xác thực lại, xóa cứng, công ty tự xóa, chế độ mạnh nhất, Tika, media, KB P5); cố ý TẮT (nhóm nhiều replica, cổng agent, X4). VERIFIED = C0 đã kiểm bằng vm-post58 sau khi bật; ON không có nghĩa là xong: chưa có QA độc lập hay Owner UAT cho từng tính năng. Chi phí: không phát sinh dịch vụ hoặc máy chủ trả phí mới.",
+    "noteEn": "Updated 20 Nov 17:15 ICT: 37 new switches turned on after releases 29-31 (18 ack groups, 8 plain switches, 11 UI switches), each passing vm-post58 22/22; behaviour checks NOT_RUN except the heartbeat and KB project memory (counts). The group list stops at 17 Nov for releases 24-28 (not reloaded), so the total is not the code's ProdFeature total (101 groups). Still OFF: waiting for the Owner (commercial, self sign-up, VNPay, template signing key, KB background read, DR v2, mail); waiting for Oxy fixes (MFA, reauth, hard delete, company self-delete, max mode, Tika, media, KB P5); off by design (multi-replica, agent gateway, X4). ON does not mean DONE: no independent QA or Owner UAT per feature.",
     "groups": [
       {
         "name": "AI_ALLOCATION_LEDGER",
@@ -18691,6 +18695,228 @@
         "state": "OFF",
         "note": "KHÔNG bật: nhóm chỉ là \"văn siết\" cho cổng AI agent, mà cổng này bị cấm trên PROD theo thiết kế (khóa cứng DEV-only) và loại trừ với sửa mã trả phí đang bật; chờ Owner quyết (xem PLAN-AGENT-GATEWAY)",
         "at": ""
+      },
+      {
+        "name": "FE_CONTEXT_METER_UI",
+        "state": "ON",
+        "note": "bật 20/11 13:55 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "13:55"
+      },
+      {
+        "name": "FE_MAX_MODE_UI",
+        "state": "ON",
+        "note": "bật 20/11 14:02 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:02"
+      },
+      {
+        "name": "FE_GUIDED_MODE_UI",
+        "state": "ON",
+        "note": "bật 20/11 14:08 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:08"
+      },
+      {
+        "name": "AI_SECTION_SCOPE",
+        "state": "ON",
+        "note": "bật 20/11 14:12 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:12"
+      },
+      {
+        "name": "ORG_DEPTH_BOUND",
+        "state": "ON",
+        "note": "bật 20/11 14:16 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:16"
+      },
+      {
+        "name": "REFUSE_PAGE_ROLES",
+        "state": "ON",
+        "note": "bật 20/11 14:19 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:19"
+      },
+      {
+        "name": "AI_SKILLS",
+        "state": "ON",
+        "note": "bật 20/11 14:22 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:22"
+      },
+      {
+        "name": "DOCUMENTS_MASK_SECRETS (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 14:26 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:26"
+      },
+      {
+        "name": "APP_HUB (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 14:30 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:30"
+      },
+      {
+        "name": "GUIDED_DRAFTS (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 14:33 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:33"
+      },
+      {
+        "name": "INSTANCE_HEARTBEAT (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 14:37 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:37"
+      },
+      {
+        "name": "FE_DATA_HUB_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~14:43 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:43"
+      },
+      {
+        "name": "FE_ORGSYNC_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~14:49 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:49"
+      },
+      {
+        "name": "FE_ORG_DATED_MEMBERSHIPS_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~14:54 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "14:54"
+      },
+      {
+        "name": "FE_COMPANY_METERING_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~15:00 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:00"
+      },
+      {
+        "name": "KB_STORE",
+        "state": "ON",
+        "note": "bật 20/11 15:07 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:07"
+      },
+      {
+        "name": "FE_KB_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~15:12 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:12"
+      },
+      {
+        "name": "KB_PROJECT_MEMORY",
+        "state": "ON",
+        "note": "bật 20/11 15:16 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:16"
+      },
+      {
+        "name": "KB_UPLOADS",
+        "state": "ON",
+        "note": "bật 20/11 15:20 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:20"
+      },
+      {
+        "name": "TENANT_ARCHIVE",
+        "state": "ON",
+        "note": "bật 20/11 15:23 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:23"
+      },
+      {
+        "name": "AI_CANCEL_USAGE",
+        "state": "ON",
+        "note": "bật 20/11 15:27 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:27"
+      },
+      {
+        "name": "FE_APPHUB_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~15:37 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:37"
+      },
+      {
+        "name": "FE_GUIDED_DRAFT_SYNC_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~15:44 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:44"
+      },
+      {
+        "name": "FE_GUIDED_SEND_UI",
+        "state": "ON",
+        "note": "bật 20/11 ~15:50 ICT sau đợt 29–31 (công tắc giao diện); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:50"
+      },
+      {
+        "name": "KB_SEARCH_TOOLS",
+        "state": "ON",
+        "note": "bật 20/11 15:54 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:54"
+      },
+      {
+        "name": "SITES_TICKET_BINDING (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 15:57 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "15:57"
+      },
+      {
+        "name": "SECURITY_CHANGE_PASSWORD",
+        "state": "ON",
+        "note": "bật 20/11 16:07 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:07"
+      },
+      {
+        "name": "PASSWORD_V2 (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 16:11 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:11"
+      },
+      {
+        "name": "PAGE_PROTECTION",
+        "state": "ON",
+        "note": "bật 20/11 16:14 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:14"
+      },
+      {
+        "name": "DELEGATION",
+        "state": "ON",
+        "note": "bật 20/11 16:18 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:18"
+      },
+      {
+        "name": "IDENTITY_LIFECYCLE",
+        "state": "ON",
+        "note": "bật 20/11 16:22 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:22"
+      },
+      {
+        "name": "SSO_LOOP_TELEMETRY (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 16:26 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:26"
+      },
+      {
+        "name": "AI_CANCEL_RECONCILE",
+        "state": "ON",
+        "note": "bật 20/11 16:34 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:34"
+      },
+      {
+        "name": "OPERATION_SCOPE",
+        "state": "ON",
+        "note": "bật 20/11 16:38 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:38"
+      },
+      {
+        "name": "END_USER_RUNTIME",
+        "state": "ON",
+        "note": "bật 20/11 16:42 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:42"
+      },
+      {
+        "name": "SESSION_ABSOLUTE (công tắc)",
+        "state": "ON",
+        "note": "bật 20/11 16:45 ICT sau đợt 29–31 (công tắc thường); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "16:45"
+      },
+      {
+        "name": "AI_STALE_HOLD_RELEASE",
+        "state": "ON",
+        "note": "bật 20/11 17:09 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
+        "at": "17:09"
       }
     ],
     "target13": [
