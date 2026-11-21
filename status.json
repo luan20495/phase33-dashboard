@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-21T12:38:06+07:00",
+  "asOf": "2026-11-22T03:50:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -209,6 +209,24 @@
       "backendSha": "ea8b1dc5cd51",
       "frontendSha": "0c8bffb4aaa3",
       "notes": "Không migration (Flyway 146|127|0), không cờ mới. vm-post58 22/22. Không chạy lại Gradle đầy đủ (lần đầy đủ gần nhất 16.419 test ở đợt 32; phần BE đổi sau đó qua Gradle nhắm đích 0 đỏ); FE unit 7.962/0, combined-check 7/7; spec trình duyệt của Oxy C0 chưa chạy lại; 164 ảnh mẫu thị giác không nằm trong git FE nên không ghi lại. Ack CODE_SOURCE_WRITES do C0 ghi theo lệnh rõ của Owner 12:21 ICT. QA lại xác thực lại bằng phiên Keycloak thật sau W33A: đạt (sai người dùng / hết 60 giây NOT_RUN trên PROD); cờ REAUTH BẬT từ 10:08 ICT 21/11. Chế độ mạnh nhất TẮT (Oxy: kịch bản 04 đỏ, lỗi P2 kế hoạch 9–20 bước). C0 đo trực tiếp, chưa QA độc lập. RELEASE_LOG: FE #285 + BE #397; #88 comment 7058053148."
+    },
+    {
+      "state": "PROD_DEPLOYED",
+      "id": "R34",
+      "label": "Đợt 34 (Oxy MAXFIX sửa kế hoạch chế độ mạnh nhất 9–20 bước + UIR7/UIR8 giao diện vòng 7–8 + DOCKFIX khung chat AI)",
+      "actualAt": "2026-11-21T15:57:52+07:00",
+      "backendSha": "7251234048c0",
+      "frontendSha": "dc97af321a4a",
+      "notes": "Không migration (Flyway 146|127|0), không cờ mới. vm-post58 22/22. Gradle nhắm đích MAXFIX 212 lớp/993 test 0 đỏ, UIR8 219 lớp/894 test 0 đỏ; không chạy lại Gradle đầy đủ; FE unit 7.985/0, combined-check 7/7; spec trình duyệt của Oxy C0 chưa chạy lại; ảnh mẫu thị giác không nằm trong git FE. Ack CODE_SOURCE_WRITES do C0 ghi theo lệnh rõ của Owner 15:53 ICT."
+    },
+    {
+      "state": "PROD_DEPLOYED",
+      "id": "R35-36",
+      "label": "Đợt gộp 35+36 (Oxy CANCELRACE huỷ chuỗi mạnh nhất + UIR9/UIR10 giao diện vòng 9–10 + W33B dọn lỗi nhỏ V147 + W33C Studio 10/10)",
+      "actualAt": "2026-11-22T03:23:09+07:00",
+      "backendSha": "e64fbe6349a6",
+      "frontendSha": "63607fabb60e",
+      "notes": "V147 (thay thân một hàm của xóa cứng, không đụng dữ liệu): Flyway 146|127|0 → 147|128|0. Không cờ mới. vm-post58 22/22. Không chạy lại Gradle đầy đủ (đợt 32 là lần đầy đủ gần nhất, 16.419 test); BE nhắm đích CANCELRACE 1.084 test, W33B 1.415 test 0 đỏ; FE unit 8.005/0, combined-check 7/7; spec trình duyệt của Oxy C0 chưa chạy lại. Đợt 35 dựng xong từ 19:42 ICT 21/11 nhưng chờ ack của Owner; gộp với đợt 36 để Owner chỉ nhắn một câu (ack 03:18 ICT 22/11)."
     }
   ],
   "features": [
@@ -1915,7 +1933,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-21T12:38:06+07:00",
+  "detailUpdatedAt": "2026-11-22T03:50:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -8458,6 +8476,10 @@
       {
         "at": "2026-11-21T10:20:00+07:00",
         "summary": "Đợt 32 LIVE 09:57 ICT 21/11 (BE d6bf8f49434f / FE 3dfe5c806944, Flyway 146|127|0, vm-post58 22/22). Giao diện vòng 1–4 và phông Inter thật đã lên PROD. Tối 20/11: COMMERCIAL, đọc nền kho tri thức, Tika bật; REAUTH bật rồi tắt vì QA thật không đạt (Oxy sửa bằng REAUTHSSO, nằm trong đợt 32). Còn: QA lại REAUTH qua Keycloak, T23KIT, bật các cờ đã đạt; VNPay/Turnstile/SES/DR cần tài khoản bên ngoài."
+      },
+      {
+        "at": "2026-11-22T03:50:00+07:00",
+        "summary": "Đợt gộp 35+36 LIVE 03:23 ICT 22/11 (BE e64fbe6349a6 / FE 63607fabb60e, Flyway 147|128|0, vm-post58 22/22; CANCELRACE, giao diện vòng 9–10, W33B V147, W33C Studio 10/10). Trước đó đợt 33 (12:26) và đợt 34 (15:57) ngày 21/11. Cờ: REAUTH bật lại, TEMPLATE_SHARING, COMPANY_PORTABILITY + COMPANY_PURGE chế độ chạy thử; chế độ mạnh nhất chỉ workspace QA. Hệ thống chặn C0 tự ghi ack: C0 chờ câu rõ của Owner (đợt 35 chờ 19:42→03:18) rồi gộp 35+36 để chỉ cần một ack. Còn: xóa thật, mở chế độ mạnh nhất cho workspace thật, media, VNPay/Turnstile/SES/DR v2."
       }
     ],
     "summary": {
@@ -18330,17 +18352,17 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-21T10:20:00+07:00",
+    "updatedAt": "2026-11-22T03:50:00+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
-      "be": "d6bf8f49434f",
-      "fe": "3dfe5c806944"
+      "be": "e64fbe6349a6",
+      "fe": "63607fabb60e"
     },
-    "total": 109,
-    "on": 108,
-    "off": 1,
-    "note": "Cập nhật 21/11 10:20 ICT: thêm 4 cờ sau đợt 29–31 tối 20/11 (COMMERCIAL, đọc nền kho tri thức và cờ cổng, Tika); REAUTH đã bật rồi tắt lại (không tính). Đợt 32 LIVE 09:57 ICT 21/11, mọi cờ mới của đợt 32 TẮT. Tổng là số cờ đã theo dõi trên bảng này, không phải số nhóm trong mã (danh sách các đợt 24–28 dừng ở 17/11). ",
+    "total": 112,
+    "on": 112,
+    "off": 0,
+    "note": "Cập nhật 22/11 03:50 ICT: sau đợt 29–31 và các lần bật 20–21/11, thêm REAUTH (bật lại 21/11 10:08), TEMPLATE_SHARING (10:15), COMPANY_PORTABILITY (17:59) và COMPANY_PURGE chế độ chạy thử (18:03; DRY_RUN=true giữ true). Đợt gộp 35+36 LIVE 03:23 ICT 22/11 không cờ mới. Chế độ AI mạnh nhất bật cho workspace QA bằng cài đặt nóng (không tính là cờ). Tổng là số cờ đã theo dõi trên bảng này, không phải số nhóm trong mã. Còn TẮT: media/khung hình video; mở chế độ mạnh nhất cho workspace thật; xóa thật dữ liệu công ty; VNPay, Turnstile, SES, bucket DR v2 (cần tài khoản/khóa bên ngoài).",
     "noteEn": "Updated 20 Nov 17:15 ICT: 37 new switches turned on after releases 29-31 (18 ack groups, 8 plain switches, 11 UI switches), each passing vm-post58 22/22; behaviour checks NOT_RUN except the heartbeat and KB project memory (counts). The group list stops at 17 Nov for releases 24-28 (not reloaded), so the total is not the code's ProdFeature total (101 groups). Still OFF: waiting for the Owner (commercial, self sign-up, VNPay, template signing key, KB background read, DR v2, mail); waiting for Oxy fixes (MFA, reauth, hard delete, company self-delete, max mode, Tika, media, KB P5); off by design (multi-replica, agent gateway, X4). ON does not mean DONE: no independent QA or Owner UAT per feature.",
     "groups": [
       {
@@ -18939,6 +18961,24 @@
         "state": "ON",
         "note": "bật 20/11 17:09 ICT sau đợt 29–31 (nhóm có ack); kiểm sau mỗi bước 22/22; kiểm hành vi riêng NOT_RUN",
         "at": "17:09"
+      },
+      {
+        "name": "TEMPLATE_SHARING",
+        "state": "ON",
+        "note": "bật 21/11 10:15 ICT; khóa ký tạo ngẫu nhiên trên máy chủ, không in ra; export/install chéo công ty NOT_RUN",
+        "at": "10:15"
+      },
+      {
+        "name": "COMPANY_PORTABILITY",
+        "state": "ON",
+        "note": "bật 21/11 17:59 ICT; admin công ty có thể tự yêu cầu xóa (xác nhận lại qua Keycloak, chờ 30 ngày); xóa thật chưa xảy ra",
+        "at": "17:59"
+      },
+      {
+        "name": "COMPANY_PURGE (chạy thử)",
+        "state": "ON",
+        "note": "bật 21/11 18:03 ICT với APP_COMPANY_PURGE_DRY_RUN=true giữ true (chỉ đếm, không xóa thật); đặt false là quyết định riêng của Owner",
+        "at": "18:03"
       }
     ],
     "target13": [
