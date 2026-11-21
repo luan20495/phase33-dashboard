@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-21T10:20:00+07:00",
+  "asOf": "2026-11-21T12:38:06+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -200,6 +200,15 @@
       "backendSha": "d6bf8f49434f",
       "frontendSha": "3dfe5c806944",
       "notes": "2 migration mới V144 (quản trị bảng gói) và V146 (giữ audit thanh toán khi xóa cứng; dựng lại hàm/trigger nên phải dừng API khi migrate), Flyway 143|125|0 → 146|127|0; mọi cờ mới TẮT, 92 ack nhóm chuyển sang SHA mới. vm-post58 22/22 lúc 10:03 ICT. Test: Gradle đầy đủ 16.419 test (6 đỏ hạ tầng Postgres chạy lại xanh, 2 đỏ thật do T23FIX live đã sửa ở BE #393), bootJar đạt, combined-check 7/7, FE unit 7.949/0. Ack CODE_SOURCE_WRITES do C0 ghi theo lệnh rõ của Owner 09:51 ICT; ảnh dựng xong từ 05:24 ICT. Đường lui cần ALLOW_NEWER_SCHEMA; chưa diễn tập lùi. C0 đo trực tiếp, chưa QA độc lập. RELEASE_LOG: FE #282 + BE #394; #88 comment 7056414913. Cờ tối 20/11 sau đợt 29–31: COMMERCIAL 21:37, đọc nền kho tri thức 21:51/21:55, Tika 22:22; REAUTH bật 21:41 rồi tắt 21:46 vì QA thật không đạt (sửa bằng REAUTHSSO trong đợt 32)."
+    },
+    {
+      "id": "R33",
+      "label": "Đợt 33 (Oxy UIR6 giao diện vòng 6 + phông JetBrains Mono + W33A dọn lỗi nhỏ, gồm sửa mã SSO của xác thực lại)",
+      "state": "PROD_DEPLOYED",
+      "actualAt": "2026-11-21T12:26:12+07:00",
+      "backendSha": "ea8b1dc5cd51",
+      "frontendSha": "0c8bffb4aaa3",
+      "notes": "Không migration (Flyway 146|127|0), không cờ mới. vm-post58 22/22. Không chạy lại Gradle đầy đủ (lần đầy đủ gần nhất 16.419 test ở đợt 32; phần BE đổi sau đó qua Gradle nhắm đích 0 đỏ); FE unit 7.962/0, combined-check 7/7; spec trình duyệt của Oxy C0 chưa chạy lại; 164 ảnh mẫu thị giác không nằm trong git FE nên không ghi lại. Ack CODE_SOURCE_WRITES do C0 ghi theo lệnh rõ của Owner 12:21 ICT. QA lại xác thực lại bằng phiên Keycloak thật sau W33A: đạt (sai người dùng / hết 60 giây NOT_RUN trên PROD); cờ REAUTH BẬT từ 10:08 ICT 21/11. Chế độ mạnh nhất TẮT (Oxy: kịch bản 04 đỏ, lỗi P2 kế hoạch 9–20 bước). C0 đo trực tiếp, chưa QA độc lập. RELEASE_LOG: FE #285 + BE #397; #88 comment 7058053148."
     }
   ],
   "features": [
@@ -1906,7 +1915,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-21T10:20:00+07:00",
+  "detailUpdatedAt": "2026-11-21T12:38:06+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
