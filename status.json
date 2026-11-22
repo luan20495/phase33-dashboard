@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-22T15:35:00+07:00",
+  "asOf": "2026-11-22T20:50:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -254,6 +254,15 @@
       "backendSha": "20c77efed451",
       "frontendSha": "e369cd138922",
       "notes": "Không migration (Flyway giữ 147|128|0), không cờ mới, giao diện không đổi. vm-post58 22/22. Gradle nhắm đích 358 lớp/1.840 test 0 đỏ (Oxy: 48 lớp/412 bài 0 đỏ); bootJar đạt; verify-frontend-core 76 tệp 0 lỗi; combined-check 7/7; gitleaks sạch. Không chạy lại Gradle đầy đủ (lần đầy đủ gần nhất đợt 32); spec trình duyệt do Oxy chạy, C0 chưa chạy lại; chưa có SEC độc lập của C0. Ack CODE_SOURCE_WRITES do Owner nhắn đúng mã bản (khoảng 15:13 ICT). Tải tài liệu giữ 16 MiB. #88: https://github.com/luan20495/xweb01/issues/88#issuecomment-7076495049"
+    },
+    {
+      "state": "PROD_DEPLOYED",
+      "id": "R40",
+      "label": "Đợt 40 (Oxy UPLOADFIX-FE sửa lỗi P1 tải tài liệu Studio, BELOW2 khung prompt siêu tối giản, P3FE cờ Auto, UPLOADFIX-BE trần phiên tải)",
+      "actualAt": "2026-11-22T20:28:13+07:00",
+      "backendSha": "b7fd080eaa92",
+      "frontendSha": "492f42a54b11",
+      "notes": "Không migration (Flyway giữ 147|128|0), không cờ mới. vm-post58 22/22. FE tsc sạch, guard 0 đỏ, unit 8.085 test 0 đỏ; BE Gradle nhắm đích 373 lớp/1.930 test 0 đỏ; bootJar đạt; verify-frontend-core 76 tệp 0 lỗi; combined-check 7/7; gitleaks sạch; preflight sh chạy khô. Oxy: soát 0 P1/P2, hạ tầng 130/0, spec tải tài liệu 10/10. Không chạy lại Gradle đầy đủ (lần đầy đủ gần nhất đợt 32); preflight ps1 chưa chạy (không có pwsh); spec trình duyệt do Oxy chạy, C0 chưa chạy lại; chưa có SEC độc lập của C0. Ack CODE_SOURCE_WRITES do Owner nhắn đúng mã bản trong phòng (20:22). Sau deploy: trần mỗi tệp phiên tải 64 MiB (20:34); trước đó tải tài liệu mở 50 MiB (15:31). Dọn đĩa máy chủ: xóa ảnh cũ, còn 78 GB trống."
     }
   ],
   "features": [
@@ -1960,7 +1969,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-22T15:35:00+07:00",
+  "detailUpdatedAt": "2026-11-22T20:50:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7437,7 +7446,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-22T15:35:00+07:00",
+    "updatedAt": "2026-11-22T20:50:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -8519,6 +8528,10 @@
       {
         "at": "2026-11-22T15:35:00+07:00",
         "summary": "Đợt 39 LIVE 15:19 ICT 22/11 (BE 20c77efed451 / FE e369cd138922, Flyway 147|128|0, vm-post58 22/22; DOCLIMIT2 vá thêm lỗ PDF: ánh xạ ký tự dài và chữ nở làm API hết bộ nhớ; cắt thay vì từ chối). Ack CODE_SOURCE_WRITES do Owner nhắn đúng mã bản. Upload giữ 16 MiB (50 MiB chưa an toàn, chờ số đo); chế độ AI mạnh nhất và tự chạy tiếp vẫn TẮT. Chờ Owner duyệt ảnh gọn khung prompt (Oxy)."
+      },
+      {
+        "at": "2026-11-22T20:50:00+07:00",
+        "summary": "Đợt 40 LIVE 20:28 ICT 22/11 (BE b7fd080eaa92 / FE 492f42a54b11, Flyway 147|128|0, vm-post58 22/22; sửa lỗi P1 tải tài liệu Studio, khung prompt siêu tối giản anh đã duyệt, cờ Auto, trần phiên tải 64 MiB đặt 20:34). 15:31: tải tài liệu mở 50 MiB. Ack do anh nhắn đúng mã bản. Dọn đĩa máy chủ (3,1 GB -> 78 GB trống). Đợt 41: P3BE của Oxy và QA chế độ mạnh nhất."
       }
     ],
     "summary": {
@@ -18391,17 +18404,17 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-22T15:35:00+07:00",
+    "updatedAt": "2026-11-22T20:50:00+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
-      "be": "20c77efed451",
-      "fe": "e369cd138922"
+      "be": "b7fd080eaa92",
+      "fe": "492f42a54b11"
     },
     "total": 112,
     "on": 112,
     "off": 0,
-    "note": "Cập nhật 22/11 15:35 ICT (đợt 39 LIVE 15:19, không cờ mới; đợt 38 LIVE 11:27, không cờ mới; đợt 37 LIVE 07:53 không cờ mới). sau đợt 29–31 và các lần bật 20–21/11, thêm REAUTH (bật lại 21/11 10:08), TEMPLATE_SHARING (10:15), COMPANY_PORTABILITY (17:59) và COMPANY_PURGE chế độ chạy thử (18:03; DRY_RUN=true giữ true). Đợt gộp 35+36 LIVE 03:23 ICT 22/11 không cờ mới. Chế độ AI mạnh nhất hiện TẮT (cài đặt nóng, không tính là cờ; C0 tắt 04:06 ICT 22/11 sau lỗi P2, đợt 37 sửa lỗi). Tổng là số cờ đã theo dõi trên bảng này, không phải số nhóm trong mã. Còn TẮT: media/khung hình video; mở chế độ mạnh nhất cho workspace thật; xóa thật dữ liệu công ty; VNPay, Turnstile, SES, bucket DR v2 (cần tài khoản/khóa bên ngoài).",
+    "note": "Cập nhật 22/11 20:50 ICT (đợt 40 LIVE 20:28, không cờ mới; đợt 39 LIVE 15:19, không cờ mới; đợt 38 LIVE 11:27, không cờ mới; đợt 37 LIVE 07:53 không cờ mới). sau đợt 29–31 và các lần bật 20–21/11, thêm REAUTH (bật lại 21/11 10:08), TEMPLATE_SHARING (10:15), COMPANY_PORTABILITY (17:59) và COMPANY_PURGE chế độ chạy thử (18:03; DRY_RUN=true giữ true). Đợt gộp 35+36 LIVE 03:23 ICT 22/11 không cờ mới. Chế độ AI mạnh nhất hiện TẮT (cài đặt nóng, không tính là cờ; C0 tắt 04:06 ICT 22/11 sau lỗi P2, đợt 37 sửa lỗi). Tổng là số cờ đã theo dõi trên bảng này, không phải số nhóm trong mã. Còn TẮT: media/khung hình video; mở chế độ mạnh nhất cho workspace thật; xóa thật dữ liệu công ty; VNPay, Turnstile, SES, bucket DR v2 (cần tài khoản/khóa bên ngoài).",
     "noteEn": "Updated 20 Nov 17:15 ICT: 37 new switches turned on after releases 29-31 (18 ack groups, 8 plain switches, 11 UI switches), each passing vm-post58 22/22; behaviour checks NOT_RUN except the heartbeat and KB project memory (counts). The group list stops at 17 Nov for releases 24-28 (not reloaded), so the total is not the code's ProdFeature total (101 groups). Still OFF: waiting for the Owner (commercial, self sign-up, VNPay, template signing key, KB background read, DR v2, mail); waiting for Oxy fixes (MFA, reauth, hard delete, company self-delete, max mode, Tika, media, KB P5); off by design (multi-replica, agent gateway, X4). ON does not mean DONE: no independent QA or Owner UAT per feature.",
     "groups": [
       {
