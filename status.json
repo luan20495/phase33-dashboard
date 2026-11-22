@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "project": "XWeb Phase 3.3",
-  "asOf": "2026-11-22T20:50:00+07:00",
+  "asOf": "2026-11-22T21:45:00+07:00",
   "timezone": "Asia/Ho_Chi_Minh",
   "evidenceNote": "R1-R3 RELEASE_LOG retained; 2026-11-06 08:04 ICT Q1 flag ON without code release, queue API GET/enqueue pass but execution blocked AI_SPEND_EXPIRED. All other statuses unchanged; no live Mac agent telemetry.",
   "releases": [
@@ -1969,7 +1969,7 @@
       "closed": false
     }
   ],
-  "detailUpdatedAt": "2026-11-22T20:50:00+07:00",
+  "detailUpdatedAt": "2026-11-22T21:45:00+07:00",
   "post33Backlog": {
     "schemaVersion": 1,
     "title": "Backlog kế thừa và Phase 4 sau Phase 3.3",
@@ -7446,7 +7446,7 @@
     ]
   },
   "hourly": {
-    "updatedAt": "2026-11-22T20:50:00+07:00",
+    "updatedAt": "2026-11-22T21:45:00+07:00",
     "note": "Danh sách việc C0 chạy mỗi giờ. Bật/tắt, thêm, xóa: Owner gửi tin nhắn từ dashboard lên #88; C0 áp dụng và đọc danh sách này trước mỗi lần chạy. Mỗi việc lưu tối đa 10 lần chạy gần nhất.",
     "tasks": [
       {
@@ -8532,6 +8532,10 @@
       {
         "at": "2026-11-22T20:50:00+07:00",
         "summary": "Đợt 40 LIVE 20:28 ICT 22/11 (BE b7fd080eaa92 / FE 492f42a54b11, Flyway 147|128|0, vm-post58 22/22; sửa lỗi P1 tải tài liệu Studio, khung prompt siêu tối giản anh đã duyệt, cờ Auto, trần phiên tải 64 MiB đặt 20:34). 15:31: tải tài liệu mở 50 MiB. Ack do anh nhắn đúng mã bản. Dọn đĩa máy chủ (3,1 GB -> 78 GB trống). Đợt 41: P3BE của Oxy và QA chế độ mạnh nhất."
+      },
+      {
+        "at": "2026-11-22T21:45:00+07:00",
+        "summary": "Hai thay đổi cờ PROD sau đợt 40 (BE b7fd080eaa92 / FE 492f42a54b11, Flyway 147|128|0): 21:08 BẬT APP_ME_PREFERENCES_ENABLED (hết lỗi 404 /me/preferences khi tải Studio; không cần ack; vm-post58 22/22; QA persona đạt); 21:32 TẮT TENANT_AI_ENABLED + cờ trần hằng ngày vì bảng tenant_ai_providers không tồn tại (không migration; Oxy báo P1 trang Admin AI riêng của công ty, API 500 nay 404; chat và builder AI không bị ảnh hưởng). Đính chính bảng cờ 21:10 (MASK_SECRETS đã bật từ 20/11; AI_AGENT_GATEWAY_PAID_REQUIRES_WORKSPACE không bật được khi cổng agent tắt). Nháp migration V148 chưa commit; chờ quyết định của Owner. RELEASE_LOG hai repo (FE PR #303, BE PR #420), #88 comment 7080696057, bảng Kế hoạch đã cập nhật."
       }
     ],
     "summary": {
@@ -18404,17 +18408,17 @@
     }
   },
   "prodFlags": {
-    "updatedAt": "2026-11-22T20:50:00+07:00",
+    "updatedAt": "2026-11-22T21:45:00+07:00",
     "title": "Cờ tính năng trên PROD",
     "titleEn": "Feature switches on PROD",
     "prodSha": {
       "be": "b7fd080eaa92",
       "fe": "492f42a54b11"
     },
-    "total": 112,
-    "on": 112,
-    "off": 0,
-    "note": "Cập nhật 22/11 20:50 ICT (đợt 40 LIVE 20:28, không cờ mới; đợt 39 LIVE 15:19, không cờ mới; đợt 38 LIVE 11:27, không cờ mới; đợt 37 LIVE 07:53 không cờ mới). sau đợt 29–31 và các lần bật 20–21/11, thêm REAUTH (bật lại 21/11 10:08), TEMPLATE_SHARING (10:15), COMPANY_PORTABILITY (17:59) và COMPANY_PURGE chế độ chạy thử (18:03; DRY_RUN=true giữ true). Đợt gộp 35+36 LIVE 03:23 ICT 22/11 không cờ mới. Chế độ AI mạnh nhất hiện TẮT (cài đặt nóng, không tính là cờ; C0 tắt 04:06 ICT 22/11 sau lỗi P2, đợt 37 sửa lỗi). Tổng là số cờ đã theo dõi trên bảng này, không phải số nhóm trong mã. Còn TẮT: media/khung hình video; mở chế độ mạnh nhất cho workspace thật; xóa thật dữ liệu công ty; VNPay, Turnstile, SES, bucket DR v2 (cần tài khoản/khóa bên ngoài).",
+    "total": 113,
+    "on": 111,
+    "off": 2,
+    "note": "Cập nhật 22/11 21:45 ICT: BẬT APP_ME_PREFERENCES_ENABLED 21:08 (hết lỗi 404 khi tải Studio, không cần ack); TẮT TENANT_AI_ENABLED và cờ trần hằng ngày 21:32 (bảng tenant_ai_providers không tồn tại, không migration; chat và builder AI không bị ảnh hưởng). Đính chính bảng cờ lúc 21:10: cờ che bí mật tài liệu đã bật từ 20/11; AI_AGENT_GATEWAY_PAID_REQUIRES_WORKSPACE không bật được khi cổng agent tắt. Cập nhật 22/11 20:50 ICT (đợt 40 LIVE 20:28, không cờ mới; đợt 39 LIVE 15:19, không cờ mới; đợt 38 LIVE 11:27, không cờ mới; đợt 37 LIVE 07:53 không cờ mới). sau đợt 29–31 và các lần bật 20–21/11, thêm REAUTH (bật lại 21/11 10:08), TEMPLATE_SHARING (10:15), COMPANY_PORTABILITY (17:59) và COMPANY_PURGE chế độ chạy thử (18:03; DRY_RUN=true giữ true). Đợt gộp 35+36 LIVE 03:23 ICT 22/11 không cờ mới. Chế độ AI mạnh nhất hiện TẮT (cài đặt nóng, không tính là cờ; C0 tắt 04:06 ICT 22/11 sau lỗi P2, đợt 37 sửa lỗi). Tổng là số cờ đã theo dõi trên bảng này, không phải số nhóm trong mã. Còn TẮT: media/khung hình video; mở chế độ mạnh nhất cho workspace thật; xóa thật dữ liệu công ty; VNPay, Turnstile, SES, bucket DR v2 (cần tài khoản/khóa bên ngoài).",
     "noteEn": "Updated 20 Nov 17:15 ICT: 37 new switches turned on after releases 29-31 (18 ack groups, 8 plain switches, 11 UI switches), each passing vm-post58 22/22; behaviour checks NOT_RUN except the heartbeat and KB project memory (counts). The group list stops at 17 Nov for releases 24-28 (not reloaded), so the total is not the code's ProdFeature total (101 groups). Still OFF: waiting for the Owner (commercial, self sign-up, VNPay, template signing key, KB background read, DR v2, mail); waiting for Oxy fixes (MFA, reauth, hard delete, company self-delete, max mode, Tika, media, KB P5); off by design (multi-replica, agent gateway, X4). ON does not mean DONE: no independent QA or Owner UAT per feature.",
     "groups": [
       {
@@ -18782,9 +18786,9 @@
       },
       {
         "name": "TENANT_AI_DAILY_CAP",
-        "state": "ON",
-        "note": "bật 17/11 20:21 theo lệnh Owner: 1.000.000/công ty/ngày, cảnh báo 5.000; kéo theo TENANT_AI_ENABLED",
-        "at": "20:21"
+        "state": "OFF",
+        "note": "bật 17/11 20:21; TẮT 22/11 21:32 cùng TENANT_AI_ENABLED vì bảng tenant_ai_providers không tồn tại (không có migration; trang AI riêng của công ty trả 500); chờ V148 + quyết định của Owner",
+        "at": "21:32"
       },
       {
         "name": "AI_GATEWAY_PAID_REQUIRES_WORKSPACE",
@@ -19031,6 +19035,12 @@
         "state": "ON",
         "note": "bật 21/11 18:03 ICT với APP_COMPANY_PURGE_DRY_RUN=true giữ true (chỉ đếm, không xóa thật); đặt false là quyết định riêng của Owner",
         "at": "18:03"
+      },
+      {
+        "name": "ME_PREFERENCES",
+        "state": "ON",
+        "note": "bật 22/11 21:08 ICT (không cần ack): tùy chọn ngôn ngữ và giao diện theo tài khoản; sửa lỗi 404 /api/v1/me/preferences; vm-post58 22/22",
+        "at": "21:08"
       }
     ],
     "target13": [
@@ -19134,8 +19144,8 @@
         "id": "G13",
         "name": "TENANT_AI_DAILY_CAP",
         "phase": "P3",
-        "state": "Owner chọn trần; chưa bật",
-        "detail": "Trần 1.000.000 yêu cầu/công ty/ngày (mức tối đa mã nhận) + cảnh báo 5.000; cần đợt 23 và quyết định về tính năng AI nhà cung cấp riêng",
+        "state": "Đã bật 17/11 20:21; TẮT 22/11 21:32",
+        "detail": "Tắt cùng TENANT_AI_ENABLED vì bảng tenant_ai_providers không tồn tại (không migration nào tạo): trang AI riêng của công ty báo lỗi 500. Bật lại chỉ sau migration V148, kiểm bảo mật và quyết định của Owner.",
         "kind": "wait"
       }
     ],
